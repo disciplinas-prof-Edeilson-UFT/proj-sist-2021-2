@@ -30,6 +30,27 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyChGBpwpn6dPRuwhSyuQa6ea0unIH_oOWg",
+      authDomain: "ps-comidas.firebaseapp.com",
+      databaseURL: "https://ps-comidas-default-rtdb.firebaseio.com",
+      projectId: "ps-comidas",
+      storageBucket: "ps-comidas.appspot.com",
+      messagingSenderId: "507539855306",
+      appId: "1:507539855306:web:ca958aae2d961dbb892133",
+      measurementId: "G-LREEFE7NBR"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
