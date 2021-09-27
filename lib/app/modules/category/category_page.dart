@@ -8,6 +8,7 @@ class CategoryPage extends StatefulWidget {
   @override
   CategoryPageState createState() => CategoryPageState();
 }
+
 class CategoryPageState extends State<CategoryPage> {
   final CategoryStore store = Modular.get();
 
@@ -18,7 +19,7 @@ class CategoryPageState extends State<CategoryPage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: const <Widget>[],
       ),
     );
   }

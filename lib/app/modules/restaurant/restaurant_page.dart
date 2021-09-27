@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class RestaurantPage extends StatefulWidget {
   final String title;
-  const RestaurantPage({Key? key, this.title = 'RestaurantPage'}) : super(key: key);
+  const RestaurantPage({Key? key, this.title = 'RestaurantPage'})
+      : super(key: key);
   @override
   RestaurantPageState createState() => RestaurantPageState();
 }
+
 class RestaurantPageState extends State<RestaurantPage> {
   final RestaurantStore store = Modular.get();
 
@@ -18,7 +20,7 @@ class RestaurantPageState extends State<RestaurantPage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: const <Widget>[],
       ),
     );
   }

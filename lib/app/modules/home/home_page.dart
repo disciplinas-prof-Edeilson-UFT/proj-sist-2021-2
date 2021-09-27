@@ -16,7 +16,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Counter'),
+        title: const Text('Counter'),
       ),
       body: Observer(
         builder: (context) => Text('${store.counter}'),
@@ -25,7 +25,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         onPressed: () {
           store.increment();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

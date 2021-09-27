@@ -8,6 +8,7 @@ class CartPage extends StatefulWidget {
   @override
   CartPageState createState() => CartPageState();
 }
+
 class CartPageState extends State<CartPage> {
   final CartStore store = Modular.get();
 
@@ -18,7 +19,7 @@ class CartPageState extends State<CartPage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: const <Widget>[],
       ),
     );
   }

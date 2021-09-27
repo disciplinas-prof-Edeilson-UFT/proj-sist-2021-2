@@ -8,6 +8,7 @@ class RegisterPage extends StatefulWidget {
   @override
   RegisterPageState createState() => RegisterPageState();
 }
+
 class RegisterPageState extends State<RegisterPage> {
   final RegisterStore store = Modular.get();
 
@@ -18,7 +19,7 @@ class RegisterPageState extends State<RegisterPage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: const <Widget>[],
       ),
     );
   }

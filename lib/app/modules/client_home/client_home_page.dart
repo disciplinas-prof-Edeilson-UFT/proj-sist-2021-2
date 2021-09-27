@@ -1,13 +1,15 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/client_home/clientHome_store.dart';
+import 'package:pscomidas/app/modules/client_home/client_home_store.dart';
 import 'package:flutter/material.dart';
 
 class ClientHomePage extends StatefulWidget {
   final String title;
-  const ClientHomePage({Key? key, this.title = 'ClientHomePage'}) : super(key: key);
+  const ClientHomePage({Key? key, this.title = 'ClientHomePage'})
+      : super(key: key);
   @override
   ClientHomePageState createState() => ClientHomePageState();
 }
+
 class ClientHomePageState extends State<ClientHomePage> {
   final ClientHomeStore store = Modular.get();
 
@@ -18,7 +20,7 @@ class ClientHomePageState extends State<ClientHomePage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: const <Widget>[],
       ),
     );
   }
