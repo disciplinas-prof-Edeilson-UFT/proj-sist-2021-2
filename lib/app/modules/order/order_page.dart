@@ -8,6 +8,7 @@ class OrderPage extends StatefulWidget {
   @override
   OrderPageState createState() => OrderPageState();
 }
+
 class OrderPageState extends State<OrderPage> {
   final OrderStore store = Modular.get();
 
@@ -18,7 +19,7 @@ class OrderPageState extends State<OrderPage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: const <Widget>[],
       ),
     );
   }

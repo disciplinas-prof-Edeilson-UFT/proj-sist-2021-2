@@ -8,6 +8,7 @@ class AuthPage extends StatefulWidget {
   @override
   AuthPageState createState() => AuthPageState();
 }
+
 class AuthPageState extends State<AuthPage> {
   final AuthStore store = Modular.get();
 
@@ -18,7 +19,7 @@ class AuthPageState extends State<AuthPage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: const <Widget>[],
       ),
     );
   }

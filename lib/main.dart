@@ -33,7 +33,7 @@ class _AppState extends State<App> {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return ModularApp(module: AppModule(), child: AppWidget());
+          return ModularApp(module: AppModule(), child: const AppWidget());
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
