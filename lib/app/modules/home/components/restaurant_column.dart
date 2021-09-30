@@ -25,13 +25,15 @@ class RestaurantTreeColumns extends StatelessWidget {
           }
 
           final restaurants = streamSnapshot.data!.docs;
-          return ListView.builder(
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 480,
+            mainAxisExtent: 110,
+            childAspectRatio: 3 / 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8),
             itemCount: restaurants.length,
-            itemBuilder: (context, index) => const SizedBox(
-              height: 130,
-              width: 420,
-              child: RestaurantCard()
-            ),
+            itemBuilder: (context, index) => const RestaurantCard(),
           );
         }
       );
