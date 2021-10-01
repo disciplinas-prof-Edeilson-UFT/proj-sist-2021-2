@@ -11,8 +11,11 @@ From this component is EXPECTED:
   there should be 1 to 3 columns based on available space (responsivity);
 */
 
-class RestaurantTreeColumns extends StatelessWidget {
-  const RestaurantTreeColumns({ Key? key }) : super(key: key);
+class RestaurantColumns extends StatelessWidget {
+
+  final int numberOfColumns;
+
+  const RestaurantColumns({ Key? key, required this.numberOfColumns}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +29,14 @@ class RestaurantTreeColumns extends StatelessWidget {
 
           final restaurants = streamSnapshot.data!.docs;
           return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 480,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: numberOfColumns,
             mainAxisExtent: 110,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8),
+            childAspectRatio: 5/2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12),
             itemCount: restaurants.length,
             itemBuilder: (context, index) => const RestaurantCard(),
           );

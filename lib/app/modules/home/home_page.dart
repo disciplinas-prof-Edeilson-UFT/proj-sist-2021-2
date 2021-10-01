@@ -3,9 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_column.dart';
 import 'package:pscomidas/app/modules/home/home_store.dart';
-import 'package:pscomidas/app/modules/home/components/restaurant_card.dart';
 
-import 'components/restaurant_card.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -25,10 +23,12 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
       body: Observer(
         builder: (context) => LayoutBuilder(
           builder: (context, constraints) {
-            if (constraints.maxWidth < 1400) {
-              return RestaurantTreeColumns();//Implementação temporária para debug.
+            if (constraints.maxWidth > 1200) {
+              return const RestaurantColumns(numberOfColumns: 3);//Implementação temporária para debug.
+            } else if (constraints.maxWidth > 750) {
+              return const RestaurantColumns(numberOfColumns: 2);//Número de colunas alocado conforme tamanho da pag.
             } else {
-              return Text(constraints.maxWidth.toString());
+              return const RestaurantColumns(numberOfColumns: 1);//Evita overflow.
             }
           },
         ),
