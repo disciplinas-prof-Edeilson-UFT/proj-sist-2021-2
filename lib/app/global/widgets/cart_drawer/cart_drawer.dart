@@ -13,6 +13,36 @@ class _CartDrawerState extends State<CartDrawer> {
   final CartStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
-    return Drawer();
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.2,
+      child: Drawer(
+        child: Column(
+          children: <Widget>[
+            const SizedBox(height: 40),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                    child: Container(
+                      decoration: const BoxDecoration(color: Colors.red),
+                    ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.all(16.0),
+                      primary: Colors.white,
+                      textStyle: const TextStyle(fontSize: 20),
+                    ),
+                    onPressed: (() => {}),
+                    child: const Text('Pagar'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
