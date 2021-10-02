@@ -12,19 +12,18 @@ From this component is EXPECTED:
 */
 
 class RestaurantColumns extends StatelessWidget {
-
   final int numberOfColumns;
 
-  const RestaurantColumns({ Key? key, required this.numberOfColumns}) : super(key: key);
+  const RestaurantColumns({Key? key, required this.numberOfColumns})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-      return StreamBuilder(
+    return StreamBuilder(
         stream: FirebaseFirestore.instance.collection('restaurant').snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          
-          if(streamSnapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+          if (streamSnapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
           }
 
           final restaurants = streamSnapshot.data!.docs;
@@ -32,15 +31,14 @@ class RestaurantColumns extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: numberOfColumns,
-            mainAxisExtent: 110,
-            childAspectRatio: 5/2,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12),
+                crossAxisCount: numberOfColumns,
+                mainAxisExtent: 110,
+                childAspectRatio: 5 / 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12),
             itemCount: restaurants.length,
-            itemBuilder: (context, index) => const RestaurantCard(),
+            itemBuilder: (context, index) => RestaurantCard(restaurants[index]),
           );
-        }
-      );
+        });
   }
 }
