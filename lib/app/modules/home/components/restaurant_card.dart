@@ -12,23 +12,28 @@ From this component is EXPECTED:
 */
 
 class RestaurantCard extends StatefulWidget {
+  
   final QueryDocumentSnapshot<Object?> restaurant;
   const RestaurantCard(this.restaurant, {Key? key}) : super(key: key);
 
   @override
   State<RestaurantCard> createState() => _RestaurantCardState();
+
 }
 
 class _RestaurantCardState extends State<RestaurantCard> {
+  
   Color _color = Colors.white;
-  bool hovering = false;
+  final BorderRadius _borderRadius = BorderRadius.circular(6);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: _borderRadius,
+      hoverColor: null,
       onTap: () {},
-      onHover: (hovering) {
-        if (hovering) {
+      onHover: (_hovering) {
+        if (_hovering) {
           setState(() {
             _color = Colors.grey[200]!;
           });
@@ -39,66 +44,79 @@ class _RestaurantCardState extends State<RestaurantCard> {
         }
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 400),
+        duration: Duration(milliseconds: 200),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: _borderRadius,
           color: _color,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(widget.restaurant['image']),
-              maxRadius: 45,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                SizedBox(
-                  height: 8,
+                SizedBox(width: 12,),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(widget.restaurant['image']),
+                  maxRadius: 45,
                 ),
-                Text(
-                  widget.restaurant['social_name'],
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                SizedBox(width: 14,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(
-                      Icons.star,
-                      size: 15,
-                      color: Colors.orange[600],
+                    SizedBox(
+                      height: 8,
                     ),
                     Text(
-                      widget.restaurant['avaliation'].toString(),
-                      style: TextStyle(color: Colors.orange[600]),
+                      widget.restaurant['social_name'],
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                     ),
-                    Text(" • "),
-                    Text(widget.restaurant['category']),
-                    Text(" • "),
-                    Text(widget.restaurant['distance'].toString() + 'km'),
-                  ],
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  children: [
-                    Text(widget.restaurant['estimated_delivery'].toString() +
-                        ' min'),
-                    Text(" • "),
-                    Text(
-                        'R\$' + widget.restaurant['delivery_price'].toString()),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.star,
+                          size: 15,
+                          color: Colors.orange[600],
+                        ),
+                        Text(
+                          widget.restaurant['avaliation'].toString(),
+                          style: TextStyle(
+                            color: Colors.orange[600],
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(" • "),
+                        Text(widget.restaurant['category']),
+                        Text(" • "),
+                        Text(widget.restaurant['distance'].toString() + 'km'),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      children: [
+                        Text(widget.restaurant['estimated_delivery'].toString() +
+                            ' min'),
+                        Text(" • "),
+                        Text(
+                            'R\$' + widget.restaurant['delivery_price'].toString().padRight(2, ".00")),
+                      ],
+                    ),
                   ],
                 ),
               ],
             ),
-            Align(
-              child: Icon(Icons.star_half, color: Colors.red),
-              alignment: Alignment.topRight,
+            Padding(
+              padding: const EdgeInsets.only(top: 8, right: 12.0),
+              child: Align(
+                child: Icon(Icons.star_half, color: Colors.red),
+                alignment: Alignment.topRight,
+              ),
             ),
           ],
         ),
