@@ -12,17 +12,14 @@ From this component is EXPECTED:
 */
 
 class RestaurantCard extends StatefulWidget {
-  
   final QueryDocumentSnapshot<Object?> restaurant;
   const RestaurantCard(this.restaurant, {Key? key}) : super(key: key);
 
   @override
   State<RestaurantCard> createState() => _RestaurantCardState();
-
 }
 
 class _RestaurantCardState extends State<RestaurantCard> {
-  
   Color _color = Colors.white;
   final BorderRadius _borderRadius = BorderRadius.circular(6);
 
@@ -52,64 +49,80 @@ class _RestaurantCardState extends State<RestaurantCard> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                SizedBox(width: 12,),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(widget.restaurant['image']),
-                  maxRadius: 45,
-                ),
-                SizedBox(width: 14,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      widget.restaurant['social_name'],
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+            Expanded(
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 12,
+                  ),
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(widget.restaurant['image']),
+                    maxRadius: 45,
+                  ),
+                  SizedBox(
+                    width: 14,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.star,
-                          size: 15,
-                          color: Colors.orange[600],
+                        SizedBox(
+                          height: 8,
                         ),
                         Text(
-                          widget.restaurant['avaliation'].toString(),
+                          widget.restaurant['social_name'],
                           style: TextStyle(
-                            color: Colors.orange[600],
-                            fontSize: 13,
                             fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        Text(" • "),
-                        Text(widget.restaurant['category']),
-                        Text(" • "),
-                        Text(widget.restaurant['distance'].toString() + 'km'),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: Colors.orange[600],
+                            ),
+                            Text(
+                              widget.restaurant['avaliation'].toString(),
+                              style: TextStyle(
+                                color: Colors.orange[600],
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(" • "),
+                            Text(widget.restaurant['category']),
+                            Text(" • "),
+                            Text(widget.restaurant['distance'].toString() +
+                                'km'),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            Text(widget.restaurant['estimated_delivery']
+                                    .toString() +
+                                ' min'),
+                            Text(" • "),
+                            Text('R\$' +
+                                widget.restaurant['delivery_price']
+                                    .toString()
+                                    .padRight(2, ".00")),
+                          ],
+                        ),
                       ],
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      children: [
-                        Text(widget.restaurant['estimated_delivery'].toString() +
-                            ' min'),
-                        Text(" • "),
-                        Text(
-                            'R\$' + widget.restaurant['delivery_price'].toString().padRight(2, ".00")),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8, right: 12.0),
