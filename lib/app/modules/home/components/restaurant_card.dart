@@ -69,13 +69,23 @@ class _RestaurantCardState extends State<RestaurantCard> {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(
-                          widget.restaurant['social_name'],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                widget.restaurant['social_name'],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 12.0),
+                              child: Icon(Icons.star_half, color: Colors.red),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 8,
@@ -122,13 +132,6 @@ class _RestaurantCardState extends State<RestaurantCard> {
                     ),
                   ),
                 ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, right: 12.0),
-              child: Align(
-                child: Icon(Icons.star_half, color: Colors.red),
-                alignment: Alignment.topRight,
               ),
             ),
           ],
