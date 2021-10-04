@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -57,6 +59,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                   ),
                   CircleAvatar(
                     backgroundImage: NetworkImage(widget.restaurant['image']),
+                    backgroundColor: Colors.white,
                     maxRadius: 45,
                   ),
                   SizedBox(
@@ -99,35 +102,36 @@ class _RestaurantCardState extends State<RestaurantCard> {
                               color: Colors.orange[600],
                             ),
                             Text(
-                              widget.restaurant['avaliation'].toString(),
+                              widget.restaurant['avaliation']
+                                  .toStringAsFixed(1),
                               style: TextStyle(
                                 color: Colors.orange[600],
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text(" • "),
-                            Text(widget.restaurant['category']),
-                            Text(" • "),
-                            Text(widget.restaurant['distance'].toString() +
+                            Text(" • " +
+                                widget.restaurant['category'] +
+                                " • " +
+                                widget.restaurant['distance'].toString() +
                                 'km'),
                           ],
                         ),
                         SizedBox(
                           height: 8,
                         ),
-                        Row(
-                          children: [
-                            Text(widget.restaurant['estimated_delivery']
-                                    .toString() +
-                                ' min'),
-                            Text(" • "),
-                            Text('R\$' +
-                                widget.restaurant['delivery_price']
-                                    .toString()
-                                    .padRight(2, ".00")),
-                          ],
+                        Text(
+                          widget.restaurant['estimated_delivery'].toString() +
+                              ' min' +
+                              " • " +
+                              'R\$' +
+                              widget.restaurant['delivery_price']
+                                  .toStringAsFixed(2),
                         ),
+                        Container(
+                            child: widget.restaurant['cupom'] != null
+                                ? CupomCard(restaurant: widget.restaurant)
+                                : Container())
                       ],
                     ),
                   ),
@@ -136,6 +140,41 @@ class _RestaurantCardState extends State<RestaurantCard> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CupomCard extends StatelessWidget {
+  final QueryDocumentSnapshot<Object?> restaurant;
+  const CupomCard({Key? key, required this.restaurant}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          color: Color(0xffEFF3F5),
+        ),
+        height: 25,
+        width: 200,
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Image.asset(
+            "lib/app/modules/home/assets/cupom.png",
+            width: 15,
+            height: 15,
+          ),
+          Center(
+            child: Text(
+              ' ' + restaurant['cupom'].toString(),
+              style: TextStyle(
+                color: Color(0xFF2e6788),
+              ),
+            ),
+          ),
+        ]),
       ),
     );
   }
