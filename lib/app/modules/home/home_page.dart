@@ -17,21 +17,31 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Counter'),
       ),
-      body: Observer(
-        builder: (context) => LayoutBuilder(
-          builder: (context, constraints) {
-            if (constraints.maxWidth > 1200) {
-              return const RestaurantColumns(numberOfColumns: 3);//Implementação temporária para debug.
-            } else if (constraints.maxWidth > 750) {
-              return const RestaurantColumns(numberOfColumns: 2);//Número de colunas alocado conforme tamanho da pag.
-            } else {
-              return const RestaurantColumns(numberOfColumns: 1);//Evita overflow.
-            }
-          },
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+            child: Text("Lojas", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+          ),
+          Observer(
+            builder: (context) => LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > 1200) {
+                  return const RestaurantColumns(numberOfColumns: 3);//Implementação temporária até encontrarmos solução mais adequada.
+                } else if (constraints.maxWidth > 750) {
+                  return const RestaurantColumns(numberOfColumns: 2);//Número de colunas alocado conforme tamanho da pag.
+                } else {
+                  return const RestaurantColumns(numberOfColumns: 1);//Evita overflow.
+                }
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

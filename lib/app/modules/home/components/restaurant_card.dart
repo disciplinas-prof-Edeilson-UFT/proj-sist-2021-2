@@ -22,8 +22,14 @@ class RestaurantCard extends StatefulWidget {
 }
 
 class _RestaurantCardState extends State<RestaurantCard> {
+  
   Color _color = Colors.white;
   final BorderRadius _borderRadius = BorderRadius.circular(6);
+
+  final TextStyle _cardInfoStyle = TextStyle(
+    color: Color(0xff717171),
+    fontSize: 14,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -49,91 +55,83 @@ class _RestaurantCardState extends State<RestaurantCard> {
           color: _color,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(widget.restaurant['image']),
+                backgroundColor: Colors.white,
+                maxRadius: 45,
+              ),
+            ),
             Expanded(
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 12,
+                    height: 8,
                   ),
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(widget.restaurant['image']),
-                    backgroundColor: Colors.white,
-                    maxRadius: 45,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          widget.restaurant['social_name'],
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: ChampionRestaurant(), // ADD isChampion? check
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.star,
+                        size: 15,
+                        color: Color(0XFFe8a44c),
+                      ),
+                      Text(
+                        widget.restaurant['avaliation']
+                            .toStringAsFixed(1),
+                        style: TextStyle(
+                          color: Color(0XFFe8a44c),
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        " • " +
+                        widget.restaurant['category'] +
+                        " • " +
+                        widget.restaurant['distance'].toString() +
+                        'km',
+                        style: _cardInfoStyle,
+                      ),
+                    ],
                   ),
                   SizedBox(
-                    width: 14,
+                    height: 8,
                   ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                widget.restaurant['social_name'],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 12.0),
-                              child: Icon(Icons.star_half, color: Colors.red),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: Colors.orange[600],
-                            ),
-                            Text(
-                              widget.restaurant['avaliation']
-                                  .toStringAsFixed(1),
-                              style: TextStyle(
-                                color: Colors.orange[600],
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(" • " +
-                                widget.restaurant['category'] +
-                                " • " +
-                                widget.restaurant['distance'].toString() +
-                                'km'),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          widget.restaurant['estimated_delivery'].toString() +
-                              ' min' +
-                              " • " +
-                              'R\$' +
-                              widget.restaurant['delivery_price']
-                                  .toStringAsFixed(2),
-                        ),
-                        Container(
-                            child: widget.restaurant['cupom'] != null
-                                ? CupomCard(restaurant: widget.restaurant)
-                                : Container())
-                      ],
-                    ),
+                  Text(
+                    widget.restaurant['estimated_delivery'].toString() +
+                        ' min' +
+                        " • " +
+                        'R\$' +
+                        widget.restaurant['delivery_price']
+                            .toStringAsFixed(2),
+                    style: _cardInfoStyle,
+                  ),
+                  Container(
+                    child: widget.restaurant['cupom'] != null
+                      ? CupomCard(restaurant: widget.restaurant)
+                      : Container(),
                   ),
                 ],
               ),
@@ -144,6 +142,27 @@ class _RestaurantCardState extends State<RestaurantCard> {
     );
   }
 }
+
+
+class ChampionRestaurant extends StatelessWidget {
+  const ChampionRestaurant({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Image.asset("lib/app/modules/home/assets/images/iconmarmita.png", height: 28),
+      onTap: () {
+        //NAVIGATE para o restaurante.
+      },
+      onHover: (_hovering) {
+        if (_hovering) {
+          //print("ESTE EH UM ESTABELECIMENTO CAMPEAO");
+        }
+      },
+    );
+  }
+}
+
 
 class CupomCard extends StatelessWidget {
   final QueryDocumentSnapshot<Object?> restaurant;
@@ -160,21 +179,28 @@ class CupomCard extends StatelessWidget {
         ),
         height: 25,
         width: 200,
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Image.asset(
-            "lib/app/modules/home/assets/cupom.png",
-            width: 15,
-            height: 15,
-          ),
-          Center(
-            child: Text(
-              ' ' + restaurant['cupom'].toString(),
-              style: TextStyle(
-                color: Color(0xFF2e6788),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center, 
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Image.asset(
+                "lib/app/modules/home/assets/images/cupom.png",
+                width: 15,
+                height: 15,
               ),
             ),
-          ),
-        ]),
+            Expanded(
+              child: Text(
+                'Cupom de R\$${restaurant['cupom']} disponível',
+                style: TextStyle(
+                  color: Color(0xFF2e6788),
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
