@@ -10,7 +10,7 @@ import 'package:flutter/widgets.dart';
 This is the Restaurant card, containing informations and an round avatar from restaurants.
 
 From this component is EXPECTED: 
- - recieve data from superclasses and build accordingly.
+ - recieve data from superclasses and build accordingly [OK].
 */
 
 class RestaurantCard extends StatefulWidget {
@@ -28,7 +28,8 @@ class _RestaurantCardState extends State<RestaurantCard> {
 
   final TextStyle _cardInfoStyle = TextStyle(
     color: Color(0xff717171),
-    fontSize: 14,
+    fontSize: 13.4,
+    fontFamily: 'Nunito',
   );
 
   @override
@@ -78,8 +79,9 @@ class _RestaurantCardState extends State<RestaurantCard> {
                           widget.restaurant['social_name'],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: 16,
                             overflow: TextOverflow.ellipsis,
+                            fontFamily: 'Nunito',
                           ),
                         ),
                       ),
@@ -195,7 +197,8 @@ class CupomCard extends StatelessWidget {
                 'Cupom de R\$${restaurant['cupom']} disponível',
                 style: TextStyle(
                   color: Color(0xFF2e6788),
-                  fontSize: 12,
+                  fontSize: 13,
+                  fontFamily: 'Nunito',
                 ),
               ),
             ),

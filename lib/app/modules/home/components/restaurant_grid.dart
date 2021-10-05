@@ -6,15 +6,14 @@ import 'package:pscomidas/app/modules/home/components/restaurant_card.dart';
 This is the Ifood's session "Stores". it holds a column witch contains the restaurant cards.
 From this component is EXPECTED: 
  - retrieve data from Firestore database [OK]
- - construct the cards and columns. 
+ - construct the cards and columns [OK]. 
   
-  there should be 1 to 3 columns based on available space (responsivity);
+  there should be 1 to 3 columns based on available space (responsivity) [OK];
 */
 
-class RestaurantColumns extends StatelessWidget {
-  final int numberOfColumns;
+class RestaurantGrid extends StatelessWidget {
 
-  const RestaurantColumns({Key? key, required this.numberOfColumns})
+  const RestaurantGrid({Key? key})
       : super(key: key);
 
   @override
@@ -27,18 +26,18 @@ class RestaurantColumns extends StatelessWidget {
         }
 
         final restaurants = streamSnapshot.data!.docs;
-        restaurants.removeAt(0);/*ATENÇÃO: ESTE É O CARD CRIADO PELOS LÍDERES COMO PADRÃO
-        ELE ESTÁ OBSOLETO DENTRO DAS NECESSIDADE DO CARD CRIADO PELO GRUPO 1. UM CONSENSO É ESPERADO.
+        restaurants.removeAt(0);/*ATENÇÃO: ESTE É O CARD CRIADO PELOS LÍDERES COMO PADRÃO.
+        ELE ESTÁ OBSOLETO DENTRO DAS NECESSIDADES DO CARD CRIADO PELO GRUPO 1. UM CONSENSO É ESPERADO.
         */
         return GridView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: numberOfColumns,
-              mainAxisExtent: 115,
-              childAspectRatio: 3 / 2,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8),
+            crossAxisCount: MediaQuery.of(context).size > const Size(1100, 0) ? 3 : MediaQuery.of(context).size > const Size(680, 0) ? 2 : 1,
+            mainAxisExtent: 115,
+            childAspectRatio: 3 / 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8),
           itemCount: restaurants.length,
           itemBuilder: (context, index) {
             try {
