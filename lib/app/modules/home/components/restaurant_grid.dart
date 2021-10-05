@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_card.dart';
+import 'dart:math';
 
 /*
 This is the Ifood's session "Stores". it holds a column witch contains the restaurant cards.
@@ -26,6 +27,7 @@ class RestaurantGrid extends StatelessWidget {
         }
 
         final restaurants = streamSnapshot.data!.docs;
+        double _pageWidth = MediaQuery.of(context).size.width;
         restaurants.removeAt(0);/*ATENÇÃO: ESTE É O CARD CRIADO PELOS LÍDERES COMO PADRÃO.
         ELE ESTÁ OBSOLETO DENTRO DAS NECESSIDADES DO CARD CRIADO PELO GRUPO 1. UM CONSENSO É ESPERADO.
         */
@@ -33,8 +35,8 @@ class RestaurantGrid extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: MediaQuery.of(context).size > const Size(1100, 0) ? 3 : MediaQuery.of(context).size > const Size(680, 0) ? 2 : 1,
-            mainAxisExtent: 115,
+            crossAxisCount: _pageWidth > 1100 ? 3 : _pageWidth > 700 ? 2 : 1,
+            mainAxisExtent: _pageWidth * 0.10 < 115 ? 115 : _pageWidth * 0.10,
             childAspectRatio: 3 / 2,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8),

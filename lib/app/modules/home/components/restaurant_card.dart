@@ -50,6 +50,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
         }
       },
       child: AnimatedContainer(
+        height: 120,
         duration: Duration(milliseconds: 200),
         decoration: BoxDecoration(
           borderRadius: _borderRadius,
@@ -63,6 +64,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                 backgroundImage: NetworkImage(widget.restaurant['image']),
                 backgroundColor: Colors.white,
                 maxRadius: 45,
+                //minRadius: 30,
               ),
             ),
             Expanded(
@@ -130,11 +132,9 @@ class _RestaurantCardState extends State<RestaurantCard> {
                             .toStringAsFixed(2),
                     style: _cardInfoStyle,
                   ),
-                  Container(
-                    child: widget.restaurant['cupom'] != null
-                      ? CupomCard(restaurant: widget.restaurant)
-                      : Container(),
-                  ),
+                  widget.restaurant['cupom'] != null
+                    ? CupomCard(restaurant: widget.restaurant)
+                    : Container(),
                 ],
               ),
             ),

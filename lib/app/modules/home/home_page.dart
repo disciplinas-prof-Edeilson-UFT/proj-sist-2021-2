@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/home/components/restaurant_card.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
 import 'package:pscomidas/app/modules/home/home_store.dart';
 
@@ -27,18 +26,12 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-            child: Text("Lojas", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+            child: Text("Lojas", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Nunito'),),
           ),
           Observer(
-            builder: (context) => const RestaurantGrid(),
+            builder: (context) => const SingleChildScrollView(child: RestaurantGrid()),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          store.increment();
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }
