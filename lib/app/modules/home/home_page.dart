@@ -23,7 +23,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         elevation: 2,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InkWell(
               child: Image.asset(
@@ -35,28 +35,54 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             InkWell(
               child: Image.asset(
                 "lib/app/modules/home/assets/filtro.png",
-                width: MediaQuery.of(context).size.width * 0.2,
+                width: MediaQuery.of(context).size.width * 0.03,
+              ),
+              onTap: () {},
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.01,
+            ),
+            const Text(
+              "Ordem Alfabética",
+              style: TextStyle(
+                fontSize: 10,
+                color: tertiaryCollor,
+              ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0,
+            ),
+            InkWell(
+              child: const Icon(
+                Icons.keyboard_arrow_down_sharp,
+                color: secondaryCollor,
               ),
               onTap: () {},
             ),
           ],
         ),
         titleSpacing: 0.0,
-        centerTitle: true,
+        centerTitle: false,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset(
+          InkWell(
+            child: Image.asset(
               "lib/app/modules/home/assets/user.png",
+              width: MediaQuery.of(context).size.width * 0.02,
             ),
-            iconSize: MediaQuery.of(context).size.width * 0.03,
+            onTap: () {},
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset(
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.02,
+          ),
+          InkWell(
+            child: Image.asset(
               "lib/app/modules/home/assets/carrinho.png",
+              width: MediaQuery.of(context).size.width * 0.02,
             ),
-            iconSize: MediaQuery.of(context).size.width * 0.03,
+            onTap: () {},
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.02,
           ),
         ],
       ),
