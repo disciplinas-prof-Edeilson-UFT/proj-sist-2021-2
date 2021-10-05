@@ -1,4 +1,6 @@
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 import 'package:flutter/material.dart';
 
@@ -16,11 +18,27 @@ class RestaurantPageState extends State<RestaurantPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+      appBar: const CustomAppBar(),
+      endDrawer: Drawer(
+        elevation: 1,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * .3,
+          child: const Center(
+            child: Text('Carrinho'),
+          ),
+        ),
       ),
+<<<<<<< HEAD
       body: Column(
         children: const <Widget>[],
+=======
+      body: SafeArea(
+        child: Observer(
+          builder: (context) => Center(
+            child: Text('${store.value}'),
+          ),
+        ),
+>>>>>>> main
       ),
     );
   }
