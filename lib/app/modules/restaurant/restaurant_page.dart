@@ -28,17 +28,12 @@ class RestaurantPageState extends State<RestaurantPage> {
           ),
         ),
       ),
-<<<<<<< HEAD
-      body: Column(
-        children: const <Widget>[],
-=======
       body: SafeArea(
         child: Observer(
           builder: (context) => Center(
             child: Text('${store.value}'),
           ),
         ),
->>>>>>> main
       ),
     );
   }
