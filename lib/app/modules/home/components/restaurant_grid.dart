@@ -1,16 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_card.dart';
-import 'dart:math';
 
-/*
-This is the Ifood's session "Stores". it holds a column witch contains the restaurant cards.
-From this component is EXPECTED: 
- - retrieve data from Firestore database [OK]
- - construct the cards and columns [OK]. 
-  
-  there should be 1 to 3 columns based on available space (responsivity) [OK];
-*/
+//Esta é a página que busca dados no firebase e constrói os cards conforme necessidade.
 
 class RestaurantGrid extends StatelessWidget {
 
@@ -35,8 +27,8 @@ class RestaurantGrid extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: _pageWidth > 1100 ? 3 : _pageWidth > 700 ? 2 : 1,
-            mainAxisExtent: _pageWidth * 0.10 < 115 ? 115 : _pageWidth * 0.10,
+            crossAxisCount: _pageWidth > 1100 ? 3 : _pageWidth > 700 ? 2 : 1,//Responsivo horizontalmente
+            mainAxisExtent: _pageWidth * 0.10 < 100 ? 100 : _pageWidth * 0.10,//Responsivo verticalmente (min 100 px)
             childAspectRatio: 3 / 2,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8),

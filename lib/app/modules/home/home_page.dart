@@ -20,24 +20,27 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
       appBar: AppBar(
         title: const Text('Counter'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-            child: Text(
-              "Lojas",
-              style: TextStyle(
-                  fontSize: 18,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Text(
+                "Lojas",
+                style: TextStyle(
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Nunito'),
+                  fontFamily: 'Nunito',
+                ),
+              ),
             ),
-          ),
-          Observer(
-            builder: (context) =>
-                const SingleChildScrollView(child: RestaurantGrid()),
-          ),
-        ],
+            Observer(
+              builder: (context) =>
+                  const RestaurantGrid(),
+            ),
+          ],
+        ),
       ),
     );
   }
