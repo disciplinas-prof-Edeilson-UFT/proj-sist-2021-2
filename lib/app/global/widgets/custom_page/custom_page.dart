@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/global/widgets/cart_drawer/cart_drawer.dart';
+import 'package:pscomidas/app/global/widgets/cart_drawer/placeholder/oder_holder.dart';
 
 class CustomPage extends StatefulWidget {
   const CustomPage({Key? key, required this.body}) : super(key: key);
@@ -18,7 +19,7 @@ class _CustomPageState extends State<CustomPage> {
       body: SafeArea(
         child: widget.body,
       ),
-      endDrawer: CartDrawer(),
+      endDrawer: OrderHolder(),
     );
   }
 }

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/widgets/cart_drawer/item_builder/item_builder.dart';
+import 'package:pscomidas/app/global/widgets/cart_drawer/placeholder/pedido.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 
 class CartDrawer extends StatefulWidget {
-  const CartDrawer({Key? key}) : super(key: key);
+  final List<ItemModel> placeHolder;
+
+  CartDrawer({
+    required this.placeHolder,
+  });
 
   @override
   _CartDrawerState createState() => _CartDrawerState();
@@ -18,26 +24,20 @@ class _CartDrawerState extends State<CartDrawer> {
       child: Drawer(
         child: Column(
           children: <Widget>[
-            const SizedBox(height: 40),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Stack(
-                children: <Widget>[
-                  Positioned.fill(
-                    child: Container(
-                      decoration: const BoxDecoration(color: Colors.red),
-                    ),
+            Container(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(10.0),
+                itemCount: widget.placeHolder.length,
+                itemBuilder: (context, index) => Container(
+                  child: DrawerBuilder(
+                    name: widget.placeHolder[index].name,
+                    icon: widget.placeHolder[index].icon,
+                    price: widget.placeHolder[index].price,
+                    deliveryFee: widget.placeHolder[index].deliveryFee,
+                    totalprice: widget.placeHolder[index].totalprice,
+                    quantity: widget.placeHolder[index].quantity,
                   ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.all(16.0),
-                      primary: Colors.white,
-                      textStyle: const TextStyle(fontSize: 20),
-                    ),
-                    onPressed: (() => {}),
-                    child: const Text('Pagar'),
-                  ),
-                ],
+                ),
               ),
             ),
           ],
