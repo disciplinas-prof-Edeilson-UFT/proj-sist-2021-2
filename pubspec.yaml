@@ -91,8 +91,8 @@ flutter:
   fonts:
     - family: Nunito
       fonts:
-        - asset: lib\app\modules\home\assets\fonts\Nunito-Regular.ttf
-        - asset: lib\app\modules\home\assets\fonts\Nunito-Bold.ttf
+        - asset: lib/app/modules/home/assets/fonts/Nunito-Regular.ttf
+        - asset: lib/app/modules/home/assets/fonts/Nunito-Bold.ttf
           weight: 700
   #   - family: Schyler
   #     fonts:

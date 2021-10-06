@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
-import 'package:pscomidas/app/modules/home/home_store.dart';
-
+import '/app/modules/home/components/restaurant_grid.dart';
+import '/app/modules/home/store/home_store.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -26,10 +25,17 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-            child: Text("Lojas", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Nunito'),),
+            child: Text(
+              "Lojas",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito'),
+            ),
           ),
           Observer(
-            builder: (context) => const SingleChildScrollView(child: RestaurantGrid()),
+            builder: (context) =>
+                const SingleChildScrollView(child: RestaurantGrid()),
           ),
         ],
       ),
