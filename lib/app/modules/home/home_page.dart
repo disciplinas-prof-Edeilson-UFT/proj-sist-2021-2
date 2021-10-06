@@ -35,7 +35,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               child: Image.asset(
-                "lib/app/modules/home/assets/logo.png",
+                "assets/images/logo.png",
                 width: MediaQuery.of(context).size.width * 0.2,
               ),
               onTap: () {},
@@ -46,7 +46,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               child: Image.asset(
-                "lib/app/modules/home/assets/filtro.png",
+                "assets/images/filter.png",
                 width: MediaQuery.of(context).size.width * 0.03,
               ),
               onTap: () {},
@@ -157,7 +157,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             child: Image.asset(
-              "lib/app/modules/home/assets/user.png",
+              "assets/images/user.png",
               width: MediaQuery.of(context).size.width * 0.02,
             ),
             onTap: () {},
@@ -171,7 +171,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             child: Image.asset(
-              "lib/app/modules/home/assets/carrinho.png",
+              "assets/images/cart.png",
               width: MediaQuery.of(context).size.width * 0.02,
             ),
             onTap: () {},
