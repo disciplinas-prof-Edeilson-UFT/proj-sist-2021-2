@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/home_store.dart';
@@ -77,7 +78,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                     labelText: "Busque por ítem ou loja",
                     labelStyle: TextStyle(
                       color: tertiaryCollor,
-                      fontSize: 8,
+                      fontSize: 14,
                     ),
                     prefixIcon: Icon(
                       Icons.search,
@@ -86,6 +87,42 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                     ),
                   ),
                 ),
+              ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.02,
+            ),
+            Container(
+              child: Column(
+                children: [
+                  const Text(
+                    "ENTREGAR EM",
+                    style: TextStyle(
+                      color: tertiaryCollor,
+                      fontSize: 12,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        "Q. 208 Sul, Alameda 10, 202",
+                        style: TextStyle(
+                          color: tertiaryCollor,
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      InkWell(
+                        child: const Icon(
+                          Icons.keyboard_arrow_down_sharp,
+                          color: secondaryCollor,
+                        ),
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
