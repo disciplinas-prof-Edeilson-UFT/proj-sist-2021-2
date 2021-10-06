@@ -59,6 +59,35 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               ),
               onTap: () {},
             ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.02,
+            ),
+            Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.3,
+                height: MediaQuery.of(context).size.height * 0.04,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: const TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    labelText: "Busque por ítem ou loja",
+                    labelStyle: TextStyle(
+                      color: tertiaryCollor,
+                      fontSize: 8,
+                    ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: secondaryCollor,
+                      size: 18,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
         titleSpacing: 0.0,
