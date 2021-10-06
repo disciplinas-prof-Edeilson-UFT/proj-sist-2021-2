@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_new
 
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -25,8 +27,13 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           //crossAxisAlignment: CrossAxisAlignment.start,
+
           children: [
             InkWell(
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               child: Image.asset(
                 "lib/app/modules/home/assets/logo.png",
                 width: MediaQuery.of(context).size.width * 0.2,
@@ -34,6 +41,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               onTap: () {},
             ),
             InkWell(
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               child: Image.asset(
                 "lib/app/modules/home/assets/filtro.png",
                 width: MediaQuery.of(context).size.width * 0.03,
@@ -54,6 +65,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               width: MediaQuery.of(context).size.width * 0,
             ),
             InkWell(
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               child: const Icon(
                 Icons.keyboard_arrow_down_sharp,
                 color: secondaryCollor,
@@ -72,11 +87,13 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: const TextField(
+                  textAlign: TextAlign.left,
+                  textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
                     enabledBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
-                    labelText: "Busque por ítem ou loja",
-                    labelStyle: TextStyle(
+                    hintText: "Busque por ítem ou loja",
+                    hintStyle: TextStyle(
                       color: tertiaryCollor,
                       fontSize: 14,
                     ),
@@ -90,7 +107,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.02,
+              width: MediaQuery.of(context).size.width * 0.01,
             ),
             Container(
               child: Column(
@@ -114,6 +131,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                         textAlign: TextAlign.left,
                       ),
                       InkWell(
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         child: const Icon(
                           Icons.keyboard_arrow_down_sharp,
                           color: secondaryCollor,
@@ -131,6 +152,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         centerTitle: false,
         actions: [
           InkWell(
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             child: Image.asset(
               "lib/app/modules/home/assets/user.png",
               width: MediaQuery.of(context).size.width * 0.02,
@@ -141,6 +166,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             width: MediaQuery.of(context).size.width * 0.02,
           ),
           InkWell(
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             child: Image.asset(
               "lib/app/modules/home/assets/carrinho.png",
               width: MediaQuery.of(context).size.width * 0.02,
@@ -148,7 +177,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             onTap: () {},
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.02,
+            width: MediaQuery.of(context).size.width * 0.03,
           ),
         ],
       ),
