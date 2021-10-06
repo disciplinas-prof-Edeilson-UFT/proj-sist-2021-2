@@ -26,15 +26,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         elevation: 2,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-                // focusColor: Colors.transparent,
-                // hoverColor: Colors.transparent,
-                // splashColor: Colors.transparent,
-                // highlightColor: Colors.transparent,
                 child: Image.asset(
                   "lib/app/modules/home/assets/logo.png",
                   width: MediaQuery.of(context).size.width * 0.2,
@@ -47,10 +42,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-                // focusColor: Colors.transparent,
-                // hoverColor: Colors.transparent,
-                // splashColor: Colors.transparent,
-                // highlightColor: Colors.transparent,
                 child: Image.asset(
                   "lib/app/modules/home/assets/filtro.png",
                   width: MediaQuery.of(context).size.width * 0.04,
@@ -74,10 +65,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-                // focusColor: Colors.transparent,
-                // hoverColor: Colors.transparent,
-                // splashColor: Colors.transparent,
-                // highlightColor: Colors.transparent,
                 child: const Icon(
                   Icons.keyboard_arrow_down_sharp,
                   color: secondaryCollor,
@@ -151,10 +138,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                       MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(
-                          // focusColor: Colors.transparent,
-                          // hoverColor: Colors.transparent,
-                          // splashColor: Colors.transparent,
-                          // highlightColor: Colors.transparent,
                           child: const Icon(
                             Icons.keyboard_arrow_down_sharp,
                             color: secondaryCollor,
@@ -175,10 +158,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
           MouseRegion(
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
-              // focusColor: Colors.transparent,
-              // hoverColor: Colors.transparent,
-              // splashColor: Colors.transparent,
-              // highlightColor: Colors.transparent,
               child: Image.asset(
                 "lib/app/modules/home/assets/user.png",
                 width: MediaQuery.of(context).size.width * 0.02,
@@ -192,10 +171,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
           MouseRegion(
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
-              // focusColor: Colors.transparent,
-              // hoverColor: Colors.transparent,
-              // splashColor: Colors.transparent,
-              // highlightColor: Colors.transparent,
               child: Image.asset(
                 "lib/app/modules/home/assets/carrinho.png",
                 width: MediaQuery.of(context).size.width * 0.02,
