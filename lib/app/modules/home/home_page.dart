@@ -27,29 +27,36 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           //crossAxisAlignment: CrossAxisAlignment.start,
-
           children: [
-            InkWell(
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: Image.asset(
-                "assets/images/logo.png",
-                width: MediaQuery.of(context).size.width * 0.2,
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                // focusColor: Colors.transparent,
+                // hoverColor: Colors.transparent,
+                // splashColor: Colors.transparent,
+                // highlightColor: Colors.transparent,
+                child: Image.asset(
+                  "lib/app/modules/home/assets/logo.png",
+                  width: MediaQuery.of(context).size.width * 0.2,
+                ),
+                onTap: () {
+                  print("oi");
+                },
               ),
-              onTap: () {},
             ),
-            InkWell(
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: Image.asset(
-                "assets/images/filter.png",
-                width: MediaQuery.of(context).size.width * 0.03,
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                // focusColor: Colors.transparent,
+                // hoverColor: Colors.transparent,
+                // splashColor: Colors.transparent,
+                // highlightColor: Colors.transparent,
+                child: Image.asset(
+                  "lib/app/modules/home/assets/filtro.png",
+                  width: MediaQuery.of(context).size.width * 0.04,
+                ),
+                onTap: () {},
               ),
-              onTap: () {},
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.01,
@@ -64,16 +71,19 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0,
             ),
-            InkWell(
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: const Icon(
-                Icons.keyboard_arrow_down_sharp,
-                color: secondaryCollor,
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                // focusColor: Colors.transparent,
+                // hoverColor: Colors.transparent,
+                // splashColor: Colors.transparent,
+                // highlightColor: Colors.transparent,
+                child: const Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: secondaryCollor,
+                ),
+                onTap: () {},
               ),
-              onTap: () {},
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.02,
@@ -107,7 +117,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.01,
+              width: MediaQuery.of(context).size.width * 0.03,
             ),
             Container(
               child: Column(
@@ -122,24 +132,35 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                   ),
                   Row(
                     children: [
+                      const Icon(
+                        Icons.add_location_outlined,
+                        color: secondaryCollor,
+                        size: 14,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.001,
+                      ),
                       const Text(
                         "Q. 208 Sul, Alameda 10, 202",
                         style: TextStyle(
-                          color: tertiaryCollor,
+                          color: Colors.black,
                           fontSize: 12,
                         ),
                         textAlign: TextAlign.left,
                       ),
-                      InkWell(
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        child: const Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: secondaryCollor,
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          // focusColor: Colors.transparent,
+                          // hoverColor: Colors.transparent,
+                          // splashColor: Colors.transparent,
+                          // highlightColor: Colors.transparent,
+                          child: const Icon(
+                            Icons.keyboard_arrow_down_sharp,
+                            color: secondaryCollor,
+                          ),
+                          onTap: () {},
                         ),
-                        onTap: () {},
                       ),
                     ],
                   ),
@@ -151,30 +172,36 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         titleSpacing: 0.0,
         centerTitle: false,
         actions: [
-          InkWell(
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            child: Image.asset(
-              "assets/images/user.png",
-              width: MediaQuery.of(context).size.width * 0.02,
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              // focusColor: Colors.transparent,
+              // hoverColor: Colors.transparent,
+              // splashColor: Colors.transparent,
+              // highlightColor: Colors.transparent,
+              child: Image.asset(
+                "lib/app/modules/home/assets/user.png",
+                width: MediaQuery.of(context).size.width * 0.02,
+              ),
+              onTap: () {},
             ),
-            onTap: () {},
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.02,
           ),
-          InkWell(
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            child: Image.asset(
-              "assets/images/cart.png",
-              width: MediaQuery.of(context).size.width * 0.02,
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              // focusColor: Colors.transparent,
+              // hoverColor: Colors.transparent,
+              // splashColor: Colors.transparent,
+              // highlightColor: Colors.transparent,
+              child: Image.asset(
+                "lib/app/modules/home/assets/carrinho.png",
+                width: MediaQuery.of(context).size.width * 0.02,
+              ),
+              onTap: () {},
             ),
-            onTap: () {},
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.03,
