@@ -11,22 +11,30 @@ import '/app/modules/home/store/restaurant_card.store.dart';
 */
 
 class RestaurantCard extends StatelessWidget {
-
   final BorderRadius _borderRadius = BorderRadius.circular(6);
   final store = RestaurantCardStore();
   final QueryDocumentSnapshot<Object?> restaurant;
-  final TextStyle _separatorStyle = const TextStyle(fontSize: 11, color: Color(0xff717171));
+  final TextStyle _separatorStyle =
+      const TextStyle(fontSize: 11, color: Color(0xff717171));
   final TextStyle _cardInfoStyle = const TextStyle(
     color: Color(0xff717171),
     fontSize: 13.4,
     fontFamily: 'Nunito',
   );
-
-
+  final TextStyle _freeStyle = const TextStyle(
+    color: Color(0xff87A491),
+    fontSize: 13,
+    fontFamily: 'Nunito',
+  );
   RestaurantCard(this.restaurant, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final delivery = (restaurant['delivery_price'] == 0
+        ? TextSpan(text: 'Grátis', style: _freeStyle)
+        : TextSpan(
+            text: "R\$" + restaurant['delivery_price'].toStringAsFixed(2),
+            style: _cardInfoStyle));
     return InkWell(
       borderRadius: _borderRadius,
       onTap: () {},
@@ -71,8 +79,7 @@ class RestaurantCard extends StatelessWidget {
                         ),
                         const Padding(
                           padding: EdgeInsets.only(right: 12.0),
-                          child:
-                              ChampionRestaurant(),
+                          child: ChampionRestaurant(),
                         ),
                       ],
                     ),
@@ -93,29 +100,35 @@ class RestaurantCard extends StatelessWidget {
                           ),
                         ),
                         RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(text: " • ", style: _separatorStyle),
-                              TextSpan(text: "${restaurant['category']}", style: _cardInfoStyle),
-                              TextSpan(text: " • ", style: _separatorStyle),
-                              TextSpan(text: "${restaurant['distance']}km", style: _cardInfoStyle),
-                            ]
-                          ),
+                          text: TextSpan(children: [
+                            TextSpan(text: " • ", style: _separatorStyle),
+                            TextSpan(
+                                text: "${restaurant['category']}",
+                                style: _cardInfoStyle),
+                            TextSpan(text: " • ", style: _separatorStyle),
+                            TextSpan(
+                                text: "${restaurant['distance']}km",
+                                style: _cardInfoStyle),
+                          ]),
                         ),
                       ],
                     ),
                     RichText(
                       text: TextSpan(
                         children: [
-                          TextSpan(text: "${restaurant['estimated_delivery']} min", style: _cardInfoStyle),
+                          TextSpan(
+                              text: "${restaurant['estimated_delivery']} min",
+                              style: _cardInfoStyle),
                           TextSpan(text: " • ", style: _separatorStyle),
-                          TextSpan(text: "R\$ ${restaurant['delivery_price'].toStringAsFixed(2)}", style: _cardInfoStyle),
+                          delivery,
                         ],
                       ),
                     ),
                     restaurant['cupom'] != null
                         ? CupomCard(restaurant: restaurant)
-                        : const SizedBox(height: 28,),
+                        : const SizedBox(
+                            height: 28,
+                          ),
                   ],
                 ),
               ),
