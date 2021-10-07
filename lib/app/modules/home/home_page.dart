@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/modules/home/home_store.dart';
-import 'package:pscomidas/app/global/widgets/app_bar/principal_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -18,7 +18,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PrincipalAppBar(),
+      appBar: const CustomAppBar(),
       body: Observer(
         builder: (context) => Text('${store.counter}'),
       ),

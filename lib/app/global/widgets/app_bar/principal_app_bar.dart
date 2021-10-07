@@ -15,6 +15,7 @@ class PrincipalAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _PrincipalAppBarState extends State<PrincipalAppBar> {
   @override
   Widget build(BuildContext context) {
+    print("${MediaQuery.of(context).size.width}");
     return AppBar(
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
@@ -170,7 +171,7 @@ class _PrincipalAppBarState extends State<PrincipalAppBar> {
               "assets/images/cart.png",
               width: MediaQuery.of(context).size.width * 0.02,
             ),
-            onTap: () {},
+            onTap: () => Scaffold.of(context).openEndDrawer(),
           ),
         ),
         SizedBox(
