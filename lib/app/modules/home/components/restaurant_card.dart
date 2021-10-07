@@ -3,7 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pscomidas/app/modules/home/components/restaurant_championship.dart';
 import '/app/modules/home/store/restaurant_card.store.dart';
+import 'cupom/cupom_card.dart';
 
 /* Este é o card do restaurante, construido conforme necessidade pelo Gridview em ../restaurant_grid.
  Algumas features aqui devem ser implementadas posteriormente ou excluídas,
@@ -77,9 +79,9 @@ class RestaurantCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 12.0),
-                          child: ChampionRestaurant(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          child: ChampionRestaurant(restaurant: restaurant),
                         ),
                       ],
                     ),
@@ -134,71 +136,6 @@ class RestaurantCard extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-// Feature a ser totalmente implementada.
-class ChampionRestaurant extends StatelessWidget {
-  const ChampionRestaurant({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      child: Image.asset("lib/app/modules/home/assets/images/iconmarmita.png",
-          height: 28),
-      onTap: () {
-        //NAVIGATE para o restaurante.
-      },
-      onHover: (_hovering) {
-        if (_hovering) {
-          //print("ESTE É UM ESTABELECIMENTO CAMPEAO");
-        }
-      },
-    );
-  }
-}
-
-// Feature a ser totalmente implementada.
-class CupomCard extends StatelessWidget {
-  final QueryDocumentSnapshot<Object?> restaurant;
-  const CupomCard({Key? key, required this.restaurant}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          color: const Color(0xffEFF3F5),
-        ),
-        height: 25,
-        width: 200,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Image.asset(
-                "lib/app/modules/home/assets/images/cupom.png",
-                width: 15,
-                height: 15,
-              ),
-            ),
-            Expanded(
-              child: Text(
-                'Cupom de R\$${restaurant['cupom']} disponível',
-                style: const TextStyle(
-                  color: Color(0xFF2e6788),
-                  fontSize: 13,
-                  fontFamily: 'Nunito',
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );
