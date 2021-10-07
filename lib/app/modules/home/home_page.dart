@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '/app/modules/home/components/restaurant_grid.dart';
 import '/app/modules/home/store/home_store.dart';
+import '/app/modules/home/components/mais_pedidos.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -24,6 +25,18 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Text(
+                "Mais famosos no psfood",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
+              ),
+            ),
+            MaisPedidos(),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: Text(
@@ -36,8 +49,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               ),
             ),
             Observer(
-              builder: (context) =>
-                  const RestaurantGrid(),
+              builder: (context) => const RestaurantGrid(),
             ),
           ],
         ),
