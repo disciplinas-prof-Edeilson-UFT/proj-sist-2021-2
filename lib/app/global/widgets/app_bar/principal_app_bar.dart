@@ -36,34 +36,31 @@ class _PrincipalAppBarState extends State<PrincipalAppBar> {
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-                child: Image.asset(
-                  "assets/images/filter.png",
-                  width: MediaQuery.of(context).size.width * 0.04,
-                ),
                 onTap: () {},
-              ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.01,
-            ),
-            const Text(
-              "Ordem Alfabética",
-              style: TextStyle(
-                fontSize: 10,
-                color: tertiaryCollor,
-              ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0,
-            ),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Icon(
-                  Icons.keyboard_arrow_down_sharp,
-                  color: secondaryCollor,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Image.asset(
+                        "assets/images/filter.png",
+                        width: MediaQuery.of(context).size.width * 0.04,
+                      ),
+                      padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width * 0.01,
+                      ),
+                    ),
+                    const Text(
+                      "Ordem Alfabética",
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: tertiaryCollor,
+                      ),
+                    ),
+                    const Icon(
+                      Icons.keyboard_arrow_down_sharp,
+                      color: secondaryCollor,
+                    ),
+                  ],
                 ),
-                onTap: () {},
               ),
             ),
             SizedBox(
