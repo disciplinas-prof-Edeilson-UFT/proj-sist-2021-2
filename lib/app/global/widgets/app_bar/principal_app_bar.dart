@@ -1,3 +1,4 @@
+import 'package:pscomidas/app/global/widgets/filter/filter.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,8 @@ class PrincipalAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _PrincipalAppBarState extends State<PrincipalAppBar> {
+  var dropdownValue = 'Avaliação';
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -33,35 +36,48 @@ class _PrincipalAppBarState extends State<PrincipalAppBar> {
                 onTap: () {},
               ),
             ),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    Padding(
-                      child: Image.asset(
-                        "assets/images/filter.png",
-                        width: MediaQuery.of(context).size.width * 0.04,
-                      ),
-                      padding: EdgeInsets.only(
-                        right: MediaQuery.of(context).size.width * 0.01,
-                      ),
-                    ),
-                    const Text(
-                      "Ordem Alfabética",
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: tertiaryCollor,
-                      ),
-                    ),
-                    const Icon(
-                      Icons.keyboard_arrow_down_sharp,
-                      color: secondaryCollor,
-                    ),
-                  ],
-                ),
+            Padding(
+              child: Image.asset(
+                "assets/images/filter.png",
+                width: MediaQuery.of(context).size.width * 0.04,
               ),
+              padding: EdgeInsets.only(
+                right: MediaQuery.of(context).size.width * 0.01,
+              ),
+            ),
+            DropdownButton<String>(
+              value: dropdownValue,
+              elevation: 2,
+              underline: Container(
+                height: 2,
+                color: secondaryCollor,
+              ),
+              style: const TextStyle(
+                fontSize: 12,
+                color: tertiaryCollor,
+              ),
+              icon: const Icon(
+                Icons.keyboard_arrow_down_sharp,
+                color: secondaryCollor,
+              ),
+              onChanged: (selected) {
+                setState(() {
+                  dropdownValue = selected ?? '';
+                });
+              },
+              items: [
+                'Avaliação',
+                'Frete Grátis',
+                'Cupom de Desconto',
+                'Menor Distância',
+                'Ordem Alfabética',
+              ]
+                  .map<DropdownMenuItem<String>>(
+                      (value) => DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          ))
+                  .toList(),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.02,
