@@ -1,13 +1,13 @@
 class Product {
-  final bool available;
-  final List<String> categories;
-  final String description;
-  final String imgUrl;
-  final String name;
-  final double price;
-  final String restaurantId;
+  final bool? available;
+  final List<String>? categories;
+  final String? description;
+  final String? imgUrl;
+  final String? name;
+  final double? price;
+  final String? restaurantId;
 
-  Product(
+  Product({
     this.available,
     this.categories,
     this.description,
@@ -15,5 +15,5 @@ class Product {
     this.name,
     this.price,
     this.restaurantId,
-  );
+  });
 }

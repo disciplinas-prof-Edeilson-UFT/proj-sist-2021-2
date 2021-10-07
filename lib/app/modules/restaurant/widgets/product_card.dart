@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/restaurant/widgets/product_dialog.dart';
+import 'package:pscomidas/app/modules/restaurant/widgets/product_options/product_dialog.dart';
 
 class ProductCard extends StatefulWidget {
   ProductCard({
@@ -17,7 +17,7 @@ class _ProductCardState extends State<ProductCard> {
 
     return InkWell(
       onTap: () {
-        // TODO: Implementar ProductDialog
+        showDialog(context: context, builder: (context) => ProductDialog());
       },
       child: Container(
         width: screen.width * 0.4,
