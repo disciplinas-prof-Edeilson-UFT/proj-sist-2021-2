@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/desktop_app_bar.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/mobile_app_bar.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/tablet_app_bar.dart';
-import 'package:pscomidas/app/global/widgets/app_bar/principal_app_bar.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({Key? key}) : super(key: key);

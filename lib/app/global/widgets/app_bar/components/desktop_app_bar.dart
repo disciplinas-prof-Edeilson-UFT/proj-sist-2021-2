@@ -6,7 +6,6 @@ class DesktopAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
     return AppBar(
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
@@ -92,49 +91,47 @@ class DesktopAppBar extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.03,
             ),
-            Container(
-              child: Column(
-                children: [
-                  const Text(
-                    "ENTREGAR EM",
-                    style: TextStyle(
-                      color: tertiaryCollor,
-                      fontSize: 12,
+            Column(
+              children: [
+                const Text(
+                  "ENTREGAR EM",
+                  style: TextStyle(
+                    color: tertiaryCollor,
+                    fontSize: 12,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.add_location_outlined,
+                      color: secondaryCollor,
+                      size: 14,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.add_location_outlined,
-                        color: secondaryCollor,
-                        size: 14,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.001,
+                    ),
+                    const Text(
+                      "Q. 208 Sul, Alameda 10, 202",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.001,
-                      ),
-                      const Text(
-                        "Q. 208 Sul, Alameda 10, 202",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
+                      textAlign: TextAlign.left,
+                    ),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: const Icon(
+                          Icons.keyboard_arrow_down_sharp,
+                          color: secondaryCollor,
                         ),
-                        textAlign: TextAlign.left,
+                        onTap: () {},
                       ),
-                      MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          child: const Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                            color: secondaryCollor,
-                          ),
-                          onTap: () {},
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

@@ -29,52 +29,50 @@ class MobileAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    "ENTREGAR EM",
-                    style: TextStyle(
-                      color: tertiaryCollor,
-                      fontSize: 10,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  "ENTREGAR EM",
+                  style: TextStyle(
+                    color: tertiaryCollor,
+                    fontSize: 10,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.add_location_outlined,
+                      color: secondaryCollor,
+                      size: 14,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.add_location_outlined,
-                        color: secondaryCollor,
-                        size: 14,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.002,
+                    ),
+                    const Text(
+                      "Q. 208 Sul, Alameda 10, 202",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10,
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.002,
-                      ),
-                      const Text(
-                        "Q. 208 Sul, Alameda 10, 202",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10,
+                      textAlign: TextAlign.left,
+                    ),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: const Icon(
+                          Icons.keyboard_arrow_down_sharp,
+                          color: secondaryCollor,
                         ),
-                        textAlign: TextAlign.left,
+                        onTap: () {},
                       ),
-                      MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          child: const Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                            color: secondaryCollor,
-                          ),
-                          onTap: () {},
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
