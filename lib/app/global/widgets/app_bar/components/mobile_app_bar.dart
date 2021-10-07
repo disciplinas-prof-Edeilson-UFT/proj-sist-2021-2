@@ -21,7 +21,7 @@ class MobileAppBar extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               width: 90,
               child: Image.asset(
-                'logos/ifood-logo.png',
+                'assets/images/logo.png',
                 fit: BoxFit.contain,
                 alignment: Alignment.center,
               ),
