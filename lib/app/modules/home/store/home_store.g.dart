@@ -24,10 +24,40 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$selectedFilterAtom = Atom(name: 'HomeStoreBase.selectedFilter');
+
+  @override
+  FilterType get selectedFilter {
+    _$selectedFilterAtom.reportRead();
+    return super.selectedFilter;
+  }
+
+  @override
+  set selectedFilter(FilterType value) {
+    _$selectedFilterAtom.reportWrite(value, super.selectedFilter, () {
+      super.selectedFilter = value;
+    });
+  }
+
+  final _$HomeStoreBaseActionController =
+      ActionController(name: 'HomeStoreBase');
+
+  @override
+  void setSelectedFilter(String? selection) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setSelectedFilter');
+    try {
+      return super.setSelectedFilter(selection);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-counter: ${counter}
+counter: ${counter},
+selectedFilter: ${selectedFilter}
     ''';
   }
 }

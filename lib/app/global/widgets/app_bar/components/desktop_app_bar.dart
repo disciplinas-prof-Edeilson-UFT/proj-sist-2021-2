@@ -1,78 +1,90 @@
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
-class DesktopAppBar extends StatelessWidget {
+class DesktopAppBar extends StatefulWidget implements PreferredSizeWidget {
   const DesktopAppBar({Key? key}) : super(key: key);
 
   @override
+  _DesktopAppBarState createState() => _DesktopAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(80.0);
+}
+
+class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
+  @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
     return AppBar(
+      toolbarHeight: 80,
+      backgroundColor: primaryCollor,
       automaticallyImplyLeading: false,
-      actions: [Container()],
-      backgroundColor: Colors.grey[100],
       elevation: 2,
-      centerTitle: true,
-      title: SizedBox(
-        width: screen.width * 0.6,
+      title: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            // TODO: Implementar troca de logo por arrow_back para voltar uma página
-            GestureDetector(
-              onTap: () {}, //TODO: Navegação para home ao clicar na logo
+            const LogoAppBar(),
+            const FilterAppBar(),
+            Center(
               child: Container(
-                padding: const EdgeInsets.all(8.0),
-                width: 90,
-                child: Image.asset(
-                  'logos/ifood-logo.png',
-                  fit: BoxFit.contain,
-                  alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width * 0.2,
+                height: MediaQuery.of(context).size.height * 0.04,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
                 ),
-              ),
-            ),
-            Expanded(child: Container()),
-            // TODO: Implementar barra de pesquisa com Hero
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              width: screen.width * .2,
-              child: const TextField(
-                cursorColor: Colors.red,
-                style: TextStyle(),
-                decoration: InputDecoration(
-                  icon: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(
+                child: const TextField(
+                  textAlign: TextAlign.left,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    hintText: "Busque por ítem ou loja",
+                    hintStyle: TextStyle(
+                      color: tertiaryCollor,
+                      fontSize: 14,
+                    ),
+                    prefixIcon: Icon(
                       Icons.search,
-                      color: Colors.red,
+                      color: secondaryCollor,
+                      size: 18,
                     ),
                   ),
-                  hintText: 'Busque por item ou loja',
-                  border: InputBorder.none,
                 ),
               ),
             ),
-            Expanded(child: Container()),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.person_outline),
-              ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.03,
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: IconButton(
-                onPressed: () => Scaffold.of(context).openEndDrawer(),
-                icon: const Icon(Icons.shopping_bag_outlined),
-              ),
-            ),
+            const LocationAppBar(),
           ],
         ),
       ),
-      iconTheme: const IconThemeData(color: Colors.red),
+      titleSpacing: 0.0,
+      centerTitle: false,
+      actions: [
+        const UserAppBar(),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.02,
+        ),
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            child: Image.asset(
+              "assets/images/cart.png",
+              width: MediaQuery.of(context).size.width * 0.02,
+            ),
+            onTap: () {},
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.03,
+        ),
+      ],
     );
   }
 }
