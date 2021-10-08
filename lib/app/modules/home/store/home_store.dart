@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/models/enums/filter.dart';
 
 part 'home_store.g.dart';
 
@@ -10,5 +11,16 @@ abstract class HomeStoreBase with Store {
 
   Future<void> increment() async {
     counter = counter + 1;
+  }
+
+  @observable
+  var selectedFilter = FilterType.avaliation;
+
+  @action
+  void setSelectedFilter(String? selection) {
+    selectedFilter = FilterType.values.firstWhere(
+      (e) => e.filterFrontEnd == selection,
+      orElse: () => FilterType.avaliation,
+    );
   }
 }
