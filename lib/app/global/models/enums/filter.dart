@@ -36,4 +36,8 @@ extension FilterExtension on FilterType {
         return 'social_name';
     }
   }
+
+  String get image {
+    return toString().split('.')[1];
+  }
 }
