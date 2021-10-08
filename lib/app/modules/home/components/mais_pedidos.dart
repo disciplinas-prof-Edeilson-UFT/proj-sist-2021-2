@@ -6,11 +6,12 @@ class MaisPedidos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference most = FirebaseFirestore.instance.collection('most');
+    CollectionReference restaurants =
+        FirebaseFirestore.instance.collection('restaurant');
 
     return Center(
       child: FutureBuilder<QuerySnapshot>(
-        future: most.get(),
+        future: restaurants.orderBy('orders', descending: true).get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text(
@@ -46,10 +47,10 @@ class MaisPedidos extends StatelessWidget {
                     onTap: () {},
                     title: CircleAvatar(
                       radius: 45.0,
-                      backgroundImage: NetworkImage(data['picture']),
+                      backgroundImage: NetworkImage(data['image'] ?? ''),
                     ),
                     subtitle: Text(
-                      data['name'],
+                      data['social_name'] ?? 'Sem nome',
                       softWrap: true,
                       maxLines: 2,
                       textAlign: TextAlign.center,
