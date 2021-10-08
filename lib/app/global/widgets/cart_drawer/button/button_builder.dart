@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ButtonBuilder extends StatefulWidget {
   const ButtonBuilder({Key? key}) : super(key: key);
@@ -30,7 +31,9 @@ class _ButtonBuilderState extends State<ButtonBuilder> {
                   primary: Colors.white,
                   textStyle: const TextStyle(fontSize: 20),
                 ),
-                onPressed: (() => {}),
+                onPressed: (() => {
+                  Modular.to.navigate('/formPayments')
+                }),
                 child: const Text('Pagar'),
               ),
             ],
