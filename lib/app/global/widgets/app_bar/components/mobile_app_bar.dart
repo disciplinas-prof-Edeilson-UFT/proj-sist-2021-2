@@ -27,49 +27,47 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const FilterAppBar(),
-            Container(
-              child: Column(
-                children: [
-                  const Text(
-                    "ENTREGAR EM",
-                    style: TextStyle(
-                      color: tertiaryCollor,
-                      fontSize: 8,
+            Column(
+              children: [
+                const Text(
+                  "ENTREGAR EM",
+                  style: TextStyle(
+                    color: tertiaryCollor,
+                    fontSize: 8,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.add_location_outlined,
+                      color: secondaryCollor,
+                      size: 14,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.add_location_outlined,
-                        color: secondaryCollor,
-                        size: 14,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.001,
+                    ),
+                    const Text(
+                      "Q. 208 Sul, Alameda 10, 202",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 8,
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.001,
-                      ),
-                      const Text(
-                        "Q. 208 Sul, Alameda 10, 202",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 8,
+                      textAlign: TextAlign.left,
+                    ),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: const Icon(
+                          Icons.keyboard_arrow_down_sharp,
+                          color: secondaryCollor,
                         ),
-                        textAlign: TextAlign.left,
+                        onTap: () {},
                       ),
-                      MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          child: const Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                            color: secondaryCollor,
-                          ),
-                          onTap: () {},
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

@@ -26,12 +26,10 @@ class _TabletAppBarState extends ModularState<TabletAppBar, HomeStore> {
       title: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const LogoAppBar(),
-            const FilterAppBar(),
-            Container(
-              child: const LocationAppBar(),
-            ),
+          children: const [
+            LogoAppBar(),
+            FilterAppBar(),
+            LocationAppBar(),
           ],
         ),
       ),
