@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
+import 'package:pscomidas/app/global/widgets/bottom_appp_bar/bottom_app_bar_mobile.dart';
 
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
 class HomePage extends StatefulWidget {
@@ -41,6 +43,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
           ],
         ),
       ),
+      bottomNavigationBar: const AppBarButton(),
     );
   }
 }

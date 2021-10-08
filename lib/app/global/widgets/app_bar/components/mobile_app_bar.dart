@@ -24,6 +24,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
     return AppBar(
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
+      automaticallyImplyLeading: false,
       elevation: 2,
       title: Center(
         child: Row(

@@ -72,7 +72,7 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
             ),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.3,
+                width: MediaQuery.of(context).size.width * 0.2,
                 height: MediaQuery.of(context).size.height * 0.04,
                 decoration: BoxDecoration(
                   color: Colors.white,
