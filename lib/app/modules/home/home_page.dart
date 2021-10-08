@@ -22,7 +22,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      //appBar: const CustomAppBar(),
       appBar: const CustomAppBar(),
       body: SingleChildScrollView(
         child: Column(

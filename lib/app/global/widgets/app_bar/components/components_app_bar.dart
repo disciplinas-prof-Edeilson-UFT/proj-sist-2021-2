@@ -26,6 +26,64 @@ class LogoAppBar extends StatelessWidget {
   }
 }
 
+class FilterAppBar extends StatefulWidget {
+  const FilterAppBar({Key? key}) : super(key: key);
+
+  @override
+  _FilterAppBarState createState() => _FilterAppBarState();
+}
+
+class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
+  final homeStore = Modular.get<HomeStore>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Observer(
+          builder: (ctx) => DropdownButton<String>(
+            value: homeStore.selectedFilter.filterFrontEnd,
+            onChanged: homeStore.setSelectedFilter,
+            elevation: 2,
+            underline: Container(),
+            style: const TextStyle(
+              fontSize: 12,
+              color: tertiaryCollor,
+            ),
+            items: FilterType.values
+                .map<DropdownMenuItem<String>>((value) =>
+                    DropdownMenuItem<String>(
+                      value: value.filterFrontEnd,
+                      child: Row(
+                        children: [
+                          Padding(
+                            child: Image.asset(
+                              'assets/images/filters/' + value.image + '.png',
+                              width: MediaQuery.of(context).size.width * 0.04,
+                            ),
+                            padding: EdgeInsets.only(
+                              right: MediaQuery.of(context).size.width * 0.01,
+                            ),
+                          ),
+                          Text(value.filterFrontEnd),
+                        ],
+                      ),
+                    ))
+                .toList(),
+            icon: const Icon(
+              Icons.keyboard_arrow_down_sharp,
+              color: secondaryCollor,
+            ),
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.02,
+        ),
+      ],
+    );
+  }
+}
+
 class LocationAppBar extends StatelessWidget {
   const LocationAppBar({Key? key}) : super(key: key);
 

@@ -1,6 +1,4 @@
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
@@ -18,8 +16,6 @@ class DesktopAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
-  final homeStore = Modular.get<HomeStore>();
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -32,44 +28,7 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const LogoAppBar(),
-            Padding(
-              child: Image.asset(
-                "assets/images/filter.png",
-                width: MediaQuery.of(context).size.width * 0.04,
-              ),
-              padding: EdgeInsets.only(
-                right: MediaQuery.of(context).size.width * 0.01,
-              ),
-            ),
-            Observer(
-              builder: (ctx) => DropdownButton<String>(
-                items: FilterType.values
-                    .map<DropdownMenuItem<String>>(
-                        (value) => DropdownMenuItem<String>(
-                              value: value.filterFrontEnd,
-                              child: Text(value.filterFrontEnd),
-                            ))
-                    .toList(),
-                value: homeStore.selectedFilter.filterFrontEnd,
-                onChanged: homeStore.setSelectedFilter,
-                elevation: 2,
-                underline: Container(
-                  height: 2,
-                  color: secondaryCollor,
-                ),
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: tertiaryCollor,
-                ),
-                icon: const Icon(
-                  Icons.keyboard_arrow_down_sharp,
-                  color: secondaryCollor,
-                ),
-              ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.02,
-            ),
+            const FilterAppBar(),
             Center(
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.2,
@@ -101,9 +60,7 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.03,
             ),
-            Container(
-              child: const LocationAppBar(),
-            ),
+            const LocationAppBar(),
           ],
         ),
       ),
