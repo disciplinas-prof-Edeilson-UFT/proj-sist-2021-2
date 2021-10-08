@@ -19,28 +19,28 @@ class _CartDrawerState extends State<CartDrawer> {
   final CartStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.2,
-      child: Drawer(
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: ListView.builder(
-                padding: const EdgeInsets.all(10.0),
-                itemCount: widget.placeHolder.length,
-                itemBuilder: (context, index) => Container(
-                  child: DrawerBuilder(
-                    name: widget.placeHolder[index].name,
-                    icon: widget.placeHolder[index].icon,
-                    price: widget.placeHolder[index].price,
-                    deliveryFee: widget.placeHolder[index].deliveryFee,
-                    totalprice: widget.placeHolder[index].totalprice,
-                    quantity: widget.placeHolder[index].quantity,
-                  ),
+    return Container(
+      alignment: Alignment.bottomRight,
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.3,
+        //height: MediaQuery.of(context).size.height * 0.94,
+        child: Drawer(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(5.0),
+                  itemCount: widget.placeHolder.length,
+                  itemBuilder: (context, index) {
+                    final ItemModel model = widget.placeHolder[index];
+                    return DrawerBuilder(
+                      model: model,
+                    );
+                  },
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

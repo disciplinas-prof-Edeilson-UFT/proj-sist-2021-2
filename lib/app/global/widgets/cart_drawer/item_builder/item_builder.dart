@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/widgets/cart_drawer/placeholder/pedido.dart';
 
 class DrawerBuilder extends StatefulWidget {
-  final String name;
-  final IconData icon;
-  final double price;
-  final double deliveryFee;
-  final double totalprice;
-  final int quantity;
+  final ItemModel model;
 
   DrawerBuilder({
-    required this.name,
-    required this.icon,
-    required this.price,
-    required this.deliveryFee,
-    required this.totalprice,
-    required this.quantity,
+    required this.model,
   });
 
   @override
@@ -24,6 +15,12 @@ class DrawerBuilder extends StatefulWidget {
 class _DrawerBuilderState extends State<DrawerBuilder> {
   @override
   Widget build(BuildContext context) {
-    return Card();
+    return Card(
+      child: Row(
+        children: <Widget>[
+          Icon(widget.model.icon, size: 33),
+        ],
+      ),
+    );
   }
 }
