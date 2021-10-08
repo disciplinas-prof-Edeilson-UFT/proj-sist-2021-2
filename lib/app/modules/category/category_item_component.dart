@@ -7,7 +7,7 @@ class CategoryItemComponent extends StatelessWidget{
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
       Image.asset(  
-        "assets/categorias/a.png", height: 200,
+        "assets/categorias/hamburguer.png", height: 220,
       ) ,
       
       ]
