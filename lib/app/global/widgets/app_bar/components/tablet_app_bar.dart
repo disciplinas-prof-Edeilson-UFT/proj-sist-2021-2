@@ -1,14 +1,27 @@
-import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/home_page.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
-class TabletAppBar extends StatelessWidget {
+class TabletAppBar extends StatefulWidget implements PreferredSizeWidget {
   const TabletAppBar({Key? key}) : super(key: key);
+
+  @override
+  _TabletAppBarState createState() => _TabletAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(80.0);
+}
+
+class _TabletAppBarState extends ModularState<TabletAppBar, HomeStore> {
+  final homeStore = Modular.get<HomeStore>();
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false,
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
       elevation: 2,
@@ -17,128 +30,96 @@ class TabletAppBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             MouseRegion(
-              //Logo PSfood -> HomePage refresh
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 child: Image.asset(
                   "assets/images/logo.png",
                   width: MediaQuery.of(context).size.width * 0.2,
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  );
-                },
-              ),
-            ),
-            MouseRegion(
-              //Imagem como botão para Filtros
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: Image.asset(
-                  "assets/images/filter.png",
-                  width: MediaQuery.of(context).size.width * 0.04,
-                ),
                 onTap: () {},
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.01,
-            ),
-            MouseRegion(
-              // Aparece o filtro que foi selecionado
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Text(
-                  //Texto de ilustração do filtro "Ordem Alfabética" selecionado
-                  "Ordem Alfabética",
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: tertiaryCollor,
-                    fontFamily: 'Nunito',
-                  ),
-                ),
+            Padding(
+              child: Image.asset(
+                "assets/images/filter.png",
+                width: MediaQuery.of(context).size.width * 0.04,
+              ),
+              padding: EdgeInsets.only(
+                right: MediaQuery.of(context).size.width * 0.01,
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0,
-            ),
-            MouseRegion(
-              //Continuação de Filtro - botão seta
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Icon(
+            Observer(
+              builder: (ctx) => DropdownButton<String>(
+                items: FilterType.values
+                    .map<DropdownMenuItem<String>>(
+                        (value) => DropdownMenuItem<String>(
+                              value: value.filterFrontEnd,
+                              child: Text(value.filterFrontEnd),
+                            ))
+                    .toList(),
+                value: homeStore.selectedFilter.filterFrontEnd,
+                onChanged: homeStore.setSelectedFilter,
+                elevation: 2,
+                underline: Container(
+                  height: 2,
+                  color: secondaryCollor,
+                ),
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: tertiaryCollor,
+                ),
+                icon: const Icon(
                   Icons.keyboard_arrow_down_sharp,
                   color: secondaryCollor,
                 ),
-                onTap: () {},
               ),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.02,
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.03,
-            ),
-            Column(
-              children: [
-                const Text(
-                  //Título acima do endereço
-                  "ENTREGAR EM",
-                  style: TextStyle(
-                    color: tertiaryCollor,
-                    fontSize: 12,
-                    fontFamily: 'Nunito',
+            Container(
+              child: Column(
+                children: [
+                  const Text(
+                    "ENTREGAR EM",
+                    style: TextStyle(
+                      color: tertiaryCollor,
+                      fontSize: 12,
+                    ),
+                    textAlign: TextAlign.left,
                   ),
-                  textAlign: TextAlign.left,
-                ),
-                Row(
-                  children: [
-                    MouseRegion(
-                      //Icon location vermelho ao lado do endereço
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        child: const Icon(
-                          Icons.add_location_outlined,
-                          color: secondaryCollor,
-                          size: 14,
-                        ),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.add_location_outlined,
+                        color: secondaryCollor,
+                        size: 14,
                       ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.001,
-                    ),
-                    MouseRegion(
-                      //Endereço
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        child: const Text(
-                          //Exemplo do que seria adicionado como endereço
-                          "Q. 208 Sul, Alameda 10, 202",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                            fontFamily: 'Nunito',
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.001,
+                      ),
+                      const Text(
+                        "Q. 208 Sul, Alameda 10, 202",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          child: const Icon(
+                            Icons.keyboard_arrow_down_sharp,
+                            color: secondaryCollor,
                           ),
-                          textAlign: TextAlign.left,
+                          onTap: () {},
                         ),
                       ),
-                    ),
-                    MouseRegion(
-                      //Botão icon seta
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        child: const Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: secondaryCollor,
-                        ),
-                        onTap: () {},
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -147,7 +128,6 @@ class TabletAppBar extends StatelessWidget {
       centerTitle: false,
       actions: [
         MouseRegion(
-          //Botão direcionado à pagina de cadastro e login
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             child: Image.asset(
@@ -155,20 +135,6 @@ class TabletAppBar extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.02,
             ),
             onTap: () {},
-          ),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.02,
-        ),
-        MouseRegion(
-          //Botão direcionaro à aba carrinho de compras
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            child: Image.asset(
-              "assets/images/cart.png",
-              width: MediaQuery.of(context).size.width * 0.02,
-            ),
-            onTap: () => Scaffold.of(context).openEndDrawer(),
           ),
         ),
         SizedBox(

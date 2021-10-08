@@ -1,102 +1,116 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
-class MobileAppBar extends StatelessWidget {
+class MobileAppBar extends StatefulWidget implements PreferredSizeWidget {
   const MobileAppBar({Key? key}) : super(key: key);
+
+  @override
+  _MobileAppBarState createState() => _MobileAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(80.0);
+}
+
+class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
+  final homeStore = Modular.get<HomeStore>();
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false,
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
       elevation: 2,
-      leading: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          MouseRegion(
-            //Imagem como botão para Filtros
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              child: Image.asset(
-                "assets/images/filter.png",
-                width: MediaQuery.of(context).size.width * 0.08,
-              ),
-              onTap: () {},
-            ),
-          ),
-        ],
-      ),
       title: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    child: const Text(
-                      //Título acima do endereço
-                      "ENTREGAR EM",
-                      style: TextStyle(
-                        color: tertiaryCollor,
-                        fontSize: 10,
-                        fontFamily: 'Nunito',
-                      ),
-                      textAlign: TextAlign.left,
+            Padding(
+              child: Image.asset(
+                //colocar o filtro aqui
+                "assets/images/filter.png",
+                width: MediaQuery.of(context).size.width * 0.04,
+              ),
+              padding: EdgeInsets.only(
+                right: MediaQuery.of(context).size.width * 0.01,
+              ),
+            ),
+            Observer(
+              builder: (ctx) => DropdownButton<String>(
+                items: FilterType.values
+                    .map<DropdownMenuItem<String>>(
+                        (value) => DropdownMenuItem<String>(
+                              value: value.filterFrontEnd,
+                              child: Text(value.filterFrontEnd),
+                            ))
+                    .toList(),
+                value: homeStore.selectedFilter.filterFrontEnd,
+                onChanged: homeStore.setSelectedFilter,
+                elevation: 2,
+                underline: Container(
+                  height: 2,
+                  color: secondaryCollor,
+                ),
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: tertiaryCollor,
+                ),
+                icon: const Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: secondaryCollor,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.01,
+            ),
+            Container(
+              child: Column(
+                children: [
+                  const Text(
+                    "ENTREGAR EM",
+                    style: TextStyle(
+                      color: tertiaryCollor,
+                      fontSize: 10,
                     ),
+                    textAlign: TextAlign.left,
                   ),
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    MouseRegion(
-                      //Icon location vermelho ao lado do endereço
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        child: const Icon(
-                          Icons.add_location_outlined,
-                          color: secondaryCollor,
-                          size: 14,
-                        ),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.add_location_outlined,
+                        color: secondaryCollor,
+                        size: 14,
                       ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.002,
-                    ),
-                    MouseRegion(
-                      //Endereço
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        child: const Text(
-                          //Exemplo do que seria adicionado como endereço
-                          "Q. 208 Sul, Alameda 10, 202",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Nunito',
-                            fontSize: 10,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.001,
+                      ),
+                      const Text(
+                        "Q. 208 Sul, Alameda 10, 202",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 10,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          child: const Icon(
+                            Icons.keyboard_arrow_down_sharp,
+                            color: secondaryCollor,
                           ),
-                          textAlign: TextAlign.left,
+                          onTap: () {},
                         ),
                       ),
-                    ),
-                    MouseRegion(
-                      //Botão icon seta
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        child: const Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: secondaryCollor,
-                        ),
-                        onTap: () => Scaffold.of(context).openEndDrawer(),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
