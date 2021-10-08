@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/principal_app_bar.dart';
 import '/app/modules/home/components/restaurant_grid.dart';
@@ -24,8 +23,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
+          children: const [
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: Text(
                 "Lojas",
@@ -36,9 +35,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 ),
               ),
             ),
-            Observer(
-              builder: (context) => const RestaurantGrid(),
-            ),
+            RestaurantGrid(),
           ],
         ),
       ),

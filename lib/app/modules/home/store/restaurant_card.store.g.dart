@@ -28,7 +28,7 @@ mixin _$RestaurantCardStore on _RestaurantCardStore, Store {
       ActionController(name: '_RestaurantCardStore');
 
   @override
-  dynamic colordefine(_hovering) {
+  dynamic colordefine(dynamic _hovering) {
     final _$actionInfo = _$_RestaurantCardStoreActionController.startAction(
         name: '_RestaurantCardStore.colordefine');
     try {

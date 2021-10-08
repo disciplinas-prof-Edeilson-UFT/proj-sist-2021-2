@@ -1,7 +1,10 @@
-import 'package:pscomidas/app/global/widgets/filter/filter.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
 class PrincipalAppBar extends StatefulWidget implements PreferredSizeWidget {
   const PrincipalAppBar({Key? key}) : super(key: key);
@@ -13,8 +16,8 @@ class PrincipalAppBar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(80.0);
 }
 
-class _PrincipalAppBarState extends State<PrincipalAppBar> {
-  var dropdownValue = 'Avaliação';
+class _PrincipalAppBarState extends ModularState<PrincipalAppBar, HomeStore> {
+  final homeStore = Modular.get<HomeStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -45,39 +48,31 @@ class _PrincipalAppBarState extends State<PrincipalAppBar> {
                 right: MediaQuery.of(context).size.width * 0.01,
               ),
             ),
-            DropdownButton<String>(
-              value: dropdownValue,
-              elevation: 2,
-              underline: Container(
-                height: 2,
-                color: secondaryCollor,
+            Observer(
+              builder: (ctx) => DropdownButton<String>(
+                items: FilterType.values
+                    .map<DropdownMenuItem<String>>(
+                        (value) => DropdownMenuItem<String>(
+                              value: value.filterFrontEnd,
+                              child: Text(value.filterFrontEnd),
+                            ))
+                    .toList(),
+                value: homeStore.selectedFilter.filterFrontEnd,
+                onChanged: homeStore.setSelectedFilter,
+                elevation: 2,
+                underline: Container(
+                  height: 2,
+                  color: secondaryCollor,
+                ),
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: tertiaryCollor,
+                ),
+                icon: const Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: secondaryCollor,
+                ),
               ),
-              style: const TextStyle(
-                fontSize: 12,
-                color: tertiaryCollor,
-              ),
-              icon: const Icon(
-                Icons.keyboard_arrow_down_sharp,
-                color: secondaryCollor,
-              ),
-              onChanged: (selected) {
-                setState(() {
-                  dropdownValue = selected ?? '';
-                });
-              },
-              items: [
-                'Avaliação',
-                'Frete Grátis',
-                'Cupom de Desconto',
-                'Menor Distância',
-                'Ordem Alfabética',
-              ]
-                  .map<DropdownMenuItem<String>>(
-                      (value) => DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          ))
-                  .toList(),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.02,
