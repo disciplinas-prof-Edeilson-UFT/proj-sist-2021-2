@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/home/home_page.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class DesktopAppBar extends StatelessWidget {
@@ -7,24 +8,33 @@ class DesktopAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
       elevation: 2,
+      leadingWidth: 0,
       title: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             MouseRegion(
+              //Logo PSfood -> HomePage refresh
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 child: Image.asset(
                   "assets/images/logo.png",
                   width: MediaQuery.of(context).size.width * 0.2,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
               ),
             ),
             MouseRegion(
+              //Imagem como botão para Filtros
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 child: Image.asset(
@@ -37,17 +47,26 @@ class DesktopAppBar extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.01,
             ),
-            const Text(
-              "Ordem Alfabética",
-              style: TextStyle(
-                fontSize: 10,
-                color: tertiaryCollor,
+            MouseRegion(
+              // Aparece o filtro que foi selecionado
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                child: const Text(
+                  //Texto de ilustração do filtro "Ordem Alfabética" selecionado
+                  "Ordem Alfabética",
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: tertiaryCollor,
+                    fontFamily: 'Nunito',
+                  ),
+                ),
               ),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0,
             ),
             MouseRegion(
+              //Continuação de Filtro - botão seta
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 child: const Icon(
@@ -62,14 +81,15 @@ class DesktopAppBar extends StatelessWidget {
             ),
             Center(
               child: Container(
+                //Aqui começa a caixa de busca
                 width: MediaQuery.of(context).size.width * 0.3,
-                height: MediaQuery.of(context).size.height * 0.04,
+                height: MediaQuery.of(context).size.height * 0.05,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: const TextField(
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.justify,
                   textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
                     enabledBorder: InputBorder.none,
@@ -78,6 +98,7 @@ class DesktopAppBar extends StatelessWidget {
                     hintStyle: TextStyle(
                       color: tertiaryCollor,
                       fontSize: 14,
+                      fontFamily: 'Nunito',
                     ),
                     prefixIcon: Icon(
                       Icons.search,
@@ -89,37 +110,54 @@ class DesktopAppBar extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.03,
+              width: MediaQuery.of(context).size.width * 0.02,
             ),
             Column(
               children: [
+                //Título acima do endereço
                 const Text(
                   "ENTREGAR EM",
                   style: TextStyle(
                     color: tertiaryCollor,
                     fontSize: 12,
+                    fontFamily: 'Nunito',
                   ),
                   textAlign: TextAlign.left,
                 ),
                 Row(
                   children: [
-                    const Icon(
-                      Icons.add_location_outlined,
-                      color: secondaryCollor,
-                      size: 14,
+                    MouseRegion(
+                      //Icon location vermelho ao lado do endereço
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: const Icon(
+                          Icons.add_location_outlined,
+                          color: secondaryCollor,
+                          size: 14,
+                        ),
+                      ),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.001,
                     ),
-                    const Text(
-                      "Q. 208 Sul, Alameda 10, 202",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12,
+                    MouseRegion(
+                      //Endereço
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: const Text(
+                          //Exemplo do que seria adicionado como endereço
+                          "Q. 208 Sul, Alameda 10, 202",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontFamily: 'Nunito',
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
                       ),
-                      textAlign: TextAlign.left,
                     ),
                     MouseRegion(
+                      //Botão icon seta
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         child: const Icon(
@@ -140,6 +178,7 @@ class DesktopAppBar extends StatelessWidget {
       centerTitle: false,
       actions: [
         MouseRegion(
+          //Botão direcionado à pagina de cadastro e login
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             child: Image.asset(
@@ -150,11 +189,12 @@ class DesktopAppBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.02,
+          width: MediaQuery.of(context).size.width * 0.01,
         ),
         MouseRegion(
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
+            //Botão direcionaro à aba carrinho de compras
             child: Image.asset(
               "assets/images/cart.png",
               width: MediaQuery.of(context).size.width * 0.02,
@@ -163,7 +203,7 @@ class DesktopAppBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.03,
+          width: MediaQuery.of(context).size.width * 0.02,
         ),
       ],
     );

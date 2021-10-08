@@ -7,6 +7,7 @@ class MobileAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
       elevation: 2,
@@ -14,6 +15,7 @@ class MobileAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MouseRegion(
+            //Imagem como botão para Filtros
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               child: Image.asset(
@@ -33,41 +35,63 @@ class MobileAppBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
-                  "ENTREGAR EM",
-                  style: TextStyle(
-                    color: tertiaryCollor,
-                    fontSize: 10,
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    child: const Text(
+                      //Título acima do endereço
+                      "ENTREGAR EM",
+                      style: TextStyle(
+                        color: tertiaryCollor,
+                        fontSize: 10,
+                        fontFamily: 'Nunito',
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
                   ),
-                  textAlign: TextAlign.left,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Icon(
-                      Icons.add_location_outlined,
-                      color: secondaryCollor,
-                      size: 14,
+                    MouseRegion(
+                      //Icon location vermelho ao lado do endereço
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: const Icon(
+                          Icons.add_location_outlined,
+                          color: secondaryCollor,
+                          size: 14,
+                        ),
+                      ),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.002,
                     ),
-                    const Text(
-                      "Q. 208 Sul, Alameda 10, 202",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
+                    MouseRegion(
+                      //Endereço
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: const Text(
+                          //Exemplo do que seria adicionado como endereço
+                          "Q. 208 Sul, Alameda 10, 202",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Nunito',
+                            fontSize: 10,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
                       ),
-                      textAlign: TextAlign.left,
                     ),
                     MouseRegion(
+                      //Botão icon seta
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         child: const Icon(
                           Icons.keyboard_arrow_down_sharp,
                           color: secondaryCollor,
                         ),
-                        onTap: () {},
+                        onTap: () => Scaffold.of(context).openEndDrawer(),
                       ),
                     ),
                   ],
