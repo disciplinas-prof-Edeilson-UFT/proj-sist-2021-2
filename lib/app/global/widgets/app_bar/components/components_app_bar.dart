@@ -26,6 +26,63 @@ class LogoAppBar extends StatelessWidget {
   }
 }
 
+class FilterAppBar extends StatefulWidget {
+  const FilterAppBar({Key? key}) : super(key: key);
+
+  @override
+  _FilterAppBarState createState() => _FilterAppBarState();
+}
+
+class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
+  final homeStore = Modular.get<HomeStore>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Padding(
+          child: Image.asset(
+            "assets/images/filter.png",
+            width: MediaQuery.of(context).size.width * 0.04,
+          ),
+          padding: EdgeInsets.only(
+            right: MediaQuery.of(context).size.width * 0.01,
+          ),
+        ),
+        Observer(
+          builder: (ctx) => DropdownButton<String>(
+            items: FilterType.values
+                .map<DropdownMenuItem<String>>(
+                    (value) => DropdownMenuItem<String>(
+                          value: value.filterFrontEnd,
+                          child: Text(value.filterFrontEnd),
+                        ))
+                .toList(),
+            value: homeStore.selectedFilter.filterFrontEnd,
+            onChanged: homeStore.setSelectedFilter,
+            elevation: 2,
+            underline: Container(
+              height: 2,
+              color: secondaryCollor,
+            ),
+            style: const TextStyle(
+              fontSize: 12,
+              color: tertiaryCollor,
+            ),
+            icon: const Icon(
+              Icons.keyboard_arrow_down_sharp,
+              color: secondaryCollor,
+            ),
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.02,
+        ),
+      ],
+    );
+  }
+}
+
 class LocationAppBar extends StatelessWidget {
   const LocationAppBar({Key? key}) : super(key: key);
 
