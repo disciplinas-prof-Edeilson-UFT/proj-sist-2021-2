@@ -1,6 +1,7 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
@@ -24,21 +25,13 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
     return AppBar(
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
+      automaticallyImplyLeading: false,
       elevation: 2,
       title: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: Image.asset(
-                  "assets/images/logo.png",
-                  width: MediaQuery.of(context).size.width * 0.2,
-                ),
-                onTap: () {},
-              ),
-            ),
+            const LogoAppBar(),
             Padding(
               child: Image.asset(
                 "assets/images/filter.png",
@@ -109,48 +102,7 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
               width: MediaQuery.of(context).size.width * 0.03,
             ),
             Container(
-              child: Column(
-                children: [
-                  const Text(
-                    "ENTREGAR EM",
-                    style: TextStyle(
-                      color: tertiaryCollor,
-                      fontSize: 12,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.add_location_outlined,
-                        color: secondaryCollor,
-                        size: 14,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.001,
-                      ),
-                      const Text(
-                        "Q. 208 Sul, Alameda 10, 202",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                      MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          child: const Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                            color: secondaryCollor,
-                          ),
-                          onTap: () {},
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+              child: const LocationAppBar(),
             ),
           ],
         ),
@@ -158,16 +110,7 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
       titleSpacing: 0.0,
       centerTitle: false,
       actions: [
-        MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            child: Image.asset(
-              "assets/images/user.png",
-              width: MediaQuery.of(context).size.width * 0.02,
-            ),
-            onTap: () {},
-          ),
-        ),
+        const UserAppBar(),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.02,
         ),

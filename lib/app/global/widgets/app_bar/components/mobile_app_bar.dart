@@ -27,17 +27,20 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
       elevation: 2,
       title: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
               child: Image.asset(
                 //colocar o filtro aqui
                 "assets/images/filter.png",
-                width: MediaQuery.of(context).size.width * 0.04,
+                width: MediaQuery.of(context).size.width * 0.08,
               ),
               padding: EdgeInsets.only(
                 right: MediaQuery.of(context).size.width * 0.01,
               ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.02,
             ),
             Observer(
               builder: (ctx) => DropdownButton<String>(
@@ -56,7 +59,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
                   color: secondaryCollor,
                 ),
                 style: const TextStyle(
-                  fontSize: 12,
+                  fontSize: 8,
                   color: tertiaryCollor,
                 ),
                 icon: const Icon(
@@ -75,7 +78,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
                     "ENTREGAR EM",
                     style: TextStyle(
                       color: tertiaryCollor,
-                      fontSize: 10,
+                      fontSize: 8,
                     ),
                     textAlign: TextAlign.left,
                   ),
@@ -93,7 +96,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
                         "Q. 208 Sul, Alameda 10, 202",
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 10,
+                          fontSize: 8,
                         ),
                         textAlign: TextAlign.left,
                       ),
