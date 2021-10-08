@@ -28,7 +28,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: Text(
-                "Mais famosos no psfood",
+                "Mais pedidos",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
