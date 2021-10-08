@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/widgets/cart_drawer/button/button_builder.dart';
 import 'package:pscomidas/app/global/widgets/cart_drawer/item_builder/item_builder.dart';
 import 'package:pscomidas/app/global/widgets/cart_drawer/placeholder/pedido.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
@@ -39,6 +40,7 @@ class _CartDrawerState extends State<CartDrawer> {
                   },
                 ),
               ),
+              ButtonBuilder()
             ],
           ),
         ),

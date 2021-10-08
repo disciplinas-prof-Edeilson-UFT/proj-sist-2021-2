@@ -12,7 +12,7 @@ class OrderHolder extends StatelessWidget {
         ItemModel(
           name: "Dummy 1",
           icon: Icons.lunch_dining_outlined,
-          price: 15.00,
+          price: 15.56,
           deliveryFee: 2.5,
           totalprice: 17.5,
           quantity: 1,
