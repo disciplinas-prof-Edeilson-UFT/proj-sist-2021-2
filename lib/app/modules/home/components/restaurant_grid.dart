@@ -25,7 +25,12 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
         return StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('restaurant')
-              .orderBy(homeStore.selectedFilter.filterBackEnd)
+              .orderBy(
+                homeStore.selectedFilter.filterBackEnd,
+                descending:
+                    homeStore.selectedFilter.filterBackEnd == 'avaliation' ||
+                        homeStore.selectedFilter.filterBackEnd == 'cupom',
+              )
               .snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
             if (streamSnapshot.connectionState == ConnectionState.waiting) {
