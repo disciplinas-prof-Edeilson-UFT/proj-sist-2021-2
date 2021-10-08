@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/widgets/footer_bar/custom_footer.dart';
 import 'package:pscomidas/app/modules/home/home_store.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,8 +19,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
       appBar: AppBar(
         title: const Text('Counter'),
       ),
-      body: Observer(
-        builder: (context) => Text('${store.counter}'),
+      body: Column(
+        children: [CustomFooter()],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

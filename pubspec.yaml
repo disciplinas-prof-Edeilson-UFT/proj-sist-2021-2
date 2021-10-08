@@ -47,6 +47,7 @@ dependencies:
   cpf_cnpj_validator: ^2.0.0
   search_cep: ^4.0.0-nullsafety.1
   js: ^0.6.3
+  flutter_signin_button: ^2.0.0
 
 dev_dependencies:
   flutter_test:
