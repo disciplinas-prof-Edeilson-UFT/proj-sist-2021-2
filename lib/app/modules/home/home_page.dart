@@ -13,11 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeStore> {
-  final itemKey = GlobalKey();
-  Future scrollToItem() async {
-    final context = itemKey.currentContext!;
-    await Scrollable.ensureVisible(context);
-  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

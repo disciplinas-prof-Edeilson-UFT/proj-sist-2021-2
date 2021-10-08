@@ -84,11 +84,8 @@ flutter:
     - assets/categorias/icecream.png
     - assets/categorias/healthy.png
     - assets/categorias/vegetarian.png
-    - assets/categorias/next.png
-    - assets/categorias/right-arrow.png
-    - assets/categorias/arrow.png
-    - assets/categorias/arroow.png
-    - assets/categorias/arow-left.png
+    - assets/categorias/left.png
+    - assets/categorias/right.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

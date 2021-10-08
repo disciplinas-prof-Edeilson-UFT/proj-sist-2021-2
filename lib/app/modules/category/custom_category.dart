@@ -19,7 +19,7 @@ class CustomCategory extends StatefulWidget implements PreferredSizeWidget {
 class _CustomCategoryState extends State<CustomCategory> {
   @override
   Widget build(BuildContext context) {
-    return const CategoryDesktop(
+    return  CategoryDesktop(
     
     );
   }
