@@ -41,24 +41,27 @@ class MaisPedidos extends StatelessWidget {
                     document.data()! as Map<String, dynamic>;
                 return Container(
                   width: 135.0,
-                  child: ListTile(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                  child: GestureDetector(
                     onTap: () {},
-                    title: CircleAvatar(
-                      radius: 45.0,
-                      backgroundImage: NetworkImage(data['image'] ?? ''),
-                    ),
-                    subtitle: Text(
-                      data['social_name'] ?? 'Sem nome',
-                      softWrap: true,
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Nunito'),
+                    child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
+                      title: CircleAvatar(
+                        radius: 45.0,
+                        backgroundImage: NetworkImage(data['image'] ?? ''),
+                      ),
+                      subtitle: Text(
+                        data['social_name'] ?? 'Sem nome',
+                        softWrap: true,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Nunito'),
+                      ),
                     ),
                   ),
                 );
