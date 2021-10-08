@@ -19,17 +19,9 @@ class CustomCategory extends StatefulWidget implements PreferredSizeWidget {
 class _CustomCategoryState extends State<CustomCategory> {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      var width = constraints.maxWidth;
-
-      if (width < 600) {
-        return const CategoryMobile();
-      } else if (width < 900) {
-        return const CategoryTablet();
-      } else {
-        return const CategoryDesktop();
-      }
-    });
+    return const CategoryDesktop(
+    
+    );
   }
 }
 

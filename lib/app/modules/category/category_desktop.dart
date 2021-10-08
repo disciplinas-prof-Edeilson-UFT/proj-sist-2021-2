@@ -5,277 +5,73 @@ class  CategoryDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-       body: ListView( 
-        controller:ScrollController(initialScrollOffset: 0.0),
-        scrollDirection: Axis.horizontal,
-               children: 
-           [ Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                 children: [
-                    Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/acai.png",
-                                    width: MediaQuery.of(context).size.width * 0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Açaí")
-                    
-                              ]
-                 ),
-                        Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/hamburger.png",
-                                    width: MediaQuery.of(context).size.width *0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Hambúrguer")
-                    
-                              ]
-                 ),
-                 Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/bread.png",
-                                    width: MediaQuery.of(context).size.width *0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Padarias")
-                    
-                              ]
-                 ),
-                 Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/pizza.png",
-                                    width: MediaQuery.of(context).size.width * 0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Pizza")
-                    
-                              ]
-                 ),
-                 Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/cake.png",
-                                    width: MediaQuery.of(context).size.width * 0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Bolos e Doces")
-                    
-                              ]
-                 ),
-                 //ACHO QUE É AQ
-                Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/healthy.png",
-                                    width: MediaQuery.of(context).size.width * 0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Saudável")
-                    
-                              ]
-                 ),
-                /* Container(
-                   key:itemKey,
-                   child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child:Image.asset(
-                                    "assets/categorias/arroow.png",
-                                    width: MediaQuery.of(context).size.width * 0.14,
-                                  ),
-                                  onTap: () => scrollToItem(), 
-                                ),
-                              ),
-                    
-                              ]
-                 ),), */
-                 
+    return  Container(
+      height: 140,
+      //MediaQuery.of(context).size.width * 0.1 ,
+      //< 200 ? 200: MediaQuery.of(context).size.width * 0.1
+      child: Stack(
+        children: [
+          ListView( 
+              controller:ScrollController(initialScrollOffset: 0.0),
+              scrollDirection: Axis.horizontal,
+                  children: [ 
+                   Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                       children: const [
+                      CategoriaCard(imagem: "assets/categorias/acai.png", categoria: 'Açaí'),
+                      CategoriaCard(imagem: "assets/categorias/hamburger.png", categoria: 'Hambúguer'),
+                      CategoriaCard(imagem: "assets/categorias/bread.png", categoria: 'Padarias'),
+                      CategoriaCard(imagem: "assets/categorias/pizza.png", categoria: 'Pizza'),
+                      CategoriaCard(imagem: "assets/categorias/healthy.png", categoria: 'Saudável'),
+                      CategoriaCard(imagem: "assets/categorias/cake.png", categoria: 'Bolos e Doces'),
+                      CategoriaCard(imagem: "assets/categorias/drinks.png", categoria: 'Bebidas'),
+                      CategoriaCard(imagem: "assets/categorias/vegetarian.png", categoria: 'Vegetariana'),
+                      CategoriaCard(imagem: "assets/categorias/italian.png", categoria: 'Italiana'),
+                      CategoriaCard(imagem: "assets/categorias/icecream.png", categoria: 'Sorvetes'),
+                    ]
 
-                  Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/vegetarian.png",
-                                    width: MediaQuery.of(context).size.width * 0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Vegetariana")
-                    
-                              ]
+   
                  ),
-                 
-                
-
-                 Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/japonese.png",
-                                    width: MediaQuery.of(context).size.width * 0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Japonesa")
-                    
-                              ]
-                 ),
-                 Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/drinks.png",
-                                    width: MediaQuery.of(context).size.width * 0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Bebidas")
-                    
-                              ]
-                 ),
-                 Column(
-                  children: [
-                  MouseRegion(
-                                
-                                //Imagem como botão para Filtros
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  child: Image.asset(
-                                    "assets/categorias/italian.png",
-                                    width: MediaQuery.of(context).size.width * 0.14,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
-                                    );
-                                  },
-                                ),
-                              ), const Text("Italiana")
-                    
-                              ]
-                 ),
-                 
-
-
-                  ]
+               ],
                    
-                  
-                 
-           ),
-         ],
-             
+            ),
+            
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: InkWell(
+                        
+                        child: Image.asset(
+                            "assets/categorias/right-arrow.png",
+                          width: 30,
+                       
+                        ),
+                        onTap: () {
+                         
+                        },
+                                          ),
+                      ),
+                    Align(
+                       alignment: Alignment.centerLeft,
+                      child: InkWell(
+                        child: Image.asset(
+                            "assets/categorias/right-arrow.png",
+                          width: 30,
+                          
+                        ),
+                        onTap: () {
+                         
+                        },
+                      ),
+                    ),
+                              
+
+              
+        ],
       ),
-     
-      
-         
-    );
+    ); 
   }
 }
+
 class SecondRoute extends StatelessWidget {
   const SecondRoute({Key? key}) : super(key: key);
 
@@ -294,5 +90,37 @@ class SecondRoute extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+//final  _imagem = "assets/categorias/acai.png";
+class CategoriaCard extends StatelessWidget {
+  const CategoriaCard({ Key? key, required this.imagem, this.categoria}) : super(key: key);
+  final  imagem;
+  final String? categoria;
+  @override
+  Widget build(BuildContext context) {
+    return  Column(
+                  children: [
+                  MouseRegion(
+                                
+                                //Imagem como botão para Filtros
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  child: Image.asset(
+                                      imagem,
+                                    width:200,
+                                    // MediaQuery.of(context).size.width * 0.12,
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const SecondRoute()),
+                                    );
+                                  },
+                                ),
+                              ),  Text(categoria!)
+                    
+                              ]
+                 );
   }
 }
