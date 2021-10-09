@@ -12,7 +12,7 @@ extension FilterExtension on FilterType {
       case FilterType.avaliation:
         return 'Avaliação';
       case FilterType.freeShipping:
-        return 'Frete Grátis';
+        return 'Menor Frete';
       case FilterType.discountCoupon:
         return 'Cupom de Desconto';
       case FilterType.shortestDistance:
