@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/restaurant/widgets/product_dialog.dart';
+// import 'package:pscomidas/app/modules/restaurant/widgets/product_dialog.dart';
 
 class ProductCard extends StatefulWidget {
   ProductCard({
