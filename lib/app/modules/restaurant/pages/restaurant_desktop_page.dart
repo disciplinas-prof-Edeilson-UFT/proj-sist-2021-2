@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/restaurant/widgets/restaurant_top_bar.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/product_card.dart';
 
 class RestaurantDesktopPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _RestaurantDesktopPageState extends State<RestaurantDesktopPage> {
       child: Center(
         child: Column(
           children: [
+            const RestaurantTopBar(),
             Container(
               width: MediaQuery.of(context).size.width * 0.6,
               color: Colors.black12,
