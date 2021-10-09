@@ -99,6 +99,59 @@ class ProductDialog extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 20),
+                  Container(
+                    height: 115,
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(30),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(color: Colors.grey, width: 1),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.store),
+                            Expanded(
+                              child: Text(
+                                " Burger King",
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: Colors.yellow,
+                            ),
+                            Text(
+                              "5.0",
+                              style: TextStyle(color: Colors.yellow),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: List.generate(
+                              300 ~/ 5,
+                              (index) => Expanded(
+                                    child: Container(
+                                      color: index % 2 == 0
+                                          ? Colors.transparent
+                                          : Colors.grey,
+                                      height: 2,
+                                    ),
+                                  )),
+                        ),
+                        Row(children: [
+                          Text("36-46 min - R\$ 3,99",
+                              style: TextStyle(fontSize: 15)),
+                        ]),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
