@@ -14,7 +14,7 @@ class ItemButtomBar extends StatelessWidget {
         IconButton(
           onPressed: () {},
           icon: icon,
-          iconSize: 15,
+          iconSize: 20,
         ),
         Text(text),
       ],
@@ -29,7 +29,7 @@ class AppBarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       child: Container(
-        height: 80,
+        height: 100,
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
