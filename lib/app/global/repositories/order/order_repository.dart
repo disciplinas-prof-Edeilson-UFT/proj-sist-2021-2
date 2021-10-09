@@ -10,16 +10,20 @@ class OrderRepository implements IOrderRepository {
 
   @override
   Future<Order>? getOrder() async {
-    return await firestore
-        .collection('order')
-        .doc('ADjDH5NWXtMVKGMfi4LdOUbQWB03')
-        .get()
-        .then((DocumentSnapshot doc) {
-      if (doc.exists) {
-        return Order.fromDocument(doc);
-      } else {
-        return Order.fromDocument(doc);
-      }
-    });
+    try {
+      return await firestore
+          .collection('order')
+          .doc('ADjDH5NWXtMVKGMfi4LdOUbQWB03')
+          .get()
+          .then((DocumentSnapshot doc) {
+        if (doc.exists) {
+          return Order.fromDocument(doc);
+        } else {
+          return Order.fromDocument(doc);
+        }
+      });
+    } catch (e) {
+      throw Exception("Pedido não encontrado");
+    }
   }
 }
