@@ -1,5 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
+import 'package:pscomidas/app/global/widgets/bottom_appp_bar/bottom_app_bar_mobile.dart';
+import 'package:pscomidas/app/modules/home/home_page.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';

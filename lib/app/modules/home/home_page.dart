@@ -16,8 +16,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeStore> {
+  var deviceHeigth;
+
+  Widget layoutMobile() {
+    if (deviceHeigth < 600) {
+      return const AppBarButton();
+    } else {
+      return Container(
+        height: 5,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
+    deviceHeigth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(),
@@ -40,7 +55,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
           ],
         ),
       ),
-      bottomNavigationBar: const AppBarButton(),
+      bottomNavigationBar: layoutMobile(),
     );
   }
 }
