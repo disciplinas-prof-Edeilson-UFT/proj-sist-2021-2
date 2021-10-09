@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
+import 'package:pscomidas/app/global/widgets/bottom_appp_bar/bottom_app_bar_mobile.dart';
+//import 'package:pscomidas/app/modules/category/custom_category.dart';
+import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
+
 
 class CategoryPage extends StatelessWidget {
   CategoryPage({Key? key}) : super(key: key);
@@ -39,7 +44,7 @@ class CategoryPage extends StatelessWidget {
                             category: 'Açaí')),
                     CategoryCard(
                         image: "assets/category/hamburger.png",
-                        category: 'Hambúguer'),
+                        category: 'Lanches'),
                     CategoryCard(
                         image: "assets/category/bread.png",
                         category: 'Padarias'),
@@ -66,7 +71,11 @@ class CategoryPage extends StatelessWidget {
                     CategoryCard(
                         image: "assets/category/icecream.png",
                         category: 'Sorvetes'),
+                  CategoryCard(
+                        image: "assets/category/asian.png",
+                        category: 'Asiática'),
                   ]),
+                  
             ),
             Align(
               alignment: Alignment.centerRight,
@@ -95,26 +104,41 @@ class CategoryPage extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({Key? key}) : super(key: key);
-
+class CategoryInside extends StatelessWidget {
+   CategoryInside({Key? key, this.categoryName}) : super(key: key);
+  final String? categoryName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Second Route"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
+      backgroundColor: Colors.white,
+      appBar: const CustomAppBar(),
+      
+      body: 
+       
+      SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Text(
+                categoryName!,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
+              ),
+            ),
+            RestaurantGrid(CategoryField: categoryName),
+          ],
         ),
       ),
+      bottomNavigationBar: const AppBarButton(),
     );
   }
 }
+//Text(categoryName!)
 
 class CategoryCard extends StatefulWidget {
   CategoryCard({Key? key, this.image, this.category}) : super(key: key);
@@ -159,9 +183,10 @@ class _State extends State<CategoryCard> {
               // MediaQuery.of(context).size.width * 0.12,
             ),
             onTap: () {
+             
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SecondRoute()),
+                MaterialPageRoute(builder: (context) =>  CategoryInside(categoryName: widget.category)),
               );
             },
             onHover: (_isHovering) {
