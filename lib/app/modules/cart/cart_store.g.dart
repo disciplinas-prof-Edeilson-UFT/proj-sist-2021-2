@@ -9,39 +9,25 @@ part of 'cart_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$CartStore on _CartStoreBase, Store {
-  final _$valueAtom = Atom(name: '_CartStoreBase.value');
+  final _$placeholderAtom = Atom(name: '_CartStoreBase.placeholder');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  List<Item> get placeholder {
+    _$placeholderAtom.reportRead();
+    return super.placeholder;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set placeholder(List<Item> value) {
+    _$placeholderAtom.reportWrite(value, super.placeholder, () {
+      super.placeholder = value;
     });
-  }
-
-  final _$_CartStoreBaseActionController =
-      ActionController(name: '_CartStoreBase');
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_CartStoreBaseActionController.startAction(
-        name: '_CartStoreBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_CartStoreBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+placeholder: ${placeholder}
     ''';
   }
 }

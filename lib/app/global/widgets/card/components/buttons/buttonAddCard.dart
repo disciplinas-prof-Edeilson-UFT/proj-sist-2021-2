@@ -5,29 +5,29 @@ import 'package:flutter/material.dart';
 class ButtonAddCard extends StatelessWidget {
   final GestureTapCallback onPressed;
   final String name_button;
-  ButtonAddCard ({required this.onPressed, required this.name_button});
+  ButtonAddCard({
+    required this.onPressed,
+    required this.name_button,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        primary: Colors.black,
-        backgroundColor: Colors.white,
-        onSurface: Colors.red
-      ),
+          primary: Colors.black,
+          backgroundColor: Colors.white,
+          onSurface: Colors.red),
       child: Container(
-        width: 200, height: 50,
-        padding: EdgeInsets.only(left:20, right: 100),
+        width: 200,
+        height: 50,
+        padding: EdgeInsets.only(left: 20, right: 100),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(Icons.credit_card),
-            Text('${name_button}')
-          ],
+          children: [Icon(Icons.credit_card), Text('${name_button}')],
         ),
       ),
       onPressed: onPressed,

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'formPayment_store.dart';
+part of 'form_payment_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -12,13 +12,13 @@ mixin _$FormPaymentStore on _FormPaymentStoreBase, Store {
   final _$listCardAtom = Atom(name: '_FormPaymentStoreBase.listCard');
 
   @override
-  ObservableList<AddCardStore> get listCard {
+  ObservableList<NewCard> get listCard {
     _$listCardAtom.reportRead();
     return super.listCard;
   }
 
   @override
-  set listCard(ObservableList<AddCardStore> value) {
+  set listCard(ObservableList<NewCard> value) {
     _$listCardAtom.reportWrite(value, super.listCard, () {
       super.listCard = value;
     });
@@ -28,7 +28,7 @@ mixin _$FormPaymentStore on _FormPaymentStoreBase, Store {
       ActionController(name: '_FormPaymentStoreBase');
 
   @override
-  dynamic addCard(AddCardStore model) {
+  dynamic addCard(dynamic model) {
     final _$actionInfo = _$_FormPaymentStoreBaseActionController.startAction(
         name: '_FormPaymentStoreBase.addCard');
     try {
