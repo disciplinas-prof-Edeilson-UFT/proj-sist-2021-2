@@ -13,17 +13,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeStore> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter'),
       ),
-      body: const CustomCategory(), 
-
-          
-       
+      body: const CustomCategory(),
     );
   }
 }
