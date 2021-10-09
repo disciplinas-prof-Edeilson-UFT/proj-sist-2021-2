@@ -21,13 +21,15 @@ class _RestaurantDesktopPageState extends State<RestaurantDesktopPage> {
       child: Center(
         child: Column(
           children: [
-            SizedBox(
+            Container(
+              padding: const EdgeInsets.all(10.0),
               width: MediaQuery.of(context).size.width * 0.6,
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
+                  childAspectRatio: 1.7,
                   crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
+                  mainAxisSpacing: 20.0,
                 ),
                 itemCount: widget.products.length,
                 shrinkWrap: true,

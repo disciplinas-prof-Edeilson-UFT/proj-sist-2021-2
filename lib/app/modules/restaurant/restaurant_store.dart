@@ -18,6 +18,8 @@ abstract class _RestaurantStoreBase with Store {
       available: true,
       name: 'HAMBÚRGUER X-TUDO',
       price: 13.90,
+      imgUrl:
+          'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/burguer.jpeg?alt=media&token=bdd577aa-d3da-47ef-b827-0ceee0d43698',
       description:
           'Ingredientes: Pão, queijo, presunto, hambúrguer, milho, ovo, bacon',
     ),
