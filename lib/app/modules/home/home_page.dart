@@ -1,7 +1,13 @@
+// ignore_for_file: unnecessary_new
+
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/category/custom_category.dart';
-import 'package:pscomidas/app/modules/home/home_store.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
+import 'package:pscomidas/app/global/widgets/bottom_appp_bar/bottom_app_bar_mobile.dart';
+import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
+import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -15,10 +21,34 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Counter'),
+      backgroundColor: Colors.white,
+      appBar: const CustomAppBar(),
+
+      //onde colocar custom_category?
+      body: 
+
+      SingleChildScrollView(
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+         CustomCategory(),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+          child: Text(
+            "Lojas",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Nunito',
+            ),
+          ),
+        ),
+        RestaurantGrid(),
+      ],
       ),
-      body: const CustomCategory(),
+      ),
+      
+      bottomNavigationBar: const AppBarButton(),
     );
   }
 }

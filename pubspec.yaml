@@ -72,9 +72,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/logos/ifood-logo.png
     - assets/category/
   #   - images/a_dot_ham.jpeg
+    - assets/images/
+    - assets/images/filters/
+    - lib/app/modules/home/assets/images/cupom.png
+    - lib/app/modules/home/assets/images/iconmarmita.png
+    - lib/app/modules/home/assets/images/entrega_gratis.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -87,7 +91,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: lib/app/modules/home/assets/fonts/Nunito-Regular.ttf
+        - asset: lib/app/modules/home/assets/fonts/Nunito-Bold.ttf
+          weight: 700
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
