@@ -73,19 +73,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/logos/ifood-logo.png
-    - assets/categorias/acai.png
-    - assets/categorias/drinks.png
-    - assets/categorias/cake.png
-    - assets/categorias/hamburger.png
-    - assets/categorias/italian.png
-    - assets/categorias/japonese.png
-    - assets/categorias/bread.png
-    - assets/categorias/pizza.png
-    - assets/categorias/icecream.png
-    - assets/categorias/healthy.png
-    - assets/categorias/vegetarian.png
-    - assets/categorias/left.png
-    - assets/categorias/right.png
+    - assets/category/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
