@@ -99,6 +99,88 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
               ),
             ],
           ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: const TextField(
+                    cursorColor: Colors.red,
+                    style: TextStyle(),
+                    decoration: InputDecoration(
+                      icon: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.red,
+                        ),
+                      ),
+                      hintText: 'Busque por item ou loja',
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  shadowColor: Colors.white,
+                  enableFeedback: false,
+                ),
+                onPressed: () {},
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Row(
+                    children: [
+                      Icon(Icons.motorcycle, color: Colors.grey, size: 18),
+                      SizedBox(width: 5),
+                      Text(
+                        'Entrega',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Icon(Icons.keyboard_arrow_down_sharp, color: Colors.red),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: 10),
+              Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Hoje',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text('24 - 34 min • R\$ 4,99',
+                        style: TextStyle(color: Colors.grey))
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
         ],
       ),
     );

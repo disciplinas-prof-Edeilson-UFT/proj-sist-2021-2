@@ -18,7 +18,7 @@ class _RestaurantDesktopPageState extends State<RestaurantDesktopPage> {
           children: [
             const RestaurantTopBar(),
             Container(
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: 2 * MediaQuery.of(context).size.width / 3,
               color: Colors.black12,
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
