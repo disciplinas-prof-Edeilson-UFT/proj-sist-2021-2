@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pscomidas/app/global/models/entities/order.dart';
@@ -16,11 +18,7 @@ class OrderRepository implements IOrderRepository {
           .doc('ADjDH5NWXtMVKGMfi4LdOUbQWB03')
           .get()
           .then((DocumentSnapshot doc) {
-        if (doc.exists) {
-          return Order.fromDocument(doc);
-        } else {
-          return Order.fromDocument(doc);
-        }
+        return Order.fromDocument(doc);
       });
     } catch (e) {
       throw Exception("Pedido não encontrado");
