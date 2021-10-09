@@ -103,7 +103,7 @@ class ProductDialog extends StatelessWidget {
                     height: 115,
                     width: double.infinity,
                     alignment: Alignment.center,
-                    padding: EdgeInsets.all(30),
+                    padding: const EdgeInsets.all(30),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       border: Border.all(color: Colors.grey, width: 1),
@@ -113,7 +113,7 @@ class ProductDialog extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(
-                          children: [
+                          children: const [
                             Icon(Icons.store),
                             Expanded(
                               child: Text(
@@ -144,10 +144,14 @@ class ProductDialog extends StatelessWidget {
                                     ),
                                   )),
                         ),
-                        Row(children: [
-                          Text("36-46 min - R\$ 3,99",
-                              style: TextStyle(fontSize: 15)),
-                        ]),
+                        Row(
+                          children: const [
+                            Text(
+                              "36-46 min - R\$ 3,99",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

@@ -10,6 +10,7 @@ class RestaurantMobilePage extends StatefulWidget {
 
   final List<Product> products;
 
+  @override
   _RestaurantMobilePageState createState() => _RestaurantMobilePageState();
 }
 
