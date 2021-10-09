@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/product_options/product_dialog.dart';
 
 class ProductCard extends StatefulWidget {
-  ProductCard({
+  const ProductCard({
     Key? key,
+    required this.product,
   }) : super(key: key);
+
+  final Product product;
 
   @override
   _ProductCardState createState() => _ProductCardState();
@@ -16,12 +20,12 @@ class _ProductCardState extends State<ProductCard> {
     Size screen = MediaQuery.of(context).size;
 
     return InkWell(
-      onTap: () {
-        showDialog(context: context, builder: (context) => ProductDialog());
-      },
+      onTap: () => showDialog(
+        context: context,
+        builder: (context) => ProductDialog(product: widget.product),
+      ),
       child: Container(
-        width: screen.width * 0.4,
-        height: 300.0,
+        // width: screen.width * 0.4,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5.0),
@@ -32,13 +36,11 @@ class _ProductCardState extends State<ProductCard> {
             )
           ],
         ),
-        margin: const EdgeInsets.symmetric(horizontal: 10.0),
+        margin: const EdgeInsets.symmetric(horizontal: 5.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              height: 150.0,
+              height: 200.0,
               width: double.infinity,
               padding: const EdgeInsets.all(10.0),
               decoration: const BoxDecoration(
@@ -49,35 +51,36 @@ class _ProductCardState extends State<ProductCard> {
                 ),
               ),
             ),
-            SizedBox(
+            Container(
+              color: Colors.black12,
               width: screen.width * 0.38,
-              height: 80.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
+                children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.all(5.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: Text(
-                      'X-tudo',
+                      widget.product.name ?? 'Não encontrado',
                       // style: listItemTitleStyle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     child: Text(
-                      'Pão, salsicha e carne',
+                      widget.product.description ?? '',
                       // style: listItemSubTitleStyle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 5.0, right: 5.0, left: 5.0),
+                    padding:
+                        const EdgeInsets.only(top: 5.0, right: 5.0, left: 5.0),
                     child: Text(
-                      'R\$10,00',
+                      'R\$ ' + widget.product.price.toString(),
                       // style: priceStyle,
                     ),
                   ),

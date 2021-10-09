@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/models/entities/item.dart';
+import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 part 'product_store.g.dart';
 
@@ -10,7 +13,10 @@ abstract class _ProductOptionsStoreBase with Store {
   _ProductOptionsStoreBase(this.restaurantStore);
 
   @observable
-  int quantity = 0;
+  TextEditingController observation = TextEditingController();
+
+  @observable
+  int quantity = 1;
 
   @action
   void increment() {
@@ -19,12 +25,19 @@ abstract class _ProductOptionsStoreBase with Store {
 
   @action
   void decrement() {
-    if (quantity > 0) {
+    if (quantity > 1) {
       quantity = quantity - 1;
     }
   }
 
+  @action
+  void makeItem(Product product) {
+    Item item = Item(product, quantity);
+    restaurantStore.addItem(item);
+  }
+
   dispose() {
-    quantity = 0;
+    quantity = 1;
+    observation.dispose();
   }
 }

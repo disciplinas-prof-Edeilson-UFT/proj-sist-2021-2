@@ -7,32 +7,33 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/product_options/product_store.dart';
 
 class ProductDialog extends StatelessWidget {
-  ProductDialog({Key? key}) : super(key: key);
+  ProductDialog({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
 
   final RestaurantStore restaurantStore = Modular.get();
   final ProductOptionsStore store = Modular.get();
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     // Size screen = MediaQuery.of(context).size;
-    final Product product = Product(
-      description:
-          "Combo Prime! Acompanha: 10 Sashimis de salmão, 10 Camarões empanados, 36 Hots Philadelphia, 16 Enrolados de salmão cream cheese e cebolinha, 8 Enrolados salmão skin cream cheese e cebolinha, 4 Niguis de salmão com cream cheese e cebolinha, 4 Niguis skin loko, 10 Jyos de salmão cream cheese e 10 Salmão cubes (108 peças). Imagens meramente ilustrativas. Este combo adiciona 25 min no tempo de entrega.\n\nEscolha com consciência se deseja incluir ou não seu Kit delivery.\n\nItens adicionais colocados nas observações não acompanharão o pedido.",
-      name: 'COMBO PRIME - 108 PEÇAS',
-      price: 184.00,
-    );
 
     return AlertDialog(
       titleTextStyle: const TextStyle(color: Colors.black54),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Spacer(flex:6),
-           Text(
-              product.name.toString(),
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+          const Spacer(flex: 6),
+          Text(
+            product.name.toString(),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
             ),
-          const Spacer(flex:2),
+          ),
+          const Spacer(flex: 2),
           GestureDetector(
             onTap: () {
               Modular.to.pop();
@@ -44,9 +45,8 @@ class ProductDialog extends StatelessWidget {
           ),
         ],
       ),
-
       content: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             height: 500.0,
@@ -59,9 +59,7 @@ class ProductDialog extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            width: 10,
-          ),
+          const SizedBox(width: 10),
           Container(
             padding: const EdgeInsets.all(20),
             width: 700,
@@ -114,12 +112,13 @@ class ProductDialog extends StatelessWidget {
                   color: Colors.white,
                   width: 500,
                   height: 140,
-                  child: const TextField(
+                  child: TextField(
+                    controller: store.observation,
                     textInputAction: TextInputAction.newline,
                     autofocus: true,
                     maxLength: 150,
                     maxLines: 4,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: "Ex: tirar cebola, maionese à parte, etc.",
                       border: OutlineInputBorder(),
                     ),
@@ -144,13 +143,15 @@ class ProductDialog extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  IconButton(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onPressed: () => store.decrement(),
-                    icon: const Icon(
-                      Icons.remove,
-                      color: Colors.red,
+                  Observer(
+                    builder: (_) => IconButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () => store.decrement(),
+                      icon: Icon(
+                        Icons.remove,
+                        color: store.quantity > 1 ? Colors.red : Colors.black26,
+                      ),
                     ),
                   ),
                   Container(
@@ -175,7 +176,6 @@ class ProductDialog extends StatelessWidget {
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
@@ -186,7 +186,7 @@ class ProductDialog extends StatelessWidget {
                     primary: Colors.red,
                     onPrimary: Colors.black,
                   ),
-                  onPressed: () {},
+                  onPressed: () => store.makeItem(product),
                   child: Observer(builder: (_) {
                     return Text(
                       "Adicionar R\$ " +
