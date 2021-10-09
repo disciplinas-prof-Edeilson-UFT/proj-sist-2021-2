@@ -25,7 +25,12 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
         return StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('restaurant')
-              .orderBy(homeStore.selectedFilter.filterBackEnd)
+              .orderBy(
+                homeStore.selectedFilter.filterBackEnd,
+                descending:
+                    homeStore.selectedFilter.filterBackEnd == 'avaliation' ||
+                        homeStore.selectedFilter.filterBackEnd == 'cupom',
+              )
               .snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
             if (streamSnapshot.connectionState == ConnectionState.waiting) {
@@ -34,10 +39,7 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
 
             final restaurants = streamSnapshot.data!.docs;
             double _pageWidth = MediaQuery.of(context).size.width;
-            restaurants.removeAt(
-                0); /*ATENÇÃO: ESTE É O CARD CRIADO PELOS LÍDERES COMO PADRÃO.
-          ELE ESTÁ OBSOLETO DENTRO DAS NECESSIDADES DO CARD CRIADO PELO GRUPO 1. UM CONSENSO É ESPERADO.
-          */
+
             return GridView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 shrinkWrap: true,
