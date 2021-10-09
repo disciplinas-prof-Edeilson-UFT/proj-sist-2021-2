@@ -78,6 +78,7 @@ flutter:
     - assets/images/filters/
     - lib/app/modules/home/assets/images/cupom.png
     - lib/app/modules/home/assets/images/iconmarmita.png
+    - lib/app/modules/home/assets/images/entrega_gratis.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
