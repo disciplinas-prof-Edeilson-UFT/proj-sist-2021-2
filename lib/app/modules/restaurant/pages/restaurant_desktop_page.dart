@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/global/models/entities/product.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/restaurant/pages/components/product_grid.dart';
+import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/restaurant_top_bar.dart';
-import 'package:pscomidas/app/modules/restaurant/widgets/product_card.dart';
 
 class RestaurantDesktopPage extends StatefulWidget {
   const RestaurantDesktopPage({
     Key? key,
-    required this.products,
   }) : super(key: key);
-
-  final List<Product> products;
 
   @override
   _RestaurantDesktopPageState createState() => _RestaurantDesktopPageState();
 }
 
 class _RestaurantDesktopPageState extends State<RestaurantDesktopPage> {
+  final restaurantStore = Modular.get<RestaurantStore>();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -23,24 +24,14 @@ class _RestaurantDesktopPageState extends State<RestaurantDesktopPage> {
         child: Column(
           children: [
             const RestaurantTopBar(),
-            Container(
-              width: 2 * MediaQuery.of(context).size.width / 3,
-              color: Colors.black12,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.7,
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 20.0,
-                ),
-                itemCount: widget.products.length,
-                shrinkWrap: true,
-                itemBuilder: (_, index) {
-                  Product product = widget.products[index];
-                  return ProductCard(product: product);
-                },
-              ),
-            )
+            Observer(builder: (_) {
+              if (restaurantStore.products.isEmpty) {
+                return const Center(
+                  child: Text('Nenhum produto encontrado!'),
+                );
+              }
+              return ProductGrid(products: restaurantStore.products);
+            }),
           ],
         ),
       ),

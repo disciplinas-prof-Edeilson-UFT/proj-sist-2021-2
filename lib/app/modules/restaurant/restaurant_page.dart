@@ -1,3 +1,4 @@
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/modules/restaurant/pages/restaurant_desktop_page.dart';
@@ -15,6 +16,14 @@ class RestaurantPage extends StatefulWidget {
 
 class RestaurantPageState extends State<RestaurantPage> {
   final RestaurantStore store = Modular.get();
+  final searchTitle = '';
+
+  @override
+  void initState() {
+    store.getProducts(searchTitle);
+    WidgetsFlutterBinding.ensureInitialized();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +37,7 @@ class RestaurantPageState extends State<RestaurantPage> {
             if (width < 600) {
               return RestaurantMobilePage(products: store.products);
             } else {
-              return RestaurantDesktopPage(products: store.products);
+              return const RestaurantDesktopPage();
             }
           },
         ),

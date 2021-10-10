@@ -1,6 +1,6 @@
 class Product {
   final bool? available;
-  final List<String>? categories;
+  final List<dynamic>? categories;
   final String? description;
   final String? imgUrl;
   final String? name;
@@ -16,4 +16,28 @@ class Product {
     this.price,
     this.restaurantId,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'available': available,
+      'name': name,
+      'categories': categories,
+      'img': imgUrl,
+      'description': description,
+      'price': price,
+      'restaurantId': restaurantId,
+    };
+  }
+
+  static Product fromMap(Map<String, dynamic> map) {
+    return Product(
+      available: map['available'],
+      name: map['name'],
+      categories: map['categories'],
+      imgUrl: map['img'],
+      description: map['description'],
+      price: map['price'],
+      restaurantId: map['restaurant_id'],
+    );
+  }
 }

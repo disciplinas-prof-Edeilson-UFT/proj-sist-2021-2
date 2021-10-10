@@ -28,8 +28,8 @@ mixin _$RestaurantStore on _RestaurantStoreBase, Store {
       AsyncAction('_RestaurantStoreBase.getProducts');
 
   @override
-  Future<List<Product>> getProducts() {
-    return _$getProductsAsyncAction.run(() => super.getProducts());
+  Future<List<Product>> getProducts(dynamic searchTitle) {
+    return _$getProductsAsyncAction.run(() => super.getProducts(searchTitle));
   }
 
   @override

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 
 class RestaurantTopBar extends StatefulWidget {
   const RestaurantTopBar({
@@ -10,6 +12,8 @@ class RestaurantTopBar extends StatefulWidget {
 }
 
 class _RestaurantTopBarState extends State<RestaurantTopBar> {
+  final store = Modular.get<RestaurantStore>();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -99,7 +103,7 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -110,10 +114,10 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: const TextField(
+                  child: TextField(
+                    onChanged: (value) => store.getProducts(value),
                     cursorColor: Colors.red,
-                    style: TextStyle(),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       icon: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Icon(
@@ -127,9 +131,7 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: 10,
-              ),
+              const SizedBox(width: 10),
               TextButton(
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
@@ -139,9 +141,9 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                 ),
                 onPressed: () {},
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: Row(
-                    children: [
+                    children: const [
                       Icon(Icons.motorcycle, color: Colors.grey, size: 18),
                       SizedBox(width: 5),
                       Text(
@@ -153,17 +155,17 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Container(
                 alignment: Alignment.centerLeft,
-                padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
+                padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(5.0),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                  children: const [
                     Text(
                       'Hoje',
                       style: TextStyle(
@@ -178,9 +180,7 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
               ),
             ],
           ),
-          SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
         ],
       ),
     );
