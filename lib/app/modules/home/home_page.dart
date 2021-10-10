@@ -1,13 +1,10 @@
-// ignore_for_file: unnecessary_new
-
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/global/widgets/bottom_appp_bar/bottom_app_bar_mobile.dart';
-
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
+import 'package:pscomidas/app/modules/home/components/mais_pedidos.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -18,10 +15,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeStore> {
-  var deviceHeigth;
+  var deviceWidth = 0.0;
 
   Widget layoutMobile() {
-    if (deviceHeigth < 600) {
+    if (deviceWidth < 600) {
       return const AppBarButton();
     } else {
       return Container(
@@ -32,8 +29,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    deviceHeigth = MediaQuery.of(context).size.width;
+    deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -42,6 +38,18 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Text(
+                "Mais pedidos",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
+              ),
+            ),
+            MaisPedidos(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: Text(
