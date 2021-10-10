@@ -1,7 +1,9 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
+import 'package:pscomidas/app/modules/restaurant/restaurant_service_firestore.dart';
 
 part 'restaurant_store.g.dart';
 
@@ -11,55 +13,14 @@ abstract class _RestaurantStoreBase with Store {
   _RestaurantStoreBase(this.cartStore);
 
   final CartStore cartStore;
+  final RestaurantServiceFirestore list = Modular.get();
 
   @observable
-  List<Product> products = [
-    Product(
-      available: true,
-      name: 'HAMBÚRGUER X-TUDO',
-      price: 13.90,
-      imgUrl:
-          'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/burguer.jpeg?alt=media&token=bdd577aa-d3da-47ef-b827-0ceee0d43698',
-      description:
-          'Ingredientes: Pão, queijo, presunto, hambúrguer, milho, ovo, bacon',
-    ),
-    Product(
-      available: true,
-      name: 'TEMAKI DE SALMÃO',
-      price: 24.0,
-      description: 'Temaki de salmão com arroz japonês',
-    ),
-    Product(
-      available: true,
-      name: 'PIZZA DE CALABRESA',
-      price: 49.90,
-      description:
-          'Molho especial + queijo mussarela + calabresa + cebola + orégano',
-    ),
-    Product(
-      available: true,
-      name: 'SHAWARMA MISTA DE CARNE',
-      price: 22.99,
-      description:
-          'Pão sírio, creme de alho, carne, alface, tomate, cebola e batata frita',
-    ),
-    Product(
-      available: true,
-      name: 'CACHORRO QUENTE',
-      price: 6.50,
-      description:
-          'Cachorro quente ao molho com molho de alho, batata palha e milho',
-    ),
-    Product(
-      available: true,
-      name: 'BRAVO BURGUER',
-      price: 16.99,
-      description: '150g de hambúrguer bovino 100% artesanal',
-    ),
-  ];
+  List<Product> products = [];
 
   @action
-  Future<List<Product>> getProducts() async {
+  Future<List<Product>> getProducts(searchTitle) async {
+    products = await list.getProductsService(searchTitle);
     return products;
   }
 

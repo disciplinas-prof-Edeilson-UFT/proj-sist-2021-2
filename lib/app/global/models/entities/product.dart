@@ -16,4 +16,28 @@ class Product {
     this.price,
     this.restaurantId,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'available': available,
+      'name': name,
+      'categories': categories,
+      'img': imgUrl,
+      'description': description,
+      'price': price,
+      'restaurantId': restaurantId,
+    };
+  }
+
+  static Product fromMap(Map<String, dynamic> map) {
+    return Product(
+      available: map['available'],
+      name: map['name'],
+      categories: map['categories'],
+      imgUrl: map['img'],
+      description: map['description'],
+      price: map['price'],
+      restaurantId: map['restaurantId'],
+    );
+  }
 }
