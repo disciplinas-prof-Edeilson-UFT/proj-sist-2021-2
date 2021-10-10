@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
 class CategoryPage extends StatelessWidget {
   CategoryPage({Key? key}) : super(key: key);
@@ -44,8 +47,7 @@ class CategoryPage extends StatelessWidget {
                         image: "assets/category/bread.png",
                         category: 'Padarias'),
                     CategoryCard(
-                        image: "assets/category/pizza.png",
-                        category: 'Pizza'),
+                        image: "assets/category/pizza.png", category: 'Pizza'),
                     CategoryCard(
                         image: "assets/category/healthy.png",
                         category: 'Saudável'),
@@ -127,7 +129,9 @@ class CategoryCard extends StatefulWidget {
   double _height = 200;
 }
 
-class _State extends State<CategoryCard> {
+class _State extends ModularState<CategoryCard, HomeStore> {
+  final homeStore = Modular.get<HomeStore>();
+
   @override
   Widget build(BuildContext context) {
     void _updateState(_isHovering) {
@@ -155,14 +159,9 @@ class _State extends State<CategoryCard> {
             child: Image.asset(
               widget.image,
               width: widget._width,
-
-              // MediaQuery.of(context).size.width * 0.12,
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SecondRoute()),
-              );
+              homeStore.setSelectedCategory(widget.category);
             },
             onHover: (_isHovering) {
               _updateState(_isHovering);

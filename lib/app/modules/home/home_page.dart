@@ -1,6 +1,3 @@
-// ignore_for_file: unnecessary_new
-
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/category/custom_category.dart';
@@ -18,36 +15,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeStore> {
+  final homeStore = Modular.get<HomeStore>();
+
   @override
   Widget build(BuildContext context) {
+    homeStore.setSelectedCategory(null);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(),
-
-      //onde colocar custom_category?
-      body: 
-
-      SingleChildScrollView(
-      child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-         CustomCategory(),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-          child: Text(
-            "Lojas",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Nunito',
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            CustomCategory(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Text(
+                "Lojas",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
+              ),
             ),
-          ),
+            RestaurantGrid(),
+          ],
         ),
-        RestaurantGrid(),
-      ],
       ),
-      ),
-      
       bottomNavigationBar: const AppBarButton(),
     );
   }
