@@ -1,80 +1,102 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
+import 'package:pscomidas/app/global/widgets/bottom_app_bar/bottom_app_bar_mobile.dart';
+import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
 
 class CategoryPage extends StatelessWidget {
   CategoryPage({Key? key}) : super(key: key);
   final itemKey = GlobalKey();
   Future scrollToItem() async {
     final context = itemKey.currentContext!;
-    await Scrollable.ensureVisible(context,
-        //alignment: 1,
-        duration: Duration(seconds: 1));
+    await Scrollable.ensureVisible(
+      context,
+      duration: const Duration(seconds: 1),
+    );
   }
 
   final secondItemKey = GlobalKey();
-  Future SecondScrollToItem() async {
+  Future secondScrollToItem() async {
     final context = secondItemKey.currentContext!;
-    await Scrollable.ensureVisible(context, duration: Duration(seconds: 1));
+    await Scrollable.ensureVisible(
+      context,
+      duration: const Duration(seconds: 1),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
+      child: SizedBox(
         height: 140,
-        //MediaQuery.of(context).size.width * 0.1 ,
-        //< 200 ? 200: MediaQuery.of(context).size.width * 0.1
         child: Stack(
           children: [
             SingleChildScrollView(
               controller: ScrollController(initialScrollOffset: 0.0),
               scrollDirection: Axis.horizontal,
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                        key: secondItemKey,
-                        child: CategoryCard(
-                            image: "assets/category/acai.png",
-                            category: 'Açaí')),
-                    CategoryCard(
-                        image: "assets/category/hamburger.png",
-                        category: 'Hambúguer'),
-                    CategoryCard(
-                        image: "assets/category/bread.png",
-                        category: 'Padarias'),
-                    CategoryCard(
-                        image: "assets/category/pizza.png", category: 'Pizza'),
-                    CategoryCard(
-                        image: "assets/category/healthy.png",
-                        category: 'Saudável'),
-                    CategoryCard(
-                        image: "assets/category/cake.png",
-                        category: 'Bolos e Doces'),
-                    Container(
-                        key: itemKey,
-                        child: CategoryCard(
-                            image: "assets/category/drinks.png",
-                            category: 'Bebidas')),
-                    CategoryCard(
-                        image: "assets/category/vegetarian.png",
-                        category: 'Vegetariana'),
-                    CategoryCard(
-                        image: "assets/category/italian.png",
-                        category: 'Italiana'),
-                    CategoryCard(
-                        image: "assets/category/icecream.png",
-                        category: 'Sorvetes'),
-                  ]),
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    key: secondItemKey,
+                    child: const CategoryCard(
+                      image: "assets/images/category/acai.png",
+                      category: 'Açaí',
+                    ),
+                  ),
+                  const CategoryCard(
+                    image: "assets/images/category/hamburger.png",
+                    category: 'Lanches',
+                  ),
+                  const CategoryCard(
+                    image: "assets/images/category/bread.png",
+                    category: 'Padarias',
+                  ),
+                  const CategoryCard(
+                    image: "assets/images/category/pizza.png",
+                    category: 'Pizza',
+                  ),
+                  const CategoryCard(
+                    image: "assets/images/category/healthy.png",
+                    category: 'Saudável',
+                  ),
+                  const CategoryCard(
+                    image: "assets/images/category/cake.png",
+                    category: 'Bolos e Doces',
+                  ),
+                  Container(
+                    key: itemKey,
+                    child: const CategoryCard(
+                      image: "assets/images/category/drinks.png",
+                      category: 'Bebidas',
+                    ),
+                  ),
+                  const CategoryCard(
+                    image: "assets/images/category/vegetarian.png",
+                    category: 'Vegetariana',
+                  ),
+                  const CategoryCard(
+                    image: "assets/images/category/italian.png",
+                    category: 'Italiana',
+                  ),
+                  const CategoryCard(
+                    image: "assets/images/category/icecream.png",
+                    category: 'Sorvetes',
+                  ),
+                  const CategoryCard(
+                    image: "assets/images/category/asian.png",
+                    category: 'Asiática',
+                  ),
+                ],
+              ),
             ),
             Align(
               alignment: Alignment.centerRight,
               child: InkWell(
                 child: Image.asset(
-                  "assets/category/right.png",
+                  "assets/images/category/right.png",
                   width: 30,
                 ),
                 onTap: () => scrollToItem(),
@@ -84,10 +106,10 @@ class CategoryPage extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: InkWell(
                 child: Image.asset(
-                  "assets/category/left.png",
+                  "assets/images/category/left.png",
                   width: 30,
                 ),
-                onTap: () => SecondScrollToItem(),
+                onTap: () => secondScrollToItem(),
               ),
             ),
           ],
@@ -97,80 +119,96 @@ class CategoryPage extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({Key? key}) : super(key: key);
-
+class CategoryInside extends StatelessWidget {
+  const CategoryInside({Key? key, this.categoryName}) : super(key: key);
+  final String? categoryName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Second Route"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
+      backgroundColor: Colors.white,
+      appBar: const CustomAppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Text(
+                categoryName!,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
+              ),
+            ),
+            const RestaurantGrid(),
+          ],
         ),
       ),
+      bottomNavigationBar: const AppBarButton(),
     );
   }
 }
 
 class CategoryCard extends StatefulWidget {
-  CategoryCard({Key? key, this.image, this.category}) : super(key: key);
+  const CategoryCard({
+    Key? key,
+    required this.image,
+    this.category,
+  }) : super(key: key);
+  final String image;
+  final String? category;
 
   @override
   _State createState() => _State();
-  late final image;
-  late final String? category;
-  double _width = 200;
-  double _height = 200;
 }
 
 class _State extends ModularState<CategoryCard, HomeStore> {
   final homeStore = Modular.get<HomeStore>();
+  var width = 200.0;
+  var height = 200.0;
 
   @override
   Widget build(BuildContext context) {
     void _updateState(_isHovering) {
       if (_isHovering) {
         setState(() {
-          widget._width = 230;
+          width = 230;
         });
       } else {
         setState(() {
-          widget._width = 200;
+          width = 200;
         });
       }
     }
 
     return AnimatedContainer(
-      width: widget._width,
-      height: widget._height,
+      width: width,
+      height: height,
       duration: const Duration(milliseconds: 200),
       curve: Curves.bounceOut,
-      child: Column(children: [
-        MouseRegion(
-          //image como botão para Filtros
-          cursor: SystemMouseCursors.click,
-          child: InkWell(
-            child: Image.asset(
-              widget.image,
-              width: widget._width,
+      child: Column(
+        children: [
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: InkWell(
+              child: Image.asset(
+                widget.image,
+                width: width,
+              ),
+              onTap: () {
+                homeStore.setSelectedCategory(widget.category);
+              },
+              onHover: (_isHovering) {
+                _updateState(_isHovering);
+              },
+              hoverColor: Colors.transparent,
             ),
-            onTap: () {
-              homeStore.setSelectedCategory(widget.category);
-            },
-            onHover: (_isHovering) {
-              _updateState(_isHovering);
-            },
-            hoverColor: Colors.transparent,
           ),
-        ),
-        Text(widget.category!)
-      ]),
+          Text(widget.category!)
+        ],
+      ),
     );
   }
 }

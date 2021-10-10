@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/category/custom_category.dart';
+import 'package:pscomidas/app/modules/category/category_page.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
-import 'package:pscomidas/app/global/widgets/bottom_appp_bar/bottom_app_bar_mobile.dart';
+import 'package:pscomidas/app/global/widgets/bottom_app_bar/bottom_app_bar_mobile.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
+import 'package:pscomidas/app/modules/home/components/mais_pedidos.dart';
+import 'package:pscomidas/app/global/widgets/footer_bar/custom_footer.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -16,10 +18,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends ModularState<HomePage, HomeStore> {
   final homeStore = Modular.get<HomeStore>();
+  var deviceWidth = 0.0;
+
+  Widget layoutMobile() {
+    if (deviceWidth < 600) {
+      return const AppBarButton();
+    } else {
+      return Container(
+        height: 5,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     homeStore.setSelectedCategory(null);
+    deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -27,9 +41,21 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            CustomCategory(),
-            Padding(
+          children: [
+            CategoryPage(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Text(
+                "Mais pedidos",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
+              ),
+            ),
+            const MaisPedidos(),
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: Text(
                 "Lojas",
@@ -40,11 +66,12 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 ),
               ),
             ),
-            RestaurantGrid(),
+            const RestaurantGrid(),
+            const CustomFooter()
           ],
         ),
       ),
-      bottomNavigationBar: const AppBarButton(),
+      bottomNavigationBar: layoutMobile(),
     );
   }
 }
