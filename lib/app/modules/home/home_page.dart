@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/category/category_page.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
-import 'package:pscomidas/app/global/widgets/bottom_appp_bar/bottom_app_bar_mobile.dart';
+import 'package:pscomidas/app/global/widgets/bottom_app_bar/bottom_app_bar_mobile.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/home/components/mais_pedidos.dart';
@@ -37,8 +38,9 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Padding(
+          children: [
+            CategoryPage(),
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: Text(
                 "Mais pedidos",
@@ -49,8 +51,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 ),
               ),
             ),
-            MaisPedidos(),
-            Padding(
+            const MaisPedidos(),
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: Text(
                 "Lojas",
@@ -61,7 +63,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 ),
               ),
             ),
-            RestaurantGrid(),
+            const RestaurantGrid(),
           ],
         ),
       ),

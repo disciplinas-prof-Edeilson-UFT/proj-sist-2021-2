@@ -9,7 +9,8 @@ import 'package:pscomidas/app/modules/home/store/home_store.dart';
 //Esta é a página que busca dados no firebase e constrói os cards conforme necessidade.
 
 class RestaurantGrid extends StatefulWidget {
-  const RestaurantGrid({Key? key}) : super(key: key);
+  const RestaurantGrid({Key? key, this.CategoryField}) : super(key: key);
+  final String? CategoryField;
 
   @override
   State<RestaurantGrid> createState() => _RestaurantGridState();
@@ -17,16 +18,31 @@ class RestaurantGrid extends StatefulWidget {
 
 class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
   final homeStore = Modular.get<HomeStore>();
+  var _snapShot;
 
   @override
   Widget build(BuildContext context) {
+    if (widget.CategoryField == null) {
+      _snapShot = FirebaseFirestore.instance
+          .collection('restaurant')
+          .orderBy(
+            homeStore.selectedFilter.filterBackEnd,
+            descending:
+                homeStore.selectedFilter.filterBackEnd == 'avaliation' ||
+                    homeStore.selectedFilter.filterBackEnd == 'cupom',
+          )
+          .snapshots();
+    } else {
+      _snapShot = FirebaseFirestore.instance
+          .collection('restaurant')
+          .where('category', isEqualTo: widget.CategoryField)
+          .snapshots();
+    }
+
     return Observer(
       builder: (ctx) {
         return StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection('restaurant')
-              .orderBy(homeStore.selectedFilter.filterBackEnd)
-              .snapshots(),
+          stream: _snapShot,
           builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
             if (streamSnapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
@@ -34,10 +50,7 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
 
             final restaurants = streamSnapshot.data!.docs;
             double _pageWidth = MediaQuery.of(context).size.width;
-            restaurants.removeAt(
-                0); /*ATENÇÃO: ESTE É O CARD CRIADO PELOS LÍDERES COMO PADRÃO.
-          ELE ESTÁ OBSOLETO DENTRO DAS NECESSIDADES DO CARD CRIADO PELO GRUPO 1. UM CONSENSO É ESPERADO.
-          */
+
             return GridView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 shrinkWrap: true,
