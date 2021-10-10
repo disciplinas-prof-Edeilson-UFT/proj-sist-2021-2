@@ -32,42 +32,47 @@ class MostOrdered extends StatelessWidget {
           }
 
           return Padding(
-            padding: EdgeInsets.only(bottom: 20.0),
+            padding: EdgeInsets.only(bottom: 16.0),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              height: 140.0,
+              height: 150.0,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
-                  return Container(
-                    width: 135.0,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Container(
+                      width: 135.0,
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 20.0),
+                                child: CircleAvatar(
+                                  radius: 45.0,
+                                  backgroundImage:
+                                      NetworkImage(data['image'] ?? ''),
+                                ),
+                              ),
+                              Text(
+                                data['social_name'] ?? 'Sem nome',
+                                softWrap: true,
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Nunito'),
+                              ),
+                            ],
                           ),
-                        ),
-                        title: Padding(
-                          padding: EdgeInsets.only(bottom: 20.0),
-                          child: CircleAvatar(
-                            radius: 45.0,
-                            backgroundImage: NetworkImage(data['image'] ?? ''),
-                          ),
-                        ),
-                        subtitle: Text(
-                          data['social_name'] ?? 'Sem nome',
-                          softWrap: true,
-                          maxLines: 2,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Nunito'),
                         ),
                       ),
                     ),
