@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class MaisPedidos extends StatelessWidget {
-  const MaisPedidos({Key? key}) : super(key: key);
+class MostOrdered extends StatelessWidget {
+  const MostOrdered({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

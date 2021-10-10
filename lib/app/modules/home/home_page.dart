@@ -5,7 +5,7 @@ import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/global/widgets/bottom_app_bar/bottom_app_bar_mobile.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
-import 'package:pscomidas/app/modules/home/components/mais_pedidos.dart';
+import 'package:pscomidas/app/modules/home/components/most_ordered.dart';
 import 'package:pscomidas/app/global/widgets/footer_bar/custom_footer.dart';
 
 class HomePage extends StatefulWidget {
@@ -52,7 +52,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 ),
               ),
             ),
-            const MaisPedidos(),
+            const MostOrdered(),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: Text(
