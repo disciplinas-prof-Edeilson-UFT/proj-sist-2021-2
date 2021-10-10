@@ -1,4 +1,4 @@
-import 'package:pscomidas/app/modules/restaurant/domain/entities/result_search.dart';
+import 'package:pscomidas/app/modules/restaurant/dead_code/domain/entities/result_search.dart';
 
 class ResultSearchModel extends ResultSearch {
   @override

@@ -1,8 +1,8 @@
-import 'package:pscomidas/app/modules/restaurant/domain/errors/errors.dart';
-import 'package:pscomidas/app/modules/restaurant/domain/entities/result_search.dart';
 import 'package:dartz/dartz.dart';
-import 'package:pscomidas/app/modules/restaurant/domain/repository/search_repository.dart';
-import 'package:pscomidas/app/modules/restaurant/infra/datasources/search_datasource.dart';
+import 'package:pscomidas/app/modules/restaurant/dead_code/domain/entities/result_search.dart';
+import 'package:pscomidas/app/modules/restaurant/dead_code/domain/errors/errors.dart';
+import 'package:pscomidas/app/modules/restaurant/dead_code/domain/repository/search_repository.dart';
+import 'package:pscomidas/app/modules/restaurant/dead_code/infra/datasources/search_datasource.dart';
 
 class SearchRepositoryImpl implements SearchRepository {
   final SearchDataSource dataSource;

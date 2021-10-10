@@ -9,7 +9,7 @@ class RestaurantModule extends Module {
   static String get routeName => '/restaurant';
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => CartStore()),
+    Bind.singleton((i) => CartStore()),
     Bind.lazySingleton((i) => RestaurantStore(i.get())),
     Bind.lazySingleton((i) => ProductOptionsStore(i.get())),
     Bind.lazySingleton((i) => RestaurantServiceFirestore()),

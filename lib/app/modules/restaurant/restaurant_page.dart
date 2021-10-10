@@ -21,6 +21,7 @@ class RestaurantPageState extends State<RestaurantPage> {
   @override
   void initState() {
     store.getProducts(searchTitle);
+    WidgetsFlutterBinding.ensureInitialized();
     super.initState();
   }
 
@@ -30,18 +31,16 @@ class RestaurantPageState extends State<RestaurantPage> {
       appBar: const CustomAppBar(),
       endDrawer: Container(),
       body: SafeArea(
-        child: Observer(builder: (_) {
-          return LayoutBuilder(
-            builder: (_, constrains) {
-              var width = constrains.maxWidth;
-              if (width < 600) {
-                return RestaurantMobilePage(products: store.products);
-              } else {
-                return RestaurantDesktopPage(products: store.products);
-              }
-            },
-          );
-        }),
+        child: LayoutBuilder(
+          builder: (_, constrains) {
+            var width = constrains.maxWidth;
+            if (width < 600) {
+              return RestaurantMobilePage(products: store.products);
+            } else {
+              return const RestaurantDesktopPage();
+            }
+          },
+        ),
       ),
     );
   }
