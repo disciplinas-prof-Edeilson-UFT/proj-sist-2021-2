@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pscomidas/app/global/models/entities/order.dart';
@@ -23,5 +22,46 @@ class OrderRepository implements IOrderRepository {
     } catch (e) {
       throw Exception("Pedido não encontrado");
     }
+  }
+
+  Future<bool> cadastrarOrder(Order pedido) async {
+    List<dynamic> itemID = [];
+
+    try {
+      pedido.itens.forEach((element) async {
+        await firestore.collection('item').add({
+          'quant': element.quantidade,
+          'product_id': element.product.productID,
+        }).then((value) {
+          itemID.add(value.id);
+          log("Item adicionado ${value.id}");
+          return true;
+        }).catchError((error) {
+          log("Falha ao adicionar $error");
+          return false;
+        });
+      });
+
+      await firestore.collection('order').add({
+        'delivered': false,
+        'items': [],
+        'order_price': pedido.orderPrice,
+        'restaurant_id': "Restaurante ABC",
+        'ship_price': pedido.shipPrice,
+        'status': pedido.status.toString(),
+      }).then((value) async {
+        await firestore.collection('order').doc(value.id).set({
+          'items': itemID,
+        }, SetOptions(merge: true)).then((value) {
+          log('Items adicionados');
+        });
+        log(value.id);
+      }).catchError((error) {
+        log(error);
+      });
+    } catch (e) {
+      throw Exception("Erro: $e");
+    }
+    return false;
   }
 }

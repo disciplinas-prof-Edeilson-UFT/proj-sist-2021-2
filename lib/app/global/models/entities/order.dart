@@ -7,14 +7,12 @@ class Order {
   final double shipPrice;
   final double orderPrice;
   final OrderType status;
-  final DocumentReference reference;
 
   Order({
     required this.itens,
     required this.shipPrice,
     required this.orderPrice,
     required this.status,
-    required this.reference,
   });
 
   factory Order.fromDocument(DocumentSnapshot doc) {
@@ -23,7 +21,6 @@ class Order {
       shipPrice: doc['ship_price'],
       orderPrice: doc['order_price'],
       status: doc['status'],
-      reference: doc.reference,
     );
   }
 }
