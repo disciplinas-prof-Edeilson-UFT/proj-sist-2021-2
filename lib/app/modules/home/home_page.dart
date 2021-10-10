@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeStore> {
+  final homeStore = Modular.get<HomeStore>();
   var deviceWidth = 0.0;
 
   Widget layoutMobile() {
@@ -31,6 +32,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
   @override
   Widget build(BuildContext context) {
+    homeStore.setSelectedCategory(null);
     deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(

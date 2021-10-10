@@ -23,4 +23,12 @@ abstract class HomeStoreBase with Store {
       orElse: () => FilterType.avaliation,
     );
   }
+
+  @observable
+  String? selectedCategory;
+
+  @action
+  void setSelectedCategory(String? selection) {
+    selectedCategory = selection;
+  }
 }
