@@ -6,6 +6,7 @@ import 'package:pscomidas/app/global/widgets/bottom_app_bar/bottom_app_bar_mobil
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/home/components/mais_pedidos.dart';
+import 'package:pscomidas/app/global/widgets/footer_bar/custom_footer.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -64,6 +65,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               ),
             ),
             const RestaurantGrid(),
+            const CustomFooter()
           ],
         ),
       ),

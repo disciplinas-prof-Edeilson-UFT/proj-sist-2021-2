@@ -46,6 +46,7 @@ dependencies:
   cpf_cnpj_validator: ^2.0.0
   search_cep: ^4.0.0-nullsafety.1
   js: ^0.6.3
+  flutter_signin_button: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -75,9 +76,7 @@ flutter:
     - assets/images/
     - assets/images/filters/
     - assets/images/category/
-    - lib/app/modules/home/assets/images/cupom.png
-    - lib/app/modules/home/assets/images/iconmarmita.png
-    - lib/app/modules/home/assets/images/entrega_gratis.png
+    - lib/app/modules/home/assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
