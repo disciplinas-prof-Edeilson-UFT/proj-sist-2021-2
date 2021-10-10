@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
+import 'package:pscomidas/app/modules/restaurant/widgets/restaurant_top_bar.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/product_card.dart';
 
 class RestaurantDesktopPage extends StatefulWidget {
@@ -21,9 +22,10 @@ class _RestaurantDesktopPageState extends State<RestaurantDesktopPage> {
       child: Center(
         child: Column(
           children: [
+            const RestaurantTopBar(),
             Container(
-              padding: const EdgeInsets.all(10.0),
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: 2 * MediaQuery.of(context).size.width / 3,
+              color: Colors.black12,
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
