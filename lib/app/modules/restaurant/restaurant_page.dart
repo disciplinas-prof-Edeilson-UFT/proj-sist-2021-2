@@ -1,11 +1,9 @@
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/modules/restaurant/pages/restaurant_desktop_page.dart';
 import 'package:pscomidas/app/modules/restaurant/pages/restaurant_mobile_page.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/restaurant/widgets/product_card.dart';
 
 class RestaurantPage extends StatefulWidget {
   final String title;
@@ -27,11 +25,10 @@ class RestaurantPageState extends State<RestaurantPage> {
         child: LayoutBuilder(
           builder: (_, constrains) {
             var width = constrains.maxWidth;
-            print(width);
             if (width < 600) {
-              return const RestaurantMobilePage();
+              return RestaurantMobilePage(products: store.products);
             } else {
-              return const RestaurantDesktopPage();
+              return RestaurantDesktopPage(products: store.products);
             }
           },
         ),
