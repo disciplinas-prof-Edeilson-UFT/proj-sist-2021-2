@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/global/widgets/bottom_app_bar/bottom_app_bar_mobile.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
@@ -140,7 +142,7 @@ class CategoryInside extends StatelessWidget {
                 ),
               ),
             ),
-            RestaurantGrid(CategoryField: categoryName),
+            const RestaurantGrid(),
           ],
         ),
       ),
@@ -162,7 +164,8 @@ class CategoryCard extends StatefulWidget {
   _State createState() => _State();
 }
 
-class _State extends State<CategoryCard> {
+class _State extends ModularState<CategoryCard, HomeStore> {
+  final homeStore = Modular.get<HomeStore>();
   var width = 200.0;
   var height = 200.0;
 
@@ -195,14 +198,7 @@ class _State extends State<CategoryCard> {
                 width: width,
               ),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CategoryInside(
-                      categoryName: widget.category,
-                    ),
-                  ),
-                );
+                homeStore.setSelectedCategory(widget.category);
               },
               onHover: (_isHovering) {
                 _updateState(_isHovering);
