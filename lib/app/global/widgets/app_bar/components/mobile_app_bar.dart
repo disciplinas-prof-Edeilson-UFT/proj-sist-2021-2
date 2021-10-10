@@ -18,6 +18,7 @@ class MobileAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
   @override
   Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
     return AppBar(
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
@@ -46,7 +47,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
                       size: 14,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.001,
+                      width: screen.width * 0.001,
                     ),
                     const Text(
                       "Q. 208 Sul, Alameda 10, 202",

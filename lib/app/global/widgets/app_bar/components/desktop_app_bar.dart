@@ -18,6 +18,7 @@ class DesktopAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
   @override
   Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
     return AppBar(
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
@@ -31,8 +32,8 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
             const FilterAppBar(),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.2,
-                height: MediaQuery.of(context).size.height * 0.04,
+                width: screen.width * 0.2,
+                height: screen.height * 0.04,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -58,7 +59,7 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.03,
+              width: screen.width * 0.03,
             ),
             const LocationAppBar(),
           ],
@@ -69,20 +70,11 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
       actions: [
         const UserAppBar(),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.02,
+          width: screen.width * 0.02,
         ),
-        MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            child: Image.asset(
-              "assets/images/cart.png",
-              width: MediaQuery.of(context).size.width * 0.02,
-            ),
-            onTap: () {},
-          ),
-        ),
+        const CartAppBar(),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.03,
+          width: screen.width * 0.03,
         ),
       ],
     );
