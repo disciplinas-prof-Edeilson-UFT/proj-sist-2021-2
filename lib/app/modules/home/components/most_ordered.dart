@@ -14,7 +14,7 @@ class MostOrdered extends StatelessWidget {
         future: restaurants.orderBy('orders', descending: true).get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text(
+            return const Text(
               'Algo deu errado',
               softWrap: true,
               maxLines: 2,
@@ -28,13 +28,13 @@ class MostOrdered extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           return Padding(
-            padding: EdgeInsets.only(bottom: 16.0),
+            padding: const EdgeInsets.only(bottom: 16.0),
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               height: 150.0,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -43,7 +43,7 @@ class MostOrdered extends StatelessWidget {
                       document.data()! as Map<String, dynamic>;
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Container(
+                    child: SizedBox(
                       width: 135.0,
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
@@ -52,7 +52,7 @@ class MostOrdered extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               Padding(
-                                padding: EdgeInsets.only(bottom: 20.0),
+                                padding: const EdgeInsets.only(bottom: 20.0),
                                 child: CircleAvatar(
                                   radius: 45.0,
                                   backgroundImage:
@@ -65,7 +65,7 @@ class MostOrdered extends StatelessWidget {
                                 maxLines: 2,
                                 textAlign: TextAlign.center,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.grey,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
