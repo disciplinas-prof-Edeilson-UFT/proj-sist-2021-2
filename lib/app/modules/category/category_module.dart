@@ -10,6 +10,6 @@ class CategoryModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) =>  CategoryPage()),
+    ChildRoute('/', child: (_, args) => CategoryPage()),
   ];
 }

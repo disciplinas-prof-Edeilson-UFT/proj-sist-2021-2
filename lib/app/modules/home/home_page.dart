@@ -1,9 +1,8 @@
 // ignore_for_file: unnecessary_new
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/category/custom_category.dart';
+import 'package:pscomidas/app/modules/category/category_page.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/global/widgets/bottom_appp_bar/bottom_app_bar_mobile.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
@@ -32,37 +31,31 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
     deviceHeigth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(),
-
-     
-      body: 
-
-      SingleChildScrollView(
-      child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-         CustomCategory(),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-          child: Text(
-            "Lojas",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Nunito',
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CategoryPage(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Text(
+                "Lojas",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
+                ),
+              ),
             ),
-          ),
+            const RestaurantGrid(),
+          ],
         ),
-        RestaurantGrid(),
-      ],
       ),
-      ),
-      
       bottomNavigationBar: const AppBarButton(),
     );
   }

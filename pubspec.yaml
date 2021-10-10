@@ -72,10 +72,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/category/
-  #   - images/a_dot_ham.jpeg
     - assets/images/
     - assets/images/filters/
+    - assets/images/category/
     - lib/app/modules/home/assets/images/cupom.png
     - lib/app/modules/home/assets/images/iconmarmita.png
     - lib/app/modules/home/assets/images/entrega_gratis.png
