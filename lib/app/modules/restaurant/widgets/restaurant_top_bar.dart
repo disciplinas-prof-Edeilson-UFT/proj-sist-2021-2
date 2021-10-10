@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 
 class RestaurantTopBar extends StatefulWidget {
   const RestaurantTopBar({
@@ -10,6 +12,8 @@ class RestaurantTopBar extends StatefulWidget {
 }
 
 class _RestaurantTopBarState extends State<RestaurantTopBar> {
+  final store = Modular.get<RestaurantStore>();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -99,7 +103,7 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -110,7 +114,8 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: const TextField(
+                  child: TextField(
+                    //onChanged: (value) => store.getProducts(value),
                     cursorColor: Colors.red,
                     style: TextStyle(),
                     decoration: InputDecoration(

@@ -1,6 +1,6 @@
 class Product {
   final bool? available;
-  final List<String>? categories;
+  final List<dynamic>? categories;
   final String? description;
   final String? imgUrl;
   final String? name;
@@ -37,7 +37,7 @@ class Product {
       imgUrl: map['img'],
       description: map['description'],
       price: map['price'],
-      restaurantId: map['restaurantId'],
+      restaurantId: map['restaurant_id'],
     );
   }
 }

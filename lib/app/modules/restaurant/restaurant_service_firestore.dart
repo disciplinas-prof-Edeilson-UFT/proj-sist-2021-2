@@ -5,10 +5,17 @@ import 'package:pscomidas/app/modules/restaurant/restaurant_service.dart';
 class RestaurantServiceFirestore extends RestaurantService {
   @override
   Future<List<Product>> getProductsService(searchTitle) async {
-    var querySnapshot = await FirebaseFirestore.instance
-        .collection('products')
-        .where('name', isGreaterThanOrEqualTo: searchTitle)
-        .get();
+    QuerySnapshot<Map<String, dynamic>> querySnapshot;
+
+    if (searchTitle.isNotEmpty) {
+      querySnapshot = await FirebaseFirestore.instance
+          .collection('products')
+          .where('name', isGreaterThanOrEqualTo: searchTitle)
+          .get();
+    } else {
+      querySnapshot =
+          await FirebaseFirestore.instance.collection('products').get();
+    }
     return querySnapshot.docs
         .map((doc) => Product.fromMap(doc.data()))
         .toList();
