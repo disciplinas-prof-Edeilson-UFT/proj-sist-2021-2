@@ -18,6 +18,7 @@ class TabletAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _TabletAppBarState extends ModularState<TabletAppBar, HomeStore> {
   @override
   Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
     return AppBar(
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
@@ -38,7 +39,7 @@ class _TabletAppBarState extends ModularState<TabletAppBar, HomeStore> {
       actions: [
         const UserAppBar(),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.03,
+          width: screen.width * 0.03,
         ),
       ],
     );

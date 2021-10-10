@@ -12,12 +12,13 @@ class LogoAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         child: Image.asset(
           "assets/images/logo.png",
-          width: MediaQuery.of(context).size.width * 0.2,
+          width: screen.width * 0.2,
         ),
         onTap: () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => const HomePage())),
@@ -38,6 +39,7 @@ class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
 
   @override
   Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
     return Row(
       children: [
         Observer(
@@ -59,10 +61,10 @@ class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
                           Padding(
                             child: Image.asset(
                               'assets/images/filters/' + value.image + '.png',
-                              width: MediaQuery.of(context).size.width * 0.04,
+                              width: screen.width * 0.04,
                             ),
                             padding: EdgeInsets.only(
-                              right: MediaQuery.of(context).size.width * 0.01,
+                              right: screen.width * 0.01,
                             ),
                           ),
                           Text(value.filterFrontEnd),
@@ -77,7 +79,7 @@ class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.02,
+          width: screen.width * 0.02,
         ),
       ],
     );
@@ -89,6 +91,7 @@ class LocationAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
     return Column(
       children: [
         const Text(
@@ -112,7 +115,7 @@ class LocationAppBar extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.001,
+              width: screen.width * 0.001,
             ),
             MouseRegion(
               cursor: SystemMouseCursors.click,
@@ -149,14 +152,34 @@ class UserAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         child: Image.asset(
           "assets/images/user.png",
-          width: MediaQuery.of(context).size.width * 0.02,
+          width: screen.width * 0.02,
         ),
         onTap: () {},
+      ),
+    );
+  }
+}
+
+class CartAppBar extends StatelessWidget {
+  const CartAppBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        child: Image.asset(
+          "assets/images/cart.png",
+          width: screen.width * 0.02,
+        ),
+        onTap: () => Scaffold.of(context).openEndDrawer(),
       ),
     );
   }
