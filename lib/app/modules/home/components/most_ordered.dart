@@ -31,41 +31,49 @@ class MostOrdered extends StatelessWidget {
             return CircularProgressIndicator();
           }
 
-          return Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            height: 140.0,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                    document.data()! as Map<String, dynamic>;
-                return Container(
-                  width: 135.0,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: ListTile(
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
-                      title: CircleAvatar(
-                        radius: 45.0,
-                        backgroundImage: NetworkImage(data['image'] ?? ''),
-                      ),
-                      subtitle: Text(
-                        data['social_name'] ?? 'Sem nome',
-                        softWrap: true,
-                        maxLines: 2,
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Nunito'),
+          return Padding(
+            padding: EdgeInsets.only(bottom: 20.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              height: 140.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
+                  return Container(
+                    width: 135.0,
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: ListTile(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                        title: Padding(
+                          padding: EdgeInsets.only(bottom: 20.0),
+                          child: CircleAvatar(
+                            radius: 45.0,
+                            backgroundImage: NetworkImage(data['image'] ?? ''),
+                          ),
+                        ),
+                        subtitle: Text(
+                          data['social_name'] ?? 'Sem nome',
+                          softWrap: true,
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Nunito'),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }).toList(),
+                  );
+                }).toList(),
+              ),
             ),
           );
         },
