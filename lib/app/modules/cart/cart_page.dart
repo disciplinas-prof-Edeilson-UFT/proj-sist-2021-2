@@ -15,6 +15,6 @@ class CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return CartDrawer(placeHolder: store.placeholder);
+    return CartDrawer(placeHolder: store.itens);
   }
 }

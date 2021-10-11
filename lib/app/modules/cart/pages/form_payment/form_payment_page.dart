@@ -37,7 +37,7 @@ class FormPaymentPageState extends State<FormPaymentPage> {
                       onPressed: () {
                         Modular.to.navigate('/');
                       },
-                      icon: Icon(Icons.arrow_back_ios),
+                      icon: const Icon(Icons.arrow_back_ios),
                     ),
                     Text(
                       'Formas de pagamento',
@@ -100,10 +100,7 @@ Widget ListViewCard(var controller) {
         return Card(
             child: InkWell(
           splashColor: Colors.red.withAlpha(30),
-          onTap: () {
-            // Função para selecionar cartão escolhido
-            print('cartão selecionado');
-          },
+          onTap: () => null,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
@@ -115,11 +112,11 @@ Widget ListViewCard(var controller) {
                     Text(card.apelido),
                     Text(
                       '... ${getLastChars(card.numero_cartao)}',
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                     ),
                   ],
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.delete))
+                IconButton(onPressed: () {}, icon: const Icon(Icons.delete))
               ],
             ),
           ),

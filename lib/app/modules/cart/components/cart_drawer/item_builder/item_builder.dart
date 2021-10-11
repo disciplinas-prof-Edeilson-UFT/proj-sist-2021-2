@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
+import 'package:pscomidas/app/modules/cart/components/cart_drawer/button/action_buttons.dart';
 
 class DrawerBuilder extends StatefulWidget {
   final Item model;
@@ -16,26 +17,33 @@ class DrawerBuilder extends StatefulWidget {
 class _DrawerBuilderState extends State<DrawerBuilder> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.1,
-      child: ListTile(
-        title: Text(widget.model.product.name.toString()),
-        leading: Text(
-          "x " + widget.model.quantidade.toString(),
-        ),
-        trailing: Wrap(
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.only(left: 30),
-              child: Text(
-                "R\$ " +
-                    FormatMoney.doubleToMoney(
-                        widget.model.product.price! * widget.model.quantidade),
-              ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.06,
+          width: MediaQuery.of(context).size.width * 0.2,
+          child: ListTile(
+            title: Text(widget.model.product.name.toString()),
+            leading: Text(
+              widget.model.quantidade.toString() + " x",
             ),
-          ],
+            trailing: Wrap(
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: Text(
+                    "R\$ " +
+                        FormatMoney.doubleToMoney(widget.model.product.price! *
+                            widget.model.quantidade),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+        const ActionButtons()
+      ],
     );
   }
 }
