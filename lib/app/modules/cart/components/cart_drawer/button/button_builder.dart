@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../../cart_store.dart';
 
 class ButtonBuilder extends StatefulWidget {
   const ButtonBuilder({Key? key}) : super(key: key);
@@ -8,6 +11,7 @@ class ButtonBuilder extends StatefulWidget {
 }
 
 class _ButtonBuilderState extends State<ButtonBuilder> {
+  final CartStore store = Modular.get<CartStore>();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
