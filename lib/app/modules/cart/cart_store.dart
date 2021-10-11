@@ -135,8 +135,8 @@ abstract class _CartStoreBase with Store {
   Future cadastroTeste() async {
     Order pedido = Order(
       itens: itens,
-      shipPrice: 10.55,
-      orderPrice: 20.55,
+      shipPrice: 12.50,
+      orderPrice: 542.10,
       status: OrderType.doing,
     );
     await orderRepository.cadastrarOrder(pedido);

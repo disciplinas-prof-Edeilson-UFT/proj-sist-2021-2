@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import '../../../cart_store.dart';
+import 'package:pscomidas/app/modules/cart/cart_store.dart';
 
 class ButtonBuilder extends StatefulWidget {
   const ButtonBuilder({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class _ButtonBuilderState extends State<ButtonBuilder> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.2,
       child: ElevatedButton(
-        onPressed: () => null,
+        onPressed: () => store.cadastroTeste(),
         child: const Text(
           'Escolher forma de pagamento',
           style: TextStyle(
