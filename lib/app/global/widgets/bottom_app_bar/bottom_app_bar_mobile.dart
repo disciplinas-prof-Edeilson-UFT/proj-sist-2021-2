@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/home_page.dart';
 
 class ItemButtomBar extends StatelessWidget {
   const ItemButtomBar({Key? key, required this.icon, required this.text})
@@ -28,7 +27,7 @@ class AppBarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      child: Container(
+      child: SizedBox(
         height: 80,
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -43,7 +42,6 @@ class AppBarButton extends StatelessWidget {
           ],
         ),
       ),
-      //fixedColor: Colors.black,
     );
   }
 }

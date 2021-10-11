@@ -39,6 +39,21 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$selectedCategoryAtom = Atom(name: 'HomeStoreBase.selectedCategory');
+
+  @override
+  String? get selectedCategory {
+    _$selectedCategoryAtom.reportRead();
+    return super.selectedCategory;
+  }
+
+  @override
+  set selectedCategory(String? value) {
+    _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
+      super.selectedCategory = value;
+    });
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
 
@@ -54,10 +69,22 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
+  void setSelectedCategory(String? selection) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setSelectedCategory');
+    try {
+      return super.setSelectedCategory(selection);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 counter: ${counter},
-selectedFilter: ${selectedFilter}
+selectedFilter: ${selectedFilter},
+selectedCategory: ${selectedCategory}
     ''';
   }
 }

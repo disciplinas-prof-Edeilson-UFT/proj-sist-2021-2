@@ -1,13 +1,9 @@
-import 'dart:html';
-
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'package:pscomidas/app/global/widgets/bottom_appp_bar/bottom_app_bar_mobile.dart';
-import 'package:pscomidas/app/modules/home/home_page.dart';
+import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
 class MobileAppBar extends StatefulWidget implements PreferredSizeWidget {
   const MobileAppBar({Key? key}) : super(key: key);
@@ -22,6 +18,7 @@ class MobileAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
   @override
   Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
     return AppBar(
       toolbarHeight: 80,
       backgroundColor: primaryCollor,
@@ -50,7 +47,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
                       size: 14,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.001,
+                      width: screen.width * 0.001,
                     ),
                     const Text(
                       "Q. 208 Sul, Alameda 10, 202",

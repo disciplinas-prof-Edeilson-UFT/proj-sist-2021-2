@@ -10,11 +10,11 @@ booleano isChampion indica se um restaurante é ou não verificado. A falta do a
 */
 class ChampionRestaurant extends StatelessWidget {
   final QueryDocumentSnapshot<Object?> restaurant;
-  const ChampionRestaurant({Key? key, required this.restaurant}) : super(key: key);
+  const ChampionRestaurant({Key? key, required this.restaurant})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
     try {
       restaurant['isChampion'];
     } catch (e) {
