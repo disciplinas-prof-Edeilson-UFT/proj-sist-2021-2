@@ -37,86 +37,9 @@ abstract class _CartStoreBase with Store {
             'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/burguer.jpeg?alt=media&token=bdd577aa-d3da-47ef-b827-0ceee0d43698',
         description:
             'Ingredientes: Pão, queijo, presunto, hambúrguer, milho, ovo, bacon',
+        productID: '123',
       ),
-      2,
-      'f158G',
-    ),
-    Item(
-      Product(
-        available: true,
-        name: 'HAMBÚRGUER X-TUDO',
-        price: 13.90,
-        imgUrl:
-            'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/burguer.jpeg?alt=media&token=bdd577aa-d3da-47ef-b827-0ceee0d43698',
-        description:
-            'Ingredientes: Pão, queijo, presunto, hambúrguer, milho, ovo, bacon',
-      ),
-      2,
-      'f158G',
-    ),
-    Item(
-      Product(
-        available: true,
-        name: 'HAMBÚRGUER X-TUDO',
-        price: 13.90,
-        imgUrl:
-            'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/burguer.jpeg?alt=media&token=bdd577aa-d3da-47ef-b827-0ceee0d43698',
-        description:
-            'Ingredientes: Pão, queijo, presunto, hambúrguer, milho, ovo, bacon',
-      ),
-      2,
-      'f158G',
-    ),
-    Item(
-      Product(
-        available: true,
-        name: 'HAMBÚRGUER X-TUDO',
-        price: 13.90,
-        imgUrl:
-            'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/burguer.jpeg?alt=media&token=bdd577aa-d3da-47ef-b827-0ceee0d43698',
-        description:
-            'Ingredientes: Pão, queijo, presunto, hambúrguer, milho, ovo, bacon',
-      ),
-      2,
-      'f158G',
-    ),
-    Item(
-      Product(
-        available: true,
-        name: 'HAMBÚRGUER X-TUDO',
-        price: 13.90,
-        imgUrl:
-            'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/burguer.jpeg?alt=media&token=bdd577aa-d3da-47ef-b827-0ceee0d43698',
-        description:
-            'Ingredientes: Pão, queijo, presunto, hambúrguer, milho, ovo, bacon',
-      ),
-      2,
-      'f158G',
-    ),
-    Item(
-      Product(
-        available: true,
-        name: 'HAMBÚRGUER X-TUDO',
-        price: 13.90,
-        imgUrl:
-            'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/burguer.jpeg?alt=media&token=bdd577aa-d3da-47ef-b827-0ceee0d43698',
-        description:
-            'Ingredientes: Pão, queijo, presunto, hambúrguer, milho, ovo, bacon',
-      ),
-      2,
-      'f158G',
-    ),
-    Item(
-      Product(
-        available: true,
-        name: 'HAMBÚRGUER X-TUDO',
-        price: 13.90,
-        imgUrl:
-            'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/burguer.jpeg?alt=media&token=bdd577aa-d3da-47ef-b827-0ceee0d43698',
-        description:
-            'Ingredientes: Pão, queijo, presunto, hambúrguer, milho, ovo, bacon',
-      ),
-      2,
+      25,
       'f158G',
     ),
   ];
