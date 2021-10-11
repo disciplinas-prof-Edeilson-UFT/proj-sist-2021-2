@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/button/action_buttons.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/components/action_buttons.dart';
 
 class DrawerBuilder extends StatefulWidget {
   final Item model;
 
-  DrawerBuilder({
+  const DrawerBuilder({
+    Key? key,
     required this.model,
-  });
+  }) : super(key: key);
 
   @override
   _DrawerBuilderState createState() => _DrawerBuilderState();
@@ -24,7 +25,9 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
           height: MediaQuery.of(context).size.height * 0.06,
           width: MediaQuery.of(context).size.width * 0.2,
           child: ListTile(
-            title: Text(widget.model.product.name.toString()),
+            title: Text(
+              widget.model.product.name.toString(),
+            ),
             leading: Text(
               widget.model.quantidade.toString() + " x",
             ),

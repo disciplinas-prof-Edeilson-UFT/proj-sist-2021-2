@@ -24,6 +24,7 @@ class OrderRepository implements IOrderRepository {
     }
   }
 
+  @override
   Future<bool> cadastrarOrder(Order pedido) async {
     List<dynamic> itemID = [];
 
