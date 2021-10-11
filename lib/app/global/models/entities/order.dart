@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/models/enums/order_status.dart';
 
@@ -7,10 +8,19 @@ class Order {
   final double orderPrice;
   final OrderType status;
 
-  Order(
-    this.itens,
-    this.shipPrice,
-    this.orderPrice,
-    this.status,
-  );
+  Order({
+    required this.itens,
+    required this.shipPrice,
+    required this.orderPrice,
+    required this.status,
+  });
+
+  factory Order.fromDocument(DocumentSnapshot doc) {
+    return Order(
+      itens: doc['items'],
+      shipPrice: doc['ship_price'],
+      orderPrice: doc['order_price'],
+      status: doc['status'],
+    );
+  }
 }

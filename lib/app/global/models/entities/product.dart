@@ -6,6 +6,7 @@ class Product {
   final String? name;
   final double? price;
   final String? restaurantId;
+  final String? productID;
 
   Product({
     this.available,
@@ -15,5 +16,6 @@ class Product {
     this.name,
     this.price,
     this.restaurantId,
+    this.productID,
   });
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/cart/pages/form_payment/form_payment_page.dart';
 
+import '../../../cart_store.dart';
+
 class ButtonBuilder extends StatefulWidget {
   const ButtonBuilder({Key? key}) : super(key: key);
 
@@ -10,6 +12,7 @@ class ButtonBuilder extends StatefulWidget {
 }
 
 class _ButtonBuilderState extends State<ButtonBuilder> {
+  final CartStore store = Modular.get<CartStore>();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,8 +32,9 @@ class _ButtonBuilderState extends State<ButtonBuilder> {
                 primary: Colors.white,
                 textStyle: const TextStyle(fontSize: 20),
               ),
-              onPressed: () =>
-                  null, //Modular.to.pushNamed(FormPaymentPage.routeName),
+              onPressed: () {
+                store.cadastroTeste();
+              }, //Modular.to.pushNamed(FormPaymentPage.routeName),
               child: const Text('Pagar'),
             ),
           ],
