@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
-import 'package:pscomidas/app/modules/cart/components/cart_drawer/button/action_buttons.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/button/action_buttons.dart';
 
 class DrawerBuilder extends StatefulWidget {
   final Item model;

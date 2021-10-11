@@ -1,15 +1,13 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 
-class ButtonAddCard extends StatelessWidget {
+class ButtonCard extends StatelessWidget {
   final GestureTapCallback onPressed;
-  // ignore: non_constant_identifier_names
-  final String name_button;
-  ButtonAddCard({
+  final String namebutton;
+  final String type;
+  ButtonCard({
     required this.onPressed,
-    // ignore: non_constant_identifier_names
-    required this.name_button,
+    required this.namebutton,
+    required this.type,
   });
 
   @override
@@ -29,7 +27,7 @@ class ButtonAddCard extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [const Icon(Icons.credit_card), Text(name_button)],
+          children: [const Icon(Icons.credit_card), Text(namebutton)],
         ),
       ),
       onPressed: onPressed,

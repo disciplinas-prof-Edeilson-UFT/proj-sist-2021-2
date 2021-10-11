@@ -14,7 +14,7 @@ class _ActionButtonsState extends State<ActionButtons> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton(
-          onPressed: () => null,
+          onPressed: () => {},
           child: const Align(
             alignment: Alignment.bottomCenter,
             child: Text(
@@ -28,7 +28,7 @@ class _ActionButtonsState extends State<ActionButtons> {
           ),
         ),
         TextButton(
-          onPressed: () => null,
+          onPressed: () => {},
           child: const Align(
             alignment: Alignment.bottomRight,
             child: Text(

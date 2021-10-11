@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/cart/components/cart_drawer/button/button_builder.dart';
-import 'package:pscomidas/app/modules/cart/components/cart_drawer/cupom_field/cupon_field.dart';
-import 'package:pscomidas/app/modules/cart/components/cart_drawer/item_builder/company_header.dart';
-import 'package:pscomidas/app/modules/cart/components/cart_drawer/item_builder/item_builder.dart';
-import 'package:pscomidas/app/modules/cart/components/cart_drawer/item_builder/oder_resume.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/button/button_builder.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/cupom_field/cupon_field.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/item_builder/company_header.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/item_builder/item_builder.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/item_builder/oder_resume.dart';
 
 class CartDrawer extends StatefulWidget {
   final List<Item> placeHolder;
 
-  CartDrawer({
+  const CartDrawer({
     Key? key,
     required this.placeHolder,
   }) : super(key: key);
@@ -38,7 +38,7 @@ class _CartDrawerState extends State<CartDrawer> {
             children: <Widget>[
               const CompanyHeader(),
               SizedBox(
-                height: store.itens.length <= 6 ? null : screen.height * 0.6,
+                height: store.itens.length <= 5 ? null : screen.height * 0.38,
                 child: ListView.separated(
                   separatorBuilder: (context, index) {
                     return const Divider(
