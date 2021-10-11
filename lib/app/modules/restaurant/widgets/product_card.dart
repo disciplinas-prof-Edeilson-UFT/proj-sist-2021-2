@@ -38,7 +38,7 @@ class _ProductCardState extends State<ProductCard> {
           ],
         ),
         margin: const EdgeInsets.symmetric(horizontal: 5.0),
-        child: Column(
+        child: Wrap(
           children: <Widget>[
             Container(
               height: 200.0,
@@ -56,41 +56,38 @@ class _ProductCardState extends State<ProductCard> {
                 ),
               ),
             ),
-            SizedBox(
-              width: screen.width * 0.38,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      widget.product.name ?? 'Não encontrado',
-                      style: titleStyle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    widget.product.name ?? 'Não encontrado',
+                    style: titleStyle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10.0,
-                      right: 20.0,
-                    ),
-                    child: Text(
-                      widget.product.description ?? '',
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 10.0,
+                    right: 20.0,
                   ),
-                  const SizedBox(height: 20.0),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      'R\$ ' + FormatMoney.doubleToMoney(widget.product.price!),
-                      style: priceStyle,
-                    ),
+                  child: Text(
+                    widget.product.description ?? '',
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 20.0),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    'R\$ ' + FormatMoney.doubleToMoney(widget.product.price!),
+                    style: priceStyle,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
