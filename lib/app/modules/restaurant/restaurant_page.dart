@@ -1,6 +1,8 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
+import 'package:pscomidas/app/modules/restaurant/pages/restaurant_desktop_page.dart';
+import 'package:pscomidas/app/modules/restaurant/pages/restaurant_mobile_page.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 import 'package:flutter/material.dart';
 
@@ -14,25 +16,30 @@ class RestaurantPage extends StatefulWidget {
 
 class RestaurantPageState extends State<RestaurantPage> {
   final RestaurantStore store = Modular.get();
+  final searchTitle = '';
+
+  @override
+  void initState() {
+    store.getProducts(searchTitle);
+    WidgetsFlutterBinding.ensureInitialized();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      endDrawer: Drawer(
-        elevation: 1,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * .3,
-          child: const Center(
-            child: Text('Carrinho'),
-          ),
-        ),
-      ),
+      endDrawer: Container(),
       body: SafeArea(
-        child: Observer(
-          builder: (context) => Center(
-            child: Text('${store.value}'),
-          ),
+        child: LayoutBuilder(
+          builder: (_, constrains) {
+            var width = constrains.maxWidth;
+            if (width < 600) {
+              return RestaurantMobilePage(products: store.products);
+            } else {
+              return const RestaurantDesktopPage();
+            }
+          },
         ),
       ),
     );
