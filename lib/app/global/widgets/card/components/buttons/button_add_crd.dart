@@ -4,10 +4,11 @@ class ButtonAddCard extends StatelessWidget {
   final GestureTapCallback onPressed;
 
   final String namebutton;
-  ButtonAddCard({
+  const ButtonAddCard({
+    Key? key,
     required this.onPressed,
     required this.namebutton,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ class CompanyHeader extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             width: double.infinity,
             child: const Text(
               'Seu pedido em',
@@ -21,7 +21,7 @@ class CompanyHeader extends StatelessWidget {
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             width: double.infinity,
             child: const Text(
               'PS Hambugers',
@@ -41,7 +41,7 @@ class CompanyHeader extends StatelessWidget {
                 child: const Text("Ver cardápio",
                     style: TextStyle(
                       color: Colors.red,
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                     )),
               ),
