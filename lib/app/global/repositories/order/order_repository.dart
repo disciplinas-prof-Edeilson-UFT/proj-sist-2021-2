@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pscomidas/app/global/models/entities/order.dart';
+import 'package:pscomidas/app/global/models/enums/order_status.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository_interface.dart';
 
 class OrderRepository implements IOrderRepository {
@@ -27,7 +28,6 @@ class OrderRepository implements IOrderRepository {
   @override
   Future<bool> cadastrarOrder(Order pedido) async {
     List<dynamic> itemID = [];
-
     try {
       pedido.itens.forEach((element) async {
         await firestore.collection('item').add({
@@ -49,7 +49,7 @@ class OrderRepository implements IOrderRepository {
         'order_price': pedido.orderPrice,
         'restaurant_id': "Restaurante ABC",
         'ship_price': pedido.shipPrice,
-        'status': pedido.status.toString(),
+        'status': OrderType.started.databaseString,
       }).then((value) async {
         await firestore.collection('order').doc(value.id).set({
           'items': itemID,
