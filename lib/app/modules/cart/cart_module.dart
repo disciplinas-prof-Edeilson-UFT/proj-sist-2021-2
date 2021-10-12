@@ -11,6 +11,5 @@ class CartModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, args) => const CartPage()),
-    //TODO adicionar rota de adição de cartão
   ];
 }
