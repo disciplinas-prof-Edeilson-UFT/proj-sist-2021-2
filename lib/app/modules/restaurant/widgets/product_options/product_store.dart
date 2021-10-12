@@ -32,7 +32,11 @@ abstract class _ProductOptionsStoreBase with Store {
 
   @action
   void makeItem(Product product) {
-    Item item = Item(product, quantity);
+    Item item = Item(
+      product,
+      quantity,
+      '',
+    );
     restaurantStore.addItem(item);
   }
 
