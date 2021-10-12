@@ -48,6 +48,9 @@ dependencies:
   js: ^0.6.3
   flutter_signin_button: ^2.0.0
   intl: ^0.17.0
+  flux_validator_dart: ^2.0.0
+  credit_card_validator: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:

@@ -22,10 +22,20 @@ mixin _$CartStore on _CartStoreBase, Store {
     _$itensAtom.reportWrite(value, super.itens, () {
       super.itens = value;
     });
-  }
+  Computed<double>? _$totalComputed;
 
-  final _$_CartStoreBaseActionController =
-      ActionController(name: '_CartStoreBase');
+  @override
+  double get total => (_$totalComputed ??=
+          Computed<double>(() => super.total, name: '_CartStoreBase.total'))
+      .value;
+
+  final _$itensAtom = Atom(name: '_CartStoreBase.itens');
+
+  @override
+  List<Item> get itens {
+    _$itensAtom.reportRead();
+    return super.itens;
+  }
 
   @override
   void addItem(Item item) {
@@ -36,12 +46,18 @@ mixin _$CartStore on _CartStoreBase, Store {
     } finally {
       _$_CartStoreBaseActionController.endAction(_$actionInfo);
     }
+  set itens(List<Item> value) {
+    _$itensAtom.reportWrite(value, super.itens, () {
+      super.itens = value;
+    });
   }
 
   @override
   String toString() {
     return '''
 itens: ${itens}
+itens: ${itens},
+total: ${total}
     ''';
   }
 }
