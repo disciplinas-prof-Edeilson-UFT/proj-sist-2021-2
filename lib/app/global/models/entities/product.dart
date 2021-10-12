@@ -1,17 +1,11 @@
 class Product {
   final bool? available;
-
   final List<dynamic>? categories;
-
-  final List<String>? categories;
-
   final String? description;
   final String? imgUrl;
   final String? name;
   final double? price;
   final String? restaurantId;
-
-  final String? productID;
 
   Product({
     this.available,
@@ -21,7 +15,6 @@ class Product {
     this.name,
     this.price,
     this.restaurantId,
-
   });
 
   Map<String, dynamic> toMap() {
@@ -47,7 +40,4 @@ class Product {
       restaurantId: map['restaurant_id'],
     );
   }
-
-    this.productID,
-  });
 }
