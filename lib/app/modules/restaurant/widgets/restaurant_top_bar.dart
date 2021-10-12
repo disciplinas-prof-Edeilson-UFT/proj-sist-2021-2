@@ -67,7 +67,7 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
               ),
               Expanded(child: Container()),
               TextButton(
-                onPressed: () => null,
+                onPressed: () => {},
                 child: const Text(
                   "Ver mais",
                   style: TextStyle(

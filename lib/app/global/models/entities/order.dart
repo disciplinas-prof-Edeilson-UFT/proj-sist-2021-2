@@ -6,13 +6,13 @@ class Order {
   final List<Item> itens;
   final double shipPrice;
   final double orderPrice;
-  final OrderType status;
+  final OrderType? status;
 
   Order({
     required this.itens,
     required this.shipPrice,
     required this.orderPrice,
-    required this.status,
+    this.status,
   });
 
   factory Order.fromDocument(DocumentSnapshot doc) {

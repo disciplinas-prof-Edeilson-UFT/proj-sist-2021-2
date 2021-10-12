@@ -1,4 +1,3 @@
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 
@@ -17,6 +16,7 @@ class RestaurantPage extends StatefulWidget {
   @override
   RestaurantPageState createState() => RestaurantPageState();
 }
+
 class RestaurantPageState extends State<RestaurantPage> {
   final RestaurantStore store = Modular.get();
   final searchTitle = '';
@@ -26,11 +26,11 @@ class RestaurantPageState extends State<RestaurantPage> {
     WidgetsFlutterBinding.ensureInitialized();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      endDrawer: Container(),
       endDrawer: const CartPage(),
       body: SafeArea(
         child: LayoutBuilder(
