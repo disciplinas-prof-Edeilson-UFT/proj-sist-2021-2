@@ -17,6 +17,7 @@ class RestaurantPage extends StatefulWidget {
   @override
   RestaurantPageState createState() => RestaurantPageState();
 }
+
 class RestaurantPageState extends State<RestaurantPage> {
   final RestaurantStore store = Modular.get();
   final searchTitle = '';
@@ -26,11 +27,11 @@ class RestaurantPageState extends State<RestaurantPage> {
     WidgetsFlutterBinding.ensureInitialized();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      endDrawer: Container(),
       endDrawer: const CartPage(),
       body: SafeArea(
         child: LayoutBuilder(

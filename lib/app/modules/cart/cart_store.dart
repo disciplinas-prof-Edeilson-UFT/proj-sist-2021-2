@@ -1,32 +1,25 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
-
-
-part 'cart_store.g.dart';
-
-class CartStore = _CartStoreBase with _$CartStore;
-
 import 'package:pscomidas/app/global/models/entities/order.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/models/enums/order_status.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
 part 'cart_store.g.dart';
 
+
+
 class CartStore = _CartStoreBase with _$CartStore;
 
 abstract class _CartStoreBase with Store {
   final OrderRepository orderRepository = Modular.get<OrderRepository>();
-
-abstract class _CartStoreBase with Store {
-  @observable
 
   List<Item> itens = [];
 
   @action
   void addItem(Item item) {
     itens.add(item);
-
+  @observable
   List<Item> itens = [
     Item(
       Product(
@@ -143,6 +136,7 @@ abstract class _CartStoreBase with Store {
     });
     //Calculo do valor final do pedido
     //O valor vai ser calculado em outro momento
+    // ignore: void_checks
     return subtotal + 12.5;
   }
 

@@ -3,8 +3,6 @@ class Product {
 
   final List<dynamic>? categories;
 
-  final List<String>? categories;
-
   final String? description;
   final String? imgUrl;
   final String? name;
@@ -20,8 +18,8 @@ class Product {
     this.imgUrl,
     this.name,
     this.price,
+    this.productID,
     this.restaurantId,
-
   });
 
   Map<String, dynamic> toMap() {
@@ -47,7 +45,4 @@ class Product {
       restaurantId: map['restaurant_id'],
     );
   }
-
-    this.productID,
-  });
 }
