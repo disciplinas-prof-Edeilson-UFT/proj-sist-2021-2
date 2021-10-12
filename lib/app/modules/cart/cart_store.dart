@@ -1,6 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
+
+
+part 'cart_store.g.dart';
+
+class CartStore = _CartStoreBase with _$CartStore;
+
 import 'package:pscomidas/app/global/models/entities/order.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/models/enums/order_status.dart';
@@ -12,7 +18,15 @@ class CartStore = _CartStoreBase with _$CartStore;
 abstract class _CartStoreBase with Store {
   final OrderRepository orderRepository = Modular.get<OrderRepository>();
 
+abstract class _CartStoreBase with Store {
   @observable
+
+  List<Item> itens = [];
+
+  @action
+  void addItem(Item item) {
+    itens.add(item);
+
   List<Item> itens = [
     Item(
       Product(
