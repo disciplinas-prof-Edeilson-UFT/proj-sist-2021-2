@@ -2,7 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/models/entities/order.dart';
-import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/models/enums/order_status.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
 part 'cart_store.g.dart';
