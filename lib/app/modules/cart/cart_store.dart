@@ -34,7 +34,7 @@ abstract class _CartStoreBase with Store {
     Order pedido = Order(
       itens: itens,
       shipPrice: 12.50,
-      orderPrice: 542.10,
+      orderPrice: total - 12.5,
       status: OrderType.doing,
     );
     await orderRepository.cadastrarOrder(pedido);
