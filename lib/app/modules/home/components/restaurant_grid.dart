@@ -70,6 +70,7 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
                       //lida com erros nos campos dos documentos do firebase.
                       //garantido que os documentos serão feitos sem erros, este try catch pode ser excluido.
                       restaurant = Restaurant(
+                        restaurants[index].id,
                         category: restaurants[index]['category'] ?? '',
                         deliveryPrice:
                             restaurants[index]['delivery_price'] ?? 0,

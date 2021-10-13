@@ -35,8 +35,7 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
             ),
           ),
           const SizedBox(height: 40),
-          Container(
-            color: Colors.amber,
+          SizedBox(
             child: Row(
               children: [
                 CircleAvatar(

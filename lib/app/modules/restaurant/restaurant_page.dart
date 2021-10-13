@@ -20,14 +20,18 @@ class RestaurantPage extends StatefulWidget {
 
 class RestaurantPageState extends State<RestaurantPage> {
   final RestaurantStore store = Modular.get();
-  final searchTitle = '';
 
   @override
   void initState() {
-    store.getProducts(searchTitle);
     store.receiveRestaurantInfo(widget.restaurant);
     WidgetsFlutterBinding.ensureInitialized();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    store.products = [];
+    super.dispose();
   }
 
   @override

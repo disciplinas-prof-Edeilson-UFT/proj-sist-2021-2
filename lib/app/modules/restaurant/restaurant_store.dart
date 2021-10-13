@@ -14,7 +14,7 @@ abstract class _RestaurantStoreBase with Store {
   _RestaurantStoreBase(this.cartStore);
 
   final CartStore cartStore;
-  final RestaurantServiceFirestore list = Modular.get();
+  final RestaurantServiceFirestore restaurantServiceFirestore = Modular.get();
 
   @observable
   late Restaurant restaurant;
@@ -23,8 +23,9 @@ abstract class _RestaurantStoreBase with Store {
   List<Product> products = [];
 
   @action
-  Future<List<Product>> getProducts(searchTitle) async {
-    products = await list.getProductsService(searchTitle);
+  Future<List<Product>> getProducts(String searchTitle) async {
+    products = await restaurantServiceFirestore.getProductsService(
+        searchTitle, restaurant.restaurantId!);
     return products;
   }
 
@@ -33,7 +34,8 @@ abstract class _RestaurantStoreBase with Store {
   }
 
   @action
-  void receiveRestaurantInfo(Restaurant info) {
+  void receiveRestaurantInfo(Restaurant info) async {
     restaurant = info;
+    await getProducts('');
   }
 }

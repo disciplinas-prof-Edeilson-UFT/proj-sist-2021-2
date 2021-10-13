@@ -1,4 +1,5 @@
 class Restaurant {
+  final String? restaurantId;
   final double? avaliation;
   final String category;
   final Map<String, dynamic>? cupom;
@@ -10,7 +11,8 @@ class Restaurant {
   final int orders;
   final String socialName;
 
-  Restaurant({
+  Restaurant(
+    this.restaurantId, {
     this.avaliation,
     required this.category,
     this.cupom,
