@@ -35,7 +35,6 @@ abstract class _ProductOptionsStoreBase with Store {
     Item item = Item(
       product,
       quantity,
-      '',
     );
     restaurantStore.addItem(item);
   }

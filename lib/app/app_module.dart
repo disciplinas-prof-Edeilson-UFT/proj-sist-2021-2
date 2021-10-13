@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
 import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
-
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/home/home_module.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
 import 'modules/restaurant/restaurant_module.dart';
@@ -22,7 +19,5 @@ class AppModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ModuleRoute(Modular.initialRoute, module: RestaurantModule()),
-
-    //TODO adicionar rota de adição de cartão
   ];
 }

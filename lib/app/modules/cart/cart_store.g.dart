@@ -24,6 +24,9 @@ mixin _$CartStore on _CartStoreBase, Store {
     return super.itens;
   }
 
+  final _$_CartStoreBaseActionController =
+      ActionController(name: '_CartStoreBase');
+
   @override
   set itens(List<Item> value) {
     _$itensAtom.reportWrite(value, super.itens, () {

@@ -32,7 +32,7 @@ class OrderRepository implements IOrderRepository {
       pedido.itens.forEach((element) async {
         await firestore.collection('item').add({
           'quant': element.quantidade,
-          'product_id': element.product.productID,
+          'product_id': element.product.productId,
         }).then((value) {
           itemID.add(value.id);
           log("Item adicionado ${value.id}");

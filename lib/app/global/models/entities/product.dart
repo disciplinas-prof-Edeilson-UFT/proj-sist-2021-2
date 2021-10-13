@@ -1,15 +1,12 @@
 class Product {
   final bool? available;
-
   final List<dynamic>? categories;
-
   final String? description;
   final String? imgUrl;
   final String? name;
   final double? price;
   final String? restaurantId;
-
-  final String? productID;
+  final String? productId;
 
   Product({
     this.available,
@@ -18,7 +15,7 @@ class Product {
     this.imgUrl,
     this.name,
     this.price,
-    this.productID,
+    this.productId,
     this.restaurantId,
   });
 
@@ -43,6 +40,7 @@ class Product {
       description: map['description'],
       price: map['price'],
       restaurantId: map['restaurant_id'],
+      productId: map['product_id'],
     );
   }
 }
