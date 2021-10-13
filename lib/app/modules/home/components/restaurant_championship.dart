@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 
 // Feature a ser totalmente implementada.
@@ -28,12 +27,7 @@ class ChampionRestaurant extends StatelessWidget {
       child: Image.asset("lib/app/modules/home/assets/images/iconmarmita.png",
           height: 28),
       onTap: () {
-        //NAVIGATE para o restaurante.
-      },
-      onHover: (_hovering) {
-        if (_hovering) {
-          //print("ESTE É UM ESTABELECIMENTO CAMPEAO");
-        }
+        //TODO: NAVIGATE para o restaurante.
       },
     );
   }

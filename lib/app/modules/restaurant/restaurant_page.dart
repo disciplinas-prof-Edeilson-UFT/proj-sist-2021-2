@@ -25,6 +25,7 @@ class RestaurantPageState extends State<RestaurantPage> {
   @override
   void initState() {
     store.getProducts(searchTitle);
+    store.receiveRestaurantInfo(widget.restaurant);
     WidgetsFlutterBinding.ensureInitialized();
     super.initState();
   }
@@ -39,7 +40,7 @@ class RestaurantPageState extends State<RestaurantPage> {
           builder: (_, constrains) {
             var width = constrains.maxWidth;
             if (width < 600) {
-              return RestaurantMobilePage(products: store.products);
+              return const RestaurantMobilePage();
             } else {
               return const RestaurantDesktopPage();
             }

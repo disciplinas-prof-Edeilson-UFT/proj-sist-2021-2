@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -8,7 +7,6 @@ import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_championship.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_module.dart';
-import 'package:pscomidas/app/modules/restaurant/restaurant_page.dart';
 import '/app/modules/home/store/restaurant_card.store.dart';
 import 'cupom/cupom_card.dart';
 
