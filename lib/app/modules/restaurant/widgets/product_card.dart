@@ -19,8 +19,6 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
-    Size screen = MediaQuery.of(context).size;
-
     return InkWell(
       onTap: () => showDialog(
         context: context,
