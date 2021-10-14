@@ -20,8 +20,15 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         title: Text(widget.title),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          RegisterCard(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text('conquiste mais clientes etc'),
+              RegisterCard(),
+            ],
+          ),
         ],
       ),
     );
