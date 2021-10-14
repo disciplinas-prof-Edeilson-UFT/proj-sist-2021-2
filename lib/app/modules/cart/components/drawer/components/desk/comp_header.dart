@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CompanyHeader extends StatelessWidget {
-  const CompanyHeader({Key? key}) : super(key: key);
+class DeskCompanyHeader extends StatelessWidget {
+  const DeskCompanyHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,10 @@ class CompanyHeader extends StatelessWidget {
             child: const Text(
               'Seu pedido em',
               style: TextStyle(
-                color: Colors.black38,
+                color: Colors.black54,
                 fontSize: 12,
-                fontWeight: FontWeight.w200,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Nunito',
               ),
             ),
           ),
@@ -30,6 +31,7 @@ class CompanyHeader extends StatelessWidget {
                 color: Colors.black,
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'Nunito',
               ),
             ),
           ),
@@ -43,6 +45,7 @@ class CompanyHeader extends StatelessWidget {
                       color: Colors.red,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Nunito',
                     )),
               ),
               Container(),
@@ -50,7 +53,7 @@ class CompanyHeader extends StatelessWidget {
           ),
           const Divider(
             height: 12,
-            color: Colors.black12,
+            color: Colors.black54,
             indent: 20,
             endIndent: 20,
           ),

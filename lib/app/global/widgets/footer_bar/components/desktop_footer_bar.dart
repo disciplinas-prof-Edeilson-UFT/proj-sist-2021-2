@@ -101,9 +101,7 @@ class DesktopCustomFooter extends StatelessWidget {
             thickness: 2,
             color: Colors.black38,
           ),
-          const SizedBox(
-            height: 50,
-          ),
+          const SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

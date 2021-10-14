@@ -112,22 +112,23 @@ class ProductDialog extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(
-                          children: const [
-                            Icon(Icons.store),
+                          children: [
+                            const Icon(Icons.store),
                             Expanded(
                               child: Text(
-                                " Burger King",
-                                style: TextStyle(fontSize: 15),
+                                restaurantStore.restaurant.socialName,
+                                style: const TextStyle(fontSize: 15),
                               ),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.star,
                               size: 15,
                               color: Colors.yellow,
                             ),
                             Text(
-                              "5.0",
-                              style: TextStyle(color: Colors.yellow),
+                              restaurantStore.restaurant.avaliation!
+                                  .toStringAsFixed(1),
+                              style: const TextStyle(color: Colors.yellow),
                             ),
                           ],
                         ),
@@ -144,10 +145,13 @@ class ProductDialog extends StatelessWidget {
                                   )),
                         ),
                         Row(
-                          children: const [
+                          children: [
                             Text(
-                              "36-46 min - R\$ 3,99",
-                              style: TextStyle(fontSize: 15),
+                              restaurantStore.restaurant.estimatedDelivery +
+                                  ' min - ' +
+                                  FormatMoney.doubleToMoney(
+                                      restaurantStore.restaurant.deliveryPrice),
+                              style: const TextStyle(fontSize: 15),
                             ),
                           ],
                         ),

@@ -17,6 +17,6 @@ class RestaurantModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => const RestaurantPage()),
+    ChildRoute('/', child: (_, args) => RestaurantPage(restaurant: args.data)),
   ];
 }

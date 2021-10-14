@@ -1,42 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/pages/desktop_cart_drawer.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/pages/mobile_cart_drawer.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/pages/tablet_cart_drawer.dart';
 
-class CartDrawer extends StatefulWidget {
-  final List<Item> placeHolder;
-
-  const CartDrawer({
+class CartDrawer extends StatelessWidget {
+  final double largura;
+  CartDrawer({
     Key? key,
-    required this.placeHolder,
+    required this.largura,
   }) : super(key: key);
 
-  @override
-  _CartDrawerState createState() => _CartDrawerState();
-}
-
-class _CartDrawerState extends State<CartDrawer> {
   final CartStore store = Modular.get();
-  final GlobalKey drawerKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    Size screen = MediaQuery.of(context).size;
     return SizedBox(
-      width: screen.width * 0.25,
+      width: largura,
       child: Drawer(
-        key: drawerKey,
         child: LayoutBuilder(
           builder: (context, constraints) {
             var height = constraints.maxHeight;
-            var width = constraints.maxWidth;
-            if (height <= 768) {
-              print(width);
-              return const TabletCartDrawer();
+            DesktopCartDrawer(deskLargura: largura);
+            if (height <= 647 && largura < 1360) {
+              return MobileCartDrawer(
+                mobileLargura: largura,
+              );
+            } else if (height <= 969 && largura <= 1360) {
+              return TabletCartDrawer(tabletLargura: largura);
             } else {
-              return const DesktopCartDrawer();
+              return DesktopCartDrawer(deskLargura: largura);
             }
           },
         ),

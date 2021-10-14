@@ -101,9 +101,7 @@ class MobileFooterBar extends StatelessWidget {
             thickness: 2,
             color: Colors.black38,
           ),
-          const SizedBox(
-            height: 50,
-          ),
+          const SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -111,24 +109,26 @@ class MobileFooterBar extends StatelessWidget {
                   width: 70,
                   height: 70,
                   child: Image.asset('assets/logos/ifood-logo.png')),
-              Column(children: const [
-                Text(
-                  '© Copyright 2021 - iFood - Todos os direitos reservados iFood com Agência de',
-                  style: TextStyle(fontSize: 10),
-                ),
-                Text(
-                  'Restaurantes Online S.A.',
-                  style: TextStyle(fontSize: 10),
-                ),
-                Text(
-                  'CNPJ 14.380.200/0001-21 / Avenida dos Autonomistas, nº 1496, Vila Yara, Osasco/SP -',
-                  style: TextStyle(fontSize: 10),
-                ),
-                Text(
-                  'CEP 06.020-902',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ]),
+              Column(
+                children: const [
+                  Text(
+                    '© Copyright 2021 - iFood - Todos os direitos reservados iFood com Agência de',
+                    style: TextStyle(fontSize: 10),
+                  ),
+                  Text(
+                    'Restaurantes Online S.A.',
+                    style: TextStyle(fontSize: 10),
+                  ),
+                  Text(
+                    'CNPJ 14.380.200/0001-21 / Avenida dos Autonomistas, nº 1496, Vila Yara, Osasco/SP -',
+                    style: TextStyle(fontSize: 10),
+                  ),
+                  Text(
+                    'CEP 06.020-902',
+                    style: TextStyle(fontSize: 10),
+                  ),
+                ],
+              ),
               TextButton(
                 style: TextButton.styleFrom(
                   primary: Colors.black38,

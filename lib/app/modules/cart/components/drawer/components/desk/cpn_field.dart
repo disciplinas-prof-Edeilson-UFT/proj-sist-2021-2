@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CupomField extends StatefulWidget {
-  const CupomField({Key? key}) : super(key: key);
+class DeskCupomField extends StatelessWidget {
+  final double auxWidth;
 
-  @override
-  _CupomFieldState createState() => _CupomFieldState();
-}
+  const DeskCupomField({
+    Key? key,
+    required this.auxWidth,
+  }) : super(key: key);
 
-class _CupomFieldState extends State<CupomField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -20,15 +20,20 @@ class _CupomFieldState extends State<CupomField> {
             endIndent: 20,
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.2,
+            width: auxWidth * 0.8,
             child: TextFormField(
               enabled: true,
               textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 18,
+                fontFamily: 'Nunito',
+              ),
               decoration: const InputDecoration(
                 icon: Icon(Icons.local_offer_outlined),
-                hintText: 'Insira seu cupom de desconto',
+                hintText: 'Cupom de desconto',
                 hintStyle: TextStyle(
-                  fontSize: 18,
+                  fontFamily: 'Nunito',
+                  fontSize: 14,
                   color: Colors.black,
                   fontWeight: FontWeight.w300,
                 ),

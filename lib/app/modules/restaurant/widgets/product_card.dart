@@ -81,7 +81,7 @@ class _ProductCardState extends State<ProductCard> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'R\$ ' + FormatMoney.doubleToMoney(widget.product.price!),
+                    FormatMoney.doubleToMoney(widget.product.price!),
                     style: priceStyle,
                   ),
                 ),

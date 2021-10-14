@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
+import 'package:pscomidas/app/global/models/entities/new_card.dart';
 import 'package:pscomidas/app/global/models/entities/order.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
 part 'cart_store.g.dart';
@@ -12,9 +13,61 @@ abstract class _CartStoreBase with Store {
   @observable
   List<Item> itens = [];
 
+  List<NewCard> card = [
+    NewCard(
+      brand: 'Master',
+      cpf: '123.456.789.10',
+      fourLastNumbers: '5567.6875.2978.4587',
+      holder: 'Fulano de Paula',
+      nickname: 'Cartão Fulano',
+      valid: '08/26',
+      cvv: '879',
+    ),
+    NewCard(
+      brand: 'Master',
+      cpf: '123.456.789.11',
+      fourLastNumbers: '5567.6875.2978.4588',
+      holder: 'Ciclano de Paula',
+      nickname: 'Cartão Ciclano',
+      valid: '08/26',
+      cvv: '880',
+    ),
+    NewCard(
+      brand: 'Master',
+      cpf: '123.456.789.10',
+      fourLastNumbers: '5567.6875.2978.4587',
+      holder: 'Fulano de Paula',
+      nickname: 'Cartão Fulano',
+      valid: '08/26',
+      cvv: '879',
+    ),
+    NewCard(
+      brand: 'Master',
+      cpf: '123.456.789.11',
+      fourLastNumbers: '5567.6875.2978.4588',
+      holder: 'Ciclano de Paula',
+      nickname: 'Cartão Ciclano',
+      valid: '08/26',
+      cvv: '880',
+    ),
+  ];
+
   @action
   void addItem(Item item) {
-    itens.add(item);
+    List<String> idList = [];
+    for (var element in itens) {
+      idList.add(element.product.productId!);
+    }
+    if (idList.contains(item.product.productId)) {
+      Item newItem;
+      // itens.whereType<int>((element) {
+      //   if (element.product.productId == item.product.productId) {
+      //     return element.quantidade;
+      //   }
+      // });
+    } else {
+      itens.add(item);
+    }
   }
 
   void removeItem(Item item) {
@@ -24,9 +77,9 @@ abstract class _CartStoreBase with Store {
   @computed
   double get total {
     double subtotal = 0;
-    itens.forEach((item) {
+    for (var item in itens) {
       subtotal += (item.quantidade * item.product.price!);
-    });
+    }
     return subtotal + 12.5;
   }
 

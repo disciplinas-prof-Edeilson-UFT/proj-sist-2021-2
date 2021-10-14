@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/cart_drawer.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/pre_drawer_selector.dart';
 
 class CartPage extends StatefulWidget {
   final String title;
@@ -15,6 +15,6 @@ class CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return CartDrawer(placeHolder: store.itens);
+    return const CartDrawerSelector();
   }
 }

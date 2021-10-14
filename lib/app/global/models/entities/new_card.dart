@@ -1,17 +1,19 @@
 class NewCard {
-  final String? fourLastNumbers;
-  final String? brand;
-  final String? holder;
-  final String? valid;
-  final String? cpf;
-  final String? nickname;
+  final String fourLastNumbers;
+  final String brand;
+  final String holder;
+  final String valid;
+  final String cpf;
+  final String nickname;
+  final String cvv;
 
   NewCard({
-    this.fourLastNumbers,
-    this.brand,
-    this.holder,
-    this.valid,
-    this.cpf,
-    this.nickname,
+    required this.fourLastNumbers,
+    required this.brand,
+    required this.holder,
+    required this.valid,
+    required this.cpf,
+    required this.nickname,
+    required this.cvv,
   });
 }

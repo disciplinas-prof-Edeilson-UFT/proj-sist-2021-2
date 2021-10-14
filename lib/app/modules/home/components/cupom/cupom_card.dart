@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 
 // PROPOSIÇÃO de implementação de cupons para entrega grátis e desconto.
@@ -7,9 +6,8 @@ import 'package:flutter/widgets.dart';
 // CUPONS DE DESCONTO são maps no database com atributos -> {"tipo":"desconto", "valor":(number)}
 
 class CupomCard extends StatelessWidget {
-
-  final QueryDocumentSnapshot<Object?> restaurant;
-  const CupomCard({Key? key, required this.restaurant}) : super(key: key);
+  final Map<String, dynamic>? cupom;
+  const CupomCard({Key? keys, required this.cupom}) : super(key: keys);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class CupomCard extends StatelessWidget {
           color: const Color(0xffEFF3F5),
         ),
         height: 25,
-        width: restaurant['cupom']['tipo'] == 'desconto' ? 200 : 185,
+        width: cupom!['tipo'] == 'desconto' ? 200 : 185,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -38,25 +36,29 @@ class CupomCard extends StatelessWidget {
     );
   }
 
-  Image _cupomLeading () {
-    if (restaurant['cupom']['tipo'] == 'desconto') {
-      return Image.asset('lib/app/modules/home/assets/images/cupom.png', height: 15,);
+  Image _cupomLeading() {
+    if (cupom!['tipo'] == 'desconto') {
+      return Image.asset(
+        'lib/app/modules/home/assets/images/cupom.png',
+        height: 15,
+      );
+    } else {
+      return Image.asset(
+          "lib/app/modules/home/assets/images/entrega_gratis.png",
+          height: 15);
     }
-    else {
-      return Image.asset("lib/app/modules/home/assets/images/entrega_gratis.png", height: 15);
-    }          
   }
 
   final _cupomTextStyle = const TextStyle(
-          color: Color(0xFF2e6788),
-          fontSize: 13,
-          fontFamily: 'Nunito',
-        );
+    color: Color(0xFF2e6788),
+    fontSize: 13,
+    fontFamily: 'Nunito',
+  );
 
   Text _cupomText() {
-    if (restaurant['cupom']['tipo'] == 'desconto') {
+    if (cupom!['tipo'] == 'desconto') {
       return Text(
-        'Cupom de R\$${restaurant['cupom']['valor']} disponível',
+        'Cupom de R\$${cupom!['valor']} disponível',
         style: _cupomTextStyle,
       );
     } else {
@@ -66,5 +68,4 @@ class CupomCard extends StatelessWidget {
       );
     }
   }
-
 }

@@ -29,7 +29,7 @@ class OrderRepository implements IOrderRepository {
   Future<bool> cadastrarOrder(Order pedido) async {
     List<dynamic> itemID = [];
     try {
-      pedido.itens.forEach((element) async {
+      for (var element in pedido.itens) {
         await firestore.collection('item').add({
           'quant': element.quantidade,
           'product_id': element.product.productId,
@@ -41,7 +41,7 @@ class OrderRepository implements IOrderRepository {
           log("Falha ao adicionar $error");
           return false;
         });
-      });
+      }
 
       await firestore.collection('order').add({
         'delivered': false,
