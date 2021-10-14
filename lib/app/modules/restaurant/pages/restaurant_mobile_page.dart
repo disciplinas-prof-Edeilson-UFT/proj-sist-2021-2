@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/modules/restaurant/pages/components/product_grid.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/restaurant_top_bar.dart';
 
 class RestaurantMobilePage extends StatefulWidget {
-  const RestaurantMobilePage({
-    Key? key,
-    required this.products,
-  }) : super(key: key);
-
-  final List<Product> products;
+  const RestaurantMobilePage({Key? key}) : super(key: key);
 
   @override
   _RestaurantMobilePageState createState() => _RestaurantMobilePageState();
