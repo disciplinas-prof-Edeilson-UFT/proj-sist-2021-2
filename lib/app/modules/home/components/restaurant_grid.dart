@@ -82,7 +82,7 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
                         orders: restaurants[index]['orders'] ?? 0,
                         socialName: restaurants[index]['social_name'] ?? '',
                         avaliation: restaurants[index]['avaliation'] ?? 0,
-                        cupom: restaurants[index]['cupom'] ?? '',
+                        cupom: restaurants[index]['cupom'],
                       );
                     } catch (exception) {
                       return Column(children: [

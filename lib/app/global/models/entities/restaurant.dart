@@ -1,5 +1,5 @@
 class Restaurant {
-  final String? restaurantId;
+  final String restaurantId;
   final double? avaliation;
   final String category;
   final Map<String, dynamic>? cupom;
