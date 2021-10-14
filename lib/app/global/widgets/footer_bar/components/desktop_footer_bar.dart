@@ -8,10 +8,12 @@ class DesktopCustomFooter extends StatelessWidget {
     required this.ifood,
     required this.descubra,
     required this.social,
+    required this.navigator,
   }) : super(key: key);
   final List<String> ifood;
   final List<String> descubra;
   final List<Buttons> social;
+  final List<String> navigator;
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
@@ -59,7 +61,9 @@ class DesktopCustomFooter extends StatelessWidget {
                           style: TextButton.styleFrom(
                             primary: Colors.black38,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, navigator[index]);
+                          },
                           child: Text(descubra[index]),
                         );
                       },

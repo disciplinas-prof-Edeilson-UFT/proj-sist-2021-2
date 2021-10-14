@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/restaurant/restaurant_module.dart';
+import 'package:pscomidas/app/modules/home/home_module.dart';
 
 class AppModule extends Module {
   @override
@@ -10,6 +10,6 @@ class AppModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ModuleRoute(Modular.initialRoute, module: RestaurantModule()),
+    ModuleRoute(Modular.initialRoute, module: HomeModule()),
   ];
 }
