@@ -1,9 +1,12 @@
 import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/restaurant.dart';
+import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_championship.dart';
+import 'package:pscomidas/app/modules/restaurant/restaurant_module.dart';
 import '/app/modules/home/store/restaurant_card.store.dart';
 import 'cupom/cupom_card.dart';
 
@@ -15,31 +18,46 @@ import 'cupom/cupom_card.dart';
 class RestaurantCard extends StatelessWidget {
   final BorderRadius _borderRadius = BorderRadius.circular(6);
   final store = RestaurantCardStore();
-  final QueryDocumentSnapshot<Object?> restaurant;
-  final TextStyle _separatorStyle =
-      const TextStyle(fontSize: 11, color: Color(0xff717171));
+  final Restaurant restaurant;
+
+  final TextStyle _separatorStyle = const TextStyle(
+    fontSize: 11,
+    color: Color(0xff717171),
+  );
+
   final TextStyle _cardInfoStyle = const TextStyle(
     color: Color(0xff717171),
     fontSize: 13.4,
     fontFamily: 'Nunito',
   );
+
   final TextStyle _freeStyle = const TextStyle(
     color: Color(0xff87A491),
     fontSize: 13,
     fontFamily: 'Nunito',
   );
+
   RestaurantCard(this.restaurant, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final delivery = (restaurant['delivery_price'] == 0
-        ? TextSpan(text: 'Grátis', style: _freeStyle)
+    final delivery = (restaurant.deliveryPrice == 0
+        ? TextSpan(
+            text: 'Grátis',
+            style: _freeStyle,
+          )
         : TextSpan(
-            text: "R\$" + restaurant['delivery_price'].toStringAsFixed(2),
-            style: _cardInfoStyle));
+            text: "R\$" + FormatMoney.doubleToMoney(restaurant.deliveryPrice),
+            style: _cardInfoStyle,
+          ));
     return InkWell(
       borderRadius: _borderRadius,
-      onTap: () {},
+      onTap: () {
+        Modular.to.pushNamed(
+          RestaurantModule.routeName,
+          arguments: restaurant,
+        );
+      },
       onHover: (_hovering) {
         store.colordefine(_hovering);
       },
@@ -56,7 +74,7 @@ class RestaurantCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(restaurant['image']),
+                  backgroundImage: NetworkImage(restaurant.image),
                   backgroundColor: Colors.white,
                   maxRadius: 45,
                 ),
@@ -70,7 +88,7 @@ class RestaurantCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            restaurant['social_name'],
+                            restaurant.socialName,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -81,7 +99,8 @@ class RestaurantCard extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 12.0),
-                          child: ChampionRestaurant(restaurant: restaurant),
+                          child: ChampionRestaurant(
+                              isChampion: restaurant.isChampion),
                         ),
                       ],
                     ),
@@ -94,7 +113,7 @@ class RestaurantCard extends StatelessWidget {
                           color: Color(0XFFe8a44c),
                         ),
                         Text(
-                          restaurant['avaliation'].toStringAsFixed(1),
+                          restaurant.avaliation!.toStringAsFixed(1),
                           style: const TextStyle(
                             color: Color(0XFFe8a44c),
                             fontSize: 13,
@@ -105,11 +124,15 @@ class RestaurantCard extends StatelessWidget {
                           text: TextSpan(children: [
                             TextSpan(text: " • ", style: _separatorStyle),
                             TextSpan(
-                                text: "${restaurant['category']}",
-                                style: _cardInfoStyle),
-                            TextSpan(text: " • ", style: _separatorStyle),
+                              text: restaurant.category.toString(),
+                              style: _cardInfoStyle,
+                            ),
                             TextSpan(
-                                text: "${restaurant['distance']}km",
+                              text: " • ",
+                              style: _separatorStyle,
+                            ),
+                            TextSpan(
+                                text: restaurant.distance.toString() + " km",
                                 style: _cardInfoStyle),
                           ]),
                         ),
@@ -119,18 +142,16 @@ class RestaurantCard extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                              text: "${restaurant['estimated_delivery']} min",
+                              text: restaurant.estimatedDelivery + " min",
                               style: _cardInfoStyle),
                           TextSpan(text: " • ", style: _separatorStyle),
                           delivery,
                         ],
                       ),
                     ),
-                    restaurant['cupom'] != null
-                        ? CupomCard(restaurant: restaurant)
-                        : const SizedBox(
-                            height: 28,
-                          ),
+                    restaurant.cupom != null
+                        ? CupomCard(cupom: restaurant.cupom)
+                        : const SizedBox(height: 28),
                   ],
                 ),
               ),
