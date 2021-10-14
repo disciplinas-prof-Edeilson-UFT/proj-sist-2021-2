@@ -1,10 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'register_formulary.dart';
  
 class RegisterCard extends StatelessWidget {
   RegisterCard({ Key? key }) : super(key: key);
   final _formKey = GlobalKey<FormState>();
+
+  final Map<String, TextEditingController> controller = {
+    'name': TextEditingController(),
+    'email': TextEditingController(),
+    'phone': TextEditingController(),
+    };
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +46,7 @@ class RegisterCard extends StatelessWidget {
               Expanded(
                 child: Form(
                   key: _formKey,
-                  child: Formulary(),
+                  child: Formulary(controller: controller,),
                 ),
               ),
     
@@ -60,6 +66,13 @@ class RegisterCard extends StatelessWidget {
                   ),
                   onPressed: () {
                     if(_formKey.currentState!.validate()) {
+                      /*
+                      prints de demonstração da obtenção de dados. Desnecessário o esclarecimento,
+                      devem ser excluídos.
+                      */
+                      print(controller['name']!.text);
+                      print(controller['phone']!.text);
+                      print(controller['email']!.text);
                       //TODO: NAVIGATE TO NEXT PAGE.
                     } 
                   }, 
@@ -83,85 +96,4 @@ class RegisterCard extends StatelessWidget {
     return const Color(0xffEA1D2C);
   }
 
-}
-
-
-class Formulary extends StatelessWidget {
-  Formulary({ Key? key }) : super(key: key);
-  final TextStyle _labelStyle = const TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-    fontFamily: 'Nunito',
-  ); 
-  final _phoneFormat = MaskTextInputFormatter(mask: '(##) #####-####', filter: { "#": RegExp(r'[0-9]') });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Nome completo', style: _labelStyle),
-            TextFormField(
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Este campo não pode ficar vazio";
-                }
-                return null;
-              },
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'João da Silva',
-              ),
-            ),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Email', style: _labelStyle,),
-            TextFormField(
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Este campo não pode ficar vazio";
-                }
-                if (!value.contains('@') || !value.contains('.com')) {
-                  return "Digite um email válido";
-                }
-                return null;
-              },
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'email@email.com',
-              ),
-            ),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Celular (com DDD)', style: _labelStyle,),
-            TextFormField(
-              inputFormatters: [_phoneFormat],
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Este campo não pode ficar vazio";
-                }
-                if(value.length <= 14) {
-                  return "Digite um número de telefone válido";
-                }
-                return null;
-              },
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: '(00) 00000-0000',
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'components/register_card.dart';
 import 'register_store.dart';
 
@@ -16,9 +17,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: const CustomAppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
