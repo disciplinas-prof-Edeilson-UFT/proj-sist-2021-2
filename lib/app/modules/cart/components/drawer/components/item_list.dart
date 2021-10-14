@@ -33,7 +33,9 @@ class ItenList extends StatelessWidget {
         itemCount: store.itens.length,
         itemBuilder: (context, index) {
           final Item model = store.itens[index];
-          return DrawerBuilder(model: model);
+          return DrawerBuilder(
+            model: model,
+          );
         },
       ),
     );

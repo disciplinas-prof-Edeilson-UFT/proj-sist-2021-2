@@ -31,7 +31,9 @@ class _CartDrawerState extends State<CartDrawer> {
         child: LayoutBuilder(
           builder: (context, constraints) {
             var height = constraints.maxHeight;
+            var width = constraints.maxWidth;
             if (height <= 768) {
+              print(width);
               return const TabletCartDrawer();
             } else {
               return const DesktopCartDrawer();

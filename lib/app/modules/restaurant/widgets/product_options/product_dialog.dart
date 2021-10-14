@@ -88,7 +88,6 @@ class ProductDialog extends StatelessWidget {
                     Container(
                       color: Colors.white,
                       height: 20,
-                      // width: 500,
                       alignment: Alignment.bottomLeft,
                       child: Text(
                         "R\$ " + FormatMoney.doubleToMoney(product.price!),

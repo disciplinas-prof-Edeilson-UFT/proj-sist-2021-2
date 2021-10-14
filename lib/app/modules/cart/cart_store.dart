@@ -17,15 +17,16 @@ abstract class _CartStoreBase with Store {
     itens.add(item);
   }
 
+  void removeItem(Item item) {
+    itens.remove(item);
+  }
+
   @computed
   double get total {
     double subtotal = 0;
     itens.forEach((item) {
       subtotal += (item.quantidade * item.product.price!);
     });
-    //Calculo do valor final do pedido
-    //O valor vai ser calculado em outro momento
-    // ignore: void_checks
     return subtotal + 12.5;
   }
 

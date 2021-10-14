@@ -26,8 +26,8 @@ class _CartDrawerState extends State<TabletCartDrawer> {
         children: const <Widget>[
           CompanyHeader(),
           ItenList(
-            itenlengh: 4,
-            heightFactor: 0.39,
+            itenlengh: 2,
+            heightFactor: 0.2,
           ),
           DraewDownside(),
         ],

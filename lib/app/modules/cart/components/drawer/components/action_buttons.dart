@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/cart/cart_store.dart';
 
 class ActionButtons extends StatefulWidget {
-  const ActionButtons({Key? key}) : super(key: key);
+  const ActionButtons({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ActionButtonsState createState() => _ActionButtonsState();
 }
 
 class _ActionButtonsState extends State<ActionButtons> {
+  final CartStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
     return Row(
