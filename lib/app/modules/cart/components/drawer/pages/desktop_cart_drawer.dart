@@ -25,8 +25,8 @@ class DesktopCartDrawer extends StatelessWidget {
         children: <Widget>[
           const CompanyHeader(),
           ItenList(
-            itenlengh: 6,
-            heightFactor: 0.6,
+            itenlengh: 4,
+            heightFactor: 0.30,
             widthFactor: deskLargura,
           ),
           DraewDownside(
