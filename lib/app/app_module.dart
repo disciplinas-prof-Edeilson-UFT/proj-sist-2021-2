@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
-import 'package:pscomidas/app/modules/order/order_module.dart';
 import 'modules/restaurant/restaurant_module.dart';
 import 'package:pscomidas/app/modules/cart/cart_module.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
