@@ -30,8 +30,11 @@ abstract class _CartStoreBase with Store {
     itens.add(item);
   }
 
-  void removeItem(Item item) {
-    itens.remove(item);
+  @action
+  void removeItem(String iditemremovido, Item remove) {
+    itens.removeWhere((iditemremodivo) {
+      return remove.itemid == iditemremovido;
+    });
   }
 
   @computed
