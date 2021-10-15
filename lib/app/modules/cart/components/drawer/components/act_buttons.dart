@@ -20,7 +20,7 @@ class ActionButtons extends StatelessWidget {
             child: Text(
               'Editar',
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: Colors.red,
                 fontFamily: 'Nunito',
@@ -35,7 +35,7 @@ class ActionButtons extends StatelessWidget {
             child: Text(
               'Remover',
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
                 fontFamily: 'Nunito',

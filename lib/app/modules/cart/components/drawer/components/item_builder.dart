@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
@@ -28,19 +29,19 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
           height: MediaQuery.of(context).size.height * 0.06,
           width: widget.auxWidth * 0.9,
           child: ListTile(
-            title: Text(
+            title: AutoSizeText(
               widget.model.product.name.toString(),
               textAlign: TextAlign.center,
+              presetFontSizes: const [20, 16],
               style: const TextStyle(
-                fontSize: 22,
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w600,
               ),
             ),
-            leading: Text(
+            leading: AutoSizeText(
               widget.model.quantidade.toString() + " x",
+              presetFontSizes: const [14, 12],
               style: const TextStyle(
-                fontSize: 16,
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w600,
               ),
@@ -49,11 +50,11 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
               children: <Widget>[
                 Container(
                   padding: const EdgeInsets.only(left: 30),
-                  child: Text(
+                  child: AutoSizeText(
                     FormatMoney.doubleToMoney(
                         widget.model.product.price! * widget.model.quantidade),
+                    presetFontSizes: const [14, 12],
                     style: const TextStyle(
-                      fontSize: 16,
                       fontFamily: 'Nunito',
                       fontWeight: FontWeight.w600,
                     ),
