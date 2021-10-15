@@ -11,7 +11,7 @@ class CartStore = _CartStoreBase with _$CartStore;
 abstract class _CartStoreBase with Store {
   final OrderRepository orderRepository = Modular.get<OrderRepository>();
   @observable
-  List<Item> itens = [];
+  ObservableList<Item> itens = <Item>[].asObservable();
 
   List<NewCard> card = [
     NewCard(
