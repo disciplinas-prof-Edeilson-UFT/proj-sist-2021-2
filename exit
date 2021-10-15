@@ -1,0 +1,456 @@
+[33mcommit e734434499c887763f1de057899b193b6efe1401[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/backend_ordergetter[m[33m)[m
+Author: Victor Hugo C. Gomes <vhclaudiogomes@gmail.com>
+Date:   Fri Oct 15 17:56:50 2021 -0300
+
+    R03|T05| Funções de Get reformulada.
+    - Adicionado novo valor na classe.
+    - Retirado mensagens de log que não tem importancia.
+    - Reformulado as funções
+
+[33mcommit 312db235109c9d8e5620206af7e4688557cf6838[m[33m ([m[1;31morigin/hotfix/imports[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: Victor Hugo C. Gomes <vhclaudiogomes@gmail.com>
+Date:   Fri Oct 15 00:01:02 2021 -0300
+
+    R03|T01| hotfix/imports - imports retirados
+
+[33mcommit 35c19ae264a69fbd8ef699e67fa041ebdd218148[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Thu Oct 14 23:52:55 2021 -0300
+
+    R03|T01| hotfix/bugfix |Responsividade carrinho
+    
+    - Ajuste de resposividade do carrinho
+
+[33mcommit 980db0401fe9f0c29a739078da1f7005e4ecffb7[m
+Merge: 8c18f65 2067e13
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Thu Oct 14 16:48:43 2021 -0300
+
+    R03|T01| hotfix/bugfix | Correções e adaptaçõe
+    
+    - Filipe Souza
+    - Correções de erros evidenciados pela correção
+    - Adaptações tambem pedidas pelos corretores
+    - Modularização da Sidebar para diversas telas
+    - Adição da escolha da forma de pagamento
+
+[33mcommit 8c18f65e9d2b0ca4e6c24159bdc4e5554668b9f5[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Wed Oct 13 22:45:48 2021 -0300
+
+    Ajustes para correção
+
+[33mcommit 89a30e775ebb6f549d1426b67a438a74733ebc66[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Wed Oct 13 19:41:27 2021 -0300
+
+    R03|T01| develop
+    
+    - Colocando a sidebar no lugar
+
+[33mcommit df8469e74dbf6aa933394d015073283197f659e9[m
+Merge: 994c44e 7fd2102
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Wed Oct 13 17:00:48 2021 -0300
+
+    R03|T01|develop Bugfix
+    
+    - um erro na branch apareceu deletando todos os arquivos que envolviam o
+      carrinho
+    - Correção dos conflitos
+
+[33mcommit 2067e13ea062bdd2cd4854b82e92413bdfd159ce[m
+Author: Daniel de Jesus Guimarães <66970708+djesusguimaraes@users.noreply.github.com>
+Date:   Wed Oct 13 01:03:19 2021 -0300
+
+    [Organização] 04 - Integração de Produto
+    
+    Adiciona `restaurantId` à classe `Restaurant` para uso na busca por produtos
+    Adiciona apresentação dos dados da empresa em `product_dialog`
+    
+    OBS: Os commits [f712f76] e [4acd058]
+    também estão relacionados à tarefa de organização.
+
+[33mcommit 4acd058d0ef8e08d2ca52dbc8529874895fe9992[m
+Author: Daniel de Jesus Guimarães <66970708+djesusguimaraes@users.noreply.github.com>
+Date:   Tue Oct 12 23:38:00 2021 -0300
+
+    Adiciona transferência `restaurant` entre os módulos
+    Corrige warnings no projeto
+
+[33mcommit 994c44e63260d6df1d35d4ffb72ad68bfcd13845[m
+Merge: 1943966 2327e8e
+Author: Filipe Marques de Souza <33045754+FilipeMSouza@users.noreply.github.com>
+Date:   Tue Oct 12 18:44:08 2021 -0300
+
+    Merge pull request #6 from FilipeMSouza/hotfix/integracao
+    
+    Hotfix/integracao
+
+[33mcommit 2327e8e407797a785211a74e67dfe9c6dd5c5de1[m[33m ([m[1;31morigin/hotfix/integracao[m[33m)[m
+Author: Victor Hugo C. Gomes <vhclaudiogomes@gmail.com>
+Date:   Tue Oct 12 18:30:15 2021 -0300
+
+    R03|T01| hotfix/integracao - Refatorado o metodo para mandar ordertype para o banco
+
+[33mcommit 65cf112ea18c64a3f94b89328f3eeaf1c545e174[m
+Author: Victor Hugo C. Gomes <vhclaudiogomes@gmail.com>
+Date:   Tue Oct 12 18:29:25 2021 -0300
+
+    R03|T01| hotfix/integracao - Retirada a passagem obrigatoria do valor de ordertype
+
+[33mcommit 857349da7f086ce27b62fff3ce9fa5b3bfdeb505[m
+Author: Victor Hugo C. Gomes <vhclaudiogomes@gmail.com>
+Date:   Tue Oct 12 18:28:23 2021 -0300
+
+    R03|T01| hotfix/integracao - Retirada a obrigatoriedade do status
+
+[33mcommit b5d2ccd8ee5025f9caabad741f1de4b911bdeb2f[m
+Author: Victor Hugo C. Gomes <vhclaudiogomes@gmail.com>
+Date:   Tue Oct 12 18:27:20 2021 -0300
+
+    R03|T01| hotfix/integracao - Refatorado metodo para passar o estado do pedido para a database
+
+[33mcommit e03ad2dc6a4474358f770c1243fe956f35aa7450[m
+Author: Victor Hugo C. Gomes <vhclaudiogomes@gmail.com>
+Date:   Tue Oct 12 18:26:23 2021 -0300
+
+    R03|T01| hotfix/integracao - Adicionado dependencia para uso da appbar
+
+[33mcommit 9655af56a0da9b338ccce664dd25f1cc60b175cf[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Tue Oct 12 17:38:23 2021 -0300
+
+    R03|T0X| hotfix/integracao
+    
+    - Aluno: Filipe Marques de Souza
+    - Appbar ja aparecendo e funcinal
+    - Sidebar pdendo ser chamada e funcional (pelo menos a parte de front
+      end)
+
+[33mcommit c229702987e96b610c54f73c4966ac73b3de6475[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Tue Oct 12 17:11:55 2021 -0300
+
+    R03|T0X|hotfix/integracao| maior parte arrumada
+    
+    - Codigos conflitantes foram arrumados
+    - Algumas paginas não foram encontradas
+    - Função que carrega a appbar nao está carregando:
+            - necessário descobrir o motivo e arrumar isso
+
+[33mcommit 1149e9e96bf2a07c669387803dae9817da7dbc04[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Tue Oct 12 15:49:51 2021 -0300
+
+    RO3|hotfix/integracao |
+    
+    - resolver erros para integraçãO
+
+[33mcommit 7fd21021aee89648b3a4a459c4c8a88fa19d88c8[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: e53d208 292420a
+Author: Thaís Faustino Calixto <62521620+thaisclxt@users.noreply.github.com>
+Date:   Tue Oct 12 15:41:20 2021 -0300
+
+    Merge pull request #6 from disciplinas-prof-Edeilson-UFT/revert-5-develop
+    
+    Revert "R03 - [Carrinho]"
+
+[33mcommit 292420a7db303d8c0582bf89de5595df64c48e4a[m
+Author: Filipe Marques de Souza <33045754+FilipeMSouza@users.noreply.github.com>
+Date:   Tue Oct 12 15:37:37 2021 -0300
+
+    Revert "R03 - [Carrinho]"
+
+[33mcommit 194396639c56d89016aaaf9ec2dcfa2029f70126[m
+Merge: 2d62233 e53d208
+Author: Filipe Marques de Souza <33045754+FilipeMSouza@users.noreply.github.com>
+Date:   Tue Oct 12 15:05:45 2021 -0300
+
+    Merge pull request #5 from disciplinas-prof-Edeilson-UFT/develop
+    
+    Develop
+
+[33mcommit e53d20841c6d9741b9638848e4817519cd4f25a4[m
+Merge: 70207ff 2d62233
+Author: Filipe Marques de Souza <33045754+FilipeMSouza@users.noreply.github.com>
+Date:   Tue Oct 12 15:01:15 2021 -0300
+
+    Merge branch 'develop' into develop
+
+[33mcommit 2d622333c4aba3bad8eb5dd28653a44e5da22b62[m
+Merge: c198661 9131297
+Author: Victor Hugo <60026761+vhgomes@users.noreply.github.com>
+Date:   Mon Oct 11 18:40:06 2021 -0300
+
+    Merge pull request #4 from FilipeMSouza/hotfix/revisao
+    
+    R03 | T01 | hotfix/revisao
+
+[33mcommit f712f76db7e5a1c5539f1162c5749efa3e7bbd6a[m
+Author: Daniel de Jesus Guimarães <66970708+djesusguimaraes@users.noreply.github.com>
+Date:   Mon Oct 11 18:39:44 2021 -0300
+
+    Adiciona classe `Restaurant`, interpretação
+    e passagem para módulo de restaurant
+
+[33mcommit 9131297fe81a78f75900b46bf71b268ee1bc9909[m[33m ([m[1;31morigin/hotfix/revisao[m[33m)[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Mon Oct 11 18:31:43 2021 -0300
+
+    R03|T0X|hotfix/revisao
+    
+    - Filipe marques de Souza
+    - Ajuste na sidebar para ficar responsiva a definições de 1360x768 e
+      1920x1080 usando layout builder
+    - Correções dos problemas declarados pelo dart
+    - Contornamos problemas de muita repetição, exceto pelo cart_store que
+      precisa estar preenchido com alguma informação para mostrar o display
+      em tela
+    - Deleção de comentarios e codigos mortos
+    - Remoção de codigos conflitantes e redundantes (form_payment e
+      add_card)
+
+[33mcommit 70207ff851544900de5564371d30ea1636412509[m
+Merge: e91ba30 1a0aa35
+Author: Thaís Faustino Calixto <62521620+thaisclxt@users.noreply.github.com>
+Date:   Mon Oct 11 16:05:09 2021 -0300
+
+    Merge pull request #2 from thaisclxt/develop
+    
+    R01 - [Cliente] Listar empresas (Página home)
+
+[33mcommit 1a0aa35eaf474784f8dfb76f098874f7303d7f73[m
+Merge: 7ce3a4c c635507
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Mon Oct 11 16:03:28 2021 -0300
+
+    Merge branch 'develop' of https://github.com/thaisclxt/proj-sist-2021-2 into develop
+
+[33mcommit 7ce3a4ca89a048577c49fab0de2a67ce39aa5757[m
+Merge: ec36e95 e91ba30
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Mon Oct 11 16:03:01 2021 -0300
+
+    Merge branch 'develop' of https://github.com/disciplinas-prof-Edeilson-UFT/proj-sist-2021-2 into develop
+
+[33mcommit c198661f9ac1d65732fc4484d34de2dd0cdeeca1[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Mon Oct 11 12:18:29 2021 -0300
+
+    hotfix/revisao | ajustes requisitados pelo grupo 1
+    
+    - Funcionaliade da sidebar asjutada para o scrool ser somente na lista
+      de pedidos
+    - Deleção de comentarios e codigos desnecessários
+    - Deleção da seleção de cartão
+            - O codigo estava conflitante ao ponto de não ser utilizavel por
+              esse motivo optamos por deleta-lo
+
+[33mcommit e91ba30e9caa055299a486182648c7f660242ade[m
+Merge: 666da4b e20721f
+Author: Victor Hugo <60026761+vhgomes@users.noreply.github.com>
+Date:   Sun Oct 10 22:48:29 2021 -0300
+
+    Merge pull request #3 from djesusguimaraes/develop
+    
+    Adiciona Página da Empresa para o Cliente
+
+[33mcommit 749620b789b7883a501ff4a102b8e80e31e0a235[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Sun Oct 10 22:48:08 2021 -0300
+
+    develop | ajustes finais
+    
+    - chamada de função no button_builder
+    - ajustes de valores no cart_store
+
+[33mcommit e20721faef7eded030a8d88c283a86922c129c18[m
+Author: Daniel de Jesus Guimarães <66970708+djesusguimaraes@users.noreply.github.com>
+Date:   Sun Oct 10 22:43:30 2021 -0300
+
+    Corrige pixel overflow em `product_card.dart`
+
+[33mcommit 89fd5a7e21ba96d738ac7ef7a7678356bde937f0[m
+Merge: e414c12 1ae41ca
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Sun Oct 10 22:40:30 2021 -0300
+
+    Accpet changes
+
+[33mcommit 1ae41ca61a6a88b252418cc5f8633fa5171ce543[m
+Merge: 5bc1ae6 40d6dd8
+Author: Victor Hugo <60026761+vhgomes@users.noreply.github.com>
+Date:   Sun Oct 10 22:35:19 2021 -0300
+
+    Merge pull request #2 from FilipeMSouza/feature/backend_getorders
+    
+    Feature/backend getorders
+
+[33mcommit e414c1298ef38a261cb6369f14d03b3b45dc2c38[m[33m ([m[1;31morigin/hotfix/frontend[m[33m)[m
+Author: FilipeMSouza <filipe.souza1906@gmail.com>
+Date:   Sun Oct 10 22:30:09 2021 -0300
+
+    hotfix/frontend
+    
+    - ajustes finais na estilização
+    - Criaçao dos itens:
+            - cabeçalho de empresa (placeholder)
+            - botões de ação dos itens
+            - Form de cupom
+
+[33mcommit e19a4e777a630583c9bd846905ba832d7433da8e[m
+Author: Daniel de Jesus Guimarães <66970708+djesusguimaraes@users.noreply.github.com>
+Date:   Sun Oct 10 19:04:51 2021 -0300
+
+    Remove pasta `dead_code` com implementações do `dartz`
+
+[33mcommit c6355076651e031bd52ec6ba041cfa1ebcebd988[m
+Merge: ec36e95 14883aa
+Author: milena975 <milena.rios@mail.uft.edu.br>
+Date:   Sun Oct 10 18:52:29 2021 -0300
+
+    Merge branch 'hotfix/app_bar' into develop
+
+[33mcommit 6d8da7d115c056aebe08efff6b379f70b993994b[m
+Merge: 565abb4 411c72f
+Author: Daniel de Jesus Guimarães <66970708+djesusguimaraes@users.noreply.github.com>
+Date:   Sun Oct 10 18:50:30 2021 -0300
+
+    Merge pull request #4 from djesusguimaraes/backend/prototype
+    
+    Adiciona busca por produto
+
+[33mcommit 14883aa5f9197fd55915fc4987c8d81195e443f9[m
+Author: milena975 <milena.rios@mail.uft.edu.br>
+Date:   Sun Oct 10 18:32:17 2021 -0300
+
+    hotfix/app_bar | correcões da revisão do grupo 02
+    - criei uma variável do tipo size a qual recebe MediaQuerry.of(context).size e usei nas alturas e larguras dos componentes do appBar
+    - chamei a função openEndDrawer() no onTap do botão do carrinho em components_app_bar
+
+[33mcommit 411c72fc9738f22738095c968127ff43dcffb9d7[m
+Author: Daniel de Jesus Guimarães <66970708+djesusguimaraes@users.noreply.github.com>
+Date:   Sun Oct 10 18:18:48 2021 -0300
+
+    Correções e implementação de busca de produto para `restaurant_page.dart`
+
+[33mcommit b65f1aee39f235d54e66479e61c40e237170ccb0[m
+Author: itzmyhub <italo.machado@mail.uft.edu.br>
+Date:   Sun Oct 10 17:16:24 2021 -0300
+
+    viewmodel + frontend p receber o banco.
+
+[33mcommit ec36e954c39b05ce0cc1291051d8cef4e7382cf1[m
+Merge: c70cec7 95b367f
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Sun Oct 10 16:59:52 2021 -0300
+
+    Merge branch 'feature/mais_pedidos' into develop
+
+[33mcommit 95b367fd9cd47ccd136eef82cb2dbfec73d50ed6[m
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Sun Oct 10 16:57:04 2021 -0300
+
+    feature/mais_pedidos | Última correção da issue #6
+    
+    - Adicionei a palavra chave const antes do nome de classes @immutable
+    - Troquei Container() por SizedBox()
+
+[33mcommit 40d6dd8238d51fa8b440d7eab708c0b29e402c08[m[33m ([m[1;31morigin/feature/backend_getorders[m[33m)[m
+Author: Victor Hugo C. Gomes <vhclaudiogomes@gmail.com>
+Date:   Sun Oct 10 16:14:55 2021 -0300
+
+    backend/order | corrigido bug em que não passava para o banco varios pedidos
+
+[33mcommit b086c49df9b3c42b8f40ce39e5cf7a9dd533755e[m
+Author: itzmyhub <italo.machado@mail.uft.edu.br>
+Date:   Sun Oct 10 14:28:55 2021 -0300
+
+    Backend da aplicação
+
+[33mcommit ed9eacdc719d3c0495fb8c1c92f64cfdef9a3a5b[m
+Merge: 62b8707 c70cec7
+Author: Edmundo Paulino <manyymoore@gmail.com>
+Date:   Sun Oct 10 12:31:51 2021 -0300
+
+    Merge remote-tracking branch 'origin/develop' into feature/mais_pedidos
+
+[33mcommit 62b87075041d7b151f3eca7dbf9fc43899e22641[m
+Author: Edmundo Paulino <manyymoore@gmail.com>
+Date:   Sun Oct 10 12:30:53 2021 -0300
+
+    feature/mais_pedidos | Deixar widget clicável
+    
+    Deixe os ícones de imagem e texto clicáveis e sem hover.
+
+[33mcommit c70cec794eb8e70652e9f76dcd220764070b970f[m
+Merge: e2a6cc0 b3e7756
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Sun Oct 10 11:31:32 2021 -0300
+
+    Merge branch 'hotfix/category' into develop
+
+[33mcommit b3e77567f5f946bb6b7608553f7c39ec6562ea67[m
+Merge: a52fb56 e2a6cc0
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Sun Oct 10 11:31:14 2021 -0300
+
+    Merge branch 'develop' into hotfix/category
+
+[33mcommit 19e042e4a7d0c27bfe790a950d1f694da679e99d[m
+Author: Edmundo Paulino <manyymoore@gmail.com>
+Date:   Sun Oct 10 11:20:11 2021 -0300
+
+    feature/mais_pedidos | Estilização do widget
+    
+    Aumentar um pouco a distância entre a imagem e o texto do item.
+
+[33mcommit a52fb569cde013bb53ac5aeac447c72a5eda7d21[m
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Sun Oct 10 11:06:02 2021 -0300
+
+    hotfix/category | Correção de conflito entre categorias e filtros
+    
+    - Usei mobX para configurar o estado atual da categoria e imprimir os restaurantes de tal
+
+[33mcommit db02cb2ad35b3247cea2516ece5953faaa60f720[m
+Author: Edmundo Paulino <manyymoore@gmail.com>
+Date:   Sun Oct 10 11:00:31 2021 -0300
+
+    feature/mais_pedidos | Refatoração
+    
+    Mudar os nomes dos arquivos e o nome da classe também.
+    De português para inglês.
+
+[33mcommit 750bcab99fab1e77522d3d88884dbcfacabc9e05[m
+Merge: 392ac92 e2a6cc0
+Author: Edmundo Paulino <manyymoore@gmail.com>
+Date:   Sun Oct 10 10:53:34 2021 -0300
+
+    Merge branch 'develop' into feature/mais_pedidos
+
+[33mcommit e2a6cc0fc41800c0482722651623b9986cfa33df[m
+Merge: dc35454 f19bbbb
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Sun Oct 10 02:18:40 2021 -0300
+
+    Merge branch 'feature/footer_bar' into develop
+
+[33mcommit dc354541fa9b8071fb11f45c61ec847c633d29e5[m
+Merge: 5354efd b37751a
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Sun Oct 10 01:46:08 2021 -0300
+
+    Merge branch 'feature/categorias' into develop
+
+[33mcommit b37751a5918aabdcd36108ba84d5a7d06c4a4cc7[m
+Author: thaisclxt <thais.calixto@mail.uft.edu.br>
+Date:   Sun Oct 10 01:20:24 2021 -0300
+
+    feature/categorias | Correção de código da issue #4
+    
+    - Apaguei comentários desnecessários
+    - Salvei vários arquivos usando a extensão do Dart para ficar padronizado
+    - Otimizei alguns trechos de código como adicionar const em classe @immutable e trocar Container por SizedBox
+    - Coloquei vírgula depois de ) para ficar mais legível
