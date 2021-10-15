@@ -7,12 +7,14 @@ class Order {
   final double shipPrice;
   final double orderPrice;
   final OrderType? status;
+  final DocumentReference? docid;
 
   Order({
     required this.itens,
     required this.shipPrice,
     required this.orderPrice,
     this.status,
+    this.docid,
   });
 
   factory Order.fromDocument(DocumentSnapshot doc) {
