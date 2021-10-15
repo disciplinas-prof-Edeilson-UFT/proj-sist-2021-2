@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/pages/desktop_cart_drawer.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/pages/mobile_cart_drawer.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/pages/tablet_cart_drawer.dart';
 
 class CartDrawer extends StatelessWidget {
   final double largura;
@@ -22,15 +21,16 @@ class CartDrawer extends StatelessWidget {
         child: LayoutBuilder(
           builder: (context, constraints) {
             var height = constraints.maxHeight;
-            DesktopCartDrawer(deskLargura: largura);
             if (height <= 647 && largura < 1360) {
               return MobileCartDrawer(
+                buttonTxt: 'Pagamento',
                 mobileLargura: largura,
               );
-            } else if (height <= 969 && largura <= 1360) {
-              return TabletCartDrawer(tabletLargura: largura);
             } else {
-              return DesktopCartDrawer(deskLargura: largura);
+              return DesktopCartDrawer(
+                deskLargura: largura,
+                buttonTxt: 'Escolher Pagamento',
+              );
             }
           },
         ),

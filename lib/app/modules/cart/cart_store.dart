@@ -23,51 +23,11 @@ abstract class _CartStoreBase with Store {
       valid: '08/26',
       cvv: '879',
     ),
-    NewCard(
-      brand: 'Master',
-      cpf: '123.456.789.11',
-      fourLastNumbers: '5567.6875.2978.4588',
-      holder: 'Ciclano de Paula',
-      nickname: 'Cartão Ciclano',
-      valid: '08/26',
-      cvv: '880',
-    ),
-    NewCard(
-      brand: 'Master',
-      cpf: '123.456.789.10',
-      fourLastNumbers: '5567.6875.2978.4587',
-      holder: 'Fulano de Paula',
-      nickname: 'Cartão Fulano',
-      valid: '08/26',
-      cvv: '879',
-    ),
-    NewCard(
-      brand: 'Master',
-      cpf: '123.456.789.11',
-      fourLastNumbers: '5567.6875.2978.4588',
-      holder: 'Ciclano de Paula',
-      nickname: 'Cartão Ciclano',
-      valid: '08/26',
-      cvv: '880',
-    ),
   ];
 
   @action
   void addItem(Item item) {
-    List<String> idList = [];
-    for (var element in itens) {
-      idList.add(element.product.productId!);
-    }
-    if (idList.contains(item.product.productId)) {
-      Item newItem;
-      // itens.whereType<int>((element) {
-      //   if (element.product.productId == item.product.productId) {
-      //     return element.quantidade;
-      //   }
-      // });
-    } else {
-      itens.add(item);
-    }
+    itens.add(item);
   }
 
   void removeItem(Item item) {

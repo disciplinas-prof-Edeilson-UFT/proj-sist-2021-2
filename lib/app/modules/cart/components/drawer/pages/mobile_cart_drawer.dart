@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/mobile/comp_header.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/mobile/downside.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/mobile/item_list.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/components/comp_header.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/components/downside.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/components/item_list.dart';
 
 class MobileCartDrawer extends StatelessWidget {
   final double mobileLargura;
+  final String buttonTxt;
   MobileCartDrawer({
     Key? key,
     required this.mobileLargura,
+    required this.buttonTxt,
   }) : super(key: key);
 
   final CartStore store = Modular.get();
@@ -21,13 +23,14 @@ class MobileCartDrawer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          const MobileCompanyHeader(),
-          MobileItenList(
+          const CompanyHeader(),
+          ItenList(
             itenlengh: 2,
             heightFactor: 0.3,
             widthFactor: mobileLargura,
           ),
-          MobileDraewDownside(
+          DraewDownside(
+            buttonTxt: buttonTxt,
             auxWidth: mobileLargura,
           ),
         ],

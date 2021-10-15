@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DeskCompanyHeader extends StatelessWidget {
-  const DeskCompanyHeader({Key? key}) : super(key: key);
+class CompanyHeader extends StatelessWidget {
+  const CompanyHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

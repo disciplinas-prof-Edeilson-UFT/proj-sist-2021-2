@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/desk/comp_header.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/desk/downside.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/desk/item_list.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/components/comp_header.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/components/downside.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/components/item_list.dart';
 
 class DesktopCartDrawer extends StatelessWidget {
   final double deskLargura;
+  final String buttonTxt;
   DesktopCartDrawer({
     Key? key,
     required this.deskLargura,
+    required this.buttonTxt,
   }) : super(key: key);
 
   final CartStore store = Modular.get();
@@ -21,13 +23,14 @@ class DesktopCartDrawer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          const DeskCompanyHeader(),
-          DeskItenList(
+          const CompanyHeader(),
+          ItenList(
             itenlengh: 6,
             heightFactor: 0.6,
             widthFactor: deskLargura,
           ),
-          DeskDraewDownside(
+          DraewDownside(
+            buttonTxt: buttonTxt,
             auxWidth: deskLargura,
           ),
         ],

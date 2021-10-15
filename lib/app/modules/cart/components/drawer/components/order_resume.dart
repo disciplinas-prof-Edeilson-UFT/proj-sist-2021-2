@@ -3,16 +3,16 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 
-class TabletOrder extends StatelessWidget {
+class Order extends StatelessWidget {
   final double auxWidth;
-  TabletOrder({
+  Order({
     Key? key,
     required this.auxWidth,
   }) : super(key: key);
   final CartStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
-    const double size = 12;
+    const double size = 16;
     return SizedBox(
       width: auxWidth * 0.8,
       child: Column(

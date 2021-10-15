@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/new_card.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/cart/components/cards/components/card_builder.dart';
+import 'package:pscomidas/app/modules/cart/components/payment/cards/components/card_builder.dart';
 
 class SelectCardDialog extends StatelessWidget {
   SelectCardDialog({Key? key}) : super(key: key);

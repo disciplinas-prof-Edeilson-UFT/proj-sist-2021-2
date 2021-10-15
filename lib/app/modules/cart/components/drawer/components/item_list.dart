@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/tablet/item_builder.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/components/item_builder.dart';
 
-class TabletItenList extends StatelessWidget {
+class ItenList extends StatelessWidget {
   final double heightFactor;
   final int itenlengh;
   final double widthFactor;
-  const TabletItenList({
+
+  const ItenList({
     Key? key,
     required this.itenlengh,
     required this.heightFactor,
@@ -35,7 +36,7 @@ class TabletItenList extends StatelessWidget {
         itemCount: store.itens.length,
         itemBuilder: (context, index) {
           final Item model = store.itens[index];
-          return TabletDrawerBuilder(
+          return DrawerBuilder(
             model: model,
             auxHeight: heightFactor,
             auxWidth: widthFactor,

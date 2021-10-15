@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class DeskCupomField extends StatelessWidget {
+class CupomField extends StatelessWidget {
   final double auxWidth;
 
-  const DeskCupomField({
+  const CupomField({
     Key? key,
     required this.auxWidth,
   }) : super(key: key);

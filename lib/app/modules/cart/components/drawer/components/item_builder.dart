@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/tablet/act_buttons.dart';
+import 'package:pscomidas/app/modules/cart/components/drawer/components/act_buttons.dart';
 
-class TabletDrawerBuilder extends StatefulWidget {
+class DrawerBuilder extends StatefulWidget {
   final Item model;
   final double auxWidth;
   final double auxHeight;
-  const TabletDrawerBuilder({
+  const DrawerBuilder({
     Key? key,
     required this.model,
     required this.auxWidth,
@@ -15,24 +15,24 @@ class TabletDrawerBuilder extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TabletDrawerBuilderState createState() => _TabletDrawerBuilderState();
+  _DrawerBuilderState createState() => _DrawerBuilderState();
 }
 
-class _TabletDrawerBuilderState extends State<TabletDrawerBuilder> {
+class _DrawerBuilderState extends State<DrawerBuilder> {
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.05,
+          height: MediaQuery.of(context).size.height * 0.06,
           width: widget.auxWidth * 0.9,
           child: ListTile(
             title: Text(
               widget.model.product.name.toString(),
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 22,
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w600,
               ),
@@ -40,7 +40,7 @@ class _TabletDrawerBuilderState extends State<TabletDrawerBuilder> {
             leading: Text(
               widget.model.quantidade.toString() + " x",
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 16,
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w600,
               ),
@@ -53,7 +53,7 @@ class _TabletDrawerBuilderState extends State<TabletDrawerBuilder> {
                     FormatMoney.doubleToMoney(
                         widget.model.product.price! * widget.model.quantidade),
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: 16,
                       fontFamily: 'Nunito',
                       fontWeight: FontWeight.w600,
                     ),
@@ -63,7 +63,7 @@ class _TabletDrawerBuilderState extends State<TabletDrawerBuilder> {
             ),
           ),
         ),
-        TabletActionButtons()
+        ActionButtons()
       ],
     );
   }

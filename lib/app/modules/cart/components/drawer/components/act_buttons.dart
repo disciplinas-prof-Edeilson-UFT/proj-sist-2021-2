@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 
-class DeskActionButtons extends StatelessWidget {
-  DeskActionButtons({
+class ActionButtons extends StatelessWidget {
+  ActionButtons({
     Key? key,
   }) : super(key: key);
 
