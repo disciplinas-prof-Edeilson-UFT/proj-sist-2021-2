@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/order/components/ListView/listView.dart';
+import 'package:pscomidas/app/modules/order/components/bodyOrder_page/body_order.dart';
 
 class TabletOrderPage extends StatefulWidget {
   const TabletOrderPage({Key? key}) : super(key: key);
@@ -11,6 +11,6 @@ class TabletOrderPage extends StatefulWidget {
 class _TabletOrderPageState extends State<TabletOrderPage> {
   @override
   Widget build(BuildContext context) {
-    return const ListViewOrder();
+    return const BodyOrder();
   }
 }

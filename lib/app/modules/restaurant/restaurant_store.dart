@@ -34,7 +34,7 @@ abstract class _RestaurantStoreBase with Store {
   }
 
   @action
-  void receiveRestaurantInfo(Restaurant info) async {
+  Future receiveRestaurantInfo(Restaurant info) async {
     restaurant = info;
     await getProducts('');
   }

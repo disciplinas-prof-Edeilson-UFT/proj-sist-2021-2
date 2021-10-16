@@ -31,6 +31,20 @@ mixin _$CartStore on _CartStoreBase, Store {
     });
   }
 
+  final _$_CartStoreBaseActionController =
+      ActionController(name: '_CartStoreBase');
+
+  @override
+  void addItem(Item item) {
+    final _$actionInfo = _$_CartStoreBaseActionController.startAction(
+        name: '_CartStoreBase.addItem');
+    try {
+      return super.addItem(item);
+    } finally {
+      _$_CartStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
