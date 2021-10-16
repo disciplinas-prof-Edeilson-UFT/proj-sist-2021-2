@@ -10,20 +10,18 @@ class RegisterRestaurant extends StatefulWidget {
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
-  /*var hintText = [
-    'CPF',
-    'Razão Social',
-    'Nome da loja',
-    'Telefone da fone',
-    'CEP',
-    'Cidade',
-    'Estado',
-    'Bairro',
-    'Endereço',
-    'Número',
-    'Complemento (Opcional)',
-    'Especialidade da loja',
-  ];*/
+  final _fields = {
+    'CPF': 'CPF',
+    'Razão Social': 'Razão social do seu negócio',
+    'Nome da loja': 'Nome da loja',
+    'Telefone da fone': 'Telefone da loja com DDD',
+    'CEP': 'CEP do seu negócio',
+    'Cidade': 'Cidade do seu negócio',
+    'Bairro': 'Bairro do seu negócio',
+    'Endereço': 'Logradouro do seu negócio',
+    'Número': 'Número do endereço',
+    'Complemento (Opcional)': 'Complemento do endereço',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -67,87 +65,38 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                   ),
                 ),
               ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'CNPJ',
-                  labelText: 'CNPJ',
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Razão Social',
-                  labelText: 'Razão social do seu negócio',
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Nome da loja',
-                  labelText: 'Nome da loja',
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Telefone da loja',
-                  labelText: 'Telefone da loja com DDD',
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'CEP',
-                  labelText: 'CEP do seu negócio',
-                ),
-              ),
-              Row(
-                children: [
-                  Flexible(
-                    flex: 2,
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Cidade',
-                        labelText: 'Cidade do seu negócio',
+              ..._fields.keys.map((e) {
+                if (e == 'Cidade') {
+                  return Row(
+                    children: [
+                      Flexible(
+                        flex: 2,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: e,
+                            hintText: _fields[e],
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Flexible(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Estado',
-                        labelText: 'UF',
+                      const VerticalDivider(),
+                      Flexible(
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            labelText: 'Estado',
+                            hintText: 'UF',
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
+                  );
+                }
+                return TextFormField(
+                  decoration: InputDecoration(
+                    labelText: e,
+                    hintText: _fields[e],
                   ),
-                ],
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Bairro',
-                  labelText: 'Bairro do seu negócio',
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Endereço',
-                  labelText: 'Logradouro do seu negócio',
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Número',
-                  labelText: 'Número do endereço',
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Complemento (Opcional)',
-                  labelText: 'Complemento de endereço',
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Especialidade da loja',
-                  labelText: 'Qual é a especialidade da sua loja?',
-                ),
-              ),
+                );
+              }).toList(),
             ],
           ),
         ),
