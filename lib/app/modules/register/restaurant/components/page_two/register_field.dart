@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/field_label_style.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 
 class RegisterField extends StatelessWidget {
   const RegisterField({

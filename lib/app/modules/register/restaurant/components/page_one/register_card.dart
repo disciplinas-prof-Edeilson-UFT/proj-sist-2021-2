@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/register/restaurant/register_restaurant.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_restaurant.dart';
 import 'register_formulary.dart';
 
 class RegisterCard extends StatelessWidget {

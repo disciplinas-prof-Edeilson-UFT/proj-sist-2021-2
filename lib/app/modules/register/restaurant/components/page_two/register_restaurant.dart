@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/register_field.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/field_label_style.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 
 enum SingingCharacter { plan1, plan2 }
 

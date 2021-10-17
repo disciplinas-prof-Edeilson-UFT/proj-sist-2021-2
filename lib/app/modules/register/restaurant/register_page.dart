@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'components/register_card.dart';
-import 'components/register_side_text.dart';
+import 'components/page_one/register_card.dart';
+import 'components/page_one/register_side_text.dart';
 import 'register_store.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
@@ -31,7 +31,8 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         child: pageResponsivity(MediaQuery.of(context).size.width),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("lib/app/modules/register/restaurant/assets/background.png"),
+            image: AssetImage(
+                "lib/app/modules/register/restaurant/assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -39,7 +40,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
     );
   }
 
-  Widget pageResponsivity (width) {
+  Widget pageResponsivity(width) {
     if (width > 850) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,7 +50,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
           RegisterCard(),
         ],
       );
-    } 
+    }
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
