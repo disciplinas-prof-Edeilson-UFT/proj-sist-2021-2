@@ -28,24 +28,39 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         title: const Center(child: LogoAppBar()),
       ),
       body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                RegisterSideText(),
-                RegisterCard(),
-              ],
-            ),
-          ],
-        ),
-        decoration: BoxDecoration(
+        child: pageResponsivity(MediaQuery.of(context).size.width),
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage("https://i.imgur.com/E4gjwlQ.png"),
+            image: AssetImage("lib/app/modules/register/restaurant/assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget pageResponsivity (width) {
+    if (width > 850) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const RegisterSideText(),
+          RegisterCard(),
+        ],
+      );
+    } 
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Column(
+            children: [
+              const RegisterSideText(),
+              RegisterCard(),
+            ],
+          ),
+        ],
       ),
     );
   }
