@@ -159,10 +159,7 @@ class UserAppBar extends StatelessWidget {
           "assets/images/user.png",
           width: screen.width * 0.02,
         ),
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const RegisterRestaurant()),
-        ),
+        onTap: () {},
       ),
     );
   }
