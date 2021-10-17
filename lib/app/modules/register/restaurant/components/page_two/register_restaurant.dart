@@ -15,16 +15,50 @@ class RegisterRestaurant extends StatefulWidget {
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
   final _fields = {
-    'CNPJ': 'CNPJ',
-    'Razão Social': 'Razão social do seu negócio',
-    'Nome da loja': 'Nome da loja',
-    'Telefone da loja': 'Telefone da loja com DDD',
-    'CEP': 'CEP do seu negócio',
-    'Cidade': 'Cidade do seu negócio',
-    'Bairro': 'Bairro do seu negócio',
-    'Endereço': 'Logradouro do seu negócio',
-    'Número': 'Número do endereço',
-    'Complemento (Opcional)': 'Complemento do endereço',
+    'CNPJ': {
+      'hintText': 'CNPJ',
+      'controller': TextEditingController(),
+    },
+    'Razão Social': {
+      'hintText': 'Razão social do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Nome da loja': {
+      'hintText': 'Nome da loja',
+      'controller': TextEditingController(),
+    },
+    'Telefone da loja': {
+      'hintText': 'Telefone da loja com DDD',
+      'controller': TextEditingController(),
+    },
+    'CEP': {
+      'hintText': 'CEP do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Cidade': {
+      'hintText': 'Cidade do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Bairro': {
+      'hintText': 'Bairro do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Endereço': {
+      'hintText': 'Logradouro do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Número': {
+      'hintText': 'Número do endereço',
+      'controller': TextEditingController(),
+    },
+    'Complemento (Opcional)': {
+      'hintText': 'Complemento do endereço',
+      'controller': TextEditingController(),
+    },
+    'Senha': {
+      'hintText': 'Senha para acesso à página da loja',
+      'controller': TextEditingController(),
+    },
   };
 
   final _categories = [
@@ -96,14 +130,18 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                           flex: 2,
                           child: RegisterField(
                             label: e,
-                            hintText: _fields[e] ?? '',
+                            hintText: _fields[e]?['hintText'] as String,
+                            controller: _fields[e]?['controller']
+                                as TextEditingController,
                           ),
                         ),
                         const VerticalDivider(),
-                        const Flexible(
+                        Flexible(
                           child: RegisterField(
                             label: 'Estado',
                             hintText: 'UF',
+                            controller: _fields[e]?['controller']
+                                as TextEditingController,
                           ),
                         ),
                       ],
@@ -111,7 +149,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                   }
                   return RegisterField(
                     label: e,
-                    hintText: _fields[e] ?? '',
+                    hintText: _fields[e]?['hintText'] as String,
+                    controller:
+                        _fields[e]?['controller'] as TextEditingController,
                   );
                 },
               ).toList(),

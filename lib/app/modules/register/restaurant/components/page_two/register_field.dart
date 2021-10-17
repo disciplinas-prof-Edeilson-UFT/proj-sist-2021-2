@@ -7,10 +7,12 @@ class RegisterField extends StatelessWidget {
     Key? key,
     required this.hintText,
     required this.label,
+    required this.controller,
   }) : super(key: key);
 
   final String hintText;
   final String label;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,16 @@ class RegisterField extends StatelessWidget {
           ),
           TextFormField(
             cursorColor: secondaryCollor,
+            controller: controller,
+            validator: (value) {
+              if (value!.isEmpty || label != 'Complemento (Opcional)') {
+                return "Este campo não pode ficar vazio";
+              }
+              if (value.isEmpty || value.length < 6 && label == 'Senha') {
+                return 'Senha muito curta.';
+              }
+            },
+            obscureText: label == 'Senha',
             decoration: InputDecoration(
               hintText: hintText,
               hintStyle: fieldLabelStyle(),
