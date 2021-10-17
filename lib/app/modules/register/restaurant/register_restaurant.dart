@@ -67,40 +67,94 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                   ),
                 ),
               ),
-              ..._fields.keys.map((e) {
-                if (e == 'Cidade') {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Row(
-                      children: [
-                        Flexible(
-                          flex: 2,
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              labelText: e,
-                              hintText: _fields[e],
-                              border: const OutlineInputBorder(),
-                              focusColor: secondaryCollor,
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: secondaryCollor,
+              ..._fields.keys.map(
+                (e) {
+                  if (e == 'Cidade') {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Row(
+                        children: [
+                          Flexible(
+                            flex: 2,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  e,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: _fields[e],
+                                    border: const OutlineInputBorder(),
+                                    focusColor: secondaryCollor,
+                                    focusedBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: secondaryCollor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                        const VerticalDivider(),
-                        Flexible(
-                          child: TextFormField(
-                            decoration: const InputDecoration(
-                              labelText: 'Estado',
-                              hintText: 'UF',
-                              border: OutlineInputBorder(),
-                              focusColor: secondaryCollor,
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: secondaryCollor,
+                          const VerticalDivider(),
+                          Flexible(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Estado',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
+                                TextFormField(
+                                  decoration: const InputDecoration(
+                                    hintText: 'UF',
+                                    border: OutlineInputBorder(),
+                                    focusColor: secondaryCollor,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: secondaryCollor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          e,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            hintText: _fields[e],
+                            border: const OutlineInputBorder(),
+                            focusColor: secondaryCollor,
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: secondaryCollor,
                               ),
                             ),
                           ),
@@ -108,73 +162,61 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       ],
                     ),
                   );
-                }
-                return Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      labelText: e,
-                      hintText: _fields[e],
-                      suffixIcon: e == 'CNPJ' ? const Icon(Icons.badge) : null,
-                      border: const OutlineInputBorder(),
-                      focusColor: secondaryCollor,
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: secondaryCollor,
+                },
+              ).toList(),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 50.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Especialidade da loja',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                  ),
-                );
-              }).toList(),
-              const Padding(
-                padding: EdgeInsets.only(top: 15.0, right: 300),
-                child: Text(
-                  'Especialidade da loja',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Nunito',
-                    fontWeight: FontWeight.bold,
+                      DropdownButton(
+                        value: selectedValue,
+                        icon: const Icon(Icons.expand_more),
+                        elevation: 2,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedValue = newValue!;
+                          });
+                        },
+                        items: [
+                          'Açaí',
+                          'Lanches',
+                          'Padarias',
+                          'Pizza',
+                          'Saldável',
+                          'Bolos e Doces',
+                          'Bebidas',
+                          'Vegetariana',
+                          'Italiana',
+                          'Sorvetes',
+                          'Asiática',
+                        ].map<DropdownMenuItem<String>>((value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(
+                                color: Colors.black54,
+                                fontFamily: 'Nunito',
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 300, bottom: 15.0),
-                child: DropdownButton(
-                  value: selectedValue,
-                  icon: const Icon(Icons.expand_more),
-                  elevation: 2,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      selectedValue = newValue!;
-                    });
-                  },
-                  items: [
-                    'Açaí',
-                    'Lanches',
-                    'Padarias',
-                    'Pizza',
-                    'Saldável',
-                    'Bolos e Doces',
-                    'Bebidas',
-                    'Vegetariana',
-                    'Italiana',
-                    'Sorvetes',
-                    'Asiática',
-                  ].map<DropdownMenuItem<String>>((value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                          color: Colors.black54,
-                          fontFamily: 'Nunito',
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              )
             ],
           ),
         ),
