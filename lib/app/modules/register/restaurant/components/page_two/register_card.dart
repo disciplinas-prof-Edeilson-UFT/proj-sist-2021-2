@@ -15,6 +15,7 @@ class RegisterRestaurant extends StatefulWidget {
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
+  final _formKey = GlobalKey<FormState>();
   final _fields = RegisterField.fields;
   final _categories = [
     'Açaí',
@@ -43,8 +44,18 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
         backgroundColor: primaryCollor,
         automaticallyImplyLeading: false,
         elevation: 2,
-        title: const Center(
-          child: LogoAppBar(),
+        title: Row(
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_back,
+                color: secondaryCollor,
+                size: 30,
+              ),
+            ),
+            const LogoAppBar(),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -196,6 +207,32 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         },
                       ),
                     ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 50.0,
+                ),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    child: const Text(
+                      'Confirmar cadastro',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(4),
+                      minimumSize:
+                          MaterialStateProperty.all(const Size(210, 48)),
+                      backgroundColor:
+                          MaterialStateProperty.all(secondaryCollor),
+                    ),
+                    onPressed: () {},
                   ),
                 ),
               ),
