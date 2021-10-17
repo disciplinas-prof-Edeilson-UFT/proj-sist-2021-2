@@ -56,7 +56,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 16.0),
                           child: Text(
-                            'Cadastre-se agora para expandir seu negócio com o Psfood',
+                            'Cadastre-se agora para expandir seu negócio com o PSfood',
                             textAlign: TextAlign.left,
                             style: const TextStyle(
                               color: Colors.grey,
