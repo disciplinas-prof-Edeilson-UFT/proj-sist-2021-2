@@ -11,7 +11,7 @@ class RegisterRestaurant extends StatefulWidget {
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
   final _fields = {
-    'CPF': 'CPF',
+    'CNPJ': 'CNPJ',
     'Razão Social': 'Razão social do seu negócio',
     'Nome da loja': 'Nome da loja',
     'Telefone da fone': 'Telefone da loja com DDD',
@@ -26,6 +26,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    var selectedValue = 'Açaí';
 
     return Scaffold(
       appBar: AppBar(
@@ -37,10 +38,11 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
           child: LogoAppBar(),
         ),
       ),
-      body: Container(
-        width: size.width,
-        color: Colors.white,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.33),
+          width: size.width,
+          color: Colors.white,
           child: Column(
             children: [
               const Padding(
@@ -48,7 +50,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                 child: Text(
                   'Informações da loja',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Nunito',
                   ),
@@ -67,36 +69,112 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
               ),
               ..._fields.keys.map((e) {
                 if (e == 'Cidade') {
-                  return Row(
-                    children: [
-                      Flexible(
-                        flex: 2,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: e,
-                            hintText: _fields[e],
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          flex: 2,
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: e,
+                              hintText: _fields[e],
+                              border: const OutlineInputBorder(),
+                              focusColor: secondaryCollor,
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: secondaryCollor,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      const VerticalDivider(),
-                      Flexible(
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Estado',
-                            hintText: 'UF',
+                        const VerticalDivider(),
+                        Flexible(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              labelText: 'Estado',
+                              hintText: 'UF',
+                              border: OutlineInputBorder(),
+                              focusColor: secondaryCollor,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: secondaryCollor,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 }
-                return TextFormField(
-                  decoration: InputDecoration(
-                    labelText: e,
-                    hintText: _fields[e],
+                return Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: e,
+                      hintText: _fields[e],
+                      suffixIcon: e == 'CNPJ' ? const Icon(Icons.badge) : null,
+                      border: const OutlineInputBorder(),
+                      focusColor: secondaryCollor,
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: secondaryCollor,
+                        ),
+                      ),
+                    ),
                   ),
                 );
               }).toList(),
+              const Padding(
+                padding: EdgeInsets.only(top: 15.0, right: 300),
+                child: Text(
+                  'Especialidade da loja',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 300, bottom: 15.0),
+                child: DropdownButton(
+                  value: selectedValue,
+                  icon: const Icon(Icons.expand_more),
+                  elevation: 2,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedValue = newValue!;
+                    });
+                  },
+                  items: [
+                    'Açaí',
+                    'Lanches',
+                    'Padarias',
+                    'Pizza',
+                    'Saldável',
+                    'Bolos e Doces',
+                    'Bebidas',
+                    'Vegetariana',
+                    'Italiana',
+                    'Sorvetes',
+                    'Asiática',
+                  ].map<DropdownMenuItem<String>>((value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontFamily: 'Nunito',
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              )
             ],
           ),
         ),
