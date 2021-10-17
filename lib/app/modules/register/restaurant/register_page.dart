@@ -6,7 +6,9 @@ import 'register_store.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
   final String title;
-  const RestaurantRegisterPage({Key? key, this.title = 'RestaurantRegisterPage'}) : super(key: key);
+  const RestaurantRegisterPage(
+      {Key? key, this.title = 'RestaurantRegisterPage'})
+      : super(key: key);
   @override
   RestaurantRegisterPageState createState() => RestaurantRegisterPageState();
 }
@@ -24,17 +26,25 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         elevation: 2,
         title: const Center(child: LogoAppBar()),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text('conquiste mais clientes etc'),
-              RegisterCard(),
-            ],
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text('conquiste mais clientes etc'),
+                RegisterCard(),
+              ],
+            ),
+          ],
+        ),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage("https://i.imgur.com/E4gjwlQ.png"),
+            fit: BoxFit.cover,
           ),
-        ],
+        ),
       ),
     );
   }
