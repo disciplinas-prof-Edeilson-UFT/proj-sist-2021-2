@@ -33,7 +33,32 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text('conquiste mais clientes etc'),
+                Column(
+                  children: [
+                    Text(
+                      'Conquiste mais clientes em Palmas',
+                      softWrap: true,
+                      maxLines: 3,
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Nunito',
+                      ),
+                    ),
+                    Text(
+                      'Cadastre-se agora para expandir seu negócio com o Psfood',
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 20,
+                        fontFamily: 'Nunito',
+                      ),
+                    ),
+                  ],
+                ),
                 RegisterCard(),
               ],
             ),
