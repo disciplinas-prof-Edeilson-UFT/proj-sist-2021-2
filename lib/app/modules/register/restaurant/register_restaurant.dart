@@ -4,6 +4,8 @@ import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/register_field.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/field_label_style.dart';
 
+enum SingingCharacter { plan1, plan2 }
+
 class RegisterRestaurant extends StatefulWidget {
   const RegisterRestaurant({Key? key}) : super(key: key);
 
@@ -16,7 +18,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
     'CNPJ': 'CNPJ',
     'Razão Social': 'Razão social do seu negócio',
     'Nome da loja': 'Nome da loja',
-    'Telefone da fone': 'Telefone da loja com DDD',
+    'Telefone da loja': 'Telefone da loja com DDD',
     'CEP': 'CEP do seu negócio',
     'Cidade': 'Cidade do seu negócio',
     'Bairro': 'Bairro do seu negócio',
@@ -38,6 +40,8 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
     'Sorvetes',
     'Asiática',
   ];
+
+  SingingCharacter? _character = SingingCharacter.plan1;
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +116,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                 },
               ).toList(),
               Padding(
-                padding: const EdgeInsets.only(top: 15.0, bottom: 50.0),
+                padding: const EdgeInsets.only(top: 15.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Column(
@@ -124,8 +128,14 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       ),
                       DropdownButton(
                         value: selectedValue,
+                        style: fieldLabelStyle(),
                         icon: const Icon(Icons.expand_more),
+                        iconEnabledColor: secondaryCollor,
                         elevation: 2,
+                        underline: Container(
+                          color: secondaryCollor,
+                          height: 2.0,
+                        ),
                         onChanged: (String? newValue) {
                           setState(() {
                             selectedValue = newValue!;
@@ -143,6 +153,52 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             ),
                           );
                         }).toList(),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 15.0,
+                  bottom: 50.0,
+                ),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Qual plano você deseja contratar?',
+                        style: fieldLabelStyle(),
+                      ),
+                      RadioListTile(
+                        title: Text(
+                          'Plano Básico',
+                          style: fieldLabelStyle(),
+                        ),
+                        value: SingingCharacter.plan1,
+                        groupValue: _character,
+                        activeColor: secondaryCollor,
+                        onChanged: (SingingCharacter? value) {
+                          setState(() {
+                            _character = value;
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: Text(
+                          'Plano Entrega',
+                          style: fieldLabelStyle(),
+                        ),
+                        value: SingingCharacter.plan2,
+                        groupValue: _character,
+                        activeColor: secondaryCollor,
+                        onChanged: (SingingCharacter? value) {
+                          setState(() {
+                            _character = value;
+                          });
+                        },
                       ),
                     ],
                   ),

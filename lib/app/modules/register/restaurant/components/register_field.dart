@@ -24,8 +24,13 @@ class RegisterField extends StatelessWidget {
             style: fieldLabelStyle(),
           ),
           TextFormField(
+            cursorColor: secondaryCollor,
             decoration: InputDecoration(
               hintText: hintText,
+              hintStyle: fieldLabelStyle(),
+              helperText: label == 'Nome da loja'
+                  ? 'Esse é o nome que aparecerá no aplicativo'
+                  : null,
               border: const OutlineInputBorder(),
               focusColor: secondaryCollor,
               focusedBorder: const OutlineInputBorder(
