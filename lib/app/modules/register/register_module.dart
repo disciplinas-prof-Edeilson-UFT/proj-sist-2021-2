@@ -1,4 +1,5 @@
 import 'package:pscomidas/app/modules/register/register_page.dart';
+import 'package:pscomidas/app/modules/register/restaurant/register_module.dart';
 import 'package:pscomidas/app/modules/register/register_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -11,5 +12,6 @@ class RegisterModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, args) => const RegisterPage()),
+    ModuleRoute('/restaurant', module: RestaurantRegisterModule()),
   ];
 }
