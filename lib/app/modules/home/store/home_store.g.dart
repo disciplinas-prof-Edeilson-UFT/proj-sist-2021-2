@@ -54,6 +54,29 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$restaurantsAtom = Atom(name: 'HomeStoreBase.restaurants');
+
+  @override
+  List<Restaurant> get restaurants {
+    _$restaurantsAtom.reportRead();
+    return super.restaurants;
+  }
+
+  @override
+  set restaurants(List<Restaurant> value) {
+    _$restaurantsAtom.reportWrite(value, super.restaurants, () {
+      super.restaurants = value;
+    });
+  }
+
+  final _$getRestaurantsAsyncAction =
+      AsyncAction('HomeStoreBase.getRestaurants');
+
+  @override
+  Future<List<Restaurant>> getRestaurants() {
+    return _$getRestaurantsAsyncAction.run(() => super.getRestaurants());
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
 
@@ -84,7 +107,8 @@ mixin _$HomeStore on HomeStoreBase, Store {
     return '''
 counter: ${counter},
 selectedFilter: ${selectedFilter},
-selectedCategory: ${selectedCategory}
+selectedCategory: ${selectedCategory},
+restaurants: ${restaurants}
     ''';
   }
 }
