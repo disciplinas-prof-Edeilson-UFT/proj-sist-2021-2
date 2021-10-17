@@ -1,59 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 
-class RegisterField extends StatelessWidget {
-  const RegisterField({
-    Key? key,
-    required this.hintText,
-    required this.label,
-    required this.controller,
-  }) : super(key: key);
-
-  final String hintText;
-  final String label;
-  final TextEditingController? controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: fieldLabelStyle(),
-          ),
-          TextFormField(
-            cursorColor: secondaryCollor,
-            controller: controller,
-            validator: (value) {
-              if (value!.isEmpty || label != 'Complemento (Opcional)') {
-                return "Este campo não pode ficar vazio";
-              }
-              if (value.isEmpty || value.length < 6 && label == 'Senha') {
-                return 'Senha muito curta.';
-              }
-            },
-            obscureText: label == 'Senha',
-            decoration: InputDecoration(
-              hintText: hintText,
-              hintStyle: fieldLabelStyle(),
-              helperText: label == 'Nome da loja'
-                  ? 'Esse é o nome que aparecerá no aplicativo'
-                  : null,
-              border: const OutlineInputBorder(),
-              focusColor: secondaryCollor,
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: secondaryCollor,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+class RegisterField {
+  static final fields = {
+    'CNPJ': {
+      'hintText': 'CNPJ',
+      'controller': TextEditingController(),
+    },
+    'Razão Social': {
+      'hintText': 'Razão social do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Nome da loja': {
+      'hintText': 'Nome da loja',
+      'controller': TextEditingController(),
+    },
+    'Telefone da loja': {
+      'hintText': 'Telefone da loja com DDD',
+      'controller': TextEditingController(),
+    },
+    'CEP': {
+      'hintText': 'CEP do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Cidade': {
+      'hintText': 'Cidade do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Bairro': {
+      'hintText': 'Bairro do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Endereço': {
+      'hintText': 'Logradouro do seu negócio',
+      'controller': TextEditingController(),
+    },
+    'Número': {
+      'hintText': 'Número do endereço',
+      'controller': TextEditingController(),
+    },
+    'Complemento (Opcional)': {
+      'hintText': 'Complemento do endereço',
+      'controller': TextEditingController(),
+    },
+    'Senha': {
+      'hintText': 'Senha para acesso à página da loja',
+      'controller': TextEditingController(),
+    },
+  };
 }

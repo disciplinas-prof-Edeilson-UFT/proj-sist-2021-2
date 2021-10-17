@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 
 enum SingingCharacter { plan1, plan2 }
@@ -14,53 +15,7 @@ class RegisterRestaurant extends StatefulWidget {
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
-  final _fields = {
-    'CNPJ': {
-      'hintText': 'CNPJ',
-      'controller': TextEditingController(),
-    },
-    'Razão Social': {
-      'hintText': 'Razão social do seu negócio',
-      'controller': TextEditingController(),
-    },
-    'Nome da loja': {
-      'hintText': 'Nome da loja',
-      'controller': TextEditingController(),
-    },
-    'Telefone da loja': {
-      'hintText': 'Telefone da loja com DDD',
-      'controller': TextEditingController(),
-    },
-    'CEP': {
-      'hintText': 'CEP do seu negócio',
-      'controller': TextEditingController(),
-    },
-    'Cidade': {
-      'hintText': 'Cidade do seu negócio',
-      'controller': TextEditingController(),
-    },
-    'Bairro': {
-      'hintText': 'Bairro do seu negócio',
-      'controller': TextEditingController(),
-    },
-    'Endereço': {
-      'hintText': 'Logradouro do seu negócio',
-      'controller': TextEditingController(),
-    },
-    'Número': {
-      'hintText': 'Número do endereço',
-      'controller': TextEditingController(),
-    },
-    'Complemento (Opcional)': {
-      'hintText': 'Complemento do endereço',
-      'controller': TextEditingController(),
-    },
-    'Senha': {
-      'hintText': 'Senha para acesso à página da loja',
-      'controller': TextEditingController(),
-    },
-  };
-
+  final _fields = RegisterField.fields;
   final _categories = [
     'Açaí',
     'Lanches',
@@ -128,7 +83,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       children: [
                         Flexible(
                           flex: 2,
-                          child: RegisterField(
+                          child: RegisterFormulary(
                             label: e,
                             hintText: _fields[e]?['hintText'] as String,
                             controller: _fields[e]?['controller']
@@ -137,7 +92,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         ),
                         const VerticalDivider(),
                         Flexible(
-                          child: RegisterField(
+                          child: RegisterFormulary(
                             label: 'Estado',
                             hintText: 'UF',
                             controller: _fields[e]?['controller']
@@ -147,7 +102,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       ],
                     );
                   }
-                  return RegisterField(
+                  return RegisterFormulary(
                     label: e,
                     hintText: _fields[e]?['hintText'] as String,
                     controller:
