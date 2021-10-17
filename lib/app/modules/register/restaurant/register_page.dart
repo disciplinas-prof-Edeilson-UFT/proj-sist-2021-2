@@ -34,7 +34,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  width: 325.0,
+                  width: 400,
                   height: 530,
                   child: Column(
                     children: [
@@ -46,7 +46,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.grey[800],
-                          fontSize: 50,
+                          fontSize: 60,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Nunito',
                         ),
