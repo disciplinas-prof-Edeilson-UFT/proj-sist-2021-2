@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/register_field.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/field_label_style.dart';
 
 class RegisterRestaurant extends StatefulWidget {
   const RegisterRestaurant({Key? key}) : super(key: key);
@@ -22,6 +24,20 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
     'Número': 'Número do endereço',
     'Complemento (Opcional)': 'Complemento do endereço',
   };
+
+  final _categories = [
+    'Açaí',
+    'Lanches',
+    'Padarias',
+    'Pizza',
+    'Saldável',
+    'Bolos e Doces',
+    'Bebidas',
+    'Vegetariana',
+    'Italiana',
+    'Sorvetes',
+    'Asiática',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -70,97 +86,28 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
               ..._fields.keys.map(
                 (e) {
                   if (e == 'Cidade') {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
-                      child: Row(
-                        children: [
-                          Flexible(
-                            flex: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  e,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Nunito',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                TextFormField(
-                                  decoration: InputDecoration(
-                                    hintText: _fields[e],
-                                    border: const OutlineInputBorder(),
-                                    focusColor: secondaryCollor,
-                                    focusedBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: secondaryCollor,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const VerticalDivider(),
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Estado',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Nunito',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                TextFormField(
-                                  decoration: const InputDecoration(
-                                    hintText: 'UF',
-                                    border: OutlineInputBorder(),
-                                    focusColor: secondaryCollor,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: secondaryCollor,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    return Row(
                       children: [
-                        Text(
-                          e,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'Nunito',
-                            fontWeight: FontWeight.bold,
+                        Flexible(
+                          flex: 2,
+                          child: RegisterField(
+                            label: e,
+                            hintText: _fields[e] ?? '',
                           ),
                         ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            hintText: _fields[e],
-                            border: const OutlineInputBorder(),
-                            focusColor: secondaryCollor,
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: secondaryCollor,
-                              ),
-                            ),
+                        const VerticalDivider(),
+                        const Flexible(
+                          child: RegisterField(
+                            label: 'Estado',
+                            hintText: 'UF',
                           ),
                         ),
                       ],
-                    ),
+                    );
+                  }
+                  return RegisterField(
+                    label: e,
+                    hintText: _fields[e] ?? '',
                   );
                 },
               ).toList(),
@@ -171,13 +118,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Especialidade da loja',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Nunito',
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: fieldLabelStyle(),
                       ),
                       DropdownButton(
                         value: selectedValue,
@@ -188,19 +131,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             selectedValue = newValue!;
                           });
                         },
-                        items: [
-                          'Açaí',
-                          'Lanches',
-                          'Padarias',
-                          'Pizza',
-                          'Saldável',
-                          'Bolos e Doces',
-                          'Bebidas',
-                          'Vegetariana',
-                          'Italiana',
-                          'Sorvetes',
-                          'Asiática',
-                        ].map<DropdownMenuItem<String>>((value) {
+                        items: _categories.map((value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(
