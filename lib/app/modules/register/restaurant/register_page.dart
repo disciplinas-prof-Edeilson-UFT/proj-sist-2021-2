@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'components/register_card.dart';
+import 'components/register_side_text.dart';
 import 'register_store.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
@@ -33,42 +34,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 60.0),
-                  child: SizedBox(
-                    width: 400,
-                    height: 530,
-                    child: Column(
-                      children: [
-                        Text(
-                          'Conquiste mais clientes em Palmas',
-                          softWrap: true,
-                          maxLines: 3,
-                          textAlign: TextAlign.left,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Colors.grey[800],
-                            fontSize: 60,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Nunito',
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
-                          child: Text(
-                            'Cadastre-se agora para expandir seu negócio com o PSfood',
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 20,
-                              fontFamily: 'Nunito',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                RegisterSideText(),
                 RegisterCard(),
               ],
             ),
