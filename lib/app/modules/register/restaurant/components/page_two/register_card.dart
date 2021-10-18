@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
@@ -47,7 +48,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
         title: Row(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Modular.to.navigate('page1');
+              },
               icon: const Icon(
                 Icons.arrow_back,
                 color: secondaryCollor,

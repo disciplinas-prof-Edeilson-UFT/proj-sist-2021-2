@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_card.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'register_formulary.dart';
 
 class RegisterCard extends StatelessWidget {
@@ -80,13 +80,7 @@ class RegisterCard extends StatelessWidget {
                       print(controller['name']!.text);
                       print(controller['phone']!.text);
                       print(controller['email']!.text);
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const RegisterRestaurant(),
-                        ),
-                      );
+                      Modular.to.navigate('page2');
                     }
                   },
                   child: const Text(

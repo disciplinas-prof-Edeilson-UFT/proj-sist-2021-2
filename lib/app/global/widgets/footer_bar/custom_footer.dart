@@ -25,7 +25,7 @@ class _CustomFooterState extends State<CustomFooter> {
     'iFood Empresas'
   ];
   final List<String> navigator = [
-    'register/restaurant',
+    'register/restaurant/page1',
     '',
     '',
     ''
