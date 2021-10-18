@@ -46,11 +46,11 @@ mixin _$CartStore on _CartStoreBase, Store {
   }
 
   @override
-  void removeItem(String iditemremovido, Item remove) {
+  void removeItem(String iditemremovido) {
     final _$actionInfo = _$_CartStoreBaseActionController.startAction(
         name: '_CartStoreBase.removeItem');
     try {
-      return super.removeItem(iditemremovido, remove);
+      return super.removeItem(iditemremovido);
     } finally {
       _$_CartStoreBaseActionController.endAction(_$actionInfo);
     }

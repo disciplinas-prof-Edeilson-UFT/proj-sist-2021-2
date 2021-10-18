@@ -69,9 +69,7 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextButton(
-              onPressed: () {
-                store.removeItem(widget.model.itemid, widget.model);
-              },
+              onPressed: () {},
               child: const Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
@@ -86,7 +84,9 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                store.removeItem(widget.model.itemid);
+              },
               child: const Align(
                 alignment: Alignment.bottomRight,
                 child: Text(

@@ -31,9 +31,9 @@ abstract class _CartStoreBase with Store {
   }
 
   @action
-  void removeItem(String iditemremovido, Item remove) {
-    itens.removeWhere((iditemremodivo) {
-      return remove.itemid == iditemremovido;
+  void removeItem(String iditemremovido) {
+    itens.removeWhere((element) {
+      return element.itemid == iditemremovido;
     });
   }
 
