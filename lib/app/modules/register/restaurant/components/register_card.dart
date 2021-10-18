@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pscomidas/app/modules/register/restaurant/store/models/form_error_store.dart';
 import 'register_formulary.dart';
 
 class RegisterCard extends StatelessWidget {
+  final FormErrorState _formErrorState = FormErrorState();
   RegisterCard({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
 
@@ -74,26 +77,29 @@ class RegisterCard extends StatelessWidget {
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
               Align(
-                alignment: Alignment.bottomRight,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    splashFactory: NoSplash.splashFactory,
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith(_getButtonColor),
-                    minimumSize: MaterialStateProperty.all(const Size(210, 48)),
-                  ),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _addOwner();
-                    }
-                    print("clicou");
-                  },
-                  child: const Text(
-                    'Começar o cadastro',
-                    style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
-                  ),
-                ),
-              ),
+                  alignment: Alignment.bottomRight,
+                  child: Observer(
+                    builder: (_) {
+                      return ElevatedButton(
+                        style: ButtonStyle(
+                          splashFactory: NoSplash.splashFactory,
+                          backgroundColor: MaterialStateProperty.resolveWith(
+                              _getButtonColor),
+                          minimumSize:
+                              MaterialStateProperty.all(const Size(210, 48)),
+                        ),
+                        onPressed: _formErrorState.isValid
+                            ? () {
+                                _addOwner();
+                              }
+                            : null,
+                        child: const Text(
+                          'Começar o cadastro',
+                          style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
+                        ),
+                      );
+                    },
+                  )),
             ],
           ),
         ),
