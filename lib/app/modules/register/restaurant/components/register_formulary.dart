@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:pscomidas/app/modules/register/restaurant/store/models/form_error_store.dart';
 import 'package:pscomidas/app/modules/register/restaurant/store/models/register_store.dart';
 
 class Formulary extends StatelessWidget {
@@ -16,8 +15,7 @@ class Formulary extends StatelessWidget {
   final _phoneFormat = MaskTextInputFormatter(
       mask: '(##) #####-####', filter: {"#": RegExp(r'[0-9]')});
 
-  final RegisterStore _registerStore = RegisterStore();
-  final FormErrorState _formErrorState = FormErrorState();
+  final _registerStore = RegisterStore();
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +31,14 @@ class Formulary extends StatelessWidget {
                 onChanged: _registerStore.setName,
                 controller: controller['name'],
                 textCapitalization: TextCapitalization.words,
-                validator: (_) {
-                  _formErrorState.validateName;
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Este campo não pode ficar vazio";
+                  }
+                  if (value.trim().split(' ').length < 2) {
+                    return "Precisa conter pelo menos dois nomes";
+                  }
+                  return null;
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -55,8 +59,14 @@ class Formulary extends StatelessWidget {
               return TextFormField(
                 onChanged: _registerStore.setEmail,
                 controller: controller['email'],
-                validator: (_) {
-                  _formErrorState.validateEmail;
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Este campo não pode ficar vazio";
+                  }
+                  if (!value.contains('@') || !value.contains('.com')) {
+                    return "Digite um email válido";
+                  }
+                  return null;
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -78,8 +88,14 @@ class Formulary extends StatelessWidget {
                 onChanged: _registerStore.setPhone,
                 controller: controller['phone'],
                 inputFormatters: [_phoneFormat],
-                validator: (_) {
-                  _formErrorState.validatePhone;
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Este campo não pode ficar vazio";
+                  }
+                  if (value.length <= 14) {
+                    return "Digite um número de telefone válido";
+                  }
+                  return null;
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),

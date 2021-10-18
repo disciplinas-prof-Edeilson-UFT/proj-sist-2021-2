@@ -1,5 +1,4 @@
 import 'package:mobx/mobx.dart';
-import 'package:pscomidas/app/modules/register/restaurant/store/models/form_error_store.dart';
 
 part 'register_store.g.dart';
 

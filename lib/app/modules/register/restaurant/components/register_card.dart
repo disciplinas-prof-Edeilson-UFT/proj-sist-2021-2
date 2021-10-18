@@ -2,11 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pscomidas/app/modules/register/restaurant/store/models/form_error_store.dart';
+
 import 'register_formulary.dart';
 
 class RegisterCard extends StatelessWidget {
-  final FormErrorState _formErrorState = FormErrorState();
   RegisterCard({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
 
@@ -88,11 +87,11 @@ class RegisterCard extends StatelessWidget {
                           minimumSize:
                               MaterialStateProperty.all(const Size(210, 48)),
                         ),
-                        onPressed: _formErrorState.isValid
-                            ? () {
-                                _addOwner();
-                              }
-                            : null,
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _addOwner();
+                          }
+                        },
                         child: const Text(
                           'Começar o cadastro',
                           style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
