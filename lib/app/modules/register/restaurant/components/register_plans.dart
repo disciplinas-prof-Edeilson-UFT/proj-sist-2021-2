@@ -8,21 +8,7 @@ class RegisterPlans extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
-        child: SingleChildScrollView(
-          controller: ScrollController(initialScrollOffset: 0.0),
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Card(
-                  image: "assets/images/cards/whitebackground.png",
-                  colorBox: Colors.white),
-              Card(
-                  image: "assets/images/cards/redbackground.png",
-                  colorBox: Colors.red.shade900),
-            ],
-          ),
-        ),
+        child: pagePlansResponsivity(MediaQuery.of(context).size.width),
       ),
     );
   }
@@ -73,4 +59,46 @@ class _CardState extends State<Card> {
       ),
     );
   }
+}
+
+Widget pagePlansResponsivity(width) {
+  if (width > 850) {
+    return SingleChildScrollView(
+      controller: ScrollController(initialScrollOffset: 0.0),
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 200,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Card(
+                image: "assets/images/cards/whitebackground.png",
+                colorBox: Colors.white),
+            Card(
+                image: "assets/images/cards/redbackground.png",
+                colorBox: Colors.red.shade900),
+          ],
+        ),
+      ),
+    );
+  }
+  return SingleChildScrollView(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Column(
+          children: [
+            const Card(
+                image: "assets/images/cards/whitebackground.png",
+                colorBox: Colors.white),
+            Card(
+                image: "assets/images/cards/redbackground.png",
+                colorBox: Colors.red.shade900),
+          ],
+        ),
+      ],
+    ),
+  );
 }
