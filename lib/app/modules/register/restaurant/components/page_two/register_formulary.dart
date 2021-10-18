@@ -1,4 +1,6 @@
+import 'package:cpf_cnpj_validator/cnpj_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 
@@ -8,11 +10,13 @@ class RegisterFormulary extends StatelessWidget {
     required this.hintText,
     required this.label,
     required this.controller,
+    this.formatter,
   }) : super(key: key);
 
   final String hintText;
   final String label;
   final TextEditingController? controller;
+  final TextInputFormatter? formatter;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +30,35 @@ class RegisterFormulary extends StatelessWidget {
             style: fieldLabelStyle(),
           ),
           TextFormField(
+            inputFormatters: formatter != null ? [formatter!] : null,
             cursorColor: secondaryCollor,
             controller: controller,
             validator: (value) {
-              if (value!.isEmpty || label != 'Complemento (Opcional)') {
+
+              if (value == null ||value.isEmpty && label != 'Complemento (Opcional)') {
                 return "Este campo não pode ficar vazio";
               }
-              if (value.isEmpty || value.length < 6 && label == 'Senha') {
-                return 'Senha muito curta.';
+              // PROPOSIÇÃO DE IMPLEMENTAÇÃO DE VALIDAÇÃO UTILIZANDO SWITCH CASE.
+              // em caso de recusa, recomendo resetar o repositório ao commit anterior.
+              switch (label) {
+                case 'Complemento (Opcional)':
+                  return null;
+
+                case 'Senha':
+                  if (value.length < 6) {
+                    return "Senha muito curta.";
+                  }
+                  return null;
+                
+                case 'CNPJ':
+                  if (!CNPJValidator.isValid(value)) {//Exemplo de cnpj válido -> 12.175.094/0001-19
+                    return "Informe um CNPJ válido";
+                  }
+                  return null;
+
+                default:
+                  return null;
+
               }
             },
             obscureText: label == 'Senha',
