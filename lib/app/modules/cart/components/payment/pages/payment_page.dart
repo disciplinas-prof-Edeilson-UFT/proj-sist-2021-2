@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/cart/components/payment/components/card_select.dart';
+import 'package:pscomidas/app/modules/cart/components/payment/components/payment_method.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/components/endereco_entrega.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/components/prev_entrega.dart';
 
@@ -68,7 +68,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       Divider(
                         color: Colors.red,
                       ),
-                      CardSelect(),
+                      PaymentMethod(),
                     ],
                   ),
                 ),
