@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/models/entities/new_card.dart';
 import 'package:pscomidas/app/global/models/entities/order.dart';
@@ -13,17 +14,9 @@ abstract class _CartStoreBase with Store {
   @observable
   List<Item> itens = [];
 
-  List<NewCard> card = [
-    NewCard(
-      brand: 'Master',
-      cpf: '123.456.789.10',
-      fourLastNumbers: '5567.6875.2978.4587',
-      holder: 'Fulano de Paula',
-      nickname: 'Cartão Fulano',
-      valid: '08/26',
-      cvv: '879',
-    ),
-  ];
+  List<NewCard> card = [];
+
+  List<DeliveryAt> address = [];
 
   @action
   void addItem(Item item) {

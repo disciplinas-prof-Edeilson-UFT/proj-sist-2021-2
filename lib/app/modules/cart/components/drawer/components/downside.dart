@@ -6,10 +6,12 @@ import 'package:pscomidas/app/modules/cart/components/drawer/components/order_re
 class DraewDownside extends StatelessWidget {
   final double auxWidth;
   final String buttonTxt;
+  final String route;
   const DraewDownside({
     Key? key,
     required this.auxWidth,
     required this.buttonTxt,
+    required this.route,
   }) : super(key: key);
 
   @override
@@ -31,6 +33,7 @@ class DraewDownside extends StatelessWidget {
           child: ButtonBuilder(
             buttonTxt: buttonTxt,
             auxWidth: auxWidth,
+            route: route,
           ),
         ),
       ],

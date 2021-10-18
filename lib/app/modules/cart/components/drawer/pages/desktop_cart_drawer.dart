@@ -4,6 +4,7 @@ import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/comp_header.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/downside.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/item_list.dart';
+import 'package:pscomidas/app/modules/cart/components/payment/pages/payment_page.dart';
 
 class DesktopCartDrawer extends StatelessWidget {
   final double deskLargura;
@@ -25,13 +26,14 @@ class DesktopCartDrawer extends StatelessWidget {
         children: <Widget>[
           const CompanyHeader(),
           ItenList(
-            itenlengh: 6,
-            heightFactor: 0.6,
+            itenlengh: 4,
+            heightFactor: 0.3,
             widthFactor: deskLargura,
           ),
           DraewDownside(
             buttonTxt: buttonTxt,
             auxWidth: deskLargura,
+            route: PaymentPage.paymentRouteName,
           ),
         ],
       ),

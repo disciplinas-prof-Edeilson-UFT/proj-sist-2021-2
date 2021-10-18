@@ -15,13 +15,8 @@ class CartDrawerSelector extends StatelessWidget {
           return CartDrawer(
             largura: newWidth,
           );
-        } else if (width >= 1360 && width < 1920) {
-          var newWidth = width * 0.3;
-          return CartDrawer(
-            largura: newWidth,
-          );
         } else {
-          var newWidth = width * 0.25;
+          var newWidth = width * 0.35;
           return CartDrawer(
             largura: newWidth,
           );

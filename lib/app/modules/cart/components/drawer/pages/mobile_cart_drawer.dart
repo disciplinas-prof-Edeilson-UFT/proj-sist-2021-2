@@ -4,6 +4,7 @@ import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/comp_header.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/downside.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/item_list.dart';
+import 'package:pscomidas/app/modules/cart/components/payment/pages/payment_page.dart';
 
 class MobileCartDrawer extends StatelessWidget {
   final double mobileLargura;
@@ -32,6 +33,7 @@ class MobileCartDrawer extends StatelessWidget {
           DraewDownside(
             buttonTxt: buttonTxt,
             auxWidth: mobileLargura,
+            route: PaymentPage.paymentRouteName,
           ),
         ],
       ),

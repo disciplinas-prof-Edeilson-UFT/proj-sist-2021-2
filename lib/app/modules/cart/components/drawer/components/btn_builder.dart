@@ -6,10 +6,12 @@ import 'package:pscomidas/app/modules/cart/cart_store.dart';
 class ButtonBuilder extends StatelessWidget {
   final String buttonTxt;
   final double auxWidth;
+  final String route;
   ButtonBuilder({
     Key? key,
     required this.auxWidth,
     required this.buttonTxt,
+    required this.route,
   }) : super(key: key);
 
   final CartStore store = Modular.get<CartStore>();
@@ -20,7 +22,7 @@ class ButtonBuilder extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.06,
       width: auxWidth * 0.9,
       child: ElevatedButton(
-        onPressed: () => store.cadastroTeste(),
+        onPressed: () => Modular.to.navigate(route),
         child: AutoSizeText(
           buttonTxt,
           presetFontSizes: const [20, 16, 12],
