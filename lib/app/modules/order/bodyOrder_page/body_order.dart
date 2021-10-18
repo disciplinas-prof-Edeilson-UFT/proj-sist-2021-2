@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/order/%5BDELETAR%5D%20class/visible.dart';
-import 'package:pscomidas/app/modules/order/components/bodyOrder_page/ListView/listView.dart';
-import 'package:pscomidas/app/modules/order/components/bodyOrder_page/Status_Order/status_order.dart';
+import 'package:pscomidas/app/modules/order/bodyOrder_page/status_order.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
+import 'package:pscomidas/app/modules/order/visible%20class/visible.dart';
 
 class BodyOrder extends StatefulWidget {
   const BodyOrder({Key? key}) : super(key: key);
@@ -49,7 +48,10 @@ class _BodyOrderState extends State<BodyOrder> {
         ),
 
         /// Status order, irá sobrepor o [ListViewOrder], com o as informações da order
-        _visible.visible == false ? const Visibility(visible: false, child: StatusOrder()) : const Visibility(visible: true, child: StatusOrder())
+        Visibility(
+          visible: _visible.visible,
+          child: StatusOrder(),
+        )
       ],
     );
   }
@@ -63,7 +65,7 @@ class _BodyOrderState extends State<BodyOrder> {
       height: screen.height * 0.7,
       child: ListView.builder(
         itemCount: store.order.length,
-        itemBuilder: (context, index){
+        itemBuilder: (context, index) {
           return _cardOrder(context, index, store);
         },
       ),
@@ -71,9 +73,9 @@ class _BodyOrderState extends State<BodyOrder> {
   }
 
   /// [CardOrder]
-  Widget _cardOrder(BuildContext context, int index, OrderStore store){
-  final Size screen = MediaQuery.of(context).size;
-  return GestureDetector(
+  Widget _cardOrder(BuildContext context, int index, OrderStore store) {
+    final Size screen = MediaQuery.of(context).size;
+    return GestureDetector(
       child: Card(
         child: InkWell(
           splashColor: Colors.grey,
@@ -81,7 +83,7 @@ class _BodyOrderState extends State<BodyOrder> {
             setState(() {
               _visible.setVisible();
             });
-          }, 
+          },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -102,7 +104,7 @@ class _BodyOrderState extends State<BodyOrder> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '${store.order.elementAt(index).restaurante}',
+                                store.order.elementAt(index).restaurante,
                                 style: TextStyle(
                                     fontFamily: 'Nunito',
                                     fontSize: screen.width * 0.025,
@@ -113,7 +115,8 @@ class _BodyOrderState extends State<BodyOrder> {
                                     fontFamily: 'Nunito',
                                     fontSize: screen.width * 0.015,
                                   )),
-                              Text('Entrega até ${store.order.elementAt(index).previsao}',
+                              Text(
+                                  'Entrega até ${store.order.elementAt(index).previsao}',
                                   style: TextStyle(
                                     fontFamily: 'Nunito',
                                     fontSize: screen.width * 0.015,
@@ -129,16 +132,7 @@ class _BodyOrderState extends State<BodyOrder> {
                                   'Status: ',
                                   style: TextStyle(color: tertiaryCollor),
                                 ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  padding: const EdgeInsets.all(5),
-                                  child: const Text(
-                                    'Pendente',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                )
+                                _statusOrder(store, index)
                               ],
                             )
                           ],
@@ -155,6 +149,26 @@ class _BodyOrderState extends State<BodyOrder> {
     );
   }
 
+  /// Mostra o status do pedido, aqui é definido o status
+  Widget _statusOrder(OrderStore store, int index) {
+    String status = store.order.elementAt(index).status;
+    Color cor_status = Colors.white;
+    if (status == 'Em preparo') {
+      cor_status = Colors.amber;
+    } else if (status == 'A caminho') {
+      cor_status = Colors.blue;
+    } else if (status == 'Entregador chogou') {
+      cor_status = Colors.green;
+    }
 
-
+    return Container(
+      decoration: BoxDecoration(
+          color: cor_status, borderRadius: BorderRadius.circular(10)),
+      padding: const EdgeInsets.all(5),
+      child: Text(
+        status,
+        style: const TextStyle(color: Colors.white),
+      ),
+    );
+  }
 }
