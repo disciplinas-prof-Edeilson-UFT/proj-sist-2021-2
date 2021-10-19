@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:pscomidas/app/modules/register/restaurant/store/models/register_store.dart';
+import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class Formulary extends StatelessWidget {
   Formulary({Key? key, required this.controller}) : super(key: key);

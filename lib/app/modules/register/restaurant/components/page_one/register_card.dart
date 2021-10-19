@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-
+import 'package:flutter_modular/flutter_modular.dart';
 import 'register_formulary.dart';
 
 class RegisterCard extends StatelessWidget {
@@ -76,29 +76,31 @@ class RegisterCard extends StatelessWidget {
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
               Align(
-                  alignment: Alignment.bottomRight,
-                  child: Observer(
-                    builder: (_) {
-                      return ElevatedButton(
-                        style: ButtonStyle(
-                          splashFactory: NoSplash.splashFactory,
-                          backgroundColor: MaterialStateProperty.resolveWith(
-                              _getButtonColor),
-                          minimumSize:
-                              MaterialStateProperty.all(const Size(210, 48)),
-                        ),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _addOwner();
-                          }
-                        },
-                        child: const Text(
-                          'Começar o cadastro',
-                          style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
-                        ),
-                      );
-                    },
-                  )),
+                alignment: Alignment.bottomRight,
+                child: Observer(
+                  builder: (_) {
+                    return ElevatedButton(
+                      style: ButtonStyle(
+                        splashFactory: NoSplash.splashFactory,
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith(_getButtonColor),
+                        minimumSize:
+                            MaterialStateProperty.all(const Size(210, 48)),
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _addOwner();
+                          Modular.to.navigate('page2');
+                        }
+                      },
+                      child: const Text(
+                        'Começar o cadastro',
+                        style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

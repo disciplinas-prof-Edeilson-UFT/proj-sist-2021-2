@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class DesktopCustomFooter extends StatelessWidget {
@@ -62,7 +63,7 @@ class DesktopCustomFooter extends StatelessWidget {
                             primary: Colors.black38,
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(context, navigator[index]);
+                            Modular.to.navigate(navigator[index]);
                           },
                           child: Text(descubra[index]),
                         );
