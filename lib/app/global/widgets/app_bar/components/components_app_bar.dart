@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
+import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:pscomidas/app/modules/home/home_page.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
@@ -150,18 +152,49 @@ class LocationAppBar extends StatelessWidget {
 class UserAppBar extends StatelessWidget {
   const UserAppBar({Key? key}) : super(key: key);
 
+  bool get logged {
+    return FirebaseAuth.instance.currentUser != null ? true : false;
+  }
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        child: Image.asset(
-          "assets/images/user.png",
-          width: screen.width * 0.02,
+    List<PopupMenuItem> listy = [
+      PopupMenuItem(
+        child: Column(
+          children: [
+            Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                    ),
+                    Text('Sair'),
+                  ],
+                ),
+          ],
         ),
-        onTap: () {},
+        padding: const EdgeInsets.all(5.0),
+        onTap: () async {
+          await FirebaseAuth.instance.signOut();
+          Modular.to.pushNamed(AuthModule.routeName);
+        },
       ),
+    ];
+    return logged
+        ? PopupMenuButton(
+      icon: const Icon(
+        Icons.person_outline_outlined,
+        color: Colors.red,
+        size: 37,
+      ),
+      itemBuilder: (_) => listy,
+    )
+        :IconButton(
+      icon: const Icon(Icons.login),
+      color: Colors.red,
+      onPressed: () {
+        Modular.to.pushNamed(AuthModule.routeName);
+      },
     );
   }
 }
