@@ -12,7 +12,7 @@ class CartStore = _CartStoreBase with _$CartStore;
 abstract class _CartStoreBase with Store {
   final OrderRepository orderRepository = Modular.get<OrderRepository>();
   @observable
-  List<Item> itens = [];
+  ObservableList<Item> itens = <Item>[].asObservable();
 
   List<NewCard> card = [];
 
@@ -23,8 +23,11 @@ abstract class _CartStoreBase with Store {
     itens.add(item);
   }
 
-  void removeItem(Item item) {
-    itens.remove(item);
+  @action
+  void removeItem(String iditemremovido) {
+    itens.removeWhere((element) {
+      return element.itemid == iditemremovido;
+    });
   }
 
   @computed

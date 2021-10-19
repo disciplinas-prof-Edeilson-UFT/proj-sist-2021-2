@@ -1,8 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/act_buttons.dart';
+import 'package:pscomidas/app/modules/cart/cart_store.dart';
 
 class DrawerBuilder extends StatefulWidget {
   final Item model;
@@ -20,6 +21,7 @@ class DrawerBuilder extends StatefulWidget {
 }
 
 class _DrawerBuilderState extends State<DrawerBuilder> {
+  final CartStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -64,7 +66,43 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
             ),
           ),
         ),
-        ActionButtons()
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextButton(
+              onPressed: () {},
+              child: const Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  'Editar',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                    fontFamily: 'Nunito',
+                  ),
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                store.removeItem(widget.model.itemid);
+              },
+              child: const Align(
+                alignment: Alignment.bottomRight,
+                child: Text(
+                  'Remover',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontFamily: 'Nunito',
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

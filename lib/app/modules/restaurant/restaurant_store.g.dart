@@ -12,13 +12,13 @@ mixin _$RestaurantStore on _RestaurantStoreBase, Store {
   final _$restaurantAtom = Atom(name: '_RestaurantStoreBase.restaurant');
 
   @override
-  Restaurant get restaurant {
+  Restaurant? get restaurant {
     _$restaurantAtom.reportRead();
     return super.restaurant;
   }
 
   @override
-  set restaurant(Restaurant value) {
+  set restaurant(Restaurant? value) {
     _$restaurantAtom.reportWrite(value, super.restaurant, () {
       super.restaurant = value;
     });
@@ -45,6 +45,15 @@ mixin _$RestaurantStore on _RestaurantStoreBase, Store {
   @override
   Future<List<Product>> getProducts(String searchTitle) {
     return _$getProductsAsyncAction.run(() => super.getProducts(searchTitle));
+  }
+
+  final _$receiveRestaurantInfoAsyncAction =
+      AsyncAction('_RestaurantStoreBase.receiveRestaurantInfo');
+
+  @override
+  Future receiveRestaurantInfo(Restaurant info) {
+    return _$receiveRestaurantInfoAsyncAction
+        .run(() => super.receiveRestaurantInfo(info));
   }
 
   @override

@@ -11,11 +11,11 @@ class OrderRepository implements IOrderRepository {
   OrderRepository({required this.firestore, required this.auth});
 
   @override
-  Future<Order>? getOrder() async {
+  Future<Order>? getOrder(Order pedido) async {
     try {
       return await firestore
           .collection('order')
-          .doc('ADjDH5NWXtMVKGMfi4LdOUbQWB03')
+          .doc(pedido.docid.toString())
           .get()
           .then((DocumentSnapshot doc) {
         return Order.fromDocument(doc);
@@ -35,7 +35,6 @@ class OrderRepository implements IOrderRepository {
           'product_id': element.product.productId,
         }).then((value) {
           itemID.add(value.id);
-          log("Item adicionado ${value.id}");
           return true;
         }).catchError((error) {
           log("Falha ao adicionar $error");

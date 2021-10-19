@@ -22,7 +22,10 @@ class ButtonBuilder extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.06,
       width: auxWidth * 0.9,
       child: ElevatedButton(
-        onPressed: () => Modular.to.navigate(route),
+        onPressed: () => {
+          store.cadastroTeste(),
+          Modular.to.navigate(route),
+        },
         child: AutoSizeText(
           buttonTxt,
           presetFontSizes: const [20, 16, 12],

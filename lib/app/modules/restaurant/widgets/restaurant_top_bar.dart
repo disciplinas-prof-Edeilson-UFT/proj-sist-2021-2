@@ -40,12 +40,12 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
               children: [
                 CircleAvatar(
                   maxRadius: 40,
-                  backgroundImage: NetworkImage(store.restaurant.image),
+                  backgroundImage: NetworkImage(store.restaurant!.image),
                 ),
                 const SizedBox(width: 20),
                 SizedBox(
                   child: Text(
-                    store.restaurant.socialName,
+                    store.restaurant!.socialName,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: const TextStyle(
@@ -62,7 +62,7 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                 ),
                 const SizedBox(width: 1),
                 Text(
-                  store.restaurant.avaliation!.toStringAsFixed(1),
+                  store.restaurant!.avaliation!.toStringAsFixed(1),
                   style: const TextStyle(
                     color: Colors.yellow,
                     fontWeight: FontWeight.w700,
