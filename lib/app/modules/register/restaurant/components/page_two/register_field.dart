@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-// PROPOSIÇÃO DE IMPLEMENTAÇÃO DE FORMATAÇÃO UTILIZANDO mask_text_input_formatter (JÁ EXISTIA NA PUBSPEC.YAML).
-// em caso de recusa, recomendo resetar o repositório ao commit anterior.
-
 class RegisterField {
   static final fields = {
     'CNPJ': {
@@ -27,7 +24,10 @@ class RegisterField {
     'Telefone da loja': {
       'hintText': 'Telefone da loja com DDD',
       'controller': TextEditingController(),
-      'formatter': MaskTextInputFormatter(),
+      'formatter': MaskTextInputFormatter(
+        mask: '(##) #####-####',
+        filter: {"#": RegExp(r'[0-9]')},
+      ),
     },
     'CEP': {
       'hintText': 'CEP do seu negócio',
