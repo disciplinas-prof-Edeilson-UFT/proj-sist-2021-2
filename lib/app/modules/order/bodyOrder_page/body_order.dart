@@ -5,8 +5,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/order/bodyOrder_page/status_order.dart';
+import 'package:pscomidas/app/modules/order/class/orders.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
-import 'package:pscomidas/app/modules/order/visible%20class/visible.dart';
 
 class BodyOrder extends StatefulWidget {
   const BodyOrder({Key? key}) : super(key: key);
@@ -18,7 +18,21 @@ class BodyOrder extends StatefulWidget {
 class _BodyOrderState extends State<BodyOrder> {
   final OrderStore store = Modular.get();
 
-  final Visible _visible = Visible(false, 'não foi mudao');
+  bool _visible = false;
+  void _setVisible() {
+    if (_visible == false) {
+      _visible = true;
+    } else {
+      _visible = false;
+    }
+  }
+
+  OrdersList data = OrdersList(
+    restaurante: 'MacDonalds',
+    id: '9999',
+    previsao: '15:30',
+    status: 'Em preparo'
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +53,32 @@ class _BodyOrderState extends State<BodyOrder> {
                       fontFamily: 'Nunito'),
                 );
               }),
+              /*Observer(builder: (_) {
+                return ElevatedButton(
+                    onPressed: () {
+                      store.incrementOrder(data);
+                    },
+                    child: const Text('data'));
+              }),*/  /// TODo Botão para adicionar um card [DELETAR]
               SizedBox(
                 height: screen.height * 0.01,
               ),
-              _listViewOrder(context),
+
+              // Retorna 2 Widgets, onde um é para caso não tenha pedidos e o outro caso tenha.
+              Observer(builder: (_) {
+                 return  store.order.isEmpty
+                    ?  _emptyOrder()
+                    : _listViewOrder(context);
+              },
+              )
             ],
           ),
         ),
 
         /// Status order, irá sobrepor o [ListViewOrder], com o as informações da order
         Visibility(
-          visible: _visible.visible,
-          child: StatusOrder(),
+          visible: _visible,
+          child: const StatusOrder(),
         )
       ],
     );
@@ -81,7 +109,7 @@ class _BodyOrderState extends State<BodyOrder> {
           splashColor: Colors.grey,
           onTap: () {
             setState(() {
-              _visible.setVisible();
+              _setVisible();
             });
           },
           child: Padding(
@@ -168,6 +196,43 @@ class _BodyOrderState extends State<BodyOrder> {
       child: Text(
         status,
         style: const TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+
+  /// [emptyOrder], caso não tenhsa pedidos
+  Widget _emptyOrder(){
+    final Size screen = MediaQuery.of(context).size;
+    return Center(
+      child: Column(
+        children: [
+          const Text('Você ainda não pediu',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+            ),
+          ),
+          const Text(
+            'Que tal conhecer as melhores opções na sua região?',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              color: tertiaryCollor
+            ),
+          ),
+          TextButton(
+            onPressed: () => Modular.to.navigate('/home'), 
+            child: const Text(
+              'Ir para o início', 
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.bold,
+                color: secondaryCollor
+              ),
+            )
+          )
+          
+        ],
       ),
     );
   }
