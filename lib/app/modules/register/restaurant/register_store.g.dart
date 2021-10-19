@@ -29,8 +29,8 @@ mixin _$RestaurantRegisterStore on _RestaurantRegisterStoreBase, Store {
 
   @override
   void increment() {
-    final _$actionInfo = _$_RestaurantRegisterStoreBaseActionController.startAction(
-        name: '_RestaurantRegisterStoreBase.increment');
+    final _$actionInfo = _$_RestaurantRegisterStoreBaseActionController
+        .startAction(name: '_RestaurantRegisterStoreBase.increment');
     try {
       return super.increment();
     } finally {

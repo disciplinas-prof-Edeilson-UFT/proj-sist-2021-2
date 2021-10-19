@@ -25,10 +25,10 @@ abstract class HomeStoreBase with Store {
   }
 
   @observable
-  String? selectedCategory;
+  var selectedCategory = 'Açaí';
 
   @action
   void setSelectedCategory(String? selection) {
-    selectedCategory = selection;
+    selectedCategory = selection ?? 'Açaí';
   }
 }

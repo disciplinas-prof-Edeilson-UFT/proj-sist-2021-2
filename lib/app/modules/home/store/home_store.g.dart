@@ -42,13 +42,13 @@ mixin _$HomeStore on HomeStoreBase, Store {
   final _$selectedCategoryAtom = Atom(name: 'HomeStoreBase.selectedCategory');
 
   @override
-  String? get selectedCategory {
+  String get selectedCategory {
     _$selectedCategoryAtom.reportRead();
     return super.selectedCategory;
   }
 
   @override
-  set selectedCategory(String? value) {
+  set selectedCategory(String value) {
     _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
       super.selectedCategory = value;
     });

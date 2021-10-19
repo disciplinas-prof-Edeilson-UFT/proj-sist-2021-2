@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
@@ -17,6 +19,7 @@ class RegisterRestaurant extends StatefulWidget {
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
+  final homeStore = Modular.get<HomeStore>();
   final _formKey = GlobalKey<FormState>();
   final _fields = RegisterField.fields;
   final _categories = [
@@ -24,7 +27,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
     'Lanches',
     'Padarias',
     'Pizza',
-    'Saldável',
+    'Saudável',
     'Bolos e Doces',
     'Bebidas',
     'Vegetariana',
@@ -38,7 +41,6 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    var selectedValue = 'Açaí';
 
     return Scaffold(
       appBar: AppBar(
@@ -139,33 +141,31 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                           'Especialidade da loja',
                           style: fieldLabelStyle(),
                         ),
-                        DropdownButton(
-                          value: selectedValue,
-                          style: fieldLabelStyle(),
-                          icon: const Icon(Icons.expand_more),
-                          iconEnabledColor: secondaryCollor,
-                          elevation: 2,
-                          underline: Container(
-                            color: secondaryCollor,
-                            height: 2.0,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValue = newValue!;
-                            });
-                          },
-                          items: _categories.map((value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(
-                                value,
-                                style: const TextStyle(
-                                  color: Colors.black54,
-                                  fontFamily: 'Nunito',
+                        Observer(
+                          builder: (ctx) => DropdownButton<String>(
+                            value: homeStore.selectedCategory,
+                            style: fieldLabelStyle(),
+                            icon: const Icon(Icons.expand_more),
+                            iconEnabledColor: secondaryCollor,
+                            onChanged: homeStore.setSelectedCategory,
+                            elevation: 2,
+                            underline: Container(
+                              color: secondaryCollor,
+                              height: 2.0,
+                            ),
+                            items: _categories.map((value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(
+                                    color: Colors.black54,
+                                    fontFamily: 'Nunito',
+                                  ),
                                 ),
-                              ),
-                            );
-                          }).toList(),
+                              );
+                            }).toList(),
+                          ),
                         ),
                       ],
                     ),
@@ -241,7 +241,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          print ("oie");
+                          print("oie");
                         }
                       },
                     ),
