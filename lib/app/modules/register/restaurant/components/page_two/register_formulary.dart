@@ -34,12 +34,11 @@ class RegisterFormulary extends StatelessWidget {
             cursorColor: secondaryCollor,
             controller: controller,
             validator: (value) {
-
-              if (value == null ||value.isEmpty && label != 'Complemento (Opcional)') {
+              if (value == null ||
+                  value.isEmpty && label != 'Complemento (Opcional)') {
                 return "Este campo não pode ficar vazio";
               }
-              // PROPOSIÇÃO DE IMPLEMENTAÇÃO DE VALIDAÇÃO UTILIZANDO SWITCH CASE.
-              // em caso de recusa, recomendo resetar o repositório ao commit anterior.
+
               switch (label) {
                 case 'Complemento (Opcional)':
                   return null;
@@ -49,16 +48,16 @@ class RegisterFormulary extends StatelessWidget {
                     return "Senha muito curta.";
                   }
                   return null;
-                
+
                 case 'CNPJ':
-                  if (!CNPJValidator.isValid(value)) {//Exemplo de cnpj válido -> 12.175.094/0001-19
+                  if (!CNPJValidator.isValid(value)) {
+                    // Exemplo de cnpj válido -> 12.175.094/0001-19
                     return "Informe um CNPJ válido";
                   }
                   return null;
 
                 default:
                   return null;
-
               }
             },
             obscureText: label == 'Senha',

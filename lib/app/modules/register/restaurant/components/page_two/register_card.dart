@@ -114,12 +114,15 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             child: RegisterFormulary(
                               label: 'Estado',
                               hintText: 'UF',
-                              controller: _fields[e]?['controller']
+                              controller: _fields['Estado']?['controller']
                                   as TextEditingController,
                             ),
                           ),
                         ],
                       );
+                    }
+                    if (e == 'Estado') {
+                      return Container();
                     }
                     return RegisterFormulary(
                       formatter: _fields[e]?['formatter'] as TextInputFormatter,

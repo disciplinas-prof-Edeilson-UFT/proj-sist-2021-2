@@ -42,6 +42,11 @@ class RegisterField {
       'controller': TextEditingController(),
       'formatter': MaskTextInputFormatter(),
     },
+    'Estado': {
+      'hintText': 'UF',
+      'controller': TextEditingController(),
+      'formatter': MaskTextInputFormatter(),
+    },
     'Bairro': {
       'hintText': 'Bairro do seu negócio',
       'controller': TextEditingController(),
