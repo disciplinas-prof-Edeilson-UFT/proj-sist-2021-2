@@ -1,4 +1,5 @@
 import 'package:cpf_cnpj_validator/cnpj_validator.dart';
+import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
@@ -22,6 +23,11 @@ class RegisterFormulary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isDifferentField = label == 'Cidade' ||
+        label == 'Estado' ||
+        label == 'Bairro' ||
+        label == 'Endereço';
+
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Column(
@@ -32,10 +38,12 @@ class RegisterFormulary extends StatelessWidget {
             style: fieldLabelStyle(),
           ),
           TextFormField(
+            readOnly: isDifferentField,
             inputFormatters: formatter != null ? [formatter!] : null,
             cursorColor: secondaryCollor,
             controller: controller,
-            onChanged: (value) => valueChangeListener == null ? {} : valueChangeListener!(value),
+            onChanged: (value) =>
+                valueChangeListener == null ? {} : valueChangeListener!(value),
             validator: (value) {
               if (value == null ||
                   value.isEmpty && label != 'Complemento (Opcional)') {
@@ -43,9 +51,6 @@ class RegisterFormulary extends StatelessWidget {
               }
 
               switch (label) {
-                case 'Complemento (Opcional)':
-                  return null;
-
                 case 'Senha':
                   if (value.length < 6) {
                     return "Senha muito curta.";
@@ -58,9 +63,9 @@ class RegisterFormulary extends StatelessWidget {
                     return "Informe um CNPJ válido";
                   }
                   return null;
-                
+
                 case 'CEP':
-                  if (value.length < 9) {
+                  if (!CPFValidator.isValid(value)) {
                     return "Informe um CEP válido";
                   }
                   return null;
@@ -71,6 +76,7 @@ class RegisterFormulary extends StatelessWidget {
             },
             obscureText: label == 'Senha',
             decoration: InputDecoration(
+              filled: isDifferentField,
               hintText: hintText,
               hintStyle: fieldLabelStyle(),
               helperText: label == 'Nome da loja'
@@ -78,9 +84,9 @@ class RegisterFormulary extends StatelessWidget {
                   : null,
               border: const OutlineInputBorder(),
               focusColor: secondaryCollor,
-              focusedBorder: const OutlineInputBorder(
+              focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: secondaryCollor,
+                  color: isDifferentField ? Colors.black : secondaryCollor,
                 ),
               ),
             ),
