@@ -1,33 +1,18 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'register_formulary.dart';
+import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class RegisterCard extends StatelessWidget {
   RegisterCard({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
-
-  final Map<String, TextEditingController> controller = {
-    'name': TextEditingController(),
-    'email': TextEditingController(),
-    'phone': TextEditingController(),
-  };
+  final _registerStore = RegisterStore();
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference restaurant =
-        FirebaseFirestore.instance.collection('restaurant');
-
-    Future<void> _addOwner() {
-      return restaurant.add({
-        'nameOwner': controller['name']?.text,
-        'emailOwner': controller['email']?.text,
-        'phoneOwner': controller['phone']?.text,
-      });
-    }
-
+    Map<String, TextEditingController> controller = _registerStore.controller;
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       elevation: 8,
@@ -87,10 +72,9 @@ class RegisterCard extends StatelessWidget {
                         minimumSize:
                             MaterialStateProperty.all(const Size(210, 48)),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          _addOwner();
-                          Modular.to.navigate('page2');
+                          Modular.to.navigate('page2', arguments: controller);
                         }
                       },
                       child: const Text(

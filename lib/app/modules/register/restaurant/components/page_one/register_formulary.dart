@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class Formulary extends StatelessWidget {
   Formulary({Key? key, required this.controller}) : super(key: key);
@@ -15,8 +14,6 @@ class Formulary extends StatelessWidget {
   final _phoneFormat = MaskTextInputFormatter(
       mask: '(##) #####-####', filter: {"#": RegExp(r'[0-9]')});
 
-  final _registerStore = RegisterStore();
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,7 +25,6 @@ class Formulary extends StatelessWidget {
             Text('Nome completo', style: _labelStyle),
             Observer(builder: (_) {
               return TextFormField(
-                onChanged: _registerStore.setName,
                 controller: controller['name'],
                 textCapitalization: TextCapitalization.words,
                 validator: (value) {
@@ -57,7 +53,6 @@ class Formulary extends StatelessWidget {
             ),
             Observer(builder: (_) {
               return TextFormField(
-                onChanged: _registerStore.setEmail,
                 controller: controller['email'],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -85,7 +80,6 @@ class Formulary extends StatelessWidget {
             ),
             Observer(builder: (_) {
               return TextFormField(
-                onChanged: _registerStore.setPhone,
                 controller: controller['phone'],
                 inputFormatters: [_phoneFormat],
                 validator: (value) {

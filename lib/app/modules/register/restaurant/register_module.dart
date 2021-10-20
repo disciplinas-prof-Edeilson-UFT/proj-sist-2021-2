@@ -17,6 +17,8 @@ class RestaurantRegisterModule extends Module {
         ChildRoute('/page1',
             child: (context, args) => const RestaurantRegisterPage()),
         ChildRoute('/page2',
-            child: (context, args) => const RegisterRestaurant()),
+            child: (context, args) => RegisterRestaurant(
+                  controller: args.data,
+                )),
       ];
 }
