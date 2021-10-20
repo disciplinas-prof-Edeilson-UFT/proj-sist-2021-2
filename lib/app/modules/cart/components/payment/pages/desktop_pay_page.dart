@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/btn_builder.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/components/cpf_input.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/components/endereco_entrega.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/components/order_container.dart';
+import 'package:pscomidas/app/modules/cart/components/payment/components/pay_btn_builder.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/components/payment_method.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/components/prev_entrega.dart';
 
@@ -61,7 +61,7 @@ class DesktopPayPage extends StatelessWidget {
                       thickness: 1,
                       color: Colors.black38,
                     ),
-                    ButtonBuilder(
+                    PayButtonBuilder(
                       route: '',
                       auxWidth: screen.width * 0.9,
                       buttonTxt: 'Pagar',

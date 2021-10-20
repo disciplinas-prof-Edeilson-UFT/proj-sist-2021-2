@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 
-class ButtonBuilder extends StatelessWidget {
+class PayButtonBuilder extends StatelessWidget {
   final String buttonTxt;
   final double auxWidth;
   final String route;
-  ButtonBuilder({
+  PayButtonBuilder({
     Key? key,
     required this.auxWidth,
     required this.buttonTxt,
@@ -22,7 +22,10 @@ class ButtonBuilder extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.06,
       width: auxWidth * 0.9,
       child: ElevatedButton(
-        onPressed: () => Modular.to.navigate(route),
+        onPressed: () => {
+          store.cadastroTeste(),
+          Modular.to.navigate(route),
+        },
         child: AutoSizeText(
           buttonTxt,
           presetFontSizes: const [20, 16, 12],
