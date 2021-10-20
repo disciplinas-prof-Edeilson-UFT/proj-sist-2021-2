@@ -30,6 +30,12 @@ abstract class _CartStoreBase with Store {
     });
   }
 
+  @action
+  void editItem(Item itemEditing) {
+    addItem(itemEditing);
+    removeItem(itemEditing.itemid);
+  }
+
   @computed
   double get total {
     double subtotal = 0;
