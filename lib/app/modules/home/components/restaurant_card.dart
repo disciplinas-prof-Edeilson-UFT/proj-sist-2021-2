@@ -52,10 +52,12 @@ class RestaurantCard extends StatelessWidget {
           ));
     return InkWell(
       borderRadius: _borderRadius,
-      onTap: () => Modular.to.pushNamed(
-        RestaurantModule.routeName,
-        arguments: restaurant,
-      ),
+      onTap: () {
+        Modular.to.pushNamed(
+          RestaurantModule.routeName,
+          arguments: restaurant,
+        );
+      },
       onHover: (_hovering) {
         store.colordefine(_hovering);
       },

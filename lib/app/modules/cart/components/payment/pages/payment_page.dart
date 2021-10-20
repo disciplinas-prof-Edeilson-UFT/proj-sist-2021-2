@@ -17,7 +17,6 @@ class _PaymentPageState extends State<PaymentPage> {
   final CartStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
-    Size screen = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const LogoAppBar(),
