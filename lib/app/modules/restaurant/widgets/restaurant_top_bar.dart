@@ -64,7 +64,9 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                 ),
                 const SizedBox(width: 1),
                 Text(
-                  store.restaurant!.avaliation!.toStringAsFixed(1),
+                  store.restaurant!.avaliation != null
+                      ? store.restaurant!.avaliation!.toStringAsFixed(1)
+                      : '-',
                   style: const TextStyle(
                     color: Colors.yellow,
                     fontWeight: FontWeight.w700,
