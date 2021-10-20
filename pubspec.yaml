@@ -78,6 +78,7 @@ flutter:
     - assets/images/filters/
     - assets/images/category/
     - lib/app/modules/home/assets/images/
+    - assets/images/cards/
     - lib/app/modules/register/restaurant/assets/background.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
