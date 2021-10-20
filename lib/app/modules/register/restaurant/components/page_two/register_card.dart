@@ -8,6 +8,7 @@ import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
+import 'package:search_cep/search_cep.dart';
 
 enum SingingCharacter { plan1, plan2 }
 
@@ -41,7 +42,6 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -94,29 +94,51 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                 ),
                 ..._fields.keys.map(
                   (e) {
+                    if (e == 'CEP') {
+                      return RegisterFormulary(
+                        label: e,
+                        hintText: _fields[e]?['hintText'] as String,
+                        controller: _fields[e]?['controller']
+                            as TextEditingController,
+                        formatter: _fields[e]?['formatter'] as TextInputFormatter,
+                        valueChangeListener: (value) async {
+                          //Esta função atribui os valores de endereço dinamicamente conforme o CEP informado.
+                          final info = await ViaCepSearchCep().searchInfoByCep(cep: value.replaceFirst('-', ''));
+                          final cidade = _fields['Cidade']?['controller'] as TextEditingController;
+                          final endereco = _fields['Endereço']?['controller'] as TextEditingController;
+                          final estado = _fields['Estado']?['controller'] as TextEditingController;
+                          final bairro = _fields['Bairro']?['controller'] as TextEditingController;
+                          if (info.isRight()) {
+                            endereco.text = info.getOrElse(() => ViaCepInfo()).logradouro ?? '';
+                            cidade.text = info.getOrElse(() => ViaCepInfo()).localidade ?? '';
+                            estado.text = info.getOrElse(() => ViaCepInfo()).uf ?? '';
+                            bairro.text = info.getOrElse(() => ViaCepInfo()).bairro ?? '';
+                          }
+                        },
+                      );
+                    }
                     if (e == 'Cidade') {
                       return Row(
-                        children: [
-                          Flexible(
-                            flex: 2,
-                            child: RegisterFormulary(
-                              label: e,
-                              hintText: _fields[e]?['hintText'] as String,
-                              controller: _fields[e]?['controller']
-                                  as TextEditingController,
-                            ),
-                          ),
-                          const VerticalDivider(),
-                          Flexible(
-                            child: RegisterFormulary(
-                              label: 'Estado',
-                              hintText: 'UF',
-                              controller: _fields['Estado']?['controller']
-                                  as TextEditingController,
-                            ),
-                          ),
-                        ],
-                      );
+                            children: [
+                              Flexible(
+                                flex: 2,
+                                child: RegisterFormulary(
+                                  label: e,
+                                  hintText: _fields[e]?['hintText'] as String,
+                                  controller:  _fields[e]?['controller'] as TextEditingController,
+                                ),
+                              ),
+                              const VerticalDivider(),
+                              Flexible(
+                                child: RegisterFormulary(
+                                  label: 'Estado',
+                                  hintText: 'UF',
+                                  controller: _fields['Estado']?['controller']
+                                      as TextEditingController,
+                                ),
+                              ),
+                            ],
+                          );
                     }
                     if (e == 'Estado') {
                       return Container();
@@ -240,7 +262,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             MaterialStateProperty.all(secondaryCollor),
                       ),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
+                        if (_formKey.currentState!.validate()) {          
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
