@@ -48,21 +48,18 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
         backgroundColor: primaryCollor,
         automaticallyImplyLeading: false,
         elevation: 2,
-        title: Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                Modular.to.navigate('page1');
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-                color: secondaryCollor,
-                size: 30,
-              ),
-            ),
-            const LogoAppBar(),
-          ],
+        leading: IconButton(
+          onPressed: () {
+            Modular.to.navigate('page1');
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: secondaryCollor,
+            size: 30,
+          ),
         ),
+        title: const LogoAppBar(),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Container(
