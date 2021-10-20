@@ -174,7 +174,7 @@ class _State extends ModularState<CategoryCard, HomeStore> {
     void _updateState(_isHovering) {
       if (_isHovering) {
         setState(() {
-          width = 225;
+          width = 215;
         });
       } else {
         setState(() {

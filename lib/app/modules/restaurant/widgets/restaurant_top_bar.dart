@@ -44,10 +44,12 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                 ),
                 const SizedBox(width: 20),
                 SizedBox(
+                  width: screen.width * .3,
                   child: Text(
                     store.restaurant!.socialName,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
+                    maxLines: 2,
+                    softWrap: true,
                     style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w400,
