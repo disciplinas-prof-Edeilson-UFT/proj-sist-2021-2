@@ -33,7 +33,7 @@ class _ProductDialogState extends State<ProductDialog> {
   @override
   void initState() {
     store.quantity =
-        widget.isEditing == null ? 0 : widget.isEditing!.quantidade;
+        widget.isEditing == null ? 1 : widget.isEditing!.quantidade;
     super.initState();
   }
 

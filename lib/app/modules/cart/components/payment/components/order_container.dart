@@ -3,8 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/comp_header.dart';
-import 'package:pscomidas/app/modules/cart/components/drawer/components/item_builder.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/order_resume.dart';
+import 'package:pscomidas/app/modules/cart/components/payment/components/pay_item_builder.dart';
 
 class OrderContainer extends StatelessWidget {
   OrderContainer({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class OrderContainer extends StatelessWidget {
             itemCount: store.itens.length,
             itemBuilder: (context, index) {
               final Item model = store.itens[index];
-              return DrawerBuilder(
+              return PayDrawerBuilder(
                 model: model,
                 auxHeight: 0.4,
                 auxWidth: screen.width * 0.9,
