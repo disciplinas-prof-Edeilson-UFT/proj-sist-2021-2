@@ -241,7 +241,15 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          print("oie");
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text(
+                                'Cadastro realizado com sucesso!',
+                              ),
+                              titleTextStyle: fieldLabelStyle(),
+                            ),
+                          );
                         }
                       },
                     ),
