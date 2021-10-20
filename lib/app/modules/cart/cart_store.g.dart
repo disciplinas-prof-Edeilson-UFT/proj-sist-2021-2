@@ -57,6 +57,17 @@ mixin _$CartStore on _CartStoreBase, Store {
   }
 
   @override
+  void editItem(Item itemEditing) {
+    final _$actionInfo = _$_CartStoreBaseActionController.startAction(
+        name: '_CartStoreBase.editItem');
+    try {
+      return super.editItem(itemEditing);
+    } finally {
+      _$_CartStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 itens: ${itens},

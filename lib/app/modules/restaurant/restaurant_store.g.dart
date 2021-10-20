@@ -51,7 +51,7 @@ mixin _$RestaurantStore on _RestaurantStoreBase, Store {
       AsyncAction('_RestaurantStoreBase.receiveRestaurantInfo');
 
   @override
-  Future receiveRestaurantInfo(Restaurant info) {
+  Future<void> receiveRestaurantInfo(Restaurant info) {
     return _$receiveRestaurantInfoAsyncAction
         .run(() => super.receiveRestaurantInfo(info));
   }

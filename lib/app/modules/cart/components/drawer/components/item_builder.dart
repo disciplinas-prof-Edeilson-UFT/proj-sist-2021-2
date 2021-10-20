@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
+import 'package:pscomidas/app/modules/restaurant/widgets/product_options/product_dialog.dart';
 
 class DrawerBuilder extends StatefulWidget {
   final Item model;
@@ -69,7 +70,17 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (_) {
+                    return ProductDialog(
+                      product: widget.model.product,
+                      isEditing: widget.model,
+                    );
+                  },
+                );
+              },
               child: const Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(

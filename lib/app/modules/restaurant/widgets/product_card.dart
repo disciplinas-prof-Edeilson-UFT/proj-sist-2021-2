@@ -22,7 +22,9 @@ class _ProductCardState extends State<ProductCard> {
     return InkWell(
       onTap: () => showDialog(
         context: context,
-        builder: (context) => ProductDialog(product: widget.product),
+        builder: (context) => ProductDialog(
+          product: widget.product,
+        ),
       ),
       child: Container(
         decoration: BoxDecoration(
