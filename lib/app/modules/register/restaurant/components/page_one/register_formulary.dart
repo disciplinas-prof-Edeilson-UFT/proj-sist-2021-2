@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class Formulary extends StatelessWidget {
@@ -24,7 +23,7 @@ class Formulary extends StatelessWidget {
           children: [
             Text('Nome completo', style: _labelStyle),
             TextFormField(
-              controller: controller['name'],
+              controller: controller['nome'],
               textCapitalization: TextCapitalization.words,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -75,7 +74,7 @@ class Formulary extends StatelessWidget {
               style: _labelStyle,
             ),
             TextFormField(
-              controller: controller['phone'],
+              controller: controller['telefone'],
               inputFormatters: [_phoneFormat],
               validator: (value) {
                 if (value == null || value.isEmpty) {

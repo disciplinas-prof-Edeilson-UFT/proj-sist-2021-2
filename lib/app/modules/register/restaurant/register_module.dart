@@ -18,9 +18,11 @@ class RestaurantRegisterModule extends Module {
         ChildRoute('/page1',
             child: (context, args) =>
                 RestaurantRegisterPage(registerStore: temp)),
-        ChildRoute('/page2',
-            child: (context, args) => RegisterRestaurant(
-                  registerStore: args.data ?? temp,
-                )),
+        ChildRoute(
+          '/page2',
+          child: (context, args) => RegisterRestaurant(
+            registerStore: args.data ?? temp,
+          ),
+        ),
       ];
 }

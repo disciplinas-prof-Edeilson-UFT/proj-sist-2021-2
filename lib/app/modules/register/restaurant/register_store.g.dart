@@ -9,33 +9,33 @@ part of 'register_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterStore on _RegisterStore, Store {
-  final _$selectedValueAtom = Atom(name: '_RegisterStore.selectedValue');
+  final _$selectedCategoryAtom = Atom(name: '_RegisterStore.selectedCategory');
 
   @override
-  String get selectedValue {
-    _$selectedValueAtom.reportRead();
-    return super.selectedValue;
+  String get selectedCategory {
+    _$selectedCategoryAtom.reportRead();
+    return super.selectedCategory;
   }
 
   @override
-  set selectedValue(String value) {
-    _$selectedValueAtom.reportWrite(value, super.selectedValue, () {
-      super.selectedValue = value;
+  set selectedCategory(String value) {
+    _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
+      super.selectedCategory = value;
     });
   }
 
-  final _$characterAtom = Atom(name: '_RegisterStore.character');
+  final _$selectedPlanAtom = Atom(name: '_RegisterStore.selectedPlan');
 
   @override
-  SingingCharacter? get character {
-    _$characterAtom.reportRead();
-    return super.character;
+  String get selectedPlan {
+    _$selectedPlanAtom.reportRead();
+    return super.selectedPlan;
   }
 
   @override
-  set character(SingingCharacter? value) {
-    _$characterAtom.reportWrite(value, super.character, () {
-      super.character = value;
+  set selectedPlan(String value) {
+    _$selectedPlanAtom.reportWrite(value, super.selectedPlan, () {
+      super.selectedPlan = value;
     });
   }
 
@@ -54,22 +54,22 @@ mixin _$RegisterStore on _RegisterStore, Store {
   }
 
   @override
-  dynamic setSelectedValue(dynamic newValue) {
+  dynamic setSelectedCategory(dynamic newValue) {
     final _$actionInfo = _$_RegisterStoreActionController.startAction(
-        name: '_RegisterStore.setSelectedValue');
+        name: '_RegisterStore.setSelectedCategory');
     try {
-      return super.setSelectedValue(newValue);
+      return super.setSelectedCategory(newValue);
     } finally {
       _$_RegisterStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic setPlan(dynamic newValue, dynamic text) {
+  void setSelectedPlan(String? selection) {
     final _$actionInfo = _$_RegisterStoreActionController.startAction(
-        name: '_RegisterStore.setPlan');
+        name: '_RegisterStore.setSelectedPlan');
     try {
-      return super.setPlan(newValue, text);
+      return super.setSelectedPlan(selection);
     } finally {
       _$_RegisterStoreActionController.endAction(_$actionInfo);
     }
@@ -78,8 +78,8 @@ mixin _$RegisterStore on _RegisterStore, Store {
   @override
   String toString() {
     return '''
-selectedValue: ${selectedValue},
-character: ${character}
+selectedCategory: ${selectedCategory},
+selectedPlan: ${selectedPlan}
     ''';
   }
 }

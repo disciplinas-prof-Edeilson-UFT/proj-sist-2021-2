@@ -166,12 +166,13 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         ),
                         Observer(
                           builder: (ctx) => DropdownButton<String>(
-                            value: widget.registerStore!.selectedValue,
+                            value: widget.registerStore!.selectedCategory,
                             style: fieldLabelStyle(),
                             icon: const Icon(Icons.expand_more),
                             iconEnabledColor: secondaryCollor,
                             onChanged: (String? newValue) {
-                              widget.registerStore!.setSelectedValue(newValue);
+                              widget.registerStore!
+                                  .setSelectedCategory(newValue);
                             },
                             elevation: 2,
                             underline: Container(
@@ -211,31 +212,25 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       Observer(
                         builder: (_) => RadioListTile(
                           title: Text(
-                            'Plano Básico',
+                            widget.registerStore!.availablePlans[0],
                             style: fieldLabelStyle(),
                           ),
-                          value: SingingCharacter.plan1,
-                          groupValue: widget.registerStore!.character,
+                          value: widget.registerStore!.availablePlans[0],
+                          groupValue: widget.registerStore!.selectedPlan,
                           activeColor: secondaryCollor,
-                          onChanged: (SingingCharacter? value) {
-                            widget.registerStore!
-                                .setPlan(value, 'Plano Básico');
-                          },
+                          onChanged: widget.registerStore!.setSelectedPlan,
                         ),
                       ),
                       Observer(
                         builder: (_) => RadioListTile(
                           title: Text(
-                            'Plano Entrega',
+                            widget.registerStore!.availablePlans[1],
                             style: fieldLabelStyle(),
                           ),
-                          value: SingingCharacter.plan2,
-                          groupValue: widget.registerStore!.character,
+                          value: widget.registerStore!.availablePlans[1],
+                          groupValue: widget.registerStore!.selectedPlan,
                           activeColor: secondaryCollor,
-                          onChanged: (SingingCharacter? value) {
-                            widget.registerStore!
-                                .setPlan(value, 'Plano Entrega');
-                          },
+                          onChanged: widget.registerStore!.setSelectedPlan,
                         ),
                       ),
                     ],
