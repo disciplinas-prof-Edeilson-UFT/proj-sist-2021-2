@@ -171,9 +171,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             icon: const Icon(Icons.expand_more),
                             iconEnabledColor: secondaryCollor,
                             onChanged: (String? newValue) {
-                              widget.registerStore!.controller = widget
-                                  .registerStore!
-                                  .setSelectedValue(newValue);
+                              widget.registerStore!.setSelectedValue(newValue);
                             },
                             elevation: 2,
                             underline: Container(
@@ -203,46 +201,44 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                     top: 15.0,
                     bottom: 50.0,
                   ),
-                  child: Observer(
-                    builder: (ctx) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Qual plano você deseja contratar?',
-                          style: fieldLabelStyle(),
-                        ),
-                        Observer(
-                          builder: (_) => RadioListTile(
-                            title: Text(
-                              'Plano Básico',
-                              style: fieldLabelStyle(),
-                            ),
-                            value: SingingCharacter.plan1,
-                            groupValue: widget.registerStore!.character,
-                            activeColor: secondaryCollor,
-                            onChanged: (SingingCharacter? value) {
-                              widget.registerStore!
-                                  .setPlan(value, 'Plano Básico');
-                            },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Qual plano você deseja contratar?',
+                        style: fieldLabelStyle(),
+                      ),
+                      Observer(
+                        builder: (_) => RadioListTile(
+                          title: Text(
+                            'Plano Básico',
+                            style: fieldLabelStyle(),
                           ),
+                          value: SingingCharacter.plan1,
+                          groupValue: widget.registerStore!.character,
+                          activeColor: secondaryCollor,
+                          onChanged: (SingingCharacter? value) {
+                            widget.registerStore!
+                                .setPlan(value, 'Plano Básico');
+                          },
                         ),
-                        Observer(
-                          builder: (_) => RadioListTile(
-                            title: Text(
-                              'Plano Entrega',
-                              style: fieldLabelStyle(),
-                            ),
-                            value: SingingCharacter.plan2,
-                            groupValue: widget.registerStore!.character,
-                            activeColor: secondaryCollor,
-                            onChanged: (SingingCharacter? value) {
-                              widget.registerStore!
-                                  .setPlan(value, 'Plano Entrega');
-                            },
+                      ),
+                      Observer(
+                        builder: (_) => RadioListTile(
+                          title: Text(
+                            'Plano Entrega',
+                            style: fieldLabelStyle(),
                           ),
+                          value: SingingCharacter.plan2,
+                          groupValue: widget.registerStore!.character,
+                          activeColor: secondaryCollor,
+                          onChanged: (SingingCharacter? value) {
+                            widget.registerStore!
+                                .setPlan(value, 'Plano Entrega');
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(

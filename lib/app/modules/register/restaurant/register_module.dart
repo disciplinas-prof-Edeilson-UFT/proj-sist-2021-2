@@ -16,7 +16,8 @@ class RestaurantRegisterModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/page1',
-            child: (context, args) => const RestaurantRegisterPage()),
+            child: (context, args) =>
+                RestaurantRegisterPage(registerStore: temp)),
         ChildRoute('/page2',
             child: (context, args) => RegisterRestaurant(
                   registerStore: args.data ?? temp,

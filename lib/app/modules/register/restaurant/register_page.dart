@@ -8,16 +8,17 @@ import 'register_store.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
   final String title;
-  const RestaurantRegisterPage(
-      {Key? key, this.title = 'RestaurantRegisterPage'})
+  RestaurantRegisterPage(
+      {Key? key,
+      this.title = 'RestaurantRegisterPage',
+      required this.registerStore})
       : super(key: key);
+  final RegisterStore registerStore;
   @override
   RestaurantRegisterPageState createState() => RestaurantRegisterPageState();
 }
 
 class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
-  final RegisterStore store = Modular.get();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +52,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const RegisterSideText(),
-                RegisterCard(),
+                RegisterCard(registerStore: widget.registerStore),
               ],
             ),
             const RegisterPlans(),
@@ -66,7 +67,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
           Column(
             children: [
               const RegisterSideText(),
-              RegisterCard(),
+              RegisterCard(registerStore: widget.registerStore),
               const RegisterPlans(),
             ],
           ),

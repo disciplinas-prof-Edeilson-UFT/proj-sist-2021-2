@@ -23,25 +23,23 @@ class Formulary extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Nome completo', style: _labelStyle),
-            Observer(builder: (_) {
-              return TextFormField(
-                controller: controller['name'],
-                textCapitalization: TextCapitalization.words,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Este campo não pode ficar vazio";
-                  }
-                  if (value.trim().split(' ').length < 2) {
-                    return "Precisa conter pelo menos dois nomes";
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'João da Silva',
-                ),
-              );
-            }),
+            TextFormField(
+              controller: controller['name'],
+              textCapitalization: TextCapitalization.words,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Este campo não pode ficar vazio";
+                }
+                if (value.trim().split(' ').length < 2) {
+                  return "Precisa conter pelo menos dois nomes";
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'João da Silva',
+              ),
+            ),
           ],
         ),
         Column(
@@ -51,24 +49,22 @@ class Formulary extends StatelessWidget {
               'Email',
               style: _labelStyle,
             ),
-            Observer(builder: (_) {
-              return TextFormField(
-                controller: controller['email'],
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Este campo não pode ficar vazio";
-                  }
-                  if (!value.contains('@') || !value.contains('.com')) {
-                    return "Digite um email válido";
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'email@email.com',
-                ),
-              );
-            }),
+            TextFormField(
+              controller: controller['email'],
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Este campo não pode ficar vazio";
+                }
+                if (!value.contains('@') || !value.contains('.com')) {
+                  return "Digite um email válido";
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'email@email.com',
+              ),
+            ),
           ],
         ),
         Column(
@@ -78,25 +74,23 @@ class Formulary extends StatelessWidget {
               'Celular (com DDD)',
               style: _labelStyle,
             ),
-            Observer(builder: (_) {
-              return TextFormField(
-                controller: controller['phone'],
-                inputFormatters: [_phoneFormat],
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Este campo não pode ficar vazio";
-                  }
-                  if (value.length <= 14) {
-                    return "Digite um número de telefone válido";
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: '(00) 00000-0000',
-                ),
-              );
-            }),
+            TextFormField(
+              controller: controller['phone'],
+              inputFormatters: [_phoneFormat],
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Este campo não pode ficar vazio";
+                }
+                if (value.length <= 14) {
+                  return "Digite um número de telefone válido";
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: '(00) 00000-0000',
+              ),
+            ),
           ],
         ),
       ],
