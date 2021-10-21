@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
+import 'package:search_cep/search_cep.dart';
 
 class RegisterFormulary extends StatelessWidget {
   const RegisterFormulary({
@@ -65,7 +66,7 @@ class RegisterFormulary extends StatelessWidget {
                   return null;
 
                 case 'CEP':
-                  if (!CPFValidator.isValid(value)) {
+                  if (value.length < 9) {
                     return "Informe um CEP válido";
                   }
                   return null;

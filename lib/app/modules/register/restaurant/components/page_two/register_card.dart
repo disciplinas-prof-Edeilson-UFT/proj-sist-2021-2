@@ -10,8 +10,6 @@ import 'package:pscomidas/app/modules/register/restaurant/components/page_two/re
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 import 'package:search_cep/search_cep.dart';
 
-enum SingingCharacter { plan1, plan2 }
-
 class RegisterRestaurant extends StatefulWidget {
   const RegisterRestaurant({Key? key}) : super(key: key);
 
@@ -36,8 +34,6 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
     'Sorvetes',
     'Asiática',
   ];
-
-  SingingCharacter? _character = SingingCharacter.plan1;
 
   @override
   Widget build(BuildContext context) {
@@ -211,9 +207,8 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                     top: 15.0,
                     bottom: 50.0,
                   ),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
+                  child: Observer(
+                    builder: (ctx) => Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -222,31 +217,23 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         ),
                         RadioListTile(
                           title: Text(
-                            'Plano Básico',
+                            homeStore.availablePlans[0],
                             style: fieldLabelStyle(),
                           ),
-                          value: SingingCharacter.plan1,
-                          groupValue: _character,
+                          value: homeStore.availablePlans[0],
+                          groupValue: homeStore.selectedPlan,
                           activeColor: secondaryCollor,
-                          onChanged: (SingingCharacter? value) {
-                            setState(() {
-                              _character = value;
-                            });
-                          },
+                          onChanged: homeStore.setSelectedPlan,
                         ),
                         RadioListTile(
                           title: Text(
-                            'Plano Entrega',
+                            homeStore.availablePlans[1],
                             style: fieldLabelStyle(),
                           ),
-                          value: SingingCharacter.plan2,
-                          groupValue: _character,
+                          value: homeStore.availablePlans[1],
+                          groupValue: homeStore.selectedPlan,
                           activeColor: secondaryCollor,
-                          onChanged: (SingingCharacter? value) {
-                            setState(() {
-                              _character = value;
-                            });
-                          },
+                          onChanged: homeStore.setSelectedPlan,
                         ),
                       ],
                     ),
