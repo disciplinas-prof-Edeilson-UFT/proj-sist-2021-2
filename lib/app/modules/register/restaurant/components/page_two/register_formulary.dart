@@ -1,10 +1,8 @@
-import 'package:cpf_cnpj_validator/cnpj_validator.dart';
-import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cpf_cnpj_validator/cnpj_validator.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
-import 'package:search_cep/search_cep.dart';
 
 class RegisterFormulary extends StatelessWidget {
   const RegisterFormulary({
@@ -68,6 +66,12 @@ class RegisterFormulary extends StatelessWidget {
                 case 'CEP':
                   if (value.length < 9) {
                     return "Informe um CEP válido";
+                  }
+                  return null;
+
+                case 'Telefone da loja':
+                  if (value.length <= 14) {
+                    return "Digite um número de telefone válido";
                   }
                   return null;
 
