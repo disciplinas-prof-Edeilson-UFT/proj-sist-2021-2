@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
@@ -203,9 +203,8 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                     top: 15.0,
                     bottom: 50.0,
                   ),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
+                  child: Observer(
+                    builder: (ctx) => Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(

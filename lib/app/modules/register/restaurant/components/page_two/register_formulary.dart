@@ -1,6 +1,6 @@
-import 'package:cpf_cnpj_validator/cnpj_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cpf_cnpj_validator/cnpj_validator.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 
@@ -22,6 +22,11 @@ class RegisterFormulary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isDifferentField = label == 'Cidade' ||
+        label == 'Estado' ||
+        label == 'Bairro' ||
+        label == 'Endereço';
+
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Column(
@@ -32,6 +37,7 @@ class RegisterFormulary extends StatelessWidget {
             style: fieldLabelStyle(),
           ),
           TextFormField(
+            readOnly: isDifferentField,
             inputFormatters: formatter != null ? [formatter!] : null,
             cursorColor: secondaryCollor,
             controller: controller,
@@ -44,9 +50,6 @@ class RegisterFormulary extends StatelessWidget {
               }
 
               switch (label) {
-                case 'Complemento (Opcional)':
-                  return null;
-
                 case 'Senha':
                   if (value.length < 6) {
                     return "Senha muito curta.";
@@ -66,12 +69,19 @@ class RegisterFormulary extends StatelessWidget {
                   }
                   return null;
 
+                case 'Telefone da loja':
+                  if (value.length <= 14) {
+                    return "Digite um número de telefone válido";
+                  }
+                  return null;
+
                 default:
                   return null;
               }
             },
             obscureText: label == 'Senha',
             decoration: InputDecoration(
+              filled: isDifferentField,
               hintText: hintText,
               hintStyle: fieldLabelStyle(),
               helperText: label == 'Nome da loja'
@@ -79,9 +89,9 @@ class RegisterFormulary extends StatelessWidget {
                   : null,
               border: const OutlineInputBorder(),
               focusColor: secondaryCollor,
-              focusedBorder: const OutlineInputBorder(
+              focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: secondaryCollor,
+                  color: isDifferentField ? Colors.black : secondaryCollor,
                 ),
               ),
             ),
