@@ -155,6 +155,7 @@ class UserAppBar extends StatelessWidget {
   bool get logged {
     return FirebaseAuth.instance.currentUser != null ? true : false;
   }
+
   @override
   Widget build(BuildContext context) {
     List<PopupMenuItem> listy = [
@@ -162,15 +163,15 @@ class UserAppBar extends StatelessWidget {
         child: Column(
           children: [
             Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
-                    Icon(
-                      Icons.logout,
-                      color: Colors.red,
-                    ),
-                    Text('Sair'),
-                  ],
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                Icon(
+                  Icons.logout,
+                  color: Colors.red,
                 ),
+                Text('Sair'),
+              ],
+            ),
           ],
         ),
         padding: const EdgeInsets.all(5.0),
@@ -182,20 +183,20 @@ class UserAppBar extends StatelessWidget {
     ];
     return logged
         ? PopupMenuButton(
-      icon: const Icon(
-        Icons.person_outline_outlined,
-        color: Colors.red,
-        size: 37,
-      ),
-      itemBuilder: (_) => listy,
-    )
-        :IconButton(
-      icon: const Icon(Icons.login),
-      color: Colors.red,
-      onPressed: () {
-        Modular.to.pushNamed(AuthModule.routeName);
-      },
-    );
+            icon: const Icon(
+              Icons.person_outline_outlined,
+              color: Colors.red,
+              size: 37,
+            ),
+            itemBuilder: (_) => listy,
+          )
+        : IconButton(
+            icon: const Icon(Icons.login),
+            color: Colors.red,
+            onPressed: () {
+              Modular.to.pushNamed(AuthModule.routeName);
+            },
+          );
   }
 }
 

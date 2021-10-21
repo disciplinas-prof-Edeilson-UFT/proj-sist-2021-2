@@ -1,15 +1,40 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/modules/auth/auth_repository.dart';
 
 part 'auth_store.g.dart';
 
 class AuthStore = _AuthStoreBase with _$AuthStore;
+
 abstract class _AuthStoreBase with Store {
+  final AuthRepository _authRepository;
+
+  _AuthStoreBase(this._authRepository);
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @observable
-  int value = 0;
+  String errorMessage = '';
+
+  @observable
+  bool logged = false;
 
   @action
-  void increment() {
-    value++;
-  } 
+  Future<void> login() async {
+    try {
+      if (await _authRepository.login(
+          emailController.text, passwordController.text) is String) {
+        logged = true;
+      }
+    } catch (e) {
+      errorMessage = e.toString();
+    }
+  }
+
+  @action
+  void dispose() {
+    logged = false;
+    errorMessage = '';
+  }
 }

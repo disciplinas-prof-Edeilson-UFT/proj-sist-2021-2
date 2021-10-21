@@ -117,7 +117,7 @@ class ProductDialog extends StatelessWidget {
                             const Icon(Icons.store),
                             Expanded(
                               child: Text(
-                                restaurantStore.restaurant.socialName,
+                                restaurantStore.restaurant!.socialName,
                                 style: const TextStyle(fontSize: 15),
                               ),
                             ),
@@ -127,7 +127,7 @@ class ProductDialog extends StatelessWidget {
                               color: Colors.yellow,
                             ),
                             Text(
-                              restaurantStore.restaurant.avaliation!
+                              restaurantStore.restaurant!.avaliation!
                                   .toStringAsFixed(1),
                               style: const TextStyle(color: Colors.yellow),
                             ),
@@ -148,10 +148,10 @@ class ProductDialog extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              restaurantStore.restaurant.estimatedDelivery +
+                              restaurantStore.restaurant!.estimatedDelivery +
                                   ' min - ' +
-                                  FormatMoney.doubleToMoney(
-                                      restaurantStore.restaurant.deliveryPrice),
+                                  FormatMoney.doubleToMoney(restaurantStore
+                                      .restaurant!.deliveryPrice),
                               style: const TextStyle(fontSize: 15),
                             ),
                           ],
