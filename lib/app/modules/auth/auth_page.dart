@@ -78,7 +78,7 @@ class AuthPageState extends State<AuthPage> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  await store.login();
+                  await store.logFace();
                   if (Form.of(context)!.validate()) {}
                 },
                 child: const Text('Login'),

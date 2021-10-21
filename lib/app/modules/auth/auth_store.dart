@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/modules/auth/auth_repository.dart';
@@ -25,6 +26,17 @@ abstract class _AuthStoreBase with Store {
     try {
       if (await _authRepository.login(
           emailController.text, passwordController.text) is String) {
+        logged = true;
+      }
+    } catch (e) {
+      errorMessage = e.toString();
+    }
+  }
+
+  @action
+  Future<void> logFace() async {
+    try {
+      if (await _authRepository.signInWithFacebook() is UserCredential) {
         logged = true;
       }
     } catch (e) {
