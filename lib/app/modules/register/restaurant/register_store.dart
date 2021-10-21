@@ -20,6 +20,7 @@ abstract class _RegisterStore with Store {
     'Nome da loja': TextEditingController(),
     'Telefone da loja': TextEditingController(),
     'CEP': TextEditingController(),
+    'Estado': TextEditingController(),
     'Cidade': TextEditingController(),
     'Bairro': TextEditingController(),
     'Endereço': TextEditingController(),
@@ -31,7 +32,7 @@ abstract class _RegisterStore with Store {
   };
 
   @action
-  Future<void>? addRestaurant(Map<String, TextEditingController> controller) {
+  Future<void>? addRestaurant() {
     restaurant.add({
       'nomeOwner': controller['name']?.text,
       'email_Owner': controller['email']?.text,
@@ -41,6 +42,7 @@ abstract class _RegisterStore with Store {
       'nome_loja': controller['Nome da loja']?.text,
       'telefone_loja': controller['Telefone da loja']?.text,
       'CEP': controller['CEP']?.text,
+      'estado': controller['Estado']?.text,
       'cidade': controller['Cidade']?.text,
       'bairro': controller['Bairro']?.text,
       'endereço': controller['Endereço']?.text,
@@ -56,19 +58,17 @@ abstract class _RegisterStore with Store {
   var selectedValue = 'Açaí';
 
   @action
-  setSelectedValue(newValue, controller) {
-    selectedValue = newValue;
-    controller!['Categoria']!.text = newValue;
-    return controller;
+  setSelectedValue(newValue) {
+    selectedValue = newValue ?? 'Açaí';
+    controller['Categoria']!.text = newValue;
   }
 
   @observable
   SingingCharacter? character = SingingCharacter.plan1;
 
   @action
-  setPlan(newValue, text, controller) {
+  setPlan(newValue, text) {
     character = newValue;
-    controller!['Plano de Entrega']!.text = text;
-    return controller;
+    controller['Plano de Entrega']!.text = text;
   }
 }

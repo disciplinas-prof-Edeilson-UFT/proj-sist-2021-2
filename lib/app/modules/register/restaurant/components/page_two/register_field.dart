@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-// PROPOSIÇÃO DE IMPLEMENTAÇÃO DE FORMATAÇÃO UTILIZANDO mask_text_input_formatter (JÁ EXISTIA NA PUBSPEC.YAML).
-// em caso de recusa, recomendo resetar o repositório ao commit anterior.
-
 class RegisterField {
   static final fields = {
     'CNPJ': {
       'hintText': 'CNPJ',
       'controller': TextEditingController(),
-      'formatter': MaskTextInputFormatter(mask: '##.###.###/####-##', filter: { "#": RegExp(r'[0-9]') }),
+      'formatter': MaskTextInputFormatter(
+        mask: '##.###.###/####-##',
+        filter: {"#": RegExp(r'[0-9]')},
+      ),
     },
     'Razão Social': {
       'hintText': 'Razão social do seu negócio',
@@ -24,15 +24,26 @@ class RegisterField {
     'Telefone da loja': {
       'hintText': 'Telefone da loja com DDD',
       'controller': TextEditingController(),
-      'formatter': MaskTextInputFormatter(),
+      'formatter': MaskTextInputFormatter(
+        mask: '(##) #####-####',
+        filter: {"#": RegExp(r'[0-9]')},
+      ),
     },
     'CEP': {
       'hintText': 'CEP do seu negócio',
       'controller': TextEditingController(),
-      'formatter': MaskTextInputFormatter(mask: '#####-###', filter: { "#": RegExp(r'[0-9]') }),
+      'formatter': MaskTextInputFormatter(
+        mask: '#####-###',
+        filter: {"#": RegExp(r'[0-9]')},
+      ),
     },
     'Cidade': {
       'hintText': 'Cidade do seu negócio',
+      'controller': TextEditingController(),
+      'formatter': MaskTextInputFormatter(),
+    },
+    'Estado': {
+      'hintText': 'UF',
       'controller': TextEditingController(),
       'formatter': MaskTextInputFormatter(),
     },
@@ -49,7 +60,10 @@ class RegisterField {
     'Número': {
       'hintText': 'Número do endereço',
       'controller': TextEditingController(),
-      'formatter': MaskTextInputFormatter(mask: '#####', filter: { "#": RegExp(r'[0-9]') }),
+      'formatter': MaskTextInputFormatter(
+        mask: '#####',
+        filter: {"#": RegExp(r'[0-9]')},
+      ),
     },
     'Complemento (Opcional)': {
       'hintText': 'Complemento do endereço',

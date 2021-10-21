@@ -10,6 +10,7 @@ class RegisterFormulary extends StatelessWidget {
     required this.hintText,
     required this.label,
     required this.controller,
+    this.valueChangeListener,
     this.formatter,
   }) : super(key: key);
 
@@ -17,6 +18,7 @@ class RegisterFormulary extends StatelessWidget {
   final String label;
   final TextEditingController? controller;
   final TextInputFormatter? formatter;
+  final Function? valueChangeListener;
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +35,14 @@ class RegisterFormulary extends StatelessWidget {
             inputFormatters: formatter != null ? [formatter!] : null,
             cursorColor: secondaryCollor,
             controller: controller,
+            onChanged: (value) =>
+                valueChangeListener == null ? {} : valueChangeListener!(value),
             validator: (value) {
               if (value == null ||
                   value.isEmpty && label != 'Complemento (Opcional)') {
                 return "Este campo não pode ficar vazio";
               }
-              // PROPOSIÇÃO DE IMPLEMENTAÇÃO DE VALIDAÇÃO UTILIZANDO SWITCH CASE.
-              // em caso de recusa, recomendo resetar o repositório ao commit anterior.
+
               switch (label) {
                 case 'Complemento (Opcional)':
                   return null;
@@ -52,8 +55,14 @@ class RegisterFormulary extends StatelessWidget {
 
                 case 'CNPJ':
                   if (!CNPJValidator.isValid(value)) {
-                    //Exemplo de cnpj válido -> 12.175.094/0001-19
+                    // Exemplo de cnpj válido -> 12.175.094/0001-19
                     return "Informe um CNPJ válido";
+                  }
+                  return null;
+
+                case 'CEP':
+                  if (value.length < 9) {
+                    return "Informe um CEP válido";
                   }
                   return null;
 

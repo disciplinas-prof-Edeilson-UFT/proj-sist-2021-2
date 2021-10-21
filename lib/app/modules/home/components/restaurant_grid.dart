@@ -35,7 +35,7 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
             var restaurants = homeStore.restaurants;
             if (homeStore.selectedCategory != null) {
               restaurants = restaurants
-                  .where((e) => e.category == homeStore.selectedCategory)
+                  .where((e) => e.category.contains(homeStore.selectedCategory))
                   .toList();
             }
             return GridView.builder(

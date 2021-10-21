@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'register_formulary.dart';
 import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
@@ -12,7 +11,6 @@ class RegisterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, TextEditingController> controller = _registerStore.controller;
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       elevation: 8,
@@ -51,7 +49,7 @@ class RegisterCard extends StatelessWidget {
                 child: Form(
                   key: _formKey,
                   child: Formulary(
-                    controller: controller,
+                    controller: _registerStore.controller,
                   ),
                 ),
               ),
@@ -62,27 +60,22 @@ class RegisterCard extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: Observer(
-                  builder: (_) {
-                    return ElevatedButton(
-                      style: ButtonStyle(
-                        splashFactory: NoSplash.splashFactory,
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith(_getButtonColor),
-                        minimumSize:
-                            MaterialStateProperty.all(const Size(210, 48)),
-                      ),
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          Modular.to.navigate('page2', arguments: controller);
-                        }
-                      },
-                      child: const Text(
-                        'Começar o cadastro',
-                        style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
-                      ),
-                    );
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    splashFactory: NoSplash.splashFactory,
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith(_getButtonColor),
+                    minimumSize: MaterialStateProperty.all(const Size(210, 48)),
+                  ),
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      Modular.to.navigate('page2', arguments: _registerStore);
+                    }
                   },
+                  child: const Text(
+                    'Começar o cadastro',
+                    style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
+                  ),
                 ),
               ),
             ],
