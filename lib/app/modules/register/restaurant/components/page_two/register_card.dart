@@ -4,10 +4,10 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
+import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 import 'package:search_cep/search_cep.dart';
 
 class RegisterRestaurant extends StatefulWidget {
@@ -18,7 +18,7 @@ class RegisterRestaurant extends StatefulWidget {
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
-  final homeStore = Modular.get<HomeStore>();
+  final registerStore = Modular.get<RestaurantRegisterStore>();
   final _formKey = GlobalKey<FormState>();
   final _fields = RegisterField.fields;
   final _categories = [
@@ -174,11 +174,11 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         ),
                         Observer(
                           builder: (ctx) => DropdownButton<String>(
-                            value: homeStore.selectedCategory,
+                            value: registerStore.selectedCategory,
                             style: fieldLabelStyle(),
                             icon: const Icon(Icons.expand_more),
                             iconEnabledColor: secondaryCollor,
-                            onChanged: homeStore.setSelectedCategory,
+                            onChanged: registerStore.setSelectedCategory,
                             elevation: 2,
                             underline: Container(
                               color: secondaryCollor,
@@ -217,23 +217,23 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         ),
                         RadioListTile(
                           title: Text(
-                            homeStore.availablePlans[0],
+                            registerStore.availablePlans[0],
                             style: fieldLabelStyle(),
                           ),
-                          value: homeStore.availablePlans[0],
-                          groupValue: homeStore.selectedPlan,
+                          value: registerStore.availablePlans[0],
+                          groupValue: registerStore.selectedPlan,
                           activeColor: secondaryCollor,
-                          onChanged: homeStore.setSelectedPlan,
+                          onChanged: registerStore.setSelectedPlan,
                         ),
                         RadioListTile(
                           title: Text(
-                            homeStore.availablePlans[1],
+                            registerStore.availablePlans[1],
                             style: fieldLabelStyle(),
                           ),
-                          value: homeStore.availablePlans[1],
-                          groupValue: homeStore.selectedPlan,
+                          value: registerStore.availablePlans[1],
+                          groupValue: registerStore.selectedPlan,
                           activeColor: secondaryCollor,
-                          onChanged: homeStore.setSelectedPlan,
+                          onChanged: registerStore.setSelectedPlan,
                         ),
                       ],
                     ),

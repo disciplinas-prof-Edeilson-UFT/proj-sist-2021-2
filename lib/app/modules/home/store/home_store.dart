@@ -25,21 +25,10 @@ abstract class HomeStoreBase with Store {
   }
 
   @observable
-  var selectedCategory = 'Açaí';
+  String? selectedCategory;
 
   @action
   void setSelectedCategory(String? selection) {
-    selectedCategory = selection ?? 'Açaí';
-  }
-
-  @observable
-  var availablePlans = ['Plano Básico', 'Plano Entrega'];
-
-  @observable
-  var selectedPlan = 'Plano Básico';
-
-  @action
-  void setSelectedPlan(String? selection) {
-    selectedPlan = selection ?? availablePlans.first;
+    selectedCategory = selection;
   }
 }

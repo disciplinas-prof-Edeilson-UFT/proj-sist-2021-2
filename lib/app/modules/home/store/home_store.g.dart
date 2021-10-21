@@ -42,45 +42,15 @@ mixin _$HomeStore on HomeStoreBase, Store {
   final _$selectedCategoryAtom = Atom(name: 'HomeStoreBase.selectedCategory');
 
   @override
-  String get selectedCategory {
+  String? get selectedCategory {
     _$selectedCategoryAtom.reportRead();
     return super.selectedCategory;
   }
 
   @override
-  set selectedCategory(String value) {
+  set selectedCategory(String? value) {
     _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
       super.selectedCategory = value;
-    });
-  }
-
-  final _$availablePlansAtom = Atom(name: 'HomeStoreBase.availablePlans');
-
-  @override
-  List<String> get availablePlans {
-    _$availablePlansAtom.reportRead();
-    return super.availablePlans;
-  }
-
-  @override
-  set availablePlans(List<String> value) {
-    _$availablePlansAtom.reportWrite(value, super.availablePlans, () {
-      super.availablePlans = value;
-    });
-  }
-
-  final _$selectedPlanAtom = Atom(name: 'HomeStoreBase.selectedPlan');
-
-  @override
-  String get selectedPlan {
-    _$selectedPlanAtom.reportRead();
-    return super.selectedPlan;
-  }
-
-  @override
-  set selectedPlan(String value) {
-    _$selectedPlanAtom.reportWrite(value, super.selectedPlan, () {
-      super.selectedPlan = value;
     });
   }
 
@@ -110,24 +80,11 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
-  void setSelectedPlan(String? selection) {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.setSelectedPlan');
-    try {
-      return super.setSelectedPlan(selection);
-    } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 counter: ${counter},
 selectedFilter: ${selectedFilter},
-selectedCategory: ${selectedCategory},
-availablePlans: ${availablePlans},
-selectedPlan: ${selectedPlan}
+selectedCategory: ${selectedCategory}
     ''';
   }
 }
