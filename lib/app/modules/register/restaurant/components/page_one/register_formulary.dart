@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class Formulary extends StatelessWidget {
   Formulary({Key? key, required this.controller}) : super(key: key);
@@ -35,12 +35,12 @@ class Formulary extends StatelessWidget {
                 }
                 return null;
               },
-              cursorColor: secondaryCollor,
+              cursorColor: secondaryColor,
               decoration: const InputDecoration(
-                focusColor: secondaryCollor,
+                focusColor: secondaryColor,
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: secondaryCollor,
+                    color: secondaryColor,
                   ),
                 ),
                 border: OutlineInputBorder(),
@@ -67,12 +67,12 @@ class Formulary extends StatelessWidget {
                 }
                 return null;
               },
-              cursorColor: secondaryCollor,
+              cursorColor: secondaryColor,
               decoration: const InputDecoration(
-                focusColor: secondaryCollor,
+                focusColor: secondaryColor,
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: secondaryCollor,
+                    color: secondaryColor,
                   ),
                 ),
                 border: OutlineInputBorder(),
@@ -100,12 +100,12 @@ class Formulary extends StatelessWidget {
                 }
                 return null;
               },
-              cursorColor: secondaryCollor,
+              cursorColor: secondaryColor,
               decoration: const InputDecoration(
-                focusColor: secondaryCollor,
+                focusColor: secondaryColor,
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: secondaryCollor,
+                    color: secondaryColor,
                   ),
                 ),
                 border: OutlineInputBorder(),

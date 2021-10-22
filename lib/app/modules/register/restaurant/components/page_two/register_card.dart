@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
@@ -44,7 +44,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
-        backgroundColor: primaryCollor,
+        backgroundColor: primaryColor,
         automaticallyImplyLeading: false,
         elevation: 2,
         leading: IconButton(
@@ -53,7 +53,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
           },
           icon: const Icon(
             Icons.arrow_back,
-            color: secondaryCollor,
+            color: secondaryColor,
             size: 30,
           ),
         ),
@@ -85,7 +85,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                   child: Text(
                     'Preencha abaixo as informações da sua futura loja no psfood com os dados do seu negócio',
                     style: TextStyle(
-                      color: tertiaryCollor,
+                      color: tertiaryColor,
                       fontSize: 16,
                       fontFamily: 'Nunito',
                     ),
@@ -169,14 +169,14 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             value: widget.registerStore!.selectedCategory,
                             style: fieldLabelStyle(),
                             icon: const Icon(Icons.expand_more),
-                            iconEnabledColor: secondaryCollor,
+                            iconEnabledColor: secondaryColor,
                             onChanged: (String? newValue) {
                               widget.registerStore!
                                   .setSelectedCategory(newValue);
                             },
                             elevation: 2,
                             underline: Container(
-                              color: secondaryCollor,
+                              color: secondaryColor,
                               height: 2.0,
                             ),
                             items: _categories.map((value) {
@@ -217,7 +217,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                           ),
                           value: widget.registerStore!.availablePlans[0],
                           groupValue: widget.registerStore!.selectedPlan,
-                          activeColor: secondaryCollor,
+                          activeColor: secondaryColor,
                           onChanged: widget.registerStore!.setSelectedPlan,
                         ),
                       ),
@@ -229,7 +229,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                           ),
                           value: widget.registerStore!.availablePlans[1],
                           groupValue: widget.registerStore!.selectedPlan,
-                          activeColor: secondaryCollor,
+                          activeColor: secondaryColor,
                           onChanged: widget.registerStore!.setSelectedPlan,
                         ),
                       ),
@@ -256,7 +256,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         minimumSize:
                             MaterialStateProperty.all(const Size(210, 48)),
                         backgroundColor:
-                            MaterialStateProperty.all(secondaryCollor),
+                            MaterialStateProperty.all(secondaryColor),
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
