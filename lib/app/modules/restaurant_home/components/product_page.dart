@@ -11,20 +11,18 @@ class ProductPage extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
-class cardProduct extends StatefulWidget {
-  const cardProduct({
+class CardProduct extends StatefulWidget {
+  const CardProduct({
     Key? key,
     required this.image,
   }) : super(key: key);
   final String image;
-  // final String? nameOfProduct;
+
   @override
-  _cardProductState createState() => _cardProductState();
+  _CardProductState createState() => _CardProductState();
 }
 
-// ignore: camel_case_types
-class _cardProductState extends State<cardProduct> {
+class _CardProductState extends State<CardProduct> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,16 +47,16 @@ Widget pageProductsResponsivity(width) {
           crossAxisCount: 5,
           mainAxisSpacing: 3,
           children: const [
-            cardProduct(image: "assets/images/product_page/pluss.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/pluss.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
           ],
         ),
       ),
@@ -70,16 +68,16 @@ Widget pageProductsResponsivity(width) {
       children: [
         Column(
           children: const [
-            cardProduct(image: "assets/images/product_page/pluss.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/pluss.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
           ],
         ),
       ],
