@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/order/bodyOrder_page/components/cancel_order.dart';
 import 'package:pscomidas/app/modules/order/class/orders.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
+import 'package:pscomidas/app/modules/order/track/components/cancel_order.dart';
 
 class BodyOrder extends StatefulWidget {
   const BodyOrder({Key? key}) : super(key: key);
@@ -236,63 +236,63 @@ class _BodyOrderState extends State<BodyOrder> {
   Widget _orderDetails() {
     final Size screen = MediaQuery.of(context).size;
     return Container(
-        width: screen.width,
-        height: screen.height,
-        color: primaryCollor,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                color: primaryCollor,
-                width: screen.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        _setVisible();
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color: secondaryCollor,
-                      )),
-                    const Text(
-                      'Detalhes do pedido',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                    Container() // Não deleta, esse container ta servindo para centralizar o texto
-                  ],
-                ),
-              ),
-              _statusOrderinfo(),
-              SizedBox(
-                height: screen.height * 0.02,
-              ),
-              Row(
+      width: screen.width,
+      height: screen.height,
+      color: primaryCollor,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              color: primaryCollor,
+              width: screen.width,
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Container p/ as informações do pedido
-                  _infosOrder(),
-
-                  Container(
-                      // Container p/ ficar os botões
-                    width: screen.width * 0.4,
-                    height: screen.height * 0.5,
-                    decoration: _containerDecoration(),
-                    child: CancelOrder()
+                  IconButton(
+                    onPressed: () {
+                      _setVisible();
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                      color: secondaryCollor,
+                    )),
+                  const Text(
+                    'Detalhes do pedido',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
+                  Container() // Não deleta, esse container ta servindo para centralizar o texto
                 ],
-              )
-            ],
-          ),
+              ),
+            ),
+            _statusOrderinfo(),
+            SizedBox(
+              height: screen.height * 0.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Container p/ as informações do pedido
+                _infosOrder(),
+
+                Container(
+                    // Container p/ ficar os botões
+                  width: screen.width * 0.4,
+                  height: screen.height * 0.5,
+                  decoration: _containerDecoration(),
+                  child: const CancelOrder()
+                ),
+              ],
+            )
+          ],
         ),
-      );
+      ),
+    );
   }
 
   /// [Divisor dos Status], local da R06/T02

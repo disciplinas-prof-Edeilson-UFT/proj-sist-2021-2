@@ -3,9 +3,9 @@ import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/modules/cart/cart_page.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/order/pages/desktop_oder_page.dart';
-import 'package:pscomidas/app/modules/order/pages/mobile_oder_page.dart';
-import 'package:pscomidas/app/modules/order/pages/tablet_oder_page.dart';
+import 'package:pscomidas/app/modules/order/track/pages/desktop_oder_page.dart';
+import 'package:pscomidas/app/modules/order/track/pages/mobile_oder_page.dart';
+import 'package:pscomidas/app/modules/order/track/pages/tablet_oder_page.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({Key? key}) : super(key: key);

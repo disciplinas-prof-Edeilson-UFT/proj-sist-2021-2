@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/order/bodyOrder_page/body_order.dart';
+import 'package:pscomidas/app/modules/order/track/components/body_order.dart';
 
 class DesktopOrderPage extends StatefulWidget {
   const DesktopOrderPage({Key? key}) : super(key: key);
