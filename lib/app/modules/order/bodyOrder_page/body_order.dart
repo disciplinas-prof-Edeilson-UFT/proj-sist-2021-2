@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/order/bodyOrder_page/status_order.dart';
 import 'package:pscomidas/app/modules/order/class/orders.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
@@ -85,7 +84,7 @@ class _BodyOrderState extends State<BodyOrder> {
         /// Status order, irá sobrepor o [ListViewOrder], com o as informações da order
         Visibility(
           visible: _visible,
-          child: _infoOrder(),
+          child: _orderDetails(),
         )
       ],
     );
@@ -237,7 +236,7 @@ class _BodyOrderState extends State<BodyOrder> {
   }
 
   /// [InfoOrder] page que mostará os detalhes do pedido
-  Widget _infoOrder() {
+  Widget _orderDetails() {
     final Size screen = MediaQuery.of(context).size;
     return Expanded(
       child: Container(
@@ -284,12 +283,8 @@ class _BodyOrderState extends State<BodyOrder> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    // Container p/ as informações do pedido
-                    width: screen.width * 0.55,
-                    height: screen.height * 0.5,
-                    decoration: _containerDecoration(),
-                  ),
+                   // Container p/ as informações do pedido
+                  _infosOrder(),
 
                   Container(
                     // Container p/ ficar os botões
@@ -307,16 +302,143 @@ class _BodyOrderState extends State<BodyOrder> {
     );
   }
 
-  /// [Divisor dos Status]
+  /// [Divisor dos Status], local da R06/T02
   Widget _statusOrderinfo(){
     final Size screen = MediaQuery.of(context).size;
     return Container(
       width: screen.width,
       height: screen.height * 0.2,
-      decoration: _containerDecoration()
+      decoration: _containerDecoration(),
+      child: const Text('Status Order, local para adicionar a task R06/T02'),
     );
   }
 
+ Widget _infosOrder(){
+   final Size screen = MediaQuery.of(context).size;
+   return Container(
+      padding: const EdgeInsets.all(20),
+      width: screen.width * 0.55,
+      height: screen.height * 0.5,
+      decoration: _containerDecoration(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          
+          _address(),
+          
+          const Divider(
+            height: 30,
+            thickness: 2,
+          ),
+
+          _moreInfos(),
+          
+          const Divider(
+            height: 30,
+            thickness: 2,
+          ),
+
+          _price()
+        ],
+      ),
+    );
+ }
+
+  /// [Endereço] do pedido
+  Widget _address(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        Text(
+          'Endereço de entrega', 
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontWeight: FontWeight.bold
+          ),
+        ),
+        Text(
+          'Q. 208 Sul, Alameda 10, 202',
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            color: tertiaryCollor
+          ),
+        )
+      ],
+    );
+  }
+
+  /// [Mais informações] do pedido
+  Widget _moreInfos(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Mais informações', 
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontWeight: FontWeight.bold
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('N° do pedido'),
+            Text('999999999')
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Data do pedio'),
+            Text('31/02/2022')
+          ],
+        ),
+      ],
+    );
+  }
+
+  /// [Preço] do pedido 
+  Widget _price(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Valor do pedido'),
+            Text('99,99 R\$')
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Cupom'),
+            Text('0,99 R\$')
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Taxa de entrega'),
+            Text('5,99 R\$')
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Total', 
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Text('104,99 R\$')
+          ],
+        ),
+      ],
+    );
+  }
   /// [BoxShadow] dos container divisores
   BoxDecoration _containerDecoration(){
     return BoxDecoration(
