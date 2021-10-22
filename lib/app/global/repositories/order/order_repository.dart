@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pscomidas/app/global/models/entities/order.dart';
+import 'package:pscomidas/app/global/models/entities/rating.dart';
 import 'package:pscomidas/app/global/models/enums/order_status.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository_interface.dart';
 
@@ -22,6 +23,25 @@ class OrderRepository implements IOrderRepository {
       });
     } catch (e) {
       throw Exception("Pedido não encontrado");
+    }
+  }
+
+  @override
+  Future<void> ratingOrder(Order pedido, Rating avaliacao) async {
+    try {
+      await firestore.collection('rating').add({
+        'comment': avaliacao.comentario,
+        'value': avaliacao.nota,
+      }).then((value) {
+        firestore
+            .collection('order')
+            .doc(pedido.docid!.id.split('/').last)
+            .update({
+          'rating': value.id,
+        });
+      });
+    } catch (e) {
+      throw Exception("Erro ao adicionar em rating: $e");
     }
   }
 
@@ -49,6 +69,7 @@ class OrderRepository implements IOrderRepository {
         'restaurant_id': "Restaurante ABC",
         'ship_price': pedido.shipPrice,
         'status': OrderType.started.databaseString,
+        'rating': '',
       }).then((value) async {
         await firestore.collection('order').doc(value.id).set({
           'items': itemID,
