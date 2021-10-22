@@ -5,8 +5,10 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: pageProductsResponsivity(MediaQuery.of(context).size.width),
+    return Scaffold(
+      body: Center(
+        child: pageProductsResponsivity(MediaQuery.of(context).size.width),
+      ),
     );
   }
 }

@@ -158,7 +158,7 @@ class UserAppBar extends StatelessWidget {
           "assets/images/user.png",
           width: screen.width * 0.02,
         ),
-        onTap: () {},
+        onTap: () => Modular.to.navigate('restaurant/home/products'),
       ),
     );
   }
