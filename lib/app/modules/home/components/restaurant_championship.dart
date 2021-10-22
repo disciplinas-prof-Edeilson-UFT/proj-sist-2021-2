@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 // Feature a ser totalmente implementada.
 /*PROPOSIÇÃO DE CHAMPIONSHIP/VERIFICADO de restaurantes.
@@ -27,7 +26,7 @@ class ChampionRestaurant extends StatelessWidget {
       child: Image.asset("lib/app/modules/home/assets/images/iconmarmita.png",
           height: 28),
       onTap: () {
-        //TODO: NAVIGATE para o restaurante.
+        //NAVIGATE para o restaurante.
       },
     );
   }
