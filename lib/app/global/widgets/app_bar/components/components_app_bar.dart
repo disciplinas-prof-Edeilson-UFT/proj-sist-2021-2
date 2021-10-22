@@ -19,7 +19,7 @@ class LogoAppBar extends StatelessWidget {
             "assets/images/logo.png",
             width: screen.width * 0.2,
           ),
-          onTap: () => Modular.to.pushReplacementNamed('/')),
+          onTap: () => Modular.to.navigate('/')),
     );
   }
 }

@@ -29,7 +29,7 @@ class DesktopPayPage extends StatelessWidget {
                       'Finalize seu pedido',
                       presetFontSizes: [30, 20],
                       style: TextStyle(
-                        fontFamily: 'Ninuto',
+                        fontFamily: 'Nunito',
                         color: Colors.black87,
                         fontWeight: FontWeight.w600,
                       ),

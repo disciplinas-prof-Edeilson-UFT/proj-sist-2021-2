@@ -18,12 +18,12 @@ class PaymentMethod extends StatelessWidget {
             title: AutoSizeText('Pague por Pix',
                 wrapWords: true,
                 style: TextStyle(
-                    fontFamily: 'Ninuto', fontWeight: FontWeight.w500)),
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w500)),
             subtitle: AutoSizeText(
                 'Use o leitor de QR ou copie e cole o código',
                 presetFontSizes: [18, 14, 8],
                 style: TextStyle(
-                    fontFamily: 'Ninuto', fontWeight: FontWeight.w500)),
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w500)),
           ),
         ),
         const Divider(thickness: 5, color: Colors.transparent),
@@ -39,7 +39,7 @@ class PaymentMethod extends StatelessWidget {
                 presetFontSizes: [18, 14],
                 wrapWords: false,
                 style: TextStyle(
-                  fontFamily: 'Ninuto',
+                  fontFamily: 'Nunito',
                   fontWeight: FontWeight.w500,
                 )),
             subtitle:
@@ -47,7 +47,7 @@ class PaymentMethod extends StatelessWidget {
                     presetFontSizes: [16, 12],
                     wrapWords: false,
                     style: TextStyle(
-                      fontFamily: 'Ninuto',
+                      fontFamily: 'Nunito',
                       fontWeight: FontWeight.w500,
                     )),
           ),
@@ -65,14 +65,14 @@ class PaymentMethod extends StatelessWidget {
                 presetFontSizes: [18, 14],
                 wrapWords: false,
                 style: TextStyle(
-                  fontFamily: 'Ninuto',
+                  fontFamily: 'Nunito',
                   fontWeight: FontWeight.w500,
                 )),
             subtitle: AutoSizeText('Pague por dinheiro',
                 presetFontSizes: [16, 12],
                 wrapWords: false,
                 style: TextStyle(
-                  fontFamily: 'Ninuto',
+                  fontFamily: 'Nunito',
                   fontWeight: FontWeight.w500,
                 )),
           ),

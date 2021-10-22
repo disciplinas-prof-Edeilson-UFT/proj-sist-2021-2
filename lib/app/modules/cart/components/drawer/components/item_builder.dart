@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/product_options/product_dialog.dart';
 
 class DrawerBuilder extends StatefulWidget {
@@ -98,6 +99,27 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
             TextButton(
               onPressed: () {
                 store.removeItem(widget.model.itemid);
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text("Você removeu um item"),
+                      actions: <Widget>[
+                        // define os botões na base do dialogo
+                        ElevatedButton(
+                          child: const Text("Fechar",
+                              style: TextStyle(color: primaryCollor)),
+                          style: ElevatedButton.styleFrom(
+                            primary: secondaryCollor,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
               child: const Align(
                 alignment: Alignment.bottomRight,
