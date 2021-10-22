@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cpf_cnpj_validator/cnpj_validator.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 
 class RegisterFormulary extends StatelessWidget {
@@ -39,7 +39,7 @@ class RegisterFormulary extends StatelessWidget {
           TextFormField(
             readOnly: isDifferentField,
             inputFormatters: formatter != null ? [formatter!] : null,
-            cursorColor: secondaryCollor,
+            cursorColor: secondaryColor,
             controller: controller,
             onChanged: (value) =>
                 valueChangeListener == null ? {} : valueChangeListener!(value),
@@ -88,10 +88,10 @@ class RegisterFormulary extends StatelessWidget {
                   ? 'Esse é o nome que aparecerá no aplicativo'
                   : null,
               border: const OutlineInputBorder(),
-              focusColor: secondaryCollor,
+              focusColor: secondaryColor,
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: isDifferentField ? Colors.black : secondaryCollor,
+                  color: isDifferentField ? Colors.black : secondaryColor,
                 ),
               ),
             ),
