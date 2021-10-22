@@ -17,7 +17,7 @@ class RegisterPlans extends StatelessWidget {
 class Card extends StatelessWidget {
   const Card({Key? key, required this.image, this.colorBox}) : super(key: key);
   final String image;
-  final colorBox;
+  final Color? colorBox;
 
   @override
   Widget build(BuildContext context) {

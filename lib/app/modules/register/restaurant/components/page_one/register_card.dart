@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'register_formulary.dart';
 import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class RegisterCard extends StatelessWidget {
-  RegisterCard({Key? key, required this.registerStore}) : super(key: key);
+  RegisterCard({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
-  final RegisterStore registerStore;
+  final RegisterStore registerStore = Modular.get<RegisterStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +93,6 @@ class RegisterCard extends StatelessWidget {
     if (states.any(interactiveStates.contains)) {
       return const Color(0xffA31922);
     }
-    return const Color(0xffEA1D2C);
+    return secondaryColor;
   }
 }

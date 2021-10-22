@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class RegisterSideText extends StatelessWidget {
-  const RegisterSideText({
+  final RegisterStore registerStore = Modular.get<RegisterStore>();
+  RegisterSideText({
     Key? key,
   }) : super(key: key);
-  final String _city = "Palmas";
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class RegisterSideText extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Conquiste mais clientes em $_city',
+            'Conquiste mais clientes em ${registerStore.userCity}',
             softWrap: true,
             maxLines: 3,
             textAlign: TextAlign.left,
