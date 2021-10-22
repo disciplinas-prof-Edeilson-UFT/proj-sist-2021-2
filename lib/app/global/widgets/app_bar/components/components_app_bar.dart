@@ -4,6 +4,7 @@ import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/widgets/temp/update_profile.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
 class LogoAppBar extends StatelessWidget {
@@ -158,7 +159,9 @@ class UserAppBar extends StatelessWidget {
           "assets/images/user.png",
           width: screen.width * 0.02,
         ),
-        onTap: () {},
+        onTap: () {
+          showDialog(context: context, builder: (_) => ProfileAlertDialog());
+        },
       ),
     );
   }
