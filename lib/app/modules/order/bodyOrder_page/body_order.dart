@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/order/bodyOrder_page/components/cancel_order.dart';
 import 'package:pscomidas/app/modules/order/class/orders.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
@@ -44,26 +45,22 @@ class _BodyOrderState extends State<BodyOrder> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Observer(builder: (_) {
-                return const Text(
-                  'Meus Pedidos',
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Nunito'),
-                );
-              }),
+            children: [const Text(
+              'Meus Pedidos',
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito'
+                ),
+              ),
 
               /// Botão para adicionar um card [DELETAR], serve apenas para testes
-              Observer(builder: (_) {
-                return ElevatedButton(
-                    onPressed: () {
-                      store.incrementOrder(data);
-                    },
-                    child: const Text('data'));
-              }),
-
+              ElevatedButton(
+                onPressed: () {
+                  store.incrementOrder(data);
+                },
+                child: const Text('data')
+              ),
 
               SizedBox(
                 height: screen.height * 0.01,
@@ -131,31 +128,31 @@ class _BodyOrderState extends State<BodyOrder> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Observer(builder: (_) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                store.order.elementAt(index).restaurante,
-                                style: TextStyle(
-                                    fontFamily: 'Nunito',
-                                    fontSize: screen.width * 0.025,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text('Id: ${store.order.elementAt(index).id}',
-                                  style: TextStyle(
-                                    fontFamily: 'Nunito',
-                                    fontSize: screen.width * 0.015,
-                                  )),
-                              Text(
-                                  'Entrega até ${store.order.elementAt(index).previsao}',
-                                  style: TextStyle(
-                                    fontFamily: 'Nunito',
-                                    fontSize: screen.width * 0.015,
-                                  )),
-                            ],
-                          );
-                        }),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              store.order.elementAt(index).restaurante,
+                              style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: screen.width * 0.025,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text('Id: ${store.order.elementAt(index).id}',
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: screen.width * 0.015,
+                              )
+                            ),
+                            Text(
+                              'Entrega até ${store.order.elementAt(index).previsao}',
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: screen.width * 0.015,
+                              )
+                            ),
+                          ],
+                        ),
                         Row(
                           children: [
                             Row(
@@ -192,7 +189,7 @@ class _BodyOrderState extends State<BodyOrder> {
     } else if (status == 'Entregador chogou') {
       corStatus = Colors.green;
     }
-  
+
     return Container(
       decoration: BoxDecoration(
           color: corStatus, borderRadius: BorderRadius.circular(10)),
@@ -238,8 +235,7 @@ class _BodyOrderState extends State<BodyOrder> {
   /// [InfoOrder] page que mostará os detalhes do pedido
   Widget _orderDetails() {
     final Size screen = MediaQuery.of(context).size;
-    return Expanded(
-      child: Container(
+    return Container(
         width: screen.width,
         height: screen.height,
         color: primaryCollor,
@@ -254,16 +250,14 @@ class _BodyOrderState extends State<BodyOrder> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Observer(builder: (_) {
-                      return IconButton(
-                          onPressed: () {
-                            _setVisible();
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back_ios,
-                            color: secondaryCollor,
-                          ));
-                    }),
+                    IconButton(
+                      onPressed: () {
+                        _setVisible();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: secondaryCollor,
+                      )),
                     const Text(
                       'Detalhes do pedido',
                       style: TextStyle(
@@ -277,33 +271,32 @@ class _BodyOrderState extends State<BodyOrder> {
                 ),
               ),
               _statusOrderinfo(),
-
-              SizedBox(height: screen.height * 0.02,),
-
+              SizedBox(
+                height: screen.height * 0.02,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   // Container p/ as informações do pedido
+                  // Container p/ as informações do pedido
                   _infosOrder(),
 
                   Container(
-                    // Container p/ ficar os botões
+                      // Container p/ ficar os botões
                     width: screen.width * 0.4,
                     height: screen.height * 0.5,
                     decoration: _containerDecoration(),
+                    child: CancelOrder()
                   ),
-
                 ],
               )
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 
   /// [Divisor dos Status], local da R06/T02
-  Widget _statusOrderinfo(){
+  Widget _statusOrderinfo() {
     final Size screen = MediaQuery.of(context).size;
     return Container(
       width: screen.width,
@@ -313,9 +306,9 @@ class _BodyOrderState extends State<BodyOrder> {
     );
   }
 
- Widget _infosOrder(){
-   final Size screen = MediaQuery.of(context).size;
-   return Container(
+  Widget _infosOrder() {
+    final Size screen = MediaQuery.of(context).size;
+    return Container(
       padding: const EdgeInsets.all(20),
       width: screen.width * 0.55,
       height: screen.height * 0.5,
@@ -323,115 +316,84 @@ class _BodyOrderState extends State<BodyOrder> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          
           _address(),
-          
           const Divider(
             height: 30,
             thickness: 2,
           ),
-
           _moreInfos(),
-          
           const Divider(
             height: 30,
             thickness: 2,
           ),
-
           _price()
         ],
       ),
     );
- }
+  }
 
-  /// [Endereço] do pedido
-  Widget _address(){
+  /// [Endereço] do pedido, faz parte do _infosOrder
+  Widget _address() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const [
         Text(
-          'Endereço de entrega', 
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            fontWeight: FontWeight.bold
-          ),
+          'Endereço de entrega',
+          style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
         ),
         Text(
           'Q. 208 Sul, Alameda 10, 202',
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            color: tertiaryCollor
-          ),
+          style: TextStyle(fontFamily: 'Nunito', color: tertiaryCollor),
         )
       ],
     );
   }
 
-  /// [Mais informações] do pedido
-  Widget _moreInfos(){
+  /// [Mais informações] do pedido, faz paarte do _infosOrder
+  Widget _moreInfos() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Mais informações', 
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            fontWeight: FontWeight.bold
-          ),
+          'Mais informações',
+          style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('N° do pedido'),
-            Text('999999999')
-          ],
+          children: [Text('N° do pedido'), Text('999999999')],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Data do pedio'),
-            Text('31/02/2022')
-          ],
+          children: [Text('Data do pedio'), Text('31/02/2022')],
         ),
       ],
     );
   }
 
-  /// [Preço] do pedido 
-  Widget _price(){
+  /// [Preço] do pedido, faz paarte do _infosOrder
+  Widget _price() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Valor do pedido'),
-            Text('99,99 R\$')
-          ],
+          children: [Text('Valor do pedido'), Text('99,99 R\$')],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Cupom'),
-            Text('0,99 R\$')
-          ],
+          children: [Text('Cupom'), Text('0,99 R\$')],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Taxa de entrega'),
-            Text('5,99 R\$')
-          ],
+          children: [Text('Taxa de entrega'), Text('5,99 R\$')],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Total', 
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontWeight: FontWeight.bold
-              ),
+              'Total',
+              style:
+                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
             ),
             Text('104,99 R\$')
           ],
@@ -439,18 +401,14 @@ class _BodyOrderState extends State<BodyOrder> {
       ],
     );
   }
+
   /// [BoxShadow] dos container divisores
-  BoxDecoration _containerDecoration(){
+  BoxDecoration _containerDecoration() {
     return BoxDecoration(
-      color: primaryCollor,
-      borderRadius: BorderRadius.circular(10),
-      boxShadow: const [
-        BoxShadow(
-          color: Colors.black54,
-          blurRadius: 7,
-          offset: Offset(0, 3)
-        )
-      ]
-    );
+        color: primaryCollor,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: const [
+          BoxShadow(color: Colors.black54, blurRadius: 7, offset: Offset(0, 3))
+        ]);
   }
 }
