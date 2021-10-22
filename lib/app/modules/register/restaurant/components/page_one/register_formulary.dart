@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class Formulary extends StatelessWidget {
   Formulary({Key? key, required this.controller}) : super(key: key);
@@ -34,7 +35,14 @@ class Formulary extends StatelessWidget {
                 }
                 return null;
               },
+              cursorColor: secondaryCollor,
               decoration: const InputDecoration(
+                focusColor: secondaryCollor,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: secondaryCollor,
+                  ),
+                ),
                 border: OutlineInputBorder(),
                 hintText: 'João da Silva',
               ),
@@ -59,7 +67,14 @@ class Formulary extends StatelessWidget {
                 }
                 return null;
               },
+              cursorColor: secondaryCollor,
               decoration: const InputDecoration(
+                focusColor: secondaryCollor,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: secondaryCollor,
+                  ),
+                ),
                 border: OutlineInputBorder(),
                 hintText: 'email@email.com',
               ),
@@ -85,7 +100,14 @@ class Formulary extends StatelessWidget {
                 }
                 return null;
               },
+              cursorColor: secondaryCollor,
               decoration: const InputDecoration(
+                focusColor: secondaryCollor,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: secondaryCollor,
+                  ),
+                ),
                 border: OutlineInputBorder(),
                 hintText: '(00) 00000-0000',
               ),
