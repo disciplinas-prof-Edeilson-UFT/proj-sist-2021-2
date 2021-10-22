@@ -8,24 +8,8 @@ part of 'register_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$RestaurantRegisterStore on _RestaurantRegisterStoreBase, Store {
-  final _$valueAtom = Atom(name: '_RestaurantRegisterStoreBase.value');
-
-  @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
-  }
-
-  @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
-    });
-  }
-
-  final _$selectedCategoryAtom =
-      Atom(name: '_RestaurantRegisterStoreBase.selectedCategory');
+mixin _$RegisterStore on _RegisterStore, Store {
+  final _$selectedCategoryAtom = Atom(name: '_RegisterStore.selectedCategory');
 
   @override
   String get selectedCategory {
@@ -40,24 +24,7 @@ mixin _$RestaurantRegisterStore on _RestaurantRegisterStoreBase, Store {
     });
   }
 
-  final _$availablePlansAtom =
-      Atom(name: '_RestaurantRegisterStoreBase.availablePlans');
-
-  @override
-  List<String> get availablePlans {
-    _$availablePlansAtom.reportRead();
-    return super.availablePlans;
-  }
-
-  @override
-  set availablePlans(List<String> value) {
-    _$availablePlansAtom.reportWrite(value, super.availablePlans, () {
-      super.availablePlans = value;
-    });
-  }
-
-  final _$selectedPlanAtom =
-      Atom(name: '_RestaurantRegisterStoreBase.selectedPlan');
+  final _$selectedPlanAtom = Atom(name: '_RegisterStore.selectedPlan');
 
   @override
   String get selectedPlan {
@@ -72,48 +39,46 @@ mixin _$RestaurantRegisterStore on _RestaurantRegisterStoreBase, Store {
     });
   }
 
-  final _$_RestaurantRegisterStoreBaseActionController =
-      ActionController(name: '_RestaurantRegisterStoreBase');
+  final _$_RegisterStoreActionController =
+      ActionController(name: '_RegisterStore');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_RestaurantRegisterStoreBaseActionController
-        .startAction(name: '_RestaurantRegisterStoreBase.increment');
+  Future<void>? addRestaurant() {
+    final _$actionInfo = _$_RegisterStoreActionController.startAction(
+        name: '_RegisterStore.addRestaurant');
     try {
-      return super.increment();
+      return super.addRestaurant();
     } finally {
-      _$_RestaurantRegisterStoreBaseActionController.endAction(_$actionInfo);
+      _$_RegisterStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void setSelectedCategory(String? selection) {
-    final _$actionInfo = _$_RestaurantRegisterStoreBaseActionController
-        .startAction(name: '_RestaurantRegisterStoreBase.setSelectedCategory');
+  dynamic setSelectedCategory(dynamic newValue) {
+    final _$actionInfo = _$_RegisterStoreActionController.startAction(
+        name: '_RegisterStore.setSelectedCategory');
     try {
-      return super.setSelectedCategory(selection);
+      return super.setSelectedCategory(newValue);
     } finally {
-      _$_RestaurantRegisterStoreBaseActionController.endAction(_$actionInfo);
+      _$_RegisterStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setSelectedPlan(String? selection) {
-    final _$actionInfo = _$_RestaurantRegisterStoreBaseActionController
-        .startAction(name: '_RestaurantRegisterStoreBase.setSelectedPlan');
+    final _$actionInfo = _$_RegisterStoreActionController.startAction(
+        name: '_RegisterStore.setSelectedPlan');
     try {
       return super.setSelectedPlan(selection);
     } finally {
-      _$_RestaurantRegisterStoreBaseActionController.endAction(_$actionInfo);
+      _$_RegisterStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String toString() {
     return '''
-value: ${value},
 selectedCategory: ${selectedCategory},
-availablePlans: ${availablePlans},
 selectedPlan: ${selectedPlan}
     ''';
   }

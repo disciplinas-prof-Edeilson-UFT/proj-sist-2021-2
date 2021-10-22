@@ -2,16 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'register_formulary.dart';
+import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class RegisterCard extends StatelessWidget {
-  RegisterCard({Key? key}) : super(key: key);
+  RegisterCard({Key? key, required this.registerStore}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
-
-  final Map<String, TextEditingController> controller = {
-    'name': TextEditingController(),
-    'email': TextEditingController(),
-    'phone': TextEditingController(),
-  };
+  final RegisterStore registerStore;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +49,7 @@ class RegisterCard extends StatelessWidget {
                 child: Form(
                   key: _formKey,
                   child: Formulary(
-                    controller: controller,
+                    controller: registerStore.controller,
                   ),
                 ),
               ),
@@ -71,16 +67,9 @@ class RegisterCard extends StatelessWidget {
                         MaterialStateProperty.resolveWith(_getButtonColor),
                     minimumSize: MaterialStateProperty.all(const Size(210, 48)),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      /*
-                      prints de demonstração da obtenção de dados. Desnecessário o esclarecimento,
-                      devem ser excluídos.
-                      */
-                      print(controller['name']!.text);
-                      print(controller['phone']!.text);
-                      print(controller['email']!.text);
-                      Modular.to.navigate('page2');
+                      Modular.to.navigate('page2', arguments: registerStore);
                     }
                   },
                   child: const Text(

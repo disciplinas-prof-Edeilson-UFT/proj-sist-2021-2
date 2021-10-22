@@ -11,33 +11,36 @@ import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 import 'package:search_cep/search_cep.dart';
 
 class RegisterRestaurant extends StatefulWidget {
-  const RegisterRestaurant({Key? key}) : super(key: key);
-
+  const RegisterRestaurant({Key? key, this.registerStore}) : super(key: key);
+  final RegisterStore? registerStore;
   @override
   _RegisterRestaurantState createState() => _RegisterRestaurantState();
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
-  final registerStore = Modular.get<RestaurantRegisterStore>();
-  final _formKey = GlobalKey<FormState>();
-  final _fields = RegisterField.fields;
-  final _categories = [
-    'Açaí',
-    'Lanches',
-    'Padarias',
-    'Pizza',
-    'Saudável',
-    'Bolos e Doces',
-    'Bebidas',
-    'Vegetariana',
-    'Italiana',
-    'Sorvetes',
-    'Asiática',
-  ];
-
   @override
   Widget build(BuildContext context) {
+    if (widget.registerStore?.controller['nomeOwner'] == null) {
+      Modular.to.navigate('page1');
+    }
     final size = MediaQuery.of(context).size;
+    final _formKey = GlobalKey<FormState>();
+    final _fields = RegisterField.fields;
+    final _categories = [
+      'Açaí',
+      'Lanches',
+      'Padarias',
+      'Pizza',
+      'Saudável',
+      'Bolos e Doces',
+      'Bebidas',
+      'Vegetariana',
+      'Italiana',
+      'Sorvetes',
+      'Asiática',
+    ];
+    widget.registerStore!.controller['Categoria']!.text = 'Açaí';
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -94,32 +97,23 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       return RegisterFormulary(
                         label: e,
                         hintText: _fields[e]?['hintText'] as String,
-                        controller:
-                            _fields[e]?['controller'] as TextEditingController,
+                        controller: widget.registerStore!.controller[e],
                         formatter:
                             _fields[e]?['formatter'] as TextInputFormatter,
                         valueChangeListener: (value) async {
                           //Esta função atribui os valores de endereço dinamicamente conforme o CEP informado.
                           final info = await ViaCepSearchCep().searchInfoByCep(
                               cep: value.replaceFirst('-', ''));
-                          final cidade = _fields['Cidade']?['controller']
-                              as TextEditingController;
-                          final endereco = _fields['Endereço']?['controller']
-                              as TextEditingController;
-                          final estado = _fields['Estado']?['controller']
-                              as TextEditingController;
-                          final bairro = _fields['Bairro']?['controller']
-                              as TextEditingController;
                           if (info.isRight()) {
-                            endereco.text =
+                            widget.registerStore!.controller['Endereço']!.text =
                                 info.getOrElse(() => ViaCepInfo()).logradouro ??
                                     '';
-                            cidade.text =
+                            widget.registerStore!.controller['Cidade']!.text =
                                 info.getOrElse(() => ViaCepInfo()).localidade ??
                                     '';
-                            estado.text =
+                            widget.registerStore!.controller['Estado']!.text =
                                 info.getOrElse(() => ViaCepInfo()).uf ?? '';
-                            bairro.text =
+                            widget.registerStore!.controller['Bairro']!.text =
                                 info.getOrElse(() => ViaCepInfo()).bairro ?? '';
                           }
                         },
@@ -133,8 +127,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             child: RegisterFormulary(
                               label: e,
                               hintText: _fields[e]?['hintText'] as String,
-                              controller: _fields[e]?['controller']
-                                  as TextEditingController,
+                              controller: widget.registerStore!.controller[e],
                             ),
                           ),
                           const VerticalDivider(),
@@ -142,8 +135,8 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             child: RegisterFormulary(
                               label: 'Estado',
                               hintText: 'UF',
-                              controller: _fields['Estado']?['controller']
-                                  as TextEditingController,
+                              controller:
+                                  widget.registerStore!.controller['Estado'],
                             ),
                           ),
                         ],
@@ -156,8 +149,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       formatter: _fields[e]?['formatter'] as TextInputFormatter,
                       label: e,
                       hintText: _fields[e]?['hintText'] as String,
-                      controller:
-                          _fields[e]?['controller'] as TextEditingController,
+                      controller: widget.registerStore!.controller[e],
                     );
                   },
                 ).toList(),
@@ -174,11 +166,14 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         ),
                         Observer(
                           builder: (ctx) => DropdownButton<String>(
-                            value: registerStore.selectedCategory,
+                            value: widget.registerStore!.selectedCategory,
                             style: fieldLabelStyle(),
                             icon: const Icon(Icons.expand_more),
                             iconEnabledColor: secondaryCollor,
-                            onChanged: registerStore.setSelectedCategory,
+                            onChanged: (String? newValue) {
+                              widget.registerStore!
+                                  .setSelectedCategory(newValue);
+                            },
                             elevation: 2,
                             underline: Container(
                               color: secondaryCollor,
@@ -207,36 +202,38 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                     top: 15.0,
                     bottom: 50.0,
                   ),
-                  child: Observer(
-                    builder: (ctx) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Qual plano você deseja contratar?',
-                          style: fieldLabelStyle(),
-                        ),
-                        RadioListTile(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Qual plano você deseja contratar?',
+                        style: fieldLabelStyle(),
+                      ),
+                      Observer(
+                        builder: (_) => RadioListTile(
                           title: Text(
-                            registerStore.availablePlans[0],
+                            widget.registerStore!.availablePlans[0],
                             style: fieldLabelStyle(),
                           ),
-                          value: registerStore.availablePlans[0],
-                          groupValue: registerStore.selectedPlan,
+                          value: widget.registerStore!.availablePlans[0],
+                          groupValue: widget.registerStore!.selectedPlan,
                           activeColor: secondaryCollor,
-                          onChanged: registerStore.setSelectedPlan,
+                          onChanged: widget.registerStore!.setSelectedPlan,
                         ),
-                        RadioListTile(
+                      ),
+                      Observer(
+                        builder: (_) => RadioListTile(
                           title: Text(
-                            registerStore.availablePlans[1],
+                            widget.registerStore!.availablePlans[1],
                             style: fieldLabelStyle(),
                           ),
-                          value: registerStore.availablePlans[1],
-                          groupValue: registerStore.selectedPlan,
+                          value: widget.registerStore!.availablePlans[1],
+                          groupValue: widget.registerStore!.selectedPlan,
                           activeColor: secondaryCollor,
-                          onChanged: registerStore.setSelectedPlan,
+                          onChanged: widget.registerStore!.setSelectedPlan,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
@@ -263,6 +260,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          widget.registerStore!.addRestaurant();
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
