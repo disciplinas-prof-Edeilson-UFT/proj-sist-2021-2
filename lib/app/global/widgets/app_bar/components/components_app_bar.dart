@@ -15,15 +15,18 @@ class LogoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        child: Image.asset(
-          "assets/images/logo.png",
-          width: screen.width * 0.2,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          child: Image.asset(
+            "assets/images/logo.png",
+            width: screen.width * 0.08,
+          ),
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomePage())),
         ),
-        onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const HomePage())),
       ),
     );
   }
@@ -186,13 +189,18 @@ class UserAppBar extends StatelessWidget {
             icon: const Icon(
               Icons.person_outline_outlined,
               color: Colors.red,
-              size: 37,
+              size: 40,
             ),
             itemBuilder: (_) => listy,
           )
         : IconButton(
-            icon: const Icon(Icons.login),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            icon: const Icon(
+              Icons.login,
+              size: 30,
+            ),
             color: Colors.red,
+            hoverColor: Colors.transparent,
             onPressed: () {
               Modular.to.pushNamed(AuthModule.routeName);
             },
@@ -205,16 +213,17 @@ class CartAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        child: Image.asset(
-          "assets/images/cart.png",
-          width: screen.width * 0.02,
-        ),
-        onTap: () => Scaffold.of(context).openEndDrawer(),
+    return IconButton(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      icon: const Icon(
+        Icons.shopping_cart_outlined,
+        size: 30,
       ),
+      color: Colors.red,
+      hoverColor: Colors.transparent,
+      onPressed: () {
+        Scaffold.of(context).openEndDrawer();
+      },
     );
   }
 }

@@ -46,6 +46,13 @@ mixin _$AuthStore on _AuthStoreBase, Store {
     return _$loginAsyncAction.run(() => super.login());
   }
 
+  final _$logFaceAsyncAction = AsyncAction('_AuthStoreBase.logFace');
+
+  @override
+  Future<void> logFace() {
+    return _$logFaceAsyncAction.run(() => super.logFace());
+  }
+
   final _$_AuthStoreBaseActionController =
       ActionController(name: '_AuthStoreBase');
 

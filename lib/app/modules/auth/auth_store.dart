@@ -25,7 +25,9 @@ abstract class _AuthStoreBase with Store {
   Future<void> login() async {
     try {
       if (await _authRepository.login(
-          emailController.text, passwordController.text) is String) {
+        emailController.text,
+        passwordController.text,
+      ) is UserCredential) {
         logged = true;
       }
     } catch (e) {
@@ -37,6 +39,17 @@ abstract class _AuthStoreBase with Store {
   Future<void> logFace() async {
     try {
       if (await _authRepository.signInWithFacebook() is UserCredential) {
+        logged = true;
+      }
+    } catch (e) {
+      errorMessage = e.toString();
+    }
+  }
+
+  @action
+  Future<void> logGoogle() async {
+    try {
+      if (await _authRepository.signInWithGoogle() is UserCredential) {
         logged = true;
       }
     } catch (e) {
