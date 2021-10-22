@@ -1,22 +1,23 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'components/register_card.dart';
-import 'components/register_side_text.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/register_plans.dart';
+import 'components/page_one/register_card.dart';
+import 'components/page_one/register_side_text.dart';
 import 'register_store.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
   final String title;
-  const RestaurantRegisterPage(
-      {Key? key, this.title = 'RestaurantRegisterPage'})
+  RestaurantRegisterPage(
+      {Key? key,
+      this.title = 'RestaurantRegisterPage',
+      required this.registerStore})
       : super(key: key);
+  final RegisterStore registerStore;
   @override
   RestaurantRegisterPageState createState() => RestaurantRegisterPageState();
 }
 
 class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
-  final RestaurantRegisterStore store = Modular.get();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +32,8 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         child: pageResponsivity(MediaQuery.of(context).size.width),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("lib/app/modules/register/restaurant/assets/background.png"),
+            image: AssetImage(
+                "lib/app/modules/register/restaurant/assets/background.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -39,17 +41,24 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
     );
   }
 
-  Widget pageResponsivity (width) {
+  Widget pageResponsivity(width) {
     if (width > 850) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const RegisterSideText(),
-          RegisterCard(),
-        ],
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const RegisterSideText(),
+                RegisterCard(registerStore: widget.registerStore),
+              ],
+            ),
+            const RegisterPlans(),
+          ],
+        ),
       );
-    } 
+    }
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -57,7 +66,8 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
           Column(
             children: [
               const RegisterSideText(),
-              RegisterCard(),
+              RegisterCard(registerStore: widget.registerStore),
+              const RegisterPlans(),
             ],
           ),
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
@@ -21,7 +21,7 @@ class _TabletAppBarState extends ModularState<TabletAppBar, HomeStore> {
     final Size screen = MediaQuery.of(context).size;
     return AppBar(
       toolbarHeight: 80,
-      backgroundColor: primaryCollor,
+      backgroundColor: primaryColor,
       elevation: 2,
       automaticallyImplyLeading: false,
       title: Center(
