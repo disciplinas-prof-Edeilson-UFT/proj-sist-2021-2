@@ -4,6 +4,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/modules/auth/auth_store.dart';
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/auth/pages/verify_screen.dart';
+import 'package:pscomidas/app/modules/home/home_module.dart';
 
 class AuthPage extends StatefulWidget {
   final String title;
@@ -17,17 +19,26 @@ bool _showPassword = false;
 class AuthPageState extends State<AuthPage> {
   final AuthStore store = Modular.get();
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   List<ReactionDisposer> disposers = [];
 
   @override
   void initState() {
-    disposers.add(
+    disposers = [
       reaction(
         (_) => store.logged == true,
-        (_) => Navigator.pushNamed(context, '/'),
+        (_) => Modular.to
+            .pushNamedAndRemoveUntil(HomeModule.routeName, (p0) => false),
       ),
-    );
-    disposers.add(
+      reaction(
+        (_) => store.emailVerified == false,
+        (_) => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const VerifyScreen(),
+          ),
+        ),
+      ),
       reaction(
         (_) => store.errorMessage.isNotEmpty,
         (_) {
@@ -47,17 +58,16 @@ class AuthPageState extends State<AuthPage> {
           ).show(context);
         },
       ),
-    );
+    ];
+    WidgetsFlutterBinding.ensureInitialized();
     super.initState();
   }
 
   @override
   void dispose() {
     store.dispose();
-    store.emailController.text = '';
-    store.passwordController.text = '';
-    for (var i = 0; i <= disposers.length; i++) {
-      dispose();
+    for (var element in disposers) {
+      element.call();
     }
     super.dispose();
   }
@@ -77,6 +87,7 @@ class AuthPageState extends State<AuthPage> {
               ),
             ),
             Form(
+              key: _formKey,
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 100.0,
@@ -187,7 +198,7 @@ class AuthPageState extends State<AuthPage> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (Form.of(context)!.validate()) {
+                              if (_formKey.currentState!.validate()) {
                                 await store.login();
                               }
                             },

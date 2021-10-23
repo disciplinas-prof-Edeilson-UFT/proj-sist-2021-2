@@ -1,10 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
 
-class AuthRepository {
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pscomidas/app/modules/auth/auth_service.dart';
+
+class AuthRepository extends AuthService {
   final FirebaseAuth auth;
 
   AuthRepository(this.auth, {authInstance});
 
+  @override
   Future<UserCredential> login(String email, String password) async {
     try {
       return await auth.signInWithEmailAndPassword(
@@ -21,6 +25,7 @@ class AuthRepository {
     throw Exception('Houve um erro desconhecido ao tentar fazer login.');
   }
 
+  @override
   Future<UserCredential> signInWithFacebook() async {
     FacebookAuthProvider facebookProvider = FacebookAuthProvider();
 
@@ -33,6 +38,7 @@ class AuthRepository {
     }
   }
 
+  @override
   Future<UserCredential> signInWithGoogle() async {
     GoogleAuthProvider googleProvider = GoogleAuthProvider();
 

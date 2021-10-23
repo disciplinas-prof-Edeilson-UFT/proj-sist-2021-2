@@ -39,6 +39,21 @@ mixin _$AuthStore on _AuthStoreBase, Store {
     });
   }
 
+  final _$emailVerifiedAtom = Atom(name: '_AuthStoreBase.emailVerified');
+
+  @override
+  bool get emailVerified {
+    _$emailVerifiedAtom.reportRead();
+    return super.emailVerified;
+  }
+
+  @override
+  set emailVerified(bool value) {
+    _$emailVerifiedAtom.reportWrite(value, super.emailVerified, () {
+      super.emailVerified = value;
+    });
+  }
+
   final _$loginAsyncAction = AsyncAction('_AuthStoreBase.login');
 
   @override
@@ -51,6 +66,22 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   @override
   Future<void> logFace() {
     return _$logFaceAsyncAction.run(() => super.logFace());
+  }
+
+  final _$checkEmailVerifiedAsyncAction =
+      AsyncAction('_AuthStoreBase.checkEmailVerified');
+
+  @override
+  Future<void> checkEmailVerified() {
+    return _$checkEmailVerifiedAsyncAction
+        .run(() => super.checkEmailVerified());
+  }
+
+  final _$logGoogleAsyncAction = AsyncAction('_AuthStoreBase.logGoogle');
+
+  @override
+  Future<void> logGoogle() {
+    return _$logGoogleAsyncAction.run(() => super.logGoogle());
   }
 
   final _$_AuthStoreBaseActionController =
@@ -71,7 +102,8 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   String toString() {
     return '''
 errorMessage: ${errorMessage},
-logged: ${logged}
+logged: ${logged},
+emailVerified: ${emailVerified}
     ''';
   }
 }
