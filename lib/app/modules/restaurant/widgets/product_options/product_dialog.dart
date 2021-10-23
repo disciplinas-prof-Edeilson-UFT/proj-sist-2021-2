@@ -279,7 +279,6 @@ class _ProductDialogState extends State<ProductDialog> {
                     } else {
                       store.makeItem(widget.product);
                       cartStore.removeItem(widget.isEditing!.itemid);
-                      //cartStore.editItem(widget.isEditing!);
                       showDialog(
                         context: context,
                         builder: (context) {

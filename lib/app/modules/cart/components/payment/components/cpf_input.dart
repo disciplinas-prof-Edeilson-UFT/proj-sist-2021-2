@@ -22,6 +22,7 @@ class _CPFState extends State<CPF> {
           FilteringTextInputFormatter.digitsOnly,
           CpfOuCnpjFormatter(),
         ],
+        cursorColor: secondaryCollor,
         focusNode: myFocusNode,
         decoration: InputDecoration(
           focusedBorder: const UnderlineInputBorder(

@@ -34,7 +34,10 @@ class CupomField extends StatelessWidget {
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.red),
                 ),
-                icon: Icon(Icons.local_offer_outlined),
+                icon: Icon(
+                  Icons.local_offer_outlined,
+                  color: secondaryCollor,
+                ),
                 hintText: 'Cupom de desconto',
                 hintStyle: TextStyle(
                   fontFamily: 'Nunito',
