@@ -19,12 +19,12 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
-    Size screen = MediaQuery.of(context).size;
-
     return InkWell(
       onTap: () => showDialog(
         context: context,
-        builder: (context) => ProductDialog(product: widget.product),
+        builder: (context) => ProductDialog(
+          product: widget.product,
+        ),
       ),
       child: Container(
         decoration: BoxDecoration(
@@ -83,7 +83,7 @@ class _ProductCardState extends State<ProductCard> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'R\$ ' + FormatMoney.doubleToMoney(widget.product.price!),
+                    FormatMoney.doubleToMoney(widget.product.price!),
                     style: priceStyle,
                   ),
                 ),

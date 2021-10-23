@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_card.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
@@ -17,7 +18,7 @@ class RestaurantGrid extends StatefulWidget {
 
 class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
   final homeStore = Modular.get<HomeStore>();
-
+  late Restaurant restaurant;
   @override
   Widget build(BuildContext context) {
     return Observer(
@@ -68,14 +69,21 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
                     try {
                       //lida com erros nos campos dos documentos do firebase.
                       //garantido que os documentos serão feitos sem erros, este try catch pode ser excluido.
-                      restaurants[index]['image'];
-                      restaurants[index]['social_name'];
-                      restaurants[index]['avaliation'];
-                      restaurants[index]['category'];
-                      restaurants[index]['distance'];
-                      restaurants[index]['estimated_delivery'];
-                      restaurants[index]['delivery_price'];
-                      restaurants[index]['cupom'];
+                      restaurant = Restaurant(
+                        restaurants[index].id,
+                        category: restaurants[index]['category'] ?? '',
+                        deliveryPrice:
+                            restaurants[index]['delivery_price'] ?? 0,
+                        distance: restaurants[index]['distance'] ?? 0,
+                        estimatedDelivery:
+                            restaurants[index]['estimated_delivery'] ?? '',
+                        image: restaurants[index]['image'] ?? '',
+                        isChampion: restaurants[index]['isChampion'] ?? false,
+                        orders: restaurants[index]['orders'] ?? 0,
+                        socialName: restaurants[index]['social_name'] ?? '',
+                        avaliation: restaurants[index]['avaliation'] ?? 0,
+                        cupom: restaurants[index]['cupom'],
+                      );
                     } catch (exception) {
                       return Column(children: [
                         Text(exception.toString()),
@@ -85,7 +93,7 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
                         ),
                       ]);
                     }
-                    return RestaurantCard(restaurants[index]);
+                    return RestaurantCard(restaurant);
                   },
                 );
               },

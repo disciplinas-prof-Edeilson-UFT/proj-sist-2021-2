@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/cart/cart_page.dart';
 import 'package:pscomidas/app/modules/category/category_page.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/global/widgets/bottom_app_bar/bottom_app_bar_mobile.dart';
@@ -38,6 +39,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(),
+      endDrawer: const CartPage(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

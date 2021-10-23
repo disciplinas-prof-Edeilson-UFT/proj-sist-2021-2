@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class ItemButtomBar extends StatelessWidget {
   const ItemButtomBar({Key? key, required this.icon, required this.text})
       : super(key: key);
-  final icon;
-  final text;
+  final Icon icon;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () => Scaffold.of(context).openEndDrawer(),
           icon: icon,
           iconSize: 15,
         ),

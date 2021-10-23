@@ -24,12 +24,12 @@ class DesktopCustomFooter extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Container(
+              SizedBox(
                 width: screen.width * .3,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text('iFood'),
+                    const Text('iFood'),
                     ListView.builder(
                       itemCount: ifood.length,
                       itemBuilder: (_, index) {
@@ -46,12 +46,12 @@ class DesktopCustomFooter extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 width: screen.width * .3,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text('Descubra'),
+                    const Text('Descubra'),
                     ListView.builder(
                       itemCount: descubra.length,
                       itemBuilder: (_, index) {
@@ -68,19 +68,19 @@ class DesktopCustomFooter extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 width: screen.width * .2,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text('Social'),
-                    Container(
+                    const Text('Social'),
+                    SizedBox(
                       width: 50,
                       child: ListView.builder(
                         itemCount: social.length,
                         itemBuilder: (_, index) {
                           return Padding(
-                            padding: EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: SignInButton(
                               social[index],
                               onPressed: () => null,
@@ -96,22 +96,20 @@ class DesktopCustomFooter extends StatelessWidget {
               ),
             ],
           ),
-          Divider(
+          const Divider(
             height: 20,
             thickness: 2,
             color: Colors.black38,
           ),
-          SizedBox(
-            height: 50,
-          ),
+          const SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
+              SizedBox(
                   width: 70,
                   height: 70,
                   child: Image.asset('assets/images/logo.png')),
-              Column(children: [
+              Column(children: const [
                 Text(
                   '© Copyright 2021 - iFood - Todos os direitos reservados iFood com Agência de',
                   style: TextStyle(fontSize: 10),
@@ -134,7 +132,7 @@ class DesktopCustomFooter extends StatelessWidget {
                   primary: Colors.black38,
                 ),
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Termos e condições de uso',
                   style: TextStyle(fontSize: 12),
                 ),
@@ -144,7 +142,7 @@ class DesktopCustomFooter extends StatelessWidget {
                   primary: Colors.black38,
                 ),
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Código de conduta',
                   style: TextStyle(fontSize: 12),
                 ),
@@ -154,7 +152,7 @@ class DesktopCustomFooter extends StatelessWidget {
                   primary: Colors.black38,
                 ),
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'privacidade',
                   style: TextStyle(fontSize: 12),
                 ),
@@ -164,7 +162,7 @@ class DesktopCustomFooter extends StatelessWidget {
                   primary: Colors.black38,
                 ),
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Dicas de segurança',
                   style: TextStyle(fontSize: 12),
                 ),
