@@ -1,8 +1,5 @@
-import 'dart:io';
-import 'package:path/path.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dropzone/flutter_dropzone.dart';
-import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'update_profile_picture.dart';
 
 class ProfileAlertDialog extends StatelessWidget {
   ProfileAlertDialog({ Key? key }) : super(key: key);
@@ -25,7 +22,7 @@ class ProfileAlertDialog extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: InkWell(
                     onTap: () {
-                      showDialog(context: context, builder: (_) => UploadImageDialog());
+                      showDialog(context: context, builder: (_) => const UploadImageDialog());
                     },
                     child: const CircleAvatar(
                       minRadius: 45,
@@ -33,78 +30,27 @@ class ProfileAlertDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Text('nome do restaurante')
+                Expanded(
+                  child: TextFormField(
+                    controller: _controller,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
               ],
             ),
-            const Center(
-              child: Text("Todo o resto."),
+            Column(
+              children: const [
+                Text("Como este card NÃO faz parte das requisições do R09, esta área ficará em branco"
+                " e inoperante. Trata-se da PROPOSIÇÃO da área onde o restaurante editará informações"
+               " importantes como nome, imagem de perfil (o upload da imagem já está implementado, "
+               " basta clicar no CircleAvatar azul), categoria de serviço, etc.")
+              ],
             ),
           ],
         ),
       ),
     );
-  }
-}
-
-
-class UploadImageDialog extends StatefulWidget {
-  const UploadImageDialog({ Key? key }) : super(key: key);
-
-  @override
-  State<UploadImageDialog> createState() => _UploadImageDialogState();
-}
-
-class _UploadImageDialogState extends State<UploadImageDialog> {
-
-  late DropzoneViewController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      contentPadding: const EdgeInsets.all(8),
-      title: const Text("Alterar imagem de perfil"),
-      content: Container(
-        height: 220,
-        width: 320,
-        color: secondaryColor,
-        child: Stack(
-          children: [
-            DropzoneView(
-              onDrop: imageReceiver,
-              onCreated: (controller) => this.controller = controller,
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.insert_photo),
-                  const Text('Arraste uma imagem aqui', style: TextStyle(color: Colors.white,)),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text('Ou', style: TextStyle(color: Colors.white,)),
-                  ),
-                  ElevatedButton.icon(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                    ),
-                    onPressed: () async {
-                      final event = await controller.pickFiles();
-                      imageReceiver(event.last);
-                    },
-                    icon: const Icon(Icons.search, color: Colors.black,),
-                    label: const Text("Procurar Arquivo", style: TextStyle(color: Colors.black,)),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Future imageReceiver (dynamic e) async {
-    final url = await controller.createFileUrl(e);
-    print(url);
   }
 }
