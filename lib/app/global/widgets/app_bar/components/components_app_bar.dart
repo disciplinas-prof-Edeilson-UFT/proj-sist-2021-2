@@ -173,8 +173,9 @@ class _UserAppBarState extends State<UserAppBar> {
             icon: const Icon(
               Icons.person_outline_outlined,
               color: Colors.red,
-              size: 30,
             ),
+            iconSize: 30.0,
+            offset: const Offset(-5, 60),
             itemBuilder: (_) => UserProfileOptions.listy,
           )
         : IconButton(
