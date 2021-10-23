@@ -33,7 +33,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                "assets/images/register/background.png"),
+                "images/register/background.png"),
             fit: BoxFit.cover,
           ),
         ),

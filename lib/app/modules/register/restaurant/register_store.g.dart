@@ -76,6 +76,17 @@ mixin _$RegisterStore on _RegisterStore, Store {
   }
 
   @override
+  void dispose() {
+    final _$actionInfo = _$_RegisterStoreActionController.startAction(
+        name: '_RegisterStore.dispose');
+    try {
+      return super.dispose();
+    } finally {
+      _$_RegisterStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 selectedCategory: ${selectedCategory},

@@ -7,7 +7,6 @@ import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class RegisterCard extends StatelessWidget {
   RegisterCard({Key? key}) : super(key: key);
-  final _formKey = GlobalKey<FormState>();
   final RegisterStore registerStore = Modular.get<RegisterStore>();
 
   @override
@@ -48,7 +47,7 @@ class RegisterCard extends StatelessWidget {
               ),
               Expanded(
                 child: Form(
-                  key: _formKey,
+                  key: registerStore.cardFormKey,
                   child: Formulary(
                     controller: registerStore.controller,
                   ),
@@ -69,7 +68,7 @@ class RegisterCard extends StatelessWidget {
                     minimumSize: MaterialStateProperty.all(const Size(210, 48)),
                   ),
                   onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
+                    if (registerStore.cardFormKey.currentState!.validate()) {
                       Modular.to.navigate('page2', arguments: registerStore);
                     }
                   },

@@ -4,43 +4,37 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_cep.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
-import 'package:search_cep/search_cep.dart';
 
 class RegisterRestaurant extends StatefulWidget {
-  const RegisterRestaurant({Key? key, this.registerStore}) : super(key: key);
-  final RegisterStore? registerStore;
+  const RegisterRestaurant({Key? key, required this.registerStore})
+      : super(key: key);
+  final RegisterStore registerStore;
   @override
   _RegisterRestaurantState createState() => _RegisterRestaurantState();
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
   @override
-  Widget build(BuildContext context) {
-    if (widget.registerStore?.controller['nomeOwner'] == null) {
+  void initState() {
+    if (widget.registerStore.controller['nomeOwner'] == null) {
       Modular.to.navigate('page1');
     }
-    final size = MediaQuery.of(context).size;
-    final _formKey = GlobalKey<FormState>();
-    final _fields = RegisterField.fields;
-    final _categories = [
-      'Açaí',
-      'Lanches',
-      'Padarias',
-      'Pizza',
-      'Saudável',
-      'Bolos e Doces',
-      'Bebidas',
-      'Vegetariana',
-      'Italiana',
-      'Sorvetes',
-      'Asiática',
-    ];
-    widget.registerStore!.controller['Categoria']!.text = 'Açaí';
+    super.initState();
+  }
 
+  @override
+  void dispose() {
+    widget.registerStore.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    widget.registerStore.controller['Categoria']!.text = 'Açaí';
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -66,7 +60,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
           width: size.width,
           color: Colors.white,
           child: Form(
-            key: _formKey,
+            key: widget.registerStore.formKey,
             child: Column(
               children: [
                 const Padding(
@@ -91,32 +85,18 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                     ),
                   ),
                 ),
-                ..._fields.keys.map(
+                ...widget.registerStore.fields.keys.map(
                   (e) {
                     if (e == 'CEP') {
                       return RegisterFormulary(
                         label: e,
-                        hintText: _fields[e]?['hintText'] as String,
-                        controller: widget.registerStore!.controller[e],
-                        formatter:
-                            _fields[e]?['formatter'] as TextInputFormatter,
-                        valueChangeListener: (value) async {
-                          //Esta função atribui os valores de endereço dinamicamente conforme o CEP informado.
-                          final info = await ViaCepSearchCep().searchInfoByCep(
-                              cep: value.replaceFirst('-', ''));
-                          if (info.isRight()) {
-                            widget.registerStore!.controller['Endereço']!.text =
-                                info.getOrElse(() => ViaCepInfo()).logradouro ??
-                                    '';
-                            widget.registerStore!.controller['Cidade']!.text =
-                                info.getOrElse(() => ViaCepInfo()).localidade ??
-                                    '';
-                            widget.registerStore!.controller['Estado']!.text =
-                                info.getOrElse(() => ViaCepInfo()).uf ?? '';
-                            widget.registerStore!.controller['Bairro']!.text =
-                                info.getOrElse(() => ViaCepInfo()).bairro ?? '';
-                          }
-                        },
+                        hintText: widget.registerStore.fields[e]?['hintText']
+                            as String,
+                        controller: widget.registerStore.controller[e],
+                        formatter: widget.registerStore.fields[e]?['formatter']
+                            as TextInputFormatter,
+                        valueChangeListener: (value) => RegisterCEP()
+                            .searchAdress(value, widget.registerStore),
                       );
                     }
                     if (e == 'Cidade') {
@@ -126,8 +106,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             flex: 2,
                             child: RegisterFormulary(
                               label: e,
-                              hintText: _fields[e]?['hintText'] as String,
-                              controller: widget.registerStore!.controller[e],
+                              hintText: widget.registerStore.fields[e]
+                                  ?['hintText'] as String,
+                              controller: widget.registerStore.controller[e],
                             ),
                           ),
                           const VerticalDivider(),
@@ -136,7 +117,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                               label: 'Estado',
                               hintText: 'UF',
                               controller:
-                                  widget.registerStore!.controller['Estado'],
+                                  widget.registerStore.controller['Estado'],
                             ),
                           ),
                         ],
@@ -146,10 +127,12 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       return Container();
                     }
                     return RegisterFormulary(
-                      formatter: _fields[e]?['formatter'] as TextInputFormatter,
+                      formatter: widget.registerStore.fields[e]?['formatter']
+                          as TextInputFormatter,
                       label: e,
-                      hintText: _fields[e]?['hintText'] as String,
-                      controller: widget.registerStore!.controller[e],
+                      hintText:
+                          widget.registerStore.fields[e]?['hintText'] as String,
+                      controller: widget.registerStore.controller[e],
                     );
                   },
                 ).toList(),
@@ -166,12 +149,12 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         ),
                         Observer(
                           builder: (ctx) => DropdownButton<String>(
-                            value: widget.registerStore!.selectedCategory,
+                            value: widget.registerStore.selectedCategory,
                             style: fieldLabelStyle(),
                             icon: const Icon(Icons.expand_more),
                             iconEnabledColor: secondaryColor,
                             onChanged: (String? newValue) {
-                              widget.registerStore!
+                              widget.registerStore
                                   .setSelectedCategory(newValue);
                             },
                             elevation: 2,
@@ -179,7 +162,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                               color: secondaryColor,
                               height: 2.0,
                             ),
-                            items: _categories.map((value) {
+                            items: widget.registerStore.categories.map((value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(
@@ -212,25 +195,25 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       Observer(
                         builder: (_) => RadioListTile(
                           title: Text(
-                            widget.registerStore!.availablePlans[0],
+                            widget.registerStore.availablePlans[0],
                             style: fieldLabelStyle(),
                           ),
-                          value: widget.registerStore!.availablePlans[0],
-                          groupValue: widget.registerStore!.selectedPlan,
+                          value: widget.registerStore.availablePlans[0],
+                          groupValue: widget.registerStore.selectedPlan,
                           activeColor: secondaryColor,
-                          onChanged: widget.registerStore!.setSelectedPlan,
+                          onChanged: widget.registerStore.setSelectedPlan,
                         ),
                       ),
                       Observer(
                         builder: (_) => RadioListTile(
                           title: Text(
-                            widget.registerStore!.availablePlans[1],
+                            widget.registerStore.availablePlans[1],
                             style: fieldLabelStyle(),
                           ),
-                          value: widget.registerStore!.availablePlans[1],
-                          groupValue: widget.registerStore!.selectedPlan,
+                          value: widget.registerStore.availablePlans[1],
+                          groupValue: widget.registerStore.selectedPlan,
                           activeColor: secondaryColor,
-                          onChanged: widget.registerStore!.setSelectedPlan,
+                          onChanged: widget.registerStore.setSelectedPlan,
                         ),
                       ),
                     ],
@@ -259,8 +242,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             MaterialStateProperty.all(secondaryColor),
                       ),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          widget.registerStore!.addRestaurant();
+                        if (widget.registerStore.formKey.currentState!
+                            .validate()) {
+                          widget.registerStore.addRestaurant();
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
@@ -270,6 +254,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                               titleTextStyle: fieldLabelStyle(),
                             ),
                           );
+                          dispose();
                         }
                       },
                     ),

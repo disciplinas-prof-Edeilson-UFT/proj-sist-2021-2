@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cpf_cnpj_validator/cnpj_validator.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 
 class RegisterFormulary extends StatelessWidget {
   const RegisterFormulary({
@@ -79,7 +78,7 @@ class RegisterFormulary extends StatelessWidget {
                   return null;
               }
             },
-            obscureText: label == 'Senha',
+            obscureText: label == 'Senha' || label == 'Confirmar Senha',
             decoration: InputDecoration(
               filled: isDifferentField,
               hintText: hintText,
