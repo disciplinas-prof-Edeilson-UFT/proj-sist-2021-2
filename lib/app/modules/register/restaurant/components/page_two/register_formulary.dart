@@ -78,7 +78,7 @@ class RegisterFormulary extends StatelessWidget {
                   return null;
               }
             },
-            obscureText: label == 'Senha',
+            obscureText: label == 'Senha' || label == 'Confirmar Senha',
             decoration: InputDecoration(
               filled: isDifferentField,
               hintText: hintText,

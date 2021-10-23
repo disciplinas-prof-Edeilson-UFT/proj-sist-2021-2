@@ -96,23 +96,6 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             as TextInputFormatter,
                         valueChangeListener: (value) => RegisterCEP()
                             .searchAdress(value, widget.registerStore!),
-                        /*(value) async {
-                          //Esta função atribui os valores de endereço dinamicamente conforme o CEP informado.
-                          final info = await ViaCepSearchCep().searchInfoByCep(
-                              cep: value.replaceFirst('-', ''));
-                          if (info.isRight()) {
-                            widget.registerStore!.controller['Endereço']!.text =
-                                info.getOrElse(() => ViaCepInfo()).logradouro ??
-                                    '';
-                            widget.registerStore!.controller['Cidade']!.text =
-                                info.getOrElse(() => ViaCepInfo()).localidade ??
-                                    '';
-                            widget.registerStore!.controller['Estado']!.text =
-                                info.getOrElse(() => ViaCepInfo()).uf ?? '';
-                            widget.registerStore!.controller['Bairro']!.text =
-                                info.getOrElse(() => ViaCepInfo()).bairro ?? '';
-                          }
-                        },*/
                       );
                     }
                     if (e == 'Cidade') {

@@ -43,6 +43,7 @@ abstract class _RegisterStore with Store {
     'Número': TextEditingController(),
     'Complemento (Opcional)': TextEditingController(),
     'Senha': TextEditingController(),
+    'Confirmar Senha': TextEditingController(),
     'Plano de Entrega': TextEditingController(),
     'Categoria': TextEditingController(),
   };
@@ -65,6 +66,7 @@ abstract class _RegisterStore with Store {
       'number': controller['Número']?.text,
       'complement': controller['Complemento (Opcional)']?.text,
       'password': controller['Senha']?.text,
+      'password_confirmed': controller['Confirmar Senha']?.text,
       'delivery_plan': controller['Plano de Entrega']?.text,
       'category': controller['Categoria']?.text,
     });
