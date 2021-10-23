@@ -1,41 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/card_product_page.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: pageProductsResponsivity(MediaQuery.of(context).size.width),
-    );
-  }
-}
-
-// ignore: camel_case_types
-class cardProduct extends StatefulWidget {
-  const cardProduct({
-    Key? key,
-    required this.image,
-  }) : super(key: key);
-  final String image;
-  // final String? nameOfProduct;
-  @override
-  _cardProductState createState() => _cardProductState();
-}
-
-// ignore: camel_case_types
-class _cardProductState extends State<cardProduct> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: InkWell(
-            child: Image.asset(widget.image, width: 250),
-          ),
-        ),
-      ],
+    return Scaffold(
+      body: pageProductsResponsivity(MediaQuery.of(context).size.width),
     );
   }
 }
@@ -49,16 +21,16 @@ Widget pageProductsResponsivity(width) {
           crossAxisCount: 5,
           mainAxisSpacing: 3,
           children: const [
-            cardProduct(image: "assets/images/product_page/pluss.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
+            CardProductAdd(),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
           ],
         ),
       ),
@@ -70,16 +42,17 @@ Widget pageProductsResponsivity(width) {
       children: [
         Column(
           children: const [
-            cardProduct(image: "assets/images/product_page/pluss.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
-            cardProduct(image: "assets/images/product_page/card.png"),
+            CardProductAdd(),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
+            CardProduct(image: "assets/images/product_page/card.png"),
           ],
         ),
       ],
