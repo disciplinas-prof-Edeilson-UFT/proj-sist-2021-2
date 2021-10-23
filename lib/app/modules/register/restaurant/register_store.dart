@@ -11,6 +11,8 @@ abstract class _RegisterStore with Store {
 
   var availablePlans = ['Plano Básico', 'Plano Entrega'];
 
+  final String userCity = "Palmas";
+
   Map<String, TextEditingController> controller = {
     'nome': TextEditingController(),
     'email': TextEditingController(),

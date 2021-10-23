@@ -7,7 +7,7 @@ import 'register_store.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
   final String title;
-  RestaurantRegisterPage(
+  const RestaurantRegisterPage(
       {Key? key,
       this.title = 'RestaurantRegisterPage',
       required this.registerStore})
@@ -33,7 +33,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                "lib/app/modules/register/restaurant/assets/background.png"),
+                "assets/images/register/background.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -50,8 +50,8 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const RegisterSideText(),
-                RegisterCard(registerStore: widget.registerStore),
+                RegisterSideText(),
+                RegisterCard(),
               ],
             ),
             const RegisterPlans(),
@@ -65,8 +65,8 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         children: [
           Column(
             children: [
-              const RegisterSideText(),
-              RegisterCard(registerStore: widget.registerStore),
+              RegisterSideText(),
+              RegisterCard(),
               const RegisterPlans(),
             ],
           ),
