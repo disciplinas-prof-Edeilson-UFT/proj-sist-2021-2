@@ -1,8 +1,14 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/order.dart';
+import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
+import 'package:pscomidas/app/global/repositories/order/order_repository_interface.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/order/class/orders.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
@@ -56,13 +62,14 @@ class _BodyOrderState extends State<BodyOrder> {
               ),
 
               // Retorna 2 Widgets, onde um é para caso não tenha pedidos e o outro caso tenha.
-              Observer(
+              /*Observer(
                 builder: (_) {
                   return store.order.isEmpty
                       ? const EmptyOrder()
                       : _listViewOrder(context);
                 },
-              )
+              )*/
+              _listViewOrder(context)
             ],
           ),
         ),
@@ -78,9 +85,21 @@ class _BodyOrderState extends State<BodyOrder> {
 
   /// [ListViewOrder] lista de order
   Widget _listViewOrder(BuildContext context) {
-    final OrderStore store = Modular.get();
-    final Size screen = MediaQuery.of(context).size;
-    return SizedBox(
+   // final OrderStore store = Modular.get();
+    //final Size screen = MediaQuery.of(context).size;
+
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseAuth auth = FirebaseAuth.instance;
+    OrderRepository orderRepository = OrderRepository(firestore: firestore, auth: auth);
+
+
+    return Container();
+
+  }
+
+  /* 
+  
+  SizedBox(
       width: screen.width,
       height: screen.height * 0.6,
       child: ListView.builder(
@@ -90,7 +109,8 @@ class _BodyOrderState extends State<BodyOrder> {
         },
       ),
     );
-  }
+  
+  */
 
   /// [CardOrder] card da order
   Widget _cardOrder(BuildContext context, int index, OrderStore store) {
