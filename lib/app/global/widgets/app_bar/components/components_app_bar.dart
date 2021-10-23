@@ -173,7 +173,7 @@ class _UserAppBarState extends State<UserAppBar> {
             icon: const Icon(
               Icons.person_outline_outlined,
               color: Colors.red,
-              size: 37,
+              size: 30,
             ),
             itemBuilder: (_) => UserProfileOptions.listy,
           )
@@ -181,7 +181,7 @@ class _UserAppBarState extends State<UserAppBar> {
             icon: const Icon(
               Icons.login,
               color: Colors.red,
-              size: 37,
+              size: 30,
             ),
             onPressed: () {
               FirebaseAuth.instance.signOut();
