@@ -7,6 +7,8 @@ import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/order/class/orders.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 import 'package:pscomidas/app/modules/order/track/components/cancel_order.dart';
+import 'package:pscomidas/app/modules/order/track/components/empty_order.dart';
+import 'package:pscomidas/app/modules/order/track/components/info_order.dart';
 
 class BodyOrder extends StatefulWidget {
   const BodyOrder({Key? key}) : super(key: key);
@@ -17,17 +19,6 @@ class BodyOrder extends StatefulWidget {
 
 class _BodyOrderState extends State<BodyOrder> {
   final OrderStore store = Modular.get();
-
-  bool _visible = false;
-  void _setVisible() {
-    setState(() {
-      if (_visible == false) {
-        _visible = true;
-      } else {
-        _visible = false;
-      }
-    });
-  }
 
   /// Pedido que será adicionado, apenas para testes pode [DELETAR] quando terminar.
   OrdersList data = OrdersList(
@@ -56,9 +47,7 @@ class _BodyOrderState extends State<BodyOrder> {
 
               /// Botão para adicionar um card [DELETAR], serve apenas para testes
               ElevatedButton(
-                onPressed: () {
-                  store.incrementOrder(data);
-                },
+                onPressed: () {},
                 child: const Text('data')
               ),
 
@@ -70,7 +59,7 @@ class _BodyOrderState extends State<BodyOrder> {
               Observer(
                 builder: (_) {
                   return store.order.isEmpty
-                      ? _emptyOrder()
+                      ? const EmptyOrder()
                       : _listViewOrder(context);
                 },
               )
@@ -78,10 +67,10 @@ class _BodyOrderState extends State<BodyOrder> {
           ),
         ),
 
-        /// Status order, irá sobrepor o [ListViewOrder], com o as informações da order
-        Visibility(
-          visible: _visible,
-          child: _orderDetails(),
+        
+        ElevatedButton(
+          onPressed: () => null, //  _orderDetails(),
+          child: const Text('Detalhes do produto')
         )
       ],
     );
@@ -110,9 +99,7 @@ class _BodyOrderState extends State<BodyOrder> {
       child: Card(
         child: InkWell(
           splashColor: Colors.grey,
-          onTap: () {
-            _setVisible();
-          },
+          onTap: () {},
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -156,13 +143,12 @@ class _BodyOrderState extends State<BodyOrder> {
                         Row(
                           children: [
                             Row(
-                              children: [
-                                const Text(
+                              children: const [
+                                Text(
                                   'Status: ',
                                   style: TextStyle(color: tertiaryCollor),
                                 ),
-                                _statusOrder(store, index)
-                              ],
+                          ],
                             )
                           ],
                         ),
@@ -174,60 +160,6 @@ class _BodyOrderState extends State<BodyOrder> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  /// Mostra o status do pedido, aqui é definido o status
-  Widget _statusOrder(OrderStore store, int index) {
-    String status = store.order.elementAt(index).status;
-    Color corStatus = Colors.white;
-    if (status == 'Em preparo') {
-      corStatus = Colors.amber;
-    } else if (status == 'A caminho') {
-      corStatus = Colors.blue;
-    } else if (status == 'Entregador chogou') {
-      corStatus = Colors.green;
-    }
-
-    return Container(
-      decoration: BoxDecoration(
-          color: corStatus, borderRadius: BorderRadius.circular(10)),
-      padding: const EdgeInsets.all(5),
-      child: Text(
-        status,
-        style: const TextStyle(color: Colors.white),
-      ),
-    );
-  }
-
-  /// [emptyOrder], caso não tenhsa pedidos
-  Widget _emptyOrder() {
-    final Size screen = MediaQuery.of(context).size;
-    return Center(
-      child: Column(
-        children: [
-          const Text(
-            'Você ainda não pediu',
-            style: TextStyle(
-              fontFamily: 'Nunito',
-            ),
-          ),
-          const Text(
-            'Que tal conhecer as melhores opções na sua região?',
-            style: TextStyle(fontFamily: 'Nunito', color: tertiaryCollor),
-          ),
-          TextButton(
-              onPressed: () => Modular.to.navigate('/'),
-              child: const Text(
-                'Ir para o início',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'Nunito',
-                    fontWeight: FontWeight.bold,
-                    color: secondaryCollor),
-              ))
-        ],
       ),
     );
   }
@@ -251,9 +183,7 @@ class _BodyOrderState extends State<BodyOrder> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    onPressed: () {
-                      _setVisible();
-                    },
+                    onPressed: () {},
                     icon: const Icon(
                       Icons.arrow_back_ios,
                       color: secondaryCollor,
@@ -266,7 +196,7 @@ class _BodyOrderState extends State<BodyOrder> {
                       fontSize: 20,
                     ),
                   ),
-                  Container() // Não deleta, esse container ta servindo para centralizar o texto
+                  const Spacer() // Não deleta, esse container ta servindo para centralizar o texto
                 ],
               ),
             ),
@@ -278,7 +208,8 @@ class _BodyOrderState extends State<BodyOrder> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Container p/ as informações do pedido
-                _infosOrder(),
+
+                const InfoOrder(),
 
                 Container(
                     // Container p/ ficar os botões
@@ -306,109 +237,13 @@ class _BodyOrderState extends State<BodyOrder> {
     );
   }
 
-  Widget _infosOrder() {
-    final Size screen = MediaQuery.of(context).size;
-    return Container(
-      padding: const EdgeInsets.all(20),
-      width: screen.width * 0.55,
-      height: screen.height * 0.5,
-      decoration: _containerDecoration(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _address(),
-          const Divider(
-            height: 30,
-            thickness: 2,
-          ),
-          _moreInfos(),
-          const Divider(
-            height: 30,
-            thickness: 2,
-          ),
-          _price()
-        ],
-      ),
-    );
-  }
-
-  /// [Endereço] do pedido, faz parte do _infosOrder
-  Widget _address() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text(
-          'Endereço de entrega',
-          style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Q. 208 Sul, Alameda 10, 202',
-          style: TextStyle(fontFamily: 'Nunito', color: tertiaryCollor),
-        )
-      ],
-    );
-  }
-
-  /// [Mais informações] do pedido, faz paarte do _infosOrder
-  Widget _moreInfos() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Mais informações',
-          style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text('N° do pedido'), Text('999999999')],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text('Data do pedio'), Text('31/02/2022')],
-        ),
-      ],
-    );
-  }
-
-  /// [Preço] do pedido, faz paarte do _infosOrder
-  Widget _price() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text('Valor do pedido'), Text('99,99 R\$')],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text('Cupom'), Text('0,99 R\$')],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text('Taxa de entrega'), Text('5,99 R\$')],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Total',
-              style:
-                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
-            ),
-            Text('104,99 R\$')
-          ],
-        ),
-      ],
-    );
-  }
-
   /// [BoxShadow] dos container divisores
   BoxDecoration _containerDecoration() {
     return BoxDecoration(
-        color: primaryCollor,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: const [
-          BoxShadow(color: Colors.black54, blurRadius: 7, offset: Offset(0, 3))
-        ]);
+      color: primaryCollor,
+      borderRadius: BorderRadius.circular(10),
+      boxShadow: const [
+        BoxShadow(color: Colors.black54, blurRadius: 7, offset: Offset(0, 3))
+      ]);
   }
 }
