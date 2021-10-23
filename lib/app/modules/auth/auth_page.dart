@@ -72,7 +72,7 @@ class AuthPageState extends State<AuthPage> {
           children: [
             Expanded(
               child: Image.asset(
-                'assets/images/auth-back.jpg',
+                'images/auth-back.jpg',
                 fit: BoxFit.cover,
               ),
             ),
