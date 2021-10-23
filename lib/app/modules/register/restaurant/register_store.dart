@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
 part 'register_store.g.dart';
 
 class RegisterStore = _RegisterStore with _$RegisterStore;
@@ -10,6 +11,21 @@ abstract class _RegisterStore with Store {
       FirebaseFirestore.instance.collection('restaurant');
 
   var availablePlans = ['Plano Básico', 'Plano Entrega'];
+  final formKey = GlobalKey<FormState>();
+  final fields = RegisterField.fields;
+  final categories = [
+    'Açaí',
+    'Lanches',
+    'Padarias',
+    'Pizza',
+    'Saudável',
+    'Bolos e Doces',
+    'Bebidas',
+    'Vegetariana',
+    'Italiana',
+    'Sorvetes',
+    'Asiática',
+  ];
 
   Map<String, TextEditingController> controller = {
     'nome': TextEditingController(),

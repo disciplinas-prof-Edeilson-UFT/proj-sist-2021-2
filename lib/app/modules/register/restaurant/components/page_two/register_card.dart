@@ -4,11 +4,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_cep.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/field_label_style.dart';
 import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
-import 'package:search_cep/search_cep.dart';
 
 class RegisterRestaurant extends StatefulWidget {
   const RegisterRestaurant({Key? key, this.registerStore}) : super(key: key);
@@ -18,27 +16,22 @@ class RegisterRestaurant extends StatefulWidget {
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
+  late RegisterStore registerStore;
+  late Size size;
+
+  @override
+  void initState() {
+    registerStore = Modular.get<RegisterStore>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
     if (widget.registerStore?.controller['nomeOwner'] == null) {
       Modular.to.navigate('page1');
     }
-    final size = MediaQuery.of(context).size;
-    final _formKey = GlobalKey<FormState>();
-    final _fields = RegisterField.fields;
-    final _categories = [
-      'Açaí',
-      'Lanches',
-      'Padarias',
-      'Pizza',
-      'Saudável',
-      'Bolos e Doces',
-      'Bebidas',
-      'Vegetariana',
-      'Italiana',
-      'Sorvetes',
-      'Asiática',
-    ];
+
     widget.registerStore!.controller['Categoria']!.text = 'Açaí';
 
     return Scaffold(
@@ -66,7 +59,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
           width: size.width,
           color: Colors.white,
           child: Form(
-            key: _formKey,
+            key: registerStore.formKey,
             child: Column(
               children: [
                 const Padding(
@@ -91,16 +84,19 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                     ),
                   ),
                 ),
-                ..._fields.keys.map(
+                ...registerStore.fields.keys.map(
                   (e) {
                     if (e == 'CEP') {
                       return RegisterFormulary(
                         label: e,
-                        hintText: _fields[e]?['hintText'] as String,
+                        hintText:
+                            registerStore.fields[e]?['hintText'] as String,
                         controller: widget.registerStore!.controller[e],
-                        formatter:
-                            _fields[e]?['formatter'] as TextInputFormatter,
-                        valueChangeListener: (value) async {
+                        formatter: registerStore.fields[e]?['formatter']
+                            as TextInputFormatter,
+                        valueChangeListener: (value) => RegisterCEP()
+                            .searchAdress(value, widget.registerStore!),
+                        /*(value) async {
                           //Esta função atribui os valores de endereço dinamicamente conforme o CEP informado.
                           final info = await ViaCepSearchCep().searchInfoByCep(
                               cep: value.replaceFirst('-', ''));
@@ -116,7 +112,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             widget.registerStore!.controller['Bairro']!.text =
                                 info.getOrElse(() => ViaCepInfo()).bairro ?? '';
                           }
-                        },
+                        },*/
                       );
                     }
                     if (e == 'Cidade') {
@@ -126,7 +122,8 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             flex: 2,
                             child: RegisterFormulary(
                               label: e,
-                              hintText: _fields[e]?['hintText'] as String,
+                              hintText: registerStore.fields[e]?['hintText']
+                                  as String,
                               controller: widget.registerStore!.controller[e],
                             ),
                           ),
@@ -146,9 +143,10 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       return Container();
                     }
                     return RegisterFormulary(
-                      formatter: _fields[e]?['formatter'] as TextInputFormatter,
+                      formatter: registerStore.fields[e]?['formatter']
+                          as TextInputFormatter,
                       label: e,
-                      hintText: _fields[e]?['hintText'] as String,
+                      hintText: registerStore.fields[e]?['hintText'] as String,
                       controller: widget.registerStore!.controller[e],
                     );
                   },
@@ -179,7 +177,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                               color: secondaryColor,
                               height: 2.0,
                             ),
-                            items: _categories.map((value) {
+                            items: registerStore.categories.map((value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(
@@ -259,7 +257,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             MaterialStateProperty.all(secondaryColor),
                       ),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
+                        if (registerStore.formKey.currentState!.validate()) {
                           widget.registerStore!.addRestaurant();
                           showDialog<String>(
                             context: context,
