@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
+
+import 'components/page_two/register_field.dart';
 part 'register_store.g.dart';
 
 class RegisterStore = _RegisterStore with _$RegisterStore;
@@ -11,21 +12,6 @@ abstract class _RegisterStore with Store {
       FirebaseFirestore.instance.collection('restaurant');
 
   var availablePlans = ['Plano Básico', 'Plano Entrega'];
-  final formKey = GlobalKey<FormState>();
-  final fields = RegisterField.fields;
-  final categories = [
-    'Açaí',
-    'Lanches',
-    'Padarias',
-    'Pizza',
-    'Saudável',
-    'Bolos e Doces',
-    'Bebidas',
-    'Vegetariana',
-    'Italiana',
-    'Sorvetes',
-    'Asiática',
-  ];
 
   Map<String, TextEditingController> controller = {
     'nome': TextEditingController(),
@@ -47,6 +33,21 @@ abstract class _RegisterStore with Store {
     'Plano de Entrega': TextEditingController(),
     'Categoria': TextEditingController(),
   };
+  final formKey = GlobalKey<FormState>();
+  final fields = RegisterField.fields;
+  final categories = [
+    'Açaí',
+    'Lanches',
+    'Padarias',
+    'Pizza',
+    'Saudável',
+    'Bolos e Doces',
+    'Bebidas',
+    'Vegetariana',
+    'Italiana',
+    'Sorvetes',
+    'Asiática',
+  ];
 
   @action
   Future<void>? addRestaurant() {
@@ -66,7 +67,6 @@ abstract class _RegisterStore with Store {
       'number': controller['Número']?.text,
       'complement': controller['Complemento (Opcional)']?.text,
       'password': controller['Senha']?.text,
-      'password_confirmed': controller['Confirmar Senha']?.text,
       'delivery_plan': controller['Plano de Entrega']?.text,
       'category': controller['Categoria']?.text,
     });
@@ -88,5 +88,13 @@ abstract class _RegisterStore with Store {
   void setSelectedPlan(String? selection) {
     selectedPlan = selection ?? availablePlans.first;
     controller['Plano de Entrega']!.text = selection ?? availablePlans.first;
+  }
+
+  @action
+  void dispose() {
+    controller.clear();
+    categories.clear();
+    fields.clear();
+    availablePlans.clear();
   }
 }
