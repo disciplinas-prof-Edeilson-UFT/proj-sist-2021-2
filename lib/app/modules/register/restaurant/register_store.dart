@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_field.dart';
 part 'register_store.g.dart';
 
 class RegisterStore = _RegisterStore with _$RegisterStore;
@@ -10,6 +11,21 @@ abstract class _RegisterStore with Store {
       FirebaseFirestore.instance.collection('restaurant');
 
   var availablePlans = ['Plano Básico', 'Plano Entrega'];
+  final formKey = GlobalKey<FormState>();
+  final fields = RegisterField.fields;
+  final categories = [
+    'Açaí',
+    'Lanches',
+    'Padarias',
+    'Pizza',
+    'Saudável',
+    'Bolos e Doces',
+    'Bebidas',
+    'Vegetariana',
+    'Italiana',
+    'Sorvetes',
+    'Asiática',
+  ];
 
   Map<String, TextEditingController> controller = {
     'nome': TextEditingController(),
@@ -27,6 +43,7 @@ abstract class _RegisterStore with Store {
     'Número': TextEditingController(),
     'Complemento (Opcional)': TextEditingController(),
     'Senha': TextEditingController(),
+    'Confirmar Senha': TextEditingController(),
     'Plano de Entrega': TextEditingController(),
     'Categoria': TextEditingController(),
   };
@@ -49,6 +66,7 @@ abstract class _RegisterStore with Store {
       'number': controller['Número']?.text,
       'complement': controller['Complemento (Opcional)']?.text,
       'password': controller['Senha']?.text,
+      'password_confirmed': controller['Confirmar Senha']?.text,
       'delivery_plan': controller['Plano de Entrega']?.text,
       'category': controller['Categoria']?.text,
     });
