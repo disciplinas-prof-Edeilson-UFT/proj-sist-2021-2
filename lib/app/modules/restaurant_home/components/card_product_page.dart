@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class CardProduct extends StatefulWidget {
   const CardProduct({
@@ -48,8 +47,7 @@ class _CardProductAddState extends State<CardProductAdd> {
         MouseRegion(
           cursor: SystemMouseCursors.click,
           child: InkWell(
-            child: Icon(Icons.add_circle_outline,
-                color: secondaryCollor, size: 36),
+            child: Icon(Icons.add_circle_outline, size: 36),
           ),
         ),
       ],
