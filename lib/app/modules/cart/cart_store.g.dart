@@ -9,16 +9,23 @@ part of 'cart_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$CartStore on _CartStoreBase, Store {
+  Computed<double>? _$totalComputed;
+
+  @override
+  double get total => (_$totalComputed ??=
+          Computed<double>(() => super.total, name: '_CartStoreBase.total'))
+      .value;
+
   final _$itensAtom = Atom(name: '_CartStoreBase.itens');
 
   @override
-  List<Item> get itens {
+  ObservableList<Item> get itens {
     _$itensAtom.reportRead();
     return super.itens;
   }
 
   @override
-  set itens(List<Item> value) {
+  set itens(ObservableList<Item> value) {
     _$itensAtom.reportWrite(value, super.itens, () {
       super.itens = value;
     });
@@ -39,9 +46,32 @@ mixin _$CartStore on _CartStoreBase, Store {
   }
 
   @override
+  void removeItem(String iditemremovido) {
+    final _$actionInfo = _$_CartStoreBaseActionController.startAction(
+        name: '_CartStoreBase.removeItem');
+    try {
+      return super.removeItem(iditemremovido);
+    } finally {
+      _$_CartStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void editItem(Item itemEditing) {
+    final _$actionInfo = _$_CartStoreBaseActionController.startAction(
+        name: '_CartStoreBase.editItem');
+    try {
+      return super.editItem(itemEditing);
+    } finally {
+      _$_CartStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-itens: ${itens}
+itens: ${itens},
+total: ${total}
     ''';
   }
 }

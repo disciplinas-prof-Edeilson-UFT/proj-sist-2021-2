@@ -1,7 +1,6 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
-import 'package:pscomidas/app/modules/home/home_page.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +15,11 @@ class LogoAppBar extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        child: Image.asset(
-          "assets/images/logo.png",
-          width: screen.width * 0.2,
-        ),
-        onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const HomePage())),
-      ),
+          child: Image.asset(
+            "assets/images/logo.png",
+            width: screen.width * 0.2,
+          ),
+          onTap: () => Modular.to.navigate('/')),
     );
   }
 }
