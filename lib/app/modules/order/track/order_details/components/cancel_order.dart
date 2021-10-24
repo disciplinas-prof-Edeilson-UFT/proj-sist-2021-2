@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/order/class/cancel_checked.dart';
+import 'package:pscomidas/app/modules/order/track/order_details/components/class/cancel_checked.dart';
 
 class CancelOrder extends StatefulWidget {
   const CancelOrder({Key? key}) : super(key: key);

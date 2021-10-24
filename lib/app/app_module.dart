@@ -6,6 +6,7 @@ import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/order/order_module.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
+import 'package:pscomidas/app/modules/order/track/order_details/order_details_page.dart';
 import 'modules/restaurant/restaurant_module.dart';
 import 'package:pscomidas/app/modules/cart/cart_module.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
@@ -27,5 +28,6 @@ class AppModule extends Module {
     ModuleRoute(RestaurantModule.routeName, module: RestaurantModule()),
     ModuleRoute(CartModule.routeName, module: CartModule()),
     ModuleRoute(OrderModule.routeName, module: OrderModule()),
+    ChildRoute(OrderDetailsPage.orderDetailsRouteName, child: (_, args) => const OrderDetailsPage()),
   ];
 }

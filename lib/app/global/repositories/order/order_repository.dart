@@ -15,12 +15,13 @@ class OrderRepository implements IOrderRepository {
     try {
       return await firestore
           .collection('order')
-          .doc('ADjDH5NWXtMVKGMfi4LdOUbQWB03')
+          .doc('0c0slpvLsOvEshUWLMQB')
           .get()
           .then((DocumentSnapshot doc) {
         return Order.fromDocument(doc);
       });
     } catch (e) {
+      print(e);
       throw Exception("Pedido não encontrado");
     }
   }
