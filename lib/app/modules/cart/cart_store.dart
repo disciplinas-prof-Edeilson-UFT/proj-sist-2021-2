@@ -18,6 +18,9 @@ abstract class _CartStoreBase with Store {
 
   List<DeliveryAt> address = [];
 
+  @observable
+  Order? listaPedido;
+
   @action
   void addItem(Item item) {
     itens.add(item);
@@ -45,6 +48,7 @@ abstract class _CartStoreBase with Store {
     return subtotal + 12.5;
   }
 
+  @action
   Future cadastroTeste() async {
     Order pedido = Order(
       itens: itens,
@@ -52,5 +56,6 @@ abstract class _CartStoreBase with Store {
       orderPrice: total - 12.5,
     );
     await orderRepository.cadastrarOrder(pedido);
+    listaPedido = pedido;
   }
 }

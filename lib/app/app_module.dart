@@ -19,7 +19,7 @@ class AppModule extends Module {
         firestore: FirebaseFirestore.instance, auth: FirebaseAuth.instance)),
     Bind.singleton((i) => CartStore()),
     Bind.singleton((i) => HomeStore()),
-    Bind.singleton((i) => OrderStore()),
+    Bind.singleton((i) => OrderStore(i.get<CartStore>())),
   ];
 
   @override

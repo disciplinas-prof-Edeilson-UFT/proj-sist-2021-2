@@ -19,6 +19,7 @@ class RatingDialog extends StatelessWidget {
             allowHalfRating: true,
             itemCount: 5,
             itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+            glowColor: primaryCollor,
             itemBuilder: (context, _) => const Icon(
               Icons.star,
               color: secondaryCollor,
