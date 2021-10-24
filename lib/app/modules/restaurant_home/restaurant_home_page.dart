@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/menu_side_bar.dart';
+import 'package:pscomidas/app/global/widgets/side_bar/custom_side_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
@@ -26,7 +26,7 @@ class RestaurantHomePageState extends State<RestaurantHomePage> {
             //side bar
             SizedBox(
               width: screen.width * 0.2,
-              child: const SideBar(),
+              child: const CustomSideBar(),
             ),
             //main body
             Expanded(

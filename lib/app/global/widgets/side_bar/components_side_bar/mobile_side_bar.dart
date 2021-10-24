@@ -3,14 +3,14 @@ import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/compon
 
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
-class SideBar extends StatefulWidget {
-  const SideBar({Key? key}) : super(key: key);
+class SideBarMobile extends StatefulWidget {
+  const SideBarMobile({Key? key}) : super(key: key);
 
   @override
-  _SideBarState createState() => _SideBarState();
+  _SideBarMobileState createState() => _SideBarMobileState();
 }
 
-class _SideBarState extends State<SideBar> {
+class _SideBarMobileState extends State<SideBarMobile> {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
@@ -34,29 +34,29 @@ class _SideBarState extends State<SideBar> {
             Expanded(
               child: Container(
                 margin: EdgeInsets.symmetric(
-                  horizontal: screen.height * 0.09,
+                  horizontal: screen.height * 0.02,
                 ),
                 child: ListView(
                   children: <Widget>[
-                    const TextButtonMenu(
+                    const TextButtonMenuMobile(
                       option: "Produtos",
                     ),
                     SizedBox(
                       height: screen.height * 0.05,
                     ),
-                    const TextButtonMenu(
+                    const TextButtonMenuMobile(
                       option: "Pedidos",
                     ),
                     SizedBox(
                       height: screen.height * 0.05,
                     ),
-                    const TextButtonMenu(
+                    const TextButtonMenuMobile(
                       option: "Avaliações",
                     ),
                     SizedBox(
                       height: screen.height * 0.05,
                     ),
-                    const TextButtonMenu(
+                    const TextButtonMenuMobile(
                       option: "Sair",
                     ),
                   ],
@@ -71,13 +71,13 @@ class _SideBarState extends State<SideBar> {
               color: redCollor,
               width: double.maxFinite,
               height: screen.height * 0.1,
-              child: const ListTilePerfil(),
+              child: const ListTilePerfilMobile(),
             ),
             Container(
               color: Colors.white,
               width: double.maxFinite,
               height: screen.height * 0.04,
-              child: const ClosedButtonShop(),
+              child: const ClosedButtonShopMobile(),
             ),
           ],
         ),
