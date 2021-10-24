@@ -17,12 +17,16 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      contentPadding: const EdgeInsets.all(8),
-      title: const Text("Alterar imagem de perfil"),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      contentPadding: const EdgeInsets.all(0),
+      //title: const Text("Alterar imagem de perfil"),
       content: Container(
         height: 220,
-        width: 320,
-        color: secondaryColor,
+        width: 485,
+        decoration: const BoxDecoration(
+          image: DecorationImage(image: AssetImage('images/register/dragAndDropArea.png')),
+        ),
         child: Stack(
           children: [
             DropzoneView(
