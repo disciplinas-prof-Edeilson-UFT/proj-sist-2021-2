@@ -53,10 +53,11 @@ class RegisterFormulary extends StatelessWidget {
 
               switch (label) {
                 case 'Senha':
+                case 'Confirmar Senha':
                   if (value.length < 6) {
                     return "Senha muito curta.";
                   }
-                  return null;
+                  return registerStore.validatePassword();
 
                 case 'CNPJ':
                   if (!CNPJValidator.isValid(value)) {
@@ -76,8 +77,7 @@ class RegisterFormulary extends StatelessWidget {
                     return "Digite um número de telefone válido";
                   }
                   return null;
-                case 'Confirmar Senha':
-                  return registerStore.validatePassword();
+
                 default:
                   return null;
               }
