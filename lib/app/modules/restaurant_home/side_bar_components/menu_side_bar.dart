@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({Key? key}) : super(key: key);
@@ -16,7 +15,7 @@ class _SideBarState extends State<SideBar> {
     return Drawer(
       elevation: 0,
       child: Container(
-        color: secondaryCollor,
+        color: Color(0XFFea1d2c),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
