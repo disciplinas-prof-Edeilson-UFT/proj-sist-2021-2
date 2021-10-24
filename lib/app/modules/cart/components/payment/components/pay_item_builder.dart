@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/restaurant/widgets/product_options/product_dialog.dart';
 
 class PayDrawerBuilder extends StatefulWidget {
   final Item model;
