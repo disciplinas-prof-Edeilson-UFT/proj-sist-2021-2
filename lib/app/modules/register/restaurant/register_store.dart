@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+
+import 'components/page_two/register_field.dart';
 part 'register_store.g.dart';
 
 class RegisterStore = _RegisterStore with _$RegisterStore;
@@ -29,9 +31,26 @@ abstract class _RegisterStore with Store {
     'Número': TextEditingController(),
     'Complemento (Opcional)': TextEditingController(),
     'Senha': TextEditingController(),
+    'Confirmar Senha': TextEditingController(),
     'Plano de Entrega': TextEditingController(),
     'Categoria': TextEditingController(),
   };
+  final cardFormKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
+  final fields = RegisterField.fields;
+  final categories = [
+    'Açaí',
+    'Lanches',
+    'Padarias',
+    'Pizza',
+    'Saudável',
+    'Bolos e Doces',
+    'Bebidas',
+    'Vegetariana',
+    'Italiana',
+    'Sorvetes',
+    'Asiática',
+  ];
 
   @action
   Future<void>? addRestaurant() {
@@ -72,5 +91,13 @@ abstract class _RegisterStore with Store {
   void setSelectedPlan(String? selection) {
     selectedPlan = selection ?? availablePlans.first;
     controller['Plano de Entrega']!.text = selection ?? availablePlans.first;
+  }
+
+  @action
+  void dispose() {
+    controller.clear();
+    categories.clear();
+    fields.clear();
+    availablePlans.clear();
   }
 }
