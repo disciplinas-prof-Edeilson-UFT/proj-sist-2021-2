@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({Key? key, required this.image}) : super(key: key);
@@ -16,7 +17,7 @@ class ProductCard extends StatelessWidget {
 Widget addProduct() {
   return Center(
     child: Card(
-      color: const Color(0xFFEEEEEE),
+      color: primaryColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
       ),
@@ -25,7 +26,11 @@ Widget addProduct() {
         child: const SizedBox(
           width: 250,
           height: 250,
-          child: Icon(Icons.add_outlined, size: 55),
+          child: Icon(
+            Icons.add_outlined,
+            color: secondaryColor,
+            size: 40,
+          ),
         ),
       ),
     ),
