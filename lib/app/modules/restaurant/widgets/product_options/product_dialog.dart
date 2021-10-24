@@ -1,21 +1,42 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
+import 'package:pscomidas/app/modules/cart/cart_store.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/product_options/product_store.dart';
 
-class ProductDialog extends StatelessWidget {
-  ProductDialog({
+class ProductDialog extends StatefulWidget {
+  const ProductDialog({
     Key? key,
     required this.product,
+    this.isEditing,
   }) : super(key: key);
 
-  final RestaurantStore restaurantStore = Modular.get();
-  final ProductOptionsStore store = Modular.get();
   final Product product;
+  final Item? isEditing;
+
+  @override
+  State<ProductDialog> createState() => _ProductDialogState();
+}
+
+class _ProductDialogState extends State<ProductDialog> {
+  final RestaurantStore restaurantStore = Modular.get();
+
+  final CartStore cartStore = Modular.get();
+
+  final ProductOptionsStore store = Modular.get();
+
+  @override
+  void initState() {
+    store.quantity =
+        widget.isEditing == null ? 1 : widget.isEditing!.quantidade;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +49,7 @@ class ProductDialog extends StatelessWidget {
         children: [
           const Spacer(flex: 6),
           Text(
-            product.name.toString(),
+            widget.product.name.toString(),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 13,
@@ -59,7 +80,7 @@ class ProductDialog extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    product.imgUrl ??
+                    widget.product.imgUrl ??
                         'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/no-image.png?alt=media&token=ef69bdba-5ece-4dc0-9754-fcf2a04364f0',
                   ),
                 ),
@@ -72,11 +93,11 @@ class ProductDialog extends StatelessWidget {
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  if (product.description != null) ...[
+                  if (widget.product.description != null) ...[
                     Container(
                       alignment: Alignment.bottomLeft,
                       child: Text(
-                        product.description.toString(),
+                        widget.product.description.toString(),
                         textAlign: TextAlign.justify,
                         style:
                             const TextStyle(color: Colors.grey, fontSize: 14),
@@ -84,14 +105,14 @@ class ProductDialog extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 20),
-                  if (product.price != null) ...[
+                  if (widget.product.price != null) ...[
                     Container(
                       color: Colors.white,
                       height: 20,
-                      // width: 500,
                       alignment: Alignment.bottomLeft,
                       child: Text(
-                        "R\$ " + FormatMoney.doubleToMoney(product.price!),
+                        "R\$ " +
+                            FormatMoney.doubleToMoney(widget.product.price!),
                         textAlign: TextAlign.justify,
                         style:
                             const TextStyle(color: Colors.green, fontSize: 14),
@@ -198,113 +219,106 @@ class ProductDialog extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            QuantityButton(store: store),
-            CheckoutButton(
-              store: store,
-              product: product,
-              screen: screen,
+            Container(
+              height: 55,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                ),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Row(
+                children: [
+                  Observer(
+                    builder: (_) => IconButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () => store.decrement(),
+                      icon: Icon(
+                        Icons.remove,
+                        color: store.quantity > 1 ? Colors.red : Colors.black26,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    color: Colors.white,
+                    child: Center(
+                      child: Observer(
+                        builder: (_) => Text("${store.quantity}"),
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onPressed: () => store.increment(),
+                    icon: const Icon(
+                      Icons.add,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(width: 30),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 55,
+                width: screen.width * .1,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red,
+                    onPrimary: Colors.black,
+                  ),
+                  onPressed: () {
+                    if (widget.isEditing == null) {
+                      store.makeItem(widget.product);
+                    } else {
+                      store.makeItem(widget.product);
+                      cartStore.removeItem(widget.isEditing!.itemid);
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text("Você Editou um item"),
+                            actions: <Widget>[
+                              // define os botões na base do dialogo
+                              ElevatedButton(
+                                child: const Text("Fechar",
+                                    style: TextStyle(color: primaryCollor)),
+                                style: ElevatedButton.styleFrom(
+                                  primary: secondaryCollor,
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                  child: Observer(builder: (_) {
+                    return Text(
+                      "Adicionar " +
+                          FormatMoney.doubleToMoney(
+                              widget.product.price! * store.quantity),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ),
           ],
         ),
       ],
-    );
-  }
-}
-
-class CheckoutButton extends StatelessWidget {
-  const CheckoutButton({
-    Key? key,
-    required this.store,
-    required this.product,
-    required this.screen,
-  }) : super(key: key);
-
-  final ProductOptionsStore store;
-  final Product product;
-  final Size screen;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 55,
-        width: screen.width * .1,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.red,
-            onPrimary: Colors.black,
-          ),
-          onPressed: () => store.makeItem(product),
-          child: Observer(builder: (_) {
-            return Text(
-              "Adicionar R\$ " +
-                  FormatMoney.doubleToMoney(product.price! * store.quantity),
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 14.0,
-              ),
-            );
-          }),
-        ),
-      ),
-    );
-  }
-}
-
-class QuantityButton extends StatelessWidget {
-  const QuantityButton({
-    Key? key,
-    required this.store,
-  }) : super(key: key);
-
-  final ProductOptionsStore store;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 55,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey,
-        ),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Row(
-        children: [
-          Observer(
-            builder: (_) => IconButton(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onPressed: () => store.decrement(),
-              icon: Icon(
-                Icons.remove,
-                color: store.quantity > 1 ? Colors.red : Colors.black26,
-              ),
-            ),
-          ),
-          Container(
-            height: 50,
-            width: 50,
-            color: Colors.white,
-            child: Center(
-              child: Observer(
-                builder: (_) => Text("${store.quantity}"),
-              ),
-            ),
-          ),
-          IconButton(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onPressed: () => store.increment(),
-            icon: const Icon(
-              Icons.add,
-              color: Colors.red,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

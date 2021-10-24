@@ -23,4 +23,21 @@ extension OrderStatus on OrderType {
         return null;
     }
   }
+
+  String get databaseString {
+    switch (this) {
+      case OrderType.started:
+        return 'started';
+      case OrderType.doing:
+        return 'doing';
+      case OrderType.done:
+        return 'done';
+      case OrderType.delivering:
+        return 'delivering';
+      case OrderType.completed:
+        return 'completed';
+      default:
+        return '';
+    }
+  }
 }
