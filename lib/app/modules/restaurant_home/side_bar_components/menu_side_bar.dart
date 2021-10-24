@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/restaurant_home/side_bar_components/logout_button.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({Key? key}) : super(key: key);
@@ -66,6 +67,10 @@ class _SideBarState extends State<SideBar> {
                     const TextButtonMenu(
                       option: "Sair",
                     ),
+                    Expanded(
+                      child: Container(),
+                    ),
+                    LogoutButton(),
                   ],
                 ),
               ),
