@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/card_product_page.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/product_card.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
-        body: pageProductsResponsivity(MediaQuery.of(context).size.width));
+      body: pageProductsResponsivity(width),
+    );
   }
 }
 
@@ -15,24 +18,35 @@ Widget pageProductsResponsivity(width) {
   if (width > 850) {
     return Column(
       children: [
-        const TextAboveGrid(),
+        const Align(
+          alignment: Alignment.topCenter,
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              "Produtos",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+                overflow: TextOverflow.ellipsis,
+                fontFamily: 'Nunito',
+              ),
+            ),
+          ),
+        ),
         Center(
           child: GridView.count(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             crossAxisCount: 5,
             mainAxisSpacing: 1,
-            children: const [
-              CardProductAdd(),
-              CardProduct(image: "assets/images/product_page/card_image.png"),
-              CardProduct(image: "assets/images/product_page/card_image.png"),
-              CardProduct(image: "assets/images/product_page/card_image.png"),
-              CardProduct(image: "assets/images/product_page/card_image.png"),
-              CardProduct(image: "assets/images/product_page/card_image.png"),
-              CardProduct(image: "assets/images/product_page/card_image.png"),
-              CardProduct(image: "assets/images/product_page/card_image.png"),
-              CardProduct(image: "assets/images/product_page/card_image.png"),
-              CardProduct(image: "assets/images/product_page/card_image.png"),
+            children: [
+              addProduct(),
+              ...List.filled(
+                9,
+                const ProductCard(
+                  image: "assets/images/product_page/card_image.png",
+                ),
+              ),
             ],
           ),
         ),
@@ -43,20 +57,29 @@ Widget pageProductsResponsivity(width) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const TextAboveGrid(),
+        const Align(
+          alignment: Alignment.topCenter,
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              "Produtos",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+                overflow: TextOverflow.ellipsis,
+                fontFamily: 'Nunito',
+              ),
+            ),
+          ),
+        ),
         Column(
-          children: const [
-            CardProductAdd(),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
-            CardProduct(image: "assets/images/product_page/card_image.png"),
+          children: [
+            addProduct(),
+            ...List.filled(
+              9,
+              const ProductCard(
+                  image: "assets/images/product_page/card_image.png"),
+            )
           ],
         ),
       ],
