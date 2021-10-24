@@ -65,7 +65,7 @@ class ProductCard extends StatelessWidget {
               Positioned(
                 right: 0,
                 child: Image.asset(
-                  'assets/images/product_page/lolipop.webp',
+                  'assets/images/product_page/lollipop.webp',
                   width: 180,
                 ),
               ),
