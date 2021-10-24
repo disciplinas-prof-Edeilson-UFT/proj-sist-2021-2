@@ -13,6 +13,7 @@ class ProductCard extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
+        hoverColor: Colors.transparent,
         child: SizedBox(
           height: 200,
           width: 400,
@@ -37,7 +38,10 @@ class ProductCard extends StatelessWidget {
                 left: 10,
                 right: 200,
                 child: Text(
-                  'Os pirulitos de chocolate ao leite e branco em formato de abobora e fantasma vão fazer sucesso no Hallowen! Feitos com chocolate ao leite e branco e decorados artesanalmente. Imagens ilustrativas.',
+                  'Os pirulitos de chocolate ao leite e branco em formato de '
+                  'abobora e fantasma vão fazer sucesso no Hallowen! Feitos com'
+                  ' chocolate ao leite e branco e decorados artesanalmente. '
+                  'Imagens ilustrativas.',
                   style: TextStyle(
                     fontSize: 14,
                     fontFamily: 'Nunito',
@@ -72,25 +76,4 @@ class ProductCard extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget addProduct() {
-  return Card(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: InkWell(
-      borderRadius: BorderRadius.circular(10),
-      child: const SizedBox(
-        height: 200,
-        width: 400,
-        child: Icon(
-          Icons.add_outlined,
-          color: secondaryColor,
-          size: 40,
-        ),
-      ),
-      onTap: () {},
-    ),
-  );
 }

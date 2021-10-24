@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/add_product_card.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/product_card.dart';
 
 class ProductPage extends StatelessWidget {
