@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
@@ -105,7 +107,17 @@ class _CancelOrderState extends State<CancelOrder> {
           fontFamily: 'Nunito', 
           color: secondaryCollor
         )),
-      onPressed: () => print('Cancelamento confirmado'),
+      onPressed: () {
+        final snackBar = SnackBar(
+          content: const Text('Pedido cancelado'),
+          action: SnackBarAction(
+            label: 'Sair',
+            onPressed: () => null,
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Navigator.of(context).pop();
+      }
     );
   }
 
