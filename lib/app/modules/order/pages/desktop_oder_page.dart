@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/order/components/rating_prodct.dart';
 
 class DesktopOrderPage extends StatefulWidget {
   const DesktopOrderPage({Key? key}) : super(key: key);
@@ -10,6 +11,6 @@ class DesktopOrderPage extends StatefulWidget {
 class _DesktopOrderPageState extends State<DesktopOrderPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const RatingOrder();
   }
 }
