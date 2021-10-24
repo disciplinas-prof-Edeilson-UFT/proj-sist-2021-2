@@ -75,5 +75,10 @@ class RegisterField {
       'controller': TextEditingController(),
       'formatter': MaskTextInputFormatter(),
     },
+    'Confirmar Senha': {
+      'hintText': 'Digite a senha novamente',
+      'controller': TextEditingController(),
+      'formatter': MaskTextInputFormatter(),
+    },
   };
 }

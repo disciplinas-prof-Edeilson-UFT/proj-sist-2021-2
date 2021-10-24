@@ -6,6 +6,7 @@ class Product {
   final String? name;
   final double? price;
   final String? restaurantId;
+  late final String? productId;
 
   Product({
     this.available,
@@ -14,6 +15,7 @@ class Product {
     this.imgUrl,
     this.name,
     this.price,
+    this.productId,
     this.restaurantId,
   });
 
@@ -29,7 +31,7 @@ class Product {
     };
   }
 
-  static Product fromMap(Map<String, dynamic> map) {
+  static Product fromMap(Map<String, dynamic> map, String productId) {
     return Product(
       available: map['available'],
       name: map['name'],
@@ -38,6 +40,7 @@ class Product {
       description: map['description'],
       price: map['price'],
       restaurantId: map['restaurant_id'],
+      productId: map['product_id'],
     );
   }
 }
