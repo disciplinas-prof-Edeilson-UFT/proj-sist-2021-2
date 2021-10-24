@@ -11,7 +11,7 @@ class PaymentTitle extends StatelessWidget {
       presetFontSizes: [30, 28],
       wrapWords: false,
       style: TextStyle(
-        fontFamily: 'Ninuto',
+        fontFamily: 'Nunito',
         color: Colors.black87,
         fontWeight: FontWeight.w600,
       ),

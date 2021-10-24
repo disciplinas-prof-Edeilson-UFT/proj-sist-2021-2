@@ -5,6 +5,7 @@ import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/product_options/product_store.dart';
@@ -278,12 +279,32 @@ class _ProductDialogState extends State<ProductDialog> {
                     } else {
                       store.makeItem(widget.product);
                       cartStore.removeItem(widget.isEditing!.itemid);
-                      //cartStore.editItem(widget.isEditing!);
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text("Você Editou um item"),
+                            actions: <Widget>[
+                              // define os botões na base do dialogo
+                              ElevatedButton(
+                                child: const Text("Fechar",
+                                    style: TextStyle(color: primaryCollor)),
+                                style: ElevatedButton.styleFrom(
+                                  primary: secondaryCollor,
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     }
                   },
                   child: Observer(builder: (_) {
                     return Text(
-                      "Adicionar R\$ " +
+                      "Adicionar " +
                           FormatMoney.doubleToMoney(
                               widget.product.price! * store.quantity),
                       style: const TextStyle(

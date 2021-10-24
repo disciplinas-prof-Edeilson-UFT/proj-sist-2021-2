@@ -19,14 +19,14 @@ class EnderecoEntrega extends StatelessWidget {
             'Rua Fabiano Cambota 258',
             presetFontSizes: [16, 14, 10],
             style: TextStyle(
-              fontFamily: 'Ninuto',
+              fontFamily: 'Nunito',
             ),
           ),
           AutoSizeText(
             'Ponta grossa/PR',
             presetFontSizes: [16, 14, 10],
             style: TextStyle(
-              fontFamily: 'Ninuto',
+              fontFamily: 'Nunito',
             ),
           ),
         ]),

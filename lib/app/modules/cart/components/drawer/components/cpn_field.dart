@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class CupomField extends StatelessWidget {
   final double auxWidth;
@@ -22,6 +23,7 @@ class CupomField extends StatelessWidget {
           SizedBox(
             width: auxWidth * 0.8,
             child: TextFormField(
+              cursorColor: secondaryCollor,
               enabled: true,
               textAlign: TextAlign.center,
               style: const TextStyle(
@@ -29,7 +31,13 @@ class CupomField extends StatelessWidget {
                 fontFamily: 'Nunito',
               ),
               decoration: const InputDecoration(
-                icon: Icon(Icons.local_offer_outlined),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                icon: Icon(
+                  Icons.local_offer_outlined,
+                  color: secondaryCollor,
+                ),
                 hintText: 'Cupom de desconto',
                 hintStyle: TextStyle(
                   fontFamily: 'Nunito',

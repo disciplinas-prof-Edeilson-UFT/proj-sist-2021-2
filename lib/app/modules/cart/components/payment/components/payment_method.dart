@@ -12,21 +12,64 @@ class PaymentMethod extends StatelessWidget {
       children: <Widget>[
         ElevatedButton(
           onPressed: () => {},
-          style: ElevatedButton.styleFrom(primary: Colors.white),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.white,
+          ),
           child: const ListTile(
             leading: Icon(Icons.qr_code),
-            title: AutoSizeText('Pague por Pix',
-                wrapWords: true,
-                style: TextStyle(
-                    fontFamily: 'Ninuto', fontWeight: FontWeight.w500)),
+            title: AutoSizeText(
+              'Pague por Pix',
+              presetFontSizes: [18, 14],
+              wrapWords: true,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             subtitle: AutoSizeText(
-                'Use o leitor de QR ou copie e cole o código',
-                presetFontSizes: [18, 14, 8],
-                style: TextStyle(
-                    fontFamily: 'Ninuto', fontWeight: FontWeight.w500)),
+              'Use o leitor de QR ou copie e cole o código',
+              presetFontSizes: [16, 12],
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
         ),
         const Divider(thickness: 5, color: Colors.transparent),
+        ElevatedButton(
+          onPressed: () => {},
+          style: ElevatedButton.styleFrom(
+            primary: Colors.white,
+          ),
+          child: const ListTile(
+            leading: Icon(
+              Icons.credit_card_outlined,
+            ),
+            title: AutoSizeText(
+              'Adicione um cartão',
+              presetFontSizes: [18, 14],
+              wrapWords: false,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            subtitle: AutoSizeText(
+              'Nenhum cartão cadastrado. Adicione um cartão',
+              presetFontSizes: [16, 12],
+              wrapWords: false,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+        const Divider(
+          thickness: 5,
+          color: Colors.transparent,
+        ),
         Container(
             child: ElevatedButton(
           onPressed: () => {},
@@ -34,47 +77,27 @@ class PaymentMethod extends StatelessWidget {
             primary: Colors.white,
           ),
           child: const ListTile(
-            leading: Icon(Icons.credit_card_outlined),
-            title: AutoSizeText('Adicione um cartão',
-                presetFontSizes: [18, 14],
-                wrapWords: false,
-                style: TextStyle(
-                  fontFamily: 'Ninuto',
-                  fontWeight: FontWeight.w500,
-                )),
-            subtitle:
-                AutoSizeText('Nenhum Cartao Cadastrado. Adicione um cartão',
-                    presetFontSizes: [16, 12],
-                    wrapWords: false,
-                    style: TextStyle(
-                      fontFamily: 'Ninuto',
-                      fontWeight: FontWeight.w500,
-                    )),
-          ),
-        )),
-        const Divider(thickness: 5, color: Colors.transparent),
-        Container(
-            child: ElevatedButton(
-          onPressed: () => {},
-          style: ElevatedButton.styleFrom(
-            primary: Colors.white,
-          ),
-          child: const ListTile(
-            leading: Icon(Icons.payments_outlined),
-            title: AutoSizeText('Pague com dinheiro',
-                presetFontSizes: [18, 14],
-                wrapWords: false,
-                style: TextStyle(
-                  fontFamily: 'Ninuto',
-                  fontWeight: FontWeight.w500,
-                )),
-            subtitle: AutoSizeText('Pague por dinheiro',
-                presetFontSizes: [16, 12],
-                wrapWords: false,
-                style: TextStyle(
-                  fontFamily: 'Ninuto',
-                  fontWeight: FontWeight.w500,
-                )),
+            leading: Icon(
+              Icons.payments_outlined,
+            ),
+            title: AutoSizeText(
+              'Pague com dinheiro',
+              presetFontSizes: [18, 14],
+              wrapWords: false,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            subtitle: AutoSizeText(
+              'Realize o pagamento na entrega em espécie',
+              presetFontSizes: [16, 12],
+              wrapWords: false,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
         )),
       ],
