@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class SideBar extends StatefulWidget {
@@ -73,6 +74,57 @@ class _SideBarState extends State<SideBar> {
             ),
             SizedBox(
               height: screen.height * 0.3,
+            ),
+            Container(
+              alignment: Alignment.center,
+              color: redCollor,
+              width: double.maxFinite,
+              height: screen.height * 0.1,
+              child: ListTile(
+                //Aqui será a imagem do Upload (icon de demonstração)
+                leading: const Icon(
+                  Icons.account_circle_sharp,
+                  color: Colors.white,
+                  size: 50,
+                ),
+                title: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    child: const Text(
+                      "Editar perfil",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Nunito",
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                ),
+                minLeadingWidth: 0,
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              width: double.maxFinite,
+              height: screen.height * 0.04,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  // ignore: prefer_const_constructors
+                  child: Text(
+                    "Fechar loja",
+                    style: const TextStyle(
+                      color: secondaryCollor,
+                      fontSize: 20,
+                      fontFamily: "Nunito",
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
