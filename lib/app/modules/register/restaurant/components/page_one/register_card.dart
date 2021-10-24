@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'register_formulary.dart';
 import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class RegisterCard extends StatelessWidget {
-  RegisterCard({Key? key, required this.registerStore}) : super(key: key);
-  final _formKey = GlobalKey<FormState>();
-  final RegisterStore registerStore;
+  RegisterCard({Key? key}) : super(key: key);
+  final RegisterStore registerStore = Modular.get<RegisterStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class RegisterCard extends StatelessWidget {
               ),
               Expanded(
                 child: Form(
-                  key: _formKey,
+                  key: registerStore.cardFormKey,
                   child: Formulary(
                     controller: registerStore.controller,
                   ),
@@ -68,7 +68,7 @@ class RegisterCard extends StatelessWidget {
                     minimumSize: MaterialStateProperty.all(const Size(210, 48)),
                   ),
                   onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
+                    if (registerStore.cardFormKey.currentState!.validate()) {
                       Modular.to.navigate('page2', arguments: registerStore);
                     }
                   },
@@ -92,6 +92,6 @@ class RegisterCard extends StatelessWidget {
     if (states.any(interactiveStates.contains)) {
       return const Color(0xffA31922);
     }
-    return const Color(0xffEA1D2C);
+    return secondaryColor;
   }
 }

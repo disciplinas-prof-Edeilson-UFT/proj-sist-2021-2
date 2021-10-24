@@ -13,6 +13,8 @@ abstract class _RegisterStore with Store {
 
   var availablePlans = ['Plano Básico', 'Plano Entrega'];
 
+  final String userCity = "Palmas";
+
   Map<String, TextEditingController> controller = {
     'nome': TextEditingController(),
     'email': TextEditingController(),
@@ -33,6 +35,7 @@ abstract class _RegisterStore with Store {
     'Plano de Entrega': TextEditingController(),
     'Categoria': TextEditingController(),
   };
+  final cardFormKey = GlobalKey<FormState>();
   final formKey = GlobalKey<FormState>();
   final fields = RegisterField.fields;
   final categories = [

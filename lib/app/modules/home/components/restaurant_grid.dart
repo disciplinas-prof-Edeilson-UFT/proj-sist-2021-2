@@ -31,7 +31,7 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
     return Observer(
       builder: (_) {
         var restaurants = homeStore.restaurants;
-        if (homeStore.selectedCategory != null) {
+        if (homeStore.selectedCategory != '') {
           restaurants = restaurants
               .where((e) => e.category.contains(homeStore.selectedCategory))
               .toList();
