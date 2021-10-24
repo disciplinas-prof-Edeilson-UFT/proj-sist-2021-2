@@ -123,7 +123,7 @@ class ListTilePerfilMobile extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontFamily: "Nunito",
-              fontSize: 12,
+              fontSize: 9,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.left,
