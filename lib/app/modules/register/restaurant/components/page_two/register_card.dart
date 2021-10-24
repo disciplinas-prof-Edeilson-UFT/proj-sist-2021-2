@@ -34,7 +34,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    widget.registerStore.controller['Categoria']!.text = 'Açaí';
+    widget.registerStore.controller['Categoria']?.text = 'Açaí';
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
@@ -255,6 +255,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                             ),
                           );
                           dispose();
+                          Modular.to.navigate('/');
                         }
                       },
                     ),

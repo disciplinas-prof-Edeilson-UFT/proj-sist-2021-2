@@ -93,8 +93,12 @@ abstract class _RegisterStore with Store {
   @action
   void dispose() {
     controller.clear();
-    categories.clear();
-    fields.clear();
-    availablePlans.clear();
+  }
+
+  String? validatePassword() {
+    if (controller['Confirmar Senha']?.text != controller['Senha']?.text) {
+      return "Os campos diferem";
+    }
+    return null;
   }
 }

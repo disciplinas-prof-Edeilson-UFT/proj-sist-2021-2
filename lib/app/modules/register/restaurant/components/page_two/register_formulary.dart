@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cpf_cnpj_validator/cnpj_validator.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class RegisterFormulary extends StatelessWidget {
-  const RegisterFormulary({
+  RegisterFormulary({
     Key? key,
     required this.hintText,
     required this.label,
@@ -18,6 +20,7 @@ class RegisterFormulary extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputFormatter? formatter;
   final Function? valueChangeListener;
+  final RegisterStore registerStore = Modular.get<RegisterStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +76,8 @@ class RegisterFormulary extends StatelessWidget {
                     return "Digite um número de telefone válido";
                   }
                   return null;
-
+                case 'Confirmar Senha':
+                  return registerStore.validatePassword();
                 default:
                   return null;
               }
