@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
+import 'package:pscomidas/app/modules/cart/cart_page.dart';
 import 'package:pscomidas/app/modules/restaurant/pages/restaurant_desktop_page.dart';
 import 'package:pscomidas/app/modules/restaurant/pages/restaurant_mobile_page.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
@@ -38,7 +39,7 @@ class RestaurantPageState extends State<RestaurantPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      endDrawer: Container(),
+      endDrawer: const CartPage(),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (_, constrains) {

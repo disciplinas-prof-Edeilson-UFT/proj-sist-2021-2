@@ -11,7 +11,7 @@ class ItemButtomBar extends StatelessWidget {
     return Column(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () => Scaffold.of(context).openEndDrawer(),
           icon: icon,
           iconSize: 15,
         ),
