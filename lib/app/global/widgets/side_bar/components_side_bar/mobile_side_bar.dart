@@ -14,7 +14,7 @@ class _SideBarMobileState extends State<SideBarMobile> {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-
+    final _buttons = ['Produtos', 'Pedidos', 'Avaliações', 'Sair'];
     return Drawer(
       elevation: 0,
       child: Container(
@@ -37,27 +37,16 @@ class _SideBarMobileState extends State<SideBarMobile> {
                   horizontal: screen.height * 0.02,
                 ),
                 child: ListView(
-                  children: <Widget>[
-                    const TextButtonMenuMobile(
-                      option: "Produtos",
-                    ),
-                    SizedBox(
-                      height: screen.height * 0.05,
-                    ),
-                    const TextButtonMenuMobile(
-                      option: "Pedidos",
-                    ),
-                    SizedBox(
-                      height: screen.height * 0.05,
-                    ),
-                    const TextButtonMenuMobile(
-                      option: "Avaliações",
-                    ),
-                    SizedBox(
-                      height: screen.height * 0.05,
-                    ),
-                    const TextButtonMenuMobile(
-                      option: "Sair",
+                  children: [
+                    ..._buttons.map(
+                      (e) => Column(
+                        children: [
+                          TextButtonMenuMobile(option: e),
+                          SizedBox(
+                            height: screen.height * 0.05,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

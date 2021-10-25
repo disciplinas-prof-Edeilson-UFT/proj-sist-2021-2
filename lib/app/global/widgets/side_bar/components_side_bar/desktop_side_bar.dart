@@ -15,6 +15,8 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
 
+    final _buttons = ['Produtos', 'Pedidos', 'Avaliações', 'Sair'];
+
     return Drawer(
       elevation: 0,
       child: Container(
@@ -37,27 +39,16 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
                   horizontal: screen.height * 0.09,
                 ),
                 child: ListView(
-                  children: <Widget>[
-                    const TextButtonMenu(
-                      option: "Produtos",
-                    ),
-                    SizedBox(
-                      height: screen.height * 0.05,
-                    ),
-                    const TextButtonMenu(
-                      option: "Pedidos",
-                    ),
-                    SizedBox(
-                      height: screen.height * 0.05,
-                    ),
-                    const TextButtonMenu(
-                      option: "Avaliações",
-                    ),
-                    SizedBox(
-                      height: screen.height * 0.05,
-                    ),
-                    const TextButtonMenu(
-                      option: "Sair",
+                  children: [
+                    ..._buttons.map(
+                      (e) => Column(
+                        children: [
+                          TextButtonMenu(option: e),
+                          SizedBox(
+                            height: screen.height * 0.05,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

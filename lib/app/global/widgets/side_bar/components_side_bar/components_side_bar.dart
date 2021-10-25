@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class LogoSideBar extends StatelessWidget {
@@ -14,7 +15,7 @@ class LogoSideBar extends StatelessWidget {
           "assets/images/logo-primary.png",
           width: screen.width * 0.1,
         ),
-        onTap: () => Navigator.popUntil(context, ModalRoute.withName('/')),
+        onTap: () => Modular.to.navigate('/'),
       ),
     );
   }
@@ -26,7 +27,6 @@ class TextButtonMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -38,7 +38,6 @@ class TextButtonMenu extends StatelessWidget {
             fontFamily: "Nunito",
             fontWeight: FontWeight.bold,
           ),
-          //textAlign: TextAlign.left,
         ),
       ),
     );
@@ -64,7 +63,6 @@ class TextButtonMenuMobile extends StatelessWidget {
             fontFamily: "Nunito",
             fontWeight: FontWeight.bold,
           ),
-          //textAlign: TextAlign.left,
         ),
       ),
     );
@@ -143,10 +141,9 @@ class ClosedButtonShop extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        // ignore: prefer_const_constructors
-        child: Text(
+        child: const Text(
           "Fechar loja",
-          style: const TextStyle(
+          style: TextStyle(
             color: secondaryCollor,
             fontSize: 18,
             fontFamily: "Nunito",
@@ -167,10 +164,9 @@ class ClosedButtonShopMobile extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        // ignore: prefer_const_constructors
-        child: Text(
+        child: const Text(
           "Fechar loja",
-          style: const TextStyle(
+          style: TextStyle(
             color: secondaryCollor,
             fontSize: 12,
             fontFamily: "Nunito",

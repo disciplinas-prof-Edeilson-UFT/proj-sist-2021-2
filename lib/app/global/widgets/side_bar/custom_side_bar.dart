@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/global/widgets/app_bar/components/desktop_app_bar.dart';
-import 'package:pscomidas/app/global/widgets/app_bar/components/mobile_app_bar.dart';
-import 'package:pscomidas/app/global/widgets/app_bar/components/tablet_app_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/desktop_side_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/mobile_side_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/tablet_side_bar.dart';
