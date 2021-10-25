@@ -30,8 +30,8 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
         child: Stack(
           children: [
             DropzoneView(
-              onDrop: (_) {
-                restaurantHomeStore.imageReceiver;
+              onDrop: (e) async {
+                await restaurantHomeStore.imageReceiver(e);
                 Navigator.pop(context);
               },
               onCreated: (controller) => this.controller = controller,
