@@ -12,7 +12,11 @@ class Button extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        fixedSize: Size(double.infinity, 20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0.0),
+        ),
+        fixedSize: Size(MediaQuery.of(context).size.width * 0.2,
+            MediaQuery.of(context).size.height * 0.04),
         primary: Color(0XFFea1d2c),
         backgroundColor: Colors.white,
       ),

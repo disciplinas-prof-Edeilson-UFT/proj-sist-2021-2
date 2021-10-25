@@ -70,7 +70,6 @@ class _SideBarState extends State<SideBar> {
                     Expanded(
                       child: Container(),
                     ),
-                    LogoutButton(),
                   ],
                 ),
               ),
@@ -78,6 +77,7 @@ class _SideBarState extends State<SideBar> {
             SizedBox(
               height: screen.height * 0.3,
             ),
+            LogoutButton(),
           ],
         ),
       ),
