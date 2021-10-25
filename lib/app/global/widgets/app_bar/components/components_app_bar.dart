@@ -4,8 +4,8 @@ import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/global/widgets/temp/update_profile.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile.dart';
 
 class LogoAppBar extends StatelessWidget {
   const LogoAppBar({Key? key}) : super(key: key);

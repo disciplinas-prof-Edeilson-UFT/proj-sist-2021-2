@@ -7,6 +7,8 @@ import 'package:pscomidas/app/modules/cart/components/payment/pages/payment_page
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/order/order_module.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'modules/restaurant/restaurant_module.dart';
 import 'package:pscomidas/app/modules/cart/cart_module.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
@@ -22,6 +24,7 @@ class AppModule extends Module {
     Bind.singleton((i) => CartStore()),
     Bind.singleton((i) => HomeStore()),
     Bind.singleton((i) => OrderStore()),
+    Bind.singleton((i) => RestaurantHomeStore()),
   ];
 
   @override
@@ -31,6 +34,7 @@ class AppModule extends Module {
     ModuleRoute(CartModule.routeName, module: CartModule()),
     ModuleRoute(RegisterModule.routeName, module: RegisterModule()),
     ModuleRoute(OrderModule.routeName, module: OrderModule()),
+    ModuleRoute(RestaurantHomeModule.routeName, module: RestaurantHomeModule()),
     ChildRoute(
       PaymentPage.paymentRouteName,
       child: (_, args) => const PaymentPage(),

@@ -1,19 +1,19 @@
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class UploadImageDialog extends StatefulWidget {
-  const UploadImageDialog({ Key? key }) : super(key: key);
+  const UploadImageDialog({Key? key}) : super(key: key);
 
   @override
   State<UploadImageDialog> createState() => _UploadImageDialogState();
 }
 
 class _UploadImageDialogState extends State<UploadImageDialog> {
-
   late DropzoneViewController controller;
-
+  final restaurantHomeStore = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -25,12 +25,16 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
         height: 220,
         width: 485,
         decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage('images/register/dragAndDropArea.png')),
+          image: DecorationImage(
+              image: AssetImage('images/register/dragAndDropArea.png')),
         ),
         child: Stack(
           children: [
             DropzoneView(
-              onDrop: imageReceiver,
+              onDrop: (_) {
+                restaurantHomeStore.imageReceiver;
+                Navigator.pop(context);
+              },
               onCreated: (controller) => this.controller = controller,
             ),
             Center(
@@ -38,10 +42,16 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.insert_photo),
-                  const Text('Arraste uma imagem aqui', style: TextStyle(color: Colors.white,)),
+                  const Text('Arraste uma imagem aqui',
+                      style: TextStyle(
+                        color: Colors.white,
+                      )),
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text('Ou', style: TextStyle(color: Colors.white,)),
+                    child: Text('Ou',
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                   ),
                   ElevatedButton.icon(
                     style: ButtonStyle(
@@ -49,10 +59,17 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
                     ),
                     onPressed: () async {
                       final event = await controller.pickFiles();
-                      imageReceiver(event.last);
+                      restaurantHomeStore.imageReceiver(event.last);
+                      Navigator.pop(context);
                     },
-                    icon: const Icon(Icons.search, color: Colors.black,),
-                    label: const Text("Procurar Arquivo", style: TextStyle(color: Colors.black,)),
+                    icon: const Icon(
+                      Icons.search,
+                      color: Colors.black,
+                    ),
+                    label: const Text("Procurar Arquivo",
+                        style: TextStyle(
+                          color: Colors.black,
+                        )),
                   ),
                 ],
               ),
@@ -61,18 +78,5 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
         ),
       ),
     );
-  }
-
-  //TODO: MOVE TO STORE
-  Future imageReceiver (dynamic e) async {
-    try {
-    await FirebaseStorage.instance
-        .ref('uploads/${e.name}')
-        .putBlob(e);
-    } catch (e) {
-      //oopsie
-    } finally {
-      Navigator.pop(context);
-    }
   }
 }
