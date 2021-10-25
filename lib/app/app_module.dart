@@ -27,7 +27,7 @@ class AppModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ModuleRoute(Modular.initialRoute, module: RestaurantHomeModule()),
+    ModuleRoute(Modular.initialRoute, module: HomeModule()),
     ModuleRoute(RestaurantModule.routeName, module: RestaurantModule()),
     ModuleRoute(CartModule.routeName, module: CartModule()),
     ModuleRoute(RegisterModule.routeName, module: RegisterModule()),
