@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile.dart';
 
 class LogoSideBar extends StatelessWidget {
   const LogoSideBar({Key? key}) : super(key: key);
@@ -85,6 +86,9 @@ class ListTilePerfil extends StatelessWidget {
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
+          onTap: () {
+            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+          },
           child: const Text(
             "Editar perfil",
             style: const TextStyle(
@@ -117,6 +121,9 @@ class ListTilePerfilMobile extends StatelessWidget {
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
+          onTap: () {
+            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+          },
           child: const Text(
             "Editar perfil",
             style: const TextStyle(

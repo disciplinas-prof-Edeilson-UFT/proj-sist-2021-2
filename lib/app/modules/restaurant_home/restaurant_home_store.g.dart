@@ -17,21 +17,6 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
               name: '_RestaurantHomeStoreBase.toggleText'))
           .value;
 
-  final _$valueAtom = Atom(name: '_RestaurantHomeStoreBase.value');
-
-  @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
-  }
-
-  @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
-    });
-  }
-
   final _$isOpenAtom = Atom(name: '_RestaurantHomeStoreBase.isOpen');
 
   @override
@@ -47,19 +32,16 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-  final _$_RestaurantHomeStoreBaseActionController =
-      ActionController(name: '_RestaurantHomeStoreBase');
+  final _$imageReceiverAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.imageReceiver');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
-        name: '_RestaurantHomeStoreBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future<dynamic> imageReceiver(dynamic e) {
+    return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
   }
+
+  final _$_RestaurantHomeStoreBaseActionController =
+      ActionController(name: '_RestaurantHomeStoreBase');
 
   @override
   void toggleOpen() {
@@ -75,7 +57,6 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   String toString() {
     return '''
-value: ${value},
 isOpen: ${isOpen},
 toggleText: ${toggleText}
     ''';
