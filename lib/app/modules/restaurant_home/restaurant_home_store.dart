@@ -12,4 +12,15 @@ abstract class _RestaurantHomeStoreBase with Store {
   void increment() {
     value++;
   }
+
+  @observable
+  bool isOpen = false;
+
+  @action
+  void toggleOpen() {
+    isOpen = !isOpen;
+  }
+
+  @computed
+  String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
 }
