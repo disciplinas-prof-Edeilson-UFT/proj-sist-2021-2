@@ -51,7 +51,6 @@ class TextButtonMenuMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(

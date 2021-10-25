@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/custom_side_bar.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/product_page.dart';
 
 class RestaurantHomePage extends StatefulWidget {
   final String title;
@@ -26,15 +26,7 @@ class RestaurantHomePageState extends State<RestaurantHomePage> {
             ),
             //main body
             const Expanded(
-              child: Text(
-                "Produtos",
-                style: TextStyle(
-                  color: secondaryCollor,
-                  fontFamily: "Nunito",
-                  fontSize: 40,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              child: ProductPage(),
             ),
           ],
         ),

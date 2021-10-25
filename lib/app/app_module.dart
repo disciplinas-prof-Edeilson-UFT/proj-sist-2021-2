@@ -11,6 +11,7 @@ import 'modules/restaurant/restaurant_module.dart';
 import 'package:pscomidas/app/modules/cart/cart_module.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_module.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
 
 import 'modules/register/register_module.dart';
 
@@ -30,6 +31,7 @@ class AppModule extends Module {
     ModuleRoute(RestaurantModule.routeName, module: RestaurantModule()),
     ModuleRoute(CartModule.routeName, module: CartModule()),
     ModuleRoute(RegisterModule.routeName, module: RegisterModule()),
+    ModuleRoute(RestaurantHomeModule.routeName, module: RestaurantHomeModule()),
     ModuleRoute(OrderModule.routeName, module: OrderModule()),
     ChildRoute(
       PaymentPage.paymentRouteName,
