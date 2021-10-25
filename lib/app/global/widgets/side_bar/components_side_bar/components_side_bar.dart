@@ -87,7 +87,7 @@ class ListTilePerfil extends StatelessWidget {
         child: GestureDetector(
           child: const Text(
             "Editar perfil",
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: "Nunito",
               fontSize: 20,
@@ -119,7 +119,7 @@ class ListTilePerfilMobile extends StatelessWidget {
         child: GestureDetector(
           child: const Text(
             "Editar perfil",
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: "Nunito",
               fontSize: 9,
@@ -151,8 +151,8 @@ class _ClosedButtonShopState extends State<ClosedButtonShop> {
       child: GestureDetector(
         child: Observer(
           builder: (_) => Text(
-            "${store.toggleText}",
-            style: TextStyle(
+            store.toggleText,
+            style: const TextStyle(
               color: secondaryCollor,
               fontSize: 18,
               fontFamily: "Nunito",
@@ -184,8 +184,8 @@ class _ClosedButtonShopMobileState extends State<ClosedButtonShopMobile> {
       child: GestureDetector(
         child: Observer(
           builder: (_) => Text(
-            "${store.toggleText}",
-            style: TextStyle(
+            store.toggleText,
+            style: const TextStyle(
               color: secondaryCollor,
               fontSize: 12,
               fontFamily: "Nunito",
