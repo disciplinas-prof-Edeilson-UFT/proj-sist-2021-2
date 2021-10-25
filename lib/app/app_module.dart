@@ -31,6 +31,7 @@ class AppModule extends Module {
     ModuleRoute(RestaurantModule.routeName, module: RestaurantModule()),
     ModuleRoute(CartModule.routeName, module: CartModule()),
     ModuleRoute(RegisterModule.routeName, module: RegisterModule()),
+    ModuleRoute(RestaurantHomeModule.routeName, module: RestaurantHomeModule()),
     ModuleRoute(OrderModule.routeName, module: OrderModule()),
     ChildRoute(
       PaymentPage.paymentRouteName,

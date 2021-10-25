@@ -5,6 +5,7 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_page.dart';
 
 class LogoAppBar extends StatelessWidget {
   const LogoAppBar({Key? key}) : super(key: key);
@@ -158,7 +159,12 @@ class UserAppBar extends StatelessWidget {
           "assets/images/user.png",
           width: screen.width * 0.02,
         ),
-        onTap: () {},
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => const RestaurantHomePage(),
+          ),
+        ),
       ),
     );
   }
