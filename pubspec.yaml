@@ -48,7 +48,9 @@ dependencies:
   js: ^0.6.3
   flutter_signin_button: ^2.0.0
   intl: ^0.17.0
-  
+  auto_size_text: ^3.0.0-nullsafety.0
+  brasil_fields: ^1.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -79,7 +81,7 @@ flutter:
     - assets/images/category/
     - lib/app/modules/home/assets/images/
     - assets/images/cards/
-    - lib/app/modules/register/restaurant/assets/background.png
+    - assets/images/register/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

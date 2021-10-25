@@ -14,15 +14,11 @@ class RegisterPlans extends StatelessWidget {
   }
 }
 
-class Card extends StatefulWidget {
+class Card extends StatelessWidget {
   const Card({Key? key, required this.image, this.colorBox}) : super(key: key);
   final String image;
-  final colorBox;
-  @override
-  _CardState createState() => _CardState();
-}
+  final Color? colorBox;
 
-class _CardState extends State<Card> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -35,7 +31,10 @@ class _CardState extends State<Card> {
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  color: widget.colorBox,
+                  image: DecorationImage(
+                    image: AssetImage(image),
+                  ),
+                  color: colorBox,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
@@ -45,12 +44,6 @@ class _CardState extends State<Card> {
                       offset: const Offset(0, 3),
                     ),
                   ],
-                ),
-                child: FittedBox(
-                  child: Image.asset(
-                    widget.image,
-                    fit: BoxFit.fill,
-                  ),
                 ),
               ),
             ),

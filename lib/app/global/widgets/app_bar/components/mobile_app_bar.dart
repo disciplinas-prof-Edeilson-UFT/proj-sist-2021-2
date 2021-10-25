@@ -1,6 +1,6 @@
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
     final Size screen = MediaQuery.of(context).size;
     return AppBar(
       toolbarHeight: 80,
-      backgroundColor: primaryCollor,
+      backgroundColor: primaryColor,
       automaticallyImplyLeading: false,
       elevation: 2,
       title: Center(
@@ -34,7 +34,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
                 const Text(
                   "ENTREGAR EM",
                   style: TextStyle(
-                    color: tertiaryCollor,
+                    color: tertiaryColor,
                     fontSize: 8,
                   ),
                   textAlign: TextAlign.left,
@@ -43,7 +43,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
                   children: [
                     const Icon(
                       Icons.add_location_outlined,
-                      color: secondaryCollor,
+                      color: secondaryColor,
                       size: 14,
                     ),
                     SizedBox(
@@ -62,7 +62,7 @@ class _MobileAppBarState extends ModularState<MobileAppBar, HomeStore> {
                       child: GestureDetector(
                         child: const Icon(
                           Icons.keyboard_arrow_down_sharp,
-                          color: secondaryCollor,
+                          color: secondaryColor,
                         ),
                         onTap: () {},
                       ),

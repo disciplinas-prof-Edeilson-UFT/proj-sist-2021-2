@@ -1,17 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'register_formulary.dart';
- 
+import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
+
 class RegisterCard extends StatelessWidget {
-  RegisterCard({ Key? key }) : super(key: key);
-  final _formKey = GlobalKey<FormState>();
-
-  final Map<String, TextEditingController> controller = {
-    'name': TextEditingController(),
-    'email': TextEditingController(),
-    'phone': TextEditingController(),
-    };
-
+  RegisterCard({Key? key}) : super(key: key);
+  final RegisterStore registerStore = Modular.get<RegisterStore>();
+  final cardFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -32,51 +29,53 @@ class RegisterCard extends StatelessWidget {
                   style: TextStyle(color: Colors.black, fontFamily: 'Nunito'),
                   children: [
                     TextSpan(
-                      text: 'Cadastre sua loja\n', 
-                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                      text: 'Cadastre sua loja\n',
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                     ),
                     TextSpan(
-                      text: 'Entre e ganhe 1 mês de mensalidade grátis!', 
-                      style: TextStyle(fontSize: 16, ),
+                      text: 'Entre e ganhe 1 mês de mensalidade grátis!',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 24,),
+              const SizedBox(
+                height: 24,
+              ),
               Expanded(
                 child: Form(
-                  key: _formKey,
-                  child: Formulary(controller: controller,),
+                  key: cardFormKey,
+                  child: Formulary(
+                    controller: registerStore.controller,
+                  ),
                 ),
               ),
-    
               const Text(
                 'Ao prosseguir, aceito que o PSfood entre em contato comigo por telefone, email ou'
-                ' Whatsapp (incluindo mensagens automáticas para fins comerciais).', 
+                ' Whatsapp (incluindo mensagens automáticas para fins comerciais).',
                 style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
-    
               Align(
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
                   style: ButtonStyle(
                     splashFactory: NoSplash.splashFactory,
-                    backgroundColor: MaterialStateProperty.resolveWith(_getButtonColor),
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith(_getButtonColor),
                     minimumSize: MaterialStateProperty.all(const Size(210, 48)),
                   ),
-                  onPressed: () {
-                    if(_formKey.currentState!.validate()) {
-                      /*
-                      prints de demonstração da obtenção de dados. Desnecessário o esclarecimento,
-                      devem ser excluídos.
-                      */
-                      print(controller['name']!.text);
-                      print(controller['phone']!.text);
-                      print(controller['email']!.text);
-                      //TODO: NAVIGATE TO NEXT PAGE.
-                    } 
-                  }, 
-                  child: const Text('Começar o cadastro', style: TextStyle(fontFamily: 'Nunito', fontSize: 18),),
+                  onPressed: () async {
+                    if (cardFormKey.currentState!.validate()) {
+                      Modular.to.navigate('page2', arguments: registerStore);
+                    }
+                  },
+                  child: const Text(
+                    'Começar o cadastro',
+                    style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
+                  ),
                 ),
               ),
             ],
@@ -93,7 +92,6 @@ class RegisterCard extends StatelessWidget {
     if (states.any(interactiveStates.contains)) {
       return const Color(0xffA31922);
     }
-    return const Color(0xffEA1D2C);
+    return secondaryColor;
   }
-
 }

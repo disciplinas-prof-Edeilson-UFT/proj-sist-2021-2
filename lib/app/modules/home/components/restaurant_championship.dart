@@ -26,9 +26,7 @@ class ChampionRestaurant extends StatelessWidget {
     return InkWell(
       child: Image.asset("lib/app/modules/home/assets/images/iconmarmita.png",
           height: 28),
-      onTap: () {
-        //TODO: NAVIGATE para o restaurante.
-      },
+      onTap: () {},
     );
   }
 }

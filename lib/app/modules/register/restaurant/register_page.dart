@@ -1,23 +1,23 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/register_plans.dart';
-import 'components/register_card.dart';
-import 'components/register_side_text.dart';
+import 'components/page_one/register_card.dart';
+import 'components/page_one/register_side_text.dart';
 import 'register_store.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
   final String title;
   const RestaurantRegisterPage(
-      {Key? key, this.title = 'RestaurantRegisterPage'})
+      {Key? key,
+      this.title = 'RestaurantRegisterPage',
+      required this.registerStore})
       : super(key: key);
+  final RegisterStore registerStore;
   @override
   RestaurantRegisterPageState createState() => RestaurantRegisterPageState();
 }
 
 class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
-  final RestaurantRegisterStore store = Modular.get();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                "lib/app/modules/register/restaurant/assets/background.png"),
+                "images/register/background.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -50,7 +50,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const RegisterSideText(),
+                RegisterSideText(),
                 RegisterCard(),
               ],
             ),
@@ -65,7 +65,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         children: [
           Column(
             children: [
-              const RegisterSideText(),
+              RegisterSideText(),
               RegisterCard(),
               const RegisterPlans(),
             ],
