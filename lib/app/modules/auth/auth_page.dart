@@ -54,7 +54,18 @@ class AuthPageState extends State<AuthPage> {
             padding: const EdgeInsets.all(20.0),
             margin:
                 const EdgeInsets.symmetric(horizontal: 100.0, vertical: 10.0),
-            animationDuration: const Duration(seconds: 1),
+            animationDuration: const Duration(milliseconds: 500),
+            shouldIconPulse: false,
+            mainButton: TextButton(
+              child: const Text(
+                'Fechar',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {
+                store.errorMessage = '';
+                Navigator.pop(context);
+              },
+            ),
           ).show(context);
         },
       ),
@@ -80,12 +91,14 @@ class AuthPageState extends State<AuthPage> {
       body: SafeArea(
         child: Row(
           children: [
-            Expanded(
-              child: Image.asset(
-                'images/auth-back.jpg',
-                fit: BoxFit.cover,
+            if (screen.width > 1069) ...[
+              Expanded(
+                child: Image.asset(
+                  'images/auth-back.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
+            ],
             Form(
               key: _formKey,
               child: Container(
@@ -93,7 +106,7 @@ class AuthPageState extends State<AuthPage> {
                   horizontal: 100.0,
                   vertical: 20.0,
                 ),
-                width: screen.width * 0.45,
+                width: screen.width > 1069 ? screen.width * .45 : screen.width,
                 height: screen.height,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -110,7 +123,7 @@ class AuthPageState extends State<AuthPage> {
                     ),
                     const SizedBox(height: 40),
                     const Text(
-                      'Falta pouco para matar a sua fome!',
+                      'Falta pouco para \nmatar a sua fome!',
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
@@ -239,9 +252,11 @@ class AuthPageState extends State<AuthPage> {
                                 'images/google.png',
                               ),
                             ),
-                            label: const Text(
-                              'Continuar com Google',
-                              style: TextStyle(
+                            label: Text(
+                              screen.width < 630
+                                  ? 'Google'
+                                  : 'Entrar com Google',
+                              style: const TextStyle(
                                 color: Colors.black87,
                               ),
                             ),
@@ -270,7 +285,11 @@ class AuthPageState extends State<AuthPage> {
                               Icons.facebook_outlined,
                               size: 35,
                             ),
-                            label: const Text('Continuar com Facebook'),
+                            label: Text(
+                              screen.width < 630
+                                  ? 'Facebook'
+                                  : 'Entrar com Facebook',
+                            ),
                             style: ButtonStyle(
                               fixedSize: MaterialStateProperty.all(
                                   const Size.fromHeight(50)),

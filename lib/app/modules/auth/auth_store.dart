@@ -26,6 +26,7 @@ abstract class _AuthStoreBase with Store {
 
   @action
   Future<void> login() async {
+    errorMessage = '';
     try {
       if (await _authRepository.login(
         emailController.text,
