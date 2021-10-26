@@ -48,6 +48,11 @@ dependencies:
   js: ^0.6.3
   flutter_signin_button: ^2.0.0
   intl: ^0.17.0
+  mockito: ^5.0.16
+  rxdart: ^0.27.2
+  another_flushbar: ^1.10.24
+  google_sign_in: ^5.1.1
+  email_validator: ^2.0.1
   auto_size_text: ^3.0.0-nullsafety.0
   brasil_fields: ^1.2.0
 

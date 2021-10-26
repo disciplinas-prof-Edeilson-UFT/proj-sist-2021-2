@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
+import 'package:pscomidas/app/modules/auth/auth_module.dart';
+import 'package:pscomidas/app/modules/home/home_page.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +15,19 @@ class LogoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
           child: Image.asset(
             "assets/images/logo.png",
-            width: screen.width * 0.2,
+            width: screen.width * 0.08,
           ),
-          onTap: () => Modular.to.navigate('/')),
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomePage())),
+        ),
+      ),
     );
   }
 }
@@ -144,20 +152,92 @@ class LocationAppBar extends StatelessWidget {
   }
 }
 
-class UserAppBar extends StatelessWidget {
+class UserAppBar extends StatefulWidget {
   const UserAppBar({Key? key}) : super(key: key);
 
   @override
+  State<UserAppBar> createState() => _UserAppBarState();
+}
+
+class _UserAppBarState extends State<UserAppBar> {
+  final bool logged = FirebaseAuth.instance.currentUser != null ? true : false;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
+    return logged
+        ? PopupMenuButton(
+            icon: const Icon(
+              Icons.person_outline_outlined,
+              color: Colors.red,
+            ),
+            iconSize: 30.0,
+            offset: const Offset(-5, 60),
+            itemBuilder: (_) => UserProfileOptions.listy,
+          )
+        : IconButton(
+            icon: const Icon(
+              Icons.login,
+              color: Colors.red,
+              size: 30,
+            ),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              Modular.to.navigate(AuthModule.routeName);
+            },
+          );
+  }
+}
+
+class ItemMenuHover extends StatefulWidget {
+  const ItemMenuHover({Key? key, required this.title, required this.icon})
+      : super(key: key);
+  final String title;
+  final IconData icon;
+
+  @override
+  _ItemMenuHoverState createState() => _ItemMenuHoverState();
+}
+
+class _ItemMenuHoverState extends State<ItemMenuHover> {
+  Color color = Colors.black54;
+  @override
+  Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        child: Image.asset(
-          "assets/images/user.png",
-          width: screen.width * 0.02,
-        ),
-        onTap: () {},
+      onHover: (_) {
+        setState(() {
+          color = Colors.red;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          color = Colors.black54;
+        });
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 8.0,
+            ),
+            child: Icon(
+              widget.icon,
+              color: color,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              widget.title,
+              textAlign: TextAlign.left,
+              style: TextStyle(color: color),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -168,16 +248,97 @@ class CartAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        child: Image.asset(
-          "assets/images/cart.png",
-          width: screen.width * 0.02,
-        ),
-        onTap: () => Scaffold.of(context).openEndDrawer(),
+    return IconButton(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      icon: const Icon(
+        Icons.shopping_cart_outlined,
+        size: 30,
       ),
+      color: Colors.red,
+      hoverColor: Colors.transparent,
+      onPressed: () {
+        Scaffold.of(context).openEndDrawer();
+      },
     );
   }
+}
+
+class UserProfileOptions {
+  static List<PopupMenuItem> listy = [
+    PopupMenuItem(
+      child: const ItemMenuHover(
+        title: "Chats",
+        icon: Icons.sms_outlined,
+      ),
+      padding: const EdgeInsets.all(5.0),
+      onTap: () {},
+    ),
+    PopupMenuItem(
+      child: const ItemMenuHover(
+        title: "Pedidos",
+        icon: Icons.receipt_outlined,
+      ),
+      padding: const EdgeInsets.all(5.0),
+      onTap: () {},
+    ),
+    PopupMenuItem(
+      child: const ItemMenuHover(
+        title: "Meus Cupons",
+        icon: Icons.local_offer_outlined,
+      ),
+      padding: const EdgeInsets.all(5.0),
+      onTap: () {},
+    ),
+    PopupMenuItem(
+      child: const ItemMenuHover(
+        title: "Pagamento",
+        icon: Icons.payment_outlined,
+      ),
+      padding: const EdgeInsets.all(5.0),
+      onTap: () {},
+    ),
+    PopupMenuItem(
+      child: const ItemMenuHover(
+        title: "Fidelidade",
+        icon: Icons.card_giftcard_outlined,
+      ),
+      padding: const EdgeInsets.all(5.0),
+      onTap: () {},
+    ),
+    PopupMenuItem(
+      child: const ItemMenuHover(
+        title: "Ajuda",
+        icon: Icons.support_outlined,
+      ),
+      padding: const EdgeInsets.all(5.0),
+      onTap: () {},
+    ),
+    PopupMenuItem(
+      child: const ItemMenuHover(
+        title: "Editar Dados",
+        icon: Icons.settings_outlined,
+      ),
+      padding: const EdgeInsets.all(5.0),
+      onTap: () {},
+    ),
+    PopupMenuItem(
+      child: const ItemMenuHover(
+        title: "Segurança",
+        icon: Icons.shield_outlined,
+      ),
+      padding: const EdgeInsets.all(5.0),
+      onTap: () {},
+    ),
+    PopupMenuItem(
+      child: const ItemMenuHover(
+        title: "Sair",
+        icon: Icons.logout_outlined,
+      ),
+      padding: const EdgeInsets.all(5.0),
+      onTap: () async {
+        await FirebaseAuth.instance.signOut();
+        Modular.to.navigate(AuthModule.routeName);
+      },
+    ),
+  ];
 }

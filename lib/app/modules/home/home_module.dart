@@ -3,6 +3,7 @@ import 'package:pscomidas/app/modules/home/home_page.dart';
 import '/app/modules/home/store/home_store.dart';
 
 class HomeModule extends Module {
+  static String get routeName => '/';
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => HomeStore()),
