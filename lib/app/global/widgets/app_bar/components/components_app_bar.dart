@@ -186,7 +186,7 @@ class _UserAppBarState extends State<UserAppBar> {
             ),
             onPressed: () {
               FirebaseAuth.instance.signOut();
-              Modular.to.pushReplacementNamed(AuthModule.routeName);
+              Modular.to.navigate(AuthModule.routeName);
             },
           );
   }
@@ -337,7 +337,7 @@ class UserProfileOptions {
       padding: const EdgeInsets.all(5.0),
       onTap: () async {
         await FirebaseAuth.instance.signOut();
-        Modular.to.pushNamed(AuthModule.routeName);
+        Modular.to.navigate(AuthModule.routeName);
       },
     ),
   ];

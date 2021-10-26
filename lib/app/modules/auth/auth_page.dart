@@ -27,8 +27,7 @@ class AuthPageState extends State<AuthPage> {
     disposers = [
       reaction(
         (_) => store.logged == true,
-        (_) => Modular.to
-            .pushNamedAndRemoveUntil(HomeModule.routeName, (p0) => false),
+        (_) => Modular.to.navigate(HomeModule.routeName),
       ),
       reaction(
         (_) => store.emailVerified == false,
@@ -164,6 +163,13 @@ class AuthPageState extends State<AuthPage> {
                     const SizedBox(height: 10),
                     SizedBox(
                       child: TextFormField(
+                        validator: (senha) {
+                          if (senha == null || senha.isEmpty) {
+                            return 'Campo Obrigatório';
+                          } else if (senha.length < 6) {
+                            return 'Deve ter no mínimo 6 caractéres';
+                          }
+                        },
                         decoration: InputDecoration(
                           hintText: 'Senha',
                           focusedBorder: const OutlineInputBorder(
