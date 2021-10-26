@@ -17,4 +17,15 @@ abstract class _RestaurantHomeStoreBase with Store {
       //oopsie
     }
   }
+
+  @observable
+  bool isOpen = false;
+
+  @action
+  void toggleOpen() {
+    isOpen = !isOpen;
+  }
+
+  @computed
+  String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
 }
