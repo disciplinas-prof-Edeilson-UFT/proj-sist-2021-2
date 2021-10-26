@@ -29,12 +29,13 @@ abstract class _AuthStoreBase with Store {
     errorMessage = '';
     try {
       if (await _authRepository.login(
-        emailController.text,
-        passwordController.text,
-      ) is UserCredential) {
-        logged = true;
-      } else {
+            emailController.text,
+            passwordController.text,
+          ) ==
+          false) {
         emailVerified = false;
+      } else {
+        logged = true;
       }
     } catch (e) {
       errorMessage = e.toString();
@@ -57,9 +58,8 @@ abstract class _AuthStoreBase with Store {
     User user;
     user = FirebaseAuth.instance.currentUser!;
     await user.reload();
-    if (!user.emailVerified) {
-      user.sendEmailVerification();
-      emailVerified = false;
+    if (user.emailVerified == true) {
+      emailVerified = true;
     }
   }
 

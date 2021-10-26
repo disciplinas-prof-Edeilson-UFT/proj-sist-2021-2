@@ -9,12 +9,17 @@ class AuthRepository extends AuthService {
   AuthRepository(this.auth, {authInstance});
 
   @override
-  Future<UserCredential> login(String email, String password) async {
+  Future<bool> login(String email, String password) async {
     try {
-      return await auth.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      User user = FirebaseAuth.instance.currentUser!;
+      if (user.emailVerified == false) {
+        user.sendEmailVerification();
+      }
+      return user.emailVerified;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw Exception('O e-mail não foi encontrado');
