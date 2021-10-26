@@ -1,0 +1,25 @@
+{
+  "name": "proj-sist-2021-2",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d build/web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/disciplinas-prof-Edeilson-UFT/proj-sist-2021-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/disciplinas-prof-Edeilson-UFT/proj-sist-2021-2/issues"
+  },
+  "homepage": "https://github.com/disciplinas-prof-Edeilson-UFT/proj-sist-2021-2#readme",
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
