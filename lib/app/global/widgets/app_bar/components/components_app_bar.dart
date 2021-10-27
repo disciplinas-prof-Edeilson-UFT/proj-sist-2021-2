@@ -160,9 +160,11 @@ class UserAppBar extends StatelessWidget {
           width: screen.width * 0.02,
         ),
         onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => const RestaurantHomePage())),
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => const RestaurantHomePage(),
+          ),
+        ),
       ),
     );
   }

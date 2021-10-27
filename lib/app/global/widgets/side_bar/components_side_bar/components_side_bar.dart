@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile.dart';
 
 class LogoSideBar extends StatelessWidget {
   const LogoSideBar({Key? key}) : super(key: key);
@@ -51,7 +54,6 @@ class TextButtonMenuMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -84,9 +86,12 @@ class ListTilePerfil extends StatelessWidget {
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
+          onTap: () {
+            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+          },
           child: const Text(
             "Editar perfil",
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: "Nunito",
               fontSize: 20,
@@ -116,9 +121,12 @@ class ListTilePerfilMobile extends StatelessWidget {
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
+          onTap: () {
+            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+          },
           child: const Text(
             "Editar perfil",
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: "Nunito",
               fontSize: 9,
@@ -133,47 +141,67 @@ class ListTilePerfilMobile extends StatelessWidget {
   }
 }
 
-class ClosedButtonShop extends StatelessWidget {
+class ClosedButtonShop extends StatefulWidget {
   const ClosedButtonShop({Key? key}) : super(key: key);
+
+  @override
+  _ClosedButtonShopState createState() => _ClosedButtonShopState();
+}
+
+class _ClosedButtonShopState extends State<ClosedButtonShop> {
+  final RestaurantHomeStore store = RestaurantHomeStore();
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        child: const Text(
-          "Fechar loja",
-          style: TextStyle(
-            color: secondaryCollor,
-            fontSize: 18,
-            fontFamily: "Nunito",
-            fontWeight: FontWeight.bold,
+        child: Observer(
+          builder: (_) => Text(
+            store.toggleText,
+            style: const TextStyle(
+              color: secondaryCollor,
+              fontSize: 18,
+              fontFamily: "Nunito",
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
+        onTap: store.toggleOpen,
       ),
     );
   }
 }
 
-class ClosedButtonShopMobile extends StatelessWidget {
+class ClosedButtonShopMobile extends StatefulWidget {
   const ClosedButtonShopMobile({Key? key}) : super(key: key);
+
+  @override
+  _ClosedButtonShopMobileState createState() => _ClosedButtonShopMobileState();
+}
+
+class _ClosedButtonShopMobileState extends State<ClosedButtonShopMobile> {
+  final RestaurantHomeStore store = RestaurantHomeStore();
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        child: const Text(
-          "Fechar loja",
-          style: TextStyle(
-            color: secondaryCollor,
-            fontSize: 12,
-            fontFamily: "Nunito",
-            fontWeight: FontWeight.bold,
+        child: Observer(
+          builder: (_) => Text(
+            store.toggleText,
+            style: const TextStyle(
+              color: secondaryCollor,
+              fontSize: 12,
+              fontFamily: "Nunito",
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
+        onTap: store.toggleOpen,
       ),
     );
   }
