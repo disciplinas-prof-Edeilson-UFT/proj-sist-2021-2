@@ -36,8 +36,8 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
       AsyncAction('_RestaurantHomeStoreBase.imageReceiver');
 
   @override
-  Future<dynamic> imageReceiver(dynamic e) {
-    return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
+  Future<dynamic> imageReceiver(dynamic e, String id) {
+    return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e, id));
   }
 
   final _$_RestaurantHomeStoreBaseActionController =

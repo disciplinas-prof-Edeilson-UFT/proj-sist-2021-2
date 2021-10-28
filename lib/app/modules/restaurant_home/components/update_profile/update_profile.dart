@@ -24,6 +24,7 @@ class ProfileAlertDialog extends StatelessWidget {
                     onTap: () {
                       showDialog(context: context, builder: (_) => const UploadImageDialog());
                     },
+                    borderRadius: BorderRadius.circular(90),
                     child: const CircleAvatar(
                       minRadius: 45,
                       backgroundImage: null,

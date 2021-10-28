@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
@@ -31,7 +32,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
           children: [
             DropzoneView(
               onDrop: (e) async {
-                await restaurantHomeStore.imageReceiver(e);
+                await restaurantHomeStore.imageReceiver(e, 'dummy1');
                 Navigator.pop(context);
               },
               onCreated: (controller) => this.controller = controller,
@@ -41,34 +42,25 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.insert_photo),
-                  const Text('Arraste uma imagem aqui',
-                      style: TextStyle(
-                        color: Colors.white,
-                      )),
+                  const Text('Arraste uma imagem aqui'),
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text('Ou',
-                        style: TextStyle(
-                          color: Colors.white,
-                        )),
+                    child: Text('Ou'),
                   ),
                   ElevatedButton.icon(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
+                      backgroundColor: MaterialStateProperty.all(secondaryColor),
                     ),
                     onPressed: () async {
                       final event = await controller.pickFiles();
-                      restaurantHomeStore.imageReceiver(event.last);
+                      restaurantHomeStore.imageReceiver(event.last, 'dummy1');
                       Navigator.pop(context);
                     },
                     icon: const Icon(
                       Icons.search,
                       color: Colors.black,
                     ),
-                    label: const Text("Procurar Arquivo",
-                        style: TextStyle(
-                          color: Colors.black,
-                        )),
+                    label: const Text("Procurar Arquivo"),
                   ),
                 ],
               ),

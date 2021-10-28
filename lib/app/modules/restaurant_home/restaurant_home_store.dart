@@ -7,12 +7,12 @@ class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
   @action
-  Future imageReceiver(dynamic e) async {
+  Future imageReceiver(dynamic e, String id) async {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
     } 
     try {
-      await FirebaseStorage.instance.ref('uploads/${e.name}').putBlob(e);
+      await FirebaseStorage.instance.ref('restaurant_profile/$id').putBlob(e);
     } catch (e) {
       //oopsie
     }
