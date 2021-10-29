@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/auth/auth_module.dart';
+import 'package:pscomidas/app/modules/cart/cart_module.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/pages/payment_page.dart';
@@ -10,10 +12,10 @@ import 'package:pscomidas/app/modules/order/order_store.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'modules/restaurant/restaurant_module.dart';
-import 'package:pscomidas/app/modules/cart/cart_module.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_module.dart';
 import 'modules/register/register_module.dart';
+import 'modules/auth/auth_module.dart';
 
 class AppModule extends Module {
   @override
@@ -33,6 +35,7 @@ class AppModule extends Module {
     ModuleRoute(CartModule.routeName, module: CartModule()),
     ModuleRoute(RegisterModule.routeName, module: RegisterModule()),
     ModuleRoute(RestaurantHomeModule.routeName, module: RestaurantHomeModule()),
+    ModuleRoute(AuthModule.routeName, module: AuthModule()),
     ModuleRoute(OrderModule.routeName, module: OrderModule()),
     ModuleRoute(RestaurantHomeModule.routeName, module: RestaurantHomeModule()),
     ChildRoute(

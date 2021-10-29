@@ -4,6 +4,7 @@ import 'package:pscomidas/app/modules/register/restaurant/register_module.dart';
 import '/app/modules/home/store/home_store.dart';
 
 class HomeModule extends Module {
+  static String get routeName => '/';
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => HomeStore()),
