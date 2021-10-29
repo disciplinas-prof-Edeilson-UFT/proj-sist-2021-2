@@ -31,8 +31,8 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
         child: Stack(
           children: [
             DropzoneView(
-              onDrop: (e) async {
-                await restaurantHomeStore.imageReceiver(e);
+              onDrop: (e) {
+                restaurantHomeStore.setImage(e);
                 Navigator.pop(context);
               },
               onCreated: (controller) => this.controller = controller,
@@ -53,7 +53,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
                     ),
                     onPressed: () async {
                       final event = await controller.pickFiles();
-                      restaurantHomeStore.imageReceiver(event.last);
+                      restaurantHomeStore.setImage(event.last);
                       Navigator.pop(context);
                     },
                     icon: const Icon(

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,16 +24,19 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @action
-  Future imageReceiver(dynamic e) async {
+  Future setImage(dynamic e) async {
+    TaskSnapshot task;
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
     } 
     try {
-      await FirebaseStorage.instance.ref('restaurant_profile/$id').putBlob(e);
+      task = await FirebaseStorage.instance.ref('restaurant_profile/$id').putBlob(e);
       getProfilePictureUrl();
     } catch (e) {
-      //oopsie
+      return;
     }
+    final imgUrl = await task.storage.ref('restaurant_profile/$id').getDownloadURL();
+    FirebaseFirestore.instance.collection('restaurant').doc(id).update({'image': imgUrl});
   }
   
   @observable

@@ -72,12 +72,12 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
         .run(() => super.getProfilePictureUrl());
   }
 
-  final _$imageReceiverAsyncAction =
-      AsyncAction('_RestaurantHomeStoreBase.imageReceiver');
+  final _$setImageAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.setImage');
 
   @override
-  Future<dynamic> imageReceiver(dynamic e) {
-    return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
+  Future<dynamic> setImage(dynamic e) {
+    return _$setImageAsyncAction.run(() => super.setImage(e));
   }
 
   final _$_RestaurantHomeStoreBaseActionController =
