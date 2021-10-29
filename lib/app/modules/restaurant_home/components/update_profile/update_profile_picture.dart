@@ -14,13 +14,13 @@ class UploadImageDialog extends StatefulWidget {
 class _UploadImageDialogState extends State<UploadImageDialog> {
   late DropzoneViewController controller;
   final restaurantHomeStore = Modular.get<RestaurantHomeStore>();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
       contentPadding: const EdgeInsets.all(0),
-      //title: const Text("Alterar imagem de perfil"),
       content: Container(
         height: 220,
         width: 485,
@@ -32,7 +32,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
           children: [
             DropzoneView(
               onDrop: (e) async {
-                await restaurantHomeStore.imageReceiver(e, 'dummy1');
+                await restaurantHomeStore.imageReceiver(e);
                 Navigator.pop(context);
               },
               onCreated: (controller) => this.controller = controller,
@@ -53,12 +53,11 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
                     ),
                     onPressed: () async {
                       final event = await controller.pickFiles();
-                      restaurantHomeStore.imageReceiver(event.last, 'dummy1');
+                      restaurantHomeStore.imageReceiver(event.last);
                       Navigator.pop(context);
                     },
                     icon: const Icon(
                       Icons.search,
-                      color: Colors.black,
                     ),
                     label: const Text("Procurar Arquivo"),
                   ),

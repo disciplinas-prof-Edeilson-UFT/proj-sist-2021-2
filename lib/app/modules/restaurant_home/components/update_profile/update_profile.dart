@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'update_profile_picture.dart';
 
 class ProfileAlertDialog extends StatelessWidget {
   ProfileAlertDialog({ Key? key }) : super(key: key);
   final TextEditingController _controller = TextEditingController();
+  final RestaurantHomeStore restaurantHomeStore = Modular.get<RestaurantHomeStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +29,14 @@ class ProfileAlertDialog extends StatelessWidget {
                       showDialog(context: context, builder: (_) => const UploadImageDialog());
                     },
                     borderRadius: BorderRadius.circular(90),
-                    child: const CircleAvatar(
-                      minRadius: 45,
-                      backgroundImage: null,
+                    child: Observer(
+                      builder: (_) {
+                        return CircleAvatar(
+                          minRadius: 45,
+                          backgroundImage: NetworkImage(restaurantHomeStore.picture),
+                          foregroundColor: Colors.white,
+                        );
+                      }
                     ),
                   ),
                 ),

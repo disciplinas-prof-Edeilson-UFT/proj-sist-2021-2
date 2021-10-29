@@ -17,6 +17,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
               name: '_RestaurantHomeStoreBase.toggleText'))
           .value;
 
+  final _$pictureAtom = Atom(name: '_RestaurantHomeStoreBase.picture');
+
+  @override
+  String get picture {
+    _$pictureAtom.reportRead();
+    return super.picture;
+  }
+
+  @override
+  set picture(String value) {
+    _$pictureAtom.reportWrite(value, super.picture, () {
+      super.picture = value;
+    });
+  }
+
   final _$isOpenAtom = Atom(name: '_RestaurantHomeStoreBase.isOpen');
 
   @override
@@ -32,12 +47,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$getProfilePictureUrlAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.getProfilePictureUrl');
+
+  @override
+  Future<String> getProfilePictureUrl() {
+    return _$getProfilePictureUrlAsyncAction
+        .run(() => super.getProfilePictureUrl());
+  }
+
   final _$imageReceiverAsyncAction =
       AsyncAction('_RestaurantHomeStoreBase.imageReceiver');
 
   @override
-  Future<dynamic> imageReceiver(dynamic e, String id) {
-    return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e, id));
+  Future<dynamic> imageReceiver(dynamic e) {
+    return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
   }
 
   final _$_RestaurantHomeStoreBaseActionController =
@@ -57,6 +81,7 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   String toString() {
     return '''
+picture: ${picture},
 isOpen: ${isOpen},
 toggleText: ${toggleText}
     ''';
