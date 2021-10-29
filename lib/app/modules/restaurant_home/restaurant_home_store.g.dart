@@ -32,6 +32,22 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$editBackgroundAtom =
+      Atom(name: '_RestaurantHomeStoreBase.editBackground');
+
+  @override
+  Widget get editBackground {
+    _$editBackgroundAtom.reportRead();
+    return super.editBackground;
+  }
+
+  @override
+  set editBackground(Widget value) {
+    _$editBackgroundAtom.reportWrite(value, super.editBackground, () {
+      super.editBackground = value;
+    });
+  }
+
   final _$isOpenAtom = Atom(name: '_RestaurantHomeStoreBase.isOpen');
 
   @override
@@ -68,6 +84,17 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
       ActionController(name: '_RestaurantHomeStoreBase');
 
   @override
+  void editResolver(bool isHovering) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.editResolver');
+    try {
+      return super.editResolver(isHovering);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void toggleOpen() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
         name: '_RestaurantHomeStoreBase.toggleOpen');
@@ -82,6 +109,7 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   String toString() {
     return '''
 picture: ${picture},
+editBackground: ${editBackground},
 isOpen: ${isOpen},
 toggleText: ${toggleText}
     ''';

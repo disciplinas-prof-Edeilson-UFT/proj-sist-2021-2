@@ -1,4 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_picture_firestore.dart';
 
@@ -30,6 +32,29 @@ abstract class _RestaurantHomeStoreBase with Store {
       getProfilePictureUrl();
     } catch (e) {
       //oopsie
+    }
+  }
+  
+  @observable
+  Widget editBackground = Container();
+
+  @action
+  void editResolver(bool isHovering) {
+    if (isHovering) {  
+      editBackground = Opacity(
+        opacity: 0.5,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(60),
+          ),   
+          child: const Image(
+            image: AssetImage("images/restaurant_home/editProfile.png"),
+          ),
+        ),
+      );
+    } else {
+      editBackground = Container();
     }
   }
 

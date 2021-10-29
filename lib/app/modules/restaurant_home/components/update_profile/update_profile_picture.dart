@@ -26,7 +26,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
         width: 485,
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('images/register/dragAndDropArea.png')),
+              image: AssetImage('images/restaurant_home/dragAndDropArea.png')),
         ),
         child: Stack(
           children: [

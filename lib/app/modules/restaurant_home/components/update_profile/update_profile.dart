@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'update_profile_picture.dart';
 
@@ -25,18 +26,29 @@ class ProfileAlertDialog extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: InkWell(
+                    onHover: (_isHovering) {restaurantHomeStore.editResolver(_isHovering);},
                     onTap: () {
                       showDialog(context: context, builder: (_) => const UploadImageDialog());
                     },
                     borderRadius: BorderRadius.circular(90),
-                    child: Observer(
-                      builder: (_) {
-                        return CircleAvatar(
-                          minRadius: 45,
-                          backgroundImage: NetworkImage(restaurantHomeStore.picture),
-                          foregroundColor: Colors.white,
-                        );
-                      }
+                    child: SizedBox(
+                      height: 90,
+                      width: 90,
+                      child: Stack(
+                        children: [
+                          const Center(child: CircularProgressIndicator(color: secondaryColor,)),
+                          Observer(
+                            builder: (context) {
+                              return CircleAvatar(
+                                minRadius: 45,
+                                backgroundImage: NetworkImage(restaurantHomeStore.picture),
+                                backgroundColor: Colors.transparent,
+                                child: restaurantHomeStore.editBackground,
+                              );
+                            }
+                          ),    
+                        ],
+                      ),
                     ),
                   ),
                 ),
