@@ -91,7 +91,7 @@ class ListTilePerfil extends StatelessWidget {
           },
           child: const Text(
             "Editar perfil",
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
               fontFamily: "Nunito",
               fontSize: 20,
@@ -126,7 +126,7 @@ class ListTilePerfilMobile extends StatelessWidget {
           },
           child: const Text(
             "Editar perfil",
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
               fontFamily: "Nunito",
               fontSize: 9,
