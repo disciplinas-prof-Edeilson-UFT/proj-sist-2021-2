@@ -68,10 +68,11 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
       titleSpacing: 0.0,
       centerTitle: false,
       actions: [
+        // TODO: Remover botão de acesso temporário
+        const RegisterButton(),
+        SizedBox(width: screen.width * 0.02),
         const UserAppBar(),
-        SizedBox(
-          width: screen.width * 0.02,
-        ),
+        SizedBox(width: screen.width * 0.02),
         const CartAppBar(),
         SizedBox(
           width: screen.width * 0.03,
