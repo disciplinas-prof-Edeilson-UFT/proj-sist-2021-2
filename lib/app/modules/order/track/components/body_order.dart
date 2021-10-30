@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
-import 'package:pscomidas/app/modules/order/track/components/btn_order.dart';
 import 'package:pscomidas/app/modules/order/track/components/order_card.dart';
 import 'package:pscomidas/app/modules/order/track/components/title_order_page.dart';
 
