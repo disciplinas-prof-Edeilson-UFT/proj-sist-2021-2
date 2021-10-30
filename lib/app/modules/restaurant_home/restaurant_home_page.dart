@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/buttons_side_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/custom_side_bar.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/product_page.dart';
 
@@ -26,8 +25,8 @@ class RestaurantHomePageState extends State<RestaurantHomePage> {
               child: const CustomSideBar(),
             ),
             //main body
-            Expanded(
-              child: ButtonSideBar(),
+            const Expanded(
+              child: ProductPage(),
             ),
           ],
         ),
