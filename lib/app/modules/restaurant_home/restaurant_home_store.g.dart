@@ -32,6 +32,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$showLoadingAtom = Atom(name: '_RestaurantHomeStoreBase.showLoading');
+
+  @override
+  bool get showLoading {
+    _$showLoadingAtom.reportRead();
+    return super.showLoading;
+  }
+
+  @override
+  set showLoading(bool value) {
+    _$showLoadingAtom.reportWrite(value, super.showLoading, () {
+      super.showLoading = value;
+    });
+  }
+
   final _$editBackgroundAtom =
       Atom(name: '_RestaurantHomeStoreBase.editBackground');
 
@@ -61,6 +76,14 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     _$isOpenAtom.reportWrite(value, super.isOpen, () {
       super.isOpen = value;
     });
+  }
+
+  final _$toggleLoadingAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.toggleLoading');
+
+  @override
+  Future<void> toggleLoading() {
+    return _$toggleLoadingAsyncAction.run(() => super.toggleLoading());
   }
 
   final _$getProfilePictureUrlAsyncAction =
@@ -109,6 +132,7 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   String toString() {
     return '''
 picture: ${picture},
+showLoading: ${showLoading},
 editBackground: ${editBackground},
 isOpen: ${isOpen},
 toggleText: ${toggleText}

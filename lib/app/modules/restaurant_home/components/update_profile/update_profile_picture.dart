@@ -61,6 +61,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
                     ),
                     label: const Text("Procurar Arquivo"),
                   ),
+                  Text('.jpg ou .png', style: TextStyle(color: Colors.grey[600], fontSize: 12),),
                 ],
               ),
             )

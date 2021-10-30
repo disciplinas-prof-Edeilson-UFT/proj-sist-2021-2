@@ -14,28 +14,45 @@ abstract class _RestaurantHomeStoreBase with Store {
   final id = 'dummy1';
   @observable
   String picture = '';
+  
+  @observable
+  bool showLoading = true;
+
+  @action 
+  Future<void> toggleLoading() async {
+    /*Controla o circularProgressIndicator, o atraso para desativar
+    se deve ao fato da imagem demorar para ser baixada.
+    */
+    if (showLoading) {
+      await Future.delayed(const Duration(seconds: 3));
+    }
+    showLoading = !showLoading;
+  }
 
   @action
   Future<String> getProfilePictureUrl() async {
     final ProfileFirestore profileFirestore =
         ProfileFirestore();
     picture = await profileFirestore.getProfilePicture();
+    toggleLoading();
     return picture;
   }
 
   @action
   Future setImage(dynamic e) async {
-    TaskSnapshot task;
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
-    } 
+    }
+    showLoading = true;
+    String imgUrl;
+    toggleLoading();
     try {
-      task = await FirebaseStorage.instance.ref('restaurant_profile/$id').putBlob(e);
+      imgUrl = await FirebaseStorage.instance.ref('restaurant_profile/$id')
+        .putBlob(e).then((task) => task.ref.getDownloadURL());
       getProfilePictureUrl();
     } catch (e) {
       return;
     }
-    final imgUrl = await task.storage.ref('restaurant_profile/$id').getDownloadURL();
     FirebaseFirestore.instance.collection('restaurant').doc(id).update({'image': imgUrl});
   }
   
