@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/order/track/order_details/components/cancel_order.dart';
 import 'package:pscomidas/app/modules/order/track/components/info_order.dart';
 
 class BodyOrderDetails extends StatefulWidget {
@@ -59,13 +58,13 @@ class _BodyOrderDetailsState extends State<BodyOrderDetails> {
 
                  const InfoOrder(),
 
-                 Container(
+                 /* Container(
                       // Container p/ ficar os botões
                     width: screen.width * 0.4,
                     height: screen.height * 0.5,
                     decoration: _containerDecoration(),
                     child: const CancelOrder()
-                  ),
+                  ), */
                 ],
               )
             ],
