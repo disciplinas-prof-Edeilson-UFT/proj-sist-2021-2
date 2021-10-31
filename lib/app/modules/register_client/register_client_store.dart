@@ -3,15 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/cliente.dart';
-import 'package:pscomidas/app/modules/register/pages/confirm_phone/confirm_phone_page.dart';
-import 'package:pscomidas/app/modules/register/register_repository.dart';
+import 'package:pscomidas/app/modules/register_client/pages/confirm_phone/confirm_phone_page.dart';
+import 'package:pscomidas/app/modules/register_client/register_client_repository.dart';
 
-part 'register_store.g.dart';
+part 'register_client_store.g.dart';
 
-class RegisterStore = _RegisterStoreBase with _$RegisterStore;
+class RegisterClientStore = _RegisterStoreBase with _$RegisterClientStore;
 
 abstract class _RegisterStoreBase with Store {
-  final _repository = Modular.get<RegisterRepository>();
+  final _repository = Modular.get<RegisterClientRepository>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController cpfController = TextEditingController();

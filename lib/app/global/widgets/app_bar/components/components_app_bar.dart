@@ -8,7 +8,7 @@ import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
-import 'package:pscomidas/app/modules/register/register_module.dart';
+import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
 
 class LogoAppBar extends StatelessWidget {
   const LogoAppBar({Key? key}) : super(key: key);
@@ -165,7 +165,7 @@ class RegisterButton extends StatelessWidget {
         size: 30,
       ),
       onPressed: () {
-        Modular.to.navigate(RegisterModule.routeName);
+        Modular.to.navigate(RegisterClientModule.routeName);
       },
     );
   }

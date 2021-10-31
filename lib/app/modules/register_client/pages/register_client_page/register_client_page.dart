@@ -1,25 +1,24 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
-import 'package:pscomidas/app/modules/register/register_store.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/register/widgets/custom_submit_button.dart';
-import 'package:pscomidas/app/modules/register/widgets/custom_text_field.dart';
+import 'package:pscomidas/app/modules/register_client/register_client_store.dart';
+import 'package:pscomidas/app/modules/register_client/widgets/custom_submit_button.dart';
+import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterClientPage extends StatefulWidget {
   final String title;
-  const RegisterPage({Key? key, this.title = 'RegisterPage'}) : super(key: key);
+  const RegisterClientPage({Key? key, this.title = 'RegisterPage'})
+      : super(key: key);
   @override
-  RegisterPageState createState() => RegisterPageState();
+  RegisterClientPageState createState() => RegisterClientPageState();
 }
 
-class RegisterPageState extends State<RegisterPage> {
-  final RegisterStore store = Modular.get();
+class RegisterClientPageState extends State<RegisterClientPage> {
+  final RegisterClientStore store = Modular.get();
 
   TextStyle get fontFamily => GoogleFonts.getFont('Sen', fontSize: 16.0);
 

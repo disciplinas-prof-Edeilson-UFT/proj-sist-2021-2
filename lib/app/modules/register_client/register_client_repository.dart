@@ -4,9 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pscomidas/app/global/models/entities/cliente.dart';
 
-class RegisterRepository {
+class RegisterClientRepository {
   final FirebaseAuth auth;
-  RegisterRepository(this.auth);
+  RegisterClientRepository(this.auth);
   final userCollection = FirebaseFirestore.instance.collection('users');
   final clientsCollection = FirebaseFirestore.instance.collection('clients');
   final addressCollection = FirebaseFirestore.instance.collection('address');

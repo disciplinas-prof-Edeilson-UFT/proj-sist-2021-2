@@ -4,9 +4,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
-import 'package:pscomidas/app/modules/register/register_store.dart';
-import 'package:pscomidas/app/modules/register/widgets/custom_submit_button.dart';
-import 'package:pscomidas/app/modules/register/widgets/custom_text_field.dart';
+import 'package:pscomidas/app/modules/register_client/register_client_store.dart';
+import 'package:pscomidas/app/modules/register_client/widgets/custom_submit_button.dart';
+import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
 
 class ConfirmPhonePage extends StatefulWidget {
   static String get routeName => 'check_phone/';
@@ -17,7 +17,7 @@ class ConfirmPhonePage extends StatefulWidget {
 }
 
 class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
-  final RegisterStore store = Modular.get();
+  final RegisterClientStore store = Modular.get();
 
   TextStyle get digitedText => GoogleFonts.getFont('Sen', fontSize: 14.0);
   TextStyle get fontFamily => GoogleFonts.getFont('Sen', fontSize: 16.0);
