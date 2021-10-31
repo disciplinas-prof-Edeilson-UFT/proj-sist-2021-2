@@ -1,16 +1,16 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/register/restaurant/register_page.dart';
-import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_card.dart';
-import 'register_page.dart';
-import 'register_store.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_page.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
+import 'package:pscomidas/app/modules/restaurant_register/pages/page_two/register_card.dart';
+import 'restaurant_register_page.dart';
+import 'restaurant_register_store.dart';
 
 class RestaurantRegisterModule extends Module {
   static String get routeName => '/register/restaurant';
 
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => RegisterStore()),
+    Bind.lazySingleton((i) => RestaurantRegisterStore()),
   ];
 
   @override

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:cpf_cnpj_validator/cnpj_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
 class RegisterFormulary extends StatelessWidget {
   RegisterFormulary({
@@ -20,7 +20,8 @@ class RegisterFormulary extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputFormatter? formatter;
   final Function? valueChangeListener;
-  final RegisterStore registerStore = Modular.get<RegisterStore>();
+  final RestaurantRegisterStore registerStore =
+      Modular.get<RestaurantRegisterStore>();
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/register_plans.dart';
-import 'components/page_one/register_card.dart';
-import 'components/page_one/register_side_text.dart';
+import 'package:pscomidas/app/modules/restaurant_register/components/register_plans.dart';
+import 'pages/page_one/register_card.dart';
+import 'pages/page_one/register_side_text.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
   final String title;

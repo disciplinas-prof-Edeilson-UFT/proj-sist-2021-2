@@ -13,7 +13,7 @@ import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dar
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_module.dart';
-import 'package:pscomidas/app/modules/register/restaurant/register_module.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_module.dart';
 
 class AppModule extends Module {
   @override
