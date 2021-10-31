@@ -24,6 +24,21 @@ mixin _$AuthStore on _AuthStoreBase, Store {
     });
   }
 
+  final _$emailexisteAtom = Atom(name: '_AuthStoreBase.emailexiste');
+
+  @override
+  bool get emailexiste {
+    _$emailexisteAtom.reportRead();
+    return super.emailexiste;
+  }
+
+  @override
+  set emailexiste(bool value) {
+    _$emailexisteAtom.reportWrite(value, super.emailexiste, () {
+      super.emailexiste = value;
+    });
+  }
+
   final _$loggedAtom = Atom(name: '_AuthStoreBase.logged');
 
   @override
@@ -102,6 +117,7 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   String toString() {
     return '''
 errorMessage: ${errorMessage},
+emailexiste: ${emailexiste},
 logged: ${logged},
 emailVerified: ${emailVerified}
     ''';

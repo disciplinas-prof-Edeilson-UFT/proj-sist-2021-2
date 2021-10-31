@@ -6,6 +6,7 @@ import 'package:pscomidas/app/modules/auth/auth_store.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/auth/pages/verify_screen.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
+import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
 
 class AuthPage extends StatefulWidget {
   final String title;
@@ -36,6 +37,47 @@ class AuthPageState extends State<AuthPage> {
           MaterialPageRoute(
             builder: (context) => const VerifyScreen(),
           ),
+        ),
+      ),
+      reaction(
+        (_) => store.emailexiste == false,
+        (_) => showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Por favor, verifique o e-mail.'),
+              content: const Text(
+                  'Caso não seja nosso cliente ainda, crie uma nova conta.'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    store.emailexiste = true;
+                    Navigator.pop(context, 'Cancelar');
+                  },
+                  child: const Text(
+                    'Tentar Novamente',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () =>
+                      Modular.to.navigate(RegisterClientModule.routeName),
+                  child: const Text(
+                    'Criar conta',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
       reaction(
