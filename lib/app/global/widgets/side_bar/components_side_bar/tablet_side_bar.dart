@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/buttons_side_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/components_side_bar.dart';
 
 import 'package:pscomidas/app/modules/home/schemas.dart';
@@ -38,10 +39,15 @@ class _SideBarTabletState extends State<SideBarTablet> {
                 ),
                 child: ListView(
                   children: [
-                    ..._buttons.map(
+                    ...ButtonSideBar.buttons.keys.map(
                       (e) => Column(
                         children: [
-                          TextButtonMenuMobile(option: e),
+                          TextButtonMenu(
+                            option: e,
+                            navigator: ButtonSideBar.buttons[e]?['navigator']
+                                    .toString() ??
+                                "/",
+                          ),
                           SizedBox(
                             height: screen.height * 0.05,
                           ),
