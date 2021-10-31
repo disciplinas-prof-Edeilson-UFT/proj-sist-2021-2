@@ -11,6 +11,7 @@ class CustomTextField extends StatefulWidget {
     required this.controller,
     this.formaters,
     this.isPassword,
+    this.phone,
   }) : super(key: key);
 
   final String? title;
@@ -19,6 +20,7 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final List<TextInputFormatter>? formaters;
   final bool? isPassword;
+  final bool? phone;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -62,6 +64,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           style: digitedText,
           inputFormatters: widget.formaters,
           obscureText: obscure,
+          textAlign: widget.phone == true ? TextAlign.center : TextAlign.start,
           decoration: InputDecoration(
             border: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black26),

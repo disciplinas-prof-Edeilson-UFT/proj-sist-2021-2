@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/cliente.dart';
+import 'package:pscomidas/app/modules/register/pages/confirm_phone/confirm_phone_page.dart';
 import 'package:pscomidas/app/modules/register/register_repository.dart';
 
 part 'register_store.g.dart';
@@ -44,6 +45,10 @@ abstract class _RegisterStoreBase with Store {
       registered = false;
       errorMessage = e.toString();
     }
+  }
+
+  void goToConfirmPhone() {
+    Modular.to.navigate(ConfirmPhonePage.routeName);
   }
 
   @action

@@ -25,56 +25,8 @@ class RegisterPageState extends State<RegisterPage> {
 
   TextStyle get digitedText => GoogleFonts.getFont('Sen', fontSize: 14.0);
 
-  List<ReactionDisposer> disposers = [];
   final _formKey = GlobalKey<FormState>();
   bool checked = false;
-
-  @override
-  void initState() {
-    disposers = [
-      reaction(
-        (_) => store.registered,
-        (_) => Modular.to.navigate('/'),
-      ),
-      reaction(
-        (_) => store.errorMessage != null,
-        (_) => Flushbar(
-          title: 'Ocorreu um erro ao registrar:',
-          icon: const Icon(
-            Icons.sentiment_dissatisfied_outlined,
-            color: Colors.white70,
-          ),
-          message: store.errorMessage,
-          backgroundColor: Colors.red,
-          borderRadius: BorderRadius.circular(10.0),
-          padding: const EdgeInsets.all(20.0),
-          margin: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 10.0),
-          animationDuration: const Duration(milliseconds: 500),
-          shouldIconPulse: false,
-          mainButton: TextButton(
-            child: const Text(
-              'Fechar',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () {
-              store.errorMessage = '';
-              Navigator.pop(context);
-            },
-          ),
-        ).show(context),
-      ),
-    ];
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    store.dispose();
-    for (var i in disposers) {
-      i.call();
-    }
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -228,10 +180,10 @@ class RegisterPageState extends State<RegisterPage> {
                         const SizedBox(height: 10),
                         CustomSubmit(
                           label: 'Enviar',
-                          onPressed: () async {
+                          onPressed: () {
                             if (_formKey.currentState!.validate() &&
                                 checked != false) {
-                              await store.register();
+                              store.goToConfirmPhone();
                             }
                           },
                         ),
