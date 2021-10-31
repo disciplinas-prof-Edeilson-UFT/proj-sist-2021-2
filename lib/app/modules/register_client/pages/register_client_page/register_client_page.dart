@@ -75,7 +75,7 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                             'Falta pouco para matar sua fome!',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 24.0,
+                              fontSize: 23.0,
                             ),
                           ),
                         ),

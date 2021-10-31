@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -20,6 +22,16 @@ abstract class _RegisterStoreBase with Store {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController checkPasswordController = TextEditingController();
+  TextEditingController codeController = TextEditingController();
+
+  @observable
+  ConfirmationResult? confirmationResult;
+
+  @observable
+  bool? validatorPhone;
+
+  @observable
+  String? errorPhone;
 
   @observable
   String? errorMessage;
@@ -46,8 +58,28 @@ abstract class _RegisterStoreBase with Store {
       errorMessage = e.toString();
     }
   }
+  @action
+  Future<void> sendVerifyCode() async {
+    confirmationResult =
+    await _repository.verifyNumberForWeb(phoneController.text);
+  }
 
-  void goToConfirmPhone() {
+  @action
+  Future<void> verifyCode() async {
+    try {
+      validatorPhone =
+      await _repository.verifyCodeForWeb(confirmationResult, codeController.text);
+    } catch (e) {
+      errorPhone = e.toString();
+    }
+    var captcha = querySelector('#__ff-recaptcha-container');
+    if (captcha != null) {
+      captcha.hidden = true;
+    }
+  }
+
+  void goToConfirmPhone() async{
+    await sendVerifyCode();
     Modular.to.navigate(ConfirmPhonePage.routeName);
   }
 

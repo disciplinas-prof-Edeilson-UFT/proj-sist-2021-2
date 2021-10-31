@@ -38,4 +38,20 @@ class RegisterClientRepository {
       throw Exception('Houve um erro ao registrar');
     }
   }
+
+  Future verifyNumberForWeb(String phoneNumber) async {
+    return await auth.signInWithPhoneNumber(phoneNumber,
+    );
+  }
+
+  Future<bool> verifyCodeForWeb(
+      ConfirmationResult? confirmationResult, String code) async {
+    try {
+      final UserCredential? userCredential =
+      await confirmationResult?.confirm(code);
+      return userCredential?.user != null ? true : false;
+    } catch (e) {
+      throw Exception('Código inválido');
+    }
+  }
 }

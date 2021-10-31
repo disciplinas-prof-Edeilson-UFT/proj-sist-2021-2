@@ -32,6 +32,39 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
         (_) => Modular.to.navigate('/'),
       ),
       reaction(
+        (_) => store.validatorPhone,
+        (_) async {
+          await store.register();
+        },
+      ),
+      reaction(
+        (_) => store.errorPhone != null,
+        (_) => Flushbar(
+          title: 'Ocorreu um erro ao registrar:',
+          icon: const Icon(
+            Icons.sentiment_dissatisfied_outlined,
+            color: Colors.white70,
+          ),
+          message: store.errorMessage,
+          backgroundColor: Colors.red,
+          borderRadius: BorderRadius.circular(10.0),
+          padding: const EdgeInsets.all(20.0),
+          margin: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 10.0),
+          animationDuration: const Duration(milliseconds: 500),
+          shouldIconPulse: false,
+          mainButton: TextButton(
+            child: const Text(
+              'Fechar',
+              style: TextStyle(color: Colors.white),
+            ),
+            onPressed: () {
+              store.errorMessage = '';
+              Navigator.pop(context);
+            },
+          ),
+        ).show(context),
+      ),
+      reaction(
         (_) => store.errorMessage != null,
         (_) => Flushbar(
           title: 'Ocorreu um erro ao registrar:',
@@ -71,6 +104,7 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
     return MaterialApp(
@@ -118,7 +152,7 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
                             'Verificação de telefone',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 24.0,
+                              fontSize: 23.0,
                             ),
                           ),
                         ),
@@ -131,12 +165,15 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
                         ),
                         const SizedBox(height: 20),
                         CustomTextField(
-                          controller: store.checkPasswordController,
+                          controller: store.codeController,
                           title: 'Código de Confirmação',
                           phone: true,
                           validator: (value) {
                             if (value == null || value.trim().isEmpty) {
                               return 'Insira um código válido';
+                            }
+                            if (value.length != 6) {
+                              return 'O código deve ter 6 dígitos';
                             }
                           },
                         ),
@@ -145,6 +182,7 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
                           label: 'Enviar',
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
+                              await store.verifyCode();
                               await store.register();
                             }
                           },
