@@ -5,9 +5,10 @@ import 'package:mobx/mobx.dart';
 import 'components/page_two/register_field.dart';
 part 'register_store.g.dart';
 
-class RestaurantRegisterStore = _RegisterStore with _$RegisterStore;
+class RestaurantRegisterStore = _RestaurantRegisterStore
+    with _$RestaurantRegisterStore;
 
-abstract class _RegisterStore with Store {
+abstract class _RestaurantRegisterStore with Store {
   CollectionReference restaurant =
       FirebaseFirestore.instance.collection('restaurant');
 
