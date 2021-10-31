@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'register_formulary.dart';
-import 'package:pscomidas/app/modules/register/restaurant/restaurant_register_store.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
 class RegisterCard extends StatelessWidget {
   RegisterCard({Key? key}) : super(key: key);

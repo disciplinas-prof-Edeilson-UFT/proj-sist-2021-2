@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/register/restaurant/restaurant_register_store.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
 class RegisterSideText extends StatelessWidget {
   final RestaurantRegisterStore registerStore =
