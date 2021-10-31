@@ -20,7 +20,8 @@ class RegisterFormulary extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputFormatter? formatter;
   final Function? valueChangeListener;
-  final RegisterStore registerStore = Modular.get<RegisterStore>();
+  final RestaurantRegisterStore registerStore =
+      Modular.get<RestaurantRegisterStore>();
 
   @override
   Widget build(BuildContext context) {

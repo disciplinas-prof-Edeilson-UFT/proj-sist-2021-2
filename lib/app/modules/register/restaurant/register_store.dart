@@ -5,7 +5,7 @@ import 'package:mobx/mobx.dart';
 import 'components/page_two/register_field.dart';
 part 'register_store.g.dart';
 
-class RegisterStore = _RegisterStore with _$RegisterStore;
+class RestaurantRegisterStore = _RegisterStore with _$RegisterStore;
 
 abstract class _RegisterStore with Store {
   CollectionReference restaurant =

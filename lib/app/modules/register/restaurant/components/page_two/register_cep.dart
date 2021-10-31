@@ -2,7 +2,7 @@ import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 import 'package:search_cep/search_cep.dart';
 
 class RegisterCEP {
-  void searchAdress(String value, RegisterStore registerStore) async {
+  void searchAdress(String value, RestaurantRegisterStore registerStore) async {
     //Esta função atribui os valores de endereço dinamicamente conforme o CEP informado.
 
     final info = await ViaCepSearchCep()

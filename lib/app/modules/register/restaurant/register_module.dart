@@ -10,7 +10,7 @@ class RestaurantRegisterModule extends Module {
 
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => RegisterStore()),
+    Bind.lazySingleton((i) => RestaurantRegisterStore()),
   ];
 
   @override

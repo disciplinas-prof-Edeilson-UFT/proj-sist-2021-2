@@ -7,7 +7,8 @@ import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
 
 class RegisterCard extends StatelessWidget {
   RegisterCard({Key? key}) : super(key: key);
-  final RegisterStore registerStore = Modular.get<RegisterStore>();
+  final RestaurantRegisterStore registerStore =
+      Modular.get<RestaurantRegisterStore>();
   final cardFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {

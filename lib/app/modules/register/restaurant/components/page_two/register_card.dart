@@ -17,7 +17,7 @@ class RegisterRestaurant extends StatefulWidget {
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
-  final RegisterStore registerStore = Modular.get<RegisterStore>();
+  final RestaurantRegisterStore registerStore = Modular.get<RestaurantRegisterStore>();
   @override
   void initState() {
     if (registerStore.controller['nomeOwner'] == null) {
