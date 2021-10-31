@@ -4,8 +4,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_cep.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
+import 'package:pscomidas/app/modules/register/restaurant/pages/page_two/register_cep.dart';
+import 'package:pscomidas/app/modules/register/restaurant/pages/page_two/register_formulary.dart';
 import 'package:pscomidas/app/modules/register/restaurant/restaurant_register_store.dart';
 
 class RegisterRestaurant extends StatefulWidget {
@@ -17,7 +17,8 @@ class RegisterRestaurant extends StatefulWidget {
 }
 
 class _RegisterRestaurantState extends State<RegisterRestaurant> {
-  final RestaurantRegisterStore registerStore = Modular.get<RestaurantRegisterStore>();
+  final RestaurantRegisterStore registerStore =
+      Modular.get<RestaurantRegisterStore>();
   @override
   void initState() {
     if (registerStore.controller['nomeOwner'] == null) {

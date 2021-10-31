@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/register/restaurant/restaurant_register_page.dart';
 import 'package:pscomidas/app/modules/register/restaurant/restaurant_register_store.dart';
-import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_card.dart';
+import 'package:pscomidas/app/modules/register/restaurant/pages/page_two/register_card.dart';
 import 'restaurant_register_page.dart';
 import 'restaurant_register_store.dart';
 
