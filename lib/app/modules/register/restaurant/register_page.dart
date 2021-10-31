@@ -3,16 +3,13 @@ import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_b
 import 'package:pscomidas/app/modules/register/restaurant/components/register_plans.dart';
 import 'components/page_one/register_card.dart';
 import 'components/page_one/register_side_text.dart';
-import 'register_store.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
   final String title;
-  const RestaurantRegisterPage(
-      {Key? key,
-      this.title = 'RestaurantRegisterPage',
-      required this.registerStore})
-      : super(key: key);
-  final RegisterStore registerStore;
+  const RestaurantRegisterPage({
+    Key? key,
+    this.title = 'RestaurantRegisterPage',
+  }) : super(key: key);
   @override
   RestaurantRegisterPageState createState() => RestaurantRegisterPageState();
 }
@@ -32,8 +29,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         child: pageResponsivity(MediaQuery.of(context).size.width),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-                "images/register/background.png"),
+            image: AssetImage("images/register/background.png"),
             fit: BoxFit.cover,
           ),
         ),
