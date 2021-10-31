@@ -6,7 +6,7 @@ import 'register_page.dart';
 import 'register_store.dart';
 
 class RestaurantRegisterModule extends Module {
-  static String get routeName => 'register/restaurant';
+  static String get routeName => '/register_restaurant';
 
   @override
   final List<Bind> binds = [
