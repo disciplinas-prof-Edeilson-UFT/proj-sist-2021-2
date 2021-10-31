@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import 'components/page_two/register_field.dart';
-part 'register_store.g.dart';
+part 'restaurant_register_store.g.dart';
 
 class RestaurantRegisterStore = _RestaurantRegisterStore
     with _$RestaurantRegisterStore;

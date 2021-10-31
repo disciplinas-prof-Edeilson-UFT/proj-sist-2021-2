@@ -1,4 +1,4 @@
-import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
+import 'package:pscomidas/app/modules/register/restaurant/restaurant_register_store.dart';
 import 'package:search_cep/search_cep.dart';
 
 class RegisterCEP {

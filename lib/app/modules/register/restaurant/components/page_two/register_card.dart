@@ -6,7 +6,7 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_cep.dart';
 import 'package:pscomidas/app/modules/register/restaurant/components/page_two/register_formulary.dart';
-import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
+import 'package:pscomidas/app/modules/register/restaurant/restaurant_register_store.dart';
 
 class RegisterRestaurant extends StatefulWidget {
   const RegisterRestaurant({

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:cpf_cnpj_validator/cnpj_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
+import 'package:pscomidas/app/modules/register/restaurant/restaurant_register_store.dart';
 
 class RegisterFormulary extends StatelessWidget {
   RegisterFormulary({
