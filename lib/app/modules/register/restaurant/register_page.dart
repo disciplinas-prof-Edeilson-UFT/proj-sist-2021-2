@@ -7,12 +7,10 @@ import 'register_store.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
   final String title;
-  const RestaurantRegisterPage(
-      {Key? key,
-      this.title = 'RestaurantRegisterPage',
-      required this.registerStore})
-      : super(key: key);
-  final RegisterStore registerStore;
+  const RestaurantRegisterPage({
+    Key? key,
+    this.title = 'RestaurantRegisterPage',
+  }) : super(key: key);
   @override
   RestaurantRegisterPageState createState() => RestaurantRegisterPageState();
 }
@@ -32,8 +30,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
         child: pageResponsivity(MediaQuery.of(context).size.width),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-                "images/register/background.png"),
+            image: AssetImage("images/register/background.png"),
             fit: BoxFit.cover,
           ),
         ),

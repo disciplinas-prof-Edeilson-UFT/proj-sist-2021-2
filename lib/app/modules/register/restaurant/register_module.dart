@@ -7,7 +7,7 @@ import 'register_store.dart';
 
 class RestaurantRegisterModule extends Module {
   static String get routeName => 'register/restaurant';
-  final RegisterStore temp = RegisterStore();
+
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => RegisterStore()),
@@ -16,13 +16,10 @@ class RestaurantRegisterModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/page1',
-            child: (context, args) =>
-                RestaurantRegisterPage(registerStore: temp)),
+            child: (context, args) => RestaurantRegisterPage()),
         ChildRoute(
           '/page2',
-          child: (context, args) => RegisterRestaurant(
-            registerStore: args.data ?? temp,
-          ),
+          child: (context, args) => RegisterRestaurant(),
         ),
       ];
 }
