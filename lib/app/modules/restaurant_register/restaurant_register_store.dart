@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
-import 'pages/page_two/register_field.dart';
+import 'pages/register_shop/register_field.dart';
 part 'restaurant_register_store.g.dart';
 
 class RestaurantRegisterStore = _RestaurantRegisterStore
