@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 
-class Formulary extends StatelessWidget {
-  Formulary({Key? key, required this.controller}) : super(key: key);
+class RegisterFormulary extends StatelessWidget {
+  RegisterFormulary({Key? key, required this.controller}) : super(key: key);
   final Map controller;
 
   final TextStyle _labelStyle = const TextStyle(

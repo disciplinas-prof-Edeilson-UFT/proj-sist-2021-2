@@ -19,7 +19,7 @@ class RestaurantRegisterModule extends Module {
             child: (context, args) => const RestaurantRegisterPage()),
         ChildRoute(
           '/page2',
-          child: (context, args) => const RegisterRestaurant(),
+          child: (context, args) => const RegisterCard(),
         ),
       ];
 }

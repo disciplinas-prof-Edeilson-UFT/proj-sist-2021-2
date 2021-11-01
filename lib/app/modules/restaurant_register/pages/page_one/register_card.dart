@@ -49,7 +49,7 @@ class RegisterCard extends StatelessWidget {
               Expanded(
                 child: Form(
                   key: cardFormKey,
-                  child: Formulary(
+                  child: RegisterFormulary(
                     controller: registerStore.controller,
                   ),
                 ),

@@ -8,15 +8,15 @@ import 'package:pscomidas/app/modules/restaurant_register/pages/page_two/registe
 import 'package:pscomidas/app/modules/restaurant_register/pages/page_two/register_formulary.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
-class RegisterRestaurant extends StatefulWidget {
-  const RegisterRestaurant({
+class RegisterCard extends StatefulWidget {
+  const RegisterCard({
     Key? key,
   }) : super(key: key);
   @override
-  _RegisterRestaurantState createState() => _RegisterRestaurantState();
+  _RegisterCardState createState() => _RegisterCardState();
 }
 
-class _RegisterRestaurantState extends State<RegisterRestaurant> {
+class _RegisterCardState extends State<RegisterCard> {
   final RestaurantRegisterStore registerStore =
       Modular.get<RestaurantRegisterStore>();
   @override
@@ -37,6 +37,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     registerStore.controller['Categoria']?.text = 'Açaí';
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
