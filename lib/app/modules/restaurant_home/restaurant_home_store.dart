@@ -1,20 +1,81 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_picture_firestore.dart';
 
 part 'restaurant_home_store.g.dart';
 
 class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
+
+  final id = 'dummy1';
+  @observable
+  String picture = '';
+  
+  @observable
+  bool showLoading = true;
+
+  @action 
+  Future<void> toggleLoading() async {
+    /*Controla o circularProgressIndicator, o atraso para desativar
+    se deve ao fato da imagem demorar para ser baixada.
+    */
+    if (showLoading) {
+      await Future.delayed(const Duration(seconds: 3));
+    }
+    showLoading = !showLoading;
+  }
+
   @action
-  Future imageReceiver(dynamic e) async {
+  Future<String> getProfilePictureUrl() async {
+    final ProfileFirestore profileFirestore =
+        ProfileFirestore();
+    picture = await profileFirestore.getProfilePicture();
+    toggleLoading();
+    return picture;
+  }
+
+  @action
+  Future setImage(dynamic e) async {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
-    } 
+    }
+    showLoading = true;
+    String imgUrl;
+    toggleLoading();
     try {
-      await FirebaseStorage.instance.ref('uploads/${e.name}').putBlob(e);
+      imgUrl = await FirebaseStorage.instance.ref('restaurant_profile/$id')
+        .putBlob(e).then((task) => task.ref.getDownloadURL());
+      getProfilePictureUrl();
     } catch (e) {
-      //oopsie
+      return;
+    }
+    FirebaseFirestore.instance.collection('restaurant').doc(id).update({'image': imgUrl});
+  }
+  
+  @observable
+  Widget editBackground = Container();
+
+  @action
+  void editResolver(bool isHovering) {
+    if (isHovering) {  
+      editBackground = Opacity(
+        opacity: 0.5,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(60),
+          ),   
+          child: const Image(
+            image: AssetImage("images/restaurant_home/editProfile.png"),
+          ),
+        ),
+      );
+    } else {
+      editBackground = Container();
     }
   }
 

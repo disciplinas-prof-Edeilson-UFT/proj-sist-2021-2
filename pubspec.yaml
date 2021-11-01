@@ -52,6 +52,11 @@ dependencies:
   flutter_dropzone_web: ^3.0.1
   firebase_storage: ^10.0.6
   firebase_storage_web: ^3.0.4
+  mockito: ^5.0.16
+  rxdart: ^0.27.2
+  another_flushbar: ^1.10.24
+  google_sign_in: ^5.1.1
+  email_validator: ^2.0.1
   auto_size_text: ^3.0.0-nullsafety.0
   brasil_fields: ^1.2.0
 
@@ -86,6 +91,7 @@ flutter:
     - assets/images/filters/
     - assets/images/product_page/
     - assets/images/register/
+    - assets/images/restaurant_home/
     - lib/app/modules/home/assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
