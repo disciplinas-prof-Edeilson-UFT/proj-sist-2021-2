@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_page.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
-import 'package:pscomidas/app/modules/restaurant_register/pages/page_two/register_card.dart';
+import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/register_card.dart';
 import 'restaurant_register_page.dart';
 import 'restaurant_register_store.dart';
 
@@ -19,7 +19,7 @@ class RestaurantRegisterModule extends Module {
             child: (context, args) => const RestaurantRegisterPage()),
         ChildRoute(
           '/page2',
-          child: (context, args) => const RegisterRestaurant(),
+          child: (context, args) => const RegisterCard(),
         ),
       ];
 }
