@@ -369,7 +369,7 @@ class AuthPageState extends State<AuthPage> {
                                 fixedSize: const Size.fromHeight(40),
                               ),
                               child: Text(
-                                'Já sou cadastrado',
+                                'Ainda não tenho conta',
                                 style: TextStyle(
                                   fontFamily:
                                       GoogleFonts.getFont('Sen').fontFamily,
