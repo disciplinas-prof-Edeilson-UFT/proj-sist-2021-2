@@ -17,6 +17,52 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
               name: '_RestaurantHomeStoreBase.toggleText'))
           .value;
 
+  final _$pictureAtom = Atom(name: '_RestaurantHomeStoreBase.picture');
+
+  @override
+  String get picture {
+    _$pictureAtom.reportRead();
+    return super.picture;
+  }
+
+  @override
+  set picture(String value) {
+    _$pictureAtom.reportWrite(value, super.picture, () {
+      super.picture = value;
+    });
+  }
+
+  final _$showLoadingAtom = Atom(name: '_RestaurantHomeStoreBase.showLoading');
+
+  @override
+  bool get showLoading {
+    _$showLoadingAtom.reportRead();
+    return super.showLoading;
+  }
+
+  @override
+  set showLoading(bool value) {
+    _$showLoadingAtom.reportWrite(value, super.showLoading, () {
+      super.showLoading = value;
+    });
+  }
+
+  final _$editBackgroundAtom =
+      Atom(name: '_RestaurantHomeStoreBase.editBackground');
+
+  @override
+  Widget get editBackground {
+    _$editBackgroundAtom.reportRead();
+    return super.editBackground;
+  }
+
+  @override
+  set editBackground(Widget value) {
+    _$editBackgroundAtom.reportWrite(value, super.editBackground, () {
+      super.editBackground = value;
+    });
+  }
+
   final _$isOpenAtom = Atom(name: '_RestaurantHomeStoreBase.isOpen');
 
   @override
@@ -32,16 +78,44 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-  final _$imageReceiverAsyncAction =
-      AsyncAction('_RestaurantHomeStoreBase.imageReceiver');
+  final _$toggleLoadingAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.toggleLoading');
 
   @override
-  Future<dynamic> imageReceiver(dynamic e) {
-    return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
+  Future<void> toggleLoading() {
+    return _$toggleLoadingAsyncAction.run(() => super.toggleLoading());
+  }
+
+  final _$getProfilePictureUrlAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.getProfilePictureUrl');
+
+  @override
+  Future<String> getProfilePictureUrl() {
+    return _$getProfilePictureUrlAsyncAction
+        .run(() => super.getProfilePictureUrl());
+  }
+
+  final _$setImageAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.setImage');
+
+  @override
+  Future<dynamic> setImage(dynamic e) {
+    return _$setImageAsyncAction.run(() => super.setImage(e));
   }
 
   final _$_RestaurantHomeStoreBaseActionController =
       ActionController(name: '_RestaurantHomeStoreBase');
+
+  @override
+  void editResolver(bool isHovering) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.editResolver');
+    try {
+      return super.editResolver(isHovering);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void toggleOpen() {
@@ -57,6 +131,9 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   String toString() {
     return '''
+picture: ${picture},
+showLoading: ${showLoading},
+editBackground: ${editBackground},
 isOpen: ${isOpen},
 toggleText: ${toggleText}
     ''';

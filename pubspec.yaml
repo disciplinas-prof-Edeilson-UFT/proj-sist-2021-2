@@ -91,6 +91,7 @@ flutter:
     - assets/images/filters/
     - assets/images/product_page/
     - assets/images/register/
+    - assets/images/restaurant_home/
     - lib/app/modules/home/assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
