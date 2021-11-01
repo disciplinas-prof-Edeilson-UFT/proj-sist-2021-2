@@ -4,8 +4,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'package:pscomidas/app/modules/restaurant_register/pages/register_store/register_cep.dart';
-import 'package:pscomidas/app/modules/restaurant_register/pages/register_store/register_formulary.dart';
+import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/register_cep.dart';
+import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/register_formulary.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
 class RegisterCard extends StatefulWidget {
