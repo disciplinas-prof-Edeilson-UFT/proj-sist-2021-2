@@ -1,6 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/modules/auth/auth_store.dart';
 import 'package:flutter/material.dart';
@@ -350,6 +351,30 @@ class AuthPageState extends State<AuthPage> {
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextButton(
+                              onPressed: () {
+                                Modular.to
+                                    .navigate(RegisterClientModule.routeName);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                fixedSize: const Size.fromHeight(40),
+                              ),
+                              child: Text(
+                                'Já sou cadastrado',
+                                style: TextStyle(
+                                  fontFamily:
+                                      GoogleFonts.getFont('Sen').fontFamily,
+                                  color: Colors.red,
+                                  fontSize: 16.0,
                                 ),
                               ),
                             ),
