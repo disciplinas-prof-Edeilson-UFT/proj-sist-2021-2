@@ -126,7 +126,7 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                           hint: 'Insira seu telefone',
                           formaters: [
                             MaskTextInputFormatter(
-                              mask: '+55 (##) #####-####',
+                              mask: '+## (##) #####-####',
                               filter: {"#": RegExp(r'[0-9]')},
                             )
                           ],
