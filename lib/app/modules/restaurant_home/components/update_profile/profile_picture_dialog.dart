@@ -4,14 +4,14 @@ import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 
-class UploadImageDialog extends StatefulWidget {
-  const UploadImageDialog({Key? key}) : super(key: key);
+class ProfilePictureDialog extends StatefulWidget {
+  const ProfilePictureDialog({Key? key}) : super(key: key);
 
   @override
-  State<UploadImageDialog> createState() => _UploadImageDialogState();
+  State<ProfilePictureDialog> createState() => _UploadImageDialogState();
 }
 
-class _UploadImageDialogState extends State<UploadImageDialog> {
+class _UploadImageDialogState extends State<ProfilePictureDialog> {
   late DropzoneViewController controller;
   final restaurantHomeStore = Modular.get<RestaurantHomeStore>();
 

@@ -6,7 +6,7 @@ abstract class ProfileF {
   Future<String> getProfilePicture();
 }
 
-class ProfileFirestore extends ProfileF {
+class ProfilePictureFirestore extends ProfileF {
   final restaurantHomeStore = Modular.get<RestaurantHomeStore>();
   @override
   Future<String> getProfilePicture() async {

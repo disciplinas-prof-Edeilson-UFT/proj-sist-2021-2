@@ -31,9 +31,9 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   Future<String> getProfilePictureUrl() async {
-    final ProfileFirestore profileFirestore =
-        ProfileFirestore();
-    picture = await profileFirestore.getProfilePicture();
+    final ProfilePictureFirestore profile =
+        ProfilePictureFirestore();
+    picture = await profile.getProfilePicture();
     toggleLoading();
     return picture;
   }
@@ -43,6 +43,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
     }
+    picture = '';
     showLoading = true;
     String imgUrl;
     toggleLoading();

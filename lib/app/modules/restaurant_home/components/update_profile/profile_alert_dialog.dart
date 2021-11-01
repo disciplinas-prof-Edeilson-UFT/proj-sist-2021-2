@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-import 'update_profile_picture.dart';
+import 'profile_picture_dialog.dart';
 
 class ProfileAlertDialog extends StatelessWidget {
   ProfileAlertDialog({ Key? key }) : super(key: key);
@@ -28,7 +28,7 @@ class ProfileAlertDialog extends StatelessWidget {
                   child: InkWell(
                     onHover: (_isHovering) => store.editResolver(_isHovering),
                     onTap: () {
-                      showDialog(context: context, builder: (_) => const UploadImageDialog());
+                      showDialog(context: context, builder: (_) => const ProfilePictureDialog());
                     },
                     borderRadius: BorderRadius.circular(90),
                     child: SizedBox(
