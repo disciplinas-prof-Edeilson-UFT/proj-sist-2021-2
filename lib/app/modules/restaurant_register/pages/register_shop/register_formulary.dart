@@ -44,6 +44,7 @@ class RegisterFormulary extends StatelessWidget {
             inputFormatters: formatter != null ? [formatter!] : null,
             cursorColor: secondaryColor,
             controller: controller,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             onChanged: (value) =>
                 valueChangeListener == null ? {} : valueChangeListener!(value),
             validator: (value) {
