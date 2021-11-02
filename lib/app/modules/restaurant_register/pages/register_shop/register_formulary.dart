@@ -40,7 +40,10 @@ class RegisterFormulary extends StatelessWidget {
             style: fieldLabelStyle(),
           ),
           TextFormField(
-            readOnly: isDifferentField,
+            // Caso o CEP retorne apenas a cidade e o estado, como em 77500-000,
+            // os campos bairro e endereço tornam-se editáveis
+            readOnly: registerStore.controller['Bairro'] == null ||
+                registerStore.controller['Endereço'] == null,
             inputFormatters: formatter != null ? [formatter!] : null,
             cursorColor: secondaryColor,
             controller: controller,
