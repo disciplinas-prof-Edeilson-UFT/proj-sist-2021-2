@@ -15,7 +15,6 @@ class _SideBarTabletState extends State<SideBarTablet> {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    final _buttons = ['Produtos', 'Pedidos', 'Avaliações', 'Sair'];
     return Drawer(
       elevation: 0,
       child: Container(
