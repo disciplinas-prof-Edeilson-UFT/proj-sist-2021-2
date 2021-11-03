@@ -1,16 +1,16 @@
 class ButtonSideBar {
   static final buttons = {
     'Produtos': {
-      'navigator': 'restaurant_home/products',
+      'navigator': 'products',
     },
     'Pedidos': {
-      'navigator': 'restaurant_home/products',
+      'navigator': 'orders',
     },
     'Avaliações': {
-      'navigator': 'restaurant_home/products',
+      'navigator': 'avaliations',
     },
     'Sair': {
-      'navigator': 'restaurant_home/products',
+      'navigator': '/',
     },
   };
 }
