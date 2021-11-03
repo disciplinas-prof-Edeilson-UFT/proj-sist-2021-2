@@ -10,6 +10,18 @@ class MobileTrackPage extends StatefulWidget {
 class _MobileTrackPageState extends State<MobileTrackPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    Size screen = MediaQuery.of(context).size;
+
+    return SingleChildScrollView(
+      child: Center(
+        child: SizedBox(
+          width: screen.width * 0.6,
+          child: Container(
+            color: Colors.red,
+            width: screen.width * 0.3,
+          ),
+        ),
+      ),
+    );
   }
 }
