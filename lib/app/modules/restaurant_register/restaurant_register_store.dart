@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
-import 'components/page_two/register_field.dart';
-part 'register_store.g.dart';
+import 'pages/register_shop/register_field.dart';
+part 'restaurant_register_store.g.dart';
 
-class RegisterStore = _RegisterStore with _$RegisterStore;
+class RestaurantRegisterStore = _RestaurantRegisterStore
+    with _$RestaurantRegisterStore;
 
-abstract class _RegisterStore with Store {
+abstract class _RestaurantRegisterStore with Store {
   CollectionReference restaurant =
       FirebaseFirestore.instance.collection('restaurant');
 

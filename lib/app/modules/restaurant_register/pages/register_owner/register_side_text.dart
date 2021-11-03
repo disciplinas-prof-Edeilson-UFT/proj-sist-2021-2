@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/register/restaurant/register_store.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
 class RegisterSideText extends StatelessWidget {
-  final RegisterStore registerStore = Modular.get<RegisterStore>();
+  final RestaurantRegisterStore registerStore =
+      Modular.get<RestaurantRegisterStore>();
   RegisterSideText({
     Key? key,
   }) : super(key: key);
