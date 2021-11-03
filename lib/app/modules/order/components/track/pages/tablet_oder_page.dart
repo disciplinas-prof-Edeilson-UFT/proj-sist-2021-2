@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/order/track/components/body_order.dart';
+import 'package:pscomidas/app/modules/order/components/track/components/body_order.dart';
 
 class TabletOrderPage extends StatefulWidget {
   const TabletOrderPage({Key? key}) : super(key: key);
