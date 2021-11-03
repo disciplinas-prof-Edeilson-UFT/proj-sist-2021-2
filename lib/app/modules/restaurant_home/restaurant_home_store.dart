@@ -10,15 +10,29 @@ part 'restaurant_home_store.g.dart';
 class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
-
   final id = 'dummy1';
+
+  final categories = [
+    'Açaí',
+    'Lanches',
+    'Padarias',
+    'Pizza',
+    'Saudável',
+    'Bolos e Doces',
+    'Bebidas',
+    'Vegetariana',
+    'Italiana',
+    'Sorvetes',
+    'Asiática',
+  ];
+
   @observable
   String picture = '';
-  
+
   @observable
   bool showLoading = true;
 
-  @action 
+  @action
   Future<void> toggleLoading() async {
     /*Controla o circularProgressIndicator, o atraso para desativar
     se deve ao fato da imagem demorar para ser baixada.
@@ -31,8 +45,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   Future<String> getProfilePictureUrl() async {
-    final ProfilePictureFirestore profile =
-        ProfilePictureFirestore();
+    final ProfilePictureFirestore profile = ProfilePictureFirestore();
     picture = await profile.getProfilePicture();
     toggleLoading();
     return picture;
@@ -48,28 +61,33 @@ abstract class _RestaurantHomeStoreBase with Store {
     String imgUrl;
     toggleLoading();
     try {
-      imgUrl = await FirebaseStorage.instance.ref('restaurant_profile/$id')
-        .putBlob(e).then((task) => task.ref.getDownloadURL());
+      imgUrl = await FirebaseStorage.instance
+          .ref('restaurant_profile/$id')
+          .putBlob(e)
+          .then((task) => task.ref.getDownloadURL());
       getProfilePictureUrl();
     } catch (e) {
       return;
     }
-    FirebaseFirestore.instance.collection('restaurant').doc(id).update({'image': imgUrl});
+    FirebaseFirestore.instance
+        .collection('restaurant')
+        .doc(id)
+        .update({'image': imgUrl});
   }
-  
+
   @observable
   Widget editBackground = Container();
 
   @action
   void editResolver(bool isHovering) {
-    if (isHovering) {  
+    if (isHovering) {
       editBackground = Opacity(
         opacity: 0.5,
         child: Container(
           decoration: BoxDecoration(
             color: Colors.black,
             borderRadius: BorderRadius.circular(60),
-          ),   
+          ),
           child: const Image(
             image: AssetImage("images/restaurant_home/editProfile.png"),
           ),
@@ -90,4 +108,12 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @computed
   String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
+
+  @observable
+  var selectedCategory = 'Açaí';
+
+  @action
+  setSelectedCategory(newValue) {
+    selectedCategory = newValue ?? 'Açaí';
+  }
 }

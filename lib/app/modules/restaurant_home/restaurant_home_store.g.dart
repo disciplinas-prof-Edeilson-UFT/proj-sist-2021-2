@@ -78,6 +78,22 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$selectedCategoryAtom =
+      Atom(name: '_RestaurantHomeStoreBase.selectedCategory');
+
+  @override
+  String get selectedCategory {
+    _$selectedCategoryAtom.reportRead();
+    return super.selectedCategory;
+  }
+
+  @override
+  set selectedCategory(String value) {
+    _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
+      super.selectedCategory = value;
+    });
+  }
+
   final _$toggleLoadingAsyncAction =
       AsyncAction('_RestaurantHomeStoreBase.toggleLoading');
 
@@ -129,12 +145,24 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  dynamic setSelectedCategory(dynamic newValue) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.setSelectedCategory');
+    try {
+      return super.setSelectedCategory(newValue);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 picture: ${picture},
 showLoading: ${showLoading},
 editBackground: ${editBackground},
 isOpen: ${isOpen},
+selectedCategory: ${selectedCategory},
 toggleText: ${toggleText}
     ''';
   }
