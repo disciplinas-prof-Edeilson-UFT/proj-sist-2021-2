@@ -13,7 +13,7 @@ class BtnOrder extends StatelessWidget {
       style: TextButton.styleFrom(
         primary: secondaryCollor,
       ),
-      onPressed: () => print('Adicionar a navegação para a pagina de acompanhamento'),
+      onPressed: () => print(screen.width),
       child: Text(
         name,
         style: const TextStyle(
