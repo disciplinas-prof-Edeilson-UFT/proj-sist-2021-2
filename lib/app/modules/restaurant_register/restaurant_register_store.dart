@@ -95,11 +95,14 @@ abstract class _RestaurantRegisterStore with Store {
 
   @action
   void dispose() {
-    controller.clear();
+    controller.forEach((key, value) => value.clear());
   }
 
   String? validatePassword() {
     if (controller['Confirmar Senha']?.text != controller['Senha']?.text) {
+      if (controller['Confirmar Senha']!.text.isEmpty) {
+        return null;
+      }
       return "Os campos diferem";
     }
     return null;

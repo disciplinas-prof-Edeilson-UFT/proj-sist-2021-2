@@ -5,8 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
-class RegisterFormulary extends StatelessWidget {
-  RegisterFormulary({
+class ShopRegisterFormulary extends StatelessWidget {
+  ShopRegisterFormulary({
     Key? key,
     required this.hintText,
     required this.label,
