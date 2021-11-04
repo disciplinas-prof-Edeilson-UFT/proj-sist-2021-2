@@ -17,6 +17,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
               name: '_RestaurantHomeStoreBase.toggleText'))
           .value;
 
+  final _$restaurantAtom = Atom(name: '_RestaurantHomeStoreBase.restaurant');
+
+  @override
+  Restaurant? get restaurant {
+    _$restaurantAtom.reportRead();
+    return super.restaurant;
+  }
+
+  @override
+  set restaurant(Restaurant? value) {
+    _$restaurantAtom.reportWrite(value, super.restaurant, () {
+      super.restaurant = value;
+    });
+  }
+
   final _$pictureAtom = Atom(name: '_RestaurantHomeStoreBase.picture');
 
   @override
@@ -78,6 +93,14 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$getRestaurantAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.getRestaurant');
+
+  @override
+  Future<dynamic> getRestaurant() {
+    return _$getRestaurantAsyncAction.run(() => super.getRestaurant());
+  }
+
   final _$toggleLoadingAsyncAction =
       AsyncAction('_RestaurantHomeStoreBase.toggleLoading');
 
@@ -86,25 +109,30 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     return _$toggleLoadingAsyncAction.run(() => super.toggleLoading());
   }
 
-  final _$getProfilePictureUrlAsyncAction =
-      AsyncAction('_RestaurantHomeStoreBase.getProfilePictureUrl');
-
-  @override
-  Future<String> getProfilePictureUrl() {
-    return _$getProfilePictureUrlAsyncAction
-        .run(() => super.getProfilePictureUrl());
-  }
-
-  final _$setImageAsyncAction =
-      AsyncAction('_RestaurantHomeStoreBase.setImage');
-
-  @override
-  Future<dynamic> setImage(dynamic e) {
-    return _$setImageAsyncAction.run(() => super.setImage(e));
-  }
-
   final _$_RestaurantHomeStoreBaseActionController =
       ActionController(name: '_RestaurantHomeStoreBase');
+
+  @override
+  void getProfilePictureUrl() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.getProfilePictureUrl');
+    try {
+      return super.getProfilePictureUrl();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setImage(dynamic e) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.setImage');
+    try {
+      return super.setImage(e);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void editResolver(bool isHovering) {
@@ -131,6 +159,7 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   String toString() {
     return '''
+restaurant: ${restaurant},
 picture: ${picture},
 showLoading: ${showLoading},
 editBackground: ${editBackground},

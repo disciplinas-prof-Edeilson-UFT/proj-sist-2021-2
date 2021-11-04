@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_picture_firestore.dart';
+import 'package:pscomidas/app/global/models/entities/restaurant.dart';
+import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 
 part 'restaurant_home_store.g.dart';
 
@@ -12,50 +10,33 @@ class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 abstract class _RestaurantHomeStoreBase with Store {
 
   final id = 'dummy1';
+  
+  @observable
+  Restaurant? restaurant;
+  
   @observable
   String picture = '';
   
   @observable
   bool showLoading = true;
 
-  @action 
-  Future<void> toggleLoading() async {
-    /*Controla o circularProgressIndicator, o atraso para desativar
-    se deve ao fato da imagem demorar para ser baixada.
-    */
-    if (showLoading) {
-      await Future.delayed(const Duration(seconds: 3));
-    }
-    showLoading = !showLoading;
+  @action
+  Future getRestaurant() async {
+    restaurant = await ProfileRepository().getRestaurant();
+    getProfilePictureUrl();
   }
 
   @action
-  Future<String> getProfilePictureUrl() async {
-    final ProfilePictureFirestore profile =
-        ProfilePictureFirestore();
-    picture = await profile.getProfilePicture();
+  void getProfilePictureUrl() {
+    picture = restaurant?.image ?? '';
     toggleLoading();
-    return picture;
   }
 
   @action
-  Future setImage(dynamic e) async {
-    if (e.type != 'image/jpeg' && e.type != 'image/png') {
-      return;
-    }
-    picture = '';
-    showLoading = true;
-    String imgUrl;
-    toggleLoading();
-    try {
-      imgUrl = await FirebaseStorage.instance.ref('restaurant_profile/$id')
-        .putBlob(e).then((task) => task.ref.getDownloadURL());
-      getProfilePictureUrl();
-    } catch (e) {
-      return;
-    }
-    FirebaseFirestore.instance.collection('restaurant').doc(id).update({'image': imgUrl});
+  void setImage(dynamic e) {
+    ProfileRepository().setImage(e);
   }
+  
   
   @observable
   Widget editBackground = Container();
@@ -79,6 +60,15 @@ abstract class _RestaurantHomeStoreBase with Store {
       editBackground = Container();
     }
   }
+  
+  @action 
+  Future<void> toggleLoading() async {
+    if (showLoading) {
+      await Future.delayed(const Duration(seconds: 3));
+    }
+    showLoading = !showLoading;
+  }
+
 
   @observable
   bool isOpen = false;
