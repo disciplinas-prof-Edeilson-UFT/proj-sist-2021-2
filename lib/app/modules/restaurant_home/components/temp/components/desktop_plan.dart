@@ -37,7 +37,6 @@ class DesktopPlan extends StatelessWidget {
   }
 
   Widget planSelector ({required PlanCard plan, required String name}) {
-
     return Observer(
       builder: (context) {
         return InkWell(
@@ -49,9 +48,9 @@ class DesktopPlan extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             children: [
               if (store.actualPlan == name && (store.selectedPlan == null || store.selectedPlan == store.actualPlan))
-                showInfo('Este é o seu plano atual', 18)
+                showInfo('Este é o seu plano atual')
               else if (store.actualPlan != name && store.selectedPlan != null && store.selectedPlan != store.actualPlan)
-                showInfo('Clique em confirmar para alterar o plano', 16),
+                showInfo('Alterar para o ${name.toLowerCase()}'),
               SizedBox(
                 height: _cardHeight,
                 width: _cardWidth,
@@ -64,7 +63,7 @@ class DesktopPlan extends StatelessWidget {
     );
   }
 
-  Widget showInfo (String message, double fsize) {
+  Widget showInfo (String message) {
     return Container(
       decoration: BoxDecoration(
         color: const Color.fromRGBO(255, 48, 48, 0.7),
@@ -76,7 +75,7 @@ class DesktopPlan extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Text(
           message,
-          style: TextStyle(fontSize: fsize, color: Colors.white, fontFamily: 'Nunito'),
+          style: const TextStyle(fontSize: 18, color: Colors.white, fontFamily: 'Nunito'),
         ),
       ),
     );

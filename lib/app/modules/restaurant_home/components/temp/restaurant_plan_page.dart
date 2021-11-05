@@ -5,6 +5,8 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/temp/components/desktop_plan.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
+import 'components/mobile_plan.dart';
+
 class RestaurantPlanPage extends StatefulWidget {
   static String get routeName => '/plans';
   final String title;
@@ -41,10 +43,10 @@ class RestaurantPlanState extends State<RestaurantPlanPage> {
           Expanded(
             child: LayoutBuilder(
               builder: (context, constraints) {
-                if (constraints.maxWidth > 900) {
+                if (constraints.maxWidth > 700) {
                   return DesktopPlan();
                 } else {
-                  return Container();
+                  return MobilePlan();
                 }
               }
             ),
