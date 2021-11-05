@@ -51,6 +51,7 @@ class MostOrdered extends StatelessWidget {
                     deliveryPrice: data['delivery_price'] ?? 0,
                     distance: data['distance'] ?? 0,
                     estimatedDelivery: data['estimated_delivery'] ?? '',
+                    deliveryPlan: data['delivery_plan'] ?? 'Plano Entrega',
                     image: data['image'] ?? '',
                     isChampion: data['isChampion'] ?? false,
                     orders: data['orders'] ?? 0,

@@ -93,6 +93,37 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$selectedPlanAtom =
+      Atom(name: '_RestaurantHomeStoreBase.selectedPlan');
+
+  @override
+  String? get selectedPlan {
+    _$selectedPlanAtom.reportRead();
+    return super.selectedPlan;
+  }
+
+  @override
+  set selectedPlan(String? value) {
+    _$selectedPlanAtom.reportWrite(value, super.selectedPlan, () {
+      super.selectedPlan = value;
+    });
+  }
+
+  final _$actualPlanAtom = Atom(name: '_RestaurantHomeStoreBase.actualPlan');
+
+  @override
+  String get actualPlan {
+    _$actualPlanAtom.reportRead();
+    return super.actualPlan;
+  }
+
+  @override
+  set actualPlan(String value) {
+    _$actualPlanAtom.reportWrite(value, super.actualPlan, () {
+      super.actualPlan = value;
+    });
+  }
+
   final _$getRestaurantAsyncAction =
       AsyncAction('_RestaurantHomeStoreBase.getRestaurant');
 
@@ -107,6 +138,14 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   Future<void> toggleLoading() {
     return _$toggleLoadingAsyncAction.run(() => super.toggleLoading());
+  }
+
+  final _$getRestaurantPlanAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.getRestaurantPlan');
+
+  @override
+  Future<dynamic> getRestaurantPlan() {
+    return _$getRestaurantPlanAsyncAction.run(() => super.getRestaurantPlan());
   }
 
   final _$_RestaurantHomeStoreBaseActionController =
@@ -157,6 +196,28 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  void selectPlan(dynamic value) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.selectPlan');
+    try {
+      return super.selectPlan(value);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updatePlan() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.updatePlan');
+    try {
+      return super.updatePlan();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 restaurant: ${restaurant},
@@ -164,6 +225,8 @@ picture: ${picture},
 showLoading: ${showLoading},
 editBackground: ${editBackground},
 isOpen: ${isOpen},
+selectedPlan: ${selectedPlan},
+actualPlan: ${actualPlan},
 toggleText: ${toggleText}
     ''';
   }
