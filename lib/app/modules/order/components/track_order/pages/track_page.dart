@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/modules/cart/cart_page.dart';
-import 'package:pscomidas/app/modules/order/components/detalhes/pages/desktop_trackpage.dart';
-import 'package:pscomidas/app/modules/order/components/detalhes/pages/mobile_trackpage.dart';
+import 'package:pscomidas/app/modules/order/components/track_order/pages/desktop_trackpage.dart';
+import 'package:pscomidas/app/modules/order/components/track_order/pages/mobile_trackpage.dart';
 
 class TrackPage extends StatefulWidget {
   static String trackRouteName = '/Track';

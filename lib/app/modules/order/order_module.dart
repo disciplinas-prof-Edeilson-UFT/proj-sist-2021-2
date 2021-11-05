@@ -1,4 +1,4 @@
-import 'package:pscomidas/app/modules/order/components/detalhes/pages/track_page.dart';
+import 'package:pscomidas/app/modules/order/components/track_order/pages/track_page.dart';
 import 'package:pscomidas/app/modules/order/order_page.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';

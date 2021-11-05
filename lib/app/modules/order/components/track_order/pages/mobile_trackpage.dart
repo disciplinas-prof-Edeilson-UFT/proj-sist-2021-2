@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/order/components/track_order/components/piece_one_to.dart';
+import 'package:pscomidas/app/modules/order/components/track_order/components/piece_two.dart';
 
 class MobileTrackPage extends StatefulWidget {
   const MobileTrackPage({Key? key}) : super(key: key);
@@ -16,9 +18,11 @@ class _MobileTrackPageState extends State<MobileTrackPage> {
       child: Center(
         child: SizedBox(
           width: screen.width * 0.6,
-          child: Container(
-            color: Colors.red,
-            width: screen.width * 0.3,
+          child: Column(
+            children: [
+              PieceOneTO(),
+              PieceTwoTO(),
+            ],
           ),
         ),
       ),
