@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:pscomidas/app/modules/restaurant_register/components/register_plans.dart';
 
@@ -9,6 +10,8 @@ class DesktopPlan extends StatelessWidget {
   final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
   final double _cardWidth = 300;
   final double _cardHeight = 400;
+  final Color redOpaqueColor = secondaryColor.withOpacity(0.7);
+  final Color greyOpaqueColor = tertiaryColor.withOpacity(0.7);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class DesktopPlan extends StatelessWidget {
               image: "assets/images/cards/whitebackground.png",
               colorBox: Colors.white,
             ),
-            name: 'Plano Básico',
+            cardName: 'Plano Básico',
           ),
         ),
         planSelector(
@@ -30,27 +33,31 @@ class DesktopPlan extends StatelessWidget {
             image: "assets/images/cards/redbackground.png",
             colorBox: Colors.red.shade900,
           ),
-          name: 'Plano Entrega',
+          cardName: 'Plano Entrega',
         ),
       ],
     );
   }
 
-  Widget planSelector ({required PlanCard plan, required String name}) {
+  Widget planSelector ({required PlanCard plan, required String cardName}) {
     return Observer(
-      builder: (context) {
+      builder: (_) {
         return InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: () {
-            store.selectPlan(name);
-          },
+          onTap: () => store.selectPlan(cardName),
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              if (store.actualPlan == name && (store.selectedPlan == null || store.selectedPlan == store.actualPlan))
-                showInfo('Este é o seu plano atual')
-              else if (store.actualPlan != name && store.selectedPlan != null && store.selectedPlan != store.actualPlan)
-                showInfo('Alterar para o ${name.toLowerCase()}'),
+              if (store.actualPlan == cardName)
+                if (store.selectedPlan == null || store.selectedPlan == cardName)
+                  showInfo('Este é o seu plano atual', redOpaqueColor)
+                else
+                  showInfo('Este é o seu plano atual', greyOpaqueColor)
+              else
+                if (store.selectedPlan != null && store.selectedPlan == cardName)
+                  showInfo('Alterar para o ${cardName.toLowerCase()}', redOpaqueColor)
+                else
+                  showInfo('Clique para alterar o plano', greyOpaqueColor),
               SizedBox(
                 height: _cardHeight,
                 width: _cardWidth,
@@ -63,10 +70,10 @@ class DesktopPlan extends StatelessWidget {
     );
   }
 
-  Widget showInfo (String message) {
+  Widget showInfo (String message, Color color) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(255, 48, 48, 0.7),
+        color: color,
         borderRadius: BorderRadius.circular(16),
       ),
       height: _cardHeight + 24,

@@ -24,7 +24,7 @@ class MobilePlan extends StatelessWidget {
                     image: "assets/images/cards/whitebackground.png",
                     colorBox: Colors.white,
                   ),
-                  name: 'Plano Básico',
+                  cardName: 'Plano Básico',
                 ),
               ),
               desktopPlan.planSelector(
@@ -32,7 +32,7 @@ class MobilePlan extends StatelessWidget {
                   image: "assets/images/cards/redbackground.png",
                   colorBox: Colors.red.shade900,
                 ),
-                name: 'Plano Entrega',
+                cardName: 'Plano Entrega',
               ),
             ],
           ),

@@ -54,19 +54,19 @@ class RestaurantPlanState extends State<RestaurantPlanPage> {
           Observer(
             builder: (context) {
               return ElevatedButton(
-                    style: ButtonStyle(
-                      splashFactory: NoSplash.splashFactory,
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith(_getButtonColor),
-                      minimumSize: MaterialStateProperty.all(const Size(210, 48)),
-                    ),
-                    onPressed: store.selectedPlan == null ? null 
-                      : store.selectedPlan == store.actualPlan ? null : store.updatePlan,
-                    child: const Text(
-                      'Confirmar',
-                      style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
-                    ),
-                  );
+                style: ButtonStyle(
+                  splashFactory: NoSplash.splashFactory,
+                  backgroundColor:
+                    MaterialStateProperty.resolveWith(_getButtonColor),
+                  minimumSize: MaterialStateProperty.all(const Size(210, 48)),
+                ),
+                onPressed: store.selectedPlan == null ? null 
+                  : store.selectedPlan == store.actualPlan ? null : store.updatePlan,
+                child: const Text(
+                  'Confirmar',
+                  style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
+                ),
+              );
             }
           ),
           const Padding(
