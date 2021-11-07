@@ -45,11 +45,14 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
             Icons.sentiment_dissatisfied_outlined,
             color: Colors.white70,
           ),
-          message: store.errorMessage,
+          message: store.errorPhone,
           backgroundColor: Colors.red,
           borderRadius: BorderRadius.circular(10.0),
           padding: const EdgeInsets.all(20.0),
-          margin: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 10.0),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 100.0,
+            vertical: 10.0,
+          ),
           animationDuration: const Duration(milliseconds: 500),
           shouldIconPulse: false,
           mainButton: TextButton(
@@ -58,7 +61,7 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              store.errorMessage = '';
+              store.errorPhone = '';
               Navigator.pop(context);
             },
           ),
@@ -76,7 +79,10 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
           backgroundColor: Colors.red,
           borderRadius: BorderRadius.circular(10.0),
           padding: const EdgeInsets.all(20.0),
-          margin: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 10.0),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 100.0,
+            vertical: 10.0,
+          ),
           animationDuration: const Duration(milliseconds: 500),
           shouldIconPulse: false,
           mainButton: TextButton(
@@ -183,7 +189,6 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               await store.verifyCode();
-                              await store.register();
                             }
                           },
                         ),
@@ -191,18 +196,17 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
                         Row(
                           children: [
                             Expanded(
-                              child: TextButton(
+                              child: ElevatedButton(
                                 onPressed: () {
                                   Modular.to.navigate(AuthModule.routeName);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   fixedSize: const Size.fromHeight(40),
+                                  primary: Colors.white,
                                 ),
-                                child: Text(
+                                child: const Text(
                                   'Já sou cadastrado',
                                   style: TextStyle(
-                                    fontFamily:
-                                        GoogleFonts.getFont('Sen').fontFamily,
                                     color: Colors.red,
                                     fontSize: 16.0,
                                   ),

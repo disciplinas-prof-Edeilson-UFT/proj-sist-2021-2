@@ -27,10 +27,10 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  TextStyle get titleStyle =>
-      GoogleFonts.getFont('Sen', fontSize: 16.0, fontWeight: FontWeight.bold);
+  TextStyle get titleStyle => GoogleFonts.getFont('Roboto',
+      fontSize: 16.0, fontWeight: FontWeight.bold);
 
-  TextStyle get digitedText => GoogleFonts.getFont('Sen', fontSize: 16.0);
+  TextStyle get digitedText => GoogleFonts.getFont('Roboto', fontSize: 16.0);
 
   bool obscure = false;
 

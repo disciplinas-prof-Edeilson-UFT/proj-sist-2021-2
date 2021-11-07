@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -18,7 +16,6 @@ abstract class _RegisterStoreBase with Store {
   TextEditingController nameController = TextEditingController();
   TextEditingController cpfController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController bornController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController checkPasswordController = TextEditingController();
@@ -46,6 +43,7 @@ abstract class _RegisterStoreBase with Store {
         name: nameController.text,
         cpf: cpfController.text,
         email: emailController.text,
+        phone: phoneController.text,
       );
       if (await _repository.registerClient(
         user,
@@ -58,31 +56,49 @@ abstract class _RegisterStoreBase with Store {
       errorMessage = e.toString();
     }
   }
+
   @action
   Future<void> sendVerifyCode() async {
     confirmationResult =
-    await _repository.verifyNumberForWeb(phoneController.text);
+        await _repository.verifyNumberForWeb(phoneController.text);
   }
 
   @action
   Future<void> verifyCode() async {
     try {
-      validatorPhone =
-      await _repository.verifyCodeForWeb(confirmationResult, codeController.text);
+      validatorPhone = await _repository.verifyCodeForWeb(
+          confirmationResult, codeController.text);
     } catch (e) {
       errorPhone = e.toString();
     }
-    var captcha = querySelector('#__ff-recaptcha-container');
-    if (captcha != null) {
-      captcha.hidden = true;
+  }
+
+  Future<void> verifyEmail() async {
+    if (await _repository.checkData(
+        emailController.text, phoneController.text, cpfController.text)) {
+      goToConfirmPhone();
+    } else {
+      errorMessage =
+          'E-mail já cadastrado! Tente fazer login ou corrigir o e-mail.';
     }
   }
 
-  void goToConfirmPhone() async{
+  void goToConfirmPhone() async {
     await sendVerifyCode();
     Modular.to.navigate(ConfirmPhonePage.routeName);
   }
 
   @action
-  void dispose() {}
+  void dispose() {
+    validatorPhone = null;
+    registered = null;
+    errorMessage = null;
+    errorPhone = null;
+    nameController.clear();
+    cpfController.clear();
+    phoneController.clear();
+    passwordController.clear();
+    checkPasswordController.clear();
+    codeController.clear();
+  }
 }

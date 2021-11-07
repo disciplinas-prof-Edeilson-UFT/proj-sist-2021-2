@@ -1,10 +1,13 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_store.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_submit_button.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
@@ -25,7 +28,53 @@ class RegisterClientPageState extends State<RegisterClientPage> {
   TextStyle get digitedText => GoogleFonts.getFont('Sen', fontSize: 14.0);
 
   final _formKey = GlobalKey<FormState>();
+  List<ReactionDisposer> disposers = [];
   bool checked = false;
+
+  @override
+  void initState() {
+    disposers.add(
+      reaction(
+        (_) => store.errorMessage != null,
+        (_) => Flushbar(
+          title: 'Ocorreu um erro ao registrar:',
+          icon: const Icon(
+            Icons.sentiment_dissatisfied_outlined,
+            color: Colors.white70,
+          ),
+          message: store.errorMessage,
+          backgroundColor: Colors.red,
+          borderRadius: BorderRadius.circular(10.0),
+          padding: const EdgeInsets.all(20.0),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 100.0,
+            vertical: 10.0,
+          ),
+          animationDuration: const Duration(milliseconds: 500),
+          shouldIconPulse: false,
+          mainButton: TextButton(
+            child: const Text(
+              'Fechar',
+              style: TextStyle(color: Colors.white),
+            ),
+            onPressed: () {
+              store.errorMessage = '';
+              Navigator.pop(context);
+            },
+          ),
+        ).show(context),
+      ),
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    for (var i in disposers) {
+      i.call();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,14 +160,14 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                         ),
                         const SizedBox(height: 10),
                         CustomTextField(
-                          controller: store.emailController,
-                          title: 'E-mail',
-                          hint: 'Insira seu email',
-                          validator: (email) =>
+                            controller: store.emailController,
+                            title: 'E-mail',
+                            hint: 'Insira seu email',
+                            validator: (email) {
                               email != null && !EmailValidator.validate(email)
                                   ? 'E-mail Inválido'
-                                  : null,
-                        ),
+                                  : null;
+                            }),
                         const SizedBox(height: 10),
                         CustomTextField(
                           controller: store.phoneController,
@@ -157,6 +206,8 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                         ),
                         const SizedBox(height: 20),
                         Wrap(
+                          spacing: 5.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Checkbox(
                               value: checked,
@@ -165,8 +216,8 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                                   checked = value!;
                                 });
                               },
+                              activeColor: secondaryCollor,
                             ),
-                            const SizedBox(width: 10),
                             const SizedBox(
                               child: Text(
                                 "Declaro que li e aceito os termos de uso",
@@ -179,10 +230,10 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                         const SizedBox(height: 10),
                         CustomSubmit(
                           label: 'Enviar',
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate() &&
                                 checked != false) {
-                              store.goToConfirmPhone();
+                              await store.verifyEmail();
                             }
                           },
                         ),
@@ -190,18 +241,19 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                         Row(
                           children: [
                             Expanded(
-                              child: TextButton(
+                              child: ElevatedButton(
                                 onPressed: () {
                                   Modular.to.navigate(AuthModule.routeName);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   fixedSize: const Size.fromHeight(40),
+                                  primary: Colors.white,
                                 ),
                                 child: Text(
                                   'Já sou cadastrado',
                                   style: TextStyle(
-                                    fontFamily:
-                                        GoogleFonts.getFont('Sen').fontFamily,
+                                    fontFamily: GoogleFonts.getFont('Roboto')
+                                        .fontFamily,
                                     color: Colors.red,
                                     fontSize: 16.0,
                                   ),

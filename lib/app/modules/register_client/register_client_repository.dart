@@ -26,6 +26,7 @@ class RegisterClientRepository {
         await clientsCollection.doc(value.id).set({
           'cards': null,
           'cpf': user.cpf,
+          'phone': user.phone,
         }).then(
           (value) async => await addressCollection.doc(uid).set({
             'address_list': [],
@@ -40,7 +41,8 @@ class RegisterClientRepository {
   }
 
   Future verifyNumberForWeb(String phoneNumber) async {
-    return await auth.signInWithPhoneNumber(phoneNumber,
+    return await auth.signInWithPhoneNumber(
+      phoneNumber,
     );
   }
 
@@ -48,10 +50,23 @@ class RegisterClientRepository {
       ConfirmationResult? confirmationResult, String code) async {
     try {
       final UserCredential? userCredential =
-      await confirmationResult?.confirm(code);
+          await confirmationResult?.confirm(code);
       return userCredential?.user != null ? true : false;
     } catch (e) {
       throw Exception('Código inválido');
+    }
+  }
+
+  Future<bool> checkData(String email, String phone, String cpf) async {
+    try {
+      return await userCollection.get().then((value) async =>
+          value.docs.where((element) => element['email'] == email).isEmpty &&
+          await clientsCollection.get().then((value) => value.docs
+              .where((element) =>
+                  element['phone'] == phone || element['cpf'] == cpf)
+              .isEmpty));
+    } catch (e) {
+      throw Exception('Não foi possível verificar o e-mail');
     }
   }
 }
