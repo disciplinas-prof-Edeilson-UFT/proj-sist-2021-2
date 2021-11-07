@@ -10,7 +10,7 @@ class ChangeClientDataStore = _ChangeClientDataStoreBase
     with _$ChangeClientDataStore;
 
 abstract class _ChangeClientDataStoreBase with Store {
-  final _register_repository = Modular.get<RegisterClientRepository>();
+  final _registerRepository = Modular.get<RegisterClientRepository>();
 
   TextEditingController phoneController = TextEditingController();
   TextEditingController codeController = TextEditingController();
@@ -20,20 +20,20 @@ abstract class _ChangeClientDataStoreBase with Store {
 
   @observable
   bool? validatorPhone;
-  
+
   @observable
   String? errorPhone;
 
   @action
   Future<void> sendVerifyCode() async {
     confirmationResult =
-        await _register_repository.verifyNumberForWeb(phoneController.text);
+        await _registerRepository.verifyNumberForWeb(phoneController.text);
   }
 
   @action
   Future<void> verifyCode() async {
     try {
-      validatorPhone = await _register_repository.verifyCodeForWeb(
+      validatorPhone = await _registerRepository.verifyCodeForWeb(
           confirmationResult, codeController.text);
     } catch (e) {
       errorPhone = e.toString();
