@@ -1,5 +1,4 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
