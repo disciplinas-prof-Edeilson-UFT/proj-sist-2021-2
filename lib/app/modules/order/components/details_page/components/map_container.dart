@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/order/components/details_page/components/stack_to.dart';
+import 'package:pscomidas/app/modules/order/components/details_page/components/store_map_builder.dart';
 
 class MapContainer extends StatelessWidget {
   const MapContainer({Key? key}) : super(key: key);
