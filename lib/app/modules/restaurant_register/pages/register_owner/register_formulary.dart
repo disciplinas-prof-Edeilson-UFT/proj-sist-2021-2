@@ -26,6 +26,7 @@ class RegisterFormulary extends StatelessWidget {
             TextFormField(
               controller: controller['nome'],
               textCapitalization: TextCapitalization.words,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "Este campo não pode ficar vazio";
@@ -68,6 +69,7 @@ class RegisterFormulary extends StatelessWidget {
                 return null;
               },
               cursorColor: secondaryColor,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: const InputDecoration(
                 focusColor: secondaryColor,
                 focusedBorder: OutlineInputBorder(
@@ -101,6 +103,7 @@ class RegisterFormulary extends StatelessWidget {
                 return null;
               },
               cursorColor: secondaryColor,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: const InputDecoration(
                 focusColor: secondaryColor,
                 focusedBorder: OutlineInputBorder(
