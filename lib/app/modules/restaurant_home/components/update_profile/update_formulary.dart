@@ -27,7 +27,8 @@ class UpdateFormulary extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.only(
+              top: 15.0, bottom: 10.0, left: 15.0, right: 15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -59,56 +60,9 @@ class UpdateFormulary extends StatelessWidget {
             ],
           ),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Especialidade da loja',
-                      style: _labelStyle,
-                    ),
-                    Observer(
-                      builder: (ctx) => DropdownButton<String>(
-                        value: homeStore.selectedCategory,
-                        style: _labelStyle,
-                        icon: const Icon(Icons.expand_more),
-                        iconEnabledColor: secondaryColor,
-                        elevation: 2,
-                        onChanged: (String? newValue) {
-                          homeStore.setSelectedCategory(newValue);
-                        },
-                        underline: Container(
-                          color: secondaryColor,
-                          height: 2.0,
-                        ),
-                        items: homeStore.categories.map((value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: const TextStyle(
-                                color: Colors.black54,
-                                fontFamily: 'Nunito',
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
         Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.only(
+              top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -139,7 +93,8 @@ class UpdateFormulary extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.only(
+              top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -167,6 +122,75 @@ class UpdateFormulary extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+              top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Especialidade da loja',
+                  style: _labelStyle,
+                ),
+                Observer(
+                  builder: (ctx) => DropdownButton<String>(
+                    value: homeStore.selectedCategory,
+                    style: _labelStyle,
+                    icon: const Icon(Icons.expand_more),
+                    iconEnabledColor: secondaryColor,
+                    elevation: 2,
+                    onChanged: (String? newValue) {
+                      homeStore.setSelectedCategory(newValue);
+                    },
+                    underline: Container(
+                      color: secondaryColor,
+                      height: 2.0,
+                    ),
+                    items: homeStore.categories.map((value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(
+                            color: Colors.black54,
+                            fontFamily: 'Nunito',
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 15.0,
+            bottom: 5.0,
+          ),
+          child: Align(
+            alignment: Alignment.center,
+            child: TextButton(
+              child: const Text(
+                'Confirmar',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
+              ),
+              style: ButtonStyle(
+                elevation: MaterialStateProperty.all(4),
+                minimumSize: MaterialStateProperty.all(const Size(200, 50)),
+                backgroundColor: MaterialStateProperty.all(secondaryColor),
+              ),
+              onPressed: null,
+            ),
           ),
         ),
       ],

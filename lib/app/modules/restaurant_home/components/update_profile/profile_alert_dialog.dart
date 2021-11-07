@@ -57,11 +57,28 @@ class ProfileAlertDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: TextFormField(
-                    controller: _controller,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
+                SizedBox(
+                  width: 310,
+                  height: 50,
+                  child: Expanded(
+                    child: TextFormField(
+                      controller: _controller,
+                      cursorColor: secondaryColor,
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                        prefixIcon: Padding(
+                          padding:
+                              EdgeInsetsDirectional.only(start: 8.0, end: 8.0),
+                          child: Icon(Icons.create_outlined),
+                        ),
+                        focusColor: secondaryColor,
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: secondaryColor,
+                          ),
+                        ),
+                        border: UnderlineInputBorder(),
+                      ),
                     ),
                   ),
                 ),
