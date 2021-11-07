@@ -14,7 +14,8 @@ class CustomSubmit extends StatefulWidget {
 }
 
 class _CustomSubmitState extends State<CustomSubmit> {
-  TextStyle get digitedText => GoogleFonts.getFont('Sen', fontSize: 22.0);
+  TextStyle get digitedText =>
+      GoogleFonts.getFont('Roboto', fontSize: 22.0, color: Colors.white);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,6 +26,8 @@ class _CustomSubmitState extends State<CustomSubmit> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size.fromHeight(50),
+                onPrimary: Colors.red[400],
+                animationDuration: const Duration(milliseconds: 500),
                 primary: Colors.red,
               ),
               onPressed: widget.onPressed,

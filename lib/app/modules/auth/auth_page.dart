@@ -46,11 +46,14 @@ class AuthPageState extends State<AuthPage> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: const Text('Por favor, verifique o e-mail.'),
+              title: const Text(
+                'O e-mail não foi encontrado',
+                style: TextStyle(color: Colors.red),
+              ),
               content: const Text(
-                  'Caso não seja nosso cliente ainda, crie uma nova conta.'),
+                  'Caso não seja nosso cliente ainda, crie uma nova conta!'),
               actions: <Widget>[
-                TextButton(
+                ElevatedButton(
                   onPressed: () {
                     store.emailexiste = true;
                     Navigator.pop(context, 'Cancelar');
@@ -58,13 +61,17 @@ class AuthPageState extends State<AuthPage> {
                   child: const Text(
                     'Tentar Novamente',
                     style: TextStyle(
-                      color: Colors.red,
+                      color: Colors.black87,
                       fontSize: 15,
                       decoration: TextDecoration.none,
                     ),
                   ),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size.fromHeight(30),
+                    primary: Colors.white,
+                  ),
                 ),
-                TextButton(
+                ElevatedButton(
                   onPressed: () =>
                       Modular.to.navigate(RegisterClientModule.routeName),
                   child: const Text(
@@ -74,6 +81,10 @@ class AuthPageState extends State<AuthPage> {
                       fontSize: 15,
                       decoration: TextDecoration.none,
                     ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size.fromHeight(30),
+                    primary: Colors.white,
                   ),
                 ),
               ],
@@ -310,18 +321,9 @@ class AuthPageState extends State<AuthPage> {
                                   color: Colors.black87,
                                 ),
                               ),
-                              style: ButtonStyle(
-                                fixedSize: MaterialStateProperty.all(
-                                    const Size.fromHeight(50)),
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                overlayColor:
-                                    MaterialStateProperty.all(Colors.black12),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                ),
+                              style: ElevatedButton.styleFrom(
+                                fixedSize: const Size.fromHeight(50),
+                                primary: Colors.white,
                               ),
                             ),
                           ),
@@ -357,22 +359,24 @@ class AuthPageState extends State<AuthPage> {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 20),
                       Row(
                         children: [
                           Expanded(
-                            child: TextButton(
+                            child: ElevatedButton(
                               onPressed: () {
                                 Modular.to
                                     .navigate(RegisterClientModule.routeName);
                               },
                               style: ElevatedButton.styleFrom(
-                                fixedSize: const Size.fromHeight(40),
+                                fixedSize: const Size.fromHeight(50),
+                                primary: Colors.white,
                               ),
                               child: Text(
                                 'Ainda não tenho conta',
                                 style: TextStyle(
                                   fontFamily:
-                                      GoogleFonts.getFont('Sen').fontFamily,
+                                      GoogleFonts.getFont('Roboto').fontFamily,
                                   color: Colors.red,
                                   fontSize: 16.0,
                                 ),
