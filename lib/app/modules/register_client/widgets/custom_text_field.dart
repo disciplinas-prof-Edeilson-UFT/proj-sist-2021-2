@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobx/mobx.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
@@ -12,6 +13,7 @@ class CustomTextField extends StatefulWidget {
     this.formaters,
     this.isPassword,
     this.phone,
+    this.readOnly,
   }) : super(key: key);
 
   final String? title;
@@ -21,6 +23,7 @@ class CustomTextField extends StatefulWidget {
   final List<TextInputFormatter>? formaters;
   final bool? isPassword;
   final bool? phone;
+  final bool? readOnly;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -91,6 +94,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   )
                 : null,
           ),
+          readOnly: widget.readOnly ?? false,
           cursorColor: Colors.red,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: widget.controller,

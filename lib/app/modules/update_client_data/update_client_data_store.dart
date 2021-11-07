@@ -2,10 +2,10 @@ import 'package:mobx/mobx.dart';
 
 part 'update_client_data_store.g.dart';
 
-class ChangeClientDataStore = _ChangeClientDataStoreBase
-    with _$ChangeClientDataStore;
+class UpdateClientDataStore = _UpdateClientDataStoreBase
+    with _$UpdateClientDataStore;
 
-abstract class _ChangeClientDataStoreBase with Store {
+abstract class _UpdateClientDataStoreBase with Store {
   @observable
   int value = 0;
 
