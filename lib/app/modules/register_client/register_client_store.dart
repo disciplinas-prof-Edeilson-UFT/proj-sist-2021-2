@@ -74,10 +74,12 @@ abstract class _RegisterStoreBase with Store {
   }
 
   Future<void> verifyEmail() async {
-    if (await _repository.verifyEmail(emailController.text)) {
+    if (await _repository.checkData(
+        emailController.text, phoneController.text, cpfController.text)) {
       goToConfirmPhone();
     } else {
-      errorMessage = 'E-mail já cadastrado! Tente fazer login.';
+      errorMessage =
+          'E-mail já cadastrado! Tente fazer login ou corrigir o e-mail.';
     }
   }
 

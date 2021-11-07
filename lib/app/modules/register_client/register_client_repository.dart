@@ -57,10 +57,14 @@ class RegisterClientRepository {
     }
   }
 
-  Future<bool> verifyEmail(String email) async {
+  Future<bool> checkData(String email, String phone, String cpf) async {
     try {
-      return await userCollection.get().then((value) =>
-          value.docs.where((element) => element['email'] == email).isEmpty);
+      return await userCollection.get().then((value) async =>
+          value.docs.where((element) => element['email'] == email).isEmpty &&
+          await clientsCollection.get().then((value) => value.docs
+              .where((element) =>
+                  element['phone'] == phone || element['cpf'] == cpf)
+              .isEmpty));
     } catch (e) {
       throw Exception('Não foi possível verificar o e-mail');
     }

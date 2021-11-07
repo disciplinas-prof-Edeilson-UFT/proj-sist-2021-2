@@ -45,7 +45,7 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
             Icons.sentiment_dissatisfied_outlined,
             color: Colors.white70,
           ),
-          message: store.errorMessage,
+          message: store.errorPhone,
           backgroundColor: Colors.red,
           borderRadius: BorderRadius.circular(10.0),
           padding: const EdgeInsets.all(20.0),
@@ -61,7 +61,7 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              store.errorMessage = '';
+              store.errorPhone = '';
               Navigator.pop(context);
             },
           ),
@@ -189,7 +189,6 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               await store.verifyCode();
-                              await store.register();
                             }
                           },
                         ),
