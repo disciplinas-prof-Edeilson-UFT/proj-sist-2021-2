@@ -59,11 +59,8 @@ class RegisterClientRepository {
 
   Future<bool> verifyEmail(String email) async {
     try {
-      return await userCollection
-          .where('email', isEqualTo: email)
-          .get()
-          .then((value) => true)
-          .catchError((value) => false);
+      return await userCollection.get().then((value) =>
+          value.docs.where((element) => element['email'] == email).isEmpty);
     } catch (e) {
       throw Exception('Não foi possível verificar o e-mail');
     }
