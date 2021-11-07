@@ -2,13 +2,12 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/temp/components/desktop_plan.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-
+import 'components/desktop_plan.dart';
 import 'components/mobile_plan.dart';
 
 class RestaurantPlanPage extends StatefulWidget {
-  static String get routeName => '/plans';
+  static String get routeName => 'plans';
   final String title;
   const RestaurantPlanPage({Key? key, this.title = 'RestaurantPlanPage'})
       : super(key: key);
@@ -20,7 +19,6 @@ class RestaurantPlanState extends State<RestaurantPlanPage> {
   final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
   @override
   void initState() {
-    store.getRestaurant();
     store.getRestaurantPlan();
     super.initState();
   }
@@ -28,31 +26,35 @@ class RestaurantPlanState extends State<RestaurantPlanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            "Planos",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              overflow: TextOverflow.ellipsis,
-              fontFamily: 'Nunito',
+          const Padding(
+            padding: EdgeInsets.only(top: 12),
+            child: Text(
+              "Planos",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                fontFamily: 'Nunito',
+              ),
             ),
           ),
           Expanded(
             child: LayoutBuilder(
               builder: (context, constraints) {
                 if (constraints.maxWidth > 700) {
-                  return DesktopPlan();
+                  return const DesktopPlan();
                 } else {
-                  return MobilePlan();
+                  return const MobilePlan();
                 }
               }
             ),
           ),
           Observer(
-            builder: (context) {
+            builder: (_) {
               return ElevatedButton(
                 style: ButtonStyle(
                   splashFactory: NoSplash.splashFactory,
@@ -82,7 +84,7 @@ class RestaurantPlanState extends State<RestaurantPlanPage> {
     if (states.any((e) => e == MaterialState.pressed)) {
       return const Color(0xffA31922);
     } else if (states.any((e) => e == MaterialState.disabled)) {
-      return Colors.grey;
+      return tertiaryColor;
     }
     return secondaryColor;
   }
