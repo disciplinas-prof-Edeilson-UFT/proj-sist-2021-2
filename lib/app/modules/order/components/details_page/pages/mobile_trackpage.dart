@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/order/components/track_order/components/piece_one_to.dart';
-import 'package:pscomidas/app/modules/order/components/track_order/components/piece_two.dart';
+import 'package:pscomidas/app/modules/order/components/details_page/components/map_container.dart';
+import 'package:pscomidas/app/modules/order/components/details_page/components/status_container.dart';
 
 class MobileTrackPage extends StatefulWidget {
   const MobileTrackPage({Key? key}) : super(key: key);
@@ -19,9 +19,9 @@ class _MobileTrackPageState extends State<MobileTrackPage> {
         child: SizedBox(
           width: screen.width * 0.6,
           child: Column(
-            children: [
-              PieceOneTO(),
-              PieceTwoTO(),
+            children: const [
+              MapContainer(),
+              StatusContainer(),
             ],
           ),
         ),

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
-class NameStoreTO extends StatelessWidget {
-  const NameStoreTO({Key? key}) : super(key: key);
+class StoreName extends StatelessWidget {
+  final String storeName;
+  const StoreName({
+    Key? key,
+    required this.storeName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent, //altere a cor pra ver melhor
       child: Text(
-        'Frutos de Goiás',
-        style: TextStyle(
+        storeName,
+        style: const TextStyle(
           fontSize: 30.0,
           //fontStyle: FontStyle.normal,
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class TBnTO extends StatelessWidget {
+class DetailButton extends StatelessWidget {
   final String name;
-  const TBnTO({Key? key, required this.name}) : super(key: key);
+  const DetailButton({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,10 @@ class TBnTO extends StatelessWidget {
       child: Text(
         name,
         style: const TextStyle(
-            fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.bold),
+          fontFamily: 'Nunito',
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       onPressed: () => {},
     );

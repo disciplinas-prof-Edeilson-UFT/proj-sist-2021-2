@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/order/components/track_order/components/btn_to.dart';
-import 'package:pscomidas/app/modules/order/components/track_order/components/piece_one_to.dart';
-import 'package:pscomidas/app/modules/order/components/track_order/components/piece_two.dart';
-import 'package:pscomidas/app/modules/order/components/track_order/components/stack_to.dart';
+import 'package:pscomidas/app/modules/order/components/details_page/components/map_container.dart';
+import 'package:pscomidas/app/modules/order/components/details_page/components/status_container.dart';
 
 class DesktopTrackPage extends StatefulWidget {
   const DesktopTrackPage({Key? key}) : super(key: key);
@@ -21,9 +19,9 @@ class _DesktopTrackPageState extends State<DesktopTrackPage> {
             width: screen.width * 0.65,
             child: Wrap(
               spacing: 10.0,
-              children: [
-                PieceOneTO(),
-                PieceTwoTO(),
+              children: const [
+                MapContainer(),
+                StatusContainer(),
               ],
             )),
       ),

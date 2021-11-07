@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ImageTO extends StatelessWidget {
-  const ImageTO({Key? key}) : super(key: key);
+class BackgroundImage extends StatelessWidget {
+  const BackgroundImage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
