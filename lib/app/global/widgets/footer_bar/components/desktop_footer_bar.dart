@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class DesktopCustomFooter extends StatelessWidget {
@@ -8,10 +9,12 @@ class DesktopCustomFooter extends StatelessWidget {
     required this.ifood,
     required this.descubra,
     required this.social,
+    required this.navigator,
   }) : super(key: key);
   final List<String> ifood;
   final List<String> descubra;
   final List<Buttons> social;
+  final List<String> navigator;
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
@@ -59,7 +62,9 @@ class DesktopCustomFooter extends StatelessWidget {
                           style: TextButton.styleFrom(
                             primary: Colors.black38,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Modular.to.navigate(navigator[index]);
+                          },
                           child: Text(descubra[index]),
                         );
                       },

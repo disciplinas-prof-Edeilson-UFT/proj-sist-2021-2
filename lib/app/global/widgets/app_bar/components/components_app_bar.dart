@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
-import 'package:pscomidas/app/modules/home/home_page.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
@@ -24,8 +23,7 @@ class LogoAppBar extends StatelessWidget {
             "assets/images/logo.png",
             width: screen.width * 0.08,
           ),
-          onTap: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage())),
+          onTap: () => Modular.to.navigate('/'),
         ),
       ),
     );
@@ -55,7 +53,7 @@ class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
             underline: Container(),
             style: const TextStyle(
               fontSize: 12,
-              color: tertiaryCollor,
+              color: tertiaryColor,
             ),
             items: FilterType.values
                 .map<DropdownMenuItem<String>>((value) =>
@@ -79,7 +77,7 @@ class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
                 .toList(),
             icon: const Icon(
               Icons.keyboard_arrow_down_sharp,
-              color: secondaryCollor,
+              color: secondaryColor,
             ),
           ),
         ),
@@ -102,7 +100,7 @@ class LocationAppBar extends StatelessWidget {
         const Text(
           "ENTREGAR EM",
           style: TextStyle(
-            color: tertiaryCollor,
+            color: tertiaryColor,
             fontSize: 12,
           ),
           textAlign: TextAlign.left,
@@ -114,7 +112,7 @@ class LocationAppBar extends StatelessWidget {
               child: GestureDetector(
                 child: const Icon(
                   Icons.add_location_outlined,
-                  color: secondaryCollor,
+                  color: secondaryColor,
                   size: 14,
                 ),
               ),
@@ -140,7 +138,7 @@ class LocationAppBar extends StatelessWidget {
               child: GestureDetector(
                 child: const Icon(
                   Icons.keyboard_arrow_down_sharp,
-                  color: secondaryCollor,
+                  color: secondaryColor,
                 ),
                 onTap: () {},
               ),
@@ -207,6 +205,7 @@ class _ItemMenuHoverState extends State<ItemMenuHover> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onHover: (_) {
         setState(() {
           color = Colors.red;
