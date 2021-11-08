@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/order/components/rating_dialog.dart';
+import 'package:pscomidas/app/modules/order/components/rating/rating_dialog.dart';
 
 class RatingOrder extends StatelessWidget {
   const RatingOrder({Key? key}) : super(key: key);

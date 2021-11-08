@@ -2,7 +2,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 

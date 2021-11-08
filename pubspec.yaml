@@ -79,6 +79,7 @@ flutter:
     - assets/images/
     - assets/images/filters/
     - assets/images/category/
+    - assets/images/track_order/
     - lib/app/modules/home/assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
