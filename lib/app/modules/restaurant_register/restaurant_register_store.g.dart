@@ -9,7 +9,8 @@ part of 'restaurant_register_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RestaurantRegisterStore on _RestaurantRegisterStore, Store {
-  final _$selectedCategoryAtom = Atom(name: '_RegisterStore.selectedCategory');
+  final _$selectedCategoryAtom =
+      Atom(name: '_RestaurantRegisterStore.selectedCategory');
 
   @override
   String get selectedCategory {
@@ -24,7 +25,8 @@ mixin _$RestaurantRegisterStore on _RestaurantRegisterStore, Store {
     });
   }
 
-  final _$selectedPlanAtom = Atom(name: '_RegisterStore.selectedPlan');
+  final _$selectedPlanAtom =
+      Atom(name: '_RestaurantRegisterStore.selectedPlan');
 
   @override
   String get selectedPlan {
@@ -39,50 +41,39 @@ mixin _$RestaurantRegisterStore on _RestaurantRegisterStore, Store {
     });
   }
 
-  final _$_RegisterStoreActionController =
-      ActionController(name: '_RegisterStore');
-
-  @override
-  Future<void>? addRestaurant() {
-    final _$actionInfo = _$_RegisterStoreActionController.startAction(
-        name: '_RegisterStore.addRestaurant');
-    try {
-      return super.addRestaurant();
-    } finally {
-      _$_RegisterStoreActionController.endAction(_$actionInfo);
-    }
-  }
+  final _$_RestaurantRegisterStoreActionController =
+      ActionController(name: '_RestaurantRegisterStore');
 
   @override
   dynamic setSelectedCategory(dynamic newValue) {
-    final _$actionInfo = _$_RegisterStoreActionController.startAction(
-        name: '_RegisterStore.setSelectedCategory');
+    final _$actionInfo = _$_RestaurantRegisterStoreActionController.startAction(
+        name: '_RestaurantRegisterStore.setSelectedCategory');
     try {
       return super.setSelectedCategory(newValue);
     } finally {
-      _$_RegisterStoreActionController.endAction(_$actionInfo);
+      _$_RestaurantRegisterStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setSelectedPlan(String? selection) {
-    final _$actionInfo = _$_RegisterStoreActionController.startAction(
-        name: '_RegisterStore.setSelectedPlan');
+    final _$actionInfo = _$_RestaurantRegisterStoreActionController.startAction(
+        name: '_RestaurantRegisterStore.setSelectedPlan');
     try {
       return super.setSelectedPlan(selection);
     } finally {
-      _$_RegisterStoreActionController.endAction(_$actionInfo);
+      _$_RestaurantRegisterStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void dispose() {
-    final _$actionInfo = _$_RegisterStoreActionController.startAction(
-        name: '_RegisterStore.dispose');
+    final _$actionInfo = _$_RestaurantRegisterStoreActionController.startAction(
+        name: '_RestaurantRegisterStore.dispose');
     try {
       return super.dispose();
     } finally {
-      _$_RegisterStoreActionController.endAction(_$actionInfo);
+      _$_RestaurantRegisterStoreActionController.endAction(_$actionInfo);
     }
   }
 

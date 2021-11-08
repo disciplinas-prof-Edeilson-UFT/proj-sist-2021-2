@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
-import 'package:pscomidas/app/modules/home/home_page.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
@@ -24,8 +23,7 @@ class LogoAppBar extends StatelessWidget {
             "assets/images/logo.png",
             width: screen.width * 0.08,
           ),
-          onTap: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage())),
+          onTap: () => Modular.to.navigate('/'),
         ),
       ),
     );
