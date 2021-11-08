@@ -11,7 +11,7 @@ class RatingDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
     return AlertDialog(
-      title: const Center(child: Text("Avalie seu pedido")),
+      title: Center(child: Text(store.order!.docid!.id.toString())),
       actions: <Widget>[
         Center(
           child: RatingBar.builder(
