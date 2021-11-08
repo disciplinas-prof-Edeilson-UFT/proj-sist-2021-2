@@ -4,48 +4,51 @@ part 'cancel_checked.g.dart';
 class CancelChecked = _CancelCheckedBase with _$CancelChecked;
 
 abstract class _CancelCheckedBase with Store {
-  
   // forma de pagamento errado
-  @observable 
+  @observable
   bool payments = false;
   @action
   void setCheckedPayments(bool value) => payments = value;
 
   // endereço de entrega errado
-  @observable 
+  @observable
   bool adress = false;
   @action
   void setCheckedAdress(bool value) => adress = value;
 
   // o pedido escolhido está errado
-  @observable 
-  bool prato_errado = false;
+  @observable
+  bool pratoErrado = false;
   @action
-  void setCheckedPrato(bool value) => prato_errado = value;
+  void setCheckedPrato(bool value) => pratoErrado = value;
 
   // comprei sem querer
-  @observable 
-  bool compra_errada = false;
+  @observable
+  bool compraErrada = false;
   @action
-  void setCheckedCompra(bool value) => compra_errada = value;
+  void setCheckedCompra(bool value) => compraErrada = value;
 
   // horario de entrega é muito tarde
-  @observable 
+  @observable
   bool horario = false;
   @action
   void setCheckedHorario(bool value) => horario = value;
 
   // outros
-  @observable 
+  @observable
   bool outros = false;
   @action
   void setCheckedOutros(bool value) => outros = value;
 
-  bool confirm(){
-    if(payments || adress || prato_errado || compra_errada || horario || outros){
+  bool confirm() {
+    if (payments ||
+        adress ||
+        pratoErrado ||
+        compraErrada ||
+        horario ||
+        outros) {
       return true;
     }
     return false;
   }
-
 }

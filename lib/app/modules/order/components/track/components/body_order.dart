@@ -19,7 +19,6 @@ class _BodyOrderState extends State<BodyOrder> {
 
   @override
   Widget build(BuildContext context) {
-    final ScrollController _firstController = ScrollController();
     final Size screen = MediaQuery.of(context).size;
     int numCard = screen.width < 880 ? 1 : 2;
 

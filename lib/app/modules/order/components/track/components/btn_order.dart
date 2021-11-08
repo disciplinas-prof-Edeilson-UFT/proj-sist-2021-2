@@ -8,8 +8,6 @@ class BtnOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
-
     return TextButton(
       style: TextButton.styleFrom(
         primary: secondaryCollor,

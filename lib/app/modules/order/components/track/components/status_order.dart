@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class StatusOrder extends StatelessWidget {
@@ -17,11 +16,11 @@ class StatusOrder extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             IconButton(
-              onPressed: (){
-                
-              },
-              icon: const Icon(Icons.arrow_back_ios, color: tertiaryCollor,)
-            )
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: tertiaryCollor,
+                ))
           ],
         ),
       ),

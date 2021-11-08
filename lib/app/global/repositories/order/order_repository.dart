@@ -21,7 +21,6 @@ class OrderRepository implements IOrderRepository {
         return Order.fromDocument(doc);
       });
     } catch (e) {
-      print(e);
       throw Exception("Pedido não encontrado");
     }
   }

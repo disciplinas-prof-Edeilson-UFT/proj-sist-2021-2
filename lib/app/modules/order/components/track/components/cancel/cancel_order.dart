@@ -45,13 +45,13 @@ class _CancelOrderState extends State<CancelOrder> {
                     Observer(
                       builder: (_) {
                         return _checkList('Prato errado ou item faltando',
-                            controller.prato_errado);
+                            controller.pratoErrado);
                       },
                     ),
                     Observer(
                       builder: (_) {
                         return _checkList(
-                            'Comprei sem querer', controller.compra_errada);
+                            'Comprei sem querer', controller.compraErrada);
                       },
                     ),
                     Observer(
@@ -135,7 +135,7 @@ class _CancelOrderState extends State<CancelOrder> {
             action: SnackBarAction(
               textColor: primaryCollor,
               label: 'Sair',
-              onPressed: () => null,
+              onPressed: () => {},
             ),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);

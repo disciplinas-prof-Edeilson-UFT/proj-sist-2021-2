@@ -39,33 +39,33 @@ mixin _$CancelChecked on _CancelCheckedBase, Store {
     });
   }
 
-  final _$prato_erradoAtom = Atom(name: '_CancelCheckedBase.prato_errado');
+  final _$pratoErradoAtom = Atom(name: '_CancelCheckedBase.pratoErrado');
 
   @override
-  bool get prato_errado {
-    _$prato_erradoAtom.reportRead();
-    return super.prato_errado;
+  bool get pratoErrado {
+    _$pratoErradoAtom.reportRead();
+    return super.pratoErrado;
   }
 
   @override
-  set prato_errado(bool value) {
-    _$prato_erradoAtom.reportWrite(value, super.prato_errado, () {
-      super.prato_errado = value;
+  set pratoErrado(bool value) {
+    _$pratoErradoAtom.reportWrite(value, super.pratoErrado, () {
+      super.pratoErrado = value;
     });
   }
 
-  final _$compra_erradaAtom = Atom(name: '_CancelCheckedBase.compra_errada');
+  final _$compraErradaAtom = Atom(name: '_CancelCheckedBase.compraErrada');
 
   @override
-  bool get compra_errada {
-    _$compra_erradaAtom.reportRead();
-    return super.compra_errada;
+  bool get compraErrada {
+    _$compraErradaAtom.reportRead();
+    return super.compraErrada;
   }
 
   @override
-  set compra_errada(bool value) {
-    _$compra_erradaAtom.reportWrite(value, super.compra_errada, () {
-      super.compra_errada = value;
+  set compraErrada(bool value) {
+    _$compraErradaAtom.reportWrite(value, super.compraErrada, () {
+      super.compraErrada = value;
     });
   }
 
@@ -173,8 +173,8 @@ mixin _$CancelChecked on _CancelCheckedBase, Store {
     return '''
 payments: ${payments},
 adress: ${adress},
-prato_errado: ${prato_errado},
-compra_errada: ${compra_errada},
+pratoErrado: ${pratoErrado},
+compraErrada: ${compraErrada},
 horario: ${horario},
 outros: ${outros}
     ''';
