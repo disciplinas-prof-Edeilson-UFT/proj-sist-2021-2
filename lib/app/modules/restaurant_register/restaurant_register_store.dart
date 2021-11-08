@@ -1,7 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-
+import 'package:pscomidas/app/global/repositories/register/register_repository.dart';
 import 'pages/register_shop/register_field.dart';
 part 'restaurant_register_store.g.dart';
 
@@ -9,12 +8,14 @@ class RestaurantRegisterStore = _RestaurantRegisterStore
     with _$RestaurantRegisterStore;
 
 abstract class _RestaurantRegisterStore with Store {
-  CollectionReference restaurant =
-      FirebaseFirestore.instance.collection('restaurant');
-
   var availablePlans = ['Plano Básico', 'Plano Entrega'];
 
   final String userCity = "Palmas";
+
+  addRestaurant() async {
+    final RegisterRepository registerRepository = RegisterRepository();
+    await registerRepository.addRestaurant();
+  }
 
   Map<String, TextEditingController> controller = {
     'nome': TextEditingController(),
@@ -52,29 +53,6 @@ abstract class _RestaurantRegisterStore with Store {
     'Asiática',
   ];
 
-  @action
-  Future<void>? addRestaurant() {
-    restaurant.add({
-      'name_Owner': controller['nome']?.text,
-      'email_Owner': controller['email']?.text,
-      'phone_Owner': controller['telefone']?.text,
-      'CNPJ': controller['CNPJ']?.text,
-      'company_name': controller['Razão Social']?.text,
-      'social_name': controller['Nome da loja']?.text,
-      'phone_restaurant': controller['Telefone da loja']?.text,
-      'CEP': controller['CEP']?.text,
-      'state': controller['Estado']?.text,
-      'city': controller['Cidade']?.text,
-      'district': controller['Bairro']?.text,
-      'address': controller['Endereço']?.text,
-      'number': controller['Número']?.text,
-      'complement': controller['Complemento (Opcional)']?.text,
-      'password': controller['Senha']?.text,
-      'delivery_plan': controller['Plano de Entrega']?.text,
-      'category': controller['Categoria']?.text,
-    });
-  }
-
   @observable
   var selectedCategory = 'Açaí';
 
@@ -95,11 +73,14 @@ abstract class _RestaurantRegisterStore with Store {
 
   @action
   void dispose() {
-    controller.clear();
+    controller.forEach((key, value) => value.clear());
   }
 
   String? validatePassword() {
     if (controller['Confirmar Senha']?.text != controller['Senha']?.text) {
+      if (controller['Confirmar Senha']!.text.isEmpty) {
+        return null;
+      }
       return "Os campos diferem";
     }
     return null;

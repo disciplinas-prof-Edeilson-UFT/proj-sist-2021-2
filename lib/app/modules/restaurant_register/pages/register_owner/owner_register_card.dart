@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'register_formulary.dart';
+import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/shop_register_card.dart';
+import 'owner_register_formulary.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
-class RegisterCard extends StatelessWidget {
-  RegisterCard({Key? key}) : super(key: key);
+class OwnerRegisterCard extends StatelessWidget {
+  OwnerRegisterCard({Key? key}) : super(key: key);
   final RestaurantRegisterStore registerStore =
       Modular.get<RestaurantRegisterStore>();
   final cardFormKey = GlobalKey<FormState>();
@@ -49,7 +50,7 @@ class RegisterCard extends StatelessWidget {
               Expanded(
                 child: Form(
                   key: cardFormKey,
-                  child: RegisterFormulary(
+                  child: OwnerRegisterFormulary(
                     controller: registerStore.controller,
                   ),
                 ),
@@ -70,7 +71,7 @@ class RegisterCard extends StatelessWidget {
                   ),
                   onPressed: () async {
                     if (cardFormKey.currentState!.validate()) {
-                      Modular.to.navigate('page2', arguments: registerStore);
+                      Modular.to.navigate(ShopRegisterCard.routeName);
                     }
                   },
                   child: const Text(

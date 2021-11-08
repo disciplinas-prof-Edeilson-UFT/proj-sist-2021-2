@@ -5,24 +5,26 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/register_cep.dart';
-import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/register_formulary.dart';
+import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/shop_register_formulary.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_page.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
-class RegisterCard extends StatefulWidget {
-  const RegisterCard({
+class ShopRegisterCard extends StatefulWidget {
+  static String get routeName => 'shop';
+  const ShopRegisterCard({
     Key? key,
   }) : super(key: key);
   @override
-  _RegisterCardState createState() => _RegisterCardState();
+  _ShopRegisterCardState createState() => _ShopRegisterCardState();
 }
 
-class _RegisterCardState extends State<RegisterCard> {
+class _ShopRegisterCardState extends State<ShopRegisterCard> {
   final RestaurantRegisterStore registerStore =
       Modular.get<RestaurantRegisterStore>();
   @override
   void initState() {
     if (registerStore.controller['nomeOwner'] == null) {
-      Modular.to.navigate('page1');
+      Modular.to.navigate(RestaurantRegisterPage.routeName);
     }
     super.initState();
   }
@@ -46,7 +48,7 @@ class _RegisterCardState extends State<RegisterCard> {
         elevation: 2,
         leading: IconButton(
           onPressed: () {
-            Modular.to.navigate('page1');
+            Modular.to.navigate(RestaurantRegisterPage.routeName);
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -91,7 +93,7 @@ class _RegisterCardState extends State<RegisterCard> {
                 ...registerStore.fields.keys.map(
                   (e) {
                     if (e == 'CEP') {
-                      return RegisterFormulary(
+                      return ShopRegisterFormulary(
                         label: e,
                         hintText:
                             registerStore.fields[e]?['hintText'] as String,
@@ -107,7 +109,7 @@ class _RegisterCardState extends State<RegisterCard> {
                         children: [
                           Flexible(
                             flex: 2,
-                            child: RegisterFormulary(
+                            child: ShopRegisterFormulary(
                               label: e,
                               hintText: registerStore.fields[e]?['hintText']
                                   as String,
@@ -116,7 +118,7 @@ class _RegisterCardState extends State<RegisterCard> {
                           ),
                           const VerticalDivider(),
                           Flexible(
-                            child: RegisterFormulary(
+                            child: ShopRegisterFormulary(
                               label: 'Estado',
                               hintText: 'UF',
                               controller: registerStore.controller['Estado'],
@@ -128,7 +130,7 @@ class _RegisterCardState extends State<RegisterCard> {
                     if (e == 'Estado') {
                       return Container();
                     }
-                    return RegisterFormulary(
+                    return ShopRegisterFormulary(
                       formatter: registerStore.fields[e]?['formatter']
                           as TextInputFormatter,
                       label: e,
@@ -253,7 +255,6 @@ class _RegisterCardState extends State<RegisterCard> {
                               titleTextStyle: fieldLabelStyle(),
                             ),
                           );
-                          dispose();
                           Modular.to.navigate('/');
                         }
                       },
