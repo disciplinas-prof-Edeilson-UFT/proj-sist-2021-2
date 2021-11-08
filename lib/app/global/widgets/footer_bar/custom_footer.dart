@@ -27,16 +27,12 @@ class _CustomFooterState extends State<CustomFooter> {
     'iFood Card',
     'iFood Empresas'
   ];
-<<<<<<< HEAD
   final List<String> navigator = [
     RestaurantRegisterModule.routeName + RestaurantRegisterPage.routeName,
-    '', 
-    '', 
+    '',
+    '',
     RestaurantHomeModule.routeName,
   ];
-=======
-  final List<String> navigator = ['register/restaurant/page1', '', '', 'restaurant_home/products'];
->>>>>>> T02/feature/side_bar
   final List<Buttons> social = [Buttons.Facebook, Buttons.Twitter];
   @override
   Widget build(BuildContext context) {
