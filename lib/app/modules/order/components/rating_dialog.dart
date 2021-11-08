@@ -1,12 +1,24 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
-class RatingDialog extends StatelessWidget {
-  RatingDialog({Key? key}) : super(key: key);
+class RatingDialog extends StatefulWidget {
+  const RatingDialog({Key? key}) : super(key: key);
+
+  @override
+  State<RatingDialog> createState() => _RatingDialogState();
+}
+
+class _RatingDialogState extends State<RatingDialog> {
   final OrderStore store = Modular.get();
+  final TextEditingController? _comentario = TextEditingController();
+
+  double? _nota;
+
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
@@ -27,7 +39,9 @@ class RatingDialog extends StatelessWidget {
               color: secondaryCollor,
               size: 8,
             ),
-            onRatingUpdate: (rating) {},
+            onRatingUpdate: (rating) {
+              _nota = rating;
+            },
           ),
         ),
         const Divider(
@@ -36,8 +50,9 @@ class RatingDialog extends StatelessWidget {
         Center(
           child: SizedBox(
             width: screen.width * 0.3,
-            child: const TextField(
+            child: TextField(
               keyboardType: TextInputType.multiline,
+              controller: _comentario,
               maxLines: null,
               enabled: true,
               textAlign: TextAlign.center,
@@ -70,6 +85,8 @@ class RatingDialog extends StatelessWidget {
             primary: secondaryCollor,
           ),
           onPressed: () {
+            store.cartStore.orderRepository
+                .ratingOrder(store.order!, _comentario!.text, _nota.toString());
             Navigator.of(context).pop();
           },
         ),

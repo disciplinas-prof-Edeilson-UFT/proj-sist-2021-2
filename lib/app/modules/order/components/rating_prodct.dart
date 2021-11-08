@@ -28,7 +28,7 @@ class RatingOrder extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (_) {
-                    return RatingDialog();
+                    return const RatingDialog();
                   });
             },
             style: TextButton.styleFrom(

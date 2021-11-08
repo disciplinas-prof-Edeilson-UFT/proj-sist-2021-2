@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
-import 'package:pscomidas/app/global/models/entities/order.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/comp_header.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/order_resume.dart';
