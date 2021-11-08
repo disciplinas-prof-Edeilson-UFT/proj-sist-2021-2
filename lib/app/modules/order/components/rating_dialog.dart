@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/order/order_store.dart';
 
 class RatingDialog extends StatelessWidget {
-  const RatingDialog({Key? key}) : super(key: key);
-
+  RatingDialog({Key? key}) : super(key: key);
+  final OrderStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
     return AlertDialog(
-      title: const Center(child: Text("Reportar danos")),
+      title: const Center(child: Text("Avalie seu pedido")),
       actions: <Widget>[
         Center(
           child: RatingBar.builder(

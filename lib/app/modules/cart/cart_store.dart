@@ -55,7 +55,13 @@ abstract class _CartStoreBase with Store {
       shipPrice: 12.50,
       orderPrice: total - 12.5,
     );
-    await orderRepository.cadastrarOrder(pedido);
-    listaPedido = pedido;
+    var response = await orderRepository.cadastrarOrder(pedido);
+
+    listaPedido = Order(
+      itens: itens,
+      orderPrice: total - 12.5,
+      shipPrice: 12.50,
+      docid: response,
+    );
   }
 }

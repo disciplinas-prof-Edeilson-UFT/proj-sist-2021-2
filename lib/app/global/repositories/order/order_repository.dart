@@ -46,7 +46,7 @@ class OrderRepository implements IOrderRepository {
   }
 
   @override
-  Future<bool> cadastrarOrder(Order pedido) async {
+  Future<DocumentReference> cadastrarOrder(Order pedido) async {
     List<dynamic> itemID = [];
     try {
       for (var element in pedido.itens) {
@@ -62,7 +62,7 @@ class OrderRepository implements IOrderRepository {
         });
       }
 
-      await firestore.collection('order').add({
+      return await firestore.collection('order').add({
         'delivered': false,
         'items': [],
         'order_price': pedido.orderPrice,
@@ -76,13 +76,12 @@ class OrderRepository implements IOrderRepository {
         }, SetOptions(merge: true)).then((value) {
           log('Items adicionados');
         });
-        log(value.id);
+        return value;
       }).catchError((error) {
         log(error);
       });
     } catch (e) {
       throw Exception("Erro: $e");
     }
-    return false;
   }
 }
