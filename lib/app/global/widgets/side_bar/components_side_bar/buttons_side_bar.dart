@@ -1,13 +1,18 @@
+import 'package:pscomidas/app/modules/restaurant_home/pages/avaliations/avaliations_page.dart';
+import 'package:pscomidas/app/modules/restaurant_home/pages/orders/orders_page.dart';
+import 'package:pscomidas/app/modules/restaurant_home/pages/product/product_page.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
+
 class ButtonSideBar {
   static final buttons = {
     'Produtos': {
-      'navigator': 'products',
+      'navigator': RestaurantHomeModule.routeName + ProductPage.routeName,
     },
     'Pedidos': {
-      'navigator': 'orders',
+      'navigator': RestaurantHomeModule.routeName + OrdersPage.routeName,
     },
     'Avaliações': {
-      'navigator': 'avaliations',
+      'navigator': RestaurantHomeModule.routeName + AvaliationsPage.routeName,
     },
     'Sair': {
       'navigator': '/',

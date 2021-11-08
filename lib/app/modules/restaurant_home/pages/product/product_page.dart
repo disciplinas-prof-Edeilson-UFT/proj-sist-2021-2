@@ -3,6 +3,7 @@ import 'package:pscomidas/app/modules/restaurant_home/pages/product/add_product_
 import 'package:pscomidas/app/modules/restaurant_home/pages/product/product_card.dart';
 
 class ProductPage extends StatelessWidget {
+  static String get routeName => '/products';
   const ProductPage({Key? key}) : super(key: key);
 
   @override

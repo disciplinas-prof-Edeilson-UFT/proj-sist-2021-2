@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class AvaliationsPage extends StatefulWidget {
+  static String get routeName => '/avaliations';
   final String title;
   const AvaliationsPage({Key? key, this.title = 'Avaliations Page'})
       : super(key: key);
