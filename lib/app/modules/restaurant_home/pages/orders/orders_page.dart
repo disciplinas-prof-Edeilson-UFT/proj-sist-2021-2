@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class OrdersPage extends StatefulWidget {
+  static String get routeName => '/orders';
   final String title;
   const OrdersPage({Key? key, this.title = 'Orders Page'})
       : super(key: key);

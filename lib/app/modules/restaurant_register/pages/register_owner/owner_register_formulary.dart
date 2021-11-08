@@ -1,9 +1,10 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 
-class RegisterFormulary extends StatelessWidget {
-  RegisterFormulary({Key? key, required this.controller}) : super(key: key);
+class OwnerRegisterFormulary extends StatelessWidget {
+  OwnerRegisterFormulary({Key? key, required this.controller}) : super(key: key);
   final Map controller;
 
   final TextStyle _labelStyle = const TextStyle(
@@ -63,7 +64,7 @@ class RegisterFormulary extends StatelessWidget {
                 if (value == null || value.isEmpty) {
                   return "Este campo não pode ficar vazio";
                 }
-                if (!value.contains('@') || !value.contains('.com')) {
+                if(!EmailValidator.validate(value)) {
                   return "Digite um email válido";
                 }
                 return null;

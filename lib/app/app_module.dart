@@ -14,6 +14,7 @@ import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart
 import 'package:pscomidas/app/modules/home/home_module.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_module.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_module.dart';
+import 'modules/restaurant_register/restaurant_register_store.dart';
 
 class AppModule extends Module {
   @override
@@ -24,6 +25,7 @@ class AppModule extends Module {
     Bind.singleton((i) => HomeStore()),
     Bind.singleton((i) => OrderStore()),
     Bind.singleton((i) => RestaurantHomeStore()),
+    Bind.singleton((i) => RestaurantRegisterStore()),
   ];
 
   @override
@@ -33,7 +35,6 @@ class AppModule extends Module {
     ModuleRoute(CartModule.routeName, module: CartModule()),
     ModuleRoute(RestaurantRegisterModule.routeName,
         module: RestaurantRegisterModule()),
-    ModuleRoute(RestaurantHomeModule.routeName, module: RestaurantHomeModule()),
     ModuleRoute(AuthModule.routeName, module: AuthModule()),
     ModuleRoute(OrderModule.routeName, module: OrderModule()),
     ModuleRoute(RestaurantHomeModule.routeName, module: RestaurantHomeModule()),

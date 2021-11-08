@@ -7,7 +7,7 @@ import 'components/desktop_plan.dart';
 import 'components/mobile_plan.dart';
 
 class RestaurantPlanPage extends StatefulWidget {
-  static String get routeName => 'plans';
+  static String get routeName => '/plans';
   final String title;
   const RestaurantPlanPage({Key? key, this.title = 'RestaurantPlanPage'})
       : super(key: key);
