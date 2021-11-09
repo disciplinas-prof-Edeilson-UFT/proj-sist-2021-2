@@ -16,7 +16,7 @@ class BtnOrder extends StatelessWidget {
       child: Text(
         name,
         style: const TextStyle(
-            fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.bold),
+            fontFamily: 'Nunito', fontSize: 15, fontWeight: FontWeight.w600),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/order/components/rating/rating_prodct.dart';
 import 'package:pscomidas/app/modules/order/components/track/components/btn_order.dart';
 import 'package:pscomidas/app/modules/order/components/track/components/cancel/cancel_order.dart';
 
@@ -35,9 +36,12 @@ class _OrderCardState extends State<OrderCard> {
           indent: 10,
           endIndent: 10,
         ),
-        Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [CancelOrder(), BtnOrder(name: 'Acompanhar')])
+        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          _btnSelect(
+              status:
+                  'Pedido Aceito'), //TODO change it to status: store.order!.status.toString()
+          const BtnOrder(name: 'Acompanhar'),
+        ])
       ]),
     );
   }
@@ -53,5 +57,13 @@ class _OrderCardState extends State<OrderCard> {
   TextStyle _textStyleSubtitle() {
     return const TextStyle(
         fontFamily: 'Nunito', fontSize: 12, color: Colors.grey);
+  }
+
+  _btnSelect({String? status}) {
+    if (status != 'Pedido Completo') {
+      return const CancelOrder();
+    } else {
+      return const RatingOrder();
+    }
   }
 }

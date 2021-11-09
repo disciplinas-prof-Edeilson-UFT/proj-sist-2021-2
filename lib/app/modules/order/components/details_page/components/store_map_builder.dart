@@ -35,11 +35,6 @@ class StoreMapBuilder extends StatelessWidget {
             ),
           ),
         ),
-        const Positioned(
-          right: 187,
-          top: 450,
-          child: RatingOrder(),
-        ),
       ],
     );
   }

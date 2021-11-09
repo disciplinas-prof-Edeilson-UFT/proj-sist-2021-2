@@ -70,8 +70,6 @@ class _BodyOrderState extends State<BodyOrder> {
               ),
               const MostOrdered(),
               const TitleOrderPage(title: 'Histórico'),
-              const Text(
-                  'Historico indesponivel, por falta de informações no banco de dados')
             ],
           ),
         ),

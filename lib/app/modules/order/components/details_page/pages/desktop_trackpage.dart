@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/components/map_container.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/components/status_container.dart';
+import 'package:pscomidas/app/modules/order/components/rating/rating_prodct.dart';
 
 class DesktopTrackPage extends StatefulWidget {
   const DesktopTrackPage({Key? key}) : super(key: key);

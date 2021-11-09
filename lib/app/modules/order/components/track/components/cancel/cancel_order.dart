@@ -27,7 +27,7 @@ class _CancelOrderState extends State<CancelOrder> {
             builder: (BuildContext context) {
               return SingleChildScrollView(
                 child: AlertDialog(
-                  title: const Text('Cancelar padido',
+                  title: const Text('Cancelar pedido',
                       style: TextStyle(fontFamily: 'Nunito')),
                   content: Column(children: [
                     Observer(
