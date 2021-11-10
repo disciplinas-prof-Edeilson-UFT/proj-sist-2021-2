@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/order/components/rating/rating_prodct.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
 class StatusContainer extends StatefulWidget {
@@ -41,11 +42,12 @@ class _StatusContainerState extends State<StatusContainer> {
             ),
           ),
           percent:
-              0.1, //TODO _percentIndicator(status: store.order!.status.toString()),
+              1, //TODO _percentIndicator(status: store.order!.status.toString()),
           backgroundColor: primaryCollor,
           progressColor: secondaryCollor,
           lineWidth: 16,
-        )
+        ),
+        const RatingOrder(),
       ],
     );
   }

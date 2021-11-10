@@ -88,6 +88,7 @@ class _RatingDialogState extends State<RatingDialog> {
             store.cartStore.orderRepository
                 .ratingOrder(store.order!, _comentario!.text, _nota.toString());
             Navigator.of(context).pop();
+            Modular.to.navigate('/Order/');
           },
         ),
       ],

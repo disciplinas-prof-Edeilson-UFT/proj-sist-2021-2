@@ -20,7 +20,6 @@ class _BodyOrderState extends State<BodyOrder> {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    final store = Modular.get<OrderStore>();
     int numCard = screen.width < 880 ? 1 : 2;
 
     double _aspectRatio() {
@@ -57,7 +56,7 @@ class _BodyOrderState extends State<BodyOrder> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: numCard,
                       childAspectRatio: _aspectRatio()),
-                  itemCount: 2,
+                  itemCount: 1,
                   itemBuilder: (BuildContext context, int index) {
                     return const OrderCard();
                   },
