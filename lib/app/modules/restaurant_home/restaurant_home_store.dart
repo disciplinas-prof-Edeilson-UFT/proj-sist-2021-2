@@ -3,6 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_picture_firestore.dart';
 
 part 'restaurant_home_store.g.dart';
@@ -115,5 +116,17 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   setSelectedCategory(newValue) {
     selectedCategory = newValue ?? 'Açaí';
+  }
+
+  @observable
+  Color iconColor = tertiaryColor;
+
+  @action
+  void handleFocusChange() {
+    if (iconColor == tertiaryColor) {
+      iconColor = secondaryColor;
+    } else {
+      iconColor = tertiaryColor;
+    }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
@@ -18,8 +18,17 @@ class UpdateFormulary extends StatelessWidget {
   final _phoneFormat = MaskTextInputFormatter(
       mask: '(##) #####-####', filter: {"#": RegExp(r'[0-9]')});
 
-  final _timeFormat = MaskTextInputFormatter(
-      mask: '##-## min', filter: {"#": RegExp(r'[0-9]')});
+  final _timeFormat =
+      MaskTextInputFormatter(mask: '##-##', filter: {"#": RegExp(r'[0-9]')});
+
+  final _moneyFormat =
+      MaskTextInputFormatter(mask: '##.##', filter: {"#": RegExp(r'[0-9]')});
+
+  Map<String, TextEditingController> controller = {
+    'Tempo de preparo': TextEditingController(),
+    'Taxa de entrega': TextEditingController(),
+    'telefone': TextEditingController(),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +43,7 @@ class UpdateFormulary extends StatelessWidget {
             children: [
               Text('Telefone da loja', style: _labelStyle),
               TextFormField(
+                controller: controller['telefone'],
                 inputFormatters: [_phoneFormat],
                 textCapitalization: TextCapitalization.words,
                 validator: (value) {
@@ -54,7 +64,7 @@ class UpdateFormulary extends StatelessWidget {
                     ),
                   ),
                   border: OutlineInputBorder(),
-                  hintText: '(00)00000-0000',
+                  hintText: '(00) 00000-0000',
                 ),
               ),
             ],
@@ -71,6 +81,8 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
+                controller: controller['Tempo de preparo'],
+                inputFormatters: [_timeFormat],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Este campo não pode ficar vazio";
@@ -79,6 +91,7 @@ class UpdateFormulary extends StatelessWidget {
                 },
                 cursorColor: secondaryColor,
                 decoration: const InputDecoration(
+                  suffixText: 'minutos',
                   focusColor: secondaryColor,
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -86,7 +99,7 @@ class UpdateFormulary extends StatelessWidget {
                     ),
                   ),
                   border: OutlineInputBorder(),
-                  hintText: '15-20 min',
+                  hintText: '00-00',
                 ),
               ),
             ],
@@ -103,6 +116,11 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
+                onChanged: (e) {
+                  print(controller['Taxa de entrega']!.text);
+                },
+                controller: controller['Taxa de entrega'],
+                inputFormatters: [_moneyFormat],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Este campo não pode ficar vazio";
@@ -111,6 +129,8 @@ class UpdateFormulary extends StatelessWidget {
                 },
                 cursorColor: secondaryColor,
                 decoration: const InputDecoration(
+                  suffixText: 'Reais',
+                  hintText: 'R\$ 10.00',
                   focusColor: secondaryColor,
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -118,81 +138,11 @@ class UpdateFormulary extends StatelessWidget {
                     ),
                   ),
                   border: OutlineInputBorder(),
-                  hintText: 'R\$10,00',
                 ),
               ),
             ],
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-              top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Especialidade da loja',
-                  style: _labelStyle,
-                ),
-                Observer(
-                  builder: (ctx) => DropdownButton<String>(
-                    value: homeStore.selectedCategory,
-                    style: _labelStyle,
-                    icon: const Icon(Icons.expand_more),
-                    iconEnabledColor: secondaryColor,
-                    elevation: 2,
-                    onChanged: (String? newValue) {
-                      homeStore.setSelectedCategory(newValue);
-                    },
-                    underline: Container(
-                      color: secondaryColor,
-                      height: 2.0,
-                    ),
-                    items: homeStore.categories.map((value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: const TextStyle(
-                            color: Colors.black54,
-                            fontFamily: 'Nunito',
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 15.0,
-            bottom: 5.0,
-          ),
-          child: Align(
-            alignment: Alignment.center,
-            child: TextButton(
-              child: const Text(
-                'Confirmar',
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
-              ),
-              style: ButtonStyle(
-                elevation: MaterialStateProperty.all(4),
-                minimumSize: MaterialStateProperty.all(const Size(200, 50)),
-                backgroundColor: MaterialStateProperty.all(secondaryColor),
-              ),
-              onPressed: null,
-            ),
-          ),
-        ),
+        )
       ],
     );
   }

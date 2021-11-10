@@ -94,6 +94,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$iconColorAtom = Atom(name: '_RestaurantHomeStoreBase.iconColor');
+
+  @override
+  Color get iconColor {
+    _$iconColorAtom.reportRead();
+    return super.iconColor;
+  }
+
+  @override
+  set iconColor(Color value) {
+    _$iconColorAtom.reportWrite(value, super.iconColor, () {
+      super.iconColor = value;
+    });
+  }
+
   final _$toggleLoadingAsyncAction =
       AsyncAction('_RestaurantHomeStoreBase.toggleLoading');
 
@@ -156,6 +171,17 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  void handleFocusChange() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.handleFocusChange');
+    try {
+      return super.handleFocusChange();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 picture: ${picture},
@@ -163,6 +189,7 @@ showLoading: ${showLoading},
 editBackground: ${editBackground},
 isOpen: ${isOpen},
 selectedCategory: ${selectedCategory},
+iconColor: ${iconColor},
 toggleText: ${toggleText}
     ''';
   }
