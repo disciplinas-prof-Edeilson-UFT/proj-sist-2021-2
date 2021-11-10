@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 
 import 'update_client_data_store.dart';
 
-class ChangeClientDataPage extends StatefulWidget {
+class UpdateClientDataPage extends StatefulWidget {
   final String title;
-  const ChangeClientDataPage({Key? key, this.title = 'ChangeClientDataPage'})
+  const UpdateClientDataPage({Key? key, this.title = 'UpdateClientDataPage'})
       : super(key: key);
   @override
-  ChangeClientDataPageState createState() => ChangeClientDataPageState();
+  UpdateClientDataPageState createState() => UpdateClientDataPageState();
 }
 
-class ChangeClientDataPageState extends State<ChangeClientDataPage> {
-  final ChangeClientDataStore store = Modular.get();
+class UpdateClientDataPageState extends State<UpdateClientDataPage> {
+  final UpdateClientDataStore store = Modular.get();
 
   @override
   Widget build(BuildContext context) {

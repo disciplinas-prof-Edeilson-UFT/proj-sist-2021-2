@@ -5,15 +5,15 @@ import 'package:pscomidas/app/modules/register_client/register_client_repository
 import 'update_client_data_page.dart';
 import 'update_client_data_store.dart';
 
-class ChangeClientDataModule extends Module {
+class UpdateClientDataModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => ChangeClientDataStore()),
+    Bind.lazySingleton((i) => UpdateClientDataStore()),
     Bind.lazySingleton((i) => RegisterClientRepository(FirebaseAuth.instance))
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => const ChangeClientDataPage()),
+    ChildRoute('/', child: (_, args) => const UpdateClientDataPage()),
   ];
 }
