@@ -86,11 +86,6 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   FocusNode profileAlertDialogRestaurantFieldFocus = FocusNode();
 
-  @computed
-  Color get iconColorV2 => profileAlertDialogRestaurantFieldFocus.hasFocus
-      ? secondaryColor
-      : tertiaryColor;
-
   @observable
   var selectedCategory = 'Açaí';
 
