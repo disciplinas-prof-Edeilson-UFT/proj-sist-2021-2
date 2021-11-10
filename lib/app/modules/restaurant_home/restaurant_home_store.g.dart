@@ -16,13 +16,6 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
       (_$toggleTextComputed ??= Computed<String>(() => super.toggleText,
               name: '_RestaurantHomeStoreBase.toggleText'))
           .value;
-  Computed<Color>? _$iconColorV2Computed;
-
-  @override
-  Color get iconColorV2 =>
-      (_$iconColorV2Computed ??= Computed<Color>(() => super.iconColorV2,
-              name: '_RestaurantHomeStoreBase.iconColorV2'))
-          .value;
 
   final _$restaurantAtom = Atom(name: '_RestaurantHomeStoreBase.restaurant');
 
@@ -261,8 +254,7 @@ restaurantField: ${restaurantField},
 profileAlertDialogRestaurantFieldFocus: ${profileAlertDialogRestaurantFieldFocus},
 selectedCategory: ${selectedCategory},
 iconColor: ${iconColor},
-toggleText: ${toggleText},
-iconColorV2: ${iconColorV2}
+toggleText: ${toggleText}
     ''';
   }
 }
