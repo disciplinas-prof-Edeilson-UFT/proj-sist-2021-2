@@ -81,18 +81,17 @@ class TextButtonMenuMobile extends StatelessWidget {
 
 class ListTilePerfil extends StatelessWidget {
   ListTilePerfil({Key? key}) : super(key: key);
-  final RestaurantHomeStore restaurantHomeStore = Modular.get<RestaurantHomeStore>();
+  final RestaurantHomeStore restaurantHomeStore =
+      Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Observer(
-        builder: (_) {
-          return CircleAvatar(
-            backgroundImage: NetworkImage(restaurantHomeStore.picture),
-            backgroundColor: secondaryColor,
-          );
-        }
-      ),
+      leading: Observer(builder: (_) {
+        return CircleAvatar(
+          backgroundImage: NetworkImage(restaurantHomeStore.picture),
+          backgroundColor: secondaryColor,
+        );
+      }),
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
@@ -118,18 +117,17 @@ class ListTilePerfil extends StatelessWidget {
 
 class ListTilePerfilMobile extends StatelessWidget {
   ListTilePerfilMobile({Key? key}) : super(key: key);
-  final RestaurantHomeStore restaurantHomeStore = Modular.get<RestaurantHomeStore>();
+  final RestaurantHomeStore restaurantHomeStore =
+      Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Observer(
-        builder: (_) {
-          return CircleAvatar(
-            backgroundImage: NetworkImage(restaurantHomeStore.picture),
-            backgroundColor: secondaryColor,
-          );
-        }
-      ),
+      leading: Observer(builder: (_) {
+        return CircleAvatar(
+          backgroundImage: NetworkImage(restaurantHomeStore.picture),
+          backgroundColor: secondaryColor,
+        );
+      }),
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(

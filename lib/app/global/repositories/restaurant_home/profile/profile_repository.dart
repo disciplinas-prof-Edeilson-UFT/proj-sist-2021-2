@@ -10,8 +10,11 @@ class ProfileRepository extends IProfile {
 
   @override
   Future<Restaurant> getRestaurant() async {
-    final restaurantData = await FirebaseFirestore.instance.collection('restaurant')
-      .doc(store.id).get().then((value) => value.data()!);
+    final restaurantData = await FirebaseFirestore.instance
+        .collection('restaurant')
+        .doc(store.id)
+        .get()
+        .then((value) => value.data()!);
     final restaurant = Restaurant.fromMap(store.id, restaurantData);
     return restaurant;
   }
@@ -26,12 +29,17 @@ class ProfileRepository extends IProfile {
     String imgUrl;
     store.toggleLoading();
     try {
-      imgUrl = await FirebaseStorage.instance.ref('restaurant_profile/${store.id}')
-        .putBlob(e).then((task) => task.ref.getDownloadURL());
+      imgUrl = await FirebaseStorage.instance
+          .ref('restaurant_profile/${store.id}')
+          .putBlob(e)
+          .then((task) => task.ref.getDownloadURL());
       store.picture = imgUrl;
     } catch (e) {
       return;
     }
-    await FirebaseFirestore.instance.collection('restaurant').doc(store.id).update({'image': imgUrl});
+    await FirebaseFirestore.instance
+        .collection('restaurant')
+        .doc(store.id)
+        .update({'image': imgUrl});
   }
 }
