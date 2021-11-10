@@ -1,10 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+<<<<<<< HEAD
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_picture_firestore.dart';
+=======
+import 'package:pscomidas/app/global/models/entities/restaurant.dart';
+import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
+>>>>>>> feature/R12
 
 part 'restaurant_home_store.g.dart';
 
@@ -12,6 +14,7 @@ class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
   final id = 'dummy1';
+<<<<<<< HEAD
 
   final categories = [
     'Açaí',
@@ -27,6 +30,12 @@ abstract class _RestaurantHomeStoreBase with Store {
     'Asiática',
   ];
 
+=======
+  
+  @observable
+  Restaurant? restaurant;
+  
+>>>>>>> feature/R12
   @observable
   String picture = '';
 
@@ -34,6 +43,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   bool showLoading = true;
 
   @action
+<<<<<<< HEAD
   Future<void> toggleLoading() async {
     /*Controla o circularProgressIndicator, o atraso para desativar
     se deve ao fato da imagem demorar para ser baixada.
@@ -48,11 +58,21 @@ abstract class _RestaurantHomeStoreBase with Store {
   Future<String> getProfilePictureUrl() async {
     final ProfilePictureFirestore profile = ProfilePictureFirestore();
     picture = await profile.getProfilePicture();
-    toggleLoading();
-    return picture;
+=======
+  Future getRestaurant() async {
+    restaurant = await ProfileRepository().getRestaurant();
+    getProfilePictureUrl();
   }
 
   @action
+  void getProfilePictureUrl() {
+    picture = restaurant?.image ?? '';
+>>>>>>> feature/R12
+    toggleLoading();
+  }
+
+  @action
+<<<<<<< HEAD
   Future setImage(dynamic e) async {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
@@ -76,6 +96,13 @@ abstract class _RestaurantHomeStoreBase with Store {
         .update({'image': imgUrl});
   }
 
+=======
+  void setImage(dynamic e) {
+    ProfileRepository().setImage(e);
+  }
+  
+  
+>>>>>>> feature/R12
   @observable
   Widget editBackground = Container();
 
@@ -98,6 +125,15 @@ abstract class _RestaurantHomeStoreBase with Store {
       editBackground = Container();
     }
   }
+  
+  @action 
+  Future<void> toggleLoading() async {
+    if (showLoading) {
+      await Future.delayed(const Duration(seconds: 3));
+    }
+    showLoading = !showLoading;
+  }
+
 
   @observable
   bool isOpen = false;
