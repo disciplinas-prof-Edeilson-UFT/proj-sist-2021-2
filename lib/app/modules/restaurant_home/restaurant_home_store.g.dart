@@ -93,6 +93,37 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$selectedCategoryAtom =
+      Atom(name: '_RestaurantHomeStoreBase.selectedCategory');
+
+  @override
+  String get selectedCategory {
+    _$selectedCategoryAtom.reportRead();
+    return super.selectedCategory;
+  }
+
+  @override
+  set selectedCategory(String value) {
+    _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
+      super.selectedCategory = value;
+    });
+  }
+
+  final _$iconColorAtom = Atom(name: '_RestaurantHomeStoreBase.iconColor');
+
+  @override
+  Color get iconColor {
+    _$iconColorAtom.reportRead();
+    return super.iconColor;
+  }
+
+  @override
+  set iconColor(Color value) {
+    _$iconColorAtom.reportWrite(value, super.iconColor, () {
+      super.iconColor = value;
+    });
+  }
+
   final _$getRestaurantAsyncAction =
       AsyncAction('_RestaurantHomeStoreBase.getRestaurant');
 
@@ -157,6 +188,28 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  dynamic setSelectedCategory(dynamic newValue) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.setSelectedCategory');
+    try {
+      return super.setSelectedCategory(newValue);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void handleFocusChange() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.handleFocusChange');
+    try {
+      return super.handleFocusChange();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 restaurant: ${restaurant},
@@ -164,6 +217,8 @@ picture: ${picture},
 showLoading: ${showLoading},
 editBackground: ${editBackground},
 isOpen: ${isOpen},
+selectedCategory: ${selectedCategory},
+iconColor: ${iconColor},
 toggleText: ${toggleText}
     ''';
   }

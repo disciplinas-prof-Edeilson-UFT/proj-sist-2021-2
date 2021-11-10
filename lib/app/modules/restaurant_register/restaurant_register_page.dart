@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/restaurant_register/components/register_plans.dart';
-import 'pages/register_owner/register_card.dart';
+import 'pages/register_owner/owner_register_card.dart';
 import 'pages/register_owner/register_side_text.dart';
 
 class RestaurantRegisterPage extends StatefulWidget {
   final String title;
+  static String get routeName => 'owner';
   const RestaurantRegisterPage({
     Key? key,
     this.title = 'RestaurantRegisterPage',
@@ -47,7 +48,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RegisterSideText(),
-                RegisterCard(),
+                OwnerRegisterCard(),
               ],
             ),
             const RegisterPlans(),
@@ -62,7 +63,7 @@ class RestaurantRegisterPageState extends State<RestaurantRegisterPage> {
           Column(
             children: [
               RegisterSideText(),
-              RegisterCard(),
+              OwnerRegisterCard(),
               const RegisterPlans(),
             ],
           ),

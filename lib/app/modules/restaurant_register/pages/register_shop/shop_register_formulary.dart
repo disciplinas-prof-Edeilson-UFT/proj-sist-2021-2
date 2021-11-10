@@ -5,8 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
-class RegisterFormulary extends StatelessWidget {
-  RegisterFormulary({
+class ShopRegisterFormulary extends StatelessWidget {
+  ShopRegisterFormulary({
     Key? key,
     required this.hintText,
     required this.label,
@@ -40,10 +40,13 @@ class RegisterFormulary extends StatelessWidget {
             style: fieldLabelStyle(),
           ),
           TextFormField(
-            readOnly: isDifferentField,
+            // Caso o CEP retorne apenas a cidade e o estado, como em 77500-000,
+            // os campos bairro e endereço tornam-se editáveis
+            readOnly: label == 'Cidade' || label == 'Estado',
             inputFormatters: formatter != null ? [formatter!] : null,
             cursorColor: secondaryColor,
             controller: controller,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             onChanged: (value) =>
                 valueChangeListener == null ? {} : valueChangeListener!(value),
             validator: (value) {

@@ -17,6 +17,11 @@ class RegisterCEP {
           info.getOrElse(() => ViaCepInfo()).uf ?? '';
       registerStore.controller['Bairro']!.text =
           info.getOrElse(() => ViaCepInfo()).bairro ?? '';
+    } else {
+      registerStore.controller['Endereço']!.text = '';
+      registerStore.controller['Cidade']!.text = '';
+      registerStore.controller['Estado']!.text = '';
+      registerStore.controller['Bairro']!.text = '';
     }
   }
 }
