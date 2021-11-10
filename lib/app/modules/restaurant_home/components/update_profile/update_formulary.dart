@@ -22,10 +22,10 @@ class UpdateFormulary extends StatelessWidget {
   final _timeFormat =
       MaskTextInputFormatter(mask: '##-##', filter: {"#": RegExp(r'[0-9]')});
 
-  Map<String, TextEditingController> controller = {
-    'Tempo de preparo': TextEditingController(),
-    'Taxa de entrega': TextEditingController(),
-    'telefone': TextEditingController(),
+  final Map<String, TextEditingController> controller = {
+    'prepare_time': TextEditingController(),
+    'delivery_price': TextEditingController(),
+    'phone_restaurant': TextEditingController(),
   };
 
   @override
@@ -64,6 +64,7 @@ class UpdateFormulary extends StatelessWidget {
                   border: OutlineInputBorder(),
                   hintText: '(00) 00000-0000',
                 ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
             ],
           ),
@@ -82,14 +83,14 @@ class UpdateFormulary extends StatelessWidget {
                 controller: controller['Tempo de preparo'],
                 inputFormatters: [_timeFormat],
                 validator: (value) {
-                  var values = value!.split('-');
+                  var values = value?.split('-');
                   if (value == null || value.isEmpty) {
                     return "Este campo não pode ficar vazio";
                   }
                   if (value.length < 5) {
                     return "Campo incompleto";
                   }
-                  if (num.parse(values[0]) > num.parse(values[1])) {
+                  if (num.parse(values![0]) >= num.parse(values[1])) {
                     return "Intervalo de tempo inválido";
                   }
                   return null;
@@ -106,6 +107,7 @@ class UpdateFormulary extends StatelessWidget {
                   border: OutlineInputBorder(),
                   hintText: '00-00',
                 ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
             ],
           ),
@@ -124,14 +126,12 @@ class UpdateFormulary extends StatelessWidget {
                 controller: controller['Taxa de entrega'],
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(5),
                   CurrencyTextInputFormatter(decimalDigits: 2, symbol: 'R\$')
                 ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Este campo não pode ficar vazio";
-                  }
-                  if (value.length > 8) {
-                    return "Valor de entrega muito alto";
                   }
                   return null;
                 },
@@ -146,6 +146,7 @@ class UpdateFormulary extends StatelessWidget {
                   ),
                   border: OutlineInputBorder(),
                 ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
             ],
           ),

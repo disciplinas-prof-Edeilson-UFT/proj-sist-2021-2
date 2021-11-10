@@ -70,6 +70,12 @@ class ProfileAlertDialog extends StatelessWidget {
                         controller: _controller,
                         cursorColor: secondaryColor,
                         onTap: () => _node.requestFocus(),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Este campo não pode ficar vazio";
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           contentPadding:
                               const EdgeInsets.fromLTRB(0, 15, 0, 10),
@@ -89,6 +95,7 @@ class ProfileAlertDialog extends StatelessWidget {
                           ),
                           border: const UnderlineInputBorder(),
                         ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       );
                     }),
                   ),

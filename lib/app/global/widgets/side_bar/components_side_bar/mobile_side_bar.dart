@@ -14,7 +14,9 @@ class _SideBarMobileState extends State<SideBarMobile> {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
+
     final _buttons = ['Produtos', 'Pedidos', 'Avaliações', 'Sair'];
+
     return Drawer(
       elevation: 0,
       child: Container(
@@ -41,7 +43,10 @@ class _SideBarMobileState extends State<SideBarMobile> {
                     ..._buttons.map(
                       (e) => Column(
                         children: [
-                          TextButtonMenuMobile(option: e),
+                          TextButtonMenuMobile(
+                            option: e,
+                            press: () {},
+                          ),
                           SizedBox(
                             height: screen.height * 0.05,
                           ),
