@@ -79,6 +79,9 @@ abstract class _RestaurantHomeStoreBase with Store {
   @computed
   String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
 
+  TextEditingController restaurantField =
+      TextEditingController(text: "Gatinho's Bar e Restaurante");
+
   @observable
   var selectedCategory = 'Açaí';
 

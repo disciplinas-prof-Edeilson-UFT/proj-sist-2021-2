@@ -9,7 +9,6 @@ import 'profile_picture_dialog.dart';
 
 class ProfileAlertDialog extends StatelessWidget {
   ProfileAlertDialog({Key? key}) : super(key: key);
-  final TextEditingController _controller = TextEditingController();
   final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
   final FocusNode _node = FocusNode();
 
@@ -17,7 +16,6 @@ class ProfileAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     _node.addListener(store.handleFocusChange);
     double _pageWidth = MediaQuery.of(context).size.width;
-    _controller.text = 'Gatinho\'s Bar e Restaurante';
     return AlertDialog(
       contentPadding: const EdgeInsets.only(top: 24),
       title: const Text('Editar perfil'),
@@ -67,7 +65,7 @@ class ProfileAlertDialog extends StatelessWidget {
                     child: Observer(builder: (context) {
                       return TextFormField(
                         focusNode: _node,
-                        controller: _controller,
+                        controller: store.restaurantField,
                         cursorColor: secondaryColor,
                         onTap: () => _node.requestFocus(),
                         validator: (value) {
