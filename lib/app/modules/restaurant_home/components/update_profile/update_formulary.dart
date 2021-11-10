@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
 class UpdateFormulary extends StatelessWidget {
   UpdateFormulary({Key? key}) : super(key: key);
@@ -20,9 +21,6 @@ class UpdateFormulary extends StatelessWidget {
 
   final _timeFormat =
       MaskTextInputFormatter(mask: '##-##', filter: {"#": RegExp(r'[0-9]')});
-
-  final _moneyFormat =
-      MaskTextInputFormatter(mask: '##.##', filter: {"#": RegExp(r'[0-9]')});
 
   Map<String, TextEditingController> controller = {
     'Tempo de preparo': TextEditingController(),
@@ -84,8 +82,15 @@ class UpdateFormulary extends StatelessWidget {
                 controller: controller['Tempo de preparo'],
                 inputFormatters: [_timeFormat],
                 validator: (value) {
+                  var values = value!.split('-');
                   if (value == null || value.isEmpty) {
                     return "Este campo não pode ficar vazio";
+                  }
+                  if (value.length < 5) {
+                    return "Campo incompleto";
+                  }
+                  if (num.parse(values[0]) > num.parse(values[1])) {
+                    return "Intervalo de tempo inválido";
                   }
                   return null;
                 },
@@ -116,20 +121,22 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                onChanged: (e) {
-                  print(controller['Taxa de entrega']!.text);
-                },
                 controller: controller['Taxa de entrega'],
-                inputFormatters: [_moneyFormat],
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  CurrencyTextInputFormatter(decimalDigits: 2, symbol: 'R\$')
+                ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Este campo não pode ficar vazio";
+                  }
+                  if (value.length > 8) {
+                    return "Valor de entrega muito alto";
                   }
                   return null;
                 },
                 cursorColor: secondaryColor,
                 decoration: const InputDecoration(
-                  suffixText: 'Reais',
                   hintText: 'R\$ 10.00',
                   focusColor: secondaryColor,
                   focusedBorder: OutlineInputBorder(

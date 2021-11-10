@@ -93,7 +93,6 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-<<<<<<< HEAD
   final _$selectedCategoryAtom =
       Atom(name: '_RestaurantHomeStoreBase.selectedCategory');
 
@@ -123,14 +122,14 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     _$iconColorAtom.reportWrite(value, super.iconColor, () {
       super.iconColor = value;
     });
-=======
+  }
+
   final _$getRestaurantAsyncAction =
       AsyncAction('_RestaurantHomeStoreBase.getRestaurant');
 
   @override
   Future<dynamic> getRestaurant() {
     return _$getRestaurantAsyncAction.run(() => super.getRestaurant());
->>>>>>> feature/R12
   }
 
   final _$toggleLoadingAsyncAction =
