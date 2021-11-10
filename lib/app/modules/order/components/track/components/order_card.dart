@@ -15,7 +15,8 @@ class OrderCard extends StatefulWidget {
 
 class _OrderCardState extends State<OrderCard> {
   final OrderStore store = Modular.get();
-  final restaurantStore = Modular.get<RestaurantStore>();
+  final restaurantStore = Modular.get<
+      RestaurantStore>(); // Como nos vamos puxar a lista nome e imagem dos restaurantes
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
@@ -26,12 +27,10 @@ class _OrderCardState extends State<OrderCard> {
           subtitle: Text('Hoje, 19:20 - 19:30', style: _textStyleTitle()),
         ),
         ListTile(
-          leading: CircleAvatar(
-            maxRadius: 20,
-            backgroundImage: NetworkImage(restaurantStore.restaurant!.image),
+          leading: const CircleAvatar(
+            backgroundImage: AssetImage('assets/images/mc.png'),
           ),
-          title: Text(restaurantStore.restaurant!.socialName,
-              style: _textStyleTitle()),
+          title: Text('McDonald\'s', style: _textStyleTitle()),
           subtitle: Text(
             'Pedido . N° 9999',
             style: _textStyleSubtitle(),
@@ -45,8 +44,11 @@ class _OrderCardState extends State<OrderCard> {
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           _btnSelect(
-            status: 'started',
-          ), //TODO change it to status: store.order!.status.toString()
+            status:
+                'started', // O botão de avalição vai aparecer caso altere esse status para completed
+          ),
+          /*TODO change it to status: store.order!.status.toString() isso vai usar a informação do firebase 
+          mas por hora nao tem como fazer por conta que precisamos do usuario */
           const BtnOrder(name: 'Acompanhar'),
         ])
       ]),

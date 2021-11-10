@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
@@ -47,7 +48,8 @@ class _InfoOrderState extends State<InfoOrder> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('Valor do pedido'),
-                  Text(store.order!.orderPrice.toString()),
+                  Text(FormatMoney.doubleToMoney(
+                      store.order!.orderPrice - store.order!.shipPrice)),
                 ],
               ),
               Row(
@@ -56,17 +58,20 @@ class _InfoOrderState extends State<InfoOrder> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [Text('Taxa de entrega'), Text('5,99 R\$')],
+                children: [
+                  const Text('Taxa de entrega'),
+                  Text(FormatMoney.doubleToMoney(store.order!.shipPrice))
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Total',
                     style: TextStyle(
                         fontFamily: 'Nunito', fontWeight: FontWeight.bold),
                   ),
-                  Text('104,99 R\$')
+                  Text(FormatMoney.doubleToMoney(store.order!.orderPrice))
                 ],
               ),
             ],

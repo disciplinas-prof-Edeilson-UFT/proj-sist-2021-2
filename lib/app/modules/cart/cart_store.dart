@@ -59,7 +59,7 @@ abstract class _CartStoreBase with Store {
 
     listaPedido = Order(
       itens: itens,
-      orderPrice: total - 12.5,
+      orderPrice: total,
       shipPrice: 12.50,
       docid: response,
     );
