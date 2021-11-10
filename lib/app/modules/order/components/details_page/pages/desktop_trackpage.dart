@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/components/map_container.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/components/status_container.dart';
-import 'package:pscomidas/app/modules/order/components/rating/rating_prodct.dart';
 
 class DesktopTrackPage extends StatefulWidget {
   const DesktopTrackPage({Key? key}) : super(key: key);
@@ -18,11 +17,19 @@ class _DesktopTrackPageState extends State<DesktopTrackPage> {
       child: Center(
         child: SizedBox(
             width: screen.width * 0.65,
-            child: Wrap(
-              spacing: 10.0,
-              children: const [
-                MapContainer(),
-                StatusContainer(),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(3),
+                  width: screen.width * 0.3,
+                  child: const MapContainer(),
+                ),
+                const VerticalDivider(width: 30, color: Colors.transparent),
+                Container(
+                  padding: const EdgeInsets.all(3),
+                  width: screen.width * 0.3,
+                  child: const StatusContainer(),
+                ),
               ],
             )),
       ),

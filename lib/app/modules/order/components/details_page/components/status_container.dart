@@ -18,11 +18,28 @@ class _StatusContainerState extends State<StatusContainer> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const AutoSizeText('Acompanhe seu pedido'),
+        const AutoSizeText(
+          'Acompanhe seu pedido',
+          presetFontSizes: [22, 16, 14],
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const Divider(
+          height: 20,
+          color: Colors.transparent,
+        ),
         CircularPercentIndicator(
           radius: 150,
-          center:
-              const Text('Status'), //TODO Text(store.order!.status.toString()),
+          center: const AutoSizeText(
+            'Status', //TODO store.order!.status.toString(),
+            presetFontSizes: [16, 14, 12],
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           percent:
               0.1, //TODO _percentIndicator(status: store.order!.status.toString()),
           backgroundColor: primaryCollor,
@@ -35,15 +52,15 @@ class _StatusContainerState extends State<StatusContainer> {
 
   // Função para consumir o banco de dados e atualizar o status e progresso do pedido
   _percentIndicator({String? status}) {
-    if (status == 'Pedido Aceito') {
+    if (status == 'started') {
       return 0.1;
-    } else if (status == 'Preparando Pedido') {
+    } else if (status == 'doing') {
       return 0.2;
-    } else if (status == 'Pedido Pronto') {
+    } else if (status == 'done') {
       return 0.4;
-    } else if (status == 'Pedido Pronto') {
+    } else if (status == 'delivering') {
       return 0.6;
-    } else if (status == 'Saiu para entrega') {
+    } else if (status == 'completed') {
       return 0.8;
     } else {
       return 1;

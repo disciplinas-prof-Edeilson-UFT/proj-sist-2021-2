@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/order/components/rating/rating_prodct.dart';
 import 'package:pscomidas/app/modules/order/components/track/components/btn_order.dart';
 import 'package:pscomidas/app/modules/order/components/track/components/cancel/cancel_order.dart';
+import 'package:pscomidas/app/modules/order/order_store.dart';
+import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 
 class OrderCard extends StatefulWidget {
   const OrderCard({Key? key}) : super(key: key);
@@ -11,6 +14,8 @@ class OrderCard extends StatefulWidget {
 }
 
 class _OrderCardState extends State<OrderCard> {
+  final OrderStore store = Modular.get();
+  final restaurantStore = Modular.get<RestaurantStore>();
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
@@ -21,10 +26,12 @@ class _OrderCardState extends State<OrderCard> {
           subtitle: Text('Hoje, 19:20 - 19:30', style: _textStyleTitle()),
         ),
         ListTile(
-          leading: const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/mc.png'),
+          leading: CircleAvatar(
+            maxRadius: 20,
+            backgroundImage: NetworkImage(restaurantStore.restaurant!.image),
           ),
-          title: Text('McDonald\'s', style: _textStyleTitle()),
+          title: Text(restaurantStore.restaurant!.socialName,
+              style: _textStyleTitle()),
           subtitle: Text(
             'Pedido . N° 9999',
             style: _textStyleSubtitle(),
@@ -38,8 +45,8 @@ class _OrderCardState extends State<OrderCard> {
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           _btnSelect(
-              status:
-                  'Pedido Aceito'), //TODO change it to status: store.order!.status.toString()
+            status: 'started',
+          ), //TODO change it to status: store.order!.status.toString()
           const BtnOrder(name: 'Acompanhar'),
         ])
       ]),
@@ -60,7 +67,7 @@ class _OrderCardState extends State<OrderCard> {
   }
 
   _btnSelect({String? status}) {
-    if (status != 'Pedido Completo') {
+    if (status != 'completed') {
       return const CancelOrder();
     } else {
       return const RatingOrder();

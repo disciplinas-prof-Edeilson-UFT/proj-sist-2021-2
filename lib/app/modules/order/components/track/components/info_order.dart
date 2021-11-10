@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/order/order_store.dart';
 
 class InfoOrder extends StatefulWidget {
   const InfoOrder({Key? key}) : super(key: key);
@@ -9,20 +11,14 @@ class InfoOrder extends StatefulWidget {
 }
 
 class _InfoOrderState extends State<InfoOrder> {
+  final OrderStore store = Modular.get();
+
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return Container(
-      padding: const EdgeInsets.all(20),
+    return SizedBox(
       width: screen.width * 0.55,
-      height: screen.height * 0.5,
-      decoration: BoxDecoration(
-          color: primaryCollor,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: const [
-            BoxShadow(
-                color: Colors.black54, blurRadius: 7, offset: Offset(0, 3))
-          ]),
+      height: screen.height * 0.28,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -49,7 +45,10 @@ class _InfoOrderState extends State<InfoOrder> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [Text('Valor do pedido'), Text('99,99 R\$')],
+                children: [
+                  const Text('Valor do pedido'),
+                  Text(store.order!.orderPrice.toString()),
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

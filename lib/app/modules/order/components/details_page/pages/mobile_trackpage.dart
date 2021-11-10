@@ -21,6 +21,10 @@ class _MobileTrackPageState extends State<MobileTrackPage> {
           child: Column(
             children: const [
               MapContainer(),
+              Divider(
+                height: 20,
+                color: Colors.transparent,
+              ),
               StatusContainer(),
             ],
           ),

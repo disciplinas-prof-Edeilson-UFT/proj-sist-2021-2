@@ -25,7 +25,6 @@ class ButtonBuilder extends StatelessWidget {
         onPressed: () {
           if (store.itens.isEmpty) {
           } else {
-            store.cadastroTeste();
             Modular.to.navigate(route);
           }
         },

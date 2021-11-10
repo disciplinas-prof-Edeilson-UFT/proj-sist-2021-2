@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/components/detail_button.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/components/background_image.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/components/store_name.dart';
-import 'package:pscomidas/app/modules/order/components/rating/rating_prodct.dart';
 
 class StoreMapBuilder extends StatelessWidget {
   const StoreMapBuilder({Key? key}) : super(key: key);
@@ -16,9 +15,9 @@ class StoreMapBuilder extends StatelessWidget {
         Container(
           color: Colors.white.withOpacity(0.7),
         ),
-        Positioned(
-          right: -20,
-          top: 160,
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.all(5),
           child: SizedBox(
             width: screen.width * 0.35,
             height: screen.height * 0.20,

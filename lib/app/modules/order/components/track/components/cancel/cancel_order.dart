@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/order/components/track/components/cancel/class/cancel_checked.dart';
+import 'package:pscomidas/app/modules/order/order_store.dart';
 
 class CancelOrder extends StatefulWidget {
   const CancelOrder({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class CancelOrder extends StatefulWidget {
 
 class _CancelOrderState extends State<CancelOrder> {
   var controller = CancelChecked();
+  final OrderStore store = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -22,71 +25,75 @@ class _CancelOrderState extends State<CancelOrder> {
                 fontFamily: 'Nunito',
                 fontSize: 15,
                 fontWeight: FontWeight.bold)),
-        onPressed: () => showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return SingleChildScrollView(
-                child: AlertDialog(
-                  title: const Text('Cancelar pedido',
-                      style: TextStyle(fontFamily: 'Nunito')),
-                  content: Column(children: [
-                    Observer(
-                      builder: (_) {
-                        return _checkList(
-                            'Errei a forma de pagamento', controller.payments);
-                      },
+        onPressed: () => {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return SingleChildScrollView(
+                    child: AlertDialog(
+                      title: const Text('Cancelar pedido',
+                          style: TextStyle(fontFamily: 'Nunito')),
+                      content: Column(children: [
+                        Observer(
+                          builder: (_) {
+                            return _checkList('Errei a forma de pagamento',
+                                controller.payments);
+                          },
+                        ),
+                        Observer(
+                          builder: (_) {
+                            return _checkList(
+                                'Endereço está incorreto', controller.adress);
+                          },
+                        ),
+                        Observer(
+                          builder: (_) {
+                            return _checkList('Prato errado ou item faltando',
+                                controller.pratoErrado);
+                          },
+                        ),
+                        Observer(
+                          builder: (_) {
+                            return _checkList(
+                                'Comprei sem querer', controller.compraErrada);
+                          },
+                        ),
+                        Observer(
+                          builder: (_) {
+                            return _checkList(
+                                'Horário de entrega é muito tarde',
+                                controller.horario);
+                          },
+                        ),
+                        Observer(
+                          builder: (_) {
+                            return _checkList('Outros', controller.outros);
+                          },
+                        )
+                      ]),
+                      actions: [
+                        TextButton(
+                          child: const Text('Cancelar',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Nunito',
+                                  color: tertiaryCollor)),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                        const SizedBox(
+                          width: 130,
+                        ),
+                        Observer(builder: (_) {
+                          return controller.confirm()
+                              ? _buttonConfirm()
+                              : Container();
+                        })
+                      ],
                     ),
-                    Observer(
-                      builder: (_) {
-                        return _checkList(
-                            'Endereço está incorreto', controller.adress);
-                      },
-                    ),
-                    Observer(
-                      builder: (_) {
-                        return _checkList('Prato errado ou item faltando',
-                            controller.pratoErrado);
-                      },
-                    ),
-                    Observer(
-                      builder: (_) {
-                        return _checkList(
-                            'Comprei sem querer', controller.compraErrada);
-                      },
-                    ),
-                    Observer(
-                      builder: (_) {
-                        return _checkList('Horário de entrega é muito tarde',
-                            controller.horario);
-                      },
-                    ),
-                    Observer(
-                      builder: (_) {
-                        return _checkList('Outros', controller.outros);
-                      },
-                    )
-                  ]),
-                  actions: [
-                    TextButton(
-                      child: const Text('Cancelar',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Nunito',
-                              color: tertiaryCollor)),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
-                    const SizedBox(
-                      width: 130,
-                    ),
-                    Observer(builder: (_) {
-                      return controller.confirm()
-                          ? _buttonConfirm()
-                          : Container();
-                    })
-                  ],
-                ),
-              );
-            }));
+                  );
+                },
+              ),
+            });
   }
 
   /// [CheckBoxs]
