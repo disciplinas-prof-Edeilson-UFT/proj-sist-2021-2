@@ -10,11 +10,9 @@ import 'profile_picture_dialog.dart';
 class ProfileAlertDialog extends StatelessWidget {
   ProfileAlertDialog({Key? key}) : super(key: key);
   final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
-  final FocusNode _node = FocusNode();
 
   @override
   Widget build(BuildContext context) {
-    _node.addListener(store.handleFocusChange);
     double _pageWidth = MediaQuery.of(context).size.width;
     return AlertDialog(
       contentPadding: const EdgeInsets.only(top: 24),
@@ -63,11 +61,15 @@ class ProfileAlertDialog extends StatelessWidget {
                   height: 50,
                   child: Expanded(
                     child: Observer(builder: (context) {
+                      store.profileAlertDialogRestaurantFieldFocus
+                          .addListener(store.handleFocusChange);
                       return TextFormField(
-                        focusNode: _node,
+                        focusNode: store.profileAlertDialogRestaurantFieldFocus,
                         controller: store.restaurantField,
                         cursorColor: secondaryColor,
-                        onTap: () => _node.requestFocus(),
+                        onTap: () => store
+                            .profileAlertDialogRestaurantFieldFocus
+                            .requestFocus(),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Este campo não pode ficar vazio";

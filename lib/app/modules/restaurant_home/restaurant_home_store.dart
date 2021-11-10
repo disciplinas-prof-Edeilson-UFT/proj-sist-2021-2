@@ -79,8 +79,17 @@ abstract class _RestaurantHomeStoreBase with Store {
   @computed
   String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
 
+  @observable
   TextEditingController restaurantField =
       TextEditingController(text: "Gatinho's Bar e Restaurante");
+
+  @observable
+  FocusNode profileAlertDialogRestaurantFieldFocus = FocusNode();
+
+  @computed
+  Color get iconColorV2 => profileAlertDialogRestaurantFieldFocus.hasFocus
+      ? secondaryColor
+      : tertiaryColor;
 
   @observable
   var selectedCategory = 'Açaí';

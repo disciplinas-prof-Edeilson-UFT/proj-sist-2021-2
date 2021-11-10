@@ -16,6 +16,13 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
       (_$toggleTextComputed ??= Computed<String>(() => super.toggleText,
               name: '_RestaurantHomeStoreBase.toggleText'))
           .value;
+  Computed<Color>? _$iconColorV2Computed;
+
+  @override
+  Color get iconColorV2 =>
+      (_$iconColorV2Computed ??= Computed<Color>(() => super.iconColorV2,
+              name: '_RestaurantHomeStoreBase.iconColorV2'))
+          .value;
 
   final _$restaurantAtom = Atom(name: '_RestaurantHomeStoreBase.restaurant');
 
@@ -90,6 +97,39 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   set isOpen(bool value) {
     _$isOpenAtom.reportWrite(value, super.isOpen, () {
       super.isOpen = value;
+    });
+  }
+
+  final _$restaurantFieldAtom =
+      Atom(name: '_RestaurantHomeStoreBase.restaurantField');
+
+  @override
+  TextEditingController get restaurantField {
+    _$restaurantFieldAtom.reportRead();
+    return super.restaurantField;
+  }
+
+  @override
+  set restaurantField(TextEditingController value) {
+    _$restaurantFieldAtom.reportWrite(value, super.restaurantField, () {
+      super.restaurantField = value;
+    });
+  }
+
+  final _$profileAlertDialogRestaurantFieldFocusAtom = Atom(
+      name: '_RestaurantHomeStoreBase.profileAlertDialogRestaurantFieldFocus');
+
+  @override
+  FocusNode get profileAlertDialogRestaurantFieldFocus {
+    _$profileAlertDialogRestaurantFieldFocusAtom.reportRead();
+    return super.profileAlertDialogRestaurantFieldFocus;
+  }
+
+  @override
+  set profileAlertDialogRestaurantFieldFocus(FocusNode value) {
+    _$profileAlertDialogRestaurantFieldFocusAtom
+        .reportWrite(value, super.profileAlertDialogRestaurantFieldFocus, () {
+      super.profileAlertDialogRestaurantFieldFocus = value;
     });
   }
 
@@ -217,9 +257,12 @@ picture: ${picture},
 showLoading: ${showLoading},
 editBackground: ${editBackground},
 isOpen: ${isOpen},
+restaurantField: ${restaurantField},
+profileAlertDialogRestaurantFieldFocus: ${profileAlertDialogRestaurantFieldFocus},
 selectedCategory: ${selectedCategory},
 iconColor: ${iconColor},
-toggleText: ${toggleText}
+toggleText: ${toggleText},
+iconColorV2: ${iconColorV2}
     ''';
   }
 }
