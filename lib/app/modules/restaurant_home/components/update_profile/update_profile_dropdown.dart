@@ -1,0 +1,100 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
+import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/register_cep.dart';
+import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/shop_register_formulary.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_page.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
+
+class UpdateProfileDropdown extends StatefulWidget {
+  const UpdateProfileDropdown({Key? key}) : super(key: key);
+
+  @override
+  _UpdateProfileDropdownState createState() => _UpdateProfileDropdownState();
+}
+
+class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
+  final RestaurantRegisterStore registerStore =
+      Modular.get<RestaurantRegisterStore>();
+  @override
+  Widget build(BuildContext context) {
+    registerStore.controller['Categoria']?.text = 'Açaí';
+
+    return Padding(
+      padding: const EdgeInsets.all(50.0),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Especialidade da loja',
+                    style: fieldLabelStyle(),
+                  ),
+                  Observer(
+                    builder: (ctx) => DropdownButton<String>(
+                      value: registerStore.selectedCategory,
+                      style: fieldLabelStyle(),
+                      icon: const Icon(Icons.expand_more),
+                      iconEnabledColor: secondaryColor,
+                      onChanged: (String? newValue) {
+                        registerStore.setSelectedCategory(newValue);
+                      },
+                      elevation: 2,
+                      underline: Container(
+                        color: secondaryColor,
+                        height: 2.0,
+                      ),
+                      items: registerStore.categories.map((value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                              color: Colors.black54,
+                              fontFamily: 'Nunito',
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              bottom: 50.0,
+            ),
+            child: Align(
+              alignment: Alignment.center,
+              child: TextButton(
+                  child: const Text(
+                    'Confirmar cadastro',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(4),
+                    minimumSize: MaterialStateProperty.all(const Size(210, 48)),
+                    backgroundColor: MaterialStateProperty.all(secondaryColor),
+                  ),
+                  onPressed: () {}),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
