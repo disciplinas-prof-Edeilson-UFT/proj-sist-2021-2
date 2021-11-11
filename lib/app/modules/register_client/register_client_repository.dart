@@ -21,6 +21,7 @@ class RegisterClientRepository {
       await userCollection.add({
         'name': user.name,
         'email': user.email,
+        'isClient': true,
       }).then((value) async {
         uid = value.id;
         await clientsCollection.doc(value.id).set({
