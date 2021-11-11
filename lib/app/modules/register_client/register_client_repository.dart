@@ -21,13 +21,13 @@ class RegisterClientRepository {
       uid = userCredential.user!.uid;
       await userCollection.doc(uid).set({
         'name': user.name,
+        'phone': user.phone,
         'email': user.email,
         'isClient': true,
       });
       await clientsCollection.doc(uid).set({
         'cards': [],
         'cpf': user.cpf,
-        'phone': user.phone,
       });
       await addressCollection.doc(uid).set({
         'address_list': [],
