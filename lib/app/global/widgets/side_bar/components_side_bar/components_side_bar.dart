@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
 
@@ -85,14 +85,7 @@ class ListTilePerfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Observer(
-        builder: (_) {
-          return CircleAvatar(
-            backgroundImage: NetworkImage(restaurantHomeStore.picture),
-            backgroundColor: secondaryColor,
-          );
-        }
-      ),
+      leading:  RestaurantProfilePicture(),
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
@@ -122,14 +115,7 @@ class ListTilePerfilMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Observer(
-        builder: (_) {
-          return CircleAvatar(
-            backgroundImage: NetworkImage(restaurantHomeStore.picture),
-            backgroundColor: secondaryColor,
-          );
-        }
-      ),
+      leading: RestaurantProfilePicture(),
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
