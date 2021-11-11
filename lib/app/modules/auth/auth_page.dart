@@ -376,7 +376,7 @@ class AuthPageState extends State<AuthPage> {
                                 'Ainda não tenho conta',
                                 style: TextStyle(
                                   fontFamily:
-                                      GoogleFonts.getFont('Roboto').fontFamily,
+                                      GoogleFonts.getFont('Nunito').fontFamily,
                                   color: Colors.red,
                                   fontSize: 16.0,
                                 ),

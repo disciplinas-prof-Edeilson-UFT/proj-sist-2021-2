@@ -73,19 +73,24 @@ abstract class _RegisterStoreBase with Store {
     }
   }
 
-  Future<void> verifyEmail() async {
+  Future<void> checkData() async {
     if (await _repository.checkData(
         emailController.text, phoneController.text, cpfController.text)) {
       goToConfirmPhone();
     } else {
       errorMessage =
-          'E-mail já cadastrado! Tente fazer login ou corrigir o e-mail.';
+          'Os dados pertencem a outra conta. Tente fazer login, ou corrigir os dados.';
     }
   }
 
   void goToConfirmPhone() async {
     await sendVerifyCode();
     Modular.to.navigate(ConfirmPhonePage.routeName);
+  }
+
+  @action
+  void termsValidation() {
+    errorMessage = 'Não podemos prosseguir se você não aceitar os termos.';
   }
 
   @action

@@ -66,7 +66,7 @@ class RegisterClientRepository {
                   element['phone'] == phone || element['cpf'] == cpf)
               .isEmpty));
     } catch (e) {
-      throw Exception('Não foi possível verificar o e-mail');
+      throw Exception('Não foi possível verificar os dados');
     }
   }
 }
