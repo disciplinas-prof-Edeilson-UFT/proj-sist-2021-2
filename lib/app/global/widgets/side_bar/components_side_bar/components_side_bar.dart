@@ -96,7 +96,8 @@ class ListTilePerfil extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
-            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+            showDialog(
+                context: context, builder: (_) => const ProfileAlertDialog());
           },
           child: const Text(
             "Editar perfil",
@@ -132,7 +133,8 @@ class ListTilePerfilMobile extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
-            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+            showDialog(
+                context: context, builder: (_) => const ProfileAlertDialog());
           },
           child: const Text(
             "Editar perfil",

@@ -8,7 +8,7 @@ import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart
 import 'profile_picture_dialog.dart';
 
 class ProfileAlertDialog extends StatefulWidget {
-  ProfileAlertDialog({Key? key}) : super(key: key);
+  const ProfileAlertDialog({Key? key}) : super(key: key);
 
   @override
   _ProfileAlertDialogState createState() => _ProfileAlertDialogState();
