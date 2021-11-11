@@ -18,21 +18,19 @@ class RegisterClientRepository {
         email: user.email,
         password: password,
       );
-      await userCollection.add({
+      uid = userCredential.user!.uid;
+      await userCollection.doc(uid).set({
         'name': user.name,
         'email': user.email,
         'isClient': true,
-      }).then((value) async {
-        uid = value.id;
-        await clientsCollection.doc(value.id).set({
-          'cards': null,
-          'cpf': user.cpf,
-          'phone': user.phone,
-        }).then(
-          (value) async => await addressCollection.doc(uid).set({
-            'address_list': [],
-          }),
-        );
+      });
+      await clientsCollection.doc(uid).set({
+        'cards': [],
+        'cpf': user.cpf,
+        'phone': user.phone,
+      });
+      await addressCollection.doc(uid).set({
+        'address_list': [],
       });
       log(userCredential.user!.uid);
       return userCredential;
