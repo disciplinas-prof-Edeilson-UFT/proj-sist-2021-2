@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/user_profile_options.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
+import 'package:pscomidas/app/modules/client_address/client_address_page.dart';
 import 'package:pscomidas/app/modules/home/home_page.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
@@ -144,7 +145,10 @@ class LocationAppBar extends StatelessWidget {
                   Icons.keyboard_arrow_down_sharp,
                   color: secondaryCollor,
                 ),
-                onTap: () {},
+                onTap: () => showDialog(
+                  context: context,
+                  builder: (context) => const ClientAddressPage(),
+                ),
               ),
             ),
           ],
