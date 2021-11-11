@@ -99,7 +99,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void handleFocusChange() {
-    if (iconColor == tertiaryColor) {
+    if (profileAlertDialogRestaurantFieldFocus.hasFocus) {
       iconColor = secondaryColor;
     } else {
       iconColor = tertiaryColor;

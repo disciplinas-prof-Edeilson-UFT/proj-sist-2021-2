@@ -7,9 +7,24 @@ import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'profile_picture_dialog.dart';
 
-class ProfileAlertDialog extends StatelessWidget {
+class ProfileAlertDialog extends StatefulWidget {
   ProfileAlertDialog({Key? key}) : super(key: key);
-  final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
+
+  @override
+  _ProfileAlertDialogState createState() => _ProfileAlertDialogState();
+}
+
+class _ProfileAlertDialogState extends State<ProfileAlertDialog> {
+  late RestaurantHomeStore store;
+
+  @override
+  void initState() {
+    super.initState();
+
+    store = Modular.get<RestaurantHomeStore>();
+    store.profileAlertDialogRestaurantFieldFocus
+        .addListener(store.handleFocusChange);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +76,6 @@ class ProfileAlertDialog extends StatelessWidget {
                   height: 50,
                   child: Expanded(
                     child: Observer(builder: (context) {
-                      store.profileAlertDialogRestaurantFieldFocus
-                          .addListener(store.handleFocusChange);
                       return TextFormField(
                         focusNode: store.profileAlertDialogRestaurantFieldFocus,
                         controller: store.restaurantField,
