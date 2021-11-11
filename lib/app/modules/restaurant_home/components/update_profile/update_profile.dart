@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_c_button.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
 import 'update_profile_picture.dart';
 
@@ -46,7 +46,8 @@ class ProfileAlertDialog extends StatelessWidget {
             ),
             Column(
               children: const [
-                UpdateProfileDropdown()
+                UpdateProfileDropdown(),
+                UpdateProfileConfirmationButton()
               ],
             ),
           ],

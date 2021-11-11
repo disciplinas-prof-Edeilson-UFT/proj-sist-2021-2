@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/register_cep.dart';
-import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/shop_register_formulary.dart';
-import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_page.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
 class UpdateProfileDropdown extends StatefulWidget {
@@ -17,8 +13,7 @@ class UpdateProfileDropdown extends StatefulWidget {
 }
 
 class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
-  final RestaurantRegisterStore registerStore =
-      Modular.get<RestaurantRegisterStore>();
+  final RestaurantHomeStore registerStore = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     registerStore.controller['Categoria']?.text = 'Açaí';
@@ -68,29 +63,6 @@ class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
                   ),
                 ],
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: 50.0,
-            ),
-            child: Align(
-              alignment: Alignment.center,
-              child: TextButton(
-                  child: const Text(
-                    'Confirmar cadastro',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
-                  style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(4),
-                    minimumSize: MaterialStateProperty.all(const Size(210, 48)),
-                    backgroundColor: MaterialStateProperty.all(secondaryColor),
-                  ),
-                  onPressed: () {}),
             ),
           ),
         ],
