@@ -19,6 +19,9 @@ abstract class _AuthStoreBase with Store {
   String errorMessage = '';
 
   @observable
+  bool emailexiste = true;
+
+  @observable
   bool logged = false;
 
   @observable
@@ -37,7 +40,11 @@ abstract class _AuthStoreBase with Store {
         logged = true;
       }
     } catch (e) {
-      errorMessage = e.toString();
+      if (e.toString() == 'Exception: O e-mail não foi encontrado') {
+        emailexiste = false;
+      } else {
+        errorMessage = e.toString();
+      }
     }
   }
 
