@@ -6,32 +6,32 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class RestaurantProfilePicture extends StatelessWidget {
-  RestaurantProfilePicture({ Key? key, this.size }) : super(key: key);
+  RestaurantProfilePicture({Key? key, this.size}) : super(key: key);
   final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
-  final loadingIndicator = const CircularProgressIndicator(color: secondaryColor,);
+  final loadingIndicator = const CircularProgressIndicator(
+    color: secondaryColor,
+  );
   final double? size;
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        if (store.picture == '') {
-          return picturePlaceholder();
-        }
-        return CachedNetworkImage(
-          imageUrl: store.picture,
-          imageBuilder: (context, imageProvider) {
-            return CircleAvatar(
-              minRadius: size,
-              backgroundImage: imageProvider,
-              backgroundColor: Colors.transparent,
-              child: store.editBackground,
-            );
-          },
-          placeholder: (context, url) => picturePlaceholder(),
-        );
+    return Observer(builder: (context) {
+      if (store.picture == '') {
+        return picturePlaceholder();
       }
-    );
+      return CachedNetworkImage(
+        imageUrl: store.picture,
+        imageBuilder: (context, imageProvider) {
+          return CircleAvatar(
+            minRadius: size,
+            backgroundImage: imageProvider,
+            backgroundColor: Colors.transparent,
+            child: store.editBackground,
+          );
+        },
+        placeholder: (context, url) => picturePlaceholder(),
+      );
+    });
   }
 
   Widget picturePlaceholder() {
@@ -41,5 +41,4 @@ class RestaurantProfilePicture extends StatelessWidget {
       child: loadingIndicator,
     );
   }
-
 }
