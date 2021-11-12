@@ -25,9 +25,7 @@ class ProfileRepository extends IProfile {
       return;
     }
     store.picture = '';
-    store.showLoading = true;
     String imgUrl;
-    store.toggleLoading();
     try {
       imgUrl = await FirebaseStorage.instance
           .ref('restaurant_profile/${store.id}')

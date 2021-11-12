@@ -17,9 +17,6 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   String picture = '';
 
-  @observable
-  bool showLoading = true;
-
   @action
   Future getRestaurant() async {
     restaurant = await ProfileRepository().getRestaurant();
@@ -29,7 +26,6 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void getProfilePictureUrl() {
     picture = restaurant?.image ?? '';
-    toggleLoading();
   }
 
   @action
@@ -58,14 +54,6 @@ abstract class _RestaurantHomeStoreBase with Store {
     } else {
       editBackground = Container();
     }
-  }
-
-  @action
-  Future<void> toggleLoading() async {
-    if (showLoading) {
-      await Future.delayed(const Duration(seconds: 3));
-    }
-    showLoading = !showLoading;
   }
 
   @observable
