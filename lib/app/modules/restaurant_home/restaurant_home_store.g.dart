@@ -157,6 +157,23 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$updateFormControllerAtom =
+      Atom(name: '_RestaurantHomeStoreBase.updateFormController');
+
+  @override
+  Map<String, TextEditingController> get updateFormController {
+    _$updateFormControllerAtom.reportRead();
+    return super.updateFormController;
+  }
+
+  @override
+  set updateFormController(Map<String, TextEditingController> value) {
+    _$updateFormControllerAtom.reportWrite(value, super.updateFormController,
+        () {
+      super.updateFormController = value;
+    });
+  }
+
   final _$getRestaurantAsyncAction =
       AsyncAction('_RestaurantHomeStoreBase.getRestaurant');
 
@@ -254,6 +271,7 @@ restaurantField: ${restaurantField},
 profileAlertDialogRestaurantFieldFocus: ${profileAlertDialogRestaurantFieldFocus},
 selectedCategory: ${selectedCategory},
 iconColor: ${iconColor},
+updateFormController: ${updateFormController},
 toggleText: ${toggleText}
     ''';
   }
