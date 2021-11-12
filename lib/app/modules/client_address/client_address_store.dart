@@ -15,14 +15,14 @@ abstract class _ClientAddressStoreBase with Store {
   void next() {
     pageController.nextPage(
       duration: const Duration(milliseconds: 500),
-      curve: Curves.linear,
+      curve: Curves.ease,
     );
   }
 
   void previous() {
     pageController.previousPage(
       duration: const Duration(milliseconds: 500),
-      curve: Curves.linear,
+      curve: Curves.ease,
     );
   }
 }

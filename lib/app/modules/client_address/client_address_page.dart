@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
 import 'package:pscomidas/app/modules/client_address/pages/pick_address.dart';
+import 'package:pscomidas/app/modules/client_address/pages/saved_addresses.dart';
 import 'package:pscomidas/app/modules/client_address/pages/search_address.dart';
 
 class ClientAddressPage extends StatefulWidget {
@@ -22,20 +23,20 @@ class ClientAddressPageState extends State<ClientAddressPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 1000,
-      height: 100,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          PageView(
-            controller: store.pageController,
-            children: const [
-              SearchAddress(),
-              PickAddress(),
-            ],
-          ),
-        ],
+    Size screen = MediaQuery.of(context).size;
+    return AlertDialog(
+      content: SizedBox(
+        width: screen.width * .4,
+        height: screen.height * .4,
+        child: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: store.pageController,
+          children: const [
+            SavedAdresses(),
+            SearchAddress(),
+            PickAddress(),
+          ],
+        ),
       ),
     );
   }
