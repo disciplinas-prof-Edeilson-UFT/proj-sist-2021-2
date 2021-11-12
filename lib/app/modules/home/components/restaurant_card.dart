@@ -47,7 +47,7 @@ class RestaurantCard extends StatelessWidget {
             style: _freeStyle,
           )
         : TextSpan(
-            text: "R\$" + FormatMoney.doubleToMoney(restaurant.deliveryPrice),
+            text: FormatMoney.doubleToMoney(restaurant.deliveryPrice),
             style: _cardInfoStyle,
           ));
     return InkWell(

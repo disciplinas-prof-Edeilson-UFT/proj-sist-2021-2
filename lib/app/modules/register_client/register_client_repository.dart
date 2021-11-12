@@ -18,20 +18,19 @@ class RegisterClientRepository {
         email: user.email,
         password: password,
       );
-      await userCollection.add({
+      uid = userCredential.user!.uid;
+      await userCollection.doc(uid).set({
         'name': user.name,
+        'phone': user.phone,
         'email': user.email,
-      }).then((value) async {
-        uid = value.id;
-        await clientsCollection.doc(value.id).set({
-          'cards': null,
-          'cpf': user.cpf,
-          'phone': user.phone,
-        }).then(
-          (value) async => await addressCollection.doc(uid).set({
-            'address_list': [],
-          }),
-        );
+        'isClient': true,
+      });
+      await clientsCollection.doc(uid).set({
+        'cards': [],
+        'cpf': user.cpf,
+      });
+      await addressCollection.doc(uid).set({
+        'address_list': [],
       });
       log(userCredential.user!.uid);
       return userCredential;
@@ -59,14 +58,25 @@ class RegisterClientRepository {
 
   Future<bool> checkData(String email, String phone, String cpf) async {
     try {
-      return await userCollection.get().then((value) async =>
-          value.docs.where((element) => element['email'] == email).isEmpty &&
-          await clientsCollection.get().then((value) => value.docs
-              .where((element) =>
-                  element['phone'] == phone || element['cpf'] == cpf)
-              .isEmpty));
+      return await userCollection.get().then(
+            (value) async => value.size > 0
+                ? value.docs
+                        .where(
+                          (element) =>
+                              element.exists &&
+                              (element['email'] == email ||
+                                  element['phone'] == phone),
+                        )
+                        .isEmpty &&
+                    await clientsCollection.get().then(
+                          (value) => value.docs
+                              .where((element) => element['cpf'] == cpf)
+                              .isEmpty,
+                        )
+                : true,
+          );
     } catch (e) {
-      throw Exception('Não foi possível verificar o e-mail');
+      throw Exception('Não foi possível verificar os dados');
     }
   }
 }

@@ -3,6 +3,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/auth/auth_store.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/auth/pages/verify_screen.dart';
@@ -162,17 +163,15 @@ class AuthPageState extends State<AuthPage> {
                 width: screen.width > 1069 ? screen.width * .45 : screen.width,
                 height: screen.height,
                 child: SingleChildScrollView(
+                  padding: const EdgeInsets.only(top: 100),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/images/logo.png",
-                            width: 220,
-                          ),
+                        children: const [
+                          LogoAppBar(),
                         ],
                       ),
                       const SizedBox(height: 40),
@@ -376,7 +375,7 @@ class AuthPageState extends State<AuthPage> {
                                 'Ainda não tenho conta',
                                 style: TextStyle(
                                   fontFamily:
-                                      GoogleFonts.getFont('Roboto').fontFamily,
+                                      GoogleFonts.getFont('Nunito').fontFamily,
                                   color: Colors.red,
                                   fontSize: 16.0,
                                 ),

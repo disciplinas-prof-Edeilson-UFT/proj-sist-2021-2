@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
+import 'package:pscomidas/app/modules/update_client_data/update_client_data_module.dart';
 
 class ItemMenuHover extends StatefulWidget {
   const ItemMenuHover({Key? key, required this.title, required this.icon})
@@ -110,7 +111,9 @@ class UserProfileOptions {
         icon: Icons.settings_outlined,
       ),
       padding: const EdgeInsets.all(5.0),
-      onTap: () {},
+      onTap: () async {
+        Modular.to.navigate(UpdateClientDataModule.routeName);
+      },
     ),
     PopupMenuItem(
       child: const ItemMenuHover(

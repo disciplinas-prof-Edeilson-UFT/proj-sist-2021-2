@@ -111,6 +111,17 @@ mixin _$RegisterClientStore on _RegisterStoreBase, Store {
       ActionController(name: '_RegisterStoreBase');
 
   @override
+  void termsValidation() {
+    final _$actionInfo = _$_RegisterStoreBaseActionController.startAction(
+        name: '_RegisterStoreBase.termsValidation');
+    try {
+      return super.termsValidation();
+    } finally {
+      _$_RegisterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void dispose() {
     final _$actionInfo = _$_RegisterStoreBaseActionController.startAction(
         name: '_RegisterStoreBase.dispose');

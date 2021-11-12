@@ -24,4 +24,20 @@ class Restaurant {
     required this.orders,
     required this.socialName,
   });
+
+  static Restaurant fromMap(id, Map<String, dynamic> map) {
+    return Restaurant(
+      id,
+      avaliation: map['avaliation'],
+      category: map['category'],
+      cupom: map['cupom'],
+      deliveryPrice: map['delivery_price'],
+      distance: map['distance'],
+      estimatedDelivery: map['estimated_delivery'],
+      image: map['image'],
+      isChampion: map['isChampion'],
+      orders: map['orders'],
+      socialName: map['social_name'],
+    );
+  }
 }
