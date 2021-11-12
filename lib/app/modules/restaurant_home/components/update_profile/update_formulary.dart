@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
@@ -22,12 +23,6 @@ class UpdateFormulary extends StatelessWidget {
   final _timeFormat =
       MaskTextInputFormatter(mask: '##-##', filter: {"#": RegExp(r'[0-9]')});
 
-  final Map<String, TextEditingController> controller = {
-    'prepare_time': TextEditingController(),
-    'delivery_price': TextEditingController(),
-    'phone_restaurant': TextEditingController(),
-  };
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,8 +35,9 @@ class UpdateFormulary extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Telefone da loja', style: _labelStyle),
-              TextFormField(
-                controller: controller['telefone'],
+              Observer(builder: (cxt){
+                return TextFormField(
+                controller: homeStore.updateFormController['telefone'],
                 inputFormatters: [_phoneFormat],
                 textCapitalization: TextCapitalization.words,
                 validator: (value) {
@@ -65,7 +61,8 @@ class UpdateFormulary extends StatelessWidget {
                   hintText: '(00) 00000-0000',
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
+              )
+              }),
             ],
           ),
         ),
@@ -79,8 +76,9 @@ class UpdateFormulary extends StatelessWidget {
                 'Tempo de preparo médio',
                 style: _labelStyle,
               ),
-              TextFormField(
-                controller: controller['Tempo de preparo'],
+              Observer(builder: (cxt){
+                return TextFormField(
+                controller: homeStore.updateFormController['Tempo de preparo'],
                 inputFormatters: [_timeFormat],
                 validator: (value) {
                   var values = value?.split('-');
@@ -108,7 +106,8 @@ class UpdateFormulary extends StatelessWidget {
                   hintText: '00-00',
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
+              )
+              }),
             ],
           ),
         ),
@@ -122,8 +121,9 @@ class UpdateFormulary extends StatelessWidget {
                 'Taxa de entrega',
                 style: _labelStyle,
               ),
-              TextFormField(
-                controller: controller['Taxa de entrega'],
+              Observer(builder: (cxt){
+                return TextFormField(
+                controller: homeStore.updateFormController['Taxa de entrega'],
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(5),
@@ -147,7 +147,8 @@ class UpdateFormulary extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
+              )
+              }),
             ],
           ),
         )

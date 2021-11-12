@@ -105,4 +105,11 @@ abstract class _RestaurantHomeStoreBase with Store {
       iconColor = tertiaryColor;
     }
   }
+
+  @observable
+  Map<String, TextEditingController> updateFormController = {
+    'prepare_time': TextEditingController(),
+    'delivery_price': TextEditingController(),
+    'phone_restaurant': TextEditingController(),
+  };
 }
