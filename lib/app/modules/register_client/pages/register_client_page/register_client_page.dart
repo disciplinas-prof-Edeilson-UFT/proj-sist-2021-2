@@ -58,7 +58,7 @@ class RegisterClientPageState extends State<RegisterClientPage> {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              store.errorMessage = '';
+              store.errorMessage = null;
               Navigator.pop(context);
             },
           ),

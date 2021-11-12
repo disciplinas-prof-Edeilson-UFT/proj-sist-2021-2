@@ -73,7 +73,7 @@ abstract class _RegisterStoreBase with Store {
       validatorPhone = await _repository.verifyCodeForWeb(
           confirmationResult, codeController.text);
     } catch (e) {
-      errorPhone = e.toString();
+      errorMessage = e.toString();
     }
   }
 
