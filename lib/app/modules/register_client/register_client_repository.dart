@@ -58,12 +58,23 @@ class RegisterClientRepository {
 
   Future<bool> checkData(String email, String phone, String cpf) async {
     try {
-      return await userCollection.get().then((value) async =>
-          value.docs.where((element) => element['email'] == email).isEmpty &&
-          await clientsCollection.get().then((value) => value.docs
-              .where((element) =>
-                  element['phone'] == phone || element['cpf'] == cpf)
-              .isEmpty));
+      return await userCollection.get().then(
+            (value) async => value.size > 0
+                ? value.docs
+                        .where(
+                          (element) =>
+                              element.exists &&
+                              (element['email'] == email ||
+                                  element['phone'] == phone),
+                        )
+                        .isEmpty &&
+                    await clientsCollection.get().then(
+                          (value) => value.docs
+                              .where((element) => element['cpf'] == cpf)
+                              .isEmpty,
+                        )
+                : true,
+          );
     } catch (e) {
       throw Exception('Não foi possível verificar os dados');
     }

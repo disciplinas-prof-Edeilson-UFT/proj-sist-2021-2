@@ -59,8 +59,12 @@ abstract class _RegisterStoreBase with Store {
 
   @action
   Future<void> sendVerifyCode() async {
-    confirmationResult =
-        await _repository.verifyNumberForWeb(phoneController.text);
+    try {
+      confirmationResult =
+          await _repository.verifyNumberForWeb(phoneController.text);
+    } on Exception catch (e) {
+      errorPhone = e.toString();
+    }
   }
 
   @action
