@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant/widgets/product_options/product_dialog.dart';
 
 class DrawerBuilder extends StatefulWidget {
@@ -108,9 +108,9 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
                         // define os botões na base do dialogo
                         ElevatedButton(
                           child: const Text("Fechar",
-                              style: TextStyle(color: primaryCollor)),
+                              style: TextStyle(color: primaryColor)),
                           style: ElevatedButton.styleFrom(
-                            primary: secondaryCollor,
+                            primary: secondaryColor,
                           ),
                           onPressed: () {
                             Navigator.of(context).pop();

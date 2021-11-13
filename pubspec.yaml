@@ -48,8 +48,19 @@ dependencies:
   js: ^0.6.3
   flutter_signin_button: ^2.0.0
   intl: ^0.17.0
+  flutter_dropzone: ^3.0.0
+  flutter_dropzone_web: ^3.0.1
+  firebase_storage: ^10.0.6
+  firebase_storage_web: ^3.0.4
+  mockito: ^5.0.16
+  rxdart: ^0.27.2
+  another_flushbar: ^1.10.24
+  google_sign_in: ^5.1.1
+  email_validator: ^2.0.1
   auto_size_text: ^3.0.0-nullsafety.0
   brasil_fields: ^1.2.0
+  google_fonts: ^2.1.0
+  google_maps_flutter_web: ^0.3.2
 
 dev_dependencies:
   flutter_test:
@@ -77,8 +88,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/images/filters/
+    - assets/images/cards/
     - assets/images/category/
+    - assets/images/filters/
+    - assets/images/product_page/
+    - assets/images/register/
     - lib/app/modules/home/assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

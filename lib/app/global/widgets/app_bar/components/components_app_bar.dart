@@ -1,10 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/components/user_profile_options.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
+import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
 
 class LogoAppBar extends StatelessWidget {
   const LogoAppBar({Key? key}) : super(key: key);
@@ -12,14 +16,18 @@ class LogoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
           child: Image.asset(
             "assets/images/logo.png",
-            width: screen.width * 0.2,
+            width: screen.width * 0.08,
           ),
-          onTap: () => Modular.to.navigate('/')),
+          onTap: () => Modular.to.navigate('/'),
+        ),
+      ),
     );
   }
 }
@@ -47,7 +55,7 @@ class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
             underline: Container(),
             style: const TextStyle(
               fontSize: 12,
-              color: tertiaryCollor,
+              color: tertiaryColor,
             ),
             items: FilterType.values
                 .map<DropdownMenuItem<String>>((value) =>
@@ -71,7 +79,7 @@ class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
                 .toList(),
             icon: const Icon(
               Icons.keyboard_arrow_down_sharp,
-              color: secondaryCollor,
+              color: secondaryColor,
             ),
           ),
         ),
@@ -94,7 +102,7 @@ class LocationAppBar extends StatelessWidget {
         const Text(
           "ENTREGAR EM",
           style: TextStyle(
-            color: tertiaryCollor,
+            color: tertiaryColor,
             fontSize: 12,
           ),
           textAlign: TextAlign.left,
@@ -106,7 +114,7 @@ class LocationAppBar extends StatelessWidget {
               child: GestureDetector(
                 child: const Icon(
                   Icons.add_location_outlined,
-                  color: secondaryCollor,
+                  color: secondaryColor,
                   size: 14,
                 ),
               ),
@@ -132,7 +140,7 @@ class LocationAppBar extends StatelessWidget {
               child: GestureDetector(
                 child: const Icon(
                   Icons.keyboard_arrow_down_sharp,
-                  color: secondaryCollor,
+                  color: secondaryColor,
                 ),
                 onTap: () {},
               ),
@@ -144,22 +152,61 @@ class LocationAppBar extends StatelessWidget {
   }
 }
 
-class UserAppBar extends StatelessWidget {
-  const UserAppBar({Key? key}) : super(key: key);
+class RegisterButton extends StatelessWidget {
+  const RegisterButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        child: Image.asset(
-          "assets/images/user.png",
-          width: screen.width * 0.02,
-        ),
-        onTap: () {},
+    return IconButton(
+      icon: const Icon(
+        Icons.edit_outlined,
+        color: Colors.red,
+        size: 30,
       ),
+      onPressed: () {
+        Modular.to.navigate(RegisterClientModule.routeName);
+      },
     );
+  }
+}
+
+class UserAppBar extends StatefulWidget {
+  const UserAppBar({Key? key}) : super(key: key);
+
+  @override
+  State<UserAppBar> createState() => _UserAppBarState();
+}
+
+class _UserAppBarState extends State<UserAppBar> {
+  final bool logged = FirebaseAuth.instance.currentUser != null ? true : false;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return logged
+        ? PopupMenuButton(
+            icon: const Icon(
+              Icons.person_outline_outlined,
+              color: Colors.red,
+            ),
+            iconSize: 30.0,
+            offset: const Offset(-5, 60),
+            itemBuilder: (_) => UserProfileOptions.listy,
+          )
+        : IconButton(
+            icon: const Icon(
+              Icons.login,
+              color: Colors.red,
+              size: 30,
+            ),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              Modular.to.navigate(AuthModule.routeName);
+            },
+          );
   }
 }
 
@@ -168,16 +215,17 @@ class CartAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        child: Image.asset(
-          "assets/images/cart.png",
-          width: screen.width * 0.02,
-        ),
-        onTap: () => Scaffold.of(context).openEndDrawer(),
+    return IconButton(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      icon: const Icon(
+        Icons.shopping_cart_outlined,
+        size: 30,
       ),
+      color: Colors.red,
+      hoverColor: Colors.transparent,
+      onPressed: () {
+        Scaffold.of(context).openEndDrawer();
+      },
     );
   }
 }
