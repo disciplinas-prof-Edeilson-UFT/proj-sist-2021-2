@@ -27,10 +27,10 @@ class _BodyOrderState extends State<BodyOrder> {
       double cardHeight;
       if (screen.width > 880) {
         cardWidth = screen.width / 4.8;
-        cardHeight = screen.height / 4.8;
+        cardHeight = screen.height / 5;
       } else {
         cardWidth = screen.width / 4.8;
-        cardHeight = screen.height / 14.8;
+        cardHeight = screen.height / 13;
       }
       return (cardWidth / cardHeight);
     }
@@ -50,7 +50,7 @@ class _BodyOrderState extends State<BodyOrder> {
                 height: 5,
               ),
               SizedBox(
-                height: 270,
+                height: 200,
                 width: screen.width,
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

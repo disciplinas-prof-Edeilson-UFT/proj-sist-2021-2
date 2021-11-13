@@ -24,8 +24,8 @@ class _TrackPageState extends State<TrackPage> {
         margin: const EdgeInsets.only(top: 12),
         child: LayoutBuilder(
           builder: (context, constraints) {
-            var largura = constraints.maxWidth;
-            if (largura < 1360) {
+            var width = constraints.maxWidth;
+            if (width < 1360) {
               return const MobileTrackPage();
             } else {
               return const DesktopTrackPage();

@@ -1,9 +1,9 @@
 import 'package:mobx/mobx.dart';
-part 'cancel_checked.g.dart';
+part 'cancel_store.g.dart';
 
-class CancelChecked = _CancelCheckedBase with _$CancelChecked;
+class CancelStore = _CancelStoreBase with _$Cancelstore;
 
-abstract class _CancelCheckedBase with Store {
+abstract class _CancelStoreBase with Store {
   // forma de pagamento errado
   @observable
   bool payments = false;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/order/components/track/components/cancel/class/cancel_checked.dart';
+import 'package:pscomidas/app/modules/order/components/track/components/cancel/class/cancel_store.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
 class CancelOrder extends StatefulWidget {
@@ -13,7 +13,7 @@ class CancelOrder extends StatefulWidget {
 }
 
 class _CancelOrderState extends State<CancelOrder> {
-  var controller = CancelChecked();
+  var controller = CancelStore();
   final OrderStore store = Modular.get();
 
   @override
@@ -78,7 +78,9 @@ class _CancelOrderState extends State<CancelOrder> {
                                   fontSize: 20,
                                   fontFamily: 'Nunito',
                                   color: tertiaryCollor)),
-                          onPressed: () => Navigator.of(context).pop(),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
                         ),
                         const SizedBox(
                           width: 130,
@@ -129,24 +131,29 @@ class _CancelOrderState extends State<CancelOrder> {
             style: TextStyle(
                 fontSize: 20, fontFamily: 'Nunito', color: secondaryCollor)),
         onPressed: () {
-          final snackBar = SnackBar(
-            backgroundColor: secondaryCollor,
-            behavior: SnackBarBehavior.floating,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            content: const Text(
-              'Pedido cancelado',
-              style:
-                  TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
-            ),
-            action: SnackBarAction(
-              textColor: primaryCollor,
-              label: 'Sair',
-              onPressed: () => {},
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
           Navigator.of(context).pop();
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text("Pedido cancelado"),
+                actions: <Widget>[
+                  // define os botões na base do dialogo
+                  ElevatedButton(
+                    child: const Text("Fechar",
+                        style: TextStyle(color: primaryCollor)),
+                    style: ElevatedButton.styleFrom(
+                      primary: secondaryCollor,
+                    ),
+                    onPressed: () {
+                      Modular.to.navigate('/');
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
         });
   }
 }

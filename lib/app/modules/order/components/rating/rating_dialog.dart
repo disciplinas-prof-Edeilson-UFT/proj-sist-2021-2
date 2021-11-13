@@ -51,6 +51,7 @@ class _RatingDialogState extends State<RatingDialog> {
           child: SizedBox(
             width: screen.width * 0.3,
             child: TextField(
+              cursorColor: secondaryCollor,
               keyboardType: TextInputType.multiline,
               controller: _comentario,
               maxLines: null,

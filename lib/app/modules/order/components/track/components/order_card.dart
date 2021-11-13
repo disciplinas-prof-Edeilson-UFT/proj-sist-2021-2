@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/order/components/rating/rating_prodct.dart';
+import 'package:pscomidas/app/modules/order/components/rating/rating_order.dart';
 import 'package:pscomidas/app/modules/order/components/track/components/btn_order.dart';
 import 'package:pscomidas/app/modules/order/components/track/components/cancel/cancel_order.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
@@ -19,7 +19,6 @@ class _OrderCardState extends State<OrderCard> {
       RestaurantStore>(); // Como nos vamos puxar a lista nome e imagem dos restaurantes
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
     return Card(
       child: Column(children: [
         ListTile(
@@ -36,9 +35,8 @@ class _OrderCardState extends State<OrderCard> {
             style: _textStyleSubtitle(),
           ),
         ),
-        Divider(
-          height: screen.width * 0.022,
-          thickness: 0.2,
+        const Divider(
+          height: 0.2,
           indent: 10,
           endIndent: 10,
         ),
@@ -69,7 +67,7 @@ class _OrderCardState extends State<OrderCard> {
   }
 
   _btnSelect({String? status}) {
-    if (status != 'completed') {
+    if (status != 'completed' && status != 'canceled') {
       return const CancelOrder();
     } else {
       return const RatingOrder();

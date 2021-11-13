@@ -6,10 +6,10 @@ import 'package:pscomidas/app/modules/cart/components/drawer/pages/empty_drawer.
 import 'package:pscomidas/app/modules/cart/components/drawer/pages/mobile_cart_drawer.dart';
 
 class CartDrawer extends StatelessWidget {
-  final double largura;
+  final double width;
   CartDrawer({
     Key? key,
-    required this.largura,
+    required this.width,
   }) : super(key: key);
 
   final CartStore store = Modular.get();
@@ -17,21 +17,21 @@ class CartDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: largura,
+      width: width,
       child: Drawer(
         child: LayoutBuilder(
           builder: (context, constraints) {
             var height = constraints.maxHeight;
             if (store.itens.isEmpty) {
-              return EmptyDrawer(largura: largura);
-            } else if (height <= 647 && largura < 1360) {
+              return EmptyDrawer(width: width);
+            } else if (height <= 647 && width < 1360) {
               return MobileCartDrawer(
                 buttonTxt: 'Continuar',
-                mobileLargura: largura,
+                mobileLargura: width,
               );
             } else {
               return DesktopCartDrawer(
-                deskLargura: largura,
+                deskLargura: width,
                 buttonTxt: 'Continuar',
               );
             }

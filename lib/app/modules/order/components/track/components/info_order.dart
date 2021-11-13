@@ -54,7 +54,7 @@ class _InfoOrderState extends State<InfoOrder> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [Text('Cupom'), Text('0,99 R\$')],
+                children: const [Text('Cupom'), Text('R\$ 0,99')],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

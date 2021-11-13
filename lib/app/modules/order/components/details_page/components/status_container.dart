@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/order/components/rating/rating_prodct.dart';
+import 'package:pscomidas/app/modules/order/components/rating/rating_order.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
 class StatusContainer extends StatefulWidget {
@@ -34,7 +34,7 @@ class _StatusContainerState extends State<StatusContainer> {
         CircularPercentIndicator(
           radius: 150,
           center: const AutoSizeText(
-            'Status', //TODO store.order!.status.toString(),
+            'Completo', //TODO store.order!.status.toString(), isso é dependente de uma ação do logista então nao tem com atualizar isso
             presetFontSizes: [16, 14, 12],
             style: TextStyle(
               fontFamily: 'Nunito',

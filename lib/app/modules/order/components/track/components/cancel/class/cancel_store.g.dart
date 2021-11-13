@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cancel_checked.dart';
+part of 'cancel_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,7 +8,7 @@ part of 'cancel_checked.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$CancelChecked on _CancelCheckedBase, Store {
+mixin _$Cancelstore on _CancelStoreBase, Store {
   final _$paymentsAtom = Atom(name: '_CancelCheckedBase.payments');
 
   @override
