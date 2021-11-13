@@ -78,39 +78,6 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-  final _$restaurantFieldAtom =
-      Atom(name: '_RestaurantHomeStoreBase.restaurantField');
-
-  @override
-  TextEditingController get restaurantField {
-    _$restaurantFieldAtom.reportRead();
-    return super.restaurantField;
-  }
-
-  @override
-  set restaurantField(TextEditingController value) {
-    _$restaurantFieldAtom.reportWrite(value, super.restaurantField, () {
-      super.restaurantField = value;
-    });
-  }
-
-  final _$profileAlertDialogRestaurantFieldFocusAtom = Atom(
-      name: '_RestaurantHomeStoreBase.profileAlertDialogRestaurantFieldFocus');
-
-  @override
-  FocusNode get profileAlertDialogRestaurantFieldFocus {
-    _$profileAlertDialogRestaurantFieldFocusAtom.reportRead();
-    return super.profileAlertDialogRestaurantFieldFocus;
-  }
-
-  @override
-  set profileAlertDialogRestaurantFieldFocus(FocusNode value) {
-    _$profileAlertDialogRestaurantFieldFocusAtom
-        .reportWrite(value, super.profileAlertDialogRestaurantFieldFocus, () {
-      super.profileAlertDialogRestaurantFieldFocus = value;
-    });
-  }
-
   final _$selectedCategoryAtom =
       Atom(name: '_RestaurantHomeStoreBase.selectedCategory');
 
@@ -139,23 +106,6 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   set iconColor(Color value) {
     _$iconColorAtom.reportWrite(value, super.iconColor, () {
       super.iconColor = value;
-    });
-  }
-
-  final _$updateFormControllerAtom =
-      Atom(name: '_RestaurantHomeStoreBase.updateFormController');
-
-  @override
-  Map<String, TextEditingController> get updateFormController {
-    _$updateFormControllerAtom.reportRead();
-    return super.updateFormController;
-  }
-
-  @override
-  set updateFormController(Map<String, TextEditingController> value) {
-    _$updateFormControllerAtom.reportWrite(value, super.updateFormController,
-        () {
-      super.updateFormController = value;
     });
   }
 
@@ -243,11 +193,8 @@ restaurant: ${restaurant},
 picture: ${picture},
 editBackground: ${editBackground},
 isOpen: ${isOpen},
-restaurantField: ${restaurantField},
-profileAlertDialogRestaurantFieldFocus: ${profileAlertDialogRestaurantFieldFocus},
 selectedCategory: ${selectedCategory},
 iconColor: ${iconColor},
-updateFormController: ${updateFormController},
 toggleText: ${toggleText}
     ''';
   }

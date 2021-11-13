@@ -67,11 +67,6 @@ abstract class _RestaurantHomeStoreBase with Store {
   @computed
   String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
 
-  @observable
-  TextEditingController restaurantField =
-      TextEditingController(text: "Gatinho's Bar e Restaurante");
-
-  @observable
   FocusNode profileAlertDialogRestaurantFieldFocus = FocusNode();
 
   @observable
@@ -94,8 +89,8 @@ abstract class _RestaurantHomeStoreBase with Store {
     }
   }
 
-  @observable
   Map<String, TextEditingController> updateFormController = {
+    'restaurant': TextEditingController(text: "Gatinho's Bar e Restaurante"),
     'prepare_time': TextEditingController(),
     'delivery_price': TextEditingController(),
     'phone_restaurant': TextEditingController(),

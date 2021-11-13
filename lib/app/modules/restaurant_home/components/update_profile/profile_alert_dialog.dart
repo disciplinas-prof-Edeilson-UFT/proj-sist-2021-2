@@ -72,7 +72,7 @@ class _ProfileAlertDialogState extends State<ProfileAlertDialog> {
                   child: Observer(builder: (context) {
                     return TextFormField(
                       focusNode: store.profileAlertDialogRestaurantFieldFocus,
-                      controller: store.restaurantField,
+                      controller: store.updateFormController['restaurant'],
                       cursorColor: secondaryColor,
                       onTap: () => store.profileAlertDialogRestaurantFieldFocus
                           .requestFocus(),

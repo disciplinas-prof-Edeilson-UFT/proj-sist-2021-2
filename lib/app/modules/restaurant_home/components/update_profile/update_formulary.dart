@@ -37,7 +37,8 @@ class UpdateFormulary extends StatelessWidget {
               Text('Telefone da loja', style: _labelStyle),
               Observer(builder: (cxt) {
                 return TextFormField(
-                  controller: homeStore.updateFormController['telefone'],
+                  controller:
+                      homeStore.updateFormController['phone_restaurant'],
                   inputFormatters: [_phoneFormat],
                   textCapitalization: TextCapitalization.words,
                   validator: (value) {
@@ -78,8 +79,7 @@ class UpdateFormulary extends StatelessWidget {
               ),
               Observer(builder: (cxt) {
                 return TextFormField(
-                  controller:
-                      homeStore.updateFormController['Tempo de preparo'],
+                  controller: homeStore.updateFormController['prepare_time'],
                   inputFormatters: [_timeFormat],
                   validator: (value) {
                     var values = value?.split('-');
@@ -124,7 +124,7 @@ class UpdateFormulary extends StatelessWidget {
               ),
               Observer(builder: (cxt) {
                 return TextFormField(
-                  controller: homeStore.updateFormController['Taxa de entrega'],
+                  controller: homeStore.updateFormController['delivery_price'],
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
                     LengthLimitingTextInputFormatter(5),
