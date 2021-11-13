@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 
 class UpdateProfileDropdown extends StatefulWidget {
   const UpdateProfileDropdown({Key? key}) : super(key: key);
@@ -13,10 +12,10 @@ class UpdateProfileDropdown extends StatefulWidget {
 }
 
 class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
-  final RestaurantHomeStore registerStore = Modular.get<RestaurantHomeStore>();
+  final RestaurantHomeStore homeStore = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
-    registerStore.controller['Categoria']?.text = 'Açaí';
+    homeStore.controller['Categoria']?.text = 'Açaí';
 
     return Padding(
       padding: const EdgeInsets.all(50.0),
@@ -35,19 +34,19 @@ class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
                   ),
                   Observer(
                     builder: (ctx) => DropdownButton<String>(
-                      value: registerStore.selectedCategory,
+                      value: homeStore.selectedCategory,
                       style: fieldLabelStyle(),
                       icon: const Icon(Icons.expand_more),
                       iconEnabledColor: secondaryColor,
                       onChanged: (String? newValue) {
-                        registerStore.setSelectedCategory(newValue);
+                        homeStore.setSelectedCategory(newValue);
                       },
                       elevation: 2,
                       underline: Container(
                         color: secondaryColor,
                         height: 2.0,
                       ),
-                      items: registerStore.categories.map((value) {
+                      items: homeStore.categories.map((value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(
