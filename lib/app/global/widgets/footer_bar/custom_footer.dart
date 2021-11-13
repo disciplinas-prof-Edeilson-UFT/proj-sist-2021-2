@@ -3,6 +3,9 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:pscomidas/app/global/widgets/footer_bar/components/desktop_footer_bar.dart';
 import 'package:pscomidas/app/global/widgets/footer_bar/components/mobile_footer_bar.dart';
 import 'package:pscomidas/app/global/widgets/footer_bar/components/tablet_footer_bar.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_module.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_page.dart';
 
 class CustomFooter extends StatefulWidget {
   const CustomFooter({Key? key}) : super(key: key);
@@ -23,6 +26,12 @@ class _CustomFooterState extends State<CustomFooter> {
     'iFood Shop',
     'iFood Card',
     'iFood Empresas'
+  ];
+  final List<String> navigator = [
+    RestaurantRegisterModule.routeName + RestaurantRegisterPage.routeName,
+    '', 
+    '', 
+    RestaurantHomeModule.routeName,
   ];
   final List<Buttons> social = [Buttons.Facebook, Buttons.Twitter];
   @override
@@ -46,6 +55,7 @@ class _CustomFooterState extends State<CustomFooter> {
           ifood: ifood,
           descubra: descubra,
           social: social,
+          navigator: navigator,
         );
       }
     });
