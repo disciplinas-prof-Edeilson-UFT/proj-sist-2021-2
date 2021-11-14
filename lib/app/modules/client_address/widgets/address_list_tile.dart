@@ -1,76 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class AddressListTile extends StatefulWidget {
-  const AddressListTile({Key? key}) : super(key: key);
+  const AddressListTile({
+    Key? key,
+    this.title,
+    this.subtitle,
+    this.onPressed,
+  }) : super(key: key);
+
+  final String? title;
+  final String? subtitle;
+  final Function()? onPressed;
 
   @override
   _AddressListTileState createState() => _AddressListTileState();
 }
 
 class _AddressListTileState extends State<AddressListTile> {
+  final ClientAddressStore store = Modular.get();
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        GestureDetector(
-          child: const ListTile(
-            leading: Icon(Icons.location_on),
-            title: Text(
-              "Universidade Federal do Tocantins",
-            ),
-            subtitle: Text("Plano Diretor Sul, Palmas - TO, Brasil"),
+    return Slidable(
+      startActionPane: ActionPane(
+        openThreshold: 0.1,
+        closeThreshold: 0.4,
+        extentRatio: 0.3,
+        motion: const ScrollMotion(),
+        children: [
+          SlidableAction(
+            icon: Icons.edit,
+            backgroundColor: Colors.transparent,
+            foregroundColor: secondaryCollor,
+            onPressed: (context) {},
           ),
+          SlidableAction(
+            icon: Icons.delete,
+            backgroundColor: Colors.transparent,
+            foregroundColor: secondaryCollor,
+            onPressed: (context) {},
+          ),
+        ],
+      ),
+      child: const MyHouse(),
+    );
+  }
+}
+
+class MyHouse extends StatefulWidget {
+  const MyHouse({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _MyHouseState createState() => _MyHouseState();
+}
+
+class _MyHouseState extends State<MyHouse> {
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      tileColor: Colors.transparent,
+      title: const Text('Casa'),
+      subtitle: const Text("Q. 208 Sul, Alameda 10, 202"),
+      leading: const Icon(
+        Icons.house,
+      ),
+      trailing: IconButton(
+        icon: const Icon(
+          Icons.more_vert,
+          color: tertiaryCollor,
         ),
-        GestureDetector(
-          child: const ListTile(
-            leading: Icon(Icons.map),
-            title: Text(
-              "Não achei meu endereço",
-              style: TextStyle(
-                color: secondaryCollor,
-              ),
-            ),
-            subtitle: Text("Buscar pelo mapa"),
-          ),
-          onTap: () {},
-        ),
-        Slidable(
-          startActionPane: ActionPane(
-            extentRatio: 0.2,
-            motion: const BehindMotion(),
-            children: [
-              SlidableAction(
-                icon: Icons.edit,
-                backgroundColor: Colors.transparent,
-                foregroundColor: secondaryCollor,
-                onPressed: (context) {},
-              ),
-              SlidableAction(
-                icon: Icons.delete,
-                backgroundColor: Colors.transparent,
-                foregroundColor: secondaryCollor,
-                onPressed: (context) {},
-              ),
-            ],
-          ),
-          child: ListTile(
-            leading: const Icon(Icons.house),
-            trailing: IconButton(
-              icon: const Icon(
-                Icons.more_vert,
-                color: tertiaryCollor,
-              ), onPressed: () {}, //=>Slidable.of(context)?.openStartActionPane(),
-            ),
-            title: const Text(
-              "Casa",
-            ),
-            subtitle: const Text("Q. 208 Sul, Alameda 10, 202"),
-            onTap: () {},
-          ),
-        ),
-      ],
+        onPressed: () {
+          Slidable.of(context)?.openStartActionPane();
+        },
+      ),
+      onTap: () {
+        Slidable.of(context)?.close();
+      },
     );
   }
 }

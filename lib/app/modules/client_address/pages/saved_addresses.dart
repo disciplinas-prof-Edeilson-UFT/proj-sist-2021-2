@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
+import 'package:pscomidas/app/modules/client_address/widgets/address_list_tile.dart';
+
+import 'package:pscomidas/app/modules/client_address/widgets/search_textfield.dart';
 
 class SavedAdresses extends StatefulWidget {
   const SavedAdresses({Key? key}) : super(key: key);
@@ -15,33 +18,38 @@ class _SavedAdressesState extends State<SavedAdresses> {
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
-    return GestureDetector(
-      onTap: store.next,
-      child: Column(
-        children: [
-          Container(
-            height: 185.0,
-            width: screen.width * .2,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage('https://i.imgur.com/50wsQ3L.jpg'),
-              ),
+    return Column(
+      children: [
+        Container(
+          height: screen.height * .3,
+          width: screen.width * .3,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.contain,
+              image: NetworkImage('https://i.imgur.com/50wsQ3L.jpg'),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Text(
-              "Onde você quer receber seu pedido?",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-              ),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            "Onde você quer receber seu pedido?",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: 18,
             ),
           ),
-        ],
-      ),
+        ),
+        SearchTextField(
+          controller: store.textController,
+          hint: 'Busque endereço e número',
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        const AddressListTile(),
+      ],
     );
   }
 }
