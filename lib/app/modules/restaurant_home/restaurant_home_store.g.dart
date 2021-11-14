@@ -63,21 +63,6 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-  final _$isOpenAtom = Atom(name: '_RestaurantHomeStoreBase.isOpen');
-
-  @override
-  bool get isOpen {
-    _$isOpenAtom.reportRead();
-    return super.isOpen;
-  }
-
-  @override
-  set isOpen(bool value) {
-    _$isOpenAtom.reportWrite(value, super.isOpen, () {
-      super.isOpen = value;
-    });
-  }
-
   final _$selectedCategoryAtom =
       Atom(name: '_RestaurantHomeStoreBase.selectedCategory');
 
@@ -91,6 +76,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   set selectedCategory(String value) {
     _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
       super.selectedCategory = value;
+    });
+  }
+
+  final _$isOpenAtom = Atom(name: '_RestaurantHomeStoreBase.isOpen');
+
+  @override
+  bool get isOpen {
+    _$isOpenAtom.reportRead();
+    return super.isOpen;
+  }
+
+  @override
+  set isOpen(bool value) {
+    _$isOpenAtom.reportWrite(value, super.isOpen, () {
+      super.isOpen = value;
     });
   }
 
@@ -115,6 +115,14 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   Future<dynamic> getRestaurant() {
     return _$getRestaurantAsyncAction.run(() => super.getRestaurant());
+  }
+
+  final _$imageReceiverAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.imageReceiver');
+
+  @override
+  Future<dynamic> imageReceiver(dynamic e) {
+    return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
   }
 
   final _$_RestaurantHomeStoreBaseActionController =
@@ -154,22 +162,22 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
-  void toggleOpen() {
+  dynamic setSelectedCategory(dynamic newValue) {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
-        name: '_RestaurantHomeStoreBase.toggleOpen');
+        name: '_RestaurantHomeStoreBase.setSelectedCategory');
     try {
-      return super.toggleOpen();
+      return super.setSelectedCategory(newValue);
     } finally {
       _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic setSelectedCategory(dynamic newValue) {
+  void toggleOpen() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
-        name: '_RestaurantHomeStoreBase.setSelectedCategory');
+        name: '_RestaurantHomeStoreBase.toggleOpen');
     try {
-      return super.setSelectedCategory(newValue);
+      return super.toggleOpen();
     } finally {
       _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -192,8 +200,8 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
 restaurant: ${restaurant},
 picture: ${picture},
 editBackground: ${editBackground},
-isOpen: ${isOpen},
 selectedCategory: ${selectedCategory},
+isOpen: ${isOpen},
 iconColor: ${iconColor},
 toggleText: ${toggleText}
     ''';
