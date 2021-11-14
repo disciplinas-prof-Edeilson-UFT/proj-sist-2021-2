@@ -14,6 +14,9 @@ abstract class _CartStoreBase with Store {
   @observable
   ObservableList<Item> itens = <Item>[].asObservable();
 
+  @observable
+  ObservableList<Item> itensPedido = <Item>[].asObservable();
+
   List<NewCard> card = [];
 
   List<DeliveryAt> address = [];
@@ -49,19 +52,35 @@ abstract class _CartStoreBase with Store {
   }
 
   @action
+  void transferirItens() {
+    for (var i = 0; i < itens.length; i++) {
+      itensPedido.add(itens[i]);
+    }
+  }
+
+  @action
+  void cleaningItemsCart() {
+    for (var i = 0; i < itens.length; i++) {
+      itens.removeAt(i);
+    }
+  }
+
+  @action
   Future cadastroTeste() async {
+    transferirItens();
     Order pedido = Order(
-      itens: itens,
+      itens: itensPedido,
       shipPrice: 12.50,
       orderPrice: total - 12.5,
     );
     var response = await orderRepository.cadastrarOrder(pedido);
 
     listaPedido = Order(
-      itens: itens,
+      itens: itensPedido,
       orderPrice: total,
       shipPrice: 12.50,
       docid: response,
     );
+    cleaningItemsCart();
   }
 }
