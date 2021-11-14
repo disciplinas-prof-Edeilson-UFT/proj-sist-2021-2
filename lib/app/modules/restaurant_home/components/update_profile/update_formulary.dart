@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_c_button.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/confirmation_button.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
@@ -35,40 +35,42 @@ class UpdateFormulary extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(
-              top: 15.0, bottom: 10.0, left: 15.0, right: 15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Telefone da loja', style: _labelStyle),
-              TextFormField(
-                controller: controller['telefone'],
-                inputFormatters: [_phoneFormat],
-                textCapitalization: TextCapitalization.words,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Este campo não pode ficar vazio";
-                  }
-                  if (value.length <= 14) {
-                    return "Digite um número de telefone válido";
-                  }
-                  return null;
-                },
-                cursorColor: secondaryColor,
-                decoration: const InputDecoration(
-                  focusColor: secondaryColor,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: secondaryColor,
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.only(
+                top: 15.0, bottom: 10.0, left: 15.0, right: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Telefone da loja', style: _labelStyle),
+                TextFormField(
+                  controller: controller['telefone'],
+                  inputFormatters: [_phoneFormat],
+                  textCapitalization: TextCapitalization.words,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Este campo não pode ficar vazio";
+                    }
+                    if (value.length <= 14) {
+                      return "Digite um número de telefone válido";
+                    }
+                    return null;
+                  },
+                  cursorColor: secondaryColor,
+                  decoration: const InputDecoration(
+                    focusColor: secondaryColor,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: secondaryColor,
+                      ),
                     ),
+                    border: OutlineInputBorder(),
+                    hintText: '(00) 00000-0000',
                   ),
-                  border: OutlineInputBorder(),
-                  hintText: '(00) 00000-0000',
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         const Padding(
@@ -160,8 +162,8 @@ class UpdateFormulary extends StatelessWidget {
         ),
         const Padding(
           padding:
-              EdgeInsets.only(top: 30.0, bottom: 10.0, left: 15.0, right: 15.0),
-          child: UpdateProfileConfirmationButton(),
+              EdgeInsets.only(top: 30.0, bottom: 30.0, left: 15.0, right: 15.0),
+          child: ConfirmationButton(),
         ),
       ],
     );

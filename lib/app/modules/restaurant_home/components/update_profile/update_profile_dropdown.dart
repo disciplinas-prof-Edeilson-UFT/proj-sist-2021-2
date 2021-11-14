@@ -19,47 +19,44 @@ class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 15.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Especialidade da loja',
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Especialidade da loja',
+                style: fieldLabelStyle(),
+              ),
+              Observer(
+                builder: (ctx) => DropdownButton<String>(
+                  value: homeStore.selectedCategory,
                   style: fieldLabelStyle(),
-                ),
-                Observer(
-                  builder: (ctx) => DropdownButton<String>(
-                    value: homeStore.selectedCategory,
-                    style: fieldLabelStyle(),
-                    icon: const Icon(Icons.expand_more),
-                    iconEnabledColor: secondaryColor,
-                    onChanged: (String? newValue) {
-                      homeStore.setSelectedCategory(newValue);
-                    },
-                    elevation: 2,
-                    underline: Container(
-                      color: secondaryColor,
-                      height: 2.0,
-                    ),
-                    items: homeStore.categories.map((value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: const TextStyle(
-                            color: Colors.black54,
-                            fontFamily: 'Nunito',
-                          ),
-                        ),
-                      );
-                    }).toList(),
+                  icon: const Icon(Icons.expand_more),
+                  iconEnabledColor: secondaryColor,
+                  onChanged: (String? newValue) {
+                    homeStore.setSelectedCategory(newValue);
+                  },
+                  elevation: 2,
+                  underline: Container(
+                    color: secondaryColor,
+                    height: 2.0,
                   ),
+                  items: homeStore.categories.map((value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontFamily: 'Nunito',
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],
