@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_c_button.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
@@ -68,6 +70,11 @@ class UpdateFormulary extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        const Padding(
+          padding:
+              EdgeInsets.only(top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+          child: UpdateProfileDropdown(),
         ),
         Padding(
           padding: const EdgeInsets.only(
@@ -150,7 +157,12 @@ class UpdateFormulary extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
+        const Padding(
+          padding:
+              EdgeInsets.only(top: 30.0, bottom: 10.0, left: 15.0, right: 15.0),
+          child: UpdateProfileConfirmationButton(),
+        ),
       ],
     );
   }

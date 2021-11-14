@@ -15,7 +15,7 @@ class _UpdateProfileConfirmationButtonState
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        bottom: 50.0,
+        bottom: 40.0,
       ),
       child: Align(
         alignment: Alignment.center,
