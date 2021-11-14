@@ -59,6 +59,8 @@ dependencies:
   email_validator: ^2.0.1
   auto_size_text: ^3.0.0-nullsafety.0
   brasil_fields: ^1.2.0
+  currency_text_input_formatter: ^2.1.5
+  cached_network_image: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +93,7 @@ flutter:
     - assets/images/filters/
     - assets/images/product_page/
     - assets/images/register/
+    - assets/images/restaurant_home/
     - lib/app/modules/home/assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
 
 class LogoSideBar extends StatelessWidget {
   const LogoSideBar({Key? key}) : super(key: key);
@@ -26,7 +27,10 @@ class LogoSideBar extends StatelessWidget {
 
 class TextButtonMenu extends StatelessWidget {
   final String option;
-  const TextButtonMenu({Key? key, required this.option}) : super(key: key);
+  final String navigator;
+  const TextButtonMenu(
+      {Key? key, required this.option, required this.navigator})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +46,7 @@ class TextButtonMenu extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        onTap: () => Modular.to.navigate(navigator),
       ),
     );
   }
@@ -49,7 +54,9 @@ class TextButtonMenu extends StatelessWidget {
 
 class TextButtonMenuMobile extends StatelessWidget {
   final String option;
-  const TextButtonMenuMobile({Key? key, required this.option})
+  final VoidCallback press;
+  const TextButtonMenuMobile(
+      {Key? key, required this.option, required this.press})
       : super(key: key);
 
   @override
@@ -66,23 +73,19 @@ class TextButtonMenuMobile extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        onTap: press,
       ),
     );
   }
 }
 
 class ListTilePerfil extends StatelessWidget {
-  const ListTilePerfil({Key? key}) : super(key: key);
-
+  ListTilePerfil({Key? key}) : super(key: key);
+  final RestaurantHomeStore restaurantHomeStore = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      //Aqui será a imagem do Upload (icon de demonstração)
-      leading: const Icon(
-        Icons.account_circle_sharp,
-        color: Colors.white,
-        size: 50,
-      ),
+      leading:  RestaurantProfilePicture(),
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
@@ -107,17 +110,12 @@ class ListTilePerfil extends StatelessWidget {
 }
 
 class ListTilePerfilMobile extends StatelessWidget {
-  const ListTilePerfilMobile({Key? key}) : super(key: key);
-
+  ListTilePerfilMobile({Key? key}) : super(key: key);
+  final RestaurantHomeStore restaurantHomeStore = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      //Aqui será a imagem do Upload (icon de demonstração)
-      leading: const Icon(
-        Icons.account_circle_sharp,
-        color: Colors.white,
-        size: 20,
-      ),
+      leading: RestaurantProfilePicture(),
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
