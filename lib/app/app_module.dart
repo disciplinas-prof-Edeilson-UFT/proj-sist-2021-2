@@ -10,6 +10,7 @@ import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/pages/track_page.dart';
 import 'package:pscomidas/app/modules/order/order_module.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
+import 'package:pscomidas/app/modules/payments/payments_module.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
@@ -51,5 +52,6 @@ class AppModule extends Module {
         module: UpdateClientDataModule()),
     // ModuleRoute(OrderModule.routeName, module: OrderModule()),
     ModuleRoute(RestaurantHomeModule.routeName, module: RestaurantHomeModule()),
+    ModuleRoute(PaymentsModule.routeName, module: PaymentsModule())
   ];
 }
