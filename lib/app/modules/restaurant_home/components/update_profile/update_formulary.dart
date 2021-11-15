@@ -38,35 +38,33 @@ class UpdateFormulary extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Telefone da loja', style: _labelStyle),
-                Observer(builder: (cxt) {
-                  return TextFormField(
-                    controller:
-                        homeStore.updateFormController['phone_restaurant'],
-                    inputFormatters: [_phoneFormat],
-                    textCapitalization: TextCapitalization.words,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Este campo não pode ficar vazio";
-                      }
-                      if (value.length <= 14) {
-                        return "Digite um número de telefone válido";
-                      }
-                      return null;
-                    },
-                    cursorColor: secondaryColor,
-                    decoration: const InputDecoration(
-                      focusColor: secondaryColor,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: secondaryColor,
-                        ),
+                TextFormField(
+                  controller:
+                      homeStore.updateFormController['phone_restaurant'],
+                  inputFormatters: [_phoneFormat],
+                  textCapitalization: TextCapitalization.words,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Este campo não pode ficar vazio";
+                    }
+                    if (value.length <= 14) {
+                      return "Digite um número de telefone válido";
+                    }
+                    return null;
+                  },
+                  cursorColor: secondaryColor,
+                  decoration: const InputDecoration(
+                    focusColor: secondaryColor,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: secondaryColor,
                       ),
-                      border: OutlineInputBorder(),
-                      hintText: '(00) 00000-0000',
                     ),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                  );
-                }),
+                    border: OutlineInputBorder(),
+                    hintText: '(00) 00000-0000',
+                  ),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
               ],
             ),
           ),
@@ -86,38 +84,36 @@ class UpdateFormulary extends StatelessWidget {
                 'Tempo de preparo médio',
                 style: _labelStyle,
               ),
-              Observer(builder: (cxt) {
-                return TextFormField(
-                  controller: homeStore.updateFormController['prepare_time'],
-                  inputFormatters: [_timeFormat],
-                  validator: (value) {
-                    var values = value?.split('-');
-                    if (value == null || value.isEmpty) {
-                      return "Este campo não pode ficar vazio";
-                    }
-                    if (value.length < 5) {
-                      return "Campo incompleto";
-                    }
-                    if (num.parse(values![0]) >= num.parse(values[1])) {
-                      return "Intervalo de tempo inválido";
-                    }
-                    return null;
-                  },
-                  cursorColor: secondaryColor,
-                  decoration: const InputDecoration(
-                    suffixText: 'minutos',
-                    focusColor: secondaryColor,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: secondaryColor,
-                      ),
+              TextFormField(
+                controller: homeStore.updateFormController['prepare_time'],
+                inputFormatters: [_timeFormat],
+                validator: (value) {
+                  var values = value?.split('-');
+                  if (value == null || value.isEmpty) {
+                    return "Este campo não pode ficar vazio";
+                  }
+                  if (value.length < 5) {
+                    return "Campo incompleto";
+                  }
+                  if (num.parse(values![0]) >= num.parse(values[1])) {
+                    return "Intervalo de tempo inválido";
+                  }
+                  return null;
+                },
+                cursorColor: secondaryColor,
+                decoration: const InputDecoration(
+                  suffixText: 'minutos',
+                  focusColor: secondaryColor,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: secondaryColor,
                     ),
-                    border: OutlineInputBorder(),
-                    hintText: '00-00',
                   ),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                );
-              }),
+                  border: OutlineInputBorder(),
+                  hintText: '00-00',
+                ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+              ),
             ],
           ),
         ),
@@ -131,34 +127,32 @@ class UpdateFormulary extends StatelessWidget {
                 'Taxa de entrega',
                 style: _labelStyle,
               ),
-              Observer(builder: (cxt) {
-                return TextFormField(
-                  controller: homeStore.updateFormController['delivery_price'],
-                  inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(5),
-                    CurrencyTextInputFormatter(decimalDigits: 2, symbol: 'R\$')
-                  ],
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Este campo não pode ficar vazio";
-                    }
-                    return null;
-                  },
-                  cursorColor: secondaryColor,
-                  decoration: const InputDecoration(
-                    hintText: 'R\$ 10.00',
-                    focusColor: secondaryColor,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: secondaryColor,
-                      ),
+              TextFormField(
+                controller: homeStore.updateFormController['delivery_price'],
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(5),
+                  CurrencyTextInputFormatter(decimalDigits: 2, symbol: 'R\$')
+                ],
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Este campo não pode ficar vazio";
+                  }
+                  return null;
+                },
+                cursorColor: secondaryColor,
+                decoration: const InputDecoration(
+                  hintText: 'R\$ 10.00',
+                  focusColor: secondaryColor,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: secondaryColor,
                     ),
-                    border: OutlineInputBorder(),
                   ),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                );
-              }),
+                  border: OutlineInputBorder(),
+                ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+              ),
             ],
           ),
         ),
