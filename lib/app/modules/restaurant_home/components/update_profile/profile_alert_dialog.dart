@@ -31,85 +31,94 @@ class _ProfileAlertDialogState extends State<ProfileAlertDialog> {
   Widget build(BuildContext context) {
     double _pageWidth = MediaQuery.of(context).size.width;
 
-    return AlertDialog(
-      contentPadding: const EdgeInsets.only(top: 24),
-      title: const Text('Editar perfil'),
-      content: SizedBox(
-        width: _pageWidth * 0.4,
-        child: Column(
-          children: [
-            Row(
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        AlertDialog(
+          contentPadding: const EdgeInsets.only(top: 24),
+          title: const Text('Editar perfil'),
+          content: SizedBox(
+            width: _pageWidth * 0.4,
+            child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: InkWell(
-                    onHover: (_isHovering) => store.editResolver(_isHovering),
-                    onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (_) => const ProfilePictureDialog());
-                    },
-                    borderRadius: BorderRadius.circular(90),
-                    child: SizedBox(
-                      height: 90,
-                      width: 90,
-                      child: Observer(builder: (_) {
-                        return Stack(
-                          children: [
-                            store.editBackground,
-                            RestaurantProfilePicture(
-                              size: 45,
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: InkWell(
+                        onHover: (_isHovering) =>
+                            store.editResolver(_isHovering),
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (_) => const ProfilePictureDialog());
+                        },
+                        borderRadius: BorderRadius.circular(90),
+                        child: SizedBox(
+                          height: 90,
+                          width: 90,
+                          child: Observer(builder: (_) {
+                            return Stack(
+                              children: [
+                                store.editBackground,
+                                RestaurantProfilePicture(
+                                  size: 45,
+                                ),
+                              ],
+                            );
+                          }),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 310,
+                      height: 50,
+                      child: Observer(builder: (context) {
+                        return TextFormField(
+                          focusNode:
+                              store.profileAlertDialogRestaurantFieldFocus,
+                          controller: store.updateFormController['restaurant'],
+                          cursorColor: secondaryColor,
+                          onTap: () => store
+                              .profileAlertDialogRestaurantFieldFocus
+                              .requestFocus(),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Este campo não pode ficar vazio";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(0, 15, 0, 10),
+                            prefixIcon: Padding(
+                              padding: const EdgeInsetsDirectional.only(
+                                  start: 8.0, end: 8.0),
+                              child: Icon(
+                                Icons.create_outlined,
+                                color: store.iconColor,
+                              ),
                             ),
-                          ],
+                            focusColor: redCollor,
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: secondaryColor,
+                              ),
+                            ),
+                            border: const UnderlineInputBorder(),
+                          ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                         );
                       }),
                     ),
-                  ),
+                  ],
                 ),
-                SizedBox(
-                  width: 310,
-                  height: 50,
-                  child: Observer(builder: (context) {
-                    return TextFormField(
-                      focusNode: store.profileAlertDialogRestaurantFieldFocus,
-                      controller: store.updateFormController['restaurant'],
-                      cursorColor: secondaryColor,
-                      onTap: () => store.profileAlertDialogRestaurantFieldFocus
-                          .requestFocus(),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Este campo não pode ficar vazio";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.fromLTRB(0, 15, 0, 10),
-                        prefixIcon: Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              start: 8.0, end: 8.0),
-                          child: Icon(
-                            Icons.create_outlined,
-                            color: store.iconColor,
-                          ),
-                        ),
-                        focusColor: redCollor,
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: secondaryColor,
-                          ),
-                        ),
-                        border: const UnderlineInputBorder(),
-                      ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                    );
-                  }),
-                ),
+                UpdateFormulary(),
               ],
             ),
-            UpdateFormulary(),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
