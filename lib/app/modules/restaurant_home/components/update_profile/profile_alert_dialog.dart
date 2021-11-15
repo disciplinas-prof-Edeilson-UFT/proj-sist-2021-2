@@ -58,41 +58,43 @@ class ProfileAlertDialog extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 310,
-                      height: 50,
+                    Expanded(
                       child: Observer(builder: (context) {
-                        return TextFormField(
-                          focusNode: _node,
-                          controller: _controller,
-                          cursorColor: secondaryColor,
-                          onTap: () => _node.requestFocus(),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Este campo não pode ficar vazio";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(0, 15, 0, 10),
-                            prefixIcon: Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  start: 8.0, end: 8.0),
-                              child: Icon(
-                                Icons.create_outlined,
-                                color: store.iconColor,
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: TextFormField(
+                            focusNode: _node,
+                            controller: _controller,
+                            cursorColor: secondaryColor,
+                            onTap: () => _node.requestFocus(),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Este campo não pode ficar vazio";
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              contentPadding:
+                                  const EdgeInsets.fromLTRB(0, 15, 0, 10),
+                              prefixIcon: Padding(
+                                padding: const EdgeInsetsDirectional.only(
+                                    start: 8.0, end: 8.0),
+                                child: Icon(
+                                  Icons.create_outlined,
+                                  color: store.iconColor,
+                                ),
                               ),
-                            ),
-                            focusColor: redCollor,
-                            focusedBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: secondaryColor,
+                              focusColor: redCollor,
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: secondaryColor,
+                                ),
                               ),
+                              border: const UnderlineInputBorder(),
                             ),
-                            border: const UnderlineInputBorder(),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
                         );
                       }),
                     ),
