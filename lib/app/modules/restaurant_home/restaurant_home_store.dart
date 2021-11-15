@@ -56,11 +56,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     }
   }
 
-  Map<String, TextEditingController> controller = {
-    'Categoria': TextEditingController(),
-  };
-
-  final categories = [
+  static final _categories = [
     'Açaí',
     'Lanches',
     'Padarias',
@@ -74,14 +70,10 @@ abstract class _RestaurantHomeStoreBase with Store {
     'Asiática',
   ];
 
-  @observable
-  var selectedCategory = 'Açaí';
+  final categories = _categories;
 
-  @action
-  setSelectedCategory(newValue) {
-    selectedCategory = newValue ?? 'Açaí';
-    controller['Categoria']!.text = newValue;
-  }
+  @observable
+  String category = _categories[0];
 
   @action
   Future imageReceiver(dynamic e) async {
