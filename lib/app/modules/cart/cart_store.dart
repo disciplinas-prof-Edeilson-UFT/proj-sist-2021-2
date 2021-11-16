@@ -60,9 +60,7 @@ abstract class _CartStoreBase with Store {
 
   @action
   void cleaningItemsCart() {
-    for (var i = 0; i < itens.length; i++) {
-      itens.removeAt(i);
-    }
+    itens.clear();
   }
 
   @action
