@@ -39,6 +39,8 @@ class AppBarButton extends StatelessWidget {
                 icon: Icon(Icons.add_to_home_screen_outlined), text: "Pedidos"),
             ItemButtomBar(
                 icon: Icon(Icons.account_circle_rounded), text: "Perfil"),
+            ItemButtomBar(
+                icon: Icon(Icons.shopping_cart_outlined), text: "Carrinho"),
           ],
         ),
       ),
