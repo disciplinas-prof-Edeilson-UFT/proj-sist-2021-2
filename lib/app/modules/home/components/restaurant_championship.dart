@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 // Feature a ser totalmente implementada.
 /*PROPOSIÇÃO DE CHAMPIONSHIP/VERIFICADO de restaurantes.
