@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/payments/components/cards_payments/btn_edit.dart';
+import 'package:pscomidas/app/modules/payments/components/cards_payments/btn_excluir.dart';
 
 class ListViewCard extends StatelessWidget {
   const ListViewCard({ Key? key }) : super(key: key);
@@ -22,126 +24,57 @@ class ListViewCard extends StatelessWidget {
       return ListView.builder(
         itemCount: 1, // numero de cartões cadastrados
         itemBuilder: (_, index) {
-          return Card(
-            child: InkWell(
-              splashColor: Colors.red.withAlpha(30),
-              onTap: () => null,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(Icons.credit_card, color: secondaryColor),
-                        SizedBox(width: screen.width * 0.02,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Cartão clonado'),
-                            Text(
-                              '... ${getLastChars('1234567812345678')}',
-                              style: const TextStyle(color: Colors.grey),
-                            ),
+          return Container(
+            height: 100,
+            child: Card(
+              child: InkWell(
+                splashColor: Colors.red.withAlpha(30),
+                onTap: () => null,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.credit_card, color: secondaryColor, size: 30,),
+                          SizedBox(width: screen.width * 0.02,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Cartão clonado',
+                                style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              Text(
+                                '... ${getLastChars('1234567812345678')}',
+                                style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      
+                        Row(
+                          children: const[
+                            BtnEdit(),
+                            BtnExcluir()
                           ],
                         ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () => showDialog<String>(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              title: const Text(
-                                'Como quer chamar o cartão?', 
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              content: const TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder()
-                                ),
-                              ),
-                              actions: [
-                                Center(
-                                  child: Column(
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          fixedSize: Size(250, 40),
-                                          primary: secondaryColor
-                                        ),
-                                        onPressed: () => Navigator.pop(context),
-                                        child: const Text('Salvar apelido'),
-                                      ),
-                                      const SizedBox(height: 10,),
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(context),
-                                        child: const Text('Cancelar'),
-                                      ),
-                                    ]
-                                  ),
-                                )
-                                
-                              ],
-                            ),
-                          ),
-                          tooltip: 'Editar',
-                          icon: const Icon(Icons.edit, color: secondaryColor,)
-                        ),
-                        IconButton(
-                          onPressed: ()=> showDialog<String>(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              title: const Text(
-                                'Quer excluir este cartão?', 
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              content: const Text(
-                                'Ao confirmar, (apelido do cartão), final (os 4 numeros finais) \n'
-                                'não estará mais disponível na sua lista de cartões salvos no site.'),
-                              actions: [
-                                Center(
-                                  child: Column(
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          fixedSize: Size(250, 40),
-                                          primary: secondaryColor
-                                        ),
-                                        onPressed: () => Navigator.pop(context),
-                                        child: const Text('Excluir cartão'),
-                                      ),
-                                      const SizedBox(height: 10,),
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(context),
-                                        child: const Text(
-                                          'Cancelar', 
-                                          style: TextStyle(color: secondaryColor),
-                                        ),
-                                      ),
-                                    ]
-                                  ),
-                                )
-                                
-                              ],
-                            ),
-                          ),
-                          tooltip: 'Deletar', 
-                          icon: const Icon(Icons.delete, color: secondaryColor)
-                        )
-                      ],
-                    )
-                  ],
+                      
+                    ],
+                  ),
                 ),
-              ),
-            )
+              )
+            ),
           );
         }
       );
