@@ -2,7 +2,6 @@ import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_b
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 
 class MobileAppBar extends StatefulWidget implements PreferredSizeWidget {

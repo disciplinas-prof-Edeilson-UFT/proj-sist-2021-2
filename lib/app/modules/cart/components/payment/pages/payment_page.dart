@@ -28,9 +28,8 @@ class _PaymentPageState extends State<PaymentPage> {
       backgroundColor: Colors.white,
       body: LayoutBuilder(
         builder: (context, constraints) {
-          var height = constraints.maxHeight;
-          var largura = constraints.maxWidth;
-          if (height <= 647 && largura < 1360) {
+          var width = constraints.maxWidth;
+          if (width < 1360) {
             return const MobilePayPage();
           } else {
             return const DesktopPayPage();
