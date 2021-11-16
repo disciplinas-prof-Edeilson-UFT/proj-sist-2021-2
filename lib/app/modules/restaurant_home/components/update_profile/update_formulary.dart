@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
@@ -24,12 +25,6 @@ class UpdateFormulary extends StatelessWidget {
   final _timeFormat =
       MaskTextInputFormatter(mask: '##-##', filter: {"#": RegExp(r'[0-9]')});
 
-  final Map<String, TextEditingController> controller = {
-    'prepare_time': TextEditingController(),
-    'delivery_price': TextEditingController(),
-    'phone_restaurant': TextEditingController(),
-  };
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,7 +39,8 @@ class UpdateFormulary extends StatelessWidget {
               children: [
                 Text('Telefone da loja', style: _labelStyle),
                 TextFormField(
-                  controller: controller['telefone'],
+                  controller:
+                      homeStore.updateFormController['phone_restaurant'],
                   inputFormatters: [_phoneFormat],
                   textCapitalization: TextCapitalization.words,
                   validator: (value) {
@@ -89,7 +85,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: controller['Tempo de preparo'],
+                controller: homeStore.updateFormController['prepare_time'],
                 inputFormatters: [_timeFormat],
                 validator: (value) {
                   var values = value?.split('-');
@@ -132,7 +128,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: controller['Taxa de entrega'],
+                controller: homeStore.updateFormController['delivery_price'],
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(5),

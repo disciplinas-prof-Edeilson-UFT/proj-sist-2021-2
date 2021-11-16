@@ -15,8 +15,6 @@ class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
   final RestaurantHomeStore homeStore = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
-    homeStore.controller['Categoria']?.text = 'Açaí';
-
     return Column(
       children: [
         Align(
@@ -30,12 +28,12 @@ class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
               ),
               Observer(
                 builder: (ctx) => DropdownButton<String>(
-                  value: homeStore.selectedCategory,
+                  value: homeStore.category,
                   style: fieldLabelStyle(),
                   icon: const Icon(Icons.expand_more),
                   iconEnabledColor: secondaryColor,
                   onChanged: (String? newValue) {
-                    homeStore.setSelectedCategory(newValue);
+                    homeStore.category = newValue ?? homeStore.categories[0];
                   },
                   elevation: 2,
                   underline: Container(

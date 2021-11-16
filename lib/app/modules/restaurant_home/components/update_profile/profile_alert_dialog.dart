@@ -8,17 +8,29 @@ import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'profile_picture_dialog.dart';
 
-class ProfileAlertDialog extends StatelessWidget {
-  ProfileAlertDialog({Key? key}) : super(key: key);
-  final TextEditingController _controller = TextEditingController();
-  final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
-  final FocusNode _node = FocusNode();
+class ProfileAlertDialog extends StatefulWidget {
+  const ProfileAlertDialog({Key? key}) : super(key: key);
+
+  @override
+  _ProfileAlertDialogState createState() => _ProfileAlertDialogState();
+}
+
+class _ProfileAlertDialogState extends State<ProfileAlertDialog> {
+  late RestaurantHomeStore store;
+
+  @override
+  void initState() {
+    super.initState();
+
+    store = Modular.get<RestaurantHomeStore>();
+    store.profileAlertDialogRestaurantFieldFocus
+        .addListener(store.handleFocusChange);
+  }
 
   @override
   Widget build(BuildContext context) {
-    _node.addListener(store.handleFocusChange);
     double _pageWidth = MediaQuery.of(context).size.width;
-    _controller.text = 'Gatinho\'s Bar e Restaurante';
+
     return ListView(
       shrinkWrap: true,
       children: [
@@ -63,10 +75,14 @@ class ProfileAlertDialog extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.only(right: 20.0),
                           child: TextFormField(
-                            focusNode: _node,
-                            controller: _controller,
+                            focusNode:
+                                store.profileAlertDialogRestaurantFieldFocus,
+                            controller:
+                                store.updateFormController['restaurant'],
                             cursorColor: secondaryColor,
-                            onTap: () => _node.requestFocus(),
+                            onTap: () => store
+                                .profileAlertDialogRestaurantFieldFocus
+                                .requestFocus(),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return "Este campo não pode ficar vazio";

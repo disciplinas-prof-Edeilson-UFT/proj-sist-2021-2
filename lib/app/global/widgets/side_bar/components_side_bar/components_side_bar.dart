@@ -81,16 +81,18 @@ class TextButtonMenuMobile extends StatelessWidget {
 
 class ListTilePerfil extends StatelessWidget {
   ListTilePerfil({Key? key}) : super(key: key);
-  final RestaurantHomeStore restaurantHomeStore = Modular.get<RestaurantHomeStore>();
+  final RestaurantHomeStore restaurantHomeStore =
+      Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading:  RestaurantProfilePicture(),
+      leading: RestaurantProfilePicture(),
       title: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
-            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+            showDialog(
+                context: context, builder: (_) => const ProfileAlertDialog());
           },
           child: const Text(
             "Editar perfil",
@@ -111,7 +113,8 @@ class ListTilePerfil extends StatelessWidget {
 
 class ListTilePerfilMobile extends StatelessWidget {
   ListTilePerfilMobile({Key? key}) : super(key: key);
-  final RestaurantHomeStore restaurantHomeStore = Modular.get<RestaurantHomeStore>();
+  final RestaurantHomeStore restaurantHomeStore =
+      Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -120,7 +123,8 @@ class ListTilePerfilMobile extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
-            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+            showDialog(
+                context: context, builder: (_) => const ProfileAlertDialog());
           },
           child: const Text(
             "Editar perfil",

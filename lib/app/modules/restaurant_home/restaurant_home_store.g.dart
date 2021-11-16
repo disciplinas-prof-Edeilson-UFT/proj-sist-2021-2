@@ -63,19 +63,18 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-  final _$selectedCategoryAtom =
-      Atom(name: '_RestaurantHomeStoreBase.selectedCategory');
+  final _$categoryAtom = Atom(name: '_RestaurantHomeStoreBase.category');
 
   @override
-  String get selectedCategory {
-    _$selectedCategoryAtom.reportRead();
-    return super.selectedCategory;
+  String get category {
+    _$categoryAtom.reportRead();
+    return super.category;
   }
 
   @override
-  set selectedCategory(String value) {
-    _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
-      super.selectedCategory = value;
+  set category(String value) {
+    _$categoryAtom.reportWrite(value, super.category, () {
+      super.category = value;
     });
   }
 
@@ -162,17 +161,6 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
-  dynamic setSelectedCategory(dynamic newValue) {
-    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
-        name: '_RestaurantHomeStoreBase.setSelectedCategory');
-    try {
-      return super.setSelectedCategory(newValue);
-    } finally {
-      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void toggleOpen() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
         name: '_RestaurantHomeStoreBase.toggleOpen');
@@ -200,7 +188,7 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
 restaurant: ${restaurant},
 picture: ${picture},
 editBackground: ${editBackground},
-selectedCategory: ${selectedCategory},
+category: ${category},
 isOpen: ${isOpen},
 iconColor: ${iconColor},
 toggleText: ${toggleText}
