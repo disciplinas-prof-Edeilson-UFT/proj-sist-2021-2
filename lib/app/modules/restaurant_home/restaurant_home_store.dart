@@ -1,5 +1,4 @@
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'restaurant_home_store.g.dart';
@@ -7,10 +6,6 @@ part 'restaurant_home_store.g.dart';
 class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
-  TextEditingController descriptonController = TextEditingController();
-
   @action
   Future imageReceiver(dynamic e) async {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
