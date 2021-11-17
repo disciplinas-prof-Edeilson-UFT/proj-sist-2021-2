@@ -112,10 +112,22 @@ abstract class _RestaurantHomeStoreBase with Store {
     }
   }
 
+  @observable
   Map<String, TextEditingController> updateFormController = {
-    'restaurant': TextEditingController(text: "Gatinho's Bar e Restaurante"),
+    'restaurant': TextEditingController(),
     'prepare_time': TextEditingController(),
     'delivery_price': TextEditingController(),
     'phone_restaurant': TextEditingController(),
   };
+
+  @action
+  void updateControllers() {
+    updateFormController['restaurant']?.text = restaurant?.socialName ?? '';
+    updateFormController['prepare_time']?.text =
+        restaurant?.estimatedDelivery ?? '';
+    updateFormController['delivery_price']?.text =
+        restaurant?.deliveryPrice.toString() ?? '';
+    updateFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
+    category = restaurant?.category ?? categories.first;
+  }
 }
