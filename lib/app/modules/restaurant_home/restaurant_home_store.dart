@@ -126,7 +126,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     updateFormController['prepare_time']?.text =
         restaurant?.estimatedDelivery ?? '';
     updateFormController['delivery_price']?.text =
-        restaurant?.deliveryPrice.toString() ?? '';
+        'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
     updateFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
     category = restaurant?.category ?? categories.first;
   }
