@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 
-class CustonTextField extends StatefulWidget {
+class CustomTextField extends StatelessWidget {
   final String? label;
 
-  const CustonTextField({
+  const CustomTextField({
     Key? key,
     required this.label,
   }) : super(key: key);
 
-  @override
-  _CustonTextFieldState createState() => _CustonTextFieldState();
-}
-
-class _CustonTextFieldState extends State<CustonTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,7 +31,7 @@ class _CustonTextFieldState extends State<CustonTextField> {
               borderSide: const BorderSide(color: secondaryColor),
               borderRadius: BorderRadius.circular(5.0),
             ),
-            hintText: widget.label,
+            hintText: label,
             hintStyle: const TextStyle(
               fontFamily: 'Nunito',
               fontSize: 14,

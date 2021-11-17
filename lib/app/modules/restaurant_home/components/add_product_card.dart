@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_button.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_text_field.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({Key? key}) : super(key: key);
@@ -63,19 +65,30 @@ class _NewProductDialogState extends State<NewProductDialog> {
         Center(
           child: Column(
             children: [
-              const CustonTextField(
+              ElevatedButton(
+                onPressed: () {
+                  ImagePicker().pickImage(source: ImageSource.gallery).then(
+                      (value) => value!
+                          .readAsBytes()
+                          .then((value) => null) //TODO Salvar na store
+                      );
+                },
+                style: ElevatedButton.styleFrom(primary: secondaryCollor),
+                child: const Text("img"),
+              ),
+              const CustomTextField(
                 label: 'Nome do produto',
               ),
-              const CustonTextField(
+              const CustomTextField(
                 label: 'Descrição do produto',
               ),
-              const CustonTextField(
+              const CustomTextField(
                 label: 'Preço do produto',
               ),
-              const CustonTextField(
+              const CustomTextField(
                 label: 'Categoria do produto',
               ),
-              const CustonTextField(
+              const CustomTextField(
                 label: 'Id do produto',
               ),
               SizedBox(
@@ -90,7 +103,9 @@ class _NewProductDialogState extends State<NewProductDialog> {
           children: [
             CustomButton(
               label: "Salvar",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
           ],
         )
