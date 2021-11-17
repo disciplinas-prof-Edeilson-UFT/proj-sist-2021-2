@@ -45,17 +45,6 @@ mixin _$RestaurantRegisterStore on _RestaurantRegisterStore, Store {
       ActionController(name: '_RestaurantRegisterStore');
 
   @override
-  Future<void>? addRestaurant() {
-    final _$actionInfo = _$_RestaurantRegisterStoreActionController.startAction(
-        name: '_RestaurantRegisterStore.addRestaurant');
-    try {
-      return super.addRestaurant();
-    } finally {
-      _$_RestaurantRegisterStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic setSelectedCategory(dynamic newValue) {
     final _$actionInfo = _$_RestaurantRegisterStoreActionController.startAction(
         name: '_RestaurantRegisterStore.setSelectedCategory');

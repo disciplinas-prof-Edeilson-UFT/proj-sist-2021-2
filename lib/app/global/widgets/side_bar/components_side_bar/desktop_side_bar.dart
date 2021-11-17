@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/buttons_side_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/components_side_bar.dart';
-
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class SideBarDesktop extends StatefulWidget {
@@ -14,8 +14,6 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-
-    final _buttons = ['Produtos', 'Pedidos', 'Avaliações', 'Sair'];
 
     return Drawer(
       elevation: 0,
@@ -40,10 +38,15 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
                 ),
                 child: ListView(
                   children: [
-                    ..._buttons.map(
+                    ...ButtonSideBar.buttons.keys.map(
                       (e) => Column(
                         children: [
-                          TextButtonMenu(option: e),
+                          TextButtonMenu(
+                            option: e,
+                            navigator: ButtonSideBar.buttons[e]?['navigator']
+                                    .toString() ??
+                                "/",
+                          ),
                           SizedBox(
                             height: screen.height * 0.05,
                           ),
@@ -76,3 +79,5 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
     );
   }
 }
+
+class Dynamic {}

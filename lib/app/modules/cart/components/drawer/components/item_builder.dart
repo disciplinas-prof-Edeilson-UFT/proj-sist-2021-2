@@ -36,7 +36,7 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
             title: AutoSizeText(
               widget.model.product.name.toString(),
               textAlign: TextAlign.center,
-              presetFontSizes: const [20, 16],
+              presetFontSizes: const [20, 14],
               style: const TextStyle(
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w600,

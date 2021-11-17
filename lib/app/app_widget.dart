@@ -8,7 +8,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Slidy',
+      title: 'pscomidas',
       theme: ThemeData(primarySwatch: Colors.blue),
     ).modular();
   }

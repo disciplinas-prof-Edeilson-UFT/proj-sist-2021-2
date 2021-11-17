@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pscomidas/app/global/models/entities/item.dart';
 import 'package:pscomidas/app/global/models/enums/order_status.dart';
 
 class Order {
-  final List<Item> itens;
+  final List<dynamic> itens; //List<Item>
   final double shipPrice;
   final double orderPrice;
   final OrderType? status;

@@ -59,6 +59,10 @@ dependencies:
   email_validator: ^2.0.1
   auto_size_text: ^3.0.0-nullsafety.0
   brasil_fields: ^1.2.0
+  flutter_rating_bar: ^4.0.0
+  percent_indicator: ^3.4.0
+  google_fonts: ^2.1.0
+  google_maps_flutter_web: ^0.3.2
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +92,7 @@ flutter:
     - assets/images/
     - assets/images/cards/
     - assets/images/category/
+    - assets/images/track_order/
     - assets/images/filters/
     - assets/images/product_page/
     - assets/images/register/

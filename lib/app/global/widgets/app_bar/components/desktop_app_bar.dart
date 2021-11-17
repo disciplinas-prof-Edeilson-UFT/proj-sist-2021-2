@@ -69,9 +69,7 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
       centerTitle: false,
       actions: [
         const UserAppBar(),
-        SizedBox(
-          width: screen.width * 0.02,
-        ),
+        SizedBox(width: screen.width * 0.02),
         const CartAppBar(),
         SizedBox(
           width: screen.width * 0.03,

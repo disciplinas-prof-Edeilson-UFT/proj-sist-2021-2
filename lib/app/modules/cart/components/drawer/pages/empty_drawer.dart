@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class EmptyDrawer extends StatelessWidget {
-  final double largura;
-  const EmptyDrawer({Key? key, required this.largura}) : super(key: key);
+  final double width;
+  const EmptyDrawer({Key? key, required this.width}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

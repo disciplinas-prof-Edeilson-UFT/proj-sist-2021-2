@@ -25,7 +25,7 @@ class DraewDownside extends StatelessWidget {
         ),
         Container(
           margin: const EdgeInsets.only(top: 20),
-          child: Order(auxWidth: auxWidth),
+          child: OrderResume(auxWidth: auxWidth),
         ),
         Container(
           margin: const EdgeInsets.only(top: 20),

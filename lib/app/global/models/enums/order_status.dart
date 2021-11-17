@@ -4,6 +4,7 @@ enum OrderType {
   done,
   delivering,
   completed,
+  canceled,
 }
 
 extension OrderStatus on OrderType {
@@ -19,6 +20,8 @@ extension OrderStatus on OrderType {
         return 'Saiu para entrega';
       case OrderType.completed:
         return 'Pedido Completo';
+      case OrderType.canceled:
+        return 'Pedido Cancelado';
       default:
         return null;
     }
@@ -36,6 +39,8 @@ extension OrderStatus on OrderType {
         return 'delivering';
       case OrderType.completed:
         return 'completed';
+      case OrderType.canceled:
+        return 'canceled';
       default:
         return '';
     }
