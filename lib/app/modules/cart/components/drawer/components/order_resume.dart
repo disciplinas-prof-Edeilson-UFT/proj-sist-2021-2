@@ -4,9 +4,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 
-class Order extends StatelessWidget {
+class OrderResume extends StatelessWidget {
   final double auxWidth;
-  Order({
+  OrderResume({
     Key? key,
     required this.auxWidth,
   }) : super(key: key);

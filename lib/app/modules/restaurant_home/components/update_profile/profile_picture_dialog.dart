@@ -49,7 +49,8 @@ class _UploadImageDialogState extends State<ProfilePictureDialog> {
                   ),
                   ElevatedButton.icon(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(secondaryColor),
+                      backgroundColor:
+                          MaterialStateProperty.all(secondaryColor),
                     ),
                     onPressed: () async {
                       final event = await controller.pickFiles();
@@ -61,7 +62,10 @@ class _UploadImageDialogState extends State<ProfilePictureDialog> {
                     ),
                     label: const Text("Procurar Arquivo"),
                   ),
-                  Text('.jpg ou .png', style: TextStyle(color: Colors.grey[600], fontSize: 12),),
+                  Text(
+                    '.jpg ou .png',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
                 ],
               ),
             )

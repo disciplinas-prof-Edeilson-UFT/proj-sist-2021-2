@@ -10,11 +10,17 @@ class RestaurantHomeModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (context, args) => const RestaurantHomePage(), children: [
-          ChildRoute('/products', child: (context, args) => const ProductPage()),
-          ChildRoute('/orders', child: (context, args) => const OrdersPage()),
-          ChildRoute('/avaliations', child: (context, args) => const AvaliationsPage()),
-          ChildRoute('/plans', child: (context, args) => const RestaurantPlanPage()),
-        ]),
+        ChildRoute('/',
+            child: (context, args) => const RestaurantHomePage(),
+            children: [
+              ChildRoute(ProductPage.routeName,
+                  child: (context, args) => const ProductPage()),
+              ChildRoute(OrdersPage.routeName,
+                  child: (context, args) => const OrdersPage()),
+              ChildRoute(AvaliationsPage.routeName,
+                  child: (context, args) => const AvaliationsPage()),
+              ChildRoute(RestaurantPlanPage.routeName, 
+                child: (context, args) => const RestaurantPlanPage()),
+            ]),
       ];
 }

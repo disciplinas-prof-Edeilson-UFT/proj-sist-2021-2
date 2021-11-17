@@ -14,9 +14,15 @@ abstract class _CartStoreBase with Store {
   @observable
   ObservableList<Item> itens = <Item>[].asObservable();
 
+  @observable
+  ObservableList<Item> itensPedido = <Item>[].asObservable();
+
   List<NewCard> card = [];
 
   List<DeliveryAt> address = [];
+
+  @observable
+  Order? listaPedido;
 
   @action
   void addItem(Item item) {
@@ -45,12 +51,34 @@ abstract class _CartStoreBase with Store {
     return subtotal + 12.5;
   }
 
+  @action
+  void transferirItens() {
+    for (var i = 0; i < itens.length; i++) {
+      itensPedido.add(itens[i]);
+    }
+  }
+
+  @action
+  void cleaningItemsCart() {
+    itens.clear();
+  }
+
+  @action
   Future cadastroTeste() async {
+    transferirItens();
     Order pedido = Order(
-      itens: itens,
+      itens: itensPedido,
       shipPrice: 12.50,
       orderPrice: total - 12.5,
     );
-    await orderRepository.cadastrarOrder(pedido);
+    var response = await orderRepository.cadastrarOrder(pedido);
+
+    listaPedido = Order(
+      itens: itensPedido,
+      orderPrice: total,
+      shipPrice: 12.50,
+      docid: response,
+    );
+    cleaningItemsCart();
   }
 }

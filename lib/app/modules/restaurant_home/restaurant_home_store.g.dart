@@ -47,21 +47,6 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-  final _$showLoadingAtom = Atom(name: '_RestaurantHomeStoreBase.showLoading');
-
-  @override
-  bool get showLoading {
-    _$showLoadingAtom.reportRead();
-    return super.showLoading;
-  }
-
-  @override
-  set showLoading(bool value) {
-    _$showLoadingAtom.reportWrite(value, super.showLoading, () {
-      super.showLoading = value;
-    });
-  }
-
   final _$editBackgroundAtom =
       Atom(name: '_RestaurantHomeStoreBase.editBackground');
 
@@ -75,6 +60,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   set editBackground(Widget value) {
     _$editBackgroundAtom.reportWrite(value, super.editBackground, () {
       super.editBackground = value;
+    });
+  }
+
+  final _$categoryAtom = Atom(name: '_RestaurantHomeStoreBase.category');
+
+  @override
+  String get category {
+    _$categoryAtom.reportRead();
+    return super.category;
+  }
+
+  @override
+  set category(String value) {
+    _$categoryAtom.reportWrite(value, super.category, () {
+      super.category = value;
     });
   }
 
@@ -132,12 +132,12 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     return _$getRestaurantAsyncAction.run(() => super.getRestaurant());
   }
 
-  final _$toggleLoadingAsyncAction =
-      AsyncAction('_RestaurantHomeStoreBase.toggleLoading');
+  final _$imageReceiverAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.imageReceiver');
 
   @override
-  Future<void> toggleLoading() {
-    return _$toggleLoadingAsyncAction.run(() => super.toggleLoading());
+  Future<dynamic> imageReceiver(dynamic e) {
+    return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
   }
 
   final _$getRestaurantPlanAsyncAction =
@@ -218,12 +218,23 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  void handleFocusChange() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.handleFocusChange');
+    try {
+      return super.handleFocusChange();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 restaurant: ${restaurant},
 picture: ${picture},
-showLoading: ${showLoading},
 editBackground: ${editBackground},
+category: ${category},
 isOpen: ${isOpen},
 selectedPlan: ${selectedPlan},
 actualPlan: ${actualPlan},
