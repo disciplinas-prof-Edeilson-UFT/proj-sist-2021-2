@@ -33,14 +33,14 @@ class ConfirmationButton extends StatelessWidget {
   }
 }
 
-class NextButton extends StatefulWidget {
-  const NextButton({ Key? key }) : super(key: key);
+class NextIcon extends StatefulWidget {
+  const NextIcon({ Key? key }) : super(key: key);
 
   @override
-  _NextButtonState createState() => _NextButtonState();
+  _NextIconState createState() => _NextIconState();
 }
 
-class _NextButtonState extends State<NextButton> {
+class _NextIconState extends State<NextIcon> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,7 +51,7 @@ class _NextButtonState extends State<NextButton> {
                 child: const Icon(
                   Icons.arrow_forward_ios_outlined,
                   color: secondaryColor,
-                  size: 90,
+                  size: 85,
                 ),),),);  
     
   }
