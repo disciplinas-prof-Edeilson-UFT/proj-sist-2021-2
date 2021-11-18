@@ -65,7 +65,7 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
               color: redCollor,
               width: double.maxFinite,
               height: screen.height * 0.1,
-              child: const ListTilePerfil(),
+              child: ListTilePerfil(),
             ),
             Container(
               color: Colors.white,
