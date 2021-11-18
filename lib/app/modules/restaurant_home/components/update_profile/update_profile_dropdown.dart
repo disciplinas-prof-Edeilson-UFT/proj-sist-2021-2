@@ -17,44 +17,47 @@ class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Especialidade da loja',
-                style: fieldLabelStyle(),
-              ),
-              Observer(
-                builder: (ctx) => DropdownButton<String>(
-                  value: homeStore.category,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.01),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Especialidade da loja',
                   style: fieldLabelStyle(),
-                  icon: const Icon(Icons.expand_more),
-                  iconEnabledColor: secondaryColor,
-                  onChanged: (String? newValue) {
-                    homeStore.category = newValue ?? homeStore.categories[0];
-                  },
-                  elevation: 2,
-                  underline: Container(
-                    color: secondaryColor,
-                    height: 2.0,
-                  ),
-                  items: homeStore.categories.map((value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                          color: Colors.black54,
-                          fontFamily: 'Nunito',
-                        ),
-                      ),
-                    );
-                  }).toList(),
                 ),
-              ),
-            ],
+                Observer(
+                  builder: (ctx) => DropdownButton<String>(
+                    value: homeStore.category,
+                    style: fieldLabelStyle(),
+                    icon: const Icon(Icons.expand_more),
+                    iconEnabledColor: secondaryColor,
+                    onChanged: (String? newValue) {
+                      homeStore.category = newValue ?? homeStore.categories[0];
+                    },
+                    elevation: 2,
+                    underline: Container(
+                      color: secondaryColor,
+                      height: 2.0,
+                    ),
+                    items: homeStore.categories.map((value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(
+                            color: Colors.black54,
+                            fontFamily: 'Nunito',
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

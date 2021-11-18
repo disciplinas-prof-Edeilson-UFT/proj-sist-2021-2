@@ -69,11 +69,7 @@ class UpdateFormulary extends StatelessWidget {
             ),
           ),
         ),
-        const Padding(
-          padding:
-              EdgeInsets.only(top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
-          child: UpdateProfileDropdown(),
-        ),
+        
         Padding(
           padding: const EdgeInsets.only(
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
@@ -84,35 +80,42 @@ class UpdateFormulary extends StatelessWidget {
                 'Tempo de preparo médio',
                 style: _labelStyle,
               ),
-              TextFormField(
-                controller: homeStore.updateFormController['prepare_time'],
-                inputFormatters: [_timeFormat],
-                validator: (value) {
-                  var values = value?.split('-');
-                  if (value == null || value.isEmpty) {
-                    return "Este campo não pode ficar vazio";
-                  }
-                  if (value.length < 5) {
-                    return "Campo incompleto";
-                  }
-                  if (num.parse(values![0]) >= num.parse(values[1])) {
-                    return "Intervalo de tempo inválido";
-                  }
-                  return null;
-                },
-                cursorColor: secondaryColor,
-                decoration: const InputDecoration(
-                  suffixText: 'minutos',
-                  focusColor: secondaryColor,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: secondaryColor,
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: homeStore.updateFormController['prepare_time'],
+                      inputFormatters: [_timeFormat],
+                      validator: (value) {
+                        var values = value?.split('-');
+                        if (value == null || value.isEmpty) {
+                          return "Este campo não pode ficar vazio";
+                        }
+                        if (value.length < 5) {
+                          return "Campo incompleto";
+                        }
+                        if (num.parse(values![0]) >= num.parse(values[1])) {
+                          return "Intervalo de tempo inválido";
+                        }
+                        return null;
+                      },
+                      cursorColor: secondaryColor,
+                      decoration: const InputDecoration(
+                        suffixText: 'min',
+                        focusColor: secondaryColor,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: secondaryColor,
+                          ),
+                        ),
+                        border: OutlineInputBorder(),
+                        hintText: '00-00',
+                      ),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                   ),
-                  border: OutlineInputBorder(),
-                  hintText: '00-00',
-                ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                  const UpdateProfileDropdown(),
+                ],
               ),
             ],
           ),
