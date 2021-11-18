@@ -44,8 +44,7 @@ class _ProfileAlertDialogState extends State<ProfileAlertDialog> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: InkWell(
-                      onHover: (_isHovering) =>
-                          store.editResolver(_isHovering),
+                      onHover: (_isHovering) => store.editResolver(_isHovering),
                       onTap: () {
                         showDialog(
                             context: context,
@@ -75,8 +74,7 @@ class _ProfileAlertDialogState extends State<ProfileAlertDialog> {
                         child: TextFormField(
                           focusNode:
                               store.profileAlertDialogRestaurantFieldFocus,
-                          controller:
-                              store.updateFormController['restaurant'],
+                          controller: store.updateFormController['restaurant'],
                           cursorColor: secondaryColor,
                           onTap: () => store
                               .profileAlertDialogRestaurantFieldFocus
@@ -106,8 +104,7 @@ class _ProfileAlertDialogState extends State<ProfileAlertDialog> {
                             ),
                             border: const UnderlineInputBorder(),
                           ),
-                          autovalidateMode:
-                              AutovalidateMode.onUserInteraction,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                         ),
                       );
                     }),
