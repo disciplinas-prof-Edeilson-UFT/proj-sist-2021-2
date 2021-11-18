@@ -69,7 +69,6 @@ class UpdateFormulary extends StatelessWidget {
             ),
           ),
         ),
-        
         Padding(
           padding: const EdgeInsets.only(
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
@@ -84,7 +83,8 @@ class UpdateFormulary extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
-                      controller: homeStore.updateFormController['prepare_time'],
+                      controller:
+                          homeStore.updateFormController['prepare_time'],
                       inputFormatters: [_timeFormat],
                       validator: (value) {
                         var values = value?.split('-');

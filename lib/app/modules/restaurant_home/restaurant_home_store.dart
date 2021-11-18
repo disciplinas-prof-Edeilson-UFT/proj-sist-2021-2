@@ -4,6 +4,8 @@ import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/home_field.dart';
+
 part 'restaurant_home_store.g.dart';
 
 class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
@@ -56,6 +58,17 @@ abstract class _RestaurantHomeStoreBase with Store {
     }
   }
 
+  Map<String, TextEditingController> controller = {
+    'CEP': TextEditingController(),
+    'Estado': TextEditingController(),
+    'Cidade': TextEditingController(),
+    'Bairro': TextEditingController(),
+    'Endereço': TextEditingController(),
+    'Número': TextEditingController(),
+    'Complemento (Opcional)': TextEditingController(),
+  };
+  final formKey = GlobalKey<FormState>();
+  final fields = HomeField.fields;
   static final _categories = [
     'Açaí',
     'Lanches',
