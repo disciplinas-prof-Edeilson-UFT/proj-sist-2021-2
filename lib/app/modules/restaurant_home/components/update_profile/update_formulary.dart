@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/components_profile_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
@@ -37,7 +38,10 @@ class UpdateFormulary extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Telefone da loja', style: _labelStyle),
-                TextFormField(
+                Row(
+                  children: [
+                    Expanded(
+                child: TextFormField(
                   controller:
                       homeStore.updateFormController['phone_restaurant'],
                   inputFormatters: [_phoneFormat],
@@ -63,11 +67,14 @@ class UpdateFormulary extends StatelessWidget {
                     hintText: '(00) 00000-0000',
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),),
+                 const UpdateProfileDropdown(),
+              ],
                 ),
               ],
-            ),
+            
           ),
-        ),
+        ),),//fim
         
         Padding(
           padding: const EdgeInsets.only(
@@ -113,7 +120,11 @@ class UpdateFormulary extends StatelessWidget {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                   ),
-                  const UpdateProfileDropdown(),
+                   Row(
+                    children: [
+                      NextButton(), 
+                    ] 
+                  ),
                 ],
               ),
             ],
@@ -121,7 +132,7 @@ class UpdateFormulary extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(
-              top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+              top: 10.0, bottom: 10.0, left: 15.0, right: 12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -158,15 +169,19 @@ class UpdateFormulary extends StatelessWidget {
             ],
           ),
         ),
-        const Padding(
-          padding:
-              EdgeInsets.only(top: 30.0, bottom: 5.0, left: 15.0, right: 15.0),
-          child: ConfirmationButton(),
-        ),
-        const Padding(
-          padding:
-              EdgeInsets.only(top: 2, bottom: 5.0, left: 15.0, right: 15.0),
-          child: NextButton(),
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 30.0,
+            bottom: 30.0,
+            left: 15.0,
+            right: 15.0,
+          ),
+          child: ConfirmationButton(
+            onPressed: () async {
+              await ProfileRepository().setRestaurant(homeStore.restaurant!);
+              Navigator.of(context).pop();
+            },
+          ),
         ),
       ],
     );

@@ -6,6 +6,7 @@ class Restaurant {
   final double deliveryPrice;
   final double distance;
   final String estimatedDelivery;
+  final String phone;
   final String image;
   final bool isChampion;
   final int orders;
@@ -19,6 +20,7 @@ class Restaurant {
     required this.deliveryPrice,
     required this.distance,
     required this.estimatedDelivery,
+    required this.phone,
     required this.image,
     required this.isChampion,
     required this.orders,
@@ -34,6 +36,7 @@ class Restaurant {
       deliveryPrice: map['delivery_price'],
       distance: map['distance'],
       estimatedDelivery: map['estimated_delivery'],
+      phone: map['phone_restaurant'],
       image: map['image'],
       isChampion: map['isChampion'],
       orders: map['orders'],
