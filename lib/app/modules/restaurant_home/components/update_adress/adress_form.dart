@@ -30,7 +30,7 @@ class AdressForm extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(
-          top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+          top: 10.0, bottom: 10.0, left: 20.0, right: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
