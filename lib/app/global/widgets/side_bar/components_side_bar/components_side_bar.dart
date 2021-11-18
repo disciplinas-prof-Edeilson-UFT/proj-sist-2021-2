@@ -93,7 +93,11 @@ class ListTilePerfil extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             showDialog(
-                context: context, builder: (_) => const ManagementDialog());
+                context: context,
+                builder: (_) {
+                  restaurantHomeStore.updateControllers();
+                  return const ProfileAlertDialog();
+                });
           },
           child: const Text(
             "Editar perfil",
