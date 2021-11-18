@@ -26,7 +26,10 @@ class LogoSideBar extends StatelessWidget {
 
 class TextButtonMenu extends StatelessWidget {
   final String option;
-  const TextButtonMenu({Key? key, required this.option}) : super(key: key);
+  final String navigator;
+  const TextButtonMenu(
+      {Key? key, required this.option, required this.navigator})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +45,7 @@ class TextButtonMenu extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        onTap: () => Modular.to.navigate(navigator),
       ),
     );
   }
@@ -49,7 +53,9 @@ class TextButtonMenu extends StatelessWidget {
 
 class TextButtonMenuMobile extends StatelessWidget {
   final String option;
-  const TextButtonMenuMobile({Key? key, required this.option})
+  final VoidCallback press;
+  const TextButtonMenuMobile(
+      {Key? key, required this.option, required this.press})
       : super(key: key);
 
   @override
@@ -66,6 +72,7 @@ class TextButtonMenuMobile extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        onTap: press,
       ),
     );
   }
