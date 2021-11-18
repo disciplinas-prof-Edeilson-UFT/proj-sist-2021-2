@@ -164,7 +164,6 @@ class UpdateFormulary extends StatelessWidget {
               EdgeInsets.only(top: 30.0, bottom: 30.0, left: 15.0, right: 15.0),
           child: ConfirmationButton(),
         ),
-        AdressCep()
       ],
     );
   }
