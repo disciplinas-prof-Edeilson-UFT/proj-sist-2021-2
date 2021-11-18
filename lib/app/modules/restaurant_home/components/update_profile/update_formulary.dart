@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/adress_form.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/confirmation_button.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
@@ -68,7 +69,6 @@ class UpdateFormulary extends StatelessWidget {
             ),
           ),
         ),
-        
         Padding(
           padding: const EdgeInsets.only(
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
@@ -83,7 +83,8 @@ class UpdateFormulary extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
-                      controller: homeStore.updateFormController['prepare_time'],
+                      controller:
+                          homeStore.updateFormController['prepare_time'],
                       inputFormatters: [_timeFormat],
                       validator: (value) {
                         var values = value?.split('-');
@@ -163,6 +164,7 @@ class UpdateFormulary extends StatelessWidget {
               EdgeInsets.only(top: 30.0, bottom: 30.0, left: 15.0, right: 15.0),
           child: ConfirmationButton(),
         ),
+        AdressCep()
       ],
     );
   }
