@@ -28,15 +28,12 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
               ),
               child: const LogoSideBar(),
             ),
-            SizedBox(
-              height: screen.height * 0.05,
-            ),
             Expanded(
               child: Container(
                 margin: EdgeInsets.symmetric(
                   horizontal: screen.height * 0.09,
                 ),
-                child: ListView(
+                child: Column(
                   children: [
                     ...ButtonSideBar.buttons.keys.map(
                       (e) => Column(
@@ -57,9 +54,6 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
                 ),
               ),
             ),
-            SizedBox(
-              height: screen.height * 0.3,
-            ),
             Container(
               alignment: Alignment.center,
               color: redCollor,
@@ -79,5 +73,3 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
     );
   }
 }
-
-class Dynamic {}

@@ -101,6 +101,27 @@ abstract class _RestaurantHomeStoreBase with Store {
   String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
 
   @observable
+  String? selectedPlan; 
+
+  @observable
+  String actualPlan = '';
+
+  @action
+  Future getRestaurantPlan() async {
+    if (restaurant == null) await getRestaurant();
+    actualPlan = restaurant?.deliveryPlan ?? '';
+  }
+
+  @action
+  void selectPlan(value) {
+    selectedPlan = value;
+  }
+
+  @action void updatePlan () {
+    ProfileRepository().updateInfo({'delivery_plan': selectedPlan});
+    actualPlan = selectedPlan!;
+  }
+
   Color iconColor = tertiaryColor;
 
   @action

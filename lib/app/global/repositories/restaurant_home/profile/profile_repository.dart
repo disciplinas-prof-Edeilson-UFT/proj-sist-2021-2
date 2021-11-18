@@ -40,4 +40,8 @@ class ProfileRepository extends IProfile {
         .doc(store.id)
         .update({'image': imgUrl});
   }
+
+  Future updateInfo (Map<String, dynamic> info) async {
+    await FirebaseFirestore.instance.collection('restaurant').doc(store.id).update(info);
+  }
 }

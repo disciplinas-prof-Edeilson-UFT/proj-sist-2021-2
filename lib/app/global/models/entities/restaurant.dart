@@ -4,6 +4,7 @@ class Restaurant {
   final String category;
   final Map<String, dynamic>? cupom;
   final double deliveryPrice;
+  final String deliveryPlan;
   final double distance;
   final String estimatedDelivery;
   final String image;
@@ -19,6 +20,7 @@ class Restaurant {
     required this.deliveryPrice,
     required this.distance,
     required this.estimatedDelivery,
+    required this.deliveryPlan,
     required this.image,
     required this.isChampion,
     required this.orders,
@@ -32,6 +34,7 @@ class Restaurant {
       category: map['category'],
       cupom: map['cupom'],
       deliveryPrice: map['delivery_price'],
+      deliveryPlan: map['delivery_plan'],
       distance: map['distance'],
       estimatedDelivery: map['estimated_delivery'],
       image: map['image'],

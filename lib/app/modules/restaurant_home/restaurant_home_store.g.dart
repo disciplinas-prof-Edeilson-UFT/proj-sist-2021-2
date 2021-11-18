@@ -93,18 +93,34 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-  final _$iconColorAtom = Atom(name: '_RestaurantHomeStoreBase.iconColor');
+  final _$selectedPlanAtom =
+      Atom(name: '_RestaurantHomeStoreBase.selectedPlan');
 
   @override
-  Color get iconColor {
-    _$iconColorAtom.reportRead();
-    return super.iconColor;
+  String? get selectedPlan {
+    _$selectedPlanAtom.reportRead();
+    return super.selectedPlan;
   }
 
   @override
-  set iconColor(Color value) {
-    _$iconColorAtom.reportWrite(value, super.iconColor, () {
-      super.iconColor = value;
+  set selectedPlan(String? value) {
+    _$selectedPlanAtom.reportWrite(value, super.selectedPlan, () {
+      super.selectedPlan = value;
+    });
+  }
+
+  final _$actualPlanAtom = Atom(name: '_RestaurantHomeStoreBase.actualPlan');
+
+  @override
+  String get actualPlan {
+    _$actualPlanAtom.reportRead();
+    return super.actualPlan;
+  }
+
+  @override
+  set actualPlan(String value) {
+    _$actualPlanAtom.reportWrite(value, super.actualPlan, () {
+      super.actualPlan = value;
     });
   }
 
@@ -122,6 +138,14 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   Future<dynamic> imageReceiver(dynamic e) {
     return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
+  }
+
+  final _$getRestaurantPlanAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.getRestaurantPlan');
+
+  @override
+  Future<dynamic> getRestaurantPlan() {
+    return _$getRestaurantPlanAsyncAction.run(() => super.getRestaurantPlan());
   }
 
   final _$_RestaurantHomeStoreBaseActionController =
@@ -172,6 +196,28 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  void selectPlan(dynamic value) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.selectPlan');
+    try {
+      return super.selectPlan(value);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updatePlan() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.updatePlan');
+    try {
+      return super.updatePlan();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void handleFocusChange() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
         name: '_RestaurantHomeStoreBase.handleFocusChange');
@@ -190,7 +236,8 @@ picture: ${picture},
 editBackground: ${editBackground},
 category: ${category},
 isOpen: ${isOpen},
-iconColor: ${iconColor},
+selectedPlan: ${selectedPlan},
+actualPlan: ${actualPlan},
 toggleText: ${toggleText}
     ''';
   }
