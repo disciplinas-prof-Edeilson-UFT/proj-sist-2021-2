@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/confirmation_button.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
@@ -158,10 +159,19 @@ class UpdateFormulary extends StatelessWidget {
             ],
           ),
         ),
-        const Padding(
-          padding:
-              EdgeInsets.only(top: 30.0, bottom: 30.0, left: 15.0, right: 15.0),
-          child: ConfirmationButton(),
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 30.0,
+            bottom: 30.0,
+            left: 15.0,
+            right: 15.0,
+          ),
+          child: ConfirmationButton(
+            onPressed: () async {
+              await ProfileRepository().setRestaurant(homeStore.restaurant!);
+              Navigator.of(context).pop();
+            },
+          ),
         ),
       ],
     );
