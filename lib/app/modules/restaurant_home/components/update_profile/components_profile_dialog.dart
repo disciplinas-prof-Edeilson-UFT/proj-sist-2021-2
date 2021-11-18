@@ -51,7 +51,7 @@ class _NextButtonState extends State<NextButton> {
                 child: const Icon(
                   Icons.arrow_forward_ios_outlined,
                   color: secondaryColor,
-                  size: 100,
+                  size: 90,
                 ),),),);  
     
   }
