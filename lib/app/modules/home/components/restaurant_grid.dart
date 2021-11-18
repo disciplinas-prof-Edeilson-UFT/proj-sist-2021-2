@@ -63,6 +63,7 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
                 deliveryPlan: restaurants[index].deliveryPlan,
                 distance: restaurants[index].distance,
                 estimatedDelivery: restaurants[index].estimatedDelivery,
+                phone: restaurants[index].phone,
                 image: restaurants[index].image,
                 isChampion: restaurants[index].isChampion,
                 orders: restaurants[index].orders,

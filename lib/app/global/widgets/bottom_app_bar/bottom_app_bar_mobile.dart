@@ -35,12 +35,11 @@ class AppBarButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //as ações dos botões recebem o carrinho por enquanto, onde ainda não temos todas as páginas.  
-            ItemButtomBar(icon: Icon(Icons.home), text: "Início", press: () => Modular.to.navigate('/'),),
-            ItemButtomBar(icon: Icon(Icons.search), text: "Buscar", press: () => Scaffold.of(context).openEndDrawer(),),
-            ItemButtomBar(icon: Icon(Icons.add_to_home_screen_outlined), text: "Pedidos", press: () => Scaffold.of(context).openEndDrawer(),),
-            ItemButtomBar(icon: Icon(Icons.account_circle_rounded), text: "Perfil", press: () => Scaffold.of(context).openEndDrawer(),),
-            ItemButtomBar(icon: Icon(Icons.shopping_cart_outlined), text: "Carrinho", press: () => Scaffold.of(context).openEndDrawer(),),
+            //o botão de buscar ainda não foi implementado nenhuma ação, por isso recebe apenas um scaffold.   
+            ItemButtomBar(icon: const Icon(Icons.home), text: "Início", press: () => Modular.to.navigate('/'),),
+            ItemButtomBar(icon: const Icon(Icons.search), text: "Buscar", press: () => Scaffold.of(context),),
+            ItemButtomBar(icon: const Icon(Icons.account_circle_rounded), text: "Perfil", press: () =>Modular.to.navigate('/auth'),),
+            ItemButtomBar(icon: const Icon(Icons.shopping_cart_outlined), text: "Carrinho", press: () => Scaffold.of(context).openEndDrawer(),),
           ],
         ),
       ),

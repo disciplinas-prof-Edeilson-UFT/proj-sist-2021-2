@@ -101,7 +101,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
 
   @observable
-  String? selectedPlan; 
+  String? selectedPlan;
 
   @observable
   String actualPlan = '';
@@ -117,7 +117,8 @@ abstract class _RestaurantHomeStoreBase with Store {
     selectedPlan = value;
   }
 
-  @action void updatePlan () {
+  @action
+  void updatePlan() {
     ProfileRepository().updateInfo({'delivery_plan': selectedPlan});
     actualPlan = selectedPlan!;
   }
@@ -133,10 +134,22 @@ abstract class _RestaurantHomeStoreBase with Store {
     }
   }
 
+  @observable
   Map<String, TextEditingController> updateFormController = {
-    'restaurant': TextEditingController(text: "Gatinho's Bar e Restaurante"),
+    'restaurant': TextEditingController(),
     'prepare_time': TextEditingController(),
     'delivery_price': TextEditingController(),
     'phone_restaurant': TextEditingController(),
   };
+
+  @action
+  void updateControllers() {
+    updateFormController['restaurant']?.text = restaurant?.socialName ?? '';
+    updateFormController['prepare_time']?.text =
+        restaurant?.estimatedDelivery ?? '';
+    updateFormController['delivery_price']?.text =
+        'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
+    updateFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
+    category = restaurant?.category ?? categories.first;
+  }
 }

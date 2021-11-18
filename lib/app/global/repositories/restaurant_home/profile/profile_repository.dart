@@ -19,8 +19,39 @@ class ProfileRepository extends IProfile {
     return restaurant;
   }
 
+  double? _parsePrice(String? text) {
+    return double.tryParse(text?.split('\$').last ?? '');
+  }
+
+  String? _verifyForm(String? text) {
+    if (text == null) return null;
+    return text.isEmpty ? null : text;
+  }
+
   @override
-  Future setImage(e) async {
+  Future<void> setRestaurant(Restaurant restaurant) async {
+    await FirebaseFirestore.instance
+        .collection('restaurant')
+        .doc(store.id)
+        .update({
+      'social_name':
+          _verifyForm(store.updateFormController['restaurant']?.text) ??
+              restaurant.socialName,
+      'phone_restaurant':
+          _verifyForm(store.updateFormController['phone_restaurant']?.text) ??
+              restaurant.phone,
+      'category': store.category,
+      'estimated_delivery':
+          _verifyForm(store.updateFormController['prepare_time']?.text) ??
+              restaurant.estimatedDelivery,
+      'delivery_price': _parsePrice(_verifyForm(
+              store.updateFormController['delivery_price']?.text)) ??
+          restaurant.deliveryPrice,
+    });
+  }
+
+  @override
+  Future<void> setImage(dynamic e) async {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
     }
