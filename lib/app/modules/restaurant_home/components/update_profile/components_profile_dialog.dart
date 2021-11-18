@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/management_dialog.dart';
 
 class ConfirmationButton extends StatelessWidget {
   const ConfirmationButton({
@@ -48,6 +49,14 @@ class _NextIconState extends State<NextIcon> {
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+            showDialog(
+                context: context,
+                builder: (_) {
+                  return const ManagementDialog();
+                });
+          },
           child: const Icon(
             Icons.arrow_forward_ios_outlined,
             color: secondaryColor,
