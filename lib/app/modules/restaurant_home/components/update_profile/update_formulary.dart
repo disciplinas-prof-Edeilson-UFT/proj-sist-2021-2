@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/confirmation_button.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/components_profile_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
@@ -38,38 +38,45 @@ class UpdateFormulary extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Telefone da loja', style: _labelStyle),
-                TextFormField(
-                  controller:
-                      homeStore.updateFormController['phone_restaurant'],
-                  inputFormatters: [_phoneFormat],
-                  textCapitalization: TextCapitalization.words,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Este campo não pode ficar vazio";
-                    }
-                    if (value.length <= 14) {
-                      return "Digite um número de telefone válido";
-                    }
-                    return null;
-                  },
-                  cursorColor: secondaryColor,
-                  decoration: const InputDecoration(
-                    focusColor: secondaryColor,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: secondaryColor,
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller:
+                            homeStore.updateFormController['phone_restaurant'],
+                        inputFormatters: [_phoneFormat],
+                        textCapitalization: TextCapitalization.words,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Este campo não pode ficar vazio";
+                          }
+                          if (value.length <= 14) {
+                            return "Digite um número de telefone válido";
+                          }
+                          return null;
+                        },
+                        cursorColor: secondaryColor,
+                        decoration: const InputDecoration(
+                          focusColor: secondaryColor,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: secondaryColor,
+                            ),
+                          ),
+                          border: OutlineInputBorder(),
+                          hintText: '(00) 00000-0000',
+                        ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
-                    border: OutlineInputBorder(),
-                    hintText: '(00) 00000-0000',
-                  ),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                    const UpdateProfileDropdown(),
+                  ],
                 ),
               ],
             ),
           ),
-        ),
-        
+        ), //fim
+
         Padding(
           padding: const EdgeInsets.only(
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
@@ -84,7 +91,8 @@ class UpdateFormulary extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
-                      controller: homeStore.updateFormController['prepare_time'],
+                      controller:
+                          homeStore.updateFormController['prepare_time'],
                       inputFormatters: [_timeFormat],
                       validator: (value) {
                         var values = value?.split('-');
@@ -114,7 +122,8 @@ class UpdateFormulary extends StatelessWidget {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                   ),
-                  const UpdateProfileDropdown(),
+                  const VerticalDivider(width: 132),
+                  const NextIcon(),
                 ],
               ),
             ],
