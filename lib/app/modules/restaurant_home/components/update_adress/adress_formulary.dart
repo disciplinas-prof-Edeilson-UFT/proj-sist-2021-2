@@ -6,7 +6,7 @@ import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/h
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class AdressForm extends StatelessWidget {
-  AdressForm({
+  const AdressForm({
     Key? key,
     required this.hintText,
     required this.label,
@@ -39,8 +39,6 @@ class AdressForm extends StatelessWidget {
             style: fieldLabelStyle(),
           ),
           TextFormField(
-            // Caso o CEP retorne apenas a cidade e o estado, como em 77500-000,
-            // os campos bairro e endereço tornam-se editáveis
             readOnly: label == 'Cidade' || label == 'Estado',
             inputFormatters: formatter != null ? [formatter!] : null,
             cursorColor: secondaryColor,
@@ -83,8 +81,8 @@ class AdressForm extends StatelessWidget {
   }
 }
 
-class AdressCep extends StatelessWidget {
-  AdressCep({Key? key}) : super(key: key);
+class AdressFormulary extends StatelessWidget {
+  AdressFormulary({Key? key}) : super(key: key);
   final RestaurantHomeStore homeStore = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {

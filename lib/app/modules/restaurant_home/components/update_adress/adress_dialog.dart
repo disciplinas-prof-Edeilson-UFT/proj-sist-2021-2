@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/adress_form.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/adress_formulary.dart';
 
 class AdressDialog extends StatefulWidget {
   const AdressDialog({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _AdressDialogState extends State<AdressDialog> {
           width: _pageWidth * 0.4,
           child: Column(
             children: [
-              AdressCep(),
+              AdressFormulary(),
               Padding(
                 padding: const EdgeInsets.only(
                     top: 30.0, bottom: 30.0, left: 15.0, right: 15.0),
