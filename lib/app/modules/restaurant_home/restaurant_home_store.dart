@@ -118,4 +118,23 @@ abstract class _RestaurantHomeStoreBase with Store {
     'delivery_price': TextEditingController(),
     'phone_restaurant': TextEditingController(),
   };
+
+  Map<String, TextEditingController> managementFormController = {
+    'name_Owner': TextEditingController(text: "Gatinho's Bar e Restaurante"),
+    'phone_Owner': TextEditingController(text: "(33) 33333-3333"),
+    'email_Owner': TextEditingController(text: "Gatinhos@mail.com"),
+    'Senha': TextEditingController(),
+    'Confirmar Senha': TextEditingController(),
+  };
+
+  String? validatePassword() {
+    if (managementFormController['Confirmar Senha']?.text !=
+        managementFormController['Senha']?.text) {
+      if (managementFormController['Confirmar Senha']!.text.isEmpty) {
+        return null;
+      }
+      return "Os campos diferem";
+    }
+    return null;
+  }
 }
