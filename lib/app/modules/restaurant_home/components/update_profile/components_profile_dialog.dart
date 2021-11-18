@@ -31,3 +31,30 @@ class _ConfirmationButtonState extends State<ConfirmationButton> {
     );
   }
 }
+
+class NextButton extends StatefulWidget {
+  const NextButton({ Key? key }) : super(key: key);
+
+  @override
+  _NextButtonState createState() => _NextButtonState();
+}
+
+class _NextButtonState extends State<NextButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: TextButton(
+          child: const Text(
+            'Próximo',
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 18,
+              color: secondaryColor,
+            ),
+          ),
+          onPressed: () {}),
+    );
+    
+  }
+}
