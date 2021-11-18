@@ -41,41 +41,42 @@ class UpdateFormulary extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                child: TextFormField(
-                  controller:
-                      homeStore.updateFormController['phone_restaurant'],
-                  inputFormatters: [_phoneFormat],
-                  textCapitalization: TextCapitalization.words,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Este campo não pode ficar vazio";
-                    }
-                    if (value.length <= 14) {
-                      return "Digite um número de telefone válido";
-                    }
-                    return null;
-                  },
-                  cursorColor: secondaryColor,
-                  decoration: const InputDecoration(
-                    focusColor: secondaryColor,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: secondaryColor,
+                      child: TextFormField(
+                        controller:
+                            homeStore.updateFormController['phone_restaurant'],
+                        inputFormatters: [_phoneFormat],
+                        textCapitalization: TextCapitalization.words,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Este campo não pode ficar vazio";
+                          }
+                          if (value.length <= 14) {
+                            return "Digite um número de telefone válido";
+                          }
+                          return null;
+                        },
+                        cursorColor: secondaryColor,
+                        decoration: const InputDecoration(
+                          focusColor: secondaryColor,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: secondaryColor,
+                            ),
+                          ),
+                          border: OutlineInputBorder(),
+                          hintText: '(00) 00000-0000',
+                        ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
-                    border: OutlineInputBorder(),
-                    hintText: '(00) 00000-0000',
-                  ),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                ),),
-                 const UpdateProfileDropdown(),
-              ],
+                    const UpdateProfileDropdown(),
+                  ],
                 ),
               ],
-            
+            ),
           ),
-        ),),//fim
-        
+        ), //fim
+
         Padding(
           padding: const EdgeInsets.only(
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
@@ -90,7 +91,8 @@ class UpdateFormulary extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
-                      controller: homeStore.updateFormController['prepare_time'],
+                      controller:
+                          homeStore.updateFormController['prepare_time'],
                       inputFormatters: [_timeFormat],
                       validator: (value) {
                         var values = value?.split('-');
@@ -120,7 +122,8 @@ class UpdateFormulary extends StatelessWidget {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                   ),
-                  const NextIcon(), 
+                  const VerticalDivider(width: 132),
+                  const NextIcon(),
                 ],
               ),
             ],

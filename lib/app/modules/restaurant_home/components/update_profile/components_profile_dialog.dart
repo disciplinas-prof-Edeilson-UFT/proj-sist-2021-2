@@ -34,7 +34,7 @@ class ConfirmationButton extends StatelessWidget {
 }
 
 class NextIcon extends StatefulWidget {
-  const NextIcon({ Key? key }) : super(key: key);
+  const NextIcon({Key? key}) : super(key: key);
 
   @override
   _NextIconState createState() => _NextIconState();
@@ -44,15 +44,17 @@ class _NextIconState extends State<NextIcon> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-          padding: const EdgeInsets.only(left: 0.2),
-          child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: secondaryColor,
-                  size: 85,
-                ),),),);  
-    
+      padding: const EdgeInsets.only(left: 0.2),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          child: const Icon(
+            Icons.arrow_forward_ios_outlined,
+            color: secondaryColor,
+            size: 50,
+          ),
+        ),
+      ),
+    );
   }
 }
