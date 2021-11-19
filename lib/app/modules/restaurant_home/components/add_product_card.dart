@@ -10,8 +10,6 @@ import 'package:pscomidas/app/modules/restaurant_home/components/add_product_com
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_text_field.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/product_image.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({Key? key}) : super(key: key);
@@ -41,79 +39,80 @@ class _AddProductState extends State<AddProduct> {
         ),
         onTap: () {
           showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: const Text("Cadastrar novo produto"),
-                  actions: <Widget>[
-                    Center(
-                      child: Column(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return const ProductImage();
-                                  });
-                            },
-                            style: ElevatedButton.styleFrom(
-                                primary: secondaryCollor),
-                            child: const Text("img"),
-                          ),
-                          CustomTextField(
-                            controller: store.nameController,
-                            label: 'Nome do produto',
-                          ),
-                          CustomTextField(
-                            controller: store.descController,
-                            label: 'Descrição do produto',
-                          ),
-                          CustomTextField(
-                            controller: store.priceController,
-                            label: 'Preço do produto',
-                          ),
-                          CustomTextField(
-                            controller: store.categoriesController,
-                            label: 'Categoria do produto',
-                          ),
-                          CustomTextField(
-                            controller: store.idController,
-                            label: 'Id do produto',
-                          ),
-                          SizedBox(
-                            width: 250,
-                            child: _availableButton(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text("Cadastrar novo produto"),
+                actions: <Widget>[
+                  Center(
+                    child: Column(
                       children: [
-                        CustomButton(
-                          label: "Salvar",
+                        ElevatedButton(
                           onPressed: () {
-                            double price =
-                                double.parse(store.priceController.text);
-                            var produto = Product(
-                              name: store.categoriesController.text.toString(),
-                              description: store.descController.text.toString(),
-                              available: store.available,
-                              price: price,
-                              restaurantId: "dummy 2",
-                              productId: store.idController.toString(),
-                              categories: [],
-                            );
-                            store.cadastrarProdutoTeste(produto);
-                            Navigator.of(context).pop();
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const ProductImage();
+                                });
                           },
+                          style: ElevatedButton.styleFrom(
+                              primary: secondaryCollor),
+                          child: const Text("img"),
+                        ),
+                        CustomTextField(
+                          controller: store.nameController,
+                          label: 'Nome do produto',
+                        ),
+                        CustomTextField(
+                          controller: store.descController,
+                          label: 'Descrição do produto',
+                        ),
+                        CustomTextField(
+                          controller: store.priceController,
+                          label: 'Preço do produto',
+                        ),
+                        CustomTextField(
+                          controller: store.categoriesController,
+                          label: 'Categoria do produto',
+                        ),
+                        CustomTextField(
+                          controller: store.idController,
+                          label: 'Id do produto',
+                        ),
+                        SizedBox(
+                          width: 250,
+                          child: _availableButton(),
                         ),
                       ],
-                    )
-                  ],
-                );
-              });
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      CustomButton(
+                        label: "Salvar",
+                        onPressed: () {
+                          double price =
+                              double.parse(store.priceController.text);
+                          var produto = Product(
+                            name: store.categoriesController.text.toString(),
+                            description: store.descController.text.toString(),
+                            available: store.available,
+                            price: price,
+                            restaurantId: "dummy 2",
+                            productId: store.idController.toString(),
+                            categories: [],
+                          );
+                          store.cadastrarProdutoTeste(produto);
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  )
+                ],
+              );
+            },
+          );
         },
       ),
     );
