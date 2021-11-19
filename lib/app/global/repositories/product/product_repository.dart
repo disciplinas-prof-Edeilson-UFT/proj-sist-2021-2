@@ -11,9 +11,9 @@ class ProductRepository implements IProductRepository {
   ProductRepository({required this.firestore, required this.auth});
 
   @override
-  void cadastrarProduct(Product produto) async {
+  Future<void> cadastrarProduct(Product produto) async {
     try {
-      await firestore.collection('product').add({
+      await firestore.collection('products').add({
         'available': produto.available,
         'categories': produto.categories,
         'description': produto.description,
