@@ -15,7 +15,8 @@ class RegisterPlans extends StatelessWidget {
 }
 
 class PlanCard extends StatelessWidget {
-  const PlanCard({Key? key, required this.image, this.colorBox}) : super(key: key);
+  const PlanCard({Key? key, required this.image, this.colorBox})
+      : super(key: key);
   final String image;
   final Color? colorBox;
 

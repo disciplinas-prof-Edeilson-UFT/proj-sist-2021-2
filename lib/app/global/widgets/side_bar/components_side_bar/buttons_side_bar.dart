@@ -16,7 +16,8 @@ class ButtonSideBar {
       'navigator': RestaurantHomeModule.routeName + AvaliationsPage.routeName,
     },
     'Planos': {
-      'navigator': RestaurantHomeModule.routeName + RestaurantPlanPage.routeName,
+      'navigator':
+          RestaurantHomeModule.routeName + RestaurantPlanPage.routeName,
     },
     'Sair': {
       'navigator': '/',

@@ -3,7 +3,7 @@ import 'package:pscomidas/app/modules/restaurant_home/pages/plans/components/pla
 import 'package:pscomidas/app/modules/restaurant_register/components/register_plans.dart';
 
 class MobilePlan extends StatelessWidget {
-  const MobilePlan({ Key? key }) : super(key: key);
+  const MobilePlan({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -18,7 +18,8 @@ class _UpdateProfileDropdownState extends State<UpdateProfileDropdown> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.01),
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.01),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Column(
