@@ -5,6 +5,7 @@ import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/home_field.dart';
+import 'package:search_cep/search_cep.dart';
 
 part 'restaurant_home_store.g.dart';
 
@@ -183,5 +184,27 @@ abstract class _RestaurantHomeStoreBase with Store {
         'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
     updateFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
     category = restaurant?.category ?? categories.first;
+  }
+
+  void searchAdress(String value) async {
+    //Esta função atribui os valores de endereço dinamicamente conforme o CEP informado.
+
+    final info = await ViaCepSearchCep()
+        .searchInfoByCep(cep: value.replaceFirst('-', ''));
+
+    if (info.isRight()) {
+      controller['Endereço']!.text =
+          info.getOrElse(() => ViaCepInfo()).logradouro ?? '';
+      controller['Cidade']!.text =
+          info.getOrElse(() => ViaCepInfo()).localidade ?? '';
+      controller['Estado']!.text = info.getOrElse(() => ViaCepInfo()).uf ?? '';
+      controller['Bairro']!.text =
+          info.getOrElse(() => ViaCepInfo()).bairro ?? '';
+    } else {
+      controller['Endereço']!.text = '';
+      controller['Cidade']!.text = '';
+      controller['Estado']!.text = '';
+      controller['Bairro']!.text = '';
+    }
   }
 }

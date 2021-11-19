@@ -97,8 +97,7 @@ class AdressFormulary extends StatelessWidget {
                 controller: homeStore.controller[e],
                 formatter:
                     homeStore.fields[e]?['formatter'] as TextInputFormatter,
-                valueChangeListener: (value) =>
-                    HomeCEP().searchAdress(value, homeStore),
+                valueChangeListener: (value) => homeStore.searchAdress(value),
               );
             }
             if (e == 'Cidade') {
