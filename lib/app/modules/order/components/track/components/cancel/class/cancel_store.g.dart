@@ -8,8 +8,8 @@ part of 'cancel_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$Cancelstore on _CancelStoreBase, Store {
-  final _$paymentsAtom = Atom(name: '_CancelCheckedBase.payments');
+mixin _$CancelStore on _CancelStoreBase, Store {
+  final _$paymentsAtom = Atom(name: '_CancelStoreBase.payments');
 
   @override
   bool get payments {
@@ -24,7 +24,7 @@ mixin _$Cancelstore on _CancelStoreBase, Store {
     });
   }
 
-  final _$adressAtom = Atom(name: '_CancelCheckedBase.adress');
+  final _$adressAtom = Atom(name: '_CancelStoreBase.adress');
 
   @override
   bool get adress {
@@ -39,7 +39,7 @@ mixin _$Cancelstore on _CancelStoreBase, Store {
     });
   }
 
-  final _$pratoErradoAtom = Atom(name: '_CancelCheckedBase.pratoErrado');
+  final _$pratoErradoAtom = Atom(name: '_CancelStoreBase.pratoErrado');
 
   @override
   bool get pratoErrado {
@@ -54,7 +54,7 @@ mixin _$Cancelstore on _CancelStoreBase, Store {
     });
   }
 
-  final _$compraErradaAtom = Atom(name: '_CancelCheckedBase.compraErrada');
+  final _$compraErradaAtom = Atom(name: '_CancelStoreBase.compraErrada');
 
   @override
   bool get compraErrada {
@@ -69,7 +69,7 @@ mixin _$Cancelstore on _CancelStoreBase, Store {
     });
   }
 
-  final _$horarioAtom = Atom(name: '_CancelCheckedBase.horario');
+  final _$horarioAtom = Atom(name: '_CancelStoreBase.horario');
 
   @override
   bool get horario {
@@ -84,7 +84,7 @@ mixin _$Cancelstore on _CancelStoreBase, Store {
     });
   }
 
-  final _$outrosAtom = Atom(name: '_CancelCheckedBase.outros');
+  final _$outrosAtom = Atom(name: '_CancelStoreBase.outros');
 
   @override
   bool get outros {
@@ -99,72 +99,72 @@ mixin _$Cancelstore on _CancelStoreBase, Store {
     });
   }
 
-  final _$_CancelCheckedBaseActionController =
-      ActionController(name: '_CancelCheckedBase');
+  final _$_CancelStoreBaseActionController =
+      ActionController(name: '_CancelStoreBase');
 
   @override
   void setCheckedPayments(bool value) {
-    final _$actionInfo = _$_CancelCheckedBaseActionController.startAction(
-        name: '_CancelCheckedBase.setCheckedPayments');
+    final _$actionInfo = _$_CancelStoreBaseActionController.startAction(
+        name: '_CancelStoreBase.setCheckedPayments');
     try {
       return super.setCheckedPayments(value);
     } finally {
-      _$_CancelCheckedBaseActionController.endAction(_$actionInfo);
+      _$_CancelStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setCheckedAdress(bool value) {
-    final _$actionInfo = _$_CancelCheckedBaseActionController.startAction(
-        name: '_CancelCheckedBase.setCheckedAdress');
+    final _$actionInfo = _$_CancelStoreBaseActionController.startAction(
+        name: '_CancelStoreBase.setCheckedAdress');
     try {
       return super.setCheckedAdress(value);
     } finally {
-      _$_CancelCheckedBaseActionController.endAction(_$actionInfo);
+      _$_CancelStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setCheckedPrato(bool value) {
-    final _$actionInfo = _$_CancelCheckedBaseActionController.startAction(
-        name: '_CancelCheckedBase.setCheckedPrato');
+    final _$actionInfo = _$_CancelStoreBaseActionController.startAction(
+        name: '_CancelStoreBase.setCheckedPrato');
     try {
       return super.setCheckedPrato(value);
     } finally {
-      _$_CancelCheckedBaseActionController.endAction(_$actionInfo);
+      _$_CancelStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setCheckedCompra(bool value) {
-    final _$actionInfo = _$_CancelCheckedBaseActionController.startAction(
-        name: '_CancelCheckedBase.setCheckedCompra');
+    final _$actionInfo = _$_CancelStoreBaseActionController.startAction(
+        name: '_CancelStoreBase.setCheckedCompra');
     try {
       return super.setCheckedCompra(value);
     } finally {
-      _$_CancelCheckedBaseActionController.endAction(_$actionInfo);
+      _$_CancelStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setCheckedHorario(bool value) {
-    final _$actionInfo = _$_CancelCheckedBaseActionController.startAction(
-        name: '_CancelCheckedBase.setCheckedHorario');
+    final _$actionInfo = _$_CancelStoreBaseActionController.startAction(
+        name: '_CancelStoreBase.setCheckedHorario');
     try {
       return super.setCheckedHorario(value);
     } finally {
-      _$_CancelCheckedBaseActionController.endAction(_$actionInfo);
+      _$_CancelStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setCheckedOutros(bool value) {
-    final _$actionInfo = _$_CancelCheckedBaseActionController.startAction(
-        name: '_CancelCheckedBase.setCheckedOutros');
+    final _$actionInfo = _$_CancelStoreBaseActionController.startAction(
+        name: '_CancelStoreBase.setCheckedOutros');
     try {
       return super.setCheckedOutros(value);
     } finally {
-      _$_CancelCheckedBaseActionController.endAction(_$actionInfo);
+      _$_CancelStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 

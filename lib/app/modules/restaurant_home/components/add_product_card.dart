@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_button.dart';
@@ -7,15 +11,16 @@ import 'package:pscomidas/app/modules/restaurant_home/components/add_product_com
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/product_image.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({Key? key}) : super(key: key);
-
   @override
   _AddProductState createState() => _AddProductState();
 }
 
 class _AddProductState extends State<AddProduct> {
+  final RestaurantHomeStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -36,93 +41,95 @@ class _AddProductState extends State<AddProduct> {
         ),
         onTap: () {
           showDialog(
-            context: context,
-            builder: (context) {
-              return const NewProductDialog();
-            },
-          );
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Cadastrar novo produto"),
+                  actions: <Widget>[
+                    Center(
+                      child: Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return const ProductImage();
+                                  });
+                            },
+                            style: ElevatedButton.styleFrom(
+                                primary: secondaryCollor),
+                            child: const Text("img"),
+                          ),
+                          CustomTextField(
+                            controller: store.nameController,
+                            label: 'Nome do produto',
+                          ),
+                          CustomTextField(
+                            controller: store.descController,
+                            label: 'Descrição do produto',
+                          ),
+                          CustomTextField(
+                            controller: store.priceController,
+                            label: 'Preço do produto',
+                          ),
+                          CustomTextField(
+                            controller: store.categoriesController,
+                            label: 'Categoria do produto',
+                          ),
+                          CustomTextField(
+                            controller: store.idController,
+                            label: 'Id do produto',
+                          ),
+                          SizedBox(
+                            width: 250,
+                            child: _availableButton(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CustomButton(
+                          label: "Salvar",
+                          onPressed: () {
+                            double price =
+                                double.parse(store.priceController.text);
+                            var produto = Product(
+                              name: store.categoriesController.text.toString(),
+                              description: store.descController.text.toString(),
+                              available: store.available,
+                              price: price,
+                              restaurantId: "dummy 2",
+                              productId: store.idController.toString(),
+                              categories: [],
+                            );
+                            store.cadastrarProdutoTeste(produto);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    )
+                  ],
+                );
+              });
         },
       ),
-    );
-  }
-}
-
-class NewProductDialog extends StatefulWidget {
-  const NewProductDialog({Key? key}) : super(key: key);
-
-  @override
-  _NewProductDialogState createState() => _NewProductDialogState();
-}
-
-class _NewProductDialogState extends State<NewProductDialog> {
-  final RestaurantHomeStore store = Modular.get();
-  bool available = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text("Cadastrar novo produto"),
-      actions: <Widget>[
-        Center(
-          child: Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const ProductImage();
-                    },
-                  );
-                },
-                style: ElevatedButton.styleFrom(primary: secondaryCollor),
-                child: const Text("Adicioone uma imagem"),
-              ),
-              const CustomTextField(
-                label: 'Nome do produto',
-              ),
-              const CustomTextField(
-                label: 'Descrição do produto',
-              ),
-              const CustomTextField(
-                label: 'Preço do produto',
-              ),
-              const CustomTextField(
-                label: 'Categoria do produto',
-              ),
-              const CustomTextField(
-                label: 'Id do produto',
-              ),
-              SizedBox(
-                width: 250,
-                child: _availableButton(),
-              ),
-            ],
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            CustomButton(
-              label: "Salvar",
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        )
-      ],
     );
   }
 
   Widget _buildSwitch() => Transform.scale(
         scale: 1.5,
-        child: Switch.adaptive(
-          value: available,
-          activeColor: secondaryColor,
-          inactiveThumbColor: secondaryColor.withOpacity(0.4),
-          onChanged: (value) => setState(() => available = value),
-        ),
+        child: Observer(builder: (_) {
+          return Switch.adaptive(
+            value: store.available,
+            activeColor: secondaryColor,
+            inactiveThumbColor: secondaryColor.withOpacity(0.4),
+            onChanged: (value) =>
+                setState(() => store.available = !store.available),
+          );
+        }),
       );
 
   Widget _availableButton() {

@@ -7,8 +7,10 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
     required this.label,
+    required this.controller,
   }) : super(key: key);
 
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,6 +18,7 @@ class CustomTextField extends StatelessWidget {
       child: SizedBox(
         width: 500,
         child: TextFormField(
+          controller: controller,
           cursorColor: secondaryColor,
           enabled: true,
           textAlign: TextAlign.center,

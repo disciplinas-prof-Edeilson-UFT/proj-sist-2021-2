@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 
-class ProductImage extends StatelessWidget {
+class ProductImage extends StatefulWidget {
   const ProductImage({Key? key}) : super(key: key);
 
+  @override
+  _ProductImageState createState() => _ProductImageState();
+}
+
+class _ProductImageState extends State<ProductImage> {
+  late DropzoneViewController controller;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -21,7 +27,10 @@ class ProductImage extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            DropzoneView(onDrop: (e) {}),
+            DropzoneView(
+              onDrop: (e) {},
+              onCreated: (controller) => this.controller = controller,
+            ),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +46,10 @@ class ProductImage extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all(secondaryColor),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      final event = await controller.pickFiles();
+                      Navigator.pop(context);
+                    },
                     icon: const Icon(
                       Icons.search,
                     ),
