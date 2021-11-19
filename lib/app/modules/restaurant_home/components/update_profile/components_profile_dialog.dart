@@ -44,7 +44,7 @@ class _NextIconState extends State<NextIcon> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 0.2),
+      padding: const EdgeInsets.only(right: 5),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
