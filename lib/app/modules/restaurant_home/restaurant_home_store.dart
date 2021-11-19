@@ -59,7 +59,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     }
   }
 
-  Map<String, TextEditingController> controller = {
+  Map<String, TextEditingController> addressFormController = {
     'CEP': TextEditingController(),
     'Estado': TextEditingController(),
     'Cidade': TextEditingController(),
@@ -193,18 +193,19 @@ abstract class _RestaurantHomeStoreBase with Store {
         .searchInfoByCep(cep: value.replaceFirst('-', ''));
 
     if (info.isRight()) {
-      controller['Endereço']!.text =
+      addressFormController['Endereço']!.text =
           info.getOrElse(() => ViaCepInfo()).logradouro ?? '';
-      controller['Cidade']!.text =
+      addressFormController['Cidade']!.text =
           info.getOrElse(() => ViaCepInfo()).localidade ?? '';
-      controller['Estado']!.text = info.getOrElse(() => ViaCepInfo()).uf ?? '';
-      controller['Bairro']!.text =
+      addressFormController['Estado']!.text =
+          info.getOrElse(() => ViaCepInfo()).uf ?? '';
+      addressFormController['Bairro']!.text =
           info.getOrElse(() => ViaCepInfo()).bairro ?? '';
     } else {
-      controller['Endereço']!.text = '';
-      controller['Cidade']!.text = '';
-      controller['Estado']!.text = '';
-      controller['Bairro']!.text = '';
+      addressFormController['Endereço']!.text = '';
+      addressFormController['Cidade']!.text = '';
+      addressFormController['Estado']!.text = '';
+      addressFormController['Bairro']!.text = '';
     }
   }
 }
