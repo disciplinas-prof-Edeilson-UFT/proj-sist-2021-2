@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
 
 class PickAddress extends StatefulWidget {
   const PickAddress({Key? key}) : super(key: key);
@@ -10,15 +10,32 @@ class PickAddress extends StatefulWidget {
 }
 
 class _PickAddressState extends State<PickAddress> {
-  final ClientAddressStore store = Modular.get();
+  TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: store.previous,
-      child: Container(
-        width: 300,
-        height: 300,
-        decoration: const BoxDecoration(color: Colors.amber),
+    return Form(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Trecho de ultilização do CustomTextField
+            CustomTextField(
+              controller: controller,
+              title: 'CEP',
+              formaters: [
+                MaskTextInputFormatter(
+                  mask: '#####-###',
+                  filter: {"#": RegExp(r'[0-9]')},
+                ),
+              ],
+              validator: (value) {
+                if (value == null || value.isEmpty || value.length < 8) {
+                  return 'CEP Inválido';
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
