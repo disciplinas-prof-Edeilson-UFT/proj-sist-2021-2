@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_button.dart';
@@ -10,14 +13,12 @@ import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart
 
 class AddProduct extends StatefulWidget {
   const AddProduct({Key? key}) : super(key: key);
-
   @override
   _AddProductState createState() => _AddProductState();
 }
 
 class _AddProductState extends State<AddProduct> {
   final RestaurantHomeStore store = Modular.get();
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -59,19 +60,24 @@ class _AddProductState extends State<AddProduct> {
                                 primary: secondaryCollor),
                             child: const Text("img"),
                           ),
-                          const CustomTextField(
+                          CustomTextField(
+                            controller: store.nameController,
                             label: 'Nome do produto',
                           ),
-                          const CustomTextField(
+                          CustomTextField(
+                            controller: store.descController,
                             label: 'Descrição do produto',
                           ),
-                          const CustomTextField(
+                          CustomTextField(
+                            controller: store.priceController,
                             label: 'Preço do produto',
                           ),
-                          const CustomTextField(
+                          CustomTextField(
+                            controller: store.categoriesController,
                             label: 'Categoria do produto',
                           ),
-                          const CustomTextField(
+                          CustomTextField(
+                            controller: store.idController,
                             label: 'Id do produto',
                           ),
                           SizedBox(
@@ -87,6 +93,18 @@ class _AddProductState extends State<AddProduct> {
                         CustomButton(
                           label: "Salvar",
                           onPressed: () {
+                            double price =
+                                double.parse(store.priceController.text);
+                            var produto = Product(
+                              name: store.categoriesController.text.toString(),
+                              description: store.descController.text.toString(),
+                              available: store.available,
+                              price: price,
+                              restaurantId: "dummy 2",
+                              productId: store.idController.toString(),
+                              categories: [],
+                            );
+                            store.cadastrarProdutoTeste(produto);
                             Navigator.of(context).pop();
                           },
                         ),
