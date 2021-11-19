@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/management_dialog.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_sensitive_data/management_dialog.dart';
 
 class ConfirmationButton extends StatelessWidget {
   const ConfirmationButton({
