@@ -4,6 +4,7 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_button.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_text_field.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/product_image.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -67,14 +68,15 @@ class _NewProductDialogState extends State<NewProductDialog> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  ImagePicker().pickImage(source: ImageSource.gallery).then(
-                      (value) => value!
-                          .readAsBytes()
-                          .then((value) => null) //TODO Salvar na store
-                      );
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const ProductImage();
+                    },
+                  );
                 },
                 style: ElevatedButton.styleFrom(primary: secondaryCollor),
-                child: const Text("img"),
+                child: const Text("Adicioone uma imagem"),
               ),
               const CustomTextField(
                 label: 'Nome do produto',
