@@ -21,6 +21,9 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   bool isOpen = false;
 
+  @observable
+  bool available = false;
+
   @action
   void toggleOpen() {
     isOpen = !isOpen;
