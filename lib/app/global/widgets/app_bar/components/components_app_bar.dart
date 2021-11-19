@@ -5,6 +5,9 @@ import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/user_profile_options.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
+import 'package:pscomidas/app/modules/client_address/client_address_page.dart';
+import 'package:pscomidas/app/modules/home/home_page.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
@@ -97,35 +100,37 @@ class LocationAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        const Text(
-          "ENTREGAR EM",
-          style: TextStyle(
-            color: tertiaryColor,
-            fontSize: 12,
-          ),
-          textAlign: TextAlign.left,
-        ),
-        Row(
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return const ClientAddressPage();
+              });
+        },
+        child: Column(
           children: [
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Icon(
+            const Text(
+              "ENTREGAR EM",
+              style: TextStyle(
+                color: tertiaryCollor,
+                fontSize: 12,
+              ),
+              textAlign: TextAlign.left,
+            ),
+            Row(
+              children: [
+                const Icon(
                   Icons.add_location_outlined,
                   color: secondaryColor,
                   size: 14,
                 ),
-              ),
-            ),
-            SizedBox(
-              width: screen.width * 0.001,
-            ),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Text(
+                SizedBox(
+                  width: screen.width * 0.001,
+                ),
+                const Text(
                   "Q. 208 Sul, Alameda 10, 202",
                   style: TextStyle(
                     color: Colors.black,
@@ -133,21 +138,15 @@ class LocationAppBar extends StatelessWidget {
                   ),
                   textAlign: TextAlign.left,
                 ),
-              ),
-            ),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Icon(
+                const Icon(
                   Icons.keyboard_arrow_down_sharp,
                   color: secondaryColor,
                 ),
-                onTap: () {},
-              ),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }
