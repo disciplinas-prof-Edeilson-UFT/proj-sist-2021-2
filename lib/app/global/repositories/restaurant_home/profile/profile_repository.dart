@@ -125,10 +125,4 @@ class ProfileRepository extends IProfile {
         .doc(store.id)
         .update(info);
   }
-
-  @override
-  Future<void> setRestaurant(Restaurant restaurant) {
-    // TODO: implement setRestaurant
-    throw UnimplementedError();
-  }
 }
