@@ -65,8 +65,7 @@ class ProfileRepository extends IProfile {
       'email_Owner':
           _verifyForm(store.managementFormController['email_Owner']?.text) ??
               restaurant.emailOwner,
-      'password': _parsePrice(
-              _verifyForm(store.managementFormController['Senha']?.text)) ??
+      'password': _verifyForm(store.managementFormController['Senha']?.text) ??
           restaurant.password,
     });
   }
@@ -88,12 +87,11 @@ class ProfileRepository extends IProfile {
       'address': _parsePrice(
               _verifyForm(store.addressFormController['Endereço']?.text)) ??
           restaurant.address,
-      'number': _parsePrice(
-              _verifyForm(store.addressFormController['Número']?.text)) ??
+      'number': _verifyForm(store.addressFormController['Número']?.text) ??
           restaurant.number,
-      'complement': _parsePrice(
-              _verifyForm(store.addressFormController['Complemento']?.text)) ??
-          restaurant.complement,
+      'complement':
+          _verifyForm(store.addressFormController['Complemento']?.text) ??
+              restaurant.complement,
     });
   }
 

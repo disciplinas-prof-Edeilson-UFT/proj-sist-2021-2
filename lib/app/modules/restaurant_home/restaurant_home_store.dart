@@ -194,7 +194,6 @@ abstract class _RestaurantHomeStoreBase with Store {
         restaurant?.phoneOwner ?? '';
     managementFormController['email_Owner']?.text =
         restaurant?.emailOwner ?? '';
-    managementFormController['password']?.text = restaurant?.password ?? '';
   }
 
   @action
