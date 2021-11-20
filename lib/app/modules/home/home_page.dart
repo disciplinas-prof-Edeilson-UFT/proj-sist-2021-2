@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/cart/cart_page.dart';
 import 'package:pscomidas/app/modules/category/category_page.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
@@ -32,48 +34,61 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   }
 
   @override
+  void initState (){
+    homeStore.getRestaurants();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     homeStore.setSelectedCategory(null);
     deviceWidth = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: const CustomAppBar(),
-      endDrawer: const CartPage(),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CategoryPage(),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-              child: Text(
-                "Mais pedidos",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Nunito',
+    return Observer(
+      builder: (_) {
+        if (homeStore.restaurants.isEmpty) {
+          return const Center(child: CircularProgressIndicator(color: secondaryColor,));
+        }
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: const CustomAppBar(),
+          endDrawer: const CartPage(),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CategoryPage(),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  child: Text(
+                    "Mais pedidos",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Nunito',
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const MostOrdered(),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-              child: Text(
-                "Lojas",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Nunito',
+                const MostOrdered(),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  child: Text(
+                    "Lojas",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Nunito',
+                    ),
+                  ),
                 ),
-              ),
+                const RestaurantGrid(),
+                const CustomFooter()
+              ],
             ),
-            const RestaurantGrid(),
-            const CustomFooter()
-          ],
-        ),
-      ),
-      bottomNavigationBar: layoutMobile(),
+          ),
+          bottomNavigationBar: layoutMobile(),
+        );
+      }
     );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
 
 class LogoSideBar extends StatelessWidget {
   const LogoSideBar({Key? key}) : super(key: key);
@@ -79,34 +81,31 @@ class TextButtonMenuMobile extends StatelessWidget {
 }
 
 class ListTilePerfil extends StatelessWidget {
-  const ListTilePerfil({Key? key}) : super(key: key);
-
+  ListTilePerfil({Key? key}) : super(key: key);
+  final RestaurantHomeStore restaurantHomeStore =
+      Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      //Aqui será a imagem do Upload (icon de demonstração)
-      leading: const Icon(
-        Icons.account_circle_sharp,
-        color: Colors.white,
-        size: 50,
-      ),
-      title: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (_) {
+            restaurantHomeStore.updateControllers();
+            return const ProfileAlertDialog();
           },
-          child: const Text(
-            "Editar perfil",
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: "Nunito",
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.left,
-          ),
+        );
+      },
+      leading: RestaurantProfilePicture(),
+      title: const Text(
+        "Editar perfil",
+        style: TextStyle(
+          color: Colors.white,
+          fontFamily: "Nunito",
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
+        textAlign: TextAlign.left,
       ),
       minLeadingWidth: 0,
     );
@@ -114,34 +113,25 @@ class ListTilePerfil extends StatelessWidget {
 }
 
 class ListTilePerfilMobile extends StatelessWidget {
-  const ListTilePerfilMobile({Key? key}) : super(key: key);
-
+  ListTilePerfilMobile({Key? key}) : super(key: key);
+  final RestaurantHomeStore restaurantHomeStore =
+      Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      //Aqui será a imagem do Upload (icon de demonstração)
-      leading: const Icon(
-        Icons.account_circle_sharp,
-        color: Colors.white,
-        size: 20,
-      ),
-      title: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            showDialog(context: context, builder: (_) => ProfileAlertDialog());
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (_) {
+            restaurantHomeStore.updateControllers();
+            return const ProfileAlertDialog();
           },
-          child: const Text(
-            "Editar perfil",
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: "Nunito",
-              fontSize: 9,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
+        );
+      },
+      leading: RestaurantProfilePicture(),
+      title: const Icon(
+        Icons.create_outlined,
+        color: primaryColor,
       ),
       minLeadingWidth: 0,
     );
