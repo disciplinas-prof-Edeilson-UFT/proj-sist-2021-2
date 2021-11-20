@@ -3,7 +3,7 @@ import 'package:pscomidas/app/modules/restaurant_register/components/register_pl
 import 'plan_selector.dart';
 
 class DesktopPlan extends StatelessWidget {
-  const DesktopPlan({ Key? key }) : super(key: key);
+  const DesktopPlan({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

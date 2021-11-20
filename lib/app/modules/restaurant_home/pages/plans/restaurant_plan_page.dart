@@ -43,37 +43,39 @@ class RestaurantPlanState extends State<RestaurantPlanPage> {
             ),
           ),
           Expanded(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                if (constraints.maxWidth > 700) {
-                  return const DesktopPlan();
-                } else {
-                  return const MobilePlan();
-                }
+            child: LayoutBuilder(builder: (context, constraints) {
+              if (constraints.maxWidth > 700) {
+                return const DesktopPlan();
+              } else {
+                return const MobilePlan();
               }
-            ),
+            }),
           ),
-          Observer(
-            builder: (_) {
-              return ElevatedButton(
-                style: ButtonStyle(
-                  splashFactory: NoSplash.splashFactory,
-                  backgroundColor:
+          Observer(builder: (_) {
+            return ElevatedButton(
+              style: ButtonStyle(
+                splashFactory: NoSplash.splashFactory,
+                backgroundColor:
                     MaterialStateProperty.resolveWith(_getButtonColor),
-                  minimumSize: MaterialStateProperty.all(const Size(210, 48)),
-                ),
-                onPressed: store.selectedPlan == null ? null 
-                  : store.selectedPlan == store.actualPlan ? null : store.updatePlan,
-                child: const Text(
-                  'Confirmar',
-                  style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
-                ),
-              );
-            }
-          ),
+                minimumSize: MaterialStateProperty.all(const Size(210, 48)),
+              ),
+              onPressed: store.selectedPlan == null
+                  ? null
+                  : store.selectedPlan == store.actualPlan
+                      ? null
+                      : store.updatePlan,
+              child: const Text(
+                'Confirmar',
+                style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
+              ),
+            );
+          }),
           const Padding(
             padding: EdgeInsets.only(bottom: 8.0),
-            child: Text('Você pode mudar o plano a qualquer momento', style: TextStyle(color: Colors.grey),),
+            child: Text(
+              'Você pode mudar o plano a qualquer momento',
+              style: TextStyle(color: Colors.grey),
+            ),
           ),
         ],
       ),

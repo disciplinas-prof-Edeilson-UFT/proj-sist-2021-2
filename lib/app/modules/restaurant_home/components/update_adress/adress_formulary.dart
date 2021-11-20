@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/home_cep.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class AdressForm extends StatelessWidget {
@@ -94,11 +93,10 @@ class AdressFormulary extends StatelessWidget {
               return AdressForm(
                 label: e,
                 hintText: homeStore.fields[e]?['hintText'] as String,
-                controller: homeStore.controller[e],
+                controller: homeStore.addressFormController[e],
                 formatter:
                     homeStore.fields[e]?['formatter'] as TextInputFormatter,
-                valueChangeListener: (value) =>
-                    HomeCEP().searchAdress(value, homeStore),
+                valueChangeListener: (value) => homeStore.searchAdress(value),
               );
             }
             if (e == 'Cidade') {
@@ -109,7 +107,7 @@ class AdressFormulary extends StatelessWidget {
                     child: AdressForm(
                       label: e,
                       hintText: homeStore.fields[e]?['hintText'] as String,
-                      controller: homeStore.controller[e],
+                      controller: homeStore.addressFormController[e],
                     ),
                   ),
                   const VerticalDivider(),
@@ -117,7 +115,7 @@ class AdressFormulary extends StatelessWidget {
                     child: AdressForm(
                       label: 'Estado',
                       hintText: 'UF',
-                      controller: homeStore.controller['Estado'],
+                      controller: homeStore.addressFormController['Estado'],
                     ),
                   ),
                 ],
@@ -131,7 +129,7 @@ class AdressFormulary extends StatelessWidget {
                   homeStore.fields[e]?['formatter'] as TextInputFormatter,
               label: e,
               hintText: homeStore.fields[e]?['hintText'] as String,
-              controller: homeStore.controller[e],
+              controller: homeStore.addressFormController[e],
             );
           },
         ).toList(),

@@ -5,6 +5,7 @@ import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/home_field.dart';
+import 'package:search_cep/search_cep.dart';
 
 part 'restaurant_home_store.g.dart';
 
@@ -58,15 +59,6 @@ abstract class _RestaurantHomeStoreBase with Store {
     }
   }
 
-  Map<String, TextEditingController> controller = {
-    'CEP': TextEditingController(),
-    'Estado': TextEditingController(),
-    'Cidade': TextEditingController(),
-    'Bairro': TextEditingController(),
-    'Endereço': TextEditingController(),
-    'Número': TextEditingController(),
-    'Complemento (Opcional)': TextEditingController(),
-  };
   final formKey = GlobalKey<FormState>();
   final fields = HomeField.fields;
   static final _categories = [
@@ -163,6 +155,16 @@ abstract class _RestaurantHomeStoreBase with Store {
     'Confirmar Senha': TextEditingController(),
   };
 
+  Map<String, TextEditingController> addressFormController = {
+    'CEP': TextEditingController(),
+    'Estado': TextEditingController(),
+    'Cidade': TextEditingController(),
+    'Bairro': TextEditingController(),
+    'Endereço': TextEditingController(),
+    'Número': TextEditingController(),
+    'Complemento (Opcional)': TextEditingController(),
+  };
+
   String? validatePassword() {
     if (managementFormController['Confirmar Senha']?.text !=
         managementFormController['Senha']?.text) {
@@ -183,5 +185,28 @@ abstract class _RestaurantHomeStoreBase with Store {
         'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
     updateFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
     category = restaurant?.category ?? categories.first;
+  }
+
+  void searchAdress(String value) async {
+    //Esta função atribui os valores de endereço dinamicamente conforme o CEP informado.
+
+    final info = await ViaCepSearchCep()
+        .searchInfoByCep(cep: value.replaceFirst('-', ''));
+
+    if (info.isRight()) {
+      addressFormController['Endereço']!.text =
+          info.getOrElse(() => ViaCepInfo()).logradouro ?? '';
+      addressFormController['Cidade']!.text =
+          info.getOrElse(() => ViaCepInfo()).localidade ?? '';
+      addressFormController['Estado']!.text =
+          info.getOrElse(() => ViaCepInfo()).uf ?? '';
+      addressFormController['Bairro']!.text =
+          info.getOrElse(() => ViaCepInfo()).bairro ?? '';
+    } else {
+      addressFormController['Endereço']!.text = '';
+      addressFormController['Cidade']!.text = '';
+      addressFormController['Estado']!.text = '';
+      addressFormController['Bairro']!.text = '';
+    }
   }
 }
