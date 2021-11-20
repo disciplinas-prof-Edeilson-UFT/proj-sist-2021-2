@@ -85,7 +85,7 @@ class ProfileRepository extends IProfile {
           restaurant.state,
       'district': _verifyForm(store.addressFormController['Bairro']?.text) ??
           restaurant.district,
-      'adress': _parsePrice(
+      'address': _parsePrice(
               _verifyForm(store.addressFormController['Endereço']?.text)) ??
           restaurant.address,
       'number': _parsePrice(
