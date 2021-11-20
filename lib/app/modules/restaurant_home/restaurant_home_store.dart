@@ -157,8 +157,8 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   Map<String, TextEditingController> addressFormController = {
     'CEP': TextEditingController(),
-    'Estado': TextEditingController(),
     'Cidade': TextEditingController(),
+    'Estado': TextEditingController(),
     'Bairro': TextEditingController(),
     'Endereço': TextEditingController(),
     'Número': TextEditingController(),
@@ -195,6 +195,18 @@ abstract class _RestaurantHomeStoreBase with Store {
     managementFormController['email_Owner']?.text =
         restaurant?.emailOwner ?? '';
     managementFormController['password']?.text = restaurant?.password ?? '';
+  }
+
+  @action
+  void updateAddressControllers() {
+    addressFormController['CEP']?.text = restaurant?.cep ?? '';
+    addressFormController['Cidade']?.text = restaurant?.city ?? '';
+    addressFormController['Estado']?.text = restaurant?.state ?? '';
+    addressFormController['Bairro']?.text = restaurant?.district ?? '';
+    addressFormController['Endereço']?.text = restaurant?.address ?? '';
+    addressFormController['Número']?.text = restaurant?.number ?? '';
+    addressFormController['Complemento (Opcional)']?.text =
+        restaurant?.complement ?? '';
   }
 
   void searchAdress(String value) async {

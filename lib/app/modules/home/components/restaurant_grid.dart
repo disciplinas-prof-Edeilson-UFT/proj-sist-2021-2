@@ -74,6 +74,13 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
                 phoneOwner: restaurants[index].phoneOwner,
                 emailOwner: restaurants[index].emailOwner,
                 password: restaurants[index].password,
+                cep: restaurants[index].cep,
+                city: restaurants[index].city,
+                state: restaurants[index].state,
+                address: restaurants[index].address,
+                district: restaurants[index].district,
+                number: restaurants[index].number,
+                complement: restaurants[index].complement,
               );
             } catch (exception) {
               return Column(children: [

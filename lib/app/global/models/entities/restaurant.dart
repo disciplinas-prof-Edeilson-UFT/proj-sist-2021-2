@@ -16,6 +16,13 @@ class Restaurant {
   final String phoneOwner;
   final String emailOwner;
   final String password;
+  final String cep;
+  final String city;
+  final String state;
+  final String address;
+  final String district;
+  final String number;
+  final String complement;
 
   Restaurant(
     this.restaurantId, {
@@ -35,6 +42,13 @@ class Restaurant {
     required this.phoneOwner,
     required this.emailOwner,
     required this.password,
+    required this.cep,
+    required this.city,
+    required this.state,
+    required this.address,
+    required this.district,
+    required this.number,
+    required this.complement,
   });
 
   static Restaurant fromMap(id, Map<String, dynamic> map) {
@@ -56,6 +70,13 @@ class Restaurant {
       phoneOwner: map['phone_Owner'] ?? '',
       emailOwner: map['email_Owner'] ?? '',
       password: map['password'] ?? '',
+      cep: map['CEP'] ?? '',
+      city: map['city'] ?? '',
+      state: map['state'] ?? '',
+      address: map['address'] ?? '',
+      district: map['district'] ?? '',
+      number: map['number'] ?? '',
+      complement: map['complement'] ?? '',
     );
   }
 }
