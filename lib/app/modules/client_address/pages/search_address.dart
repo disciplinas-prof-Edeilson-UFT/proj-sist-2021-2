@@ -25,15 +25,15 @@ class _SearchAddressState extends State<SearchAddress> {
               color: Colors.white,
             ),
           ),
+          Expanded(child: TextField(
+            onChanged: (velor) {
+              store.enterText = velor;
+            },
+          )),
           IconButton(
-            onPressed: () => store.jump(2),
-            icon: const Icon(
-              Icons.location_on_outlined,
-              color: Colors.white,
-            ),
-          ),
-          IconButton(
-            onPressed: store.next,
+            onPressed: () async {
+              await store.fechPlace();
+            },
             icon: const Icon(
               Icons.keyboard_arrow_right,
               color: Colors.white,
