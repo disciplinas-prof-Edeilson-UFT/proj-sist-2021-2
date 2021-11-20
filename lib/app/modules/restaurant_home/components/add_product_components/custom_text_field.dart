@@ -18,6 +18,13 @@ class CustomTextField extends StatelessWidget {
       child: SizedBox(
         width: 500,
         child: TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Este campo não pode ficar vazio";
+            }
+            return null;
+          },
           controller: controller,
           cursorColor: secondaryColor,
           enabled: true,
