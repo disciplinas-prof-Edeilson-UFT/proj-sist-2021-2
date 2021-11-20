@@ -75,8 +75,7 @@ class ManagementFormulary extends StatelessWidget {
         ),
         Center(
           child: Padding(
-            padding: const EdgeInsets.only(
-                top: 10.0, bottom: 5.0, left: 15.0, right: 15.0),
+            padding: _padding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -227,7 +226,7 @@ class ManagementFormulary extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(
-              top: 30.0, bottom: 30.0, left: 15.0, right: 15.0),
+              top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
           child: ConfirmationButton(
             onPressed: () async {
               await ProfileRepository().setRestaurant(homeStore.restaurant!);

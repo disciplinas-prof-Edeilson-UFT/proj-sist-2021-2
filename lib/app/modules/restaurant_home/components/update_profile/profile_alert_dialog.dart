@@ -32,7 +32,7 @@ class _ProfileAlertDialogState extends State<ProfileAlertDialog> {
     double _pageWidth = MediaQuery.of(context).size.width;
 
     return AlertDialog(
-      contentPadding: const EdgeInsets.only(top: 24),
+      contentPadding: const EdgeInsets.only(top: 10),
       title: const Text('Editar perfil'),
       content: SingleChildScrollView(
         child: SizedBox(
