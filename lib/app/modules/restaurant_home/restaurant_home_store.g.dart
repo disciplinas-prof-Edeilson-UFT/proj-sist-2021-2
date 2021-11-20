@@ -128,16 +128,16 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
       Atom(name: '_RestaurantHomeStoreBase.updateFormController');
 
   @override
-  Map<String, TextEditingController> get updateFormController {
+  Map<String, TextEditingController> get profileFormController {
     _$updateFormControllerAtom.reportRead();
-    return super.updateFormController;
+    return super.profileFormController;
   }
 
   @override
-  set updateFormController(Map<String, TextEditingController> value) {
-    _$updateFormControllerAtom.reportWrite(value, super.updateFormController,
+  set profileFormController(Map<String, TextEditingController> value) {
+    _$updateFormControllerAtom.reportWrite(value, super.profileFormController,
         () {
-      super.updateFormController = value;
+      super.profileFormController = value;
     });
   }
 
@@ -267,7 +267,7 @@ isOpen: ${isOpen},
 selectedPlan: ${selectedPlan},
 actualPlan: ${actualPlan},
 iconColor: ${iconColor},
-updateFormController: ${updateFormController},
+updateFormController: ${profileFormController},
 toggleText: ${toggleText}
     ''';
   }

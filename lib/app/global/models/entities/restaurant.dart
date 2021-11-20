@@ -12,6 +12,10 @@ class Restaurant {
   final bool isChampion;
   final int orders;
   final String socialName;
+  final String nameOwner;
+  final String phoneOwner;
+  final String emailOwner;
+  final String password;
 
   Restaurant(
     this.restaurantId, {
@@ -27,6 +31,10 @@ class Restaurant {
     required this.isChampion,
     required this.orders,
     required this.socialName,
+    required this.nameOwner,
+    required this.phoneOwner,
+    required this.emailOwner,
+    required this.password,
   });
 
   static Restaurant fromMap(id, Map<String, dynamic> map) {
@@ -44,6 +52,10 @@ class Restaurant {
       isChampion: map['isChampion'],
       orders: map['orders'],
       socialName: map['social_name'],
+      nameOwner: map['name_Owner'],
+      phoneOwner: map['phone_Owner'],
+      emailOwner: map['email_Owner'],
+      password: map['password'],
     );
   }
 }

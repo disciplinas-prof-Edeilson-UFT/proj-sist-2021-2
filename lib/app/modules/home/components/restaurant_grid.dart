@@ -70,6 +70,10 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
                 socialName: restaurants[index].socialName,
                 avaliation: restaurants[index].avaliation,
                 cupom: restaurants[index].cupom,
+                nameOwner: restaurants[index].nameOwner,
+                phoneOwner: restaurants[index].phoneOwner,
+                emailOwner: restaurants[index].emailOwner,
+                password: restaurants[index].password,
               );
             } catch (exception) {
               return Column(children: [

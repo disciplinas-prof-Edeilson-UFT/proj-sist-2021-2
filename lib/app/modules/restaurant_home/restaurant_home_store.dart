@@ -148,9 +148,9 @@ abstract class _RestaurantHomeStoreBase with Store {
   };
 
   Map<String, TextEditingController> managementFormController = {
-    'name_Owner': TextEditingController(text: "Gatinho's Bar e Restaurante"),
-    'phone_Owner': TextEditingController(text: "(33) 33333-3333"),
-    'email_Owner': TextEditingController(text: "Gatinhos@mail.com"),
+    'name_Owner': TextEditingController(),
+    'phone_Owner': TextEditingController(),
+    'email_Owner': TextEditingController(),
     'Senha': TextEditingController(),
     'Confirmar Senha': TextEditingController(),
   };
@@ -185,6 +185,16 @@ abstract class _RestaurantHomeStoreBase with Store {
         'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
     profileFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
     category = restaurant?.category ?? categories.first;
+  }
+
+  @action
+  void updateManagementControllers() {
+    managementFormController['name_Owner']?.text = restaurant?.nameOwner ?? '';
+    managementFormController['phone_Owner']?.text =
+        restaurant?.phoneOwner ?? '';
+    managementFormController['email_Owner']?.text =
+        restaurant?.emailOwner ?? '';
+    managementFormController['password']?.text = restaurant?.password ?? '';
   }
 
   void searchAdress(String value) async {
