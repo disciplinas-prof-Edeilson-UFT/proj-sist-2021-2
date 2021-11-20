@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
@@ -86,29 +87,25 @@ class ListTilePerfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: RestaurantProfilePicture(),
-      title: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (_) {
-                  restaurantHomeStore.updateControllers();
-                  return const ProfileAlertDialog();
-                });
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (_) {
+            restaurantHomeStore.updateControllers();
+            return const ProfileAlertDialog();
           },
-          child: const Text(
-            "Editar perfil",
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: "Nunito",
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.left,
-          ),
+        );
+      },
+      leading: RestaurantProfilePicture(),
+      title: const Text(
+        "Editar perfil",
+        style: TextStyle(
+          color: Colors.white,
+          fontFamily: "Nunito",
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
+        textAlign: TextAlign.left,
       ),
       minLeadingWidth: 0,
     );
@@ -122,25 +119,19 @@ class ListTilePerfilMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: RestaurantProfilePicture(),
-      title: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            showDialog(
-                context: context, builder: (_) => const ProfileAlertDialog());
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (_) {
+            restaurantHomeStore.updateControllers();
+            return const ProfileAlertDialog();
           },
-          child: const Text(
-            "Editar perfil",
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: "Nunito",
-              fontSize: 9,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
+        );
+      },
+      leading: RestaurantProfilePicture(),
+      title: const Icon(
+        Icons.create_outlined,
+        color: primaryColor,
       ),
       minLeadingWidth: 0,
     );
