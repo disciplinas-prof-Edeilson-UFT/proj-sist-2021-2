@@ -12,12 +12,12 @@ class CartDrawerSelector extends StatelessWidget {
         var width = screen.width;
         if (width < 1360) {
           return CartDrawer(
-            largura: 250,
+            width: 350,
           );
         } else {
           var newWidth = width * 0.25;
           return CartDrawer(
-            largura: newWidth,
+            width: newWidth,
           );
         }
       },

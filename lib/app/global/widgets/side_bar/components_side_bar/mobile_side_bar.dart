@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/components_side_bar.dart';
-
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class SideBarMobile extends StatefulWidget {
@@ -65,7 +64,7 @@ class _SideBarMobileState extends State<SideBarMobile> {
               color: redCollor,
               width: double.maxFinite,
               height: screen.height * 0.1,
-              child: const ListTilePerfilMobile(),
+              child: ListTilePerfilMobile(),
             ),
             Container(
               color: Colors.white,

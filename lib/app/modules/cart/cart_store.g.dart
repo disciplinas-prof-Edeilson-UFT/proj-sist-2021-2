@@ -31,6 +31,29 @@ mixin _$CartStore on _CartStoreBase, Store {
     });
   }
 
+  final _$listaPedidoAtom = Atom(name: '_CartStoreBase.listaPedido');
+
+  @override
+  Order? get listaPedido {
+    _$listaPedidoAtom.reportRead();
+    return super.listaPedido;
+  }
+
+  @override
+  set listaPedido(Order? value) {
+    _$listaPedidoAtom.reportWrite(value, super.listaPedido, () {
+      super.listaPedido = value;
+    });
+  }
+
+  final _$cadastroTesteAsyncAction =
+      AsyncAction('_CartStoreBase.cadastroTeste');
+
+  @override
+  Future<dynamic> cadastroTeste() {
+    return _$cadastroTesteAsyncAction.run(() => super.cadastroTeste());
+  }
+
   final _$_CartStoreBaseActionController =
       ActionController(name: '_CartStoreBase');
 
@@ -71,6 +94,7 @@ mixin _$CartStore on _CartStoreBase, Store {
   String toString() {
     return '''
 itens: ${itens},
+listaPedido: ${listaPedido},
 total: ${total}
     ''';
   }

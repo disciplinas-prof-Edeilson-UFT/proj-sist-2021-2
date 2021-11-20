@@ -34,7 +34,7 @@ class _DrawerBuilderState extends State<PayDrawerBuilder> {
             title: AutoSizeText(
               widget.model.product.name.toString(),
               textAlign: TextAlign.center,
-              presetFontSizes: const [20, 16],
+              presetFontSizes: const [18, 16],
               style: const TextStyle(
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w600,

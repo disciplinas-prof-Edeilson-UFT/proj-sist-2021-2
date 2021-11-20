@@ -1,11 +1,14 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/auth/auth_store.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/auth/pages/verify_screen.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
+import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
 
 class AuthPage extends StatefulWidget {
   final String title;
@@ -36,6 +39,58 @@ class AuthPageState extends State<AuthPage> {
           MaterialPageRoute(
             builder: (context) => const VerifyScreen(),
           ),
+        ),
+      ),
+      reaction(
+        (_) => store.emailexiste == false,
+        (_) => showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text(
+                'O e-mail não foi encontrado',
+                style: TextStyle(color: Colors.red),
+              ),
+              content: const Text(
+                  'Caso não seja nosso cliente ainda, crie uma nova conta!'),
+              actions: <Widget>[
+                ElevatedButton(
+                  onPressed: () {
+                    store.emailexiste = true;
+                    Navigator.pop(context, 'Cancelar');
+                  },
+                  child: const Text(
+                    'Tentar Novamente',
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 15,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size.fromHeight(30),
+                    primary: Colors.white,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () =>
+                      Modular.to.navigate(RegisterClientModule.routeName),
+                  child: const Text(
+                    'Criar conta',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size.fromHeight(30),
+                    primary: Colors.white,
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
       reaction(
@@ -108,17 +163,15 @@ class AuthPageState extends State<AuthPage> {
                 width: screen.width > 1069 ? screen.width * .45 : screen.width,
                 height: screen.height,
                 child: SingleChildScrollView(
+                  padding: const EdgeInsets.only(top: 100),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/images/logo.png",
-                            width: 220,
-                          ),
+                        children: const [
+                          LogoAppBar(),
                         ],
                       ),
                       const SizedBox(height: 40),
@@ -267,18 +320,9 @@ class AuthPageState extends State<AuthPage> {
                                   color: Colors.black87,
                                 ),
                               ),
-                              style: ButtonStyle(
-                                fixedSize: MaterialStateProperty.all(
-                                    const Size.fromHeight(50)),
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                overlayColor:
-                                    MaterialStateProperty.all(Colors.black12),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                ),
+                              style: ElevatedButton.styleFrom(
+                                fixedSize: const Size.fromHeight(50),
+                                primary: Colors.white,
                               ),
                             ),
                           ),
@@ -308,6 +352,32 @@ class AuthPageState extends State<AuthPage> {
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Modular.to
+                                    .navigate(RegisterClientModule.routeName);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                fixedSize: const Size.fromHeight(50),
+                                primary: Colors.white,
+                              ),
+                              child: Text(
+                                'Ainda não tenho conta',
+                                style: TextStyle(
+                                  fontFamily:
+                                      GoogleFonts.getFont('Nunito').fontFamily,
+                                  color: Colors.red,
+                                  fontSize: 16.0,
                                 ),
                               ),
                             ),
