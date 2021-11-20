@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 
-class CustomTextField extends StatelessWidget {
+class PriceTextField extends StatelessWidget {
   final String? label;
 
-  const CustomTextField({
+  const PriceTextField({
     Key? key,
     required this.label,
     required this.controller,
@@ -26,6 +28,11 @@ class CustomTextField extends StatelessWidget {
             fontSize: 18,
             fontFamily: 'Nunito',
           ),
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(5),
+            CurrencyTextInputFormatter(decimalDigits: 2, symbol: 'R\$')
+          ],
           decoration: InputDecoration(
             border: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.red),

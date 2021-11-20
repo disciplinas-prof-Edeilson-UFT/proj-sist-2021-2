@@ -49,6 +49,9 @@ abstract class _RestaurantHomeStoreBase with Store {
     log('Deu certo');
   }
 
+  @action
+  void productSetImage(dynamic e) {}
+
   @computed
   String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
 }

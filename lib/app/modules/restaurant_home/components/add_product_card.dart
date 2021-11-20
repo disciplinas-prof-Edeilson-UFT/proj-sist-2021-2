@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -8,9 +6,8 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_button.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_text_field.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/price_text_field.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/product_image.dart';
-import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class AddProduct extends StatefulWidget {
@@ -69,7 +66,7 @@ class _AddProductState extends State<AddProduct> {
                             controller: store.descController,
                             label: 'Descrição do produto',
                           ),
-                          CustomTextField(
+                          PriceTextField(
                             controller: store.priceController,
                             label: 'Preço do produto',
                           ),

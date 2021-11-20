@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class ProductImage extends StatefulWidget {
   const ProductImage({Key? key}) : super(key: key);
@@ -11,6 +13,8 @@ class ProductImage extends StatefulWidget {
 
 class _ProductImageState extends State<ProductImage> {
   late DropzoneViewController controller;
+  final restaurantHomeStore = Modular.get<RestaurantHomeStore>();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -28,7 +32,9 @@ class _ProductImageState extends State<ProductImage> {
         child: Stack(
           children: [
             DropzoneView(
-              onDrop: (e) {},
+              onDrop: (e) {
+                Navigator.pop(context);
+              },
               onCreated: (controller) => this.controller = controller,
             ),
             Center(
@@ -47,7 +53,8 @@ class _ProductImageState extends State<ProductImage> {
                           MaterialStateProperty.all(secondaryColor),
                     ),
                     onPressed: () async {
-                      final event = await controller.pickFiles();
+                      final event = await controller
+                          .pickFiles(); //TODO: esse botão abre a galertia de fotos
                       Navigator.pop(context);
                     },
                     icon: const Icon(
