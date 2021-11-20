@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_sensitive_data/management_dialog.dart';
-
 class ConfirmationButton extends StatelessWidget {
   const ConfirmationButton({
     Key? key,
@@ -29,40 +27,6 @@ class ConfirmationButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(secondaryColor),
         ),
         onPressed: onPressed,
-      ),
-    );
-  }
-}
-
-class NextIcon extends StatefulWidget {
-  const NextIcon({Key? key}) : super(key: key);
-
-  @override
-  _NextIconState createState() => _NextIconState();
-}
-
-class _NextIconState extends State<NextIcon> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 5),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-            showDialog(
-                context: context,
-                builder: (_) {
-                  return const ManagementDialog();
-                });
-          },
-          child: const Icon(
-            Icons.arrow_forward_ios_outlined,
-            color: secondaryColor,
-            size: 50,
-          ),
-        ),
       ),
     );
   }

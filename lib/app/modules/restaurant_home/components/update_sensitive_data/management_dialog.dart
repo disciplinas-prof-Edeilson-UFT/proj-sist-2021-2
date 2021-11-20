@@ -11,17 +11,9 @@ class ManagementDialog extends StatefulWidget {
 class _ManagementDialogState extends State<ManagementDialog> {
   @override
   Widget build(BuildContext context) {
-    double _pageWidth = MediaQuery.of(context).size.width;
 
-    return AlertDialog(
-      contentPadding: const EdgeInsets.only(top: 10),
-      title: const Text('Gerenciamento'),
-      content: SingleChildScrollView(
-        child: SizedBox(
-          width: _pageWidth * 0.4,
-          child: ManagementFormulary(),
-        ),
-      ),
+    return SingleChildScrollView(
+        child: ManagementFormulary(),
     );
   }
 }
