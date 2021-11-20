@@ -83,6 +83,7 @@ class ListTilePerfil extends StatelessWidget {
   ListTilePerfil({Key? key}) : super(key: key);
   final RestaurantHomeStore restaurantHomeStore =
       Modular.get<RestaurantHomeStore>();
+
   @override
   Widget build(BuildContext context) {
     return ListTile(

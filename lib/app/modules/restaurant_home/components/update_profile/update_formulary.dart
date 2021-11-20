@@ -71,8 +71,8 @@ class UpdateFormulary extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            UpdateProfileDropdown(),
+          children: [
+            const UpdateProfileDropdown(),
             NextIcon(),
           ],
         ),

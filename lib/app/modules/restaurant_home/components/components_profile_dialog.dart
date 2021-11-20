@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_sensitive_data/management_dialog.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class ConfirmationButton extends StatelessWidget {
   const ConfirmationButton({
@@ -34,14 +36,12 @@ class ConfirmationButton extends StatelessWidget {
   }
 }
 
-class NextIcon extends StatefulWidget {
-  const NextIcon({Key? key}) : super(key: key);
+class NextIcon extends StatelessWidget {
+  NextIcon({Key? key}) : super(key: key);
 
-  @override
-  _NextIconState createState() => _NextIconState();
-}
+  final RestaurantHomeStore restaurantHomeStore =
+      Modular.get<RestaurantHomeStore>();
 
-class _NextIconState extends State<NextIcon> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -54,6 +54,7 @@ class _NextIconState extends State<NextIcon> {
             showDialog(
                 context: context,
                 builder: (_) {
+                  restaurantHomeStore.updateManagementControllers();
                   return const ManagementDialog();
                 });
           },
