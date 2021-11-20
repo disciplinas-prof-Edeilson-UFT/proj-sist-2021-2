@@ -210,6 +210,58 @@ class _UserAppBarState extends State<UserAppBar> {
   }
 }
 
+class ItemMenuHover extends StatefulWidget {
+  const ItemMenuHover({Key? key, required this.title, required this.icon})
+      : super(key: key);
+  final String title;
+  final IconData icon;
+
+  @override
+  _ItemMenuHoverState createState() => _ItemMenuHoverState();
+}
+
+class _ItemMenuHoverState extends State<ItemMenuHover> {
+  Color color = Colors.black54;
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onHover: (_) {
+        setState(() {
+          color = Colors.red;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          color = Colors.black54;
+        });
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 8.0,
+            ),
+            child: Icon(
+              widget.icon,
+              color: color,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              widget.title,
+              textAlign: TextAlign.left,
+              style: TextStyle(color: color),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class CartAppBar extends StatelessWidget {
   const CartAppBar({Key? key}) : super(key: key);
 

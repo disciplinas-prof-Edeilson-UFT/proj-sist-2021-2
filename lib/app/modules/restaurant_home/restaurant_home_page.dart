@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/custom_side_bar.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/product_page.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class RestaurantHomePage extends StatefulWidget {
   final String title;
@@ -11,6 +12,13 @@ class RestaurantHomePage extends StatefulWidget {
 }
 
 class RestaurantHomePageState extends State<RestaurantHomePage> {
+  RestaurantHomeStore restaurantHomeStore = Modular.get<RestaurantHomeStore>();
+  @override
+  void initState() {
+    restaurantHomeStore.getRestaurant();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
@@ -25,8 +33,8 @@ class RestaurantHomePageState extends State<RestaurantHomePage> {
               child: const CustomSideBar(),
             ),
             //main body
-            const Expanded(
-              child: ProductPage(),
+            Expanded(
+              child: RouterOutlet(),
             ),
           ],
         ),

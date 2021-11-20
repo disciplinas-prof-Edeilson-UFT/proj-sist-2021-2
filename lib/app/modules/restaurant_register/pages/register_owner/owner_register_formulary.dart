@@ -4,7 +4,8 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class OwnerRegisterFormulary extends StatelessWidget {
-  OwnerRegisterFormulary({Key? key, required this.controller}) : super(key: key);
+  OwnerRegisterFormulary({Key? key, required this.controller})
+      : super(key: key);
   final Map controller;
 
   final TextStyle _labelStyle = const TextStyle(
@@ -64,7 +65,7 @@ class OwnerRegisterFormulary extends StatelessWidget {
                 if (value == null || value.isEmpty) {
                   return "Este campo não pode ficar vazio";
                 }
-                if(!EmailValidator.validate(value)) {
+                if (!EmailValidator.validate(value)) {
                   return "Digite um email válido";
                 }
                 return null;
