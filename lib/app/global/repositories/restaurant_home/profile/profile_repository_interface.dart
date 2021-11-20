@@ -2,6 +2,8 @@ import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 
 abstract class IProfile {
   Future<Restaurant> getRestaurant();
-  Future<void> setRestaurant(Restaurant restaurant);
+  Future<void> setProfileRestaurant(Restaurant restaurant);
+  Future<void> setManagementRestaurant(Restaurant restaurant);
+  Future<void> setAdressRestaurant(Restaurant restaurant);
   Future<void> setImage(dynamic e);
 }

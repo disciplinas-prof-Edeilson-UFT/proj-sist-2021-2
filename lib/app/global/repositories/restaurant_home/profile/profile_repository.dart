@@ -56,16 +56,16 @@ class ProfileRepository extends IProfile {
         .collection('restaurant')
         .doc(store.id)
         .update({
-      'name_owner':
+      'name_Owner':
           _verifyForm(store.managementFormController['name_Owner']?.text) ??
               restaurant.nameOwner,
-      'phone_owner':
+      'phone_Owner':
           _verifyForm(store.managementFormController['phone_Owner']?.text) ??
               restaurant.phoneOwner,
-      'email_owner':
+      'email_Owner':
           _verifyForm(store.managementFormController['email_Owner']?.text) ??
               restaurant.emailOwner,
-      'senha_owner': _parsePrice(
+      'password': _parsePrice(
               _verifyForm(store.managementFormController['Senha']?.text)) ??
           restaurant.password,
     });
@@ -79,19 +79,19 @@ class ProfileRepository extends IProfile {
         .update({
       'CEP': _verifyForm(store.addressFormController['CEP']?.text) ??
           restaurant.cep,
-      'Cidade': _verifyForm(store.addressFormController['Cidade']?.text) ??
+      'city': _verifyForm(store.addressFormController['Cidade']?.text) ??
           restaurant.city,
-      'Estado': _verifyForm(store.addressFormController['Estado']?.text) ??
+      'state': _verifyForm(store.addressFormController['Estado']?.text) ??
           restaurant.state,
-      'Bairro': _verifyForm(store.addressFormController['Bairro']?.text) ??
+      'district': _verifyForm(store.addressFormController['Bairro']?.text) ??
           restaurant.district,
-      'Endereço': _parsePrice(
+      'adress': _parsePrice(
               _verifyForm(store.addressFormController['Endereço']?.text)) ??
           restaurant.address,
-      'Número': _parsePrice(
+      'number': _parsePrice(
               _verifyForm(store.addressFormController['Número']?.text)) ??
           restaurant.number,
-      'Complemento': _parsePrice(
+      'complement': _parsePrice(
               _verifyForm(store.addressFormController['Complemento']?.text)) ??
           restaurant.complement,
     });
