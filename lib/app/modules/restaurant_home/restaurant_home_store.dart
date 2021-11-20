@@ -140,7 +140,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @observable
-  Map<String, TextEditingController> updateFormController = {
+  Map<String, TextEditingController> profileFormController = {
     'restaurant': TextEditingController(),
     'prepare_time': TextEditingController(),
     'delivery_price': TextEditingController(),
@@ -177,13 +177,13 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @action
-  void updateControllers() {
-    updateFormController['restaurant']?.text = restaurant?.socialName ?? '';
-    updateFormController['prepare_time']?.text =
+  void updateProfileControllers() {
+    profileFormController['restaurant']?.text = restaurant?.socialName ?? '';
+    profileFormController['prepare_time']?.text =
         restaurant?.estimatedDelivery ?? '';
-    updateFormController['delivery_price']?.text =
+    profileFormController['delivery_price']?.text =
         'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
-    updateFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
+    profileFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
     category = restaurant?.category ?? categories.first;
   }
 

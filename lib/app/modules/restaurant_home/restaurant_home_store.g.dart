@@ -246,11 +246,11 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
-  void updateControllers() {
+  void updateProfileControllers() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
         name: '_RestaurantHomeStoreBase.updateControllers');
     try {
-      return super.updateControllers();
+      return super.updateProfileControllers();
     } finally {
       _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
     }

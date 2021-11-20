@@ -35,17 +35,17 @@ class ProfileRepository extends IProfile {
         .doc(store.id)
         .update({
       'social_name':
-          _verifyForm(store.updateFormController['restaurant']?.text) ??
+          _verifyForm(store.profileFormController['restaurant']?.text) ??
               restaurant.socialName,
       'phone_restaurant':
-          _verifyForm(store.updateFormController['phone_restaurant']?.text) ??
+          _verifyForm(store.profileFormController['phone_restaurant']?.text) ??
               restaurant.phone,
       'category': store.category,
       'estimated_delivery':
-          _verifyForm(store.updateFormController['prepare_time']?.text) ??
+          _verifyForm(store.profileFormController['prepare_time']?.text) ??
               restaurant.estimatedDelivery,
       'delivery_price': _parsePrice(_verifyForm(
-              store.updateFormController['delivery_price']?.text)) ??
+              store.profileFormController['delivery_price']?.text)) ??
           restaurant.deliveryPrice,
     });
   }
