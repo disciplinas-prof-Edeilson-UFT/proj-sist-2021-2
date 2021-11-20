@@ -59,15 +59,6 @@ abstract class _RestaurantHomeStoreBase with Store {
     }
   }
 
-  Map<String, TextEditingController> addressFormController = {
-    'CEP': TextEditingController(),
-    'Estado': TextEditingController(),
-    'Cidade': TextEditingController(),
-    'Bairro': TextEditingController(),
-    'Endereço': TextEditingController(),
-    'Número': TextEditingController(),
-    'Complemento (Opcional)': TextEditingController(),
-  };
   final formKey = GlobalKey<FormState>();
   final fields = HomeField.fields;
   static final _categories = [
@@ -162,6 +153,16 @@ abstract class _RestaurantHomeStoreBase with Store {
     'email_Owner': TextEditingController(text: "Gatinhos@mail.com"),
     'Senha': TextEditingController(),
     'Confirmar Senha': TextEditingController(),
+  };
+
+  Map<String, TextEditingController> addressFormController = {
+    'CEP': TextEditingController(),
+    'Estado': TextEditingController(),
+    'Cidade': TextEditingController(),
+    'Bairro': TextEditingController(),
+    'Endereço': TextEditingController(),
+    'Número': TextEditingController(),
+    'Complemento (Opcional)': TextEditingController(),
   };
 
   String? validatePassword() {
