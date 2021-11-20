@@ -28,7 +28,7 @@ class AddressDialog extends StatelessWidget {
                 child: ConfirmationButton(
                   onPressed: () async {
                     await ProfileRepository()
-                        .setRestaurant(homeStore.restaurant!);
+                        .setAdressRestaurant(homeStore.restaurant!);
                     Navigator.of(context).pop();
                   },
                 ),

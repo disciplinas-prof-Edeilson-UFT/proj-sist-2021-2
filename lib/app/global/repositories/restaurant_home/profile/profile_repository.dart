@@ -29,7 +29,7 @@ class ProfileRepository extends IProfile {
   }
 
   @override
-  Future<void> setRestaurant(Restaurant restaurant) async {
+  Future<void> setProfileRestaurant(Restaurant restaurant) async {
     await FirebaseFirestore.instance
         .collection('restaurant')
         .doc(store.id)
@@ -47,6 +47,53 @@ class ProfileRepository extends IProfile {
       'delivery_price': _parsePrice(_verifyForm(
               store.profileFormController['delivery_price']?.text)) ??
           restaurant.deliveryPrice,
+    });
+  }
+
+  @override
+  Future<void> setManagementRestaurant(Restaurant restaurant) async {
+    await FirebaseFirestore.instance
+        .collection('restaurant')
+        .doc(store.id)
+        .update({
+      'name_owner':
+          _verifyForm(store.managementFormController['name_Owner']?.text) ??
+              restaurant.nameOwner,
+      'phone_owner':
+          _verifyForm(store.managementFormController['phone_Owner']?.text) ??
+              restaurant.phoneOwner,
+      'email_owner':
+          _verifyForm(store.managementFormController['email_Owner']?.text) ??
+              restaurant.emailOwner,
+      'senha_owner': _parsePrice(
+              _verifyForm(store.managementFormController['Senha']?.text)) ??
+          restaurant.password,
+    });
+  }
+
+  @override
+  Future<void> setAdressRestaurant(Restaurant restaurant) async {
+    await FirebaseFirestore.instance
+        .collection('restaurant')
+        .doc(store.id)
+        .update({
+      'CEP': _verifyForm(store.addressFormController['CEP']?.text) ??
+          restaurant.cep,
+      'Cidade': _verifyForm(store.addressFormController['Cidade']?.text) ??
+          restaurant.city,
+      'Estado': _verifyForm(store.addressFormController['Estado']?.text) ??
+          restaurant.state,
+      'Bairro': _verifyForm(store.addressFormController['Bairro']?.text) ??
+          restaurant.district,
+      'Endereço': _parsePrice(
+              _verifyForm(store.addressFormController['Endereço']?.text)) ??
+          restaurant.address,
+      'Número': _parsePrice(
+              _verifyForm(store.addressFormController['Número']?.text)) ??
+          restaurant.number,
+      'Complemento': _parsePrice(
+              _verifyForm(store.addressFormController['Complemento']?.text)) ??
+          restaurant.complement,
     });
   }
 
@@ -77,5 +124,11 @@ class ProfileRepository extends IProfile {
         .collection('restaurant')
         .doc(store.id)
         .update(info);
+  }
+
+  @override
+  Future<void> setRestaurant(Restaurant restaurant) {
+    // TODO: implement setRestaurant
+    throw UnimplementedError();
   }
 }
