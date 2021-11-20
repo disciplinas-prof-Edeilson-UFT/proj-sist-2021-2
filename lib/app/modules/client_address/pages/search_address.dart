@@ -49,7 +49,6 @@ class _SearchAddressState extends State<SearchAddress> {
             controller: store.textController,
             autofocus: true,
             iconswap: true,
-            onPressed: () => store.jump(0),
             hint: 'Busque endereço e número',
           ),
           const SizedBox(

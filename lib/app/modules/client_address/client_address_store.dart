@@ -7,7 +7,8 @@ class ClientAddressStore = _ClientAddressStoreBase with _$ClientAddressStore;
 
 abstract class _ClientAddressStoreBase with Store {
   final pageController = PageController(initialPage: 0);
-  final textController = TextEditingController();
+  @observable
+  TextEditingController textController = TextEditingController();
 
   void jump(int page) {
     pageController.jumpToPage(page);

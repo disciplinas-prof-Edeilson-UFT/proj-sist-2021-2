@@ -28,10 +28,16 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
   @override
   void initState() {
-    super.initState();
     store.textController.addListener(() {
       setState(() {});
     });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    store.textController.clear();
+    super.dispose();
   }
 
   @override
@@ -58,28 +64,28 @@ class _SearchTextFieldState extends State<SearchTextField> {
                     Icons.arrow_back_ios,
                     color: secondaryCollor,
                   ),
-                  onPressed: widget.onPressed,
+                  onPressed: () => store.jump(0),
                 )
-              : IconButton(
-                  icon: const Icon(
-                    Icons.search,
-                    color: secondaryCollor,
-                  ),
-                  onPressed: widget.onPressed,
+              : const Icon(
+                  Icons.search,
+                  color: secondaryCollor,
                 ),
         ),
-        suffixIcon: store.textController.text.isNotEmpty
-            ? IconButton(
-                icon: const Icon(
-                  Icons.cancel_sharp,
-                  color: Colors.grey,
-                  size: 20,
-                ),
-                onPressed: () {
-                  store.textController.clear();
-                },
-              )
-            : null,
+        suffixIcon: Visibility(
+          visible: store.textController.text.isNotEmpty,
+          child: IconButton(
+            icon: const Icon(
+              Icons.cancel_sharp,
+              color: Colors.grey,
+              size: 20,
+            ),
+            onPressed: () {
+              setState(() {
+                store.textController.clear();
+              });
+            },
+          ),
+        ),
       ),
     );
   }

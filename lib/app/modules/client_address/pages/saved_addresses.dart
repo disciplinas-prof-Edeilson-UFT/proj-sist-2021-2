@@ -20,52 +20,59 @@ class _SavedAdressesState extends State<SavedAdresses> {
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            height: screen.height * .3,
-            width: screen.width * .3,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.contain,
-                image: NetworkImage('https://i.imgur.com/50wsQ3L.jpg'),
+    return GestureDetector(
+      onTap: () => store.jump(1),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: screen.height * .3,
+              width: screen.width * .3,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.contain,
+                  image: NetworkImage('https://i.imgur.com/50wsQ3L.jpg'),
+                ),
               ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Onde você quer receber seu pedido?",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Onde você quer receber seu pedido?",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                ),
               ),
             ),
-          ),
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: store.next,
-              child: SearchTextField(
-                controller: store.textController,
-                hint: 'Busque endereço e número',
-                onPressed: () => store.jump(1),
-              ),
+            fakeSearch(),
+            const SizedBox(
+              height: 10,
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          ListView.builder(
-            itemBuilder: (context, index) {
-              return const AddressListTile();
-            },
-            shrinkWrap: true,
-            itemCount: test.length,
-          ),
-        ],
+            ListView.builder(
+              itemBuilder: (context, index) {
+                return const AddressListTile();
+              },
+              shrinkWrap: true,
+              itemCount: test.length,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget fakeSearch() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: ListTile(
+        title: const Text('Busque endereço e número'),
+        leading: const Icon(Icons.search),
+        onTap: () => store.jump(1),
       ),
     );
   }
