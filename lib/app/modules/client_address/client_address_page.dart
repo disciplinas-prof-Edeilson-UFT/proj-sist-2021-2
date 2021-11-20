@@ -26,7 +26,7 @@ class ClientAddressPageState extends State<ClientAddressPage> {
     Size screen = MediaQuery.of(context).size;
     return AlertDialog(
       content: SizedBox(
-        width: screen.width * .4,
+        width: screen.width * .5,
         height: screen.height * .7,
         child: PageView(
           physics: const NeverScrollableScrollPhysics(),

@@ -10,12 +10,14 @@ class SearchTextField extends StatefulWidget {
     required this.controller,
     this.iconswap,
     this.hint,
+    this.onPressed,
   }) : super(key: key);
 
   final bool autofocus;
   final TextEditingController controller;
   final bool? iconswap;
   final String? hint;
+  final Function()? onPressed;
 
   @override
   _SearchTextFieldState createState() => _SearchTextFieldState();
@@ -56,14 +58,14 @@ class _SearchTextFieldState extends State<SearchTextField> {
                     Icons.arrow_back_ios,
                     color: secondaryCollor,
                   ),
-                  onPressed: () {},
+                  onPressed: widget.onPressed,
                 )
               : IconButton(
                   icon: const Icon(
                     Icons.search,
                     color: secondaryCollor,
                   ),
-                  onPressed: () {},
+                  onPressed: widget.onPressed,
                 ),
         ),
         suffixIcon: store.textController.text.isNotEmpty
