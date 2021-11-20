@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/components_profile_dialog.dart';
 import 'management_formulary.dart';
 
 class ManagementDialog extends StatefulWidget {
@@ -17,9 +18,21 @@ class _ManagementDialogState extends State<ManagementDialog> {
       contentPadding: const EdgeInsets.only(top: 10),
       title: const Text('Gerenciamento'),
       content: SingleChildScrollView(
-        child: SizedBox(
-          width: _pageWidth * 0.4,
-          child: ManagementFormulary(),
+        child: Row(
+          children: [
+            const NextIcon(
+              currentState: 'Gerenciamento',
+              direction: 'Anterior',
+            ),
+            SizedBox(
+              width: _pageWidth * 0.4,
+              child: ManagementFormulary(),
+            ),
+            const NextIcon(
+              currentState: 'Gerenciamento',
+              direction: 'Proximo',
+            ),
+          ],
         ),
       ),
     );

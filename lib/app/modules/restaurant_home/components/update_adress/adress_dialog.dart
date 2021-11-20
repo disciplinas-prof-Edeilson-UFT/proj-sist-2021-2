@@ -17,24 +17,29 @@ class AdressDialog extends StatelessWidget {
       contentPadding: const EdgeInsets.only(top: 10),
       title: const Text('Endereço'),
       content: SingleChildScrollView(
-        child: SizedBox(
-          width: _pageWidth * 0.4,
-          child: Column(
-            children: [
-              AdressFormulary(),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
-                child: ConfirmationButton(
-                  onPressed: () async {
-                    await ProfileRepository()
-                        .setRestaurant(homeStore.restaurant!);
-                    Navigator.of(context).pop();
-                  },
-                ),
+        child: Row(
+          children: [
+            const NextIcon(currentState: 'Endereco', direction: 'Anterior'),
+            SizedBox(
+              width: _pageWidth * 0.4,
+              child: Column(
+                children: [
+                  AdressFormulary(),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+                    child: ConfirmationButton(
+                      onPressed: () async {
+                        await ProfileRepository()
+                            .setRestaurant(homeStore.restaurant!);
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -73,7 +73,10 @@ class UpdateFormulary extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: const [
             UpdateProfileDropdown(),
-            NextIcon(),
+            NextIcon(
+              currentState: 'Profile',
+              direction: 'Proximo',
+            ),
           ],
         ),
         Padding(

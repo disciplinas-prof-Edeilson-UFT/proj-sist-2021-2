@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/adress_dialog.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_sensitive_data/management_dialog.dart';
 
 class ConfirmationButton extends StatelessWidget {
@@ -35,8 +37,11 @@ class ConfirmationButton extends StatelessWidget {
 }
 
 class NextIcon extends StatefulWidget {
-  const NextIcon({Key? key}) : super(key: key);
-
+  const NextIcon(
+      {Key? key, required this.currentState, required this.direction})
+      : super(key: key);
+  final String currentState;
+  final String direction;
   @override
   _NextIconState createState() => _NextIconState();
 }
@@ -49,20 +54,45 @@ class _NextIconState extends State<NextIcon> {
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-            showDialog(
-                context: context,
-                builder: (_) {
-                  return const ManagementDialog();
-                });
-          },
-          child: const Icon(
-            Icons.arrow_forward_ios_outlined,
-            color: secondaryColor,
-            size: 50,
-          ),
-        ),
+            onTap: () {
+              Navigator.of(context).pop();
+              if (widget.direction == 'Proximo') {
+                widget.currentState == 'Profile'
+                    ? showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const ManagementDialog();
+                        })
+                    : showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AdressDialog();
+                        });
+              } else if (widget.direction == 'Anterior') {
+                widget.currentState == 'Gerenciamento'
+                    ? showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const ProfileAlertDialog();
+                        })
+                    : showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const ManagementDialog();
+                        });
+              }
+            },
+            child: widget.direction == 'Proximo'
+                ? const Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: secondaryColor,
+                    size: 50,
+                  )
+                : const Icon(
+                    Icons.arrow_back_ios_outlined,
+                    color: secondaryColor,
+                    size: 50,
+                  )),
       ),
     );
   }
