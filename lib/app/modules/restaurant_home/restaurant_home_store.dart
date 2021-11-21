@@ -140,7 +140,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @observable
-  Map<String, TextEditingController> updateFormController = {
+  Map<String, TextEditingController> profileFormController = {
     'restaurant': TextEditingController(),
     'prepare_time': TextEditingController(),
     'delivery_price': TextEditingController(),
@@ -148,17 +148,17 @@ abstract class _RestaurantHomeStoreBase with Store {
   };
 
   Map<String, TextEditingController> managementFormController = {
-    'name_Owner': TextEditingController(text: "Gatinho's Bar e Restaurante"),
-    'phone_Owner': TextEditingController(text: "(33) 33333-3333"),
-    'email_Owner': TextEditingController(text: "Gatinhos@mail.com"),
+    'name_Owner': TextEditingController(),
+    'phone_Owner': TextEditingController(),
+    'email_Owner': TextEditingController(),
     'Senha': TextEditingController(),
     'Confirmar Senha': TextEditingController(),
   };
 
   Map<String, TextEditingController> addressFormController = {
     'CEP': TextEditingController(),
-    'Estado': TextEditingController(),
     'Cidade': TextEditingController(),
+    'Estado': TextEditingController(),
     'Bairro': TextEditingController(),
     'Endereço': TextEditingController(),
     'Número': TextEditingController(),
@@ -177,14 +177,35 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @action
-  void updateControllers() {
-    updateFormController['restaurant']?.text = restaurant?.socialName ?? '';
-    updateFormController['prepare_time']?.text =
+  void updateProfileControllers() {
+    profileFormController['restaurant']?.text = restaurant?.socialName ?? '';
+    profileFormController['prepare_time']?.text =
         restaurant?.estimatedDelivery ?? '';
-    updateFormController['delivery_price']?.text =
+    profileFormController['delivery_price']?.text =
         'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
-    updateFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
+    profileFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
     category = restaurant?.category ?? categories.first;
+  }
+
+  @action
+  void updateManagementControllers() {
+    managementFormController['name_Owner']?.text = restaurant?.nameOwner ?? '';
+    managementFormController['phone_Owner']?.text =
+        restaurant?.phoneOwner ?? '';
+    managementFormController['email_Owner']?.text =
+        restaurant?.emailOwner ?? '';
+  }
+
+  @action
+  void updateAddressControllers() {
+    addressFormController['CEP']?.text = restaurant?.cep ?? '';
+    addressFormController['Cidade']?.text = restaurant?.city ?? '';
+    addressFormController['Estado']?.text = restaurant?.state ?? '';
+    addressFormController['Bairro']?.text = restaurant?.district ?? '';
+    addressFormController['Endereço']?.text = restaurant?.address ?? '';
+    addressFormController['Número']?.text = restaurant?.number ?? '';
+    addressFormController['Complemento (Opcional)']?.text =
+        restaurant?.complement ?? '';
   }
 
   void searchAdress(String value) async {

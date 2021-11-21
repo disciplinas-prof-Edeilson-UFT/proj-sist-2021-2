@@ -80,8 +80,8 @@ class AdressForm extends StatelessWidget {
   }
 }
 
-class AdressFormulary extends StatelessWidget {
-  AdressFormulary({Key? key}) : super(key: key);
+class AddressFormulary extends StatelessWidget {
+  AddressFormulary({Key? key}) : super(key: key);
   final RestaurantHomeStore homeStore = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {

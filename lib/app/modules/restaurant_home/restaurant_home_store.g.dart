@@ -124,20 +124,20 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-  final _$updateFormControllerAtom =
-      Atom(name: '_RestaurantHomeStoreBase.updateFormController');
+  final _$profileFormControllerAtom =
+      Atom(name: '_RestaurantHomeStoreBase.profileFormController');
 
   @override
-  Map<String, TextEditingController> get updateFormController {
-    _$updateFormControllerAtom.reportRead();
-    return super.updateFormController;
+  Map<String, TextEditingController> get profileFormController {
+    _$profileFormControllerAtom.reportRead();
+    return super.profileFormController;
   }
 
   @override
-  set updateFormController(Map<String, TextEditingController> value) {
-    _$updateFormControllerAtom.reportWrite(value, super.updateFormController,
+  set profileFormController(Map<String, TextEditingController> value) {
+    _$profileFormControllerAtom.reportWrite(value, super.profileFormController,
         () {
-      super.updateFormController = value;
+      super.profileFormController = value;
     });
   }
 
@@ -246,11 +246,33 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
-  void updateControllers() {
+  void updateProfileControllers() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
-        name: '_RestaurantHomeStoreBase.updateControllers');
+        name: '_RestaurantHomeStoreBase.updateProfileControllers');
     try {
-      return super.updateControllers();
+      return super.updateProfileControllers();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updateManagementControllers() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.updateManagementControllers');
+    try {
+      return super.updateManagementControllers();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updateAddressControllers() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.updateAddressControllers');
+    try {
+      return super.updateAddressControllers();
     } finally {
       _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -266,8 +288,7 @@ category: ${category},
 isOpen: ${isOpen},
 selectedPlan: ${selectedPlan},
 actualPlan: ${actualPlan},
-iconColor: ${iconColor},
-updateFormController: ${updateFormController},
+profileFormController: ${profileFormController},
 toggleText: ${toggleText}
     ''';
   }

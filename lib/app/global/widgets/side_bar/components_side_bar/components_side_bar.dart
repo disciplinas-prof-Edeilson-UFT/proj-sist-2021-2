@@ -84,6 +84,7 @@ class ListTilePerfil extends StatelessWidget {
   ListTilePerfil({Key? key}) : super(key: key);
   final RestaurantHomeStore restaurantHomeStore =
       Modular.get<RestaurantHomeStore>();
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -93,11 +94,12 @@ class ListTilePerfil extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             showDialog(
-                context: context,
-                builder: (_) {
-                  restaurantHomeStore.updateControllers();
-                  return const RestaurantDialog();
-                });
+              context: context,
+              builder: (_) {
+                restaurantHomeStore.updateProfileControllers();
+                return const RestaurantDialog();
+              },
+            );
           },
           child: const Text(
             "Editar perfil",
@@ -129,7 +131,11 @@ class ListTilePerfilMobile extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             showDialog(
-                context: context, builder: (_) => const ProfileAlertDialog());
+              context: context, builder: (_) {
+                restaurantHomeStore.updateProfileControllers();
+                return const ProfileAlertDialog();
+              },
+            );
           },
           child: const Text(
             "Editar perfil",

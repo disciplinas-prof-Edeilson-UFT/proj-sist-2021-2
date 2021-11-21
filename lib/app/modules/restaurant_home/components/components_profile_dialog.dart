@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/adress_dialog.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_sensitive_data/management_dialog.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class ConfirmationButton extends StatelessWidget {
   const ConfirmationButton({
@@ -47,12 +46,17 @@ class NextIcon extends StatefulWidget {
 }
 
 class _NextIconState extends State<NextIcon> {
+  
+  RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
           onTap: () {
+            store.updateAddressControllers();
+            store.updateManagementControllers();
+            store.updateProfileControllers();
             if (widget.direction == 'Proximo') {
               widget.currentState == 'Profile' ?
                   DefaultTabController.of(context)!.animateTo(1)

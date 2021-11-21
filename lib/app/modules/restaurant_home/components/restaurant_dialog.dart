@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/adress_dialog.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/address_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_sensitive_data/management_dialog.dart';
 
@@ -24,12 +24,15 @@ class RestaurantDialog extends StatelessWidget {
         ),
         content: SizedBox(
           width: MediaQuery.of(context).size.width * 0.45,
-          child: TabBarView(
-            children: [
-              const ProfileAlertDialog(),
-              const ManagementDialog(),
-              AdressDialog(),
-            ],
+          child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            child: TabBarView(
+              children: [
+                const ProfileAlertDialog(),
+                const ManagementDialog(),
+                AddressDialog(),
+              ],
+            ),
           ),
         ),
       ),
