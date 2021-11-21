@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 part 'cancel_store.g.dart';
 
-class CancelStore = _CancelStoreBase with _$Cancelstore;
+class CancelStore = _CancelStoreBase with _$CancelStore;
 
 abstract class _CancelStoreBase with Store {
   // forma de pagamento errado

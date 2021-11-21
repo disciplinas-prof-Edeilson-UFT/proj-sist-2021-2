@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class EmptyOrder extends StatefulWidget {
-  const EmptyOrder({ Key? key }) : super(key: key);
+  const EmptyOrder({Key? key}) : super(key: key);
 
   @override
   _EmptyOrderState createState() => _EmptyOrderState();
@@ -26,17 +26,15 @@ class _EmptyOrderState extends State<EmptyOrder> {
             style: TextStyle(fontFamily: 'Nunito', color: tertiaryCollor),
           ),
           TextButton(
-            onPressed: () => Modular.to.navigate('/'),
-            child: const Text(
-              'Ir para o início',
-              style: TextStyle(
-                fontSize: 20,
-                fontFamily: 'Nunito',
-                fontWeight: FontWeight.bold,
-                color: secondaryCollor
-              ),
-            )
-          )
+              onPressed: () => Modular.to.navigate('/'),
+              child: const Text(
+                'Ir para o início',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.bold,
+                    color: secondaryCollor),
+              ))
         ],
       ),
     );

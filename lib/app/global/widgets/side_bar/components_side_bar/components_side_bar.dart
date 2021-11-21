@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/restaurant_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
@@ -84,28 +85,34 @@ class ListTilePerfil extends StatelessWidget {
   ListTilePerfil({Key? key}) : super(key: key);
   final RestaurantHomeStore restaurantHomeStore =
       Modular.get<RestaurantHomeStore>();
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (_) {
-            restaurantHomeStore.updateControllers();
-            return const ProfileAlertDialog();
-          },
-        );
-      },
       leading: RestaurantProfilePicture(),
-      title: const Text(
-        "Editar perfil",
-        style: TextStyle(
-          color: Colors.white,
-          fontFamily: "Nunito",
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
+      title: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (_) {
+                restaurantHomeStore.updateProfileControllers();
+                return const RestaurantDialog();
+              },
+            );
+          },
+          child: const Text(
+            "Editar perfil",
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: "Nunito",
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.left,
+          ),
         ),
-        textAlign: TextAlign.left,
       ),
       minLeadingWidth: 0,
     );
@@ -119,19 +126,24 @@ class ListTilePerfilMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (_) {
-            restaurantHomeStore.updateControllers();
-            return const ProfileAlertDialog();
-          },
-        );
-      },
       leading: RestaurantProfilePicture(),
-      title: const Icon(
-        Icons.create_outlined,
-        color: primaryColor,
+      title: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (_) {
+                restaurantHomeStore.updateProfileControllers();
+                return const ProfileAlertDialog();
+              },
+            );
+          },
+          child: const Icon(
+            Icons.create_outlined,
+            color: primaryColor,
+          ),
+        ),
       ),
       minLeadingWidth: 0,
     );

@@ -24,17 +24,16 @@ class _MostOrderedState extends State<MostOrdered> {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        restaurants = store.restaurants.toList();
-        restaurants.sort((a, b) => b.orders.compareTo(a.orders));
-        return Center(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              height: 150.0,
-              child: ListView.builder(
+    return Observer(builder: (context) {
+      restaurants = store.restaurants.toList();
+      restaurants.sort((a, b) => b.orders.compareTo(a.orders));
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            height: 150.0,
+            child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: restaurants.length,
                 itemBuilder: (context, index) {
@@ -81,12 +80,10 @@ class _MostOrderedState extends State<MostOrdered> {
                       ),
                     ),
                   );
-                }
-              ),
-            ),
+                }),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }
