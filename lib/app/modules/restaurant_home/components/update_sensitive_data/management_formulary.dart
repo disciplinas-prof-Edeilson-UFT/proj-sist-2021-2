@@ -22,7 +22,7 @@ class ManagementFormulary extends StatelessWidget {
       mask: '(##) #####-####', filter: {"#": RegExp(r'[0-9]')});
 
   final _padding =
-      const EdgeInsets.only(top: 10.0, bottom: 5.0, left: 15.0, right: 15.0);
+      const EdgeInsets.only(top: 10.0, bottom: 5.0, left: 5.0, right: 5.0);
 
   @override
   Widget build(BuildContext context) {
@@ -239,8 +239,8 @@ class ManagementFormulary extends StatelessWidget {
             child: ConfirmationButton(
               onPressed: () async {
                 if (homeStore.formKey.currentState!.validate()) {
-                  await ProfileRepository()
-                      .setManagementRestaurant(homeStore.restaurant!);
+                  await ProfileRepository().setManagementRestaurant(homeStore.restaurant!);
+                  homeStore.getRestaurant();
                   Navigator.of(context).pop();
                 }
               },

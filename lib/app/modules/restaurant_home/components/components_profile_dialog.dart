@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/address_dialog.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_sensitive_data/management_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class ConfirmationButton extends StatelessWidget {
-  const ConfirmationButton({
+  ConfirmationButton({
     Key? key,
     required this.onPressed,
   }) : super(key: key);
 
   final void Function() onPressed;
-
+  final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
+  final ProfileRepository repository = ProfileRepository();
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -37,35 +37,46 @@ class ConfirmationButton extends StatelessWidget {
   }
 }
 
-class NextIcon extends StatelessWidget {
-  NextIcon({Key? key}) : super(key: key);
+class NextIcon extends StatefulWidget {
+  const NextIcon(
+      {Key? key, required this.currentState, required this.direction})
+      : super(key: key);
+  final String currentState;
+  final String direction;
+  @override
+  _NextIconState createState() => _NextIconState();
+}
 
-  final RestaurantHomeStore restaurantHomeStore =
-      Modular.get<RestaurantHomeStore>();
-
+class _NextIconState extends State<NextIcon> {
+  
+  RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 5),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
           onTap: () {
-            Navigator.of(context).pop();
-            showDialog(
-                context: context,
-                builder: (_) {
-                  restaurantHomeStore.updateAddressControllers();
-                  return AddressDialog();
-                });
+            if (widget.direction == 'Proximo') {
+              widget.currentState == 'Profile' ?
+                  DefaultTabController.of(context)!.animateTo(1)
+                  : DefaultTabController.of(context)!.animateTo(2);
+            } else if (widget.direction == 'Anterior') {
+              widget.currentState == 'Gerenciamento'
+                  ? DefaultTabController.of(context)!.animateTo(0)
+                  : DefaultTabController.of(context)!.animateTo(1);
+            }
           },
-          child: const Icon(
-            Icons.arrow_forward_ios_outlined,
-            color: secondaryColor,
-            size: 50,
-          ),
-        ),
-      ),
+          child: widget.direction == 'Proximo'
+              ? const Icon(
+                  Icons.arrow_forward_ios_outlined,
+                  color: secondaryColor,
+                  size: 39,
+                )
+              : const Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: secondaryColor,
+                  size: 39,
+                )),
     );
   }
 }

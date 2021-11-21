@@ -71,9 +71,12 @@ class UpdateFormulary extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const UpdateProfileDropdown(),
-            NextIcon(),
+          children: const [
+            UpdateProfileDropdown(),
+            NextIcon(
+              currentState: 'Profile',
+              direction: 'Proximo',
+            ),
           ],
         ),
         Padding(
@@ -163,8 +166,8 @@ class UpdateFormulary extends StatelessWidget {
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
           child: ConfirmationButton(
             onPressed: () async {
-              await ProfileRepository()
-                  .setProfileRestaurant(homeStore.restaurant!);
+              await ProfileRepository().setProfileRestaurant(homeStore.restaurant!);
+              homeStore.getRestaurant();
               Navigator.of(context).pop();
             },
           ),

@@ -48,6 +48,7 @@ class ProfileRepository extends IProfile {
               store.profileFormController['delivery_price']?.text)) ??
           restaurant.deliveryPrice,
     });
+    store.updateProfileControllers();
   }
 
   @override
@@ -68,6 +69,7 @@ class ProfileRepository extends IProfile {
       'password': _verifyForm(store.managementFormController['Senha']?.text) ??
           restaurant.password,
     });
+    store.updateManagementControllers();
   }
 
   @override
@@ -92,6 +94,7 @@ class ProfileRepository extends IProfile {
               store.addressFormController['Complemento (Opcional)']?.text) ??
           restaurant.complement,
     });
+    store.updateAddressControllers();
   }
 
   @override

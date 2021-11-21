@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/restaurant_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
@@ -93,11 +94,12 @@ class ListTilePerfil extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             showDialog(
-                context: context,
-                builder: (_) {
-                  restaurantHomeStore.updateProfileControllers();
-                  return const ProfileAlertDialog();
-                });
+              context: context,
+              builder: (_) {
+                restaurantHomeStore.updateProfileControllers();
+                return const RestaurantDialog();
+              },
+            );
           },
           child: const Text(
             "Editar perfil",
@@ -129,7 +131,11 @@ class ListTilePerfilMobile extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             showDialog(
-                context: context, builder: (_) => const ProfileAlertDialog());
+              context: context, builder: (_) {
+                restaurantHomeStore.updateProfileControllers();
+                return const ProfileAlertDialog();
+              },
+            );
           },
           child: const Text(
             "Editar perfil",
