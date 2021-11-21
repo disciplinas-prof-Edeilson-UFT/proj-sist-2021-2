@@ -26,7 +26,26 @@ class OrderRepository implements IOrderRepository {
   }
 
   @override
-  Future<bool> cadastrarOrder(Order pedido) async {
+  Future<void> ratingOrder(Order pedido, String comentario, String nota) async {
+    try {
+      await firestore.collection('rating').add({
+        'comment': comentario,
+        'value': nota,
+      }).then((value) {
+        firestore
+            .collection('order')
+            .doc(pedido.docid!.id.split('/').last)
+            .update({
+          'rating': value.id,
+        });
+      });
+    } catch (e) {
+      throw Exception("Erro ao adicionar em rating: $e");
+    }
+  }
+
+  @override
+  Future<DocumentReference> cadastrarOrder(Order pedido) async {
     List<dynamic> itemID = [];
     try {
       for (var element in pedido.itens) {
@@ -42,26 +61,26 @@ class OrderRepository implements IOrderRepository {
         });
       }
 
-      await firestore.collection('order').add({
+      return await firestore.collection('order').add({
         'delivered': false,
         'items': [],
         'order_price': pedido.orderPrice,
         'restaurant_id': "Restaurante ABC",
         'ship_price': pedido.shipPrice,
         'status': OrderType.started.databaseString,
+        'rating': '',
       }).then((value) async {
         await firestore.collection('order').doc(value.id).set({
           'items': itemID,
         }, SetOptions(merge: true)).then((value) {
           log('Items adicionados');
         });
-        log(value.id);
+        return value;
       }).catchError((error) {
         log(error);
       });
     } catch (e) {
       throw Exception("Erro: $e");
     }
-    return false;
   }
 }
