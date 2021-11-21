@@ -28,15 +28,12 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
   @override
   void initState() {
-    store.textController.addListener(() {
-      setState(() {});
-    });
     super.initState();
   }
 
   @override
   void dispose() {
-    store.textController.clear();
+    widget.controller.clear();
     super.dispose();
   }
 
@@ -46,6 +43,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
       controller: widget.controller,
       textInputAction: TextInputAction.newline,
       autofocus: widget.autofocus,
+      onChanged: (value) => setState(() {}),
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.grey.shade100,
@@ -72,18 +70,14 @@ class _SearchTextFieldState extends State<SearchTextField> {
                 ),
         ),
         suffixIcon: Visibility(
-          visible: store.textController.text.isNotEmpty,
+          visible: widget.controller.text.isNotEmpty,
           child: IconButton(
             icon: const Icon(
               Icons.cancel_sharp,
               color: Colors.grey,
               size: 20,
             ),
-            onPressed: () {
-              setState(() {
-                store.textController.clear();
-              });
-            },
+            onPressed: () => setState(() => widget.controller.clear()),
           ),
         ),
       ),
