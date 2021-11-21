@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/components_profile_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/address_formulary.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
@@ -28,13 +27,7 @@ class AddressDialog extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(
                         top: 10.0, bottom: 10.0),
-                    child: ConfirmationButton(
-                      onPressed: () async {
-                        await ProfileRepository()
-                            .setAdressRestaurant(homeStore.restaurant!);
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    child: ConfirmationButton(),
                   ),
                 ],
               ),

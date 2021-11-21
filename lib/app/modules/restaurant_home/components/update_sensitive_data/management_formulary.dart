@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/components_profile_dialog.dart';
@@ -236,15 +235,7 @@ class ManagementFormulary extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(
                 top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
-            child: ConfirmationButton(
-              onPressed: () async {
-                if (homeStore.formKey.currentState!.validate()) {
-                  await ProfileRepository()
-                      .setManagementRestaurant(homeStore.restaurant!);
-                  Navigator.of(context).pop();
-                }
-              },
-            ),
+            child: ConfirmationButton(),
           ),
         ],
       ),

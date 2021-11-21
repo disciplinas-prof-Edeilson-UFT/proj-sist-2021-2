@@ -23,6 +23,9 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   Future getRestaurant() async {
     restaurant = await ProfileRepository().getRestaurant();
+    updateProfileControllers();
+    updateManagementControllers();
+    updateAddressControllers();
     getProfilePictureUrl();
   }
 

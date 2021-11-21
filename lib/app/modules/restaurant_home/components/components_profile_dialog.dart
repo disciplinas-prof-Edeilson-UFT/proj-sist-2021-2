@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class ConfirmationButton extends StatelessWidget {
-  const ConfirmationButton({
+  ConfirmationButton({
     Key? key,
-    required this.onPressed,
   }) : super(key: key);
 
-  final void Function() onPressed;
-
+  final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
+  final ProfileRepository repository = ProfileRepository();
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -29,7 +29,13 @@ class ConfirmationButton extends StatelessWidget {
           minimumSize: MaterialStateProperty.all(const Size(210, 48)),
           backgroundColor: MaterialStateProperty.all(secondaryColor),
         ),
-        onPressed: onPressed,
+        onPressed: () async {
+          repository.setAdressRestaurant(store.restaurant!);
+          repository.setManagementRestaurant(store.restaurant!);
+          await repository.setProfileRestaurant(store.restaurant!);
+          store.getRestaurant();
+          Navigator.of(context).pop();
+        }
       ),
     );
   }
@@ -54,9 +60,6 @@ class _NextIconState extends State<NextIcon> {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
           onTap: () {
-            store.updateAddressControllers();
-            store.updateManagementControllers();
-            store.updateProfileControllers();
             if (widget.direction == 'Proximo') {
               widget.currentState == 'Profile' ?
                   DefaultTabController.of(context)!.animateTo(1)
