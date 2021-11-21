@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
 import 'package:pscomidas/app/modules/client_address/widgets/address_list_tile.dart';
-
-import 'package:pscomidas/app/modules/client_address/widgets/search_textfield.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class SavedAdresses extends StatefulWidget {
   const SavedAdresses({Key? key}) : super(key: key);
@@ -65,13 +64,25 @@ class _SavedAdressesState extends State<SavedAdresses> {
 
   Widget fakeSearch() {
     return Container(
+      height: 55,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.grey.shade100,
+        border: Border.all(color: tertiaryCollor),
         borderRadius: BorderRadius.circular(6),
       ),
       child: ListTile(
-        title: const Text('Busque endereço e número'),
-        leading: const Icon(Icons.search),
+        title: const Text(
+          'Busque endereço e número',
+          style: TextStyle(
+            color: tertiaryCollor,
+            fontSize: 16,
+          ),
+        ),
+        leading: const Icon(
+          Icons.search,
+          color: secondaryCollor,
+        ),
         onTap: () => store.jump(1),
       ),
     );
