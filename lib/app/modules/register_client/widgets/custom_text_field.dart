@@ -12,7 +12,7 @@ class CustomTextField extends StatefulWidget {
     this.formaters,
     this.isPassword,
     this.phone,
-    this.readOnly,
+    this.readOnly = false,
   }) : super(key: key);
 
   final String? title;
@@ -22,7 +22,7 @@ class CustomTextField extends StatefulWidget {
   final List<TextInputFormatter>? formaters;
   final bool? isPassword;
   final bool? phone;
-  final bool? readOnly;
+  final bool readOnly;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -74,6 +74,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.red),
             ),
+            filled: widget.readOnly,
+            fillColor: Colors.grey[300],
             hintText: widget.hint ?? '',
             suffixIcon: widget.isPassword != null && widget.isPassword == true
                 ? MouseRegion(
@@ -93,7 +95,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   )
                 : null,
           ),
-          readOnly: widget.readOnly ?? false,
+          readOnly: widget.readOnly,
           cursorColor: Colors.red,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: widget.controller,
