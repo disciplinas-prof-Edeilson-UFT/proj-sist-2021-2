@@ -77,11 +77,7 @@ class _AddProductState extends State<AddProduct> {
                         CustomTextField(
                           controller: store.formProduct['id'],
                           label: 'Id do produto',
-                        ),
-                        SizedBox(
-                          width: 250,
-                          child: _availableButton(),
-                        ),
+                        )
                       ],
                     ),
                   ),
@@ -99,7 +95,6 @@ class _AddProductState extends State<AddProduct> {
                             name: store.formProduct['name']!.text.toString(),
                             description:
                                 store.formProduct['desc']!.text.toString(),
-                            available: store.available,
                             price: doublePrice,
                             restaurantId: "dummy 2",
                             productId: store.formProduct['id']!.text.toString(),
@@ -117,37 +112,6 @@ class _AddProductState extends State<AddProduct> {
           );
         },
       ),
-    );
-  }
-
-  Widget _buildSwitch() => Transform.scale(
-        scale: 1.5,
-        child: Observer(builder: (_) {
-          return Switch.adaptive(
-            value: store.available,
-            activeColor: secondaryColor,
-            inactiveThumbColor: secondaryColor.withOpacity(0.4),
-            onChanged: (value) =>
-                setState(() => store.available = !store.available),
-          );
-        }),
-      );
-
-  Widget _availableButton() {
-    return Center(
-      child: (Column(
-        children: [
-          const Text("Está disponivel?"),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text("Não"),
-              _buildSwitch(),
-              const Text("Sim"),
-            ],
-          )
-        ],
-      )),
     );
   }
 }

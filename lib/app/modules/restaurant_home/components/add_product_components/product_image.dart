@@ -33,6 +33,7 @@ class _ProductImageState extends State<ProductImage> {
           children: [
             DropzoneView(
               onDrop: (e) {
+                restaurantHomeStore.setProductImage(e);
                 Navigator.pop(context);
               },
               onCreated: (controller) => this.controller = controller,
@@ -54,6 +55,7 @@ class _ProductImageState extends State<ProductImage> {
                     ),
                     onPressed: () async {
                       final event = await controller.pickFiles();
+                      restaurantHomeStore.setImage(event.last);
                       Navigator.pop(context);
                     },
                     icon: const Icon(

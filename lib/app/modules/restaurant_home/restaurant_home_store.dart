@@ -1,11 +1,10 @@
 import 'dart:developer';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
-import 'package:pscomidas/app/global/repositories/product/product_repository.dart';
+import 'package:pscomidas/app/global/repositories/products/product_repository.dart';
 import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 part 'restaurant_home_store.g.dart';
@@ -13,7 +12,6 @@ part 'restaurant_home_store.g.dart';
 class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
-  final ProductRepository productRepository = Modular.get<ProductRepository>();
   final id = 'dummy1';
 
   @observable
@@ -97,9 +95,6 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   bool isOpen = false;
 
-  @observable
-  bool available = false;
-
   @action
   void toggleOpen() {
     isOpen = !isOpen;
@@ -107,8 +102,13 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   Future cadastrarProdutoTeste(Product produto) async {
-    await productRepository.cadastrarProduct(produto);
+    await ProductRepository().cadastrarProduct(produto);
     log('Deu certo');
+  }
+
+  @action
+  void setProductImage(dynamic e) {
+    ProductRepository().productSetImage(e);
   }
 
   @computed
