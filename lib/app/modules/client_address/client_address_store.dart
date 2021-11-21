@@ -7,8 +7,10 @@ part 'client_address_store.g.dart';
 class ClientAddressStore = _ClientAddressStoreBase with _$ClientAddressStore;
 
 abstract class _ClientAddressStoreBase with Store {
-  final pageController = PageController(initialPage: 0);
   final _repository = ClientAddressRepository();
+  final pageController = PageController(initialPage: 0);
+  final textController = TextEditingController();
+
   void jump(int page) {
     pageController.jumpToPage(page);
   }
