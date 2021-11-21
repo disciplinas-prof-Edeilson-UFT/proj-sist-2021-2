@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
+
+import '../client_address_store.dart';
 
 class PickAddress extends StatefulWidget {
   const PickAddress({Key? key}) : super(key: key);
@@ -10,7 +13,7 @@ class PickAddress extends StatefulWidget {
 }
 
 class _PickAddressState extends State<PickAddress> {
-  TextEditingController controller = TextEditingController();
+  final ClientAddressStore store = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class _PickAddressState extends State<PickAddress> {
           children: [
             // Trecho de ultilização do CustomTextField
             CustomTextField(
-              controller: controller,
+              controller: store.cepController,
               title: 'CEP',
               formaters: [
                 MaskTextInputFormatter(
@@ -33,6 +36,12 @@ class _PickAddressState extends State<PickAddress> {
                   return 'CEP Inválido';
                 }
               },
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await store.findCEP();
+              },
+              child: const Text('pronto'),
             ),
           ],
         ),

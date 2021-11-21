@@ -39,11 +39,34 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
     });
   }
 
+  final _$errorMessageAtom = Atom(name: '_ClientAddressStoreBase.errorMessage');
+
+  @override
+  String? get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String? value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
+  final _$findCEPAsyncAction = AsyncAction('_ClientAddressStoreBase.findCEP');
+
+  @override
+  Future<void> findCEP() {
+    return _$findCEPAsyncAction.run(() => super.findCEP());
+  }
+
   @override
   String toString() {
     return '''
 addresses: ${addresses},
-tempAddress: ${tempAddress}
+tempAddress: ${tempAddress},
+errorMessage: ${errorMessage}
     ''';
   }
 }

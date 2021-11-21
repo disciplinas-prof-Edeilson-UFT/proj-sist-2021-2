@@ -10,6 +10,7 @@ class ClientAddressStore = _ClientAddressStoreBase with _$ClientAddressStore;
 abstract class _ClientAddressStoreBase with Store {
   final _repository = ClientAddressRepository();
   final pageController = PageController(initialPage: 0);
+
   final textController = TextEditingController();
   final cepController = TextEditingController();
 
@@ -19,11 +20,20 @@ abstract class _ClientAddressStoreBase with Store {
   @observable
   DeliveryAt? tempAddress;
 
+  @observable
+  String? errorMessage;
+
   void jump(int page) {
     pageController.jumpToPage(page);
   }
 
-  Future<void> fetchCEP() async {
-    await _repository.fetchCEP(cepController.text);
+  @action
+  Future<void> findCEP() async {
+    try {
+      tempAddress = await _repository.findCEP(cepController.text);
+      print(tempAddress!.city);
+    } on Exception catch (e) {
+      errorMessage = e.toString();
+    }
   }
 }

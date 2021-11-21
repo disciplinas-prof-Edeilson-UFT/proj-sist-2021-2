@@ -61,15 +61,16 @@ class _SearchAddressState extends State<SearchAddress> {
             shrinkWrap: true,
             itemCount: test.length,
           ),
-          const ListTile(
-            leading: Icon(Icons.map),
-            title: Text(
+          ListTile(
+            onTap: () => store.jump(2),
+            leading: const Icon(Icons.map),
+            title: const Text(
               "Não achei meu endereço",
               style: TextStyle(
                 color: secondaryCollor,
               ),
             ),
-            subtitle: Text("Buscar pelo mapa"),
+            subtitle: const Text("Buscar pelo mapa"),
           ),
         ],
       ),
