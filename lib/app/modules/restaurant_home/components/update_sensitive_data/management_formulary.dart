@@ -26,75 +26,162 @@ class ManagementFormulary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Padding(
-          padding: _padding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Nome completo do responsável da loja',
-                style: _labelStyle,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller:
-                          homeStore.managementFormController['name_Owner'],
-                      textCapitalization: TextCapitalization.words,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Este campo não pode ficar vazio";
-                        }
-                        if (value.trim().split(' ').length < 2) {
-                          return "Precisa conter pelo menos dois nomes";
-                        }
-                        return null;
-                      },
-                      cursorColor: secondaryColor,
-                      decoration: const InputDecoration(
-                        focusColor: secondaryColor,
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: secondaryColor,
-                          ),
-                        ),
-                        border: OutlineInputBorder(),
-                        hintText: 'João da Silva',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        Center(
-          child: Padding(
+    return Form(
+      key: homeStore.formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Padding(
             padding: _padding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Celular do responsável da loja', style: _labelStyle),
+                Text(
+                  'Nome completo do responsável da loja',
+                  style: _labelStyle,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller:
+                            homeStore.managementFormController['name_Owner'],
+                        textCapitalization: TextCapitalization.words,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Este campo não pode ficar vazio";
+                          }
+                          if (value.trim().split(' ').length < 2) {
+                            return "Precisa conter pelo menos dois nomes";
+                          }
+                          return null;
+                        },
+                        cursorColor: secondaryColor,
+                        decoration: const InputDecoration(
+                          focusColor: secondaryColor,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: secondaryColor,
+                            ),
+                          ),
+                          border: OutlineInputBorder(),
+                          hintText: 'João da Silva',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: _padding,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Celular do responsável da loja', style: _labelStyle),
+                  TextFormField(
+                    controller:
+                        homeStore.managementFormController['phone_Owner'],
+                    inputFormatters: [_phoneFormat],
+                    textCapitalization: TextCapitalization.words,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Este campo não pode ficar vazio";
+                      }
+                      if (value.length <= 14) {
+                        return "Digite um número de telefone válido";
+                      }
+                      return null;
+                    },
+                    cursorColor: secondaryColor,
+                    decoration: const InputDecoration(
+                      focusColor: secondaryColor,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: secondaryColor,
+                        ),
+                      ),
+                      border: OutlineInputBorder(),
+                      hintText: '(00) 00000-0000',
+                    ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: _padding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Email de acesso',
+                  style: _labelStyle,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller:
+                            homeStore.managementFormController['email_Owner'],
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Este campo não pode ficar vazio";
+                          }
+                          if (!EmailValidator.validate(value)) {
+                            return "Digite um email válido";
+                          }
+                          return null;
+                        },
+                        readOnly: true,
+                        cursorColor: secondaryColor,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          focusColor: secondaryColor,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                            ),
+                          ),
+                          border: OutlineInputBorder(),
+                          hintText: 'email@email.com',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: _padding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Senha',
+                  style: _labelStyle,
+                ),
                 TextFormField(
-                  controller: homeStore.managementFormController['phone_Owner'],
-                  inputFormatters: [_phoneFormat],
-                  textCapitalization: TextCapitalization.words,
+                  controller: homeStore.managementFormController['Senha'],
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Este campo não pode ficar vazio";
                     }
-                    if (value.length <= 14) {
-                      return "Digite um número de telefone válido";
+                    if (value.length < 6) {
+                      return "Senha muito curta.";
                     }
-                    return null;
+                    return homeStore.validatePassword();
                   },
+                  obscureText: true,
                   cursorColor: secondaryColor,
                   decoration: const InputDecoration(
+                    hintText: '******',
                     focusColor: secondaryColor,
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -102,140 +189,65 @@ class ManagementFormulary extends StatelessWidget {
                       ),
                     ),
                     border: OutlineInputBorder(),
-                    hintText: '(00) 00000-0000',
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
               ],
             ),
           ),
-        ),
-        Padding(
-          padding: _padding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Email de acesso',
-                style: _labelStyle,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller:
-                          homeStore.managementFormController['email_Owner'],
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Este campo não pode ficar vazio";
-                        }
-                        if (!EmailValidator.validate(value)) {
-                          return "Digite um email válido";
-                        }
-                        return null;
-                      },
-                      readOnly: true,
-                      cursorColor: secondaryColor,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        focusColor: secondaryColor,
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                          ),
-                        ),
-                        border: OutlineInputBorder(),
-                        hintText: 'email@email.com',
+          Padding(
+            padding: _padding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Confirmar Senha',
+                  style: _labelStyle,
+                ),
+                TextFormField(
+                  controller:
+                      homeStore.managementFormController['Confirmar Senha'],
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Este campo não pode ficar vazio";
+                    }
+                    if (value.length < 6) {
+                      return "Senha muito curta.";
+                    }
+                    return homeStore.validatePassword();
+                  },
+                  obscureText: true,
+                  cursorColor: secondaryColor,
+                  decoration: const InputDecoration(
+                    hintText: '******',
+                    focusColor: secondaryColor,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: secondaryColor,
                       ),
                     ),
+                    border: OutlineInputBorder(),
                   ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: _padding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Senha',
-                style: _labelStyle,
-              ),
-              TextFormField(
-                controller: homeStore.managementFormController['Senha'],
-                validator: (value) {
-                  if (value!.length < 6) {
-                    return "Senha muito curta.";
-                  }
-                  return homeStore.validatePassword();
-                },
-                obscureText: true,
-                cursorColor: secondaryColor,
-                decoration: const InputDecoration(
-                  hintText: '******',
-                  focusColor: secondaryColor,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: secondaryColor,
-                    ),
-                  ),
-                  border: OutlineInputBorder(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Padding(
-          padding: _padding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Confirmar Senha',
-                style: _labelStyle,
-              ),
-              TextFormField(
-                controller:
-                    homeStore.managementFormController['Confirmar Senha'],
-                validator: (value) {
-                  if (value!.length < 6) {
-                    return "Senha muito curta.";
-                  }
-                  return homeStore.validatePassword();
-                },
-                obscureText: true,
-                cursorColor: secondaryColor,
-                decoration: const InputDecoration(
-                  hintText: '******',
-                  focusColor: secondaryColor,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: secondaryColor,
-                    ),
-                  ),
-                  border: OutlineInputBorder(),
-                ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+            child: ConfirmationButton(
+              onPressed: () async {
+                if (homeStore.formKey.currentState!.validate()) {
+                  await ProfileRepository()
+                      .setManagementRestaurant(homeStore.restaurant!);
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-              top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
-          child: ConfirmationButton(
-            onPressed: () async {
-              await ProfileRepository()
-                  .setManagementRestaurant(homeStore.restaurant!);
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
