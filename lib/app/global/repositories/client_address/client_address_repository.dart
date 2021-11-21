@@ -1,18 +1,13 @@
-import 'dart:developer';
-
-import "package:google_maps_webservice/places.dart";
-import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:search_cep/search_cep.dart';
 
 class ClientAddressRepository {
-  Future<void>? fechPlace(String pedido) async {
-    final places =
-        new GoogleMapsPlaces(apiKey: "AIzaSyCQQH3TeTUR5LWAYoHddUSLXZ6KsCVv9YI");
+  Future<void>? fetchCEP(String cep) async {
     try {
-      PlacesSearchResponse response = await places.searchByText(pedido);
-      log(response.status);
-      PlacesSearchResult teste;
+      final viaCep = ViaCepSearchCep();
+      final infoCepJson = await viaCep.searchInfoByCep(cep: cep);
+      print(infoCepJson);
     } catch (e) {
-      throw Exception("Pedido não encontrado");
+      throw e.toString();
     }
   }
 }
