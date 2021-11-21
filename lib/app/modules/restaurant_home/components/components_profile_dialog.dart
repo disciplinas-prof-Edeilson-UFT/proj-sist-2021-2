@@ -49,51 +49,31 @@ class NextIcon extends StatefulWidget {
 class _NextIconState extends State<NextIcon> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 5),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop();
-              if (widget.direction == 'Proximo') {
-                widget.currentState == 'Profile'
-                    ? showDialog(
-                        context: context,
-                        builder: (_) {
-                          return const ManagementDialog();
-                        })
-                    : showDialog(
-                        context: context,
-                        builder: (_) {
-                          return AdressDialog();
-                        });
-              } else if (widget.direction == 'Anterior') {
-                widget.currentState == 'Gerenciamento'
-                    ? showDialog(
-                        context: context,
-                        builder: (_) {
-                          return const ProfileAlertDialog();
-                        })
-                    : showDialog(
-                        context: context,
-                        builder: (_) {
-                          return const ManagementDialog();
-                        });
-              }
-            },
-            child: widget.direction == 'Proximo'
-                ? const Icon(
-                    Icons.arrow_forward_ios_outlined,
-                    color: secondaryColor,
-                    size: 50,
-                  )
-                : const Icon(
-                    Icons.arrow_back_ios_outlined,
-                    color: secondaryColor,
-                    size: 50,
-                  )),
-      ),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+          onTap: () {
+            if (widget.direction == 'Proximo') {
+              widget.currentState == 'Profile' ?
+                  DefaultTabController.of(context)!.animateTo(1)
+                  : DefaultTabController.of(context)!.animateTo(2);
+            } else if (widget.direction == 'Anterior') {
+              widget.currentState == 'Gerenciamento'
+                  ? DefaultTabController.of(context)!.animateTo(0)
+                  : DefaultTabController.of(context)!.animateTo(1);
+            }
+          },
+          child: widget.direction == 'Proximo'
+              ? const Icon(
+                  Icons.arrow_forward_ios_outlined,
+                  color: secondaryColor,
+                  size: 39,
+                )
+              : const Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: secondaryColor,
+                  size: 39,
+                )),
     );
   }
 }

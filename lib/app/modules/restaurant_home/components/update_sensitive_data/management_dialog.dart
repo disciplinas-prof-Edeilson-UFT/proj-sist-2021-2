@@ -14,27 +14,26 @@ class _ManagementDialogState extends State<ManagementDialog> {
   Widget build(BuildContext context) {
     double _pageWidth = MediaQuery.of(context).size.width;
 
-    return AlertDialog(
-      contentPadding: const EdgeInsets.only(top: 10),
-      title: const Text('Gerenciamento'),
-      content: SingleChildScrollView(
-        child: Row(
-          children: [
-            const NextIcon(
-              currentState: 'Gerenciamento',
-              direction: 'Anterior',
-            ),
-            SizedBox(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        const NextIcon(
+          currentState: 'Gerenciamento',
+          direction: 'Anterior',
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            child: SizedBox(
               width: _pageWidth * 0.4,
               child: ManagementFormulary(),
             ),
-            const NextIcon(
-              currentState: 'Gerenciamento',
-              direction: 'Proximo',
-            ),
-          ],
+          ),
         ),
-      ),
+        const NextIcon(
+          currentState: 'Gerenciamento',
+          direction: 'Proximo',
+        ),
+      ],
     );
   }
 }

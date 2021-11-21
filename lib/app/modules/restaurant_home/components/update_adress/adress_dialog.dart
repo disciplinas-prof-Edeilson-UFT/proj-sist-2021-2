@@ -13,21 +13,21 @@ class AdressDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double _pageWidth = MediaQuery.of(context).size.width;
-    return AlertDialog(
-      contentPadding: const EdgeInsets.only(top: 10),
-      title: const Text('Endereço'),
-      content: SingleChildScrollView(
-        child: Row(
-          children: [
-            const NextIcon(currentState: 'Endereco', direction: 'Anterior'),
-            SizedBox(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const NextIcon(currentState: 'Endereco', direction: 'Anterior'),
+        Expanded(
+          child: SingleChildScrollView(
+            child: SizedBox(
               width: _pageWidth * 0.4,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   AdressFormulary(),
                   Padding(
                     padding: const EdgeInsets.only(
-                        top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+                        top: 10.0, bottom: 10.0),
                     child: ConfirmationButton(
                       onPressed: () async {
                         await ProfileRepository()
@@ -39,9 +39,9 @@ class AdressDialog extends StatelessWidget {
                 ],
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
