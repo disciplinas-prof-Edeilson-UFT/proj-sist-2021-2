@@ -12,7 +12,7 @@ class PriceTextField extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,7 +31,7 @@ class PriceTextField extends StatelessWidget {
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
             LengthLimitingTextInputFormatter(5),
-            CurrencyTextInputFormatter(decimalDigits: 2, symbol: 'R\$')
+            CurrencyTextInputFormatter(decimalDigits: 2, symbol: 'R\$ ')
           ],
           decoration: InputDecoration(
             border: OutlineInputBorder(

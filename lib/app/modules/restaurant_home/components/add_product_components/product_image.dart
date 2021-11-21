@@ -53,8 +53,7 @@ class _ProductImageState extends State<ProductImage> {
                           MaterialStateProperty.all(secondaryColor),
                     ),
                     onPressed: () async {
-                      final event = await controller
-                          .pickFiles(); //TODO: esse botão abre a galertia de fotos
+                      final event = await controller.pickFiles();
                       Navigator.pop(context);
                     },
                     icon: const Icon(

@@ -92,11 +92,6 @@ abstract class _RestaurantHomeStoreBase with Store {
     }
   }
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController descController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
-  TextEditingController categoriesController = TextEditingController();
-  TextEditingController idController = TextEditingController();
   FocusNode profileAlertDialogRestaurantFieldFocus = FocusNode();
 
   @observable
@@ -115,9 +110,6 @@ abstract class _RestaurantHomeStoreBase with Store {
     await productRepository.cadastrarProduct(produto);
     log('Deu certo');
   }
-
-  @action
-  void productSetImage(dynamic e) {}
 
   @computed
   String get toggleText => isOpen ? 'Fechar Loja' : 'Abrir Loja';
@@ -140,6 +132,15 @@ abstract class _RestaurantHomeStoreBase with Store {
     'prepare_time': TextEditingController(),
     'delivery_price': TextEditingController(),
     'phone_restaurant': TextEditingController(),
+  };
+
+  @observable
+  Map<String, TextEditingController> formProduct = {
+    'name': TextEditingController(),
+    'desc': TextEditingController(),
+    'price': TextEditingController(),
+    'categories': TextEditingController(),
+    'id': TextEditingController(),
   };
 
   @action

@@ -10,7 +10,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(

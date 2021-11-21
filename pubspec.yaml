@@ -63,13 +63,9 @@ dependencies:
   percent_indicator: ^3.4.0
   google_fonts: ^2.1.0
   google_maps_flutter_web: ^0.3.2
-<<<<<<< HEAD
-  image_picker: ^0.8.4+4
-  currency_text_input_formatter: ^2.1.5
-=======
   currency_text_input_formatter: ^2.1.5
   cached_network_image: ^3.1.0
->>>>>>> eda47cf4c21193794c463e4ae39c88e80599191c
+  image_picker: ^0.8.4+4
 
 dev_dependencies:
   flutter_test:
