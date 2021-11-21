@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/repositories/product/product_repository_interface.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
