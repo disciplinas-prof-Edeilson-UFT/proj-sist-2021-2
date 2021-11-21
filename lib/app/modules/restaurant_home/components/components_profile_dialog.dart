@@ -7,8 +7,10 @@ import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart
 class ConfirmationButton extends StatelessWidget {
   ConfirmationButton({
     Key? key,
+    required this.onPressed,
   }) : super(key: key);
 
+  final void Function() onPressed;
   final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
   final ProfileRepository repository = ProfileRepository();
   @override
@@ -29,13 +31,7 @@ class ConfirmationButton extends StatelessWidget {
           minimumSize: MaterialStateProperty.all(const Size(210, 48)),
           backgroundColor: MaterialStateProperty.all(secondaryColor),
         ),
-        onPressed: () async {
-          repository.setAdressRestaurant(store.restaurant!);
-          repository.setManagementRestaurant(store.restaurant!);
-          await repository.setProfileRestaurant(store.restaurant!);
-          store.getRestaurant();
-          Navigator.of(context).pop();
-        }
+        onPressed: onPressed,
       ),
     );
   }
