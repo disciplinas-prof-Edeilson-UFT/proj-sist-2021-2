@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/update_adress/address_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_sensitive_data/management_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
@@ -54,8 +55,8 @@ class NextIcon extends StatelessWidget {
             showDialog(
                 context: context,
                 builder: (_) {
-                  restaurantHomeStore.updateManagementControllers();
-                  return const ManagementDialog();
+                  restaurantHomeStore.updateAddressControllers();
+                  return AddressDialog();
                 });
           },
           child: const Icon(
