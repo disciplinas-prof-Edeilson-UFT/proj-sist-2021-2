@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_sensitive_data/management_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
@@ -84,6 +83,7 @@ class ListTilePerfil extends StatelessWidget {
   ListTilePerfil({Key? key}) : super(key: key);
   final RestaurantHomeStore restaurantHomeStore =
       Modular.get<RestaurantHomeStore>();
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -95,7 +95,7 @@ class ListTilePerfil extends StatelessWidget {
             showDialog(
                 context: context,
                 builder: (_) {
-                  restaurantHomeStore.updateControllers();
+                  restaurantHomeStore.updateProfileControllers();
                   return const ProfileAlertDialog();
                 });
           },

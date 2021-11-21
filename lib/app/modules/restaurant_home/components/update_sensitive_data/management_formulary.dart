@@ -229,7 +229,8 @@ class ManagementFormulary extends StatelessWidget {
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
           child: ConfirmationButton(
             onPressed: () async {
-              await ProfileRepository().setRestaurant(homeStore.restaurant!);
+              await ProfileRepository()
+                  .setManagementRestaurant(homeStore.restaurant!);
               Navigator.of(context).pop();
             },
           ),
