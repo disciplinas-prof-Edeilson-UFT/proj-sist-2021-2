@@ -16,6 +16,7 @@ class LogoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
+    HomeStore homeStore = Modular.get<HomeStore>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: MouseRegion(
@@ -25,7 +26,10 @@ class LogoAppBar extends StatelessWidget {
             "assets/images/logo.png",
             width: screen.width * 0.08,
           ),
-          onTap: () => Modular.to.navigate('/'),
+          onTap: () {
+            Modular.to.navigate('/');
+            homeStore.setSelectedCategory(null);
+          }
         ),
       ),
     );
