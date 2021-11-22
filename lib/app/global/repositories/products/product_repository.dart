@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
