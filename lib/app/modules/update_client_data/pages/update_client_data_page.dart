@@ -46,7 +46,7 @@ class UpdateClientDataPageState extends State<UpdateClientDataPage> {
             color: Colors.white70,
           ),
           message: store.errorMessage,
-          backgroundColor: Colors.red,
+          backgroundColor: secondaryCollor,
           borderRadius: BorderRadius.circular(10.0),
           padding: const EdgeInsets.all(20.0),
           margin: const EdgeInsets.symmetric(
@@ -94,7 +94,7 @@ class UpdateClientDataPageState extends State<UpdateClientDataPage> {
                   : screen.width,
           padding: const EdgeInsets.all(40.0),
           decoration: const BoxDecoration(
-            color: Colors.white,
+            color: Colors.white24,
           ),
           child: Observer(builder: (_) {
             if (store.user == null) {
@@ -115,11 +115,11 @@ class UpdateClientDataPageState extends State<UpdateClientDataPage> {
                         'Editar dados',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 30.0,
+                          fontSize: 25.0,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
                     CustomTextField(
                       controller: store.nameController,
                       title: 'Nome',
