@@ -74,10 +74,6 @@ class _AddProductState extends State<AddProduct> {
                           controller: store.formProduct['categories'],
                           label: 'Categoria do produto',
                         ),
-                        CustomTextField(
-                          controller: store.formProduct['id'],
-                          label: 'Id do produto',
-                        )
                       ],
                     ),
                   ),
@@ -97,8 +93,8 @@ class _AddProductState extends State<AddProduct> {
                                 store.formProduct['desc']!.text.toString(),
                             price: doublePrice,
                             restaurantId: "dummy 2",
-                            productId: store.formProduct['id']!.text.toString(),
-                            categories: [],
+                            categories: store.formProduct['categories']!.text
+                                .toString(),
                           );
                           store.cadastrarProdutoTeste(produto);
                           Navigator.of(context).pop();

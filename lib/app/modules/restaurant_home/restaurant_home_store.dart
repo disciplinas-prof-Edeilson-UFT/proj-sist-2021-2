@@ -146,7 +146,6 @@ abstract class _RestaurantHomeStoreBase with Store {
     'desc': TextEditingController(),
     'price': TextEditingController(),
     'categories': TextEditingController(),
-    'id': TextEditingController(),
   };
 
   @action
