@@ -23,7 +23,7 @@ class _PickAddressState extends State<PickAddress> {
   Widget build(BuildContext context) {
     return Form(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -34,16 +34,20 @@ class _PickAddressState extends State<PickAddress> {
                   color: secondaryCollor,
                 ),
               ),
-              const SizedBox(width: 50.0),
+              //const SizedBox(width: 50.0),
               const Text(
-                'Pesquise pelo seu CEP',
+                'Busque o endereço pelo CEP',
                 style: TextStyle(fontSize: 20.0),
+                textAlign: TextAlign.right,
+
               ),
             ],
           ),
           CustomTextField(
             controller: store.cepController,
             title: 'CEP',
+            hint: '00000-000',
+
             formaters: [
               MaskTextInputFormatter(
                 mask: '#####-###',
@@ -63,7 +67,7 @@ class _PickAddressState extends State<PickAddress> {
             );
           }),
           CustomSubmit(
-            label: 'Pesquisar',
+            label: 'Buscar CEP',
             onPressed: () async => store.findCEP(),
           ),
         ],
