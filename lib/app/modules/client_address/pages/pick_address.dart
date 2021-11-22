@@ -59,7 +59,7 @@ class _PickAddressState extends State<PickAddress> {
           Observer(builder: (_) {
             return Visibility(
               visible: store.tempAddress != null,
-              child: const AddressListTile(),
+              child: AddressListTile(address: store.tempAddress),
             );
           }),
           CustomSubmit(

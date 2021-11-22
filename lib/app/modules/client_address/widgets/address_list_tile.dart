@@ -70,7 +70,9 @@ class _AddressListTileState extends State<AddressListTile> {
     return ListTile(
       tileColor: Colors.transparent,
       title: const Text('Casa'),
-      subtitle: const Text("Q. 208 Sul, Alameda 10, 202"),
+      subtitle: Text(widget.address != null
+          ? widget.address!.street
+          : "Q. 208 Sul, Alameda 10, 202"),
       leading: const Icon(
         Icons.house,
       ),
