@@ -29,25 +29,72 @@ class ProfileRepository extends IProfile {
   }
 
   @override
-  Future<void> setRestaurant(Restaurant restaurant) async {
+  Future<void> setProfileRestaurant(Restaurant restaurant) async {
     await FirebaseFirestore.instance
         .collection('restaurant')
         .doc(store.id)
         .update({
       'social_name':
-          _verifyForm(store.updateFormController['restaurant']?.text) ??
+          _verifyForm(store.profileFormController['restaurant']?.text) ??
               restaurant.socialName,
       'phone_restaurant':
-          _verifyForm(store.updateFormController['phone_restaurant']?.text) ??
+          _verifyForm(store.profileFormController['phone_restaurant']?.text) ??
               restaurant.phone,
       'category': store.category,
       'estimated_delivery':
-          _verifyForm(store.updateFormController['prepare_time']?.text) ??
+          _verifyForm(store.profileFormController['prepare_time']?.text) ??
               restaurant.estimatedDelivery,
       'delivery_price': _parsePrice(_verifyForm(
-              store.updateFormController['delivery_price']?.text)) ??
+              store.profileFormController['delivery_price']?.text)) ??
           restaurant.deliveryPrice,
     });
+    store.updateProfileControllers();
+  }
+
+  @override
+  Future<void> setManagementRestaurant(Restaurant restaurant) async {
+    await FirebaseFirestore.instance
+        .collection('restaurant')
+        .doc(store.id)
+        .update({
+      'name_Owner':
+          _verifyForm(store.managementFormController['name_Owner']?.text) ??
+              restaurant.nameOwner,
+      'phone_Owner':
+          _verifyForm(store.managementFormController['phone_Owner']?.text) ??
+              restaurant.phoneOwner,
+      'email_Owner':
+          _verifyForm(store.managementFormController['email_Owner']?.text) ??
+              restaurant.emailOwner,
+      'password': _verifyForm(store.managementFormController['Senha']?.text) ??
+          restaurant.password,
+    });
+    store.updateManagementControllers();
+  }
+
+  @override
+  Future<void> setAdressRestaurant(Restaurant restaurant) async {
+    await FirebaseFirestore.instance
+        .collection('restaurant')
+        .doc(store.id)
+        .update({
+      'CEP': _verifyForm(store.addressFormController['CEP']?.text) ??
+          restaurant.cep,
+      'city': _verifyForm(store.addressFormController['Cidade']?.text) ??
+          restaurant.city,
+      'state': _verifyForm(store.addressFormController['Estado']?.text) ??
+          restaurant.state,
+      'district': _verifyForm(store.addressFormController['Bairro']?.text) ??
+          restaurant.district,
+      'address': _verifyForm(store.addressFormController['Endereço']?.text) ??
+          restaurant.address,
+      'number': _verifyForm(store.addressFormController['Número']?.text) ??
+          restaurant.number,
+      'complement': _verifyForm(
+              store.addressFormController['Complemento (Opcional)']?.text) ??
+          restaurant.complement,
+    });
+    store.updateAddressControllers();
   }
 
   @override
@@ -70,5 +117,12 @@ class ProfileRepository extends IProfile {
         .collection('restaurant')
         .doc(store.id)
         .update({'image': imgUrl});
+  }
+
+  Future updateInfo(Map<String, dynamic> info) async {
+    await FirebaseFirestore.instance
+        .collection('restaurant')
+        .doc(store.id)
+        .update(info);
   }
 }
