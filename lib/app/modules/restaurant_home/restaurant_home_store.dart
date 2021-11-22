@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -12,13 +13,19 @@ part 'restaurant_home_store.g.dart';
 class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
-  final id = 'dummy1';
+  String id = 'dummy1';
+
+  @observable
+  dynamic imgPath;
 
   @observable
   Restaurant? restaurant;
 
   @observable
   String picture = '';
+
+  @observable
+  String prodPic = '';
 
   @action
   Future getRestaurant() async {
@@ -107,8 +114,8 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @action
-  void setProductImage(dynamic e) {
-    ProductRepository().productSetImage(e);
+  void setProductImage(dynamic img) {
+    imgPath = img;
   }
 
   @computed

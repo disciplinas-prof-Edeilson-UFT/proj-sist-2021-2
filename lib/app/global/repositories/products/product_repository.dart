@@ -22,7 +22,8 @@ class ProductRepository implements IProductRepository {
         'name': produto.name,
         'price': produto.price,
         'restaurant_id': produto.restaurantId,
-      }).then((value) => log('Produto adicionado $value'));
+      }).then((value) => store.id = value.id);
+      productSetImage(store.imgPath);
     } catch (e) {
       throw Exception("Erro: $e");
     }
@@ -33,19 +34,19 @@ class ProductRepository implements IProductRepository {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
     }
-    store.picture = '';
+    store.prodPic = '';
     String imgUrl;
     try {
       imgUrl = await FirebaseStorage.instance
           .ref('product_image/${store.id}')
           .putBlob(e)
           .then((task) => task.ref.getDownloadURL());
-      store.picture = imgUrl;
+      store.prodPic = imgUrl;
     } catch (e) {
       return;
     }
     await FirebaseFirestore.instance
-        .collection('prodcts')
+        .collection('products')
         .doc(store.id)
         .update({'image': imgUrl});
   }

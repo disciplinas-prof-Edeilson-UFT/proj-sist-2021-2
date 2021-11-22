@@ -55,7 +55,7 @@ class _ProductImageState extends State<ProductImage> {
                     ),
                     onPressed: () async {
                       final event = await controller.pickFiles();
-                      restaurantHomeStore.setImage(event.last);
+                      restaurantHomeStore.setProductImage(event.last);
                       Navigator.pop(context);
                     },
                     icon: const Icon(
