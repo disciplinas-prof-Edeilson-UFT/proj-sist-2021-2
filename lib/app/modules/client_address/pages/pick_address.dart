@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:pscomidas/app/modules/client_address/widgets/address_list_tile.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/register_client/widgets/custom_submit_button.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
 
 import '../client_address_store.dart';
@@ -18,33 +22,51 @@ class _PickAddressState extends State<PickAddress> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Trecho de ultilização do CustomTextField
-            CustomTextField(
-              controller: store.cepController,
-              title: 'CEP',
-              formaters: [
-                MaskTextInputFormatter(
-                  mask: '#####-###',
-                  filter: {"#": RegExp(r'[0-9]')},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: () => store.jump(1),
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: secondaryCollor,
                 ),
-              ],
-              validator: (value) {
-                if (value == null || value.isEmpty || value.length < 8) {
-                  return 'CEP Inválido';
-                }
-              },
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                await store.findCEP();
-              },
-              child: const Text('pronto'),
-            ),
-          ],
-        ),
+              ),
+              const SizedBox(width: 50.0),
+              const Text(
+                'Pesquise pelo seu CEP',
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ],
+          ),
+          CustomTextField(
+            controller: store.cepController,
+            title: 'CEP',
+            formaters: [
+              MaskTextInputFormatter(
+                mask: '#####-###',
+                filter: {"#": RegExp(r'[0-9]')},
+              ),
+            ],
+            validator: (value) {
+              if (value == null || value.isEmpty || value.length < 8) {
+                return 'CEP Inválido';
+              }
+            },
+          ),
+          Observer(builder: (_) {
+            return Visibility(
+              visible: store.tempAddress != null,
+              child: const AddressListTile(),
+            );
+          }),
+          CustomSubmit(
+            label: 'Pesquisar',
+            onPressed: () async => store.findCEP(),
+          ),
+        ],
       ),
     );
   }

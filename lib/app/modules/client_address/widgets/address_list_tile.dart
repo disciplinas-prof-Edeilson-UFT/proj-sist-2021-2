@@ -6,17 +6,17 @@ import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
-class AddressListTile extends StatefulWidget {
-  const AddressListTile({
+class SlidableAddressTile extends StatefulWidget {
+  const SlidableAddressTile({
     Key? key,
   }) : super(key: key);
 
   @override
-  _AddressListTileState createState() => _AddressListTileState();
+  _SlidableAddressTileState createState() => _SlidableAddressTileState();
 }
 
 @observable
-class _AddressListTileState extends State<AddressListTile> {
+class _SlidableAddressTileState extends State<SlidableAddressTile> {
   final ClientAddressStore store = Modular.get();
 
   @override
@@ -41,15 +41,15 @@ class _AddressListTileState extends State<AddressListTile> {
           ),
         ],
       ),
-      child: const MyHouse(
+      child: const AddressListTile(
         trailing: true,
       ),
     );
   }
 }
 
-class MyHouse extends StatefulWidget {
-  const MyHouse({
+class AddressListTile extends StatefulWidget {
+  const AddressListTile({
     Key? key,
     this.onTap,
     this.trailing = false,
@@ -61,10 +61,10 @@ class MyHouse extends StatefulWidget {
   final bool trailing;
 
   @override
-  _MyHouseState createState() => _MyHouseState();
+  _AddressListTileState createState() => _AddressListTileState();
 }
 
-class _MyHouseState extends State<MyHouse> {
+class _AddressListTileState extends State<AddressListTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(

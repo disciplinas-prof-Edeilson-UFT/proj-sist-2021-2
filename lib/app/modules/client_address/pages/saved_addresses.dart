@@ -23,8 +23,8 @@ class _SavedAdressesState extends State<SavedAdresses> {
       child: Column(
         children: [
           Container(
-            height: screen.height * .3,
-            width: screen.width * .3,
+            height: screen.height * .2,
+            width: screen.width * .2,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.contain,
@@ -49,7 +49,7 @@ class _SavedAdressesState extends State<SavedAdresses> {
           ),
           ListView.builder(
             itemBuilder: (context, index) {
-              return const AddressListTile();
+              return const SlidableAddressTile();
             },
             shrinkWrap: true,
             itemCount: test.length,

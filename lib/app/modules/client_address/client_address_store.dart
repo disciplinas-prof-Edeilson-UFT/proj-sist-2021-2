@@ -29,9 +29,9 @@ abstract class _ClientAddressStoreBase with Store {
 
   @action
   Future<void> findCEP() async {
+    tempAddress = null;
     try {
       tempAddress = await _repository.findCEP(cepController.text);
-      print(tempAddress!.city);
     } on Exception catch (e) {
       errorMessage = e.toString();
     }
