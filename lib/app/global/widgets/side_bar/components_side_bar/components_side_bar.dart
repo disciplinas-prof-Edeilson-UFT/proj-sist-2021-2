@@ -3,9 +3,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/restaurant_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
 
 class LogoSideBar extends StatelessWidget {
   const LogoSideBar({Key? key}) : super(key: key);
@@ -91,50 +91,36 @@ class ListTilePerfil extends StatelessWidget {
         showDialog(
           context: context,
           builder: (_) {
-            restaurantHomeStore.updateControllers();
-            return const ProfileAlertDialog();
+            restaurantHomeStore.updateProfileControllers();
+            return const RestaurantDialog();
           },
         );
       },
       leading: RestaurantProfilePicture(),
-      title: const Text(
+      title: visualEditInfo(context),
+      minLeadingWidth: 0,
+    );
+  }
+
+  Widget visualEditInfo(context) {
+    double _pageWidth = MediaQuery.of(context).size.width;
+    if (_pageWidth < 850) {
+      return const Icon(
+        Icons.create_outlined,
+        color: primaryColor,
+      );
+    } else {
+      return Text(
         "Editar perfil",
         style: TextStyle(
           color: Colors.white,
           fontFamily: "Nunito",
-          fontSize: 20,
+          fontSize: _pageWidth < 1000 ? 15 : 20,
           fontWeight: FontWeight.bold,
         ),
         textAlign: TextAlign.left,
-      ),
-      minLeadingWidth: 0,
-    );
-  }
-}
-
-class ListTilePerfilMobile extends StatelessWidget {
-  ListTilePerfilMobile({Key? key}) : super(key: key);
-  final RestaurantHomeStore restaurantHomeStore =
-      Modular.get<RestaurantHomeStore>();
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (_) {
-            restaurantHomeStore.updateControllers();
-            return const ProfileAlertDialog();
-          },
-        );
-      },
-      leading: RestaurantProfilePicture(),
-      title: const Icon(
-        Icons.create_outlined,
-        color: primaryColor,
-      ),
-      minLeadingWidth: 0,
-    );
+      );
+    } 
   }
 }
 
