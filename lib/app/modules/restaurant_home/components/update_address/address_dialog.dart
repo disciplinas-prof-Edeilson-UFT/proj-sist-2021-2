@@ -33,6 +33,7 @@ class AddressDialog extends StatelessWidget {
                             .setAdressRestaurant(homeStore.restaurant!);
                         homeStore.getRestaurant();
                         Navigator.of(context).pop();
+                        await showConfirmationFlush(context);
                       },
                     ),
                   ),

@@ -243,6 +243,7 @@ class ManagementFormulary extends StatelessWidget {
                       .setManagementRestaurant(homeStore.restaurant!);
                   homeStore.getRestaurant();
                   Navigator.of(context).pop();
+                  await showConfirmationFlush(context);
                 }
               },
             ),

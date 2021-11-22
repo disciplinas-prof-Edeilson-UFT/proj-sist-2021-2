@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
@@ -37,6 +38,24 @@ class ConfirmationButton extends StatelessWidget {
   }
 }
 
+Future<dynamic> showConfirmationFlush(BuildContext context) {
+  return Flushbar(
+    message: 'Dados atualizados com sucesso!',
+    icon: const Icon(
+      Icons.verified,
+      color: Colors.white,
+    ),
+    backgroundColor: Colors.green,
+    duration: const Duration(seconds: 3),
+    borderRadius: BorderRadius.circular(10.0),
+    padding: const EdgeInsets.all(20.0),
+    margin: const EdgeInsets.symmetric(
+      horizontal: 100.0,
+      vertical: 10.0,
+    ),
+  ).show(context);
+}
+
 class NextIcon extends StatefulWidget {
   const NextIcon(
       {Key? key, required this.currentState, required this.direction})
@@ -54,28 +73,29 @@ class _NextIconState extends State<NextIcon> {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-          onTap: () {
-            if (widget.direction == 'Proximo') {
-              widget.currentState == 'Profile'
-                  ? DefaultTabController.of(context)!.animateTo(1)
-                  : DefaultTabController.of(context)!.animateTo(2);
-            } else if (widget.direction == 'Anterior') {
-              widget.currentState == 'Gerenciamento'
-                  ? DefaultTabController.of(context)!.animateTo(0)
-                  : DefaultTabController.of(context)!.animateTo(1);
-            }
-          },
-          child: widget.direction == 'Proximo'
-              ? const Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: secondaryColor,
-                  size: 39,
-                )
-              : const Icon(
-                  Icons.arrow_back_ios_outlined,
-                  color: secondaryColor,
-                  size: 39,
-                )),
+        onTap: () {
+          if (widget.direction == 'Proximo') {
+            widget.currentState == 'Profile'
+                ? DefaultTabController.of(context)!.animateTo(1)
+                : DefaultTabController.of(context)!.animateTo(2);
+          } else if (widget.direction == 'Anterior') {
+            widget.currentState == 'Gerenciamento'
+                ? DefaultTabController.of(context)!.animateTo(0)
+                : DefaultTabController.of(context)!.animateTo(1);
+          }
+        },
+        child: widget.direction == 'Proximo'
+            ? const Icon(
+                Icons.arrow_forward_ios_outlined,
+                color: secondaryColor,
+                size: 39,
+              )
+            : const Icon(
+                Icons.arrow_back_ios_outlined,
+                color: secondaryColor,
+                size: 39,
+              ),
+      ),
     );
   }
 }
