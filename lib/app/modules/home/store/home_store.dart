@@ -18,7 +18,7 @@ abstract class HomeStoreBase with Store {
       (e) => e.filterFrontEnd == selection,
       orElse: () => FilterType.avaliation,
     );
-    getRestaurants();
+    restaurants.sort((a,b) => a.getByFilter(selectedFilter).compareTo(b.getByFilter(selectedFilter)));
   }
 
   @observable

@@ -29,31 +29,27 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
     double _pageWidth = MediaQuery.of(context).size.width;
     return Observer(
       builder: (_) {
-        var restaurants = homeStore.restaurants;
-        if (homeStore.selectedCategory != '') {
-          restaurants = restaurants
-              .where((e) => e.category.contains(homeStore.selectedCategory))
-              .toList();
-        }
+        homeStore.selectedFilter;
+        final restaurants = homeStore.restaurants
+          .where((e) => e.category.contains(homeStore.selectedCategory)).toList();
         return GridView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: _pageWidth > 1100
-                  ? 3
-                  : _pageWidth > 700
-                      ? 2
-                      : 1, //Responsivo horizontalmente
-              mainAxisExtent: _pageWidth * 0.10 < 100
-                  ? 100
-                  : _pageWidth * 0.10, //Responsivo verticalmente (min 100 px)
-              childAspectRatio: 3 / 2,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8),
+            crossAxisCount: _pageWidth > 1100
+                ? 3
+                : _pageWidth > 700
+                    ? 2
+                    : 1, //Responsivo horizontalmente
+            mainAxisExtent: _pageWidth * 0.10 < 100
+                ? 100
+                : _pageWidth * 0.10, //Responsivo verticalmente (min 100 px)
+            childAspectRatio: 3 / 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+          ),
           itemCount: restaurants.length,
-          itemBuilder: (context, index) {
-            return RestaurantCard(restaurants[index]);
-          },
+          itemBuilder: (context, index) => RestaurantCard(restaurants[index]),
         );
       },
     );

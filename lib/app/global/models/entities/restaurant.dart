@@ -1,3 +1,5 @@
+import 'package:pscomidas/app/global/models/enums/filter.dart';
+
 class Restaurant {
   final String restaurantId;
   final double? avaliation;
@@ -79,4 +81,26 @@ class Restaurant {
       complement: map['complement'] ?? '',
     );
   }
+  
+  getByFilter(FilterType filter) {
+    switch (filter) {
+      case FilterType.avaliation:
+        return - (avaliation ?? 0);
+      case FilterType.freeShipping:
+        return deliveryPrice;
+      case FilterType.discountCoupon:
+        if (cupom == null) {
+          return 999;
+        }
+        if (cupom!['tipo'] == 'entrega_gratis') {
+          return -999;
+        }
+        return -cupom!['valor'];
+      case FilterType.shortestDistance:
+        return distance;
+      default:
+        return socialName;
+    }
+  }
+
 }
