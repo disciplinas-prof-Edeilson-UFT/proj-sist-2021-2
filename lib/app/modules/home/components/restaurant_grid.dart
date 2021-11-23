@@ -21,6 +21,7 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
   @override
   void initState() {
     WidgetsFlutterBinding.ensureInitialized();
+    homeStore.getRestaurants();
     super.initState();
   }
 
@@ -30,8 +31,10 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
     return Observer(
       builder: (_) {
         homeStore.selectedFilter;
-        final restaurants = homeStore.restaurants
+        var restaurants = homeStore.restaurants
           .where((e) => e.category.contains(homeStore.selectedCategory)).toList();
+        restaurants = restaurants
+          .where((e) => e.socialName.toLowerCase().startsWith(homeStore.searchShop)).toList();
         return GridView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           shrinkWrap: true,

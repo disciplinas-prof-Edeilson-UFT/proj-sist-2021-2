@@ -24,6 +24,9 @@ abstract class HomeStoreBase with Store {
   @observable
   var selectedCategory = '';
 
+  @observable
+  String searchShop = '';
+
   @action
   void setSelectedCategory(String? selection) {
     selectedCategory = selection ?? '';
@@ -34,6 +37,7 @@ abstract class HomeStoreBase with Store {
 
   @action
   Future<List<Restaurant>> getRestaurants() async {
+    
     final RestaurantGridFirestore restaurantGridFirestore =
         RestaurantGridFirestore();
     restaurants = await restaurantGridFirestore.getRestaurants();

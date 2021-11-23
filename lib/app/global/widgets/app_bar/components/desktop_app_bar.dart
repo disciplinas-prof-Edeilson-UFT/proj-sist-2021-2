@@ -16,6 +16,10 @@ class DesktopAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
+
+  @override
+  HomeStore store = Modular.get<HomeStore>();
+
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
@@ -38,13 +42,17 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: const TextField(
+                child: TextField(
                   textAlign: TextAlign.left,
                   textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
+                  onChanged: (value) {
+                    store.setSelectedCategory(null);
+                    store.searchShop = value;
+                  },
+                  decoration: const InputDecoration(
                     enabledBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
-                    hintText: "Busque por ítem ou loja",
+                    hintText: "Busque por um restaurante",
                     hintStyle: TextStyle(
                       color: tertiaryColor,
                       fontSize: 14,
