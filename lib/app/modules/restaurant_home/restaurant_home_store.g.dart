@@ -123,35 +123,51 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
-  final _$iconColorAtom = Atom(name: '_RestaurantHomeStoreBase.iconColor');
+  final _$selectedPlanAtom =
+      Atom(name: '_RestaurantHomeStoreBase.selectedPlan');
 
   @override
-  Color get iconColor {
-    _$iconColorAtom.reportRead();
-    return super.iconColor;
+  String? get selectedPlan {
+    _$selectedPlanAtom.reportRead();
+    return super.selectedPlan;
   }
 
   @override
-  set iconColor(Color value) {
-    _$iconColorAtom.reportWrite(value, super.iconColor, () {
-      super.iconColor = value;
+  set selectedPlan(String? value) {
+    _$selectedPlanAtom.reportWrite(value, super.selectedPlan, () {
+      super.selectedPlan = value;
     });
   }
 
-  final _$updateFormControllerAtom =
-      Atom(name: '_RestaurantHomeStoreBase.updateFormController');
+  final _$actualPlanAtom = Atom(name: '_RestaurantHomeStoreBase.actualPlan');
 
   @override
-  Map<String, TextEditingController> get updateFormController {
-    _$updateFormControllerAtom.reportRead();
-    return super.updateFormController;
+  String get actualPlan {
+    _$actualPlanAtom.reportRead();
+    return super.actualPlan;
   }
 
   @override
-  set updateFormController(Map<String, TextEditingController> value) {
-    _$updateFormControllerAtom.reportWrite(value, super.updateFormController,
+  set actualPlan(String value) {
+    _$actualPlanAtom.reportWrite(value, super.actualPlan, () {
+      super.actualPlan = value;
+    });
+  }
+
+  final _$profileFormControllerAtom =
+      Atom(name: '_RestaurantHomeStoreBase.profileFormController');
+
+  @override
+  Map<String, TextEditingController> get profileFormController {
+    _$profileFormControllerAtom.reportRead();
+    return super.profileFormController;
+  }
+
+  @override
+  set profileFormController(Map<String, TextEditingController> value) {
+    _$profileFormControllerAtom.reportWrite(value, super.profileFormController,
         () {
-      super.updateFormController = value;
+      super.profileFormController = value;
     });
   }
 
@@ -193,6 +209,14 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   Future<dynamic> cadastrarProdutoTeste(Product produto) {
     return _$cadastrarProdutoTesteAsyncAction
         .run(() => super.cadastrarProdutoTeste(produto));
+  }
+
+  final _$getRestaurantPlanAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.getRestaurantPlan');
+
+  @override
+  Future<dynamic> getRestaurantPlan() {
+    return _$getRestaurantPlanAsyncAction.run(() => super.getRestaurantPlan());
   }
 
   final _$_RestaurantHomeStoreBaseActionController =
@@ -254,6 +278,28 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  void selectPlan(dynamic value) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.selectPlan');
+    try {
+      return super.selectPlan(value);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updatePlan() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.updatePlan');
+    try {
+      return super.updatePlan();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void handleFocusChange() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
         name: '_RestaurantHomeStoreBase.handleFocusChange');
@@ -265,11 +311,33 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
-  void updateControllers() {
+  void updateProfileControllers() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
-        name: '_RestaurantHomeStoreBase.updateControllers');
+        name: '_RestaurantHomeStoreBase.updateProfileControllers');
     try {
-      return super.updateControllers();
+      return super.updateProfileControllers();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updateManagementControllers() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.updateManagementControllers');
+    try {
+      return super.updateManagementControllers();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updateAddressControllers() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.updateAddressControllers');
+    try {
+      return super.updateAddressControllers();
     } finally {
       _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -285,8 +353,9 @@ prodPic: ${prodPic},
 editBackground: ${editBackground},
 category: ${category},
 isOpen: ${isOpen},
-iconColor: ${iconColor},
-updateFormController: ${updateFormController},
+selectedPlan: ${selectedPlan},
+actualPlan: ${actualPlan},
+profileFormController: ${profileFormController},
 formProduct: ${formProduct},
 toggleText: ${toggleText}
     ''';

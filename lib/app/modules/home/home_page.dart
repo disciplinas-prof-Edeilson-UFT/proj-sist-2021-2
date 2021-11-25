@@ -34,7 +34,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   }
 
   @override
-  void initState (){
+  void initState() {
     homeStore.getRestaurants();
     super.initState();
   }
@@ -44,51 +44,52 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     homeStore.setSelectedCategory(null);
     deviceWidth = MediaQuery.of(context).size.width;
 
-    return Observer(
-      builder: (_) {
-        if (homeStore.restaurants.isEmpty) {
-          return const Center(child: CircularProgressIndicator(color: secondaryColor,));
-        }
-        return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: const CustomAppBar(),
-          endDrawer: const CartPage(),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CategoryPage(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-                  child: Text(
-                    "Mais pedidos",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Nunito',
-                    ),
-                  ),
-                ),
-                const MostOrdered(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-                  child: Text(
-                    "Lojas",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Nunito',
-                    ),
-                  ),
-                ),
-                const RestaurantGrid(),
-                const CustomFooter()
-              ],
-            ),
-          ),
-          bottomNavigationBar: layoutMobile(),
-        );
+    return Observer(builder: (_) {
+      if (homeStore.restaurants.isEmpty) {
+        return const Center(
+            child: CircularProgressIndicator(
+          color: secondaryColor,
+        ));
       }
-    );
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: const CustomAppBar(),
+        endDrawer: const CartPage(),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CategoryPage(),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                child: Text(
+                  "Mais pedidos",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Nunito',
+                  ),
+                ),
+              ),
+              const MostOrdered(),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                child: Text(
+                  "Lojas",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Nunito',
+                  ),
+                ),
+              ),
+              const RestaurantGrid(),
+              const CustomFooter()
+            ],
+          ),
+        ),
+        bottomNavigationBar: layoutMobile(),
+      );
+    });
   }
 }

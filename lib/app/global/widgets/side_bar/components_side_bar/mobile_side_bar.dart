@@ -64,7 +64,7 @@ class _SideBarMobileState extends State<SideBarMobile> {
               color: redCollor,
               width: double.maxFinite,
               height: screen.height * 0.1,
-              child: ListTilePerfilMobile(),
+              child: ListTilePerfil(),
             ),
             Container(
               color: Colors.white,

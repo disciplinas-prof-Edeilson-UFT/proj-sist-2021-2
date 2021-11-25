@@ -24,69 +24,67 @@ class _MostOrderedState extends State<MostOrdered> {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        restaurants = store.restaurants.toList();
-        restaurants.sort((a, b) => b.orders.compareTo(a.orders));
-        return Center(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              height: 150.0,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: restaurants.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: SizedBox(
-                      width: 135.0,
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          onTap: () {
-                            Modular.to.navigate(
-                              RestaurantModule.routeName,
-                              arguments: restaurants[index],
-                            );
-                          },
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 20.0),
-                                child: CircleAvatar(
-                                  radius: 45.0,
-                                  backgroundImage:
-                                      NetworkImage(restaurants[index].image),
-                                  backgroundColor: Colors.white,
-                                ),
+    return Observer(builder: (context) {
+      restaurants = store.restaurants.toList();
+      restaurants.sort((a, b) => b.orders.compareTo(a.orders));
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            height: 150.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: restaurants.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: SizedBox(
+                    width: 135.0,
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          Modular.to.navigate(
+                            RestaurantModule.routeName,
+                            arguments: restaurants[index],
+                          );
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 20.0),
+                              child: CircleAvatar(
+                                radius: 45.0,
+                                backgroundImage:
+                                    NetworkImage(restaurants[index].image),
+                                backgroundColor: Colors.white,
                               ),
-                              Text(
-                                restaurants[index].socialName,
-                                softWrap: true,
-                                maxLines: 2,
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Nunito',
-                                ),
+                            ),
+                            Text(
+                              restaurants[index].socialName,
+                              softWrap: true,
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Nunito',
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  );
-                }
-              ),
+                  ),
+                );
+              },
             ),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }
