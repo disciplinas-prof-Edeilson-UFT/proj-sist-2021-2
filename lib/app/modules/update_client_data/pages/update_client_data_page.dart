@@ -85,28 +85,28 @@ class UpdateClientDataPageState extends State<UpdateClientDataPage> {
     Size screen = MediaQuery.of(context).size;
     return Scaffold(
       appBar: const CustomAppBar(),
-      body: Center(
-        child: Container(
-          width: screen.width > 1069
-              ? screen.width * .35
-              : screen.width > 750
-                  ? screen.width * .5
-                  : screen.width,
-          padding: const EdgeInsets.all(40.0),
-          decoration: const BoxDecoration(
-            color: Colors.white24,
-          ),
-          child: Observer(builder: (_) {
-            if (store.user == null) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: secondaryCollor,
-                ),
-              );
-            }
-            return Form(
-              key: _formKey,
-              child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            width: screen.width > 1069
+                ? screen.width * .35
+                : screen.width > 750
+                    ? screen.width * .5
+                    : screen.width,
+            padding: const EdgeInsets.all(40.0),
+            decoration: const BoxDecoration(
+              color: Colors.white24,
+            ),
+            child: Observer(builder: (_) {
+              if (store.user == null) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: secondaryCollor,
+                  ),
+                );
+              }
+              return Form(
+                key: _formKey,
                 child: Column(
                   children: <Widget>[
                     const Padding(
@@ -171,9 +171,9 @@ class UpdateClientDataPageState extends State<UpdateClientDataPage> {
                     const SizedBox(height: 10),
                   ],
                 ),
-              ),
-            );
-          }),
+              );
+            }),
+          ),
         ),
       ),
     );
