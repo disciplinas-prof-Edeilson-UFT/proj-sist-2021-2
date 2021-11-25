@@ -58,7 +58,7 @@ class RegisterClientPageState extends State<RegisterClientPage> {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              store.errorMessage = '';
+              store.errorMessage = null;
               Navigator.pop(context);
             },
           ),
@@ -233,7 +233,9 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                           onPressed: () async {
                             if (_formKey.currentState!.validate() &&
                                 checked != false) {
-                              await store.verifyEmail();
+                              await store.checkData();
+                            } else if (checked == false) {
+                              store.termsValidation();
                             }
                           },
                         ),
@@ -252,7 +254,7 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                                 child: Text(
                                   'Já sou cadastrado',
                                   style: TextStyle(
-                                    fontFamily: GoogleFonts.getFont('Roboto')
+                                    fontFamily: GoogleFonts.getFont('Nunito')
                                         .fontFamily,
                                     color: Colors.red,
                                     fontSize: 16.0,

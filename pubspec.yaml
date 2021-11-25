@@ -48,6 +48,10 @@ dependencies:
   js: ^0.6.3
   flutter_signin_button: ^2.0.0
   intl: ^0.17.0
+  flutter_dropzone: ^3.0.0
+  flutter_dropzone_web: ^3.0.1
+  firebase_storage: ^10.0.6
+  firebase_storage_web: ^3.0.4
   mockito: ^5.0.16
   rxdart: ^0.27.2
   another_flushbar: ^1.10.24
@@ -56,7 +60,8 @@ dependencies:
   auto_size_text: ^3.0.0-nullsafety.0
   brasil_fields: ^1.2.0
   google_fonts: ^2.1.0
-  google_maps_flutter_web: ^0.3.2
+  google_maps_webservice: ^0.0.20-nullsafety.5
+  flutter_slidable: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -69,7 +74,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
   mobx_codegen: ^2.0.3
-  flutter_modular_test: ^1.0.4
+  flutter_modular_test: ^1.0.4 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -84,8 +89,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/images/filters/
+    - assets/images/cards/
     - assets/images/category/
+    - assets/images/filters/
+    - assets/images/product_page/
+    - assets/images/register/
     - lib/app/modules/home/assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

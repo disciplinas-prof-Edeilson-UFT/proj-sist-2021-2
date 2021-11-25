@@ -59,8 +59,12 @@ abstract class _RegisterStoreBase with Store {
 
   @action
   Future<void> sendVerifyCode() async {
-    confirmationResult =
-        await _repository.verifyNumberForWeb(phoneController.text);
+    try {
+      confirmationResult =
+          await _repository.verifyNumberForWeb(phoneController.text);
+    } on Exception catch (e) {
+      errorPhone = e.toString();
+    }
   }
 
   @action
@@ -69,23 +73,28 @@ abstract class _RegisterStoreBase with Store {
       validatorPhone = await _repository.verifyCodeForWeb(
           confirmationResult, codeController.text);
     } catch (e) {
-      errorPhone = e.toString();
+      errorMessage = e.toString();
     }
   }
 
-  Future<void> verifyEmail() async {
+  Future<void> checkData() async {
     if (await _repository.checkData(
         emailController.text, phoneController.text, cpfController.text)) {
       goToConfirmPhone();
     } else {
       errorMessage =
-          'E-mail já cadastrado! Tente fazer login ou corrigir o e-mail.';
+          'Os dados pertencem a outra conta. Tente fazer login, ou corrigir os dados.';
     }
   }
 
   void goToConfirmPhone() async {
     await sendVerifyCode();
     Modular.to.navigate(ConfirmPhonePage.routeName);
+  }
+
+  @action
+  void termsValidation() {
+    errorMessage = 'Não podemos prosseguir se você não aceitar os termos.';
   }
 
   @action

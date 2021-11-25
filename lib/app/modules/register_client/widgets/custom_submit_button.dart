@@ -15,7 +15,7 @@ class CustomSubmit extends StatefulWidget {
 
 class _CustomSubmitState extends State<CustomSubmit> {
   TextStyle get digitedText =>
-      GoogleFonts.getFont('Roboto', fontSize: 22.0, color: Colors.white);
+      GoogleFonts.getFont('Nunito', fontSize: 22.0, color: Colors.white);
   @override
   Widget build(BuildContext context) {
     return Padding(

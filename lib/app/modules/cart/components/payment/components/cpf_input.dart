@@ -1,7 +1,7 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class CPF extends StatefulWidget {
   const CPF({Key? key}) : super(key: key);
@@ -22,11 +22,11 @@ class _CPFState extends State<CPF> {
           FilteringTextInputFormatter.digitsOnly,
           CpfOuCnpjFormatter(),
         ],
-        cursorColor: secondaryCollor,
+        cursorColor: secondaryColor,
         focusNode: myFocusNode,
         decoration: InputDecoration(
           focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: secondaryCollor),
+            borderSide: BorderSide(color: secondaryColor),
           ),
           hoverColor: Colors.transparent,
           contentPadding: const EdgeInsets.all(10),
@@ -35,7 +35,7 @@ class _CPFState extends State<CPF> {
           ),
           label: const Text('CPF/CNPJ na nota'),
           labelStyle: TextStyle(
-            color: myFocusNode.hasFocus ? secondaryCollor : Colors.black,
+            color: myFocusNode.hasFocus ? secondaryColor : Colors.black,
           ),
         ),
       ),

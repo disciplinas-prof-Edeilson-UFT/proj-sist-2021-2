@@ -61,7 +61,7 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              store.errorPhone = '';
+              store.errorPhone = null;
               Navigator.pop(context);
             },
           ),
@@ -91,7 +91,7 @@ class _ConfirmPhonePageState extends State<ConfirmPhonePage> {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              store.errorMessage = '';
+              store.errorMessage = null;
               Navigator.pop(context);
             },
           ),
