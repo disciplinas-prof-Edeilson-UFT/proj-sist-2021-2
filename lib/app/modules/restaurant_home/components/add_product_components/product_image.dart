@@ -32,10 +32,7 @@ class _ProductImageState extends State<ProductImage> {
         child: Stack(
           children: [
             DropzoneView(
-              onDrop: (e) {
-                restaurantHomeStore.setProductImage(e);
-                Navigator.pop(context);
-              },
+              onDrop: _dragUplodaImage,
               onCreated: (controller) => this.controller = controller,
             ),
             Center(
@@ -44,25 +41,6 @@ class _ProductImageState extends State<ProductImage> {
                 children: [
                   const Icon(Icons.insert_photo),
                   const Text('Arraste uma imagem aqui'),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text('Ou'),
-                  ),
-                  ElevatedButton.icon(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(secondaryColor),
-                    ),
-                    onPressed: () async {
-                      final event = await controller.pickFiles();
-                      restaurantHomeStore.setProductImage(event.last);
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.search,
-                    ),
-                    label: const Text("Procurar Arquivo"),
-                  ),
                   Text(
                     '.jpg ou .png',
                     style: TextStyle(color: Colors.grey[600], fontSize: 12),
@@ -74,5 +52,42 @@ class _ProductImageState extends State<ProductImage> {
         ),
       ),
     );
+  }
+
+  _dragUplodaImage(dynamic event) async {
+    final name = event.name;
+    var end = name.split('.');
+    if (end[1] == 'jpg' || end[1] == 'png') {
+      restaurantHomeStore.setProductImage(event);
+      Navigator.pop(context);
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text(
+              "Formato de arquivo não suportado",
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 18,
+              ),
+            ),
+            actions: <Widget>[
+              // define os botões na base do dialogo
+              ElevatedButton(
+                child:
+                    const Text("Fechar", style: TextStyle(color: primaryColor)),
+                style: ElevatedButton.styleFrom(
+                  primary: secondaryColor,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
