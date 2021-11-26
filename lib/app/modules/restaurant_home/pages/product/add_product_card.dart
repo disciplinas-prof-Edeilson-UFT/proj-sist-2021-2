@@ -46,18 +46,6 @@ class _AddProductState extends State<AddProduct> {
                   Center(
                     child: Column(
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return const ProductImage();
-                                });
-                          },
-                          style: ElevatedButton.styleFrom(
-                              primary: secondaryCollor),
-                          child: const Text("img"),
-                        ),
                         CustomTextField(
                           controller: store.formProduct['name'],
                           label: 'Nome do produto',
@@ -73,6 +61,20 @@ class _AddProductState extends State<AddProduct> {
                         CustomTextField(
                           controller: store.formProduct['categories'],
                           label: 'Categoria do produto',
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const ProductImage();
+                                });
+                          },
+                          style: ElevatedButton.styleFrom(
+                              primary: secondaryCollor),
+                          child: const Icon(
+                            Icons.image_search,
+                          ),
                         ),
                       ],
                     ),
