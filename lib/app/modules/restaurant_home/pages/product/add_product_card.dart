@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -81,7 +82,7 @@ class _AddProductState extends State<AddProduct> {
                     children: [
                       CustomButton(
                         label: "Salvar",
-                        onPressed: () {
+                        onPressed: () async {
                           var price = store.formProduct['price']!.text
                               .split('R\$')
                               .toList();
@@ -95,6 +96,8 @@ class _AddProductState extends State<AddProduct> {
                             categories: store.formProduct['categories']!.text
                                 .toString(),
                           );
+                          await imageAlert("Produto Cadastrado", Colors.green)
+                              .show(context);
                           store.cadastrarProdutoTeste(produto);
                           Navigator.of(context).pop();
                         },
@@ -106,6 +109,24 @@ class _AddProductState extends State<AddProduct> {
             },
           );
         },
+      ),
+    );
+  }
+
+  Flushbar imageAlert(String message, Color color) {
+    return Flushbar(
+      message: message,
+      icon: const Icon(
+        Icons.verified,
+        color: Colors.white,
+      ),
+      backgroundColor: color,
+      duration: const Duration(seconds: 2),
+      borderRadius: BorderRadius.circular(10.0),
+      padding: const EdgeInsets.all(20.0),
+      margin: const EdgeInsets.symmetric(
+        horizontal: 100.0,
+        vertical: 10.0,
       ),
     );
   }
