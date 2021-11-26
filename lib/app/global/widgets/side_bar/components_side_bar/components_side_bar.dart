@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/restaurant_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
 
 class LogoSideBar extends StatelessWidget {
   const LogoSideBar({Key? key}) : super(key: key);
@@ -86,64 +87,40 @@ class ListTilePerfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: RestaurantProfilePicture(),
-      title: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (_) {
-                  restaurantHomeStore.updateControllers();
-                  return const ProfileAlertDialog();
-                });
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (_) {
+            restaurantHomeStore.updateProfileControllers();
+            return const RestaurantDialog();
           },
-          child: const Text(
-            "Editar perfil",
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: "Nunito",
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-      ),
+        );
+      },
+      leading: RestaurantProfilePicture(),
+      title: visualEditInfo(context),
       minLeadingWidth: 0,
     );
   }
-}
 
-class ListTilePerfilMobile extends StatelessWidget {
-  ListTilePerfilMobile({Key? key}) : super(key: key);
-  final RestaurantHomeStore restaurantHomeStore =
-      Modular.get<RestaurantHomeStore>();
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: RestaurantProfilePicture(),
-      title: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () {
-            showDialog(
-                context: context, builder: (_) => const ProfileAlertDialog());
-          },
-          child: const Text(
-            "Editar perfil",
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: "Nunito",
-              fontSize: 9,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.left,
-          ),
+  Widget visualEditInfo(context) {
+    double _pageWidth = MediaQuery.of(context).size.width;
+    if (_pageWidth < 850) {
+      return const Icon(
+        Icons.create_outlined,
+        color: primaryColor,
+      );
+    } else {
+      return Text(
+        "Editar perfil",
+        style: TextStyle(
+          color: Colors.white,
+          fontFamily: "Nunito",
+          fontSize: _pageWidth < 1000 ? 15 : 20,
+          fontWeight: FontWeight.bold,
         ),
-      ),
-      minLeadingWidth: 0,
-    );
+        textAlign: TextAlign.left,
+      );
+    } 
   }
 }
 

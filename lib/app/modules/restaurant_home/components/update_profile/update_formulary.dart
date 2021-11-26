@@ -1,10 +1,12 @@
+import 'package:another_flushbar/flushbar_route.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/components_profile_dialog.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/components_profile_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
@@ -38,45 +40,38 @@ class UpdateFormulary extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Telefone da loja', style: _labelStyle),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        controller:
-                            homeStore.updateFormController['phone_restaurant'],
-                        inputFormatters: [_phoneFormat],
-                        textCapitalization: TextCapitalization.words,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Este campo não pode ficar vazio";
-                          }
-                          if (value.length <= 14) {
-                            return "Digite um número de telefone válido";
-                          }
-                          return null;
-                        },
-                        cursorColor: secondaryColor,
-                        decoration: const InputDecoration(
-                          focusColor: secondaryColor,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: secondaryColor,
-                            ),
-                          ),
-                          border: OutlineInputBorder(),
-                          hintText: '(00) 00000-0000',
-                        ),
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                TextFormField(
+                  controller:
+                      homeStore.profileFormController['phone_restaurant'],
+                  inputFormatters: [_phoneFormat],
+                  textCapitalization: TextCapitalization.words,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Este campo não pode ficar vazio";
+                    }
+                    if (value.length <= 14) {
+                      return "Digite um número de telefone válido";
+                    }
+                    return null;
+                  },
+                  cursorColor: secondaryColor,
+                  decoration: const InputDecoration(
+                    focusColor: secondaryColor,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: secondaryColor,
                       ),
                     ),
-                    const UpdateProfileDropdown(),
-                  ],
+                    border: OutlineInputBorder(),
+                    hintText: '(00) 00000-0000',
+                  ),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
               ],
             ),
           ),
-        ), //fim
-
+        ),
+        const UpdateProfileDropdown(),
         Padding(
           padding: const EdgeInsets.only(
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
@@ -87,44 +82,35 @@ class UpdateFormulary extends StatelessWidget {
                 'Tempo de preparo médio',
                 style: _labelStyle,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller:
-                          homeStore.updateFormController['prepare_time'],
-                      inputFormatters: [_timeFormat],
-                      validator: (value) {
-                        var values = value?.split('-');
-                        if (value == null || value.isEmpty) {
-                          return "Este campo não pode ficar vazio";
-                        }
-                        if (value.length < 5) {
-                          return "Campo incompleto";
-                        }
-                        if (num.parse(values![0]) >= num.parse(values[1])) {
-                          return "Intervalo de tempo inválido";
-                        }
-                        return null;
-                      },
-                      cursorColor: secondaryColor,
-                      decoration: const InputDecoration(
-                        suffixText: 'min',
-                        focusColor: secondaryColor,
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: secondaryColor,
-                          ),
-                        ),
-                        border: OutlineInputBorder(),
-                        hintText: '00-00',
-                      ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
+              TextFormField(
+                controller: homeStore.profileFormController['prepare_time'],
+                inputFormatters: [_timeFormat],
+                validator: (value) {
+                  var values = value?.split('-');
+                  if (value == null || value.isEmpty) {
+                    return "Este campo não pode ficar vazio";
+                  }
+                  if (value.length < 5) {
+                    return "Campo incompleto";
+                  }
+                  if (num.parse(values![0]) >= num.parse(values[1])) {
+                    return "Intervalo de tempo inválido";
+                  }
+                  return null;
+                },
+                cursorColor: secondaryColor,
+                decoration: const InputDecoration(
+                  suffixText: 'min',
+                  focusColor: secondaryColor,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: secondaryColor,
                     ),
                   ),
-                  const VerticalDivider(width: 132),
-                  const NextIcon(),
-                ],
+                  border: OutlineInputBorder(),
+                  hintText: '00-00',
+                ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
             ],
           ),
@@ -140,7 +126,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: homeStore.updateFormController['delivery_price'],
+                controller: homeStore.profileFormController['delivery_price'],
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(5),
@@ -170,15 +156,14 @@ class UpdateFormulary extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(
-            top: 30.0,
-            bottom: 30.0,
-            left: 15.0,
-            right: 15.0,
-          ),
+              top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
           child: ConfirmationButton(
             onPressed: () async {
-              await ProfileRepository().setRestaurant(homeStore.restaurant!);
+              await ProfileRepository()
+                  .setProfileRestaurant(homeStore.restaurant!);
+              homeStore.getRestaurant();
               Navigator.of(context).pop();
+              await showConfirmationFlush(context);
             },
           ),
         ),
