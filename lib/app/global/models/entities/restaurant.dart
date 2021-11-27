@@ -50,8 +50,8 @@ class Restaurant {
     required this.number,
     required this.complement,
   });
-
-  static Restaurant fromMap(id, Map<String, dynamic> map) {
+//pegando os dados do servidor
+  factory Restaurant.fromMap(id, Map<String, dynamic> map) {
     return Restaurant(
       id,
       avaliation: map['avaliation'],

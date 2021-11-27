@@ -1,5 +1,10 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 import 'register_repository_interface.dart';
 
@@ -9,6 +14,8 @@ class RegisterRepository extends IRegisterRepository {
 
   final CollectionReference restaurant =
       FirebaseFirestore.instance.collection('restaurant');
+
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Future<void>? addRestaurant() {
@@ -31,5 +38,20 @@ class RegisterRepository extends IRegisterRepository {
       'delivery_plan': registerStore.controller['Plano de Entrega']?.text,
       'category': registerStore.controller['Categoria']?.text,
     });
+  }
+
+  Future<UserCredential> signUp(String mail, String pass) async {
+    var uid = '';
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+        email: mail,
+        password: pass,
+      );
+      uid = userCredential.user!.uid;
+      log(userCredential.user!.uid);
+      return userCredential;
+    } catch (e) {
+      throw Exception('Houve um erro ao registrar');
+    }
   }
 }
