@@ -56,4 +56,9 @@ class RegisterRepository extends IRegisterRepository {
       throw Exception('Houve um erro ao registrar');
     }
   }
+
+  @override
+  Future<void> logout() async {
+    await _auth.signOut();
+  }
 }

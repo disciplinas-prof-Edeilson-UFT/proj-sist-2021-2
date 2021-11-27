@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -5,6 +6,7 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/restaurant_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class LogoSideBar extends StatelessWidget {
@@ -52,6 +54,34 @@ class TextButtonMenu extends StatelessWidget {
     );
   }
 }
+
+class SignOut extends StatelessWidget {
+  const SignOut({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        child: const Text(
+          'Sair',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontFamily: "Nunito",
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        onTap: () async {
+          FirebaseAuth.instance.signOut();
+          Modular.to.navigate('/');
+        },
+      ),
+    );
+  }
+}
+
+mixin _auth {}
 
 class TextButtonMenuMobile extends StatelessWidget {
   final String option;
@@ -120,7 +150,7 @@ class ListTilePerfil extends StatelessWidget {
         ),
         textAlign: TextAlign.left,
       );
-    } 
+    }
   }
 }
 
