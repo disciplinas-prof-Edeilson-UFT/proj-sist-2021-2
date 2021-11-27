@@ -15,7 +15,7 @@ class RegisterRepository extends IRegisterRepository {
   final CollectionReference restaurant =
       FirebaseFirestore.instance.collection('restaurant');
 
-  FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Future<void>? addRestaurant() {
@@ -40,12 +40,14 @@ class RegisterRepository extends IRegisterRepository {
     });
   }
 
-  Future<UserCredential> signUp(String mail, String pass) async {
+  @override
+  Future<UserCredential> signUp() async {
     var uid = '';
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: mail,
-        password: pass,
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: registerStore.controller['email']!.text,
+        password: registerStore.controller['Senha']!.text,
       );
       uid = userCredential.user!.uid;
       log(userCredential.user!.uid);
