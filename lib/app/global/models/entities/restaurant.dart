@@ -1,6 +1,6 @@
 import 'package:pscomidas/app/global/models/enums/filter.dart';
 
-class Restaurant {
+class Restaurant implements Exception {
   final String restaurantId;
   final double? avaliation;
   final String category;
@@ -53,21 +53,25 @@ class Restaurant {
     required this.complement,
   });
 
+  static _throw() {
+    throw 'Null value exception';
+  }
+
   static Restaurant fromMap(id, Map<String, dynamic> map) {
     return Restaurant(
       id,
       avaliation: map['avaliation'],
-      category: map['category'] ?? '',
+      category: map['category'] ?? _throw(),
       cupom: map['cupom'],
       deliveryPrice: map['delivery_price'],
-      deliveryPlan: map['delivery_plan'] ?? '',
-      distance: map['distance'],
-      estimatedDelivery: map['estimated_delivery'] ?? '',
+      deliveryPlan: map['delivery_plan'] ?? 'Plano Entrega',
+      distance: map['distance'] ?? _throw(),
+      estimatedDelivery: map['estimated_delivery'] ?? _throw(),
       phone: map['phone_restaurant'] ?? '',
-      image: map['image'] ?? '',
-      isChampion: map['isChampion'],
-      orders: map['orders'],
-      socialName: map['social_name'] ?? '',
+      image: map['image'] ?? _throw(),
+      isChampion: map['isChampion'] ?? false,
+      orders: map['orders'] ?? _throw(),
+      socialName: map['social_name'] ?? _throw(),
       nameOwner: map['name_Owner'] ?? '',
       phoneOwner: map['phone_Owner'] ?? '',
       emailOwner: map['email_Owner'] ?? '',

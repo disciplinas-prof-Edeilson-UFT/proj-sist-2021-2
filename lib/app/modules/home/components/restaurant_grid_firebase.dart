@@ -16,8 +16,20 @@ class RestaurantGridFirestore extends RestaurantGridF {
     querySnapshot = await FirebaseFirestore.instance
         .collection('restaurant').get();
 
-    return querySnapshot.docs
-        .map((doc) => Restaurant.fromMap(doc.id, doc.data()))
+    return querySnapshot.docs.where((e) => itemIsValid(e))
+        .map ((doc) {
+            return Restaurant.fromMap(doc.id, doc.data());
+        })
         .toList();
   }
+
+  bool itemIsValid(doc) {
+    try {
+        Restaurant.fromMap(doc.id, doc.data());
+      } catch (e) {
+        return false;      
+      }
+      return true;
+  }
+
 }
