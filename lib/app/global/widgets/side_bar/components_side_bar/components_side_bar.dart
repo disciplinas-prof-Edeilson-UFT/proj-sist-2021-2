@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -48,6 +49,58 @@ class TextButtonMenu extends StatelessWidget {
           ),
         ),
         onTap: () => Modular.to.navigate(navigator),
+      ),
+    );
+  }
+}
+
+class SignOut extends StatelessWidget {
+  const SignOut({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        child: const Text(
+          'Sair',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontFamily: "Nunito",
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        onTap: () async {
+          FirebaseAuth.instance.signOut();
+          Modular.to.navigate('/');
+        },
+      ),
+    );
+  }
+}
+
+class SignOutMobile extends StatelessWidget {
+  const SignOutMobile({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        child: const Text(
+          'Sair',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+            fontFamily: "Nunito",
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        onTap: () async {
+          FirebaseAuth.instance.signOut();
+          Modular.to.navigate('/');
+        },
       ),
     );
   }

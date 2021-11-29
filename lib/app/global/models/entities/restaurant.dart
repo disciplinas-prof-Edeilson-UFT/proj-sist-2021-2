@@ -52,6 +52,7 @@ class Restaurant implements Exception {
     required this.number,
     required this.complement,
   });
+//pegando os dados do servidor
 
   static _throw() {
     throw 'Null value exception';

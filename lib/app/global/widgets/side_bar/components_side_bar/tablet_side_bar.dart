@@ -52,6 +52,7 @@ class _SideBarTabletState extends State<SideBarTablet> {
                         ],
                       ),
                     ),
+                    const SignOut(),
                   ],
                 ),
               ),

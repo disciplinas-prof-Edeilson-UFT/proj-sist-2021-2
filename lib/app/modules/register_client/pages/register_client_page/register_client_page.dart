@@ -26,8 +26,8 @@ class RegisterClientPageState extends State<RegisterClientPage> {
   TextStyle get fontFamily => GoogleFonts.getFont('Sen', fontSize: 16.0);
 
   TextStyle get digitedText => GoogleFonts.getFont('Sen', fontSize: 14.0);
-
   final _formKey = GlobalKey<FormState>();
+
   List<ReactionDisposer> disposers = [];
   bool checked = false;
 

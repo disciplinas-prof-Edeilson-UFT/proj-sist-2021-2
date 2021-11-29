@@ -15,8 +15,6 @@ class _SideBarMobileState extends State<SideBarMobile> {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
 
-    final _buttons = ['Produtos', 'Pedidos', 'Avaliações', 'Sair'];
-
     return Drawer(
       elevation: 0,
       child: Container(
@@ -38,9 +36,9 @@ class _SideBarMobileState extends State<SideBarMobile> {
                 margin: EdgeInsets.symmetric(
                   horizontal: screen.height * 0.02,
                 ),
-                child: ListView(
+                child: Column(
                   children: [
-                    ..._buttons.map(
+                    ...ButtonSideBar.buttons.keys.map(
                       (e) => Column(
                         children: [
                           TextButtonMenuMobile(
@@ -55,6 +53,7 @@ class _SideBarMobileState extends State<SideBarMobile> {
                         ],
                       ),
                     ),
+                    const SignOutMobile(),
                   ],
                 ),
               ),

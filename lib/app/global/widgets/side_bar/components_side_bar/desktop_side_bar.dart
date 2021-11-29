@@ -50,6 +50,7 @@ class _SideBarDesktopState extends State<SideBarDesktop> {
                         ],
                       ),
                     ),
+                    const SignOut(),
                   ],
                 ),
               ),
