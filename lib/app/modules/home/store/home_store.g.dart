@@ -39,6 +39,21 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$searchShopAtom = Atom(name: 'HomeStoreBase.searchShop');
+
+  @override
+  String get searchShop {
+    _$searchShopAtom.reportRead();
+    return super.searchShop;
+  }
+
+  @override
+  set searchShop(String value) {
+    _$searchShopAtom.reportWrite(value, super.searchShop, () {
+      super.searchShop = value;
+    });
+  }
+
   final _$restaurantsAtom = Atom(name: 'HomeStoreBase.restaurants');
 
   @override
@@ -92,6 +107,7 @@ mixin _$HomeStore on HomeStoreBase, Store {
     return '''
 selectedFilter: ${selectedFilter},
 selectedCategory: ${selectedCategory},
+searchShop: ${searchShop},
 restaurants: ${restaurants}
     ''';
   }

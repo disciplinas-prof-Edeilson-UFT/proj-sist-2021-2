@@ -34,8 +34,9 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
         var restaurants = homeStore.restaurants
           .where((e) => e.category.contains(homeStore.selectedCategory)).toList();
         restaurants = restaurants
-          .where((e) => e.socialName.toLowerCase().startsWith(homeStore.searchShop)).toList();
+          .where((e) => e.socialName.toLowerCase().contains(homeStore.searchShop)).toList();
         return GridView.builder(
+          scrollDirection: Axis.vertical,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -27,6 +27,10 @@ abstract class HomeStoreBase with Store {
   @observable
   String searchShop = '';
 
+  void setSearchShop(String? value) {
+    searchShop = value ?? '';
+  }
+
   @action
   void setSelectedCategory(String? selection) {
     selectedCategory = selection ?? '';

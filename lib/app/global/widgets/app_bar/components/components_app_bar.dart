@@ -285,3 +285,42 @@ class CartAppBar extends StatelessWidget {
     );
   }
 }
+
+
+class SearchArea extends StatelessWidget {
+  SearchArea({ Key? key }) : super(key: key);
+  final store = Modular.get<HomeStore>();
+
+  @override
+  Widget build(BuildContext context) {
+    Size screen = MediaQuery.of(context).size;
+    return Container(
+      width: screen.width * 0.2,
+      height: screen.height * 0.04,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: TextField(
+        cursorColor: secondaryColor,
+        textAlign: TextAlign.left,
+        textAlignVertical: TextAlignVertical.center,
+        onChanged: (value) => store.setSearchShop(value.trim()),
+        decoration: const InputDecoration(
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          hintText: "Busque por um restaurante",
+          hintStyle: TextStyle(
+            color: tertiaryColor,
+            fontSize: 14,
+          ),
+          prefixIcon: Icon(
+            Icons.search,
+            color: secondaryColor,
+            size: 18,
+          ),
+        ),
+      ),
+    );
+  }
+}
