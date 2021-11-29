@@ -41,7 +41,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
   @override
   Widget build(BuildContext context) {
-    homeStore.setSelectedCategory(null);
     deviceWidth = MediaQuery.of(context).size.width;
 
     return Observer(builder: (_) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/modules/home/pages/mobile_search_page.dart';
 
 class ItemButtomBar extends StatelessWidget {
   const ItemButtomBar(
@@ -45,7 +46,7 @@ class AppBarButton extends StatelessWidget {
             ItemButtomBar(
               icon: const Icon(Icons.search),
               text: "Buscar",
-              press: () => Scaffold.of(context),
+              press: () => Modular.to.navigate(MobileSearchPage.routeName),
             ),
             ItemButtomBar(
               icon: const Icon(Icons.account_circle_rounded),
