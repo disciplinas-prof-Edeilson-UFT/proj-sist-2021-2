@@ -9,7 +9,7 @@ import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_store.dart';
-import 'package:pscomidas/app/modules/register_client/widgets/custom_submit_button.dart';
+import 'package:pscomidas/app/modules/register_client/widgets/custom_submit.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
 
 class RegisterClientPage extends StatefulWidget {

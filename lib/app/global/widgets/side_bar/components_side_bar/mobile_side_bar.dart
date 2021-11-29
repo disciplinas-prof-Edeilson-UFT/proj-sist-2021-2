@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/buttons_side_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/components_side_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
@@ -13,8 +14,6 @@ class _SideBarMobileState extends State<SideBarMobile> {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-
-    final _buttons = ['Produtos', 'Pedidos', 'Avaliações', 'Sair'];
 
     return Drawer(
       elevation: 0,
@@ -37,14 +36,16 @@ class _SideBarMobileState extends State<SideBarMobile> {
                 margin: EdgeInsets.symmetric(
                   horizontal: screen.height * 0.02,
                 ),
-                child: ListView(
+                child: Column(
                   children: [
-                    ..._buttons.map(
+                    ...ButtonSideBar.buttons.keys.map(
                       (e) => Column(
                         children: [
                           TextButtonMenuMobile(
                             option: e,
-                            press: () {},
+                            navigator: ButtonSideBar.buttons[e]?['navigator']
+                                    .toString() ??
+                                "/",
                           ),
                           SizedBox(
                             height: screen.height * 0.05,
@@ -52,12 +53,10 @@ class _SideBarMobileState extends State<SideBarMobile> {
                         ],
                       ),
                     ),
+                    const SignOutMobile(),
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: screen.height * 0.3,
             ),
             Container(
               alignment: Alignment.center,

@@ -9,21 +9,6 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on HomeStoreBase, Store {
-  final _$counterAtom = Atom(name: 'HomeStoreBase.counter');
-
-  @override
-  int get counter {
-    _$counterAtom.reportRead();
-    return super.counter;
-  }
-
-  @override
-  set counter(int value) {
-    _$counterAtom.reportWrite(value, super.counter, () {
-      super.counter = value;
-    });
-  }
-
   final _$selectedFilterAtom = Atom(name: 'HomeStoreBase.selectedFilter');
 
   @override
@@ -51,6 +36,21 @@ mixin _$HomeStore on HomeStoreBase, Store {
   set selectedCategory(String value) {
     _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
       super.selectedCategory = value;
+    });
+  }
+
+  final _$searchShopAtom = Atom(name: 'HomeStoreBase.searchShop');
+
+  @override
+  String get searchShop {
+    _$searchShopAtom.reportRead();
+    return super.searchShop;
+  }
+
+  @override
+  set searchShop(String value) {
+    _$searchShopAtom.reportWrite(value, super.searchShop, () {
+      super.searchShop = value;
     });
   }
 
@@ -105,9 +105,9 @@ mixin _$HomeStore on HomeStoreBase, Store {
   @override
   String toString() {
     return '''
-counter: ${counter},
 selectedFilter: ${selectedFilter},
 selectedCategory: ${selectedCategory},
+searchShop: ${searchShop},
 restaurants: ${restaurants}
     ''';
   }

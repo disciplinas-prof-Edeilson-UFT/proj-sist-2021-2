@@ -80,11 +80,37 @@ class SignOut extends StatelessWidget {
   }
 }
 
+class SignOutMobile extends StatelessWidget {
+  const SignOutMobile({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        child: const Text(
+          'Sair',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+            fontFamily: "Nunito",
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        onTap: () async {
+          FirebaseAuth.instance.signOut();
+          Modular.to.navigate('/');
+        },
+      ),
+    );
+  }
+}
+
 class TextButtonMenuMobile extends StatelessWidget {
   final String option;
-  final VoidCallback press;
+  final String navigator;
   const TextButtonMenuMobile(
-      {Key? key, required this.option, required this.press})
+      {Key? key, required this.option, required this.navigator})
       : super(key: key);
 
   @override
@@ -101,7 +127,7 @@ class TextButtonMenuMobile extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        onTap: press,
+        onTap: () => Modular.to.navigate(navigator),
       ),
     );
   }
