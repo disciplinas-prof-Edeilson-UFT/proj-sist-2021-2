@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -20,6 +21,7 @@ class _AddProductState extends State<AddProduct> {
   final RestaurantHomeStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
+    Size screen = MediaQuery.of(context).size;
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -40,36 +42,45 @@ class _AddProductState extends State<AddProduct> {
           showDialog(
             context: context,
             builder: (context) {
-              return AlertDialog(
-                title: const Text("Cadastrar novo produto"),
-                actions: <Widget>[
-                  Center(
-                    child: Column(
-                      children: [
-                        const ProductImage(),
-                        CustomTextField(
-                          controller: store.formProduct['name'],
-                          label: 'Nome do produto',
-                        ),
-                        CustomTextField(
-                          controller: store.formProduct['desc'],
-                          label: 'Descrição do produto',
-                        ),
-                        PriceTextField(
-                          controller: store.formProduct['price'],
-                          label: 'Preço do produto',
-                        ),
-                        CustomTextField(
-                          controller: store.formProduct['categories'],
-                          label: 'Categoria do produto',
-                        ),
-                      ],
+              return SizedBox(
+                child: AlertDialog(
+                  title: const Text(
+                    "Cadastrar novo produto",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomButton(
+                  actions: <Widget>[
+                    Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const ProductImage(),
+                          CustomTextField(
+                            controller: store.formProduct['name'],
+                            label: 'Nome do produto',
+                          ),
+                          CustomTextField(
+                            controller: store.formProduct['desc'],
+                            label: 'Descrição do produto',
+                          ),
+                          PriceTextField(
+                            controller: store.formProduct['price'],
+                            label: 'Preço do produto',
+                          ),
+                          CustomTextField(
+                            controller: store.formProduct['categories'],
+                            label: 'Categoria do produto',
+                          ),
+                        ],
+                      ),
+                    ),
+                    Center(
+                      child: CustomButton(
                         label: "Salvar",
                         onPressed: () async {
                           var price = store.formProduct['price']!.text
@@ -91,9 +102,9 @@ class _AddProductState extends State<AddProduct> {
                           Navigator.of(context).pop();
                         },
                       ),
-                    ],
-                  )
-                ],
+                    ),
+                  ],
+                ),
               );
             },
           );

@@ -17,39 +17,34 @@ class _ProductImageState extends State<ProductImage> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      contentPadding: const EdgeInsets.all(0),
-      content: Container(
-        height: 220,
-        width: 485,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/restaurant_home/dragAndDropArea.png'),
+    return Container(
+      height: 110,
+      width: 240,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('images/restaurant_home/dragAndDropArea.png'),
+        ),
+      ),
+      child: Stack(
+        children: [
+          DropzoneView(
+            onDrop: _dragUplodaImage,
+            onCreated: (controller) => this.controller = controller,
           ),
-        ),
-        child: Stack(
-          children: [
-            DropzoneView(
-              onDrop: _dragUplodaImage,
-              onCreated: (controller) => this.controller = controller,
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.insert_photo),
+                const Text('Arraste uma imagem aqui'),
+                Text(
+                  '.jpg ou .png',
+                  style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                ),
+              ],
             ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.insert_photo),
-                  const Text('Arraste uma imagem aqui'),
-                  Text(
-                    '.jpg ou .png',
-                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
@@ -60,7 +55,6 @@ class _ProductImageState extends State<ProductImage> {
     if (end[1] == 'jpg' || end[1] == 'png') {
       await imageAlert("Imagem inserida", Colors.green).show(context);
       restaurantHomeStore.setProductImage(event);
-      Navigator.pop(context);
     } else {
       await imageAlert("Arquivo não suportado", Colors.red).show(context);
     }
