@@ -55,9 +55,9 @@ class TextButtonMenu extends StatelessWidget {
 
 class TextButtonMenuMobile extends StatelessWidget {
   final String option;
-  final VoidCallback press;
+  final String navigator;
   const TextButtonMenuMobile(
-      {Key? key, required this.option, required this.press})
+      {Key? key, required this.option, required this.navigator})
       : super(key: key);
 
   @override
@@ -74,7 +74,7 @@ class TextButtonMenuMobile extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        onTap: press,
+        onTap: () => Modular.to.navigate(navigator),
       ),
     );
   }
@@ -120,7 +120,7 @@ class ListTilePerfil extends StatelessWidget {
         ),
         textAlign: TextAlign.left,
       );
-    } 
+    }
   }
 }
 

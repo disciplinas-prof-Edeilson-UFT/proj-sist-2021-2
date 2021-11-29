@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/buttons_side_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/components_side_bar.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 
@@ -44,7 +45,9 @@ class _SideBarMobileState extends State<SideBarMobile> {
                         children: [
                           TextButtonMenuMobile(
                             option: e,
-                            press: () {},
+                            navigator: ButtonSideBar.buttons[e]?['navigator']
+                                    .toString() ??
+                                "/",
                           ),
                           SizedBox(
                             height: screen.height * 0.05,
@@ -55,9 +58,6 @@ class _SideBarMobileState extends State<SideBarMobile> {
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: screen.height * 0.3,
             ),
             Container(
               alignment: Alignment.center,
