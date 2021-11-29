@@ -16,7 +16,6 @@ class DesktopAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
-
   @override
   HomeStore store = Modular.get<HomeStore>();
 

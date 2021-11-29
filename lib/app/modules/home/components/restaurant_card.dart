@@ -72,7 +72,9 @@ class RestaurantCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: RestaurantPicture(picture: restaurant.image,),
+                child: RestaurantPicture(
+                  picture: restaurant.image,
+                ),
               ),
               Expanded(
                 child: Column(
@@ -94,8 +96,7 @@ class RestaurantCard extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 12.0),
-                          child: ChampionRestaurant(
-                              restaurant: restaurant),
+                          child: ChampionRestaurant(restaurant: restaurant),
                         ),
                       ],
                     ),

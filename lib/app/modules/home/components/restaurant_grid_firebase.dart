@@ -13,23 +13,20 @@ class RestaurantGridFirestore extends RestaurantGridF {
   Future<List<Restaurant>> getRestaurants() async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot;
 
-    querySnapshot = await FirebaseFirestore.instance
-        .collection('restaurant').get();
+    querySnapshot =
+        await FirebaseFirestore.instance.collection('restaurant').get();
 
-    return querySnapshot.docs.where((e) => itemIsValid(e))
-        .map ((doc) {
-            return Restaurant.fromMap(doc.id, doc.data());
-        })
-        .toList();
+    return querySnapshot.docs.where((e) => itemIsValid(e)).map((doc) {
+      return Restaurant.fromMap(doc.id, doc.data());
+    }).toList();
   }
 
   bool itemIsValid(doc) {
     try {
-        Restaurant.fromMap(doc.id, doc.data());
-      } catch (e) {
-        return false;      
-      }
-      return true;
+      Restaurant.fromMap(doc.id, doc.data());
+    } catch (e) {
+      return false;
+    }
+    return true;
   }
-
 }

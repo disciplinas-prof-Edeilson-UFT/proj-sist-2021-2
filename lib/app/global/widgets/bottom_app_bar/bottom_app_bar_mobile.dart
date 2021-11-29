@@ -37,7 +37,6 @@ class AppBarButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //o botão de buscar ainda não foi implementado nenhuma ação, por isso recebe apenas um scaffold.
             ItemButtomBar(
               icon: const Icon(Icons.home),
               text: "Início",

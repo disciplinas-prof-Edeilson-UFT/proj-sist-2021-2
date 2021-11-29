@@ -54,9 +54,10 @@ class _MostOrderedState extends State<MostOrdered> {
                         child: Column(
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 20.0),
-                              child: RestaurantPicture(picture: restaurants[index].image,)
-                            ),
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: RestaurantPicture(
+                                  picture: restaurants[index].image,
+                                )),
                             Text(
                               restaurants[index].socialName,
                               softWrap: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class CustomSubmit extends StatefulWidget {
   const CustomSubmit({
@@ -28,7 +29,7 @@ class _CustomSubmitState extends State<CustomSubmit> {
                 fixedSize: const Size.fromHeight(50),
                 onPrimary: Colors.red[400],
                 animationDuration: const Duration(milliseconds: 500),
-                primary: Colors.red,
+                primary: secondaryColor,
               ),
               onPressed: widget.onPressed,
               child: Text(

@@ -85,11 +85,11 @@ class Restaurant implements Exception {
       complement: map['complement'] ?? '',
     );
   }
-  
+
   getByFilter(FilterType filter) {
     switch (filter) {
       case FilterType.avaliation:
-        return - (avaliation ?? 0);
+        return -(avaliation ?? 0);
       case FilterType.freeShipping:
         return deliveryPrice;
       case FilterType.discountCoupon:
@@ -106,5 +106,4 @@ class Restaurant implements Exception {
         return socialName;
     }
   }
-
 }
