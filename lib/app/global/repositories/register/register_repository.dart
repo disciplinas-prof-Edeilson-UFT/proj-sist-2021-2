@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
-import 'register_repository_interface.dart';
+import 'package:pscomidas/app/global/repositories/register/register_repository_interface.dart';
 
 class RegisterRepository extends IRegisterRepository {
   final RestaurantRegisterStore registerStore =
