@@ -2,9 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_store.dart';
 import 'register_repository_interface.dart';
 

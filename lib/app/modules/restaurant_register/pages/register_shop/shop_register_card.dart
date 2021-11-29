@@ -5,8 +5,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/repositories/register/register_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
-import 'package:pscomidas/app/modules/auth/auth_repository.dart';
-import 'package:pscomidas/app/modules/auth/auth_service.dart';
 import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/register_cep.dart';
 import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/shop_register_formulary.dart';
 import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_page.dart';

@@ -7,7 +7,6 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/auth/auth_service.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_store.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_submit_button.dart';
@@ -27,7 +26,6 @@ class RegisterClientPageState extends State<RegisterClientPage> {
   TextStyle get fontFamily => GoogleFonts.getFont('Sen', fontSize: 16.0);
 
   TextStyle get digitedText => GoogleFonts.getFont('Sen', fontSize: 14.0);
-
   final _formKey = GlobalKey<FormState>();
 
   List<ReactionDisposer> disposers = [];

@@ -6,7 +6,6 @@ import 'package:pscomidas/app/modules/restaurant_home/pages/product/product_page
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
 
 class ButtonSideBar {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   static final buttons = {
     'Produtos': {
       'navigator': RestaurantHomeModule.routeName + ProductPage.routeName,

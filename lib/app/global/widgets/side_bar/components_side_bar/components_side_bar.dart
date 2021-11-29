@@ -6,7 +6,6 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/restaurant_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
-import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class LogoSideBar extends StatelessWidget {
@@ -80,8 +79,6 @@ class SignOut extends StatelessWidget {
     );
   }
 }
-
-mixin _auth {}
 
 class TextButtonMenuMobile extends StatelessWidget {
   final String option;
