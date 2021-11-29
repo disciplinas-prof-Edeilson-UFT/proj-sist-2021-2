@@ -46,6 +46,7 @@ class _AddProductState extends State<AddProduct> {
                   Center(
                     child: Column(
                       children: [
+                        const ProductImage(),
                         CustomTextField(
                           controller: store.formProduct['name'],
                           label: 'Nome do produto',
@@ -62,25 +63,11 @@ class _AddProductState extends State<AddProduct> {
                           controller: store.formProduct['categories'],
                           label: 'Categoria do produto',
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return const ProductImage();
-                                });
-                          },
-                          style: ElevatedButton.styleFrom(
-                              primary: secondaryCollor),
-                          child: const Icon(
-                            Icons.image_search,
-                          ),
-                        ),
                       ],
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomButton(
                         label: "Salvar",
