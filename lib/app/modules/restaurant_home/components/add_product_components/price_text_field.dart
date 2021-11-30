@@ -23,6 +23,13 @@ class PriceTextField extends StatelessWidget {
           controller: controller,
           cursorColor: secondaryColor,
           enabled: true,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Este campo não pode ficar vazio";
+            }
+            return null;
+          },
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 18,

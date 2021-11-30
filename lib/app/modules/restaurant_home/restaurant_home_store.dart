@@ -115,7 +115,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   Future cadastroProduto() async {
-    var price = formProduct['price']!.text.split('R\$').toList();
+    var price = formProduct['price']!.text.split('R\$');
     double doublePrice = double.parse(price.elementAt(1));
     var produto = Product(
       name: formProduct['name']!.text.toString(),
