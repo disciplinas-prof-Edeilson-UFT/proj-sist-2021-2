@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_button.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_text_field.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/price_text_field.dart';
