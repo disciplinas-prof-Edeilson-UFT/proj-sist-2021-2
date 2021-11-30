@@ -14,7 +14,9 @@ abstract class _RestaurantRegisterStore with Store {
 
   addRestaurant() async {
     final RegisterRepository registerRepository = RegisterRepository();
-    await registerRepository.addRestaurant();
+    var userCred = await registerRepository.signUp();
+    var restaurant = await registerRepository.addRestaurant();
+    await registerRepository.addUser(userCred.user!.uid, restaurant!.id);
   }
 
   Map<String, TextEditingController> controller = {

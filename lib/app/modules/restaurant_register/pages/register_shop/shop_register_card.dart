@@ -260,7 +260,6 @@ class _ShopRegisterCardState extends State<ShopRegisterCard> {
                               titleTextStyle: fieldLabelStyle(),
                             ),
                           );
-                          registerRepository.signUp();
                           setState(() {});
                           Modular.to.navigate('/');
                         }

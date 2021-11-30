@@ -13,11 +13,14 @@ class RegisterRepository extends IRegisterRepository {
   final CollectionReference restaurant =
       FirebaseFirestore.instance.collection('restaurant');
 
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
-  Future<void>? addRestaurant() {
-    restaurant.add({
+  Future<DocumentReference>? addRestaurant() {
+    return restaurant.add({
       'name_Owner': registerStore.controller['nome']?.text,
       'email_Owner': registerStore.controller['email']?.text,
       'phone_Owner': registerStore.controller['telefone']?.text,
@@ -35,6 +38,16 @@ class RegisterRepository extends IRegisterRepository {
       'password': registerStore.controller['Senha']?.text,
       'delivery_plan': registerStore.controller['Plano de Entrega']?.text,
       'category': registerStore.controller['Categoria']?.text,
+    });
+  }
+
+  @override
+  Future<void>? addUser(String userUID, String restaurantUID) {
+    users.doc(userUID).set({
+      'name': registerStore.controller['nome']?.text,
+      'email': registerStore.controller['email']?.text,
+      'phone': registerStore.controller['telefone']?.text,
+      'restaurant': restaurantUID,
     });
   }
 
