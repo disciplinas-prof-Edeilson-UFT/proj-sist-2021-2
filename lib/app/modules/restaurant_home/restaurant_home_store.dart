@@ -115,9 +115,8 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @action
-  Future cadastrarProdutoTeste(Product produto) async {
+  Future cadastroProduto(Product produto) async {
     await ProductRepository().cadastrarProduct(produto);
-    log('Deu certo');
   }
 
   @action

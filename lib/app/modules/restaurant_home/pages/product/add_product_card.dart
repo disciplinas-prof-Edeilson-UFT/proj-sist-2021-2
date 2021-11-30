@@ -97,7 +97,7 @@ class _AddProductState extends State<AddProduct> {
                           );
                           await imageAlert("Produto Cadastrado", Colors.green)
                               .show(context);
-                          store.cadastrarProdutoTeste(produto);
+                          store.cadastroProduto(produto);
                           Navigator.of(context).pop();
                         },
                       ),
