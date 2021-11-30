@@ -20,8 +20,10 @@ class RestaurantServiceFirestore extends RestaurantService {
           .where('restaurant_id', isEqualTo: restaurantId)
           .get();
     }
-    return querySnapshot.docs
-        .map((doc) => Product.fromMap(doc.data()))
-        .toList();
+    return querySnapshot.docs.map((doc) {
+      Product product = Product.fromMap(doc.data(), doc.id);
+      //product.productId = doc.id;
+      return product;
+    }).toList();
   }
 }

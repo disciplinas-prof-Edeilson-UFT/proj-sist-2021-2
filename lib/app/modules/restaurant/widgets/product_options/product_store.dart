@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
@@ -32,7 +34,12 @@ abstract class _ProductOptionsStoreBase with Store {
 
   @action
   void makeItem(Product product) {
-    Item item = Item(product, quantity);
+    String itemid = Random().nextInt(999).toString();
+    Item item = Item(
+      product,
+      quantity,
+      itemid,
+    );
     restaurantStore.addItem(item);
   }
 

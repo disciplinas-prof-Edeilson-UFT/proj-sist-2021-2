@@ -1,11 +1,10 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/modules/home/components/restaurant_championship.dart';
+import 'package:pscomidas/app/modules/home/components/restaurant_picture.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_module.dart';
 import '/app/modules/home/store/restaurant_card.store.dart';
 import 'cupom/cupom_card.dart';
@@ -47,13 +46,13 @@ class RestaurantCard extends StatelessWidget {
             style: _freeStyle,
           )
         : TextSpan(
-            text: "R\$" + FormatMoney.doubleToMoney(restaurant.deliveryPrice),
+            text: FormatMoney.doubleToMoney(restaurant.deliveryPrice),
             style: _cardInfoStyle,
           ));
     return InkWell(
       borderRadius: _borderRadius,
       onTap: () {
-        Modular.to.pushNamed(
+        Modular.to.navigate(
           RestaurantModule.routeName,
           arguments: restaurant,
         );
@@ -73,10 +72,8 @@ class RestaurantCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(restaurant.image),
-                  backgroundColor: Colors.white,
-                  maxRadius: 45,
+                child: RestaurantPicture(
+                  picture: restaurant.image,
                 ),
               ),
               Expanded(
@@ -99,8 +96,7 @@ class RestaurantCard extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 12.0),
-                          child: ChampionRestaurant(
-                              isChampion: restaurant.isChampion),
+                          child: ChampionRestaurant(restaurant: restaurant),
                         ),
                       ],
                     ),

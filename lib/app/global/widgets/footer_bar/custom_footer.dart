@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/widgets/footer_bar/components/desktop_footer_bar.dart';
 import 'package:pscomidas/app/global/widgets/footer_bar/components/mobile_footer_bar.dart';
 import 'package:pscomidas/app/global/widgets/footer_bar/components/tablet_footer_bar.dart';
+/*import 'package:pscomidas/app/modules/restaurant_home/pages/product/product_page.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_module.dart';
+import 'package:pscomidas/app/modules/restaurant_register/restaurant_register_page.dart';*/
 
 class CustomFooter extends StatefulWidget {
   const CustomFooter({Key? key}) : super(key: key);

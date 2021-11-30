@@ -19,13 +19,15 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
+  <meta name="google-signin-client_id" content="507539855306-ecgq3rkntgs0a3uebmvu3rdi9q5u8di2.apps.googleusercontent.com">
+
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="pscomidas">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQQH3TeTUR5LWAYoHddUSLXZ6KsCVv9YI"></script>
   <title>pscomidas</title>
   <link rel="manifest" href="manifest.json">
 </head>
@@ -33,7 +35,9 @@
 
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+  
   <script>
     var firebaseConfig = {
       apiKey: "AIzaSyChGBpwpn6dPRuwhSyuQa6ea0unIH_oOWg",
@@ -127,5 +131,29 @@
       loadMainDartJs();
     }
   </script>
+
+  
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '253191960099180',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v7.0'
+      });
+        
+      FB.AppEvents.logPageView();   
+        
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
 </body>
 </html>
