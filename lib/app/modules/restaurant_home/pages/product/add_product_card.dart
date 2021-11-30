@@ -1,9 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_button.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_text_field.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/price_text_field.dart';
@@ -82,22 +80,7 @@ class _AddProductState extends State<AddProduct> {
                       child: CustomButton(
                         label: "Salvar",
                         onPressed: () async {
-                          var price = store.formProduct['price']!.text
-                              .split('R\$')
-                              .toList();
-                          double doublePrice = double.parse(price.elementAt(1));
-                          var produto = Product(
-                            name: store.formProduct['name']!.text.toString(),
-                            description:
-                                store.formProduct['desc']!.text.toString(),
-                            price: doublePrice,
-                            restaurantId: "dummy 2",
-                            categories: store.formProduct['categories']!.text
-                                .toString(),
-                          );
-                          await imageAlert("Produto Cadastrado", Colors.green)
-                              .show(context);
-                          store.cadastroProduto(produto);
+                          store.cadastroProduto();
                           Navigator.of(context).pop();
                         },
                       ),

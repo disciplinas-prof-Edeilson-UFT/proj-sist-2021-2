@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -115,7 +114,16 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @action
-  Future cadastroProduto(Product produto) async {
+  Future cadastroProduto() async {
+    var price = formProduct['price']!.text.split('R\$').toList();
+    double doublePrice = double.parse(price.elementAt(1));
+    var produto = Product(
+      name: formProduct['name']!.text.toString(),
+      description: formProduct['desc']!.text.toString(),
+      price: doublePrice,
+      restaurantId: "dummy 2",
+      categories: formProduct['categories']!.text.toString(),
+    );
     await ProductRepository().cadastrarProduct(produto);
   }
 
