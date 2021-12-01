@@ -67,4 +67,14 @@ class RegisterRepository extends IRegisterRepository {
       throw Exception('Houve um erro ao registrar');
     }
   }
+
+  Future<QuerySnapshot>? getUserByEmail(String email) {
+    // QuerySnapshot has size property reurning int
+    return users.where('email', isEqualTo: email).get();
+  }
+
+  Future<QuerySnapshot>? getRestaurantByCNPJ(String cnpj) {
+    // QuerySnapshot has size property reurning int
+    return restaurant.where('CNPJ', isEqualTo: cnpj).get();
+  }
 }

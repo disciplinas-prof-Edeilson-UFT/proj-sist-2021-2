@@ -5,4 +5,6 @@ abstract class IRegisterRepository {
   Future<void>? addRestaurant(String restaurantUID);
   Future<void>? addUser(String userUID);
   Future<UserCredential>? signUp();
+  Future<QuerySnapshot>? getUserByEmail(String email);
+  Future<QuerySnapshot>? getRestaurantByCNPJ(String cnpj);
 }

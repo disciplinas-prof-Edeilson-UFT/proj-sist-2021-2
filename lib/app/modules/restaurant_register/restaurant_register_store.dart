@@ -27,6 +27,25 @@ abstract class _RestaurantRegisterStore with Store {
     registerErrorMessage = newValue ?? '';
   }
 
+  Future<bool> dataIsUnique() async {
+    final RegisterRepository registerRepository = RegisterRepository();
+
+    if ((await registerRepository
+                    .getUserByEmail(controller['email']?.text ?? ''))
+                ?.size ==
+            0 &&
+        (await registerRepository
+                    .getRestaurantByCNPJ(controller['CNPJ']?.text ?? ''))
+                ?.size ==
+            0) {
+      return true;
+    } else {
+      setRegisterErrorMessage(
+          'Os dados pertencem a outra conta. Tente fazer login, ou corrigir os dados.');
+      return false;
+    }
+  }
+
   Map<String, TextEditingController> controller = {
     'nome': TextEditingController(),
     'email': TextEditingController(),
