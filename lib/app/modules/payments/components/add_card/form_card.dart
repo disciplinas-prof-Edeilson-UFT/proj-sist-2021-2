@@ -42,12 +42,10 @@ class _FormCardState extends State<FormCard> {
                           Text(store.type),
                           store.dataInvalid
                               ? const Text(
-                                'Preencha todos os campos corretamente',
-                                style: TextStyle(
-                                  fontFamily: 'Nunito',
-                                  color: Colors.red
-                                ),
-                              )
+                                  'Preencha todos os campos corretamente',
+                                  style: TextStyle(
+                                      fontFamily: 'Nunito', color: Colors.red),
+                                )
                               : const Text(''),
                         ]);
                   }),
@@ -60,7 +58,9 @@ class _FormCardState extends State<FormCard> {
                         child: TextFormCard(
                             hintText: 'Numero do cartão',
                             validation: (numeroCartao) {
-                              var isValid = _ccValidator.validateCCNum(numeroCartao).isValid;
+                              var isValid = _ccValidator
+                                  .validateCCNum(numeroCartao)
+                                  .isValid;
                               if (numeroCartao!.isEmpty) {
                                 store.setValidNumCard(false);
                                 return 'Campo obrigatorio';
@@ -180,10 +180,10 @@ class _FormCardState extends State<FormCard> {
                     builder: (_) {
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: secondaryColor, fixedSize: Size(100, 50)
-                        ),
+                            primary: secondaryColor, fixedSize: Size(100, 50)),
                         onPressed: () {
                           if (store.isValidData()) {
+                            store.cartaoAdicionar();
                             store.setDataInvalid(false);
                             store.clear();
                             store.setTypeCardChosen(false);

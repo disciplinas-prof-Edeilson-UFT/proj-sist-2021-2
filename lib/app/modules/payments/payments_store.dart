@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/models/entities/new_card.dart';
+import 'package:pscomidas/app/global/repositories/paymentcard/payment_card.dart';
 
 part 'payments_store.g.dart';
 
 class PaymentsStore = _PaymentsStoreBase with _$PaymentsStore;
-abstract class _PaymentsStoreBase with Store {
 
+final PaymentCardRepository cardRepository =
+    Modular.get<PaymentCardRepository>();
+
+abstract class _PaymentsStoreBase with Store {
   TextEditingController numeroCartaoControlle = TextEditingController();
   TextEditingController nomeImpressoControlle = TextEditingController();
   TextEditingController apelidoControlle = TextEditingController();
@@ -21,59 +27,56 @@ abstract class _PaymentsStoreBase with Store {
   @observable
   bool typeCardChosen = false;
   @action
-  setTypeCardChosen(bool value) => typeCardChosen = value; 
+  setTypeCardChosen(bool value) => typeCardChosen = value;
 
-  @observable 
+  @observable
   bool dataInvalid = false;
   @action
   void setDataInvalid(bool value) => dataInvalid = value;
 
   @observable
   bool isValidNumCard = false;
-  @action 
+  @action
   void setValidNumCard(bool value) => isValidNumCard = value;
 
   @observable
   bool isValidNomeImpresso = false;
-  @action 
+  @action
   void setValidNomeImpresso(bool value) => isValidNomeImpresso = value;
 
   @observable
   bool isValidApelido = false;
-  @action 
+  @action
   void setValidApelido(bool value) => isValidApelido = value;
 
   @observable
   bool isValidValidade = false;
-  @action 
+  @action
   void setValidValidade(bool value) => isValidValidade = value;
 
   @observable
   bool isValidCVV = false;
-  @action 
+  @action
   void setValidCVV(bool value) => isValidCVV = value;
 
   @observable
   bool isValidCpfCnpj = false;
-  @action 
+  @action
   void setValidCpfCnpj(bool value) => isValidCpfCnpj = value;
 
-  bool isValidData(){
-    if(
-      isValidNumCard && 
-      isValidNomeImpresso && 
-      isValidApelido && 
-      isValidValidade && 
-      isValidCVV && 
-      isValidCpfCnpj
-    ){
+  bool isValidData() {
+    if (isValidNumCard &&
+        isValidNomeImpresso &&
+        isValidApelido &&
+        isValidValidade &&
+        isValidCVV &&
+        isValidCpfCnpj) {
       return true;
     }
     return false;
   }
 
-  void clear(){
-
+  void clear() {
     isValidNumCard = false;
     isValidNomeImpresso = false;
     isValidApelido = false;
@@ -89,4 +92,14 @@ abstract class _PaymentsStoreBase with Store {
     cpfCnpjControlle.clear();
   }
 
+  @action
+  Future cartaoAdicionar() async {
+    var card = NewCard(
+      cardnumber: numeroCartaoControlle.text.toString(),
+      validity: validadeControlle.text.toString(),
+      nome: nomeImpressoControlle.text.toString(),
+      cvv: cvvControlle.text.toString(),
+    );
+    await cardRepository.addPaymentCard(card);
+  }
 }
