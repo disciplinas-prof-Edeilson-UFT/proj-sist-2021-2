@@ -284,22 +284,22 @@ class _ShopRegisterCardState extends State<ShopRegisterCard> {
                             MaterialStateProperty.all(secondaryColor),
                       ),
                       onPressed: () async {
-                        // if (registerStore.formKey.currentState!.validate()) {
-                        if (await registerStore.dataIsUnique()) {
-                          // registerStore.registrar();
-                          // showDialog<String>(
-                          //   context: context,
-                          //   builder: (BuildContext context) => AlertDialog(
-                          //     title: const Text(
-                          //       'Cadastro realizado com sucesso!',
-                          //     ),
-                          //     titleTextStyle: fieldLabelStyle(),
-                          //   ),
-                          // );
-                          // setState(() {});
-                          // Modular.to.navigate('/');
+                        if (registerStore.formKey.currentState!.validate()) {
+                          if (await registerStore.dataIsUnique()) {
+                            registerStore.registrar();
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text(
+                                  'Cadastro realizado com sucesso!',
+                                ),
+                                titleTextStyle: fieldLabelStyle(),
+                              ),
+                            );
+                            setState(() {});
+                            Modular.to.navigate('/');
+                          }
                         }
-                        // }
                       },
                     ),
                   ),

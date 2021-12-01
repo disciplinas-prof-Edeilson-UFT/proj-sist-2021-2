@@ -68,13 +68,11 @@ class RegisterRepository extends IRegisterRepository {
     }
   }
 
-  Future<QuerySnapshot>? getUserByEmail(String email) {
-    // QuerySnapshot has size property reurning int
-    return users.where('email', isEqualTo: email).get();
+  Future<bool>? isUniqueEmail(String email) async {
+    return (await users.where('email', isEqualTo: email).get()).size == 0;
   }
 
-  Future<QuerySnapshot>? getRestaurantByCNPJ(String cnpj) {
-    // QuerySnapshot has size property reurning int
-    return restaurant.where('CNPJ', isEqualTo: cnpj).get();
+  Future<bool>? isUniqueCNPJ(String cnpj) async {
+    return (await restaurant.where('CNPJ', isEqualTo: cnpj).get()).size == 0;
   }
 }

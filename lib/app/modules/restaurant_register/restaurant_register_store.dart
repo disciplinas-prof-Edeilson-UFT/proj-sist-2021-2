@@ -29,15 +29,17 @@ abstract class _RestaurantRegisterStore with Store {
 
   Future<bool> dataIsUnique() async {
     final RegisterRepository registerRepository = RegisterRepository();
+    var email = controller['email']?.text ?? '';
+    var validEmail = email.length > 0;
+    var uniqueEmail =
+        validEmail ? await registerRepository.isUniqueEmail(email) : false;
 
-    if ((await registerRepository
-                    .getUserByEmail(controller['email']?.text ?? ''))
-                ?.size ==
-            0 &&
-        (await registerRepository
-                    .getRestaurantByCNPJ(controller['CNPJ']?.text ?? ''))
-                ?.size ==
-            0) {
+    var cnpj = controller['CNPJ']?.text ?? '';
+    var validCNPJ = cnpj.length > 0;
+    var uniqueRestaurant =
+        validCNPJ ? await registerRepository.isUniqueCNPJ(cnpj) : false;
+
+    if ((uniqueEmail ?? false) && (uniqueRestaurant ?? false)) {
       return true;
     } else {
       setRegisterErrorMessage(
