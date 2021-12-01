@@ -68,10 +68,12 @@ class RegisterRepository extends IRegisterRepository {
     }
   }
 
+  @override
   Future<bool>? isUniqueEmail(String email) async {
     return (await users.where('email', isEqualTo: email).get()).size == 0;
   }
 
+  @override
   Future<bool>? isUniqueCNPJ(String cnpj) async {
     return (await restaurant.where('CNPJ', isEqualTo: cnpj).get()).size == 0;
   }

@@ -36,7 +36,7 @@ class _ShopRegisterCardState extends State<ShopRegisterCard> {
       Modular.to.navigate(RestaurantRegisterPage.routeName);
     }
     autorunFlush = autorun((_) {
-      if (registerStore.registerErrorMessage != '')
+      if (registerStore.registerErrorMessage != '') {
         Flushbar(
           title: 'Ocorreu um erro ao registrar:',
           icon: const Icon(
@@ -64,6 +64,7 @@ class _ShopRegisterCardState extends State<ShopRegisterCard> {
             },
           ),
         ).show(context);
+      }
     });
     super.initState();
   }
