@@ -1,7 +1,9 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/repositories/register/register_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
@@ -26,17 +28,50 @@ class _ShopRegisterCardState extends State<ShopRegisterCard> {
   final RegisterRepository registerRepository =
       Modular.get<RegisterRepository>();
 
+  ReactionDisposer? autorunFlush;
+
   @override
   void initState() {
     if (registerStore.controller['nomeOwner'] == null) {
       Modular.to.navigate(RestaurantRegisterPage.routeName);
     }
+    autorunFlush = autorun((_) {
+      if (registerStore.registerErrorMessage != '')
+        Flushbar(
+          title: 'Ocorreu um erro ao registrar:',
+          icon: const Icon(
+            Icons.sentiment_dissatisfied_outlined,
+            color: Colors.white70,
+          ),
+          message: registerStore.registerErrorMessage,
+          backgroundColor: Colors.red,
+          borderRadius: BorderRadius.circular(10.0),
+          padding: const EdgeInsets.all(20.0),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 100.0,
+            vertical: 10.0,
+          ),
+          animationDuration: const Duration(milliseconds: 500),
+          shouldIconPulse: false,
+          mainButton: TextButton(
+            child: const Text(
+              'Fechar',
+              style: TextStyle(color: Colors.white),
+            ),
+            onPressed: () {
+              registerStore.registerErrorMessage = '';
+              Navigator.pop(context);
+            },
+          ),
+        ).show(context);
+    });
     super.initState();
   }
 
   @override
   void dispose() {
     registerStore.dispose();
+    autorunFlush!();
     super.dispose();
   }
 

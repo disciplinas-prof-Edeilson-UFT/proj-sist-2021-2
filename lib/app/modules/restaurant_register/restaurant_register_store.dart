@@ -19,6 +19,14 @@ abstract class _RestaurantRegisterStore with Store {
     await registerRepository.addUser(credential.user!.uid);
   }
 
+  @observable
+  String registerErrorMessage = '';
+
+  @action
+  setRegisterErrorMessage(newValue) {
+    registerErrorMessage = newValue ?? '';
+  }
+
   Map<String, TextEditingController> controller = {
     'nome': TextEditingController(),
     'email': TextEditingController(),
