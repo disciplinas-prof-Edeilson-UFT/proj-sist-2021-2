@@ -19,8 +19,8 @@ class RegisterRepository extends IRegisterRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
-  Future<DocumentReference>? addRestaurant() {
-    return restaurant.add({
+  Future<void>? addRestaurant(String restaurantUID) {
+    restaurant.doc(restaurantUID).set({
       'name_Owner': registerStore.controller['nome']?.text,
       'email_Owner': registerStore.controller['email']?.text,
       'phone_Owner': registerStore.controller['telefone']?.text,
@@ -42,12 +42,12 @@ class RegisterRepository extends IRegisterRepository {
   }
 
   @override
-  Future<void>? addUser(String userUID, String restaurantUID) {
+  Future<void>? addUser(String userUID) {
     users.doc(userUID).set({
       'name': registerStore.controller['nome']?.text,
       'email': registerStore.controller['email']?.text,
       'phone': registerStore.controller['telefone']?.text,
-      'restaurant': restaurantUID,
+      'isClient': false,
     });
   }
 

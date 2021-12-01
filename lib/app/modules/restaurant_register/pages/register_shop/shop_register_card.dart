@@ -250,7 +250,7 @@ class _ShopRegisterCardState extends State<ShopRegisterCard> {
                       ),
                       onPressed: () {
                         if (registerStore.formKey.currentState!.validate()) {
-                          registerStore.addRestaurant();
+                          registerStore.registrar();
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(

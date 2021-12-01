@@ -12,11 +12,11 @@ abstract class _RestaurantRegisterStore with Store {
 
   final String userCity = "Palmas";
 
-  addRestaurant() async {
+  registrar() async {
     final RegisterRepository registerRepository = RegisterRepository();
-    var userCred = await registerRepository.signUp();
-    var restaurant = await registerRepository.addRestaurant();
-    await registerRepository.addUser(userCred.user!.uid, restaurant!.id);
+    var credential = await registerRepository.signUp();
+    await registerRepository.addRestaurant(credential.user!.uid);
+    await registerRepository.addUser(credential.user!.uid);
   }
 
   Map<String, TextEditingController> controller = {
