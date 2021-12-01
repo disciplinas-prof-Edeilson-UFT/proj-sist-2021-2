@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
+import 'package:pscomidas/app/modules/client_address/pages/address_number.dart';
 import 'package:pscomidas/app/modules/client_address/pages/pick_address.dart';
 import 'package:pscomidas/app/modules/client_address/pages/saved_addresses.dart';
 import 'package:pscomidas/app/modules/client_address/pages/search_address.dart';
@@ -35,6 +36,7 @@ class ClientAddressPageState extends State<ClientAddressPage> {
             SavedAdresses(),
             SearchAddress(),
             PickAddress(),
+            AddressNumber(),
           ],
         ),
       ),

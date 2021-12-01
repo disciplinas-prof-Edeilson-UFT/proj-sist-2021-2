@@ -68,7 +68,7 @@ class _PickAddressState extends State<PickAddress> {
           }),
           CustomSubmit(
             label: 'Buscar CEP',
-            onPressed: () async => store.findCEP(),
+            onPressed: () async => store.jump(3),
           ),
         ],
       ),
