@@ -1,5 +1,3 @@
-import 'package:cpf_cnpj_validator/cnpj_validator.dart';
-import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:credit_card_validator/credit_card_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -39,7 +37,7 @@ class _FormCardState extends State<FormCard> {
                     return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(store.type),
+                          const Text('Dados do cartão'),
                           store.dataInvalid
                               ? const Text(
                                   'Preencha todos os campos corretamente',
@@ -73,7 +71,7 @@ class _FormCardState extends State<FormCard> {
                             controller: store.numeroCartaoControlle));
                   }),
                   const SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
                   Observer(builder: (_) {
                     return SizedBox(
@@ -90,7 +88,7 @@ class _FormCardState extends State<FormCard> {
                             controller: store.nomeImpressoControlle));
                   }),
                   const SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,46 +133,7 @@ class _FormCardState extends State<FormCard> {
                     ],
                   ),
                   const SizedBox(
-                    height: 10,
-                  ),
-                  Observer(builder: (_) {
-                    return SizedBox(
-                        width: 100,
-                        child: TextFormCard(
-                            hintText: 'Apelido',
-                            validation: (apelido) {
-                              if (apelido!.isEmpty) {
-                                store.setValidApelido(false);
-                                return 'Campo obrigatorio';
-                              }
-                              store.setValidApelido(true);
-                            },
-                            controller: store.apelidoControlle));
-                  }),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Observer(builder: (_) {
-                    return SizedBox(
-                        width: 100,
-                        child: TextFormCard(
-                            hintText: 'CPF/CNPJ do titular',
-                            validation: (cpfCnpj) {
-                              var isValidCPF = CPFValidator.isValid(cpfCnpj);
-                              var isValidCNPJ = CNPJValidator.isValid(cpfCnpj);
-                              if (cpfCnpj!.isEmpty) {
-                                store.setValidCpfCnpj(false);
-                                return 'Campo obrigatorio';
-                              } else if (!isValidCPF && !isValidCNPJ) {
-                                store.setValidCpfCnpj(false);
-                                return 'CPF/CNPJ invalido';
-                              }
-                              store.setValidCpfCnpj(true);
-                            },
-                            controller: store.cpfCnpjControlle));
-                  }),
-                  const SizedBox(
-                    height: 20,
+                    height: 50,
                   ),
                   Observer(
                     builder: (_) {
@@ -186,7 +145,6 @@ class _FormCardState extends State<FormCard> {
                             store.cartaoAdicionar();
                             store.setDataInvalid(false);
                             store.clear();
-                            store.setTypeCardChosen(false);
                             final snackBar = SnackBar(
                               backgroundColor: Colors.red,
                               content: const Text('Cartão adiciondado'),

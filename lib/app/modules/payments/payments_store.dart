@@ -14,20 +14,8 @@ final PaymentCardRepository cardRepository =
 abstract class _PaymentsStoreBase with Store {
   TextEditingController numeroCartaoControlle = TextEditingController();
   TextEditingController nomeImpressoControlle = TextEditingController();
-  TextEditingController apelidoControlle = TextEditingController();
   TextEditingController validadeControlle = TextEditingController();
   TextEditingController cvvControlle = TextEditingController();
-  TextEditingController cpfCnpjControlle = TextEditingController();
-
-  @observable
-  String type = '';
-  @action
-  setType(String value) => type = value;
-
-  @observable
-  bool typeCardChosen = false;
-  @action
-  setTypeCardChosen(bool value) => typeCardChosen = value;
 
   @observable
   bool dataInvalid = false;
@@ -45,11 +33,6 @@ abstract class _PaymentsStoreBase with Store {
   void setValidNomeImpresso(bool value) => isValidNomeImpresso = value;
 
   @observable
-  bool isValidApelido = false;
-  @action
-  void setValidApelido(bool value) => isValidApelido = value;
-
-  @observable
   bool isValidValidade = false;
   @action
   void setValidValidade(bool value) => isValidValidade = value;
@@ -59,18 +42,11 @@ abstract class _PaymentsStoreBase with Store {
   @action
   void setValidCVV(bool value) => isValidCVV = value;
 
-  @observable
-  bool isValidCpfCnpj = false;
-  @action
-  void setValidCpfCnpj(bool value) => isValidCpfCnpj = value;
-
   bool isValidData() {
     if (isValidNumCard &&
         isValidNomeImpresso &&
-        isValidApelido &&
         isValidValidade &&
-        isValidCVV &&
-        isValidCpfCnpj) {
+        isValidCVV ) {
       return true;
     }
     return false;
@@ -79,17 +55,13 @@ abstract class _PaymentsStoreBase with Store {
   void clear() {
     isValidNumCard = false;
     isValidNomeImpresso = false;
-    isValidApelido = false;
     isValidValidade = false;
     isValidCVV = false;
-    isValidCpfCnpj = false;
 
     numeroCartaoControlle.clear();
     nomeImpressoControlle.clear();
-    apelidoControlle.clear();
     validadeControlle.clear();
     cvvControlle.clear();
-    cpfCnpjControlle.clear();
   }
 
   @action

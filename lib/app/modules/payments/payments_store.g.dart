@@ -9,36 +9,6 @@ part of 'payments_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PaymentsStore on _PaymentsStoreBase, Store {
-  final _$typeAtom = Atom(name: '_PaymentsStoreBase.type');
-
-  @override
-  String get type {
-    _$typeAtom.reportRead();
-    return super.type;
-  }
-
-  @override
-  set type(String value) {
-    _$typeAtom.reportWrite(value, super.type, () {
-      super.type = value;
-    });
-  }
-
-  final _$typeCardChosenAtom = Atom(name: '_PaymentsStoreBase.typeCardChosen');
-
-  @override
-  bool get typeCardChosen {
-    _$typeCardChosenAtom.reportRead();
-    return super.typeCardChosen;
-  }
-
-  @override
-  set typeCardChosen(bool value) {
-    _$typeCardChosenAtom.reportWrite(value, super.typeCardChosen, () {
-      super.typeCardChosen = value;
-    });
-  }
-
   final _$dataInvalidAtom = Atom(name: '_PaymentsStoreBase.dataInvalid');
 
   @override
@@ -85,21 +55,6 @@ mixin _$PaymentsStore on _PaymentsStoreBase, Store {
     });
   }
 
-  final _$isValidApelidoAtom = Atom(name: '_PaymentsStoreBase.isValidApelido');
-
-  @override
-  bool get isValidApelido {
-    _$isValidApelidoAtom.reportRead();
-    return super.isValidApelido;
-  }
-
-  @override
-  set isValidApelido(bool value) {
-    _$isValidApelidoAtom.reportWrite(value, super.isValidApelido, () {
-      super.isValidApelido = value;
-    });
-  }
-
   final _$isValidValidadeAtom =
       Atom(name: '_PaymentsStoreBase.isValidValidade');
 
@@ -131,45 +86,16 @@ mixin _$PaymentsStore on _PaymentsStoreBase, Store {
     });
   }
 
-  final _$isValidCpfCnpjAtom = Atom(name: '_PaymentsStoreBase.isValidCpfCnpj');
+  final _$cartaoAdicionarAsyncAction =
+      AsyncAction('_PaymentsStoreBase.cartaoAdicionar');
 
   @override
-  bool get isValidCpfCnpj {
-    _$isValidCpfCnpjAtom.reportRead();
-    return super.isValidCpfCnpj;
-  }
-
-  @override
-  set isValidCpfCnpj(bool value) {
-    _$isValidCpfCnpjAtom.reportWrite(value, super.isValidCpfCnpj, () {
-      super.isValidCpfCnpj = value;
-    });
+  Future<dynamic> cartaoAdicionar() {
+    return _$cartaoAdicionarAsyncAction.run(() => super.cartaoAdicionar());
   }
 
   final _$_PaymentsStoreBaseActionController =
       ActionController(name: '_PaymentsStoreBase');
-
-  @override
-  dynamic setType(String value) {
-    final _$actionInfo = _$_PaymentsStoreBaseActionController.startAction(
-        name: '_PaymentsStoreBase.setType');
-    try {
-      return super.setType(value);
-    } finally {
-      _$_PaymentsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setTypeCardChosen(bool value) {
-    final _$actionInfo = _$_PaymentsStoreBaseActionController.startAction(
-        name: '_PaymentsStoreBase.setTypeCardChosen');
-    try {
-      return super.setTypeCardChosen(value);
-    } finally {
-      _$_PaymentsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   void setDataInvalid(bool value) {
@@ -205,17 +131,6 @@ mixin _$PaymentsStore on _PaymentsStoreBase, Store {
   }
 
   @override
-  void setValidApelido(bool value) {
-    final _$actionInfo = _$_PaymentsStoreBaseActionController.startAction(
-        name: '_PaymentsStoreBase.setValidApelido');
-    try {
-      return super.setValidApelido(value);
-    } finally {
-      _$_PaymentsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void setValidValidade(bool value) {
     final _$actionInfo = _$_PaymentsStoreBaseActionController.startAction(
         name: '_PaymentsStoreBase.setValidValidade');
@@ -238,28 +153,13 @@ mixin _$PaymentsStore on _PaymentsStoreBase, Store {
   }
 
   @override
-  void setValidCpfCnpj(bool value) {
-    final _$actionInfo = _$_PaymentsStoreBaseActionController.startAction(
-        name: '_PaymentsStoreBase.setValidCpfCnpj');
-    try {
-      return super.setValidCpfCnpj(value);
-    } finally {
-      _$_PaymentsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
-type: ${type},
-typeCardChosen: ${typeCardChosen},
 dataInvalid: ${dataInvalid},
 isValidNumCard: ${isValidNumCard},
 isValidNomeImpresso: ${isValidNomeImpresso},
-isValidApelido: ${isValidApelido},
 isValidValidade: ${isValidValidade},
-isValidCVV: ${isValidCVV},
-isValidCpfCnpj: ${isValidCpfCnpj}
+isValidCVV: ${isValidCVV}
     ''';
   }
 }

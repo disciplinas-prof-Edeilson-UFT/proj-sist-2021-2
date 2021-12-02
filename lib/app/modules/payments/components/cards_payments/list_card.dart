@@ -43,7 +43,7 @@ class ListViewCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                'Cartão clonado',
+                                'Cartão',
                                 style: TextStyle(
                                   fontFamily: 'Nunito',
                                   fontSize: 20,
