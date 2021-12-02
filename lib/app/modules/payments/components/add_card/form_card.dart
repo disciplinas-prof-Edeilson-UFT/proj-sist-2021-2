@@ -18,7 +18,6 @@ class _FormCardState extends State<FormCard> {
   Widget build(BuildContext context) {
     CreditCardValidator _ccValidator = CreditCardValidator();
     PaymentsStore store = Modular.get();
-    final Size screen = MediaQuery.of(context).size;
 
     return Material(
       child: SizedBox(
@@ -53,7 +52,7 @@ class _FormCardState extends State<FormCard> {
                   Observer(builder: (_) {
                     return SizedBox(
                         width: 100,
-                        child: TextFormCard(
+                        child: textFormCard(
                             hintText: 'Numero do cartão',
                             validation: (numeroCartao) {
                               var isValid = _ccValidator
@@ -76,7 +75,7 @@ class _FormCardState extends State<FormCard> {
                   Observer(builder: (_) {
                     return SizedBox(
                         width: 100,
-                        child: TextFormCard(
+                        child: textFormCard(
                             hintText: 'Nome impresso',
                             validation: (nomeImpresso) {
                               if (nomeImpresso!.isEmpty) {
@@ -96,7 +95,7 @@ class _FormCardState extends State<FormCard> {
                       Observer(builder: (_) {
                         return SizedBox(
                             width: 100,
-                            child: TextFormCard(
+                            child: textFormCard(
                                 hintText: 'Validade',
                                 validation: (validade) {
                                   var isValid = _ccValidator
@@ -116,7 +115,7 @@ class _FormCardState extends State<FormCard> {
                       Observer(builder: (_) {
                         return SizedBox(
                             width: 100,
-                            child: TextFormCard(
+                            child: textFormCard(
                                 hintText: 'CVV',
                                 validation: (cvv) {
                                   if (cvv!.isEmpty) {
@@ -139,7 +138,8 @@ class _FormCardState extends State<FormCard> {
                     builder: (_) {
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: secondaryColor, fixedSize: Size(100, 50)),
+                            primary: secondaryColor,
+                            fixedSize: const Size(100, 50)),
                         onPressed: () {
                           if (store.isValidData()) {
                             store.cartaoAdicionar();

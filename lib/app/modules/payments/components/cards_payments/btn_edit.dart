@@ -27,7 +27,7 @@ class _BtnEditState extends State<BtnEdit> {
                     child: Column(children: [
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          fixedSize: Size(250, 40),
+                          fixedSize: const Size(250, 40),
                           primary: secondaryColor,
                         ),
                         onPressed: () => Navigator.pop(context),

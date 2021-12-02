@@ -11,6 +11,6 @@ class PaymentsModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => PaymentsPage()),
+    ChildRoute('/', child: (_, args) => const PaymentsPage()),
   ];
 }

@@ -5,7 +5,7 @@ import 'package:pscomidas/app/modules/payments/components/cards_payments/btn_edi
 import 'package:pscomidas/app/modules/payments/components/cards_payments/btn_excluir.dart';
 
 class ListViewCard extends StatelessWidget {
-  const ListViewCard({ Key? key }) : super(key: key);
+  const ListViewCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +22,14 @@ class ListViewCard extends StatelessWidget {
 
     return Observer(builder: (_) {
       return ListView.builder(
-        itemCount: 1, // numero de cartões cadastrados
-        itemBuilder: (_, index) {
-          return Container(
-            height: 100,
-            child: Card(
-              child: InkWell(
+          itemCount: 1, // numero de cartões cadastrados
+          itemBuilder: (_, index) {
+            return SizedBox(
+              height: 100,
+              child: Card(
+                  child: InkWell(
                 splashColor: Colors.red.withAlpha(30),
-                onTap: () => null,
+                onTap: () => {},
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
@@ -37,47 +37,44 @@ class ListViewCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.credit_card, color: secondaryColor, size: 30,),
-                          SizedBox(width: screen.width * 0.02,),
+                          const Icon(
+                            Icons.credit_card,
+                            color: secondaryColor,
+                            size: 30,
+                          ),
+                          SizedBox(
+                            width: screen.width * 0.02,
+                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
                                 'Cartão',
                                 style: TextStyle(
-                                  fontFamily: 'Nunito',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold
-                                ),
+                                    fontFamily: 'Nunito',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 '... ${getLastChars('1234567812345678')}',
                                 style: const TextStyle(
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey
-                                ),
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey),
                               ),
                             ],
                           ),
                         ],
                       ),
-                      
-                        Row(
-                          children: const[
-                            BtnEdit(),
-                            BtnExcluir()
-                          ],
-                        ),
-                      
+                      Row(
+                        children: const [BtnEdit(), BtnExcluir()],
+                      ),
                     ],
                   ),
                 ),
-              )
-            ),
-          );
-        }
-      );
+              )),
+            );
+          });
     });
   }
 }

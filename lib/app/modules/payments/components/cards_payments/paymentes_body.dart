@@ -37,63 +37,66 @@ class _PaymentsBodyState extends State<PaymentsBody> {
     final Size screen = MediaQuery.of(context).size;
     return Scaffold(
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Column(
-              children: [
-                const Text(
-                  'Formas de pagamento',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Observer(builder: (_) {
-                  return SizedBox(
-                      width: screen.width <= 1030 ? screen.width * 0.8 : screen.width * 0.5,
-                      height: screen.height * _sizeHeight(),
-                      child: Observer(builder: (_) {
-                        return const ListViewCard();
-                      }));
-                }),
-                SizedBox(
-                  height: screen.height * 0.02,
-                ),
-                Observer(builder: (_) {
-                  return ElevatedButton(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 50.0),
+        child: Column(
+          children: [
+            const Text(
+              'Formas de pagamento',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Observer(builder: (_) {
+              return SizedBox(
+                  width: screen.width <= 1030
+                      ? screen.width * 0.8
+                      : screen.width * 0.5,
+                  height: screen.height * _sizeHeight(),
+                  child: Observer(builder: (_) {
+                    return const ListViewCard();
+                  }));
+            }),
+            SizedBox(
+              height: screen.height * 0.02,
+            ),
+            Observer(builder: (_) {
+              return ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: secondaryColor,
-                    fixedSize: Size(300, 50),
+                    fixedSize: const Size(300, 50),
                   ),
                   onPressed: () => showDialog(
-                    context: context,
-                    builder: (BuildContext context) => Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        screen.width <= 1030
-                        ? const AddCard()
-                        : Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: screen.width <= 1030 ? screen.width * 0.3 : screen.width * 0.5,
-                              height: 500,
-                              child: Image.asset(
-                                'lib/app/modules/payments/assets/images/add_card.png',
-                                fit: BoxFit.cover,
-                              )
-                            ),
-                            const AddCard()
-                          ],
-                        )
-                      ],
-                    )
-                  ),
+                      context: context,
+                      builder: (BuildContext context) => Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              screen.width <= 1030
+                                  ? const AddCard()
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                            width: screen.width <= 1030
+                                                ? screen.width * 0.3
+                                                : screen.width * 0.5,
+                                            height: 500,
+                                            child: Image.asset(
+                                              'lib/app/modules/payments/assets/images/add_card.png',
+                                              fit: BoxFit.cover,
+                                            )),
+                                        const AddCard()
+                                      ],
+                                    )
+                            ],
+                          )),
                   child: const Text('Adicionar forma de pagamento'));
-                }),
-              ],
-            ),
-          ),
-        ));
+            }),
+          ],
+        ),
+      ),
+    ));
   }
 }

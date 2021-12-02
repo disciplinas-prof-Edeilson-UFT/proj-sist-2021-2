@@ -5,7 +5,6 @@ import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/user_profile_options.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
