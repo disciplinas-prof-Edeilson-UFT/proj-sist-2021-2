@@ -92,6 +92,14 @@ abstract class _RestaurantHomeStoreBase with Store {
   String category = _categories[0];
 
   @action
+  void prodctFormCleaner() {
+    formProduct['name']?.text = "";
+    formProduct['desc']?.text = "";
+    formProduct['price']?.text = "";
+    formProduct['categories']?.text = "";
+  }
+
+  @action
   Future imageReceiver(dynamic e) async {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;

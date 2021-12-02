@@ -18,7 +18,6 @@ class _AddProductState extends State<AddProduct> {
   final RestaurantHomeStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
-    Size screen = MediaQuery.of(context).size;
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -79,9 +78,13 @@ class _AddProductState extends State<AddProduct> {
                     Center(
                       child: CustomButton(
                         label: "Salvar",
-                        onPressed: () async {
+                        onPressed: () {
                           store.cadastroProduto();
                           Navigator.of(context).pop();
+                          imageAlert("Produto cadastrado com sucesso",
+                                  Colors.green)
+                              .show(context);
+                          store.prodctFormCleaner();
                         },
                       ),
                     ),

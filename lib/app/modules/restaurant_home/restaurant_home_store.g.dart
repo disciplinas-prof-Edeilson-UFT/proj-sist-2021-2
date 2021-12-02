@@ -202,13 +202,12 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
   }
 
-  final _$cadastrarProdutoTesteAsyncAction =
-      AsyncAction('_RestaurantHomeStoreBase.cadastrarProdutoTeste');
+  final _$cadastroProdutoAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.cadastroProduto');
 
   @override
-  Future<dynamic> cadastrarProdutoTeste(Product produto) {
-    return _$cadastrarProdutoTesteAsyncAction
-        .run(() => super.cadastrarProdutoTeste(produto));
+  Future<dynamic> cadastroProduto() {
+    return _$cadastroProdutoAsyncAction.run(() => super.cadastroProduto());
   }
 
   final _$getRestaurantPlanAsyncAction =
