@@ -33,7 +33,7 @@ class PaymentCardRepository implements IPaymentCardRepository {
       return await firestore
           .collection('clients')
           .doc(uid)
-          .set({'cards': cartao});
+          .update({'cards': FieldValue.arrayUnion(cartao)});
     } catch (e) {
       log("Falha ao adicionar $e");
     }
