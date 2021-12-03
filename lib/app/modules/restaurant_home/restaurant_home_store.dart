@@ -131,6 +131,32 @@ abstract class _RestaurantHomeStoreBase with Store {
     actualPlan = selectedPlan!;
   }
 
+  @observable
+  Map<String, dynamic>? selectedCupom;
+
+  @observable
+  Map<String, dynamic>? actualCupom;
+
+  @action
+  Future getRestaurantCupom() async {
+    if (restaurant == null) await getRestaurant();
+    actualCupom!['tipo'] = restaurant?.cupom!['tipo'] ?? '';
+    if (actualCupom!['tipo'] == 'desconto') {
+      actualCupom!['valor'] = restaurant?.cupom!['valor'] ?? '';
+    }
+  }
+
+  @action
+  void selectCupom(value) {
+    selectedCupom = value;
+  }
+
+  @action
+  void updateCupom() {
+    ProfileRepository().updateInfo({'cupom': selectedCupom});
+    actualCupom = selectedCupom!;
+  }
+
   Color iconColor = tertiaryColor;
 
   @action

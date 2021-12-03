@@ -17,7 +17,7 @@ class ButtonSideBar {
       'navigator': RestaurantHomeModule.routeName + AvaliationsPage.routeName,
     },
     'Cupons': {
-      'navigator': RestaurantHomeModule.routeName + CuponsPage.routeName,
+      'navigator': RestaurantHomeModule.routeName + CupomPage.routeName,
     },
     'Planos': {
       'navigator':
