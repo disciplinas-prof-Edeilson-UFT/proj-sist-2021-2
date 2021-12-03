@@ -10,7 +10,8 @@ import 'package:pscomidas/app/modules/home/store/home_store.dart';
 class MobileSearchPage extends StatefulWidget {
   static String get routeName => '/search';
   final String title;
-  const MobileSearchPage({Key? key, this.title = 'Mobile search page'}) : super(key: key);
+  const MobileSearchPage({Key? key, this.title = 'Mobile search page'})
+      : super(key: key);
   @override
   MobileSearchPageState createState() => MobileSearchPageState();
 }
@@ -48,23 +49,21 @@ class MobileSearchPageState extends State<MobileSearchPage> {
           ),
         ),
       ),
-      body: Observer(
-        builder: (context) {
-          final restaurants = store.restaurants
-            .where((e) => e.socialName.toLowerCase().contains(store.searchShop)).toList();
-          if (store.restaurants.isEmpty) {
-            return const Center(
-                child: CircularProgressIndicator(
-              color: secondaryColor,
-            ));
-          }
-          return ListView.builder(
-            itemCount: restaurants.length,
-            itemBuilder: (context, index) => RestaurantCard(restaurants[index]),
-          );
+      body: Observer(builder: (context) {
+        final restaurants = store.restaurants
+            .where((e) => e.socialName.toLowerCase().contains(store.searchShop))
+            .toList();
+        if (store.restaurants.isEmpty) {
+          return const Center(
+              child: CircularProgressIndicator(
+            color: secondaryColor,
+          ));
         }
-
-      ),
+        return ListView.builder(
+          itemCount: restaurants.length,
+          itemBuilder: (context, index) => RestaurantCard(restaurants[index]),
+        );
+      }),
     );
   }
 }
