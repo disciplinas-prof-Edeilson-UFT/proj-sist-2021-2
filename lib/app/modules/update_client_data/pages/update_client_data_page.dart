@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_submit.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
 
@@ -46,7 +46,7 @@ class UpdateClientDataPageState extends State<UpdateClientDataPage> {
             color: Colors.white70,
           ),
           message: store.errorMessage,
-          backgroundColor: secondaryCollor,
+          backgroundColor: secondaryColor,
           borderRadius: BorderRadius.circular(10.0),
           padding: const EdgeInsets.all(20.0),
           margin: const EdgeInsets.symmetric(
@@ -101,7 +101,7 @@ class UpdateClientDataPageState extends State<UpdateClientDataPage> {
               if (store.user == null) {
                 return const Center(
                   child: CircularProgressIndicator(
-                    color: secondaryCollor,
+                    color: secondaryColor,
                   ),
                 );
               }
