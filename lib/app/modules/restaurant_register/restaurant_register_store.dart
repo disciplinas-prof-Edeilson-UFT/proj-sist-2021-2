@@ -31,18 +31,27 @@ abstract class _RestaurantRegisterStore with Store {
     final RegisterRepository registerRepository = RegisterRepository();
     var email = controller['email']?.text ?? '';
     var uniqueEmail = email.isNotEmpty
-        ? await registerRepository.isUniqueEmail(email)
+        ? (await registerRepository.isUniqueEmail(email)) ?? false
         : false;
 
     var cnpj = controller['CNPJ']?.text ?? '';
-    var uniqueRestaurant =
-        cnpj.isNotEmpty ? await registerRepository.isUniqueCNPJ(cnpj) : false;
+    var uniqueRestaurant = cnpj.isNotEmpty
+        ? (await registerRepository.isUniqueCNPJ(cnpj)) ?? false
+        : false;
 
-    if ((uniqueEmail ?? false) && (uniqueRestaurant ?? false)) {
+    if (uniqueEmail && uniqueRestaurant) {
       return true;
+    } else if (uniqueRestaurant) {
+      setRegisterErrorMessage(
+          'O email pertence a outra conta. Tente fazer login, ou inserir um email diferente.');
+      return false;
+    } else if (uniqueEmail) {
+      setRegisterErrorMessage(
+          'O CNPJ pertence a outra conta. Tente fazer login, ou inserir um CNPJ diferente.');
+      return false;
     } else {
       setRegisterErrorMessage(
-          'Os dados pertencem a outra conta. Tente fazer login, ou corrigir os dados.');
+          'O CNPJ e o email pertencem a outra conta. Tente fazer login, ou inserir dados diferentes.');
       return false;
     }
   }
