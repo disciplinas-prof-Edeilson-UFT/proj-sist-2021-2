@@ -11,7 +11,7 @@ class FooterBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screen = MediaQuery.of(context).size;
+    Size screenSize = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(bottom: 32, top: 56),
       child: Column(
@@ -21,21 +21,21 @@ class FooterBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               SizedBox(
-                width: screen.width * .2,
+                width: screenSize.width * .2,
                 child: const SectionColumn(
                   section: "PsFood", 
-                  itens: Itens.ifood,
+                  itens: SectionItens.psFood,
                 ),
               ),
               SizedBox(
-                width: screen.width * .2,
+                width: screenSize.width * .2,
                 child: SectionColumn(
                   section: "Parceiros", 
-                  itens: Itens.descubra,
+                  itens: SectionItens.partners,
                 ),
               ),
               SizedBox(
-                width: screen.width * .2,
+                width: screenSize.width * .2,
                 child: Column(
                   children: [
                     const Text('Sobre o projeto',
@@ -74,10 +74,10 @@ class FooterBar extends StatelessWidget {
             children: [
               Image.asset(
                 'assets/images/logo.png',
-                width: screen.width * 0.1,
+                width: screenSize.width * 0.1,
               ),
               SizedBox(
-                width: screen.width * 0.75,
+                width: screenSize.width * 0.75,
                 child: Column(
                   children: const [
                     Text(
