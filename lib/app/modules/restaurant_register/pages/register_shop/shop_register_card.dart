@@ -44,7 +44,7 @@ class _ShopRegisterCardState extends State<ShopRegisterCard> {
             color: Colors.white70,
           ),
           message: registerStore.registerErrorMessage,
-          backgroundColor: Colors.red,
+          backgroundColor: secondaryColor,
           borderRadius: BorderRadius.circular(10.0),
           padding: const EdgeInsets.all(20.0),
           margin: const EdgeInsets.symmetric(
@@ -287,7 +287,7 @@ class _ShopRegisterCardState extends State<ShopRegisterCard> {
                       onPressed: () async {
                         if (registerStore.formKey.currentState!.validate()) {
                           if (await registerStore.dataIsUnique()) {
-                            registerStore.registrar();
+                            await registerStore.registrar();
                             showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(

@@ -14,9 +14,9 @@ abstract class _RestaurantRegisterStore with Store {
 
   registrar() async {
     final RegisterRepository registerRepository = RegisterRepository();
-    var credential = await registerRepository.signUp();
-    await registerRepository.addRestaurant(credential.user!.uid);
-    await registerRepository.addUser(credential.user!.uid);
+    var credential = await registerRepository.signUp(controller);
+    await registerRepository.addRestaurant(credential.user!.uid, controller);
+    await registerRepository.addUser(credential.user!.uid, controller);
   }
 
   @observable
