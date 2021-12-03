@@ -140,15 +140,20 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   Future getRestaurantCupom() async {
     if (restaurant == null) await getRestaurant();
-    actualCupom!['tipo'] = restaurant?.cupom!['tipo'] ?? '';
-    if (actualCupom!['tipo'] == 'desconto') {
-      actualCupom!['valor'] = restaurant?.cupom!['valor'] ?? '';
+    actualCupom?['tipo'] = restaurant?.cupom?['tipo'] ?? '';
+    if (actualCupom?['tipo'] == 'desconto') {
+      actualCupom?['valor'] = restaurant?.cupom?['valor'] ?? '';
     }
   }
 
   @action
-  void selectCupom(value) {
-    selectedCupom = value;
+  void selectCupomName(name) {
+    selectedCupom?['tipo'] = name;
+  }
+
+  @action
+  void selectCupomValue(value) {
+    selectedCupom?['valor'] = value;
   }
 
   @action

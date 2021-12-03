@@ -275,11 +275,22 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
-  void selectCupom(dynamic value) {
+  void selectCupomName(dynamic name) {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
-        name: '_RestaurantHomeStoreBase.selectCupom');
+        name: '_RestaurantHomeStoreBase.selectCupomName');
     try {
-      return super.selectCupom(value);
+      return super.selectCupomName(name);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void selectCupomValue(dynamic value) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.selectCupomValue');
+    try {
+      return super.selectCupomValue(value);
     } finally {
       _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
     }
