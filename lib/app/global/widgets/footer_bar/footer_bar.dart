@@ -21,21 +21,21 @@ class FooterBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               SizedBox(
-                width: screenSize.width * .2,
+                width: screenSize.width * .25,
                 child: const SectionColumn(
                   section: "PsFood", 
                   itens: SectionItens.psFood,
                 ),
               ),
               SizedBox(
-                width: screenSize.width * .2,
+                width: screenSize.width * .25 < 190 ? 190 : screenSize.width * .25,
                 child: SectionColumn(
                   section: "Parceiros", 
                   itens: SectionItens.partners,
                 ),
               ),
               SizedBox(
-                width: screenSize.width * .2,
+                width: screenSize.width * .25,
                 child: Column(
                   children: [
                     const Text('Sobre o projeto',

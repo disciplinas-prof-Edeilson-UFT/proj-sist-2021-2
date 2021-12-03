@@ -9,9 +9,9 @@ class SectionItens {
       "Route" : ''},
   ];
   static List<Map<String, String>> partners = [
-    {"Name" : 'Cadastre seu Restaurante',
+    {"Name" : 'Cadastre seu restaurante',
       "Route" :  RestaurantRegisterModule.routeName + RestaurantRegisterPage.routeName},
-    {"Name" : 'Psfood Empresas', 
+    {"Name" : 'Psfood empresas', 
       "Route" : RestaurantHomeModule.routeName + ProductPage.routeName},
   ];
 }
