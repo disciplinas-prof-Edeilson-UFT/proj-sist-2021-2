@@ -17,25 +17,25 @@ class CupomSelector extends StatelessWidget {
       return InkWell(
         hoverColor: Colors.transparent,
         borderRadius: BorderRadius.circular(16),
-        onTap: () => store.selectCupomName(cardName),
+        onTap: () => store.selectCupomName({'tipo': cardName}),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             if (store.actualCupom?['tipo'] == cardName)
-              if (store.selectedCupom?['tipo'] == null ||
+              if (store.actualCupom?['tipo'] == null ||
                   store.selectedCupom?['tipo'] == cardName)
                 showInfo('Este é o seu cupom atual', activated: true)
               else
                 showInfo('Este é o seu cupom atual', activated: false)
-            else if (store.selectedCupom?['tipo'] != null &&
-                store.selectedCupom?['tipo'] == cardName)
-              showInfo('Alterar para o ${cardName.toLowerCase()}',
+            else if (store.actualCupom?['tipo'] != null &&
+                store.actualCupom?['tipo'] == cardName)
+              showInfo('Adicionar o cupom de ${cardName.toLowerCase()}',
                   activated: true)
             else
               showInfo('Clique para alterar o cupom', activated: false),
             SizedBox(
-              height: 293,
-              width: 224,
+              height: 50,
+              width: 250,
               child: cupom,
             ),
           ],
@@ -51,8 +51,8 @@ class CupomSelector extends StatelessWidget {
         color: color.withOpacity(0.7),
         borderRadius: BorderRadius.circular(14),
       ),
-      height: 310,
-      width: 232,
+      height: 74,
+      width: 260,
       child: Align(
         alignment: Alignment.topCenter,
         child: Text(

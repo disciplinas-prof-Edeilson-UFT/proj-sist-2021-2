@@ -132,17 +132,23 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @observable
-  Map<String, dynamic>? selectedCupom;
+  Map<String, dynamic>? selectedCupom = {
+    "tipo": null,
+    "valor": null,
+  };
 
   @observable
-  Map<String, dynamic>? actualCupom;
+  Map<String, dynamic>? actualCupom = {
+    "tipo": null,
+    "valor": null,
+  };
 
   @action
   Future getRestaurantCupom() async {
     if (restaurant == null) await getRestaurant();
-    actualCupom?['tipo'] = restaurant?.cupom?['tipo'] ?? '';
-    if (actualCupom?['tipo'] == 'desconto') {
-      actualCupom?['valor'] = restaurant?.cupom?['valor'] ?? '';
+    actualCupom!['tipo'] = restaurant!.cupom!['tipo'];
+    if (actualCupom!['tipo'] == 'desconto') {
+      actualCupom!['valor'] = restaurant!.cupom!['valor'];
     }
   }
 
@@ -153,7 +159,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void selectCupomValue(value) {
-    selectedCupom?['valor'] = value;
+    selectedCupom!['valor'] = value;
   }
 
   @action

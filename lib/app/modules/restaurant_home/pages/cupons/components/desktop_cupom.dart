@@ -4,85 +4,136 @@ import 'cupom_selector.dart';
 class DesktopCupom extends StatelessWidget {
   const DesktopCupom({Key? key}) : super(key: key);
 
+  final _cupomTextStyle = const TextStyle(
+    color: Color(0xFF2e6788),
+    fontSize: 13,
+    fontFamily: 'Nunito',
+  );
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(right: 8.0),
-          child: CupomSelector(
-            cupom: Card(
-              color: Colors.white,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        child: Column(
-                          children: [
-                            const Align(
-                              alignment: Alignment.topCenter,
-                              child: Text(
-                                "Nenhum cupom!",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.clip,
-                                  fontFamily: 'Nunito',
-                                  color: Colors.black,
-                                ),
-                              ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: CupomSelector(
+                cupom: Card(
+                  color: Colors.white,
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: const Color(0xffEFF3F5),
+                      ),
+                      height: 50,
+                      width: 250,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8, left: 20),
+                            child: Image.asset(
+                              'lib/app/modules/home/assets/images/entrega_gratis.png',
+                              height: 30,
+                              color: const Color(0xFF2e6788),
                             ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Image.asset(
-                                  '../assets/images/cupons/cupom.png',
-                                  width: 40,
-                                  height: 40,
-                                  color: Colors.black),
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Entrega grátis disponível',
+                              style: _cupomTextStyle,
                             ),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.cyan[50],
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              blurRadius: 6.0, // soften the shadow
-                              spreadRadius: 2.0, //extend the shadow
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
+                cardName: 'entrega_gratis',
               ),
             ),
-            cardName: 'nenhum',
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 8.0),
-          child: CupomSelector(
-            cupom: const Card(
-              color: Colors.white,
-              child: Text('suco2'),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: CupomSelector(
+                cupom: Card(
+                  color: Colors.white,
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: const Color(0xffEFF3F5),
+                      ),
+                      height: 50,
+                      width: 250,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8, left: 20),
+                            child: Image.asset(
+                              'lib/app/modules/home/assets/images/cupom.png',
+                              height: 30,
+                              color: const Color(0xFF2e6788),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Desconto de R\$ disponível',
+                              style: _cupomTextStyle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                cardName: 'desconto',
+              ),
             ),
-            cardName: 'desconto',
-          ),
-        ),
-        CupomSelector(
-          cupom: const Card(
-            color: Colors.white,
-            child: Text('suco3'),
-          ),
-          cardName: 'entrega_gratis',
-        ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: CupomSelector(
+                cupom: Card(
+                  color: Colors.white,
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: const Color(0xffEFF3F5),
+                      ),
+                      height: 50,
+                      width: 250,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 12, left: 25),
+                            child: Image.asset(
+                              '../assets/images/cupons/coupon.png',
+                              height: 20,
+                              color: const Color(0xFF2e6788),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Não desejo fornecer cupons',
+                              style: _cupomTextStyle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                cardName: 'nenhum',
+              ),
+            ),
+          ],
+        )
       ],
     );
   }

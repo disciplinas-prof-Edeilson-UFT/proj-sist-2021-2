@@ -43,7 +43,7 @@ class CupomPageState extends State<CupomPage> {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 36),
+            padding: EdgeInsets.only(top: 60),
             child: Text(
               "Selecione abaixo o cupom que deseja aplicar:",
               style: TextStyle(
