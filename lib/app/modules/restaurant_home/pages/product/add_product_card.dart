@@ -53,27 +53,29 @@ class _AddProductState extends State<AddProduct> {
                   ),
                   actions: <Widget>[
                     Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const ProductImage(),
-                          CustomTextField(
-                            controller: store.formProduct['name'],
-                            label: 'Nome do produto',
-                          ),
-                          CustomTextField(
-                            controller: store.formProduct['desc'],
-                            label: 'Descrição do produto',
-                          ),
-                          PriceTextField(
-                            controller: store.formProduct['price'],
-                            label: 'Preço do produto',
-                          ),
-                          CustomTextField(
-                            controller: store.formProduct['categories'],
-                            label: 'Categoria do produto',
-                          ),
-                        ],
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const ProductImage(),
+                            CustomTextField(
+                              controller: store.formProduct['name'],
+                              label: 'Nome do produto',
+                            ),
+                            CustomTextField(
+                              controller: store.formProduct['desc'],
+                              label: 'Descrição do produto',
+                            ),
+                            PriceTextField(
+                              controller: store.formProduct['price'],
+                              label: 'Preço do produto',
+                            ),
+                            CustomTextField(
+                              controller: store.formProduct['categories'],
+                              label: 'Categoria do produto',
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Center(
@@ -96,15 +98,18 @@ class _AddProductState extends State<AddProduct> {
   }
 
   _verifyField() {
-    if (store.formProduct['name'] != null &&
+    if (store.imgPath != null &&
+        store.formProduct['name'] != null &&
         store.formProduct['categories'] != null &&
         store.formProduct['price'] != null &&
         store.formProduct['disc'] != null) {
+      store.cadastroProduto();
       Navigator.of(context).pop();
       imageAlert("Produto cadastrado com sucesso", Colors.green).show(context);
       store.prodctFormCleaner();
     } else {
-      imageAlert("Impossivel cadastrar um produto vazio", secondaryColor)
+      imageAlert("Impossivel cadastrar um produto vazio e/ou sem imagem",
+              secondaryColor)
           .show(context);
     }
   }
