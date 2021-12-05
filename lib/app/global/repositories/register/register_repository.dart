@@ -22,7 +22,7 @@ class RegisterRepository extends IRegisterRepository {
       'emailOwner': controller['email']?.text,
       'phoneOwner': controller['telefone']?.text,
       'CNPJ': controller['CNPJ']?.text,
-      'company_name': controller['Razão Social']?.text,
+      'companyName': controller['Razão Social']?.text,
       'socialName': controller['Nome da loja']?.text,
       'phoneRestaurant': controller['Telefone da loja']?.text,
       'CEP': controller['CEP']?.text,
