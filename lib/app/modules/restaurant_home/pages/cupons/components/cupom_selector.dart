@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/pages/cupons/components/cupom_value_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class CupomSelector extends StatelessWidget {
@@ -21,9 +20,10 @@ class CupomSelector extends StatelessWidget {
         onTap: () => {
           store.setSelectedCupom(cardName),
           if (cardName == 'desconto')
+            null
+          else
             {
-              showDialog(context: context, 
-                builder: (_) => const CupomValueDialog()),
+              store.selectCupomValue(null),
             }
         },
         child: Stack(
@@ -37,12 +37,15 @@ class CupomSelector extends StatelessWidget {
                 showInfo('Este é o seu cupom atual', activated: false)
             else if (store.actualCupom?['tipo'] != cardName &&
                 store.selectedCupom?['tipo'] == cardName)
-              showInfo('Adicionar o cupom de ${cardName.toLowerCase()}',
-                  activated: true)
+              if (cardName == 'nenhum')
+                showInfo('Remover o cupom ativo', activated: true)
+              else
+                showInfo('Adicionar o cupom de ${cardName.toLowerCase()}',
+                    activated: true)
             else
               showInfo('Clique para alterar o cupom', activated: false),
             SizedBox(
-              height: 50,
+              height: 300,
               width: 250,
               child: cupom,
             ),
@@ -59,7 +62,7 @@ class CupomSelector extends StatelessWidget {
         color: color.withOpacity(0.7),
         borderRadius: BorderRadius.circular(14),
       ),
-      height: 74,
+      height: 324,
       width: 260,
       child: Align(
         alignment: Alignment.topCenter,

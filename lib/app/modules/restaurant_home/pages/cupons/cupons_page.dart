@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
-import 'components/desktop_cupom.dart';
-import 'components/mobile_cupom.dart';
+import 'components/cupom_layout.dart';
 
 class CupomPage extends StatefulWidget {
   static String get routeName => '/cupons';
@@ -54,14 +53,8 @@ class CupomPageState extends State<CupomPage> {
               ),
             ),
           ),
-          Expanded(
-            child: LayoutBuilder(builder: (context, constraints) {
-              if (constraints.maxWidth > 800) {
-                return const DesktopCupom();
-              } else {
-                return const MobilePlan();
-              }
-            }),
+          const Expanded(
+            child: CupomLayout(),
           ),
           Observer(builder: (_) {
             return Padding(
@@ -81,9 +74,12 @@ class CupomPageState extends State<CupomPage> {
                         {
                           if (store.selectedCupom?['tipo'] == 'desconto')
                             {
-                              if (store.selectedCupom?['value'] != null)
+                              if (store.formKey.currentState!.validate())
                                 {
-                                  store.updateCupom(),
+                                  if (store.selectedCupom?['value'] != null)
+                                    {
+                                      store.updateCupom(),
+                                    },
                                 },
                             }
                           else

@@ -145,7 +145,9 @@ class RestaurantCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    restaurant.cupom != null
+                    restaurant.cupom != null &&
+                            restaurant.cupom?['tipo'] != null &&
+                            restaurant.cupom?['tipo'] != 'nenhum'
                         ? CupomCard(cupom: restaurant.cupom)
                         : const SizedBox(height: 28),
                   ],

@@ -154,7 +154,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void setSelectedCupom(name) {
-    selectedCupom = {"tipo": name == "nenhum" ? null : name};
+    selectedCupom = {"tipo": name};
   }
 
   @action
