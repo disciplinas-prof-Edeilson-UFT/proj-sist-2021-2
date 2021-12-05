@@ -286,11 +286,11 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
-  void selectCupomValue(dynamic value) {
+  void setSelectedCupomValue(dynamic value) {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
-        name: '_RestaurantHomeStoreBase.selectCupomValue');
+        name: '_RestaurantHomeStoreBase.setSelectedCupomValue');
     try {
-      return super.selectCupomValue(value);
+      return super.setSelectedCupomValue(value);
     } finally {
       _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
     }

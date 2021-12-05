@@ -19,11 +19,18 @@ class CupomSelector extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         onTap: () => {
           store.setSelectedCupom(cardName),
+          if (store.actualCupom?['tipo'] == 'desconto')
+            {store.valueController.text = store.actualCupom?['valor']}
+          else
+            {
+              store.valueController.clear(),
+              store.formKey.currentState?.reset(),
+            },
           if (cardName == 'desconto')
             null
           else
             {
-              store.selectCupomValue(null),
+              store.setSelectedCupomValue(null),
             }
         },
         child: Stack(

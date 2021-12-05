@@ -70,20 +70,25 @@ class CupomPageState extends State<CupomPage> {
                   if (store.selectedCupom?['tipo'] != null)
                     {
                       if (store.selectedCupom?['tipo'] !=
-                          store.actualCupom?['tipo'])
+                              store.actualCupom?['tipo'] ||
+                          store.selectedCupom?['valor'] !=
+                              store.actualCupom?['valor'])
                         {
                           if (store.selectedCupom?['tipo'] == 'desconto')
                             {
                               if (store.formKey.currentState!.validate())
-                                {
-                                  if (store.selectedCupom?['value'] != null)
-                                    {
-                                      store.updateCupom(),
-                                    },
-                                },
+                                store.setSelectedCupomValue(
+                                    store.valueController.text),
+                              {
+                                if (store.selectedCupom?['valor'] != null)
+                                  {
+                                    store.updateCupom(),
+                                  },
+                              },
                             }
                           else
                             {
+                              store.formKey.currentState?.reset(),
                               store.updateCupom(),
                             },
                         },

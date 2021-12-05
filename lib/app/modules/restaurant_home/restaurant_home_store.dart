@@ -131,6 +131,8 @@ abstract class _RestaurantHomeStoreBase with Store {
     actualPlan = selectedPlan!;
   }
 
+  final TextEditingController valueController = TextEditingController();
+
   @observable
   Map<String, dynamic>? selectedCupom = {
     "tipo": null,
@@ -158,7 +160,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @action
-  void selectCupomValue(value) {
+  void setSelectedCupomValue(value) {
     selectedCupom!['valor'] = value;
   }
 

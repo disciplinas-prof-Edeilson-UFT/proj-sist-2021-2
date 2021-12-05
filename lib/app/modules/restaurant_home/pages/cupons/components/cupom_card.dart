@@ -14,7 +14,6 @@ class CupomCard extends StatelessWidget {
   final String image;
   final String descr;
   final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
-  final TextEditingController controller = TextEditingController();
 
   CupomCard(
       {Key? keys,
@@ -67,21 +66,18 @@ class CupomCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Expanded(
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Flexible(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10.0, left: 10, right: 10),
-                          child: Text(
-                            descr,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontFamily: 'Nunito',
-                            ),
+                      Expanded(
+                        child: Text(
+                          descr,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontFamily: 'Nunito',
                           ),
                         ),
                       ),
@@ -105,6 +101,7 @@ class CupomCard extends StatelessWidget {
       child: Form(
         key: store.formKey,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
               'Valor do cupom',
@@ -113,34 +110,43 @@ class CupomCard extends StatelessWidget {
                 fontFamily: 'Nunito',
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: TextFormField(
-                textAlign: TextAlign.center,
-                controller: controller,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                  LengthLimitingTextInputFormatter(2),
-                  CurrencyTextInputFormatter(decimalDigits: 0, symbol: 'R\$')
-                ],
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "O cupom deve ter um valor!";
-                  }
-                  return null;
-                },
-                cursorColor: secondaryColor,
-                decoration: const InputDecoration(
-                  hintText: 'R\$ 10',
-                  focusColor: secondaryColor,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: secondaryColor,
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: TextFormField(
+                  textAlign: TextAlign.center,
+                  controller: store.valueController,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(2),
+                    CurrencyTextInputFormatter(decimalDigits: 0, symbol: 'R\$')
+                  ],
+                  onTap: () => store.setSelectedCupom('desconto'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "O cupom deve ter um valor válido!";
+                    } else {
+                      final valor =
+                          int.parse(value.replaceAll(RegExp('[^0-9]'), ''));
+                      if (valor == 0) {
+                        return "O cupom deve ter um valor válido!";
+                      }
+                    }
+                    return null;
+                  },
+                  cursorColor: secondaryColor,
+                  decoration: const InputDecoration(
+                    hintText: 'R\$ 10',
+                    focusColor: secondaryColor,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: secondaryColor,
+                      ),
                     ),
+                    border: OutlineInputBorder(),
                   ),
-                  border: OutlineInputBorder(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
             ),
           ],
