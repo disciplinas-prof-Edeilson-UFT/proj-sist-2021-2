@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'cupom_card.dart';
 
-class CupomLayout extends StatelessWidget {
-  const CupomLayout({Key? key}) : super(key: key);
+class CupomDesktopLayout extends StatelessWidget {
+  const CupomDesktopLayout({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
