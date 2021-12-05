@@ -127,7 +127,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void updatePlan() {
-    ProfileRepository().updateInfo({'delivery_plan': selectedPlan});
+    ProfileRepository().updateInfo({'deliveryPlan': selectedPlan});
     actualPlan = selectedPlan!;
   }
 
@@ -146,14 +146,14 @@ abstract class _RestaurantHomeStoreBase with Store {
   Map<String, TextEditingController> profileFormController = {
     'restaurant': TextEditingController(),
     'prepare_time': TextEditingController(),
-    'delivery_price': TextEditingController(),
-    'phone_restaurant': TextEditingController(),
+    'deliveryPrice': TextEditingController(),
+    'phoneRestaurant': TextEditingController(),
   };
 
   Map<String, TextEditingController> managementFormController = {
-    'name_Owner': TextEditingController(),
-    'phone_Owner': TextEditingController(),
-    'email_Owner': TextEditingController(),
+    'nameOwner': TextEditingController(),
+    'phoneOwner': TextEditingController(),
+    'emailOwner': TextEditingController(),
     'Senha': TextEditingController(),
     'Confirmar Senha': TextEditingController(),
   };
@@ -184,19 +184,17 @@ abstract class _RestaurantHomeStoreBase with Store {
     profileFormController['restaurant']?.text = restaurant?.socialName ?? '';
     profileFormController['prepare_time']?.text =
         restaurant?.estimatedDelivery ?? '';
-    profileFormController['delivery_price']?.text =
+    profileFormController['deliveryPrice']?.text =
         'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
-    profileFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
+    profileFormController['phoneRestaurant']?.text = restaurant?.phone ?? '';
     category = restaurant?.category ?? categories.first;
   }
 
   @action
   void updateManagementControllers() {
-    managementFormController['name_Owner']?.text = restaurant?.nameOwner ?? '';
-    managementFormController['phone_Owner']?.text =
-        restaurant?.phoneOwner ?? '';
-    managementFormController['email_Owner']?.text =
-        restaurant?.emailOwner ?? '';
+    managementFormController['nameOwner']?.text = restaurant?.nameOwner ?? '';
+    managementFormController['phoneOwner']?.text = restaurant?.phoneOwner ?? '';
+    managementFormController['emailOwner']?.text = restaurant?.emailOwner ?? '';
   }
 
   @action

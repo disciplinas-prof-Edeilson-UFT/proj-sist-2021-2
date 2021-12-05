@@ -34,18 +34,18 @@ class ProfileRepository extends IProfile {
         .collection('restaurant')
         .doc(store.id)
         .update({
-      'social_name':
+      'socialName':
           _verifyForm(store.profileFormController['restaurant']?.text) ??
               restaurant.socialName,
-      'phone_restaurant':
-          _verifyForm(store.profileFormController['phone_restaurant']?.text) ??
+      'phoneRestaurant':
+          _verifyForm(store.profileFormController['phoneRestaurant']?.text) ??
               restaurant.phone,
       'category': store.category,
-      'estimated_delivery':
+      'estimatedDelivery':
           _verifyForm(store.profileFormController['prepare_time']?.text) ??
               restaurant.estimatedDelivery,
-      'delivery_price': _parsePrice(_verifyForm(
-              store.profileFormController['delivery_price']?.text)) ??
+      'deliveryPrice': _parsePrice(_verifyForm(
+              store.profileFormController['deliveryPrice']?.text)) ??
           restaurant.deliveryPrice,
     });
     store.updateProfileControllers();
@@ -57,14 +57,14 @@ class ProfileRepository extends IProfile {
         .collection('restaurant')
         .doc(store.id)
         .update({
-      'name_Owner':
-          _verifyForm(store.managementFormController['name_Owner']?.text) ??
+      'nameOwner':
+          _verifyForm(store.managementFormController['nameOwner']?.text) ??
               restaurant.nameOwner,
-      'phone_Owner':
-          _verifyForm(store.managementFormController['phone_Owner']?.text) ??
+      'phoneOwner':
+          _verifyForm(store.managementFormController['phoneOwner']?.text) ??
               restaurant.phoneOwner,
-      'email_Owner':
-          _verifyForm(store.managementFormController['email_Owner']?.text) ??
+      'emailOwner':
+          _verifyForm(store.managementFormController['emailOwner']?.text) ??
               restaurant.emailOwner,
       'password': _verifyForm(store.managementFormController['Senha']?.text) ??
           restaurant.password,

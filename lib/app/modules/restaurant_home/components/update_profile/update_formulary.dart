@@ -42,7 +42,7 @@ class UpdateFormulary extends StatelessWidget {
                 Text('Telefone da loja', style: _labelStyle),
                 TextFormField(
                   controller:
-                      homeStore.profileFormController['phone_restaurant'],
+                      homeStore.profileFormController['phoneRestaurant'],
                   inputFormatters: [_phoneFormat],
                   textCapitalization: TextCapitalization.words,
                   validator: (value) {
@@ -126,7 +126,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: homeStore.profileFormController['delivery_price'],
+                controller: homeStore.profileFormController['deliveryPrice'],
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(5),

@@ -45,7 +45,7 @@ class ManagementFormulary extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         controller:
-                            homeStore.managementFormController['name_Owner'],
+                            homeStore.managementFormController['nameOwner'],
                         textCapitalization: TextCapitalization.words,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
@@ -84,7 +84,7 @@ class ManagementFormulary extends StatelessWidget {
                   Text('Celular do responsável da loja', style: _labelStyle),
                   TextFormField(
                     controller:
-                        homeStore.managementFormController['phone_Owner'],
+                        homeStore.managementFormController['phoneOwner'],
                     inputFormatters: [_phoneFormat],
                     textCapitalization: TextCapitalization.words,
                     validator: (value) {
@@ -127,7 +127,7 @@ class ManagementFormulary extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         controller:
-                            homeStore.managementFormController['email_Owner'],
+                            homeStore.managementFormController['emailOwner'],
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Este campo não pode ficar vazio";

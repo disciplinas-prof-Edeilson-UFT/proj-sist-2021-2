@@ -18,13 +18,13 @@ class RegisterRepository extends IRegisterRepository {
   Future<void>? addRestaurant(
       String restaurantUID, Map<String, TextEditingController> controller) {
     restaurant.doc(restaurantUID).set({
-      'name_Owner': controller['nome']?.text,
-      'email_Owner': controller['email']?.text,
-      'phone_Owner': controller['telefone']?.text,
+      'nameOwner': controller['nome']?.text,
+      'emailOwner': controller['email']?.text,
+      'phoneOwner': controller['telefone']?.text,
       'CNPJ': controller['CNPJ']?.text,
       'company_name': controller['Razão Social']?.text,
-      'social_name': controller['Nome da loja']?.text,
-      'phone_restaurant': controller['Telefone da loja']?.text,
+      'socialName': controller['Nome da loja']?.text,
+      'phoneRestaurant': controller['Telefone da loja']?.text,
       'CEP': controller['CEP']?.text,
       'state': controller['Estado']?.text,
       'city': controller['Cidade']?.text,
@@ -33,7 +33,7 @@ class RegisterRepository extends IRegisterRepository {
       'number': controller['Número']?.text,
       'complement': controller['Complemento (Opcional)']?.text,
       'password': controller['Senha']?.text,
-      'delivery_plan': controller['Plano de Entrega']?.text,
+      'deliveryPlan': controller['Plano de Entrega']?.text,
       'category': controller['Categoria']?.text,
     });
   }
