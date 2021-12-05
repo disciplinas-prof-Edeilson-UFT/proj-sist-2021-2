@@ -1,5 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:mockito/mockito.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/add_product_components/custom_button.dart';
@@ -80,11 +81,7 @@ class _AddProductState extends State<AddProduct> {
                         label: "Salvar",
                         onPressed: () {
                           store.cadastroProduto();
-                          Navigator.of(context).pop();
-                          imageAlert("Produto cadastrado com sucesso",
-                                  Colors.green)
-                              .show(context);
-                          store.prodctFormCleaner();
+                          _verifyField();
                         },
                       ),
                     ),
@@ -96,6 +93,20 @@ class _AddProductState extends State<AddProduct> {
         },
       ),
     );
+  }
+
+  _verifyField() {
+    if (store.formProduct['name'] != null &&
+        store.formProduct['categories'] != null &&
+        store.formProduct['price'] != null &&
+        store.formProduct['disc'] != null) {
+      Navigator.of(context).pop();
+      imageAlert("Produto cadastrado com sucesso", Colors.green).show(context);
+      store.prodctFormCleaner();
+    } else {
+      imageAlert("Impossivel cadastrar um produto vazio", secondaryColor)
+          .show(context);
+    }
   }
 
   Flushbar imageAlert(String message, Color color) {
