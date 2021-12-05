@@ -19,10 +19,11 @@ class CupomSelector extends StatelessWidget {
         hoverColor: Colors.transparent,
         borderRadius: BorderRadius.circular(16),
         onTap: () => {
-          store.selectCupomName(cardName),
+          store.setSelectedCupom(cardName),
           if (cardName == 'desconto')
             {
-              const CupomValueDialog(),
+              showDialog(context: context, 
+                builder: (_) => const CupomValueDialog()),
             }
         },
         child: Stack(
@@ -34,8 +35,8 @@ class CupomSelector extends StatelessWidget {
                 showInfo('Este é o seu cupom atual', activated: true)
               else
                 showInfo('Este é o seu cupom atual', activated: false)
-            else if (store.actualCupom?['tipo'] != null &&
-                store.actualCupom?['tipo'] == cardName)
+            else if (store.actualCupom?['tipo'] != cardName &&
+                store.selectedCupom?['tipo'] == cardName)
               showInfo('Adicionar o cupom de ${cardName.toLowerCase()}',
                   activated: true)
             else

@@ -153,12 +153,8 @@ abstract class _RestaurantHomeStoreBase with Store {
   }
 
   @action
-  void selectCupomName(name) {
-    if (name == 'nenhum') {
-      selectedCupom?['tipo'] = null;
-    } else {
-      selectedCupom?['tipo'] = name;
-    }
+  void setSelectedCupom(name) {
+    selectedCupom = {"tipo": name == "nenhum" ? null : name};
   }
 
   @action

@@ -21,7 +21,7 @@ class _CupomValueDialogState extends State<CupomValueDialog> {
     fontFamily: 'Nunito',
   );
 
-  late TextEditingController value;
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _CupomValueDialogState extends State<CupomValueDialog> {
                   style: _labelStyle,
                 ),
                 TextFormField(
-                  controller: value,
+                  controller: controller,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
                     LengthLimitingTextInputFormatter(4),
@@ -88,7 +88,7 @@ class _CupomValueDialogState extends State<CupomValueDialog> {
                     ),
                     onPressed: () async {
                       if (store.formKey.currentState!.validate()) {
-                        store.selectCupomValue(value.text);
+                        store.selectCupomValue(controller.text);
                       }
                     },
                   ),
