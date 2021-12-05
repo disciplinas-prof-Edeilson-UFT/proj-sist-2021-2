@@ -154,7 +154,11 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void selectCupomName(name) {
-    selectedCupom?['tipo'] = name;
+    if (name == 'nenhum') {
+      selectedCupom?['tipo'] = null;
+    } else {
+      selectedCupom?['tipo'] = name;
+    }
   }
 
   @action
@@ -165,7 +169,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void updateCupom() {
     ProfileRepository().updateInfo({'cupom': selectedCupom});
-    actualCupom = selectedCupom!;
+    actualCupom = selectedCupom;
   }
 
   Color iconColor = tertiaryColor;

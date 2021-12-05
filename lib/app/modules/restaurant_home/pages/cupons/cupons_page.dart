@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -72,11 +73,26 @@ class CupomPageState extends State<CupomPage> {
                       MaterialStateProperty.resolveWith(_getButtonColor),
                   minimumSize: MaterialStateProperty.all(const Size(210, 48)),
                 ),
-                onPressed: store.selectedCupom == null
-                    ? null
-                    : store.selectedCupom == store.actualCupom
-                        ? null
-                        : store.updateCupom,
+                onPressed: () => {
+                  if (store.selectedCupom?['tipo'] != null)
+                    {
+                      if (store.selectedCupom?['tipo'] !=
+                          store.actualCupom?['tipo'])
+                        {
+                          if (store.selectedCupom?['tipo'] == 'desconto')
+                            {
+                              if (store.selectedCupom?['value'] != null)
+                                {
+                                  store.updateCupom(),
+                                },
+                            }
+                          else
+                            {
+                              store.updateCupom(),
+                            },
+                        },
+                    },
+                },
                 child: const Text(
                   'Confirmar',
                   style: TextStyle(fontFamily: 'Nunito', fontSize: 18),

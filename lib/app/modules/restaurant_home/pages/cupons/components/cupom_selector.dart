@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/pages/cupons/components/cupom_value_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 class CupomSelector extends StatelessWidget {
@@ -17,7 +18,13 @@ class CupomSelector extends StatelessWidget {
       return InkWell(
         hoverColor: Colors.transparent,
         borderRadius: BorderRadius.circular(16),
-        onTap: () => store.selectCupomName({'tipo': cardName}),
+        onTap: () => {
+          store.selectCupomName(cardName),
+          if (cardName == 'desconto')
+            {
+              const CupomValueDialog(),
+            }
+        },
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
