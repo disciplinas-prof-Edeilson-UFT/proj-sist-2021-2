@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-
 import 'components/cupom_desktop_layout.dart';
 import 'components/cupom_mobile_layout.dart';
 
@@ -73,34 +72,7 @@ class CupomPageState extends State<CupomPage> {
                       MaterialStateProperty.resolveWith(_getButtonColor),
                   minimumSize: MaterialStateProperty.all(const Size(210, 48)),
                 ),
-                onPressed: () => {
-                  if (store.selectedCupom?['tipo'] != null)
-                    {
-                      if (store.selectedCupom?['tipo'] !=
-                              store.actualCupom?['tipo'] ||
-                          store.selectedCupom?['valor'] !=
-                              store.actualCupom?['valor'])
-                        {
-                          if (store.selectedCupom?['tipo'] == 'desconto')
-                            {
-                              if (store.formKey.currentState!.validate())
-                                store.setSelectedCupomValue(
-                                    store.valueController.text),
-                              {
-                                if (store.selectedCupom?['valor'] != null)
-                                  {
-                                    store.updateCupom(),
-                                  },
-                              },
-                            }
-                          else
-                            {
-                              store.formKey.currentState?.reset(),
-                              store.updateCupom(),
-                            },
-                        },
-                    },
-                },
+                onPressed: store.resolveCupomButton ? buttonAction : null,
                 child: const Text(
                   'Confirmar',
                   style: TextStyle(fontFamily: 'Nunito', fontSize: 18),
@@ -111,6 +83,21 @@ class CupomPageState extends State<CupomPage> {
         ],
       ),
     );
+  }
+
+  void buttonAction() {
+    if (store.selectedCupom?['tipo'] == 'desconto') {
+      if (store.formKey.currentState!.validate()) {
+        store.setSelectedCupomValue(
+          store.valueController.text);
+      }
+      if (store.selectedCupom?['valor'] != null) {
+          store.updateCupom();
+      }
+    } else {
+      store.formKey.currentState?.reset();
+      store.updateCupom();
+    }
   }
 
   Color _getButtonColor(Set<MaterialState> states) {

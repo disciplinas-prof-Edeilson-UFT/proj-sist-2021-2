@@ -155,6 +155,22 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$resolveCupomButtonAtom =
+      Atom(name: '_RestaurantHomeStoreBase.resolveCupomButton');
+
+  @override
+  bool get resolveCupomButton {
+    _$resolveCupomButtonAtom.reportRead();
+    return super.resolveCupomButton;
+  }
+
+  @override
+  set resolveCupomButton(bool value) {
+    _$resolveCupomButtonAtom.reportWrite(value, super.resolveCupomButton, () {
+      super.resolveCupomButton = value;
+    });
+  }
+
   final _$profileFormControllerAtom =
       Atom(name: '_RestaurantHomeStoreBase.profileFormController');
 
@@ -308,6 +324,17 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  void cupomButtonResolver() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.cupomButtonResolver');
+    try {
+      return super.cupomButtonResolver();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void handleFocusChange() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
         name: '_RestaurantHomeStoreBase.handleFocusChange');
@@ -363,6 +390,7 @@ selectedPlan: ${selectedPlan},
 actualPlan: ${actualPlan},
 selectedCupom: ${selectedCupom},
 actualCupom: ${actualCupom},
+resolveCupomButton: ${resolveCupomButton},
 profileFormController: ${profileFormController},
 toggleText: ${toggleText}
     ''';

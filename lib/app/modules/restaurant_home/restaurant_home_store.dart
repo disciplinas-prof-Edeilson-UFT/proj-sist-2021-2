@@ -157,6 +157,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void setSelectedCupom(name) {
     selectedCupom = {"tipo": name};
+    cupomButtonResolver();
   }
 
   @action
@@ -168,6 +169,23 @@ abstract class _RestaurantHomeStoreBase with Store {
   void updateCupom() {
     ProfileRepository().updateInfo({'cupom': selectedCupom});
     actualCupom = selectedCupom;
+  }
+
+  @observable
+  bool resolveCupomButton = false;
+
+  @action
+  void cupomButtonResolver() {
+    if (selectedCupom == null) {
+      resolveCupomButton = false;
+      return;
+    } else if (selectedCupom!['tipo'] == actualCupom!['tipo']) {
+      if (valueController.text == actualCupom!['valor']) {
+        resolveCupomButton =  false;
+        return;
+      }
+    } 
+    resolveCupomButton =  true;
   }
 
   Color iconColor = tertiaryColor;

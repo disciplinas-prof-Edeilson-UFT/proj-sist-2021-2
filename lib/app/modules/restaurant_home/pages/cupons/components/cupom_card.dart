@@ -145,6 +145,7 @@ class CupomCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: TextFormField(
+                  onChanged: (value) => store.cupomButtonResolver(),
                   textAlign: TextAlign.center,
                   controller: store.valueController,
                   inputFormatters: [
