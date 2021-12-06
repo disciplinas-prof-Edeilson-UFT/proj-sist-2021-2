@@ -172,7 +172,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     ProfileRepository().updateInfo({'cupom': selectedCupom});
     actualCupom = selectedCupom;
     if (actualCupom!['tipo'] == 'desconto') {
-      valueController.text = actualCupom!['valor'];
+      valueController.text = 'R\$' + actualCupom!['valor'].toString();
     }
     cupomButtonResolver();
   }
@@ -186,7 +186,8 @@ abstract class _RestaurantHomeStoreBase with Store {
       resolveCupomButton = false;
       return;
     } else if (selectedCupom!['tipo'] == actualCupom!['tipo']) {
-      if (valueController.text != actualCupom!['valor'] &&
+      if (valueController.text.replaceAll(RegExp('[^0-9]'), '') !=
+              actualCupom!['valor'].toString() &&
           actualCupom!['tipo'] == 'desconto') {
         resolveCupomButton = true;
         return;

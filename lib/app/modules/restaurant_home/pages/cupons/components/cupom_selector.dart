@@ -21,7 +21,8 @@ class CupomSelector extends StatelessWidget {
           store.setSelectedCupom(cardName),
           if (store.actualCupom?['tipo'] == 'desconto')
             {
-              store.valueController.text = store.actualCupom?['valor'],
+              store.valueController.text =
+                  'R\$' + store.actualCupom!['valor'].toString(),
             }
           else
             {

@@ -88,7 +88,8 @@ class CupomPageState extends State<CupomPage> {
   void buttonAction() {
     if (store.selectedCupom?['tipo'] == 'desconto') {
       if (store.formKey.currentState!.validate()) {
-        store.setSelectedCupomValue(store.valueController.text);
+        store.setSelectedCupomValue(int.parse(
+            store.valueController.text.replaceAll(RegExp('[^0-9]'), '')));
       }
       if (store.selectedCupom?['valor'] != null) {
         store.updateCupom();
@@ -101,7 +102,7 @@ class CupomPageState extends State<CupomPage> {
 
   Color _getButtonColor(Set<MaterialState> states) {
     if (states.any((e) => e == MaterialState.pressed)) {
-      return const Color(0xffA31922);
+      return buttonPressedColor;
     } else if (states.any((e) => e == MaterialState.disabled)) {
       return tertiaryColor;
     }

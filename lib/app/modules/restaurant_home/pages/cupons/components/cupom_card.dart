@@ -32,7 +32,7 @@ class CupomCard extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
-              color: cupomCollor,
+              color: cupomColor,
             ),
             height: 300,
             width: 250,
@@ -48,7 +48,7 @@ class CupomCard extends StatelessWidget {
                       child: Image.asset(
                         image,
                         height: 50,
-                        color: cupomTextCollor,
+                        color: cupomTextColor,
                       ),
                     ),
                   ],
@@ -59,7 +59,7 @@ class CupomCard extends StatelessWidget {
                     Text(
                       text,
                       style: const TextStyle(
-                        color: cupomTextCollor,
+                        color: cupomTextColor,
                         fontSize: 18,
                         fontFamily: 'Nunito',
                       ),
@@ -157,7 +157,7 @@ class CupomCard extends StatelessWidget {
                     store.setSelectedCupom('desconto'),
                     store.actualCupom!['tipo'] == 'desconto'
                         ? store.valueController.text =
-                            store.actualCupom!['valor']
+                            'R\$' + store.actualCupom!['valor'].toString()
                         : store.valueController.text = '',
                     store.cupomButtonResolver(),
                   },
