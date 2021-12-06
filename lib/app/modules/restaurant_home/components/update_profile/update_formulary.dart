@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
+import 'package:pscomidas/app/global/repositories/restaurant_home/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/components_profile_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
@@ -40,7 +40,7 @@ class UpdateFormulary extends StatelessWidget {
                 Text('Telefone da loja', style: _labelStyle),
                 TextFormField(
                   controller:
-                      homeStore.profileFormController['phone_restaurant'],
+                      homeStore.profileFormController['phoneRestaurant'],
                   inputFormatters: [_phoneFormat],
                   textCapitalization: TextCapitalization.words,
                   validator: (value) {
@@ -81,7 +81,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: homeStore.profileFormController['prepare_time'],
+                controller: homeStore.profileFormController['prepareTime'],
                 inputFormatters: [_timeFormat],
                 validator: (value) {
                   var values = value?.split('-');
@@ -124,7 +124,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: homeStore.profileFormController['delivery_price'],
+                controller: homeStore.profileFormController['deliveryPrice'],
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(5),
