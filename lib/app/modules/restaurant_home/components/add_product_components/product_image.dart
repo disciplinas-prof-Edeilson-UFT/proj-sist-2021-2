@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
@@ -53,8 +55,8 @@ class _ProductImageState extends State<ProductImage> {
     final name = event.name;
     var end = name.split('.');
     if (end[1] == 'jpg' || end[1] == 'png') {
-      await imageAlert("Imagem inserida", Colors.green).show(context);
       restaurantHomeStore.setProductImage(event);
+      await imageAlert("Imagem inserida", Colors.green).show(context);
     } else {
       await imageAlert("Arquivo não suportado", Colors.red).show(context);
     }

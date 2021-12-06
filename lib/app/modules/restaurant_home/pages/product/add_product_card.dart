@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:mockito/mockito.dart';
@@ -17,6 +19,8 @@ class AddProduct extends StatefulWidget {
 
 class _AddProductState extends State<AddProduct> {
   final RestaurantHomeStore store = Modular.get();
+  final _formKey = GlobalKey<FormState>();
+  String? name;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -53,7 +57,8 @@ class _AddProductState extends State<AddProduct> {
                   ),
                   actions: <Widget>[
                     Center(
-                      child: SingleChildScrollView(
+                      child: Form(
+                        key: _formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -82,8 +87,7 @@ class _AddProductState extends State<AddProduct> {
                       child: CustomButton(
                         label: "Salvar",
                         onPressed: () {
-                          store.cadastroProduto();
-                          _verifyField();
+                          _verifyField(context);
                         },
                       ),
                     ),
@@ -97,14 +101,10 @@ class _AddProductState extends State<AddProduct> {
     );
   }
 
-  _verifyField() {
-    if (store.imgPath != null &&
-        store.formProduct['name'] != null &&
-        store.formProduct['categories'] != null &&
-        store.formProduct['price'] != null &&
-        store.formProduct['disc'] != null) {
-      store.cadastroProduto();
+  _verifyField(context) {
+    if (_formKey.currentState!.validate() && store.imgPath != null) {
       Navigator.of(context).pop();
+      store.cadastroProduto();
       imageAlert("Produto cadastrado com sucesso", Colors.green).show(context);
       store.prodctFormCleaner();
     } else {
