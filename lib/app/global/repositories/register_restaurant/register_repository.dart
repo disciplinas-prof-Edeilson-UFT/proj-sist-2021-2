@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/global/repositories/register/register_repository_interface.dart';
+import 'package:pscomidas/app/global/repositories/register_restaurant/register_repository_service.dart';
 
-class RegisterRepository extends IRegisterRepository {
+class RegisterRepository extends RegisterRepositoryService {
   final CollectionReference restaurant =
       FirebaseFirestore.instance.collection('restaurant');
 

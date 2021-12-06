@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pscomidas/app/global/repositories/register/register_repository.dart';
+import 'package:pscomidas/app/global/repositories/register_restaurant/register_repository.dart';
 import 'pages/register_shop/register_field.dart';
 part 'restaurant_register_store.g.dart';
 

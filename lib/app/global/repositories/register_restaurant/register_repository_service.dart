@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-abstract class IRegisterRepository {
+abstract class RegisterRepositoryService {
   Future<void>? addRestaurant(
       String restaurantUID, Map<String, TextEditingController> controller);
   Future<void>? addUser(

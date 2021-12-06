@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository_interface.dart';
+import 'package:pscomidas/app/global/repositories/update_restaurant_data/update_restaurant_data_service.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
-class ProfileRepository extends IProfile {
+class UpdateRestaurantDataRepository extends UpdateRestaurantDataService {
   final store = Modular.get<RestaurantHomeStore>();
 
   @override
