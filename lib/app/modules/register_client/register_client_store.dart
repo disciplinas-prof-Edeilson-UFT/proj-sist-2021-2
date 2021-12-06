@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/cliente.dart';
+import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/repositories/client_address/client_address_repository.dart';
 import 'package:pscomidas/app/modules/register_client/pages/confirm_phone/confirm_phone_page.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_repository.dart';
 
@@ -12,9 +14,11 @@ class RegisterClientStore = _RegisterStoreBase with _$RegisterClientStore;
 
 abstract class _RegisterStoreBase with Store {
   final _repository = Modular.get<RegisterClientRepository>();
+  final _addressRepository = ClientAddressRepository();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController cpfController = TextEditingController();
+  TextEditingController cepController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -34,7 +38,26 @@ abstract class _RegisterStoreBase with Store {
   String? errorMessage;
 
   @observable
+  bool goCep = false;
+
+  @observable
   bool? registered;
+
+  @observable
+  DeliveryAt? address;
+
+  @action
+  cepValid() => goCep = !goCep;
+
+  @action
+  findCEP() async {
+    address = null;
+    try {
+      address = await _addressRepository.findCEP(cepController.text);
+    } on Exception catch (e) {
+      errorMessage = e.toString();
+    }
+  }
 
   @action
   Future<void> register() async {
@@ -44,6 +67,7 @@ abstract class _RegisterStoreBase with Store {
         cpf: cpfController.text,
         email: emailController.text,
         phone: phoneController.text,
+        address: address,
       );
       if (await _repository.registerClient(
         user,

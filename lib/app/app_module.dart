@@ -6,6 +6,7 @@ import 'package:pscomidas/app/modules/cart/cart_module.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/pages/payment_page.dart';
+import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/pages/track_page.dart';
 import 'package:pscomidas/app/modules/order/order_module.dart';
@@ -25,13 +26,14 @@ import 'modules/auth/auth_module.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.singleton((i) => OrderRepository(
+    Bind.lazySingleton((i) => OrderRepository(
         firestore: FirebaseFirestore.instance, auth: FirebaseAuth.instance)),
     Bind.singleton((i) => CartStore()),
     Bind.singleton((i) => HomeStore()),
     Bind.singleton((i) => OrderStore(i.get<CartStore>())),
     Bind.singleton((i) => RestaurantHomeStore()),
     Bind.singleton((i) => RestaurantRegisterStore()),
+    Bind.lazySingleton((i) => ClientAddressStore()),
   ];
 
   @override

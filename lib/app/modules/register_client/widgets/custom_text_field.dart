@@ -31,9 +31,9 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   TextStyle get titleStyle => GoogleFonts.getFont('Nunito',
-      fontSize: 16.0, fontWeight: FontWeight.bold);
+      fontSize: 14.0, fontWeight: FontWeight.bold);
 
-  TextStyle get digitedText => GoogleFonts.getFont('Nunito', fontSize: 16.0);
+  TextStyle get digitedText => GoogleFonts.getFont('Nunito', fontSize: 14.0);
 
   bool obscure = false;
 

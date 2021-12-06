@@ -13,6 +13,7 @@ class RegisterClientRepository {
 
   Future<UserCredential> registerClient(Cliente user, String password) async {
     String uid = '';
+    final mapAddress = user.address!.toMap();
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
         email: user.email,
@@ -25,13 +26,14 @@ class RegisterClientRepository {
         'email': user.email,
         'isClient': true,
       });
-      await clientsCollection.doc(uid).set({
-        'cards': [],
-        'cpf': user.cpf,
-      });
-      await addressCollection.doc(uid).set({
-        'address_list': [],
-      });
+      await addressCollection.add(mapAddress).then(
+            (value) async => await clientsCollection.doc(uid).set({
+              'cards': [],
+              'cpf': user.cpf,
+              'address': [value.id],
+            }),
+          );
+
       log(userCredential.user!.uid);
       return userCredential;
     } catch (e) {

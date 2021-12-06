@@ -1,12 +1,15 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/client_address/widgets/address_list_tile.dart';
 import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_store.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_submit.dart';
@@ -33,7 +36,7 @@ class RegisterClientPageState extends State<RegisterClientPage> {
 
   @override
   void initState() {
-    disposers.add(
+    disposers = [
       reaction(
         (_) => store.errorMessage != null,
         (_) => Flushbar(
@@ -64,7 +67,11 @@ class RegisterClientPageState extends State<RegisterClientPage> {
           ),
         ).show(context),
       ),
-    );
+      reaction(
+        (_) => store.goCep,
+        (_) async => await store.findCEP(),
+      ),
+    ];
     super.initState();
   }
 
@@ -90,33 +97,35 @@ class RegisterClientPageState extends State<RegisterClientPage> {
         child: SafeArea(
           child: Scaffold(
             backgroundColor: Colors.transparent,
-            body: Center(
-              child: Container(
-                width: screen.width > 1069
-                    ? screen.width * .35
-                    : screen.width > 750
-                        ? screen.width * .5
-                        : screen.width,
-                padding: const EdgeInsets.all(40.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5.0),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 2,
-                      spreadRadius: 2,
-                    )
-                  ],
-                ),
-                child: Form(
-                  key: _formKey,
-                  child: SingleChildScrollView(
+            body: SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  width: screen.width > 1069
+                      ? screen.width * .35
+                      : screen.width > 750
+                          ? screen.width * .5
+                          : screen.width,
+                  padding: const EdgeInsets.all(40.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5.0),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 2,
+                        spreadRadius: 2,
+                      )
+                    ],
+                  ),
+                  child: Form(
+                    key: _formKey,
                     child: Column(
                       children: <Widget>[
-                        Image.asset(
-                          'assets/images/logo.png',
-                          scale: 2.4,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            LogoAppBar(),
+                          ],
                         ),
                         const Padding(
                           padding: EdgeInsets.all(10.0),
@@ -124,7 +133,7 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                             'Falta pouco para matar sua fome!',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 23.0,
+                              fontSize: 22.0,
                             ),
                           ),
                         ),
@@ -181,28 +190,86 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        CustomTextField(
-                          isPassword: true,
-                          controller: store.passwordController,
-                          title: 'Senha',
-                          hint: 'Insira sua senha',
-                          validator: (value) {
-                            if (value!.length < 6) {
-                              return 'A senha deve ter no mínimo 6 caracteres';
-                            }
-                          },
+                        SizedBox(
+                          height: 100,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Flexible(
+                                child: CustomTextField(
+                                  isPassword: true,
+                                  controller: store.passwordController,
+                                  title: 'Senha',
+                                  hint: 'Insira sua senha',
+                                  validator: (value) {
+                                    if (value!.length < 6) {
+                                      return 'A senha deve ter no mínimo 6 caracteres';
+                                    }
+                                  },
+                                ),
+                              ),
+                              const SizedBox(width: 10.0),
+                              Flexible(
+                                child: CustomTextField(
+                                  isPassword: true,
+                                  controller: store.checkPasswordController,
+                                  title: 'Confirmação de senha',
+                                  hint: 'Insira novamente a senha',
+                                  validator: (value) {
+                                    if (value !=
+                                        store.passwordController.text) {
+                                      return 'As senhas não coincidem';
+                                    }
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 10),
-                        CustomTextField(
-                          isPassword: true,
-                          controller: store.checkPasswordController,
-                          title: 'Confirmação de senha',
-                          hint: 'Insira novamente a senha',
-                          validator: (value) {
-                            if (value != store.passwordController.text) {
-                              return 'As senhas não coincidem';
-                            }
-                          },
+                        Row(
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              child: CustomTextField(
+                                controller: store.cepController,
+                                title: 'CEP',
+                                hint: '00000-000',
+                                formaters: [
+                                  MaskTextInputFormatter(
+                                    mask: '#####-###',
+                                    filter: {"#": RegExp(r'[0-9]')},
+                                  ),
+                                ],
+                                validator: (value) {
+                                  if (value == null ||
+                                      value.isEmpty ||
+                                      value.length < 9) {
+                                    if (store.goCep) {
+                                      store.cepValid();
+                                    }
+                                    return 'CEP Inválido';
+                                  }
+                                  store.cepValid();
+                                },
+                              ),
+                            ),
+                            Observer(
+                              builder: (_) {
+                                if (store.address != null) {
+                                  return Flexible(
+                                    flex: 2,
+                                    child: AddressListTile(
+                                      address: store.address,
+                                      onTap: () {},
+                                    ),
+                                  );
+                                }
+                                return Container();
+                              },
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 20),
                         Wrap(
@@ -231,8 +298,7 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                         CustomSubmit(
                           label: 'Enviar',
                           onPressed: () async {
-                            if (_formKey.currentState!.validate() &&
-                                checked != false) {
+                            if (_formKey.currentState!.validate() && checked) {
                               await store.checkData();
                             } else if (checked == false) {
                               store.termsValidation();
