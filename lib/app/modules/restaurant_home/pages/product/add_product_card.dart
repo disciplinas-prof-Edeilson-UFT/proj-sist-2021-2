@@ -99,7 +99,7 @@ class _AddProductState extends State<AddProduct> {
   }
 
   _verifyField(context) {
-    if (_formKey.currentState!.validate() && store.imgPath != null) {
+    if (_formKey.currentState!.validate() && store.imgPathAux != null) {
       Navigator.of(context).pop();
       store.cadastroProduto();
       imageAlert("Produto cadastrado com sucesso", Colors.green).show(context);
