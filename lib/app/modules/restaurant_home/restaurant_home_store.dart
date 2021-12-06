@@ -19,7 +19,6 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   dynamic imgPath;
 
-  @observable
   dynamic imgPathAux;
 
   @observable
