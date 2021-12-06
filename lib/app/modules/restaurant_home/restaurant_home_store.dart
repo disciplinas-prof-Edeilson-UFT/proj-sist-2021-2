@@ -19,6 +19,8 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   dynamic imgPath;
 
+  dynamic imgPathAux;
+
   @observable
   Restaurant? restaurant;
 
@@ -97,7 +99,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     formProduct['desc']?.text = "";
     formProduct['price']?.text = "";
     formProduct['categories']?.text = "";
-    imgPath = null;
+    imgPathAux = null;
   }
 
   @action
@@ -139,6 +141,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void setProductImage(dynamic img) {
     imgPath = img;
+    imgPathAux = img;
   }
 
   @computed
