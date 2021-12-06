@@ -67,6 +67,7 @@ dependencies:
   cached_network_image: ^3.1.0
   image_picker: ^0.8.4+4
   page_transition: ^2.0.4
+  credit_card_validator: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -102,6 +103,7 @@ flutter:
     - assets/images/register/
     - assets/images/restaurant_home/
     - lib/app/modules/home/assets/images/
+    - lib/app/modules/payments/assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
