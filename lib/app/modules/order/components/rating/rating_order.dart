@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/order/components/rating/rating_dialog.dart';
 
 class RatingOrder extends StatelessWidget {
@@ -18,14 +18,14 @@ class RatingOrder extends StatelessWidget {
               });
         },
         style: TextButton.styleFrom(
-          primary: primaryCollor,
+          primary: primaryColor,
         ),
         child: const AutoSizeText(
           'Avalie o pedido',
           presetFontSizes: [15, 12, 10],
           wrapWords: true,
           style: TextStyle(
-            color: secondaryCollor,
+            color: secondaryColor,
             fontFamily: 'Ninuto',
             fontWeight: FontWeight.w600,
           ),

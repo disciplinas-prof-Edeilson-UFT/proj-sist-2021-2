@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/restaurant_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
@@ -196,7 +195,7 @@ class _ClosedButtonShopState extends State<ClosedButtonShop> {
           builder: (_) => Text(
             store.toggleText,
             style: const TextStyle(
-              color: secondaryCollor,
+              color: secondaryColor,
               fontSize: 18,
               fontFamily: "Nunito",
               fontWeight: FontWeight.bold,
@@ -229,7 +228,7 @@ class _ClosedButtonShopMobileState extends State<ClosedButtonShopMobile> {
           builder: (_) => Text(
             store.toggleText,
             style: const TextStyle(
-              color: secondaryCollor,
+              color: secondaryColor,
               fontSize: 12,
               fontFamily: "Nunito",
               fontWeight: FontWeight.bold,

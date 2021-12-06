@@ -7,7 +7,6 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
 
@@ -164,7 +163,7 @@ class RegisterButton extends StatelessWidget {
     return IconButton(
       icon: const Icon(
         Icons.edit_outlined,
-        color: secondaryCollor,
+        color: secondaryColor,
         size: 30,
       ),
       onPressed: () {
@@ -194,7 +193,7 @@ class _UserAppBarState extends State<UserAppBar> {
         ? PopupMenuButton(
             icon: const Icon(
               Icons.person_outline_outlined,
-              color: secondaryCollor,
+              color: secondaryColor,
             ),
             iconSize: 30.0,
             offset: const Offset(-5, 60),
@@ -203,7 +202,7 @@ class _UserAppBarState extends State<UserAppBar> {
         : IconButton(
             icon: const Icon(
               Icons.login,
-              color: secondaryCollor,
+              color: secondaryColor,
               size: 30,
             ),
             onPressed: () {
@@ -225,7 +224,7 @@ class CartAppBar extends StatelessWidget {
         Icons.shopping_cart_outlined,
         size: 30,
       ),
-      color: secondaryCollor,
+      color: secondaryColor,
       hoverColor: Colors.transparent,
       onPressed: () {
         Scaffold.of(context).openEndDrawer();

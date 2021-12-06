@@ -13,6 +13,7 @@ class HomeModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => const HomePage()),
-    ChildRoute(MobileSearchPage.routeName, child: (_, args) => const MobileSearchPage()),
+    ChildRoute(MobileSearchPage.routeName,
+        child: (_, args) => const MobileSearchPage()),
   ];
 }

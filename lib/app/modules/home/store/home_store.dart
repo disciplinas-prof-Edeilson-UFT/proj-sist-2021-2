@@ -8,7 +8,6 @@ part 'home_store.g.dart';
 class HomeStore = HomeStoreBase with _$HomeStore;
 
 abstract class HomeStoreBase with Store {
-
   @observable
   var selectedFilter = FilterType.avaliation;
 
@@ -18,7 +17,8 @@ abstract class HomeStoreBase with Store {
       (e) => e.filterFrontEnd == selection,
       orElse: () => FilterType.avaliation,
     );
-    restaurants.sort((a,b) => a.getByFilter(selectedFilter).compareTo(b.getByFilter(selectedFilter)));
+    restaurants.sort((a, b) =>
+        a.getByFilter(selectedFilter).compareTo(b.getByFilter(selectedFilter)));
   }
 
   @observable
@@ -41,7 +41,6 @@ abstract class HomeStoreBase with Store {
 
   @action
   Future<List<Restaurant>> getRestaurants() async {
-    
     final RestaurantGridFirestore restaurantGridFirestore =
         RestaurantGridFirestore();
     restaurants = await restaurantGridFirestore.getRestaurants();

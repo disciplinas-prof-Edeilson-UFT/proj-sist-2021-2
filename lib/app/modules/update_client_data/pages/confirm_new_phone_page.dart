@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_submit.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
 import 'package:pscomidas/app/modules/update_client_data/update_client_data_store.dart';
@@ -46,7 +46,7 @@ class _ConfirmNewPhonePageState extends State<ConfirmNewPhonePage> {
             color: Colors.white70,
           ),
           message: store.errorPhone,
-          backgroundColor: secondaryCollor,
+          backgroundColor: secondaryColor,
           borderRadius: BorderRadius.circular(10.0),
           padding: const EdgeInsets.all(20.0),
           margin: const EdgeInsets.symmetric(
@@ -76,7 +76,7 @@ class _ConfirmNewPhonePageState extends State<ConfirmNewPhonePage> {
             color: Colors.white70,
           ),
           message: store.errorMessage,
-          backgroundColor: secondaryCollor,
+          backgroundColor: secondaryColor,
           borderRadius: BorderRadius.circular(10.0),
           padding: const EdgeInsets.all(20.0),
           margin: const EdgeInsets.symmetric(
