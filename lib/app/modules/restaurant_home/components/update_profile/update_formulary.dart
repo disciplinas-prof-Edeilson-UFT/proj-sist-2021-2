@@ -1,5 +1,3 @@
-import 'package:another_flushbar/flushbar_route.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';

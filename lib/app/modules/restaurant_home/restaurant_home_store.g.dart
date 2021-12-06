@@ -17,6 +17,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
               name: '_RestaurantHomeStoreBase.toggleText'))
           .value;
 
+  final _$imgPathAtom = Atom(name: '_RestaurantHomeStoreBase.imgPath');
+
+  @override
+  dynamic get imgPath {
+    _$imgPathAtom.reportRead();
+    return super.imgPath;
+  }
+
+  @override
+  set imgPath(dynamic value) {
+    _$imgPathAtom.reportWrite(value, super.imgPath, () {
+      super.imgPath = value;
+    });
+  }
+
   final _$restaurantAtom = Atom(name: '_RestaurantHomeStoreBase.restaurant');
 
   @override
@@ -44,6 +59,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   set picture(String value) {
     _$pictureAtom.reportWrite(value, super.picture, () {
       super.picture = value;
+    });
+  }
+
+  final _$prodPicAtom = Atom(name: '_RestaurantHomeStoreBase.prodPic');
+
+  @override
+  String get prodPic {
+    _$prodPicAtom.reportRead();
+    return super.prodPic;
+  }
+
+  @override
+  set prodPic(String value) {
+    _$prodPicAtom.reportWrite(value, super.prodPic, () {
+      super.prodPic = value;
     });
   }
 
@@ -141,6 +171,21 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$formProductAtom = Atom(name: '_RestaurantHomeStoreBase.formProduct');
+
+  @override
+  Map<String, TextEditingController> get formProduct {
+    _$formProductAtom.reportRead();
+    return super.formProduct;
+  }
+
+  @override
+  set formProduct(Map<String, TextEditingController> value) {
+    _$formProductAtom.reportWrite(value, super.formProduct, () {
+      super.formProduct = value;
+    });
+  }
+
   final _$getRestaurantAsyncAction =
       AsyncAction('_RestaurantHomeStoreBase.getRestaurant');
 
@@ -155,6 +200,14 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   Future<dynamic> imageReceiver(dynamic e) {
     return _$imageReceiverAsyncAction.run(() => super.imageReceiver(e));
+  }
+
+  final _$cadastroProdutoAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.cadastroProduto');
+
+  @override
+  Future<dynamic> cadastroProduto() {
+    return _$cadastroProdutoAsyncAction.run(() => super.cadastroProduto());
   }
 
   final _$getRestaurantPlanAsyncAction =
@@ -207,6 +260,17 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
         name: '_RestaurantHomeStoreBase.toggleOpen');
     try {
       return super.toggleOpen();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setProductImage(dynamic img) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.setProductImage');
+    try {
+      return super.setProductImage(img);
     } finally {
       _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -281,14 +345,17 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   String toString() {
     return '''
+imgPath: ${imgPath},
 restaurant: ${restaurant},
 picture: ${picture},
+prodPic: ${prodPic},
 editBackground: ${editBackground},
 category: ${category},
 isOpen: ${isOpen},
 selectedPlan: ${selectedPlan},
 actualPlan: ${actualPlan},
 profileFormController: ${profileFormController},
+formProduct: ${formProduct},
 toggleText: ${toggleText}
     ''';
   }

@@ -1,7 +1,9 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
+import 'package:pscomidas/app/global/repositories/products/product_repository.dart';
 import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_address/home_field.dart';
@@ -12,13 +14,19 @@ part 'restaurant_home_store.g.dart';
 class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
-  final id = 'dummy1';
+  String id = 'dummy1';
+
+  @observable
+  dynamic imgPath;
 
   @observable
   Restaurant? restaurant;
 
   @observable
   String picture = '';
+
+  @observable
+  String prodPic = '';
 
   @action
   Future getRestaurant() async {
@@ -84,6 +92,15 @@ abstract class _RestaurantHomeStoreBase with Store {
   String category = _categories[0];
 
   @action
+  void prodctFormCleaner() {
+    formProduct['name']?.text = "";
+    formProduct['desc']?.text = "";
+    formProduct['price']?.text = "";
+    formProduct['categories']?.text = "";
+    imgPath = null;
+  }
+
+  @action
   Future imageReceiver(dynamic e) async {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
@@ -103,6 +120,25 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void toggleOpen() {
     isOpen = !isOpen;
+  }
+
+  @action
+  Future cadastroProduto() async {
+    var price = formProduct['price']!.text.split('R\$');
+    double doublePrice = double.parse(price.elementAt(1));
+    var produto = Product(
+      name: formProduct['name']!.text.toString(),
+      description: formProduct['desc']!.text.toString(),
+      price: doublePrice,
+      restaurantId: "dummy 2",
+      categories: formProduct['categories']!.text.toString(),
+    );
+    await ProductRepository().cadastrarProduct(produto);
+  }
+
+  @action
+  void setProductImage(dynamic img) {
+    imgPath = img;
   }
 
   @computed
@@ -148,6 +184,14 @@ abstract class _RestaurantHomeStoreBase with Store {
     'prepare_time': TextEditingController(),
     'delivery_price': TextEditingController(),
     'phone_restaurant': TextEditingController(),
+  };
+
+  @observable
+  Map<String, TextEditingController> formProduct = {
+    'name': TextEditingController(),
+    'desc': TextEditingController(),
+    'price': TextEditingController(),
+    'categories': TextEditingController(),
   };
 
   Map<String, TextEditingController> managementFormController = {

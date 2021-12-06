@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_address/address_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';

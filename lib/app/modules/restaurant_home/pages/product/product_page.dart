@@ -31,7 +31,7 @@ class ProductPage extends StatelessWidget {
             Wrap(
               spacing: 8,
               children: [
-                addProduct(),
+                const AddProduct(),
                 ...List.filled(
                   20,
                   const ProductCard(),
