@@ -97,6 +97,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     formProduct['desc']?.text = "";
     formProduct['price']?.text = "";
     formProduct['categories']?.text = "";
+    imgPath = null;
   }
 
   @action
