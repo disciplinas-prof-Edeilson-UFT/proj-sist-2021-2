@@ -59,10 +59,15 @@ dependencies:
   email_validator: ^2.0.1
   auto_size_text: ^3.0.0-nullsafety.0
   brasil_fields: ^1.2.0
+  google_maps_flutter_web: ^0.3.2
   flutter_rating_bar: ^4.0.0
   percent_indicator: ^3.4.0
   google_fonts: ^2.1.0
-  google_maps_flutter_web: ^0.3.2
+  currency_text_input_formatter: ^2.1.5
+  cached_network_image: ^3.1.0
+  image_picker: ^0.8.4+4
+  page_transition: ^2.0.4
+  credit_card_validator: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -96,7 +101,9 @@ flutter:
     - assets/images/filters/
     - assets/images/product_page/
     - assets/images/register/
+    - assets/images/restaurant_home/
     - lib/app/modules/home/assets/images/
+    - lib/app/modules/payments/assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

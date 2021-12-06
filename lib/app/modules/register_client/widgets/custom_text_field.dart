@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
@@ -12,6 +13,7 @@ class CustomTextField extends StatefulWidget {
     this.formaters,
     this.isPassword,
     this.phone,
+    this.readOnly = false,
   }) : super(key: key);
 
   final String? title;
@@ -21,6 +23,7 @@ class CustomTextField extends StatefulWidget {
   final List<TextInputFormatter>? formaters;
   final bool? isPassword;
   final bool? phone;
+  final bool readOnly;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -70,8 +73,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
               borderSide: BorderSide(color: Colors.black26),
             ),
             focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
+              borderSide: BorderSide(color: secondaryColor),
             ),
+            filled: widget.readOnly,
+            fillColor: Colors.grey[200],
             hintText: widget.hint ?? '',
             suffixIcon: widget.isPassword != null && widget.isPassword == true
                 ? MouseRegion(
@@ -91,7 +96,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   )
                 : null,
           ),
-          cursorColor: Colors.red,
+          readOnly: widget.readOnly,
+          cursorColor: secondaryColor,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: widget.controller,
           validator: widget.validator ??
