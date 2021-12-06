@@ -88,15 +88,14 @@ class CupomPageState extends State<CupomPage> {
   void buttonAction() {
     if (store.selectedCupom?['tipo'] == 'desconto') {
       if (store.formKey.currentState!.validate()) {
-        store.setSelectedCupomValue(
-          store.valueController.text);
+        store.setSelectedCupomValue(store.valueController.text);
       }
       if (store.selectedCupom?['valor'] != null) {
-          store.updateCupom();
+        store.updateCupom();
       }
     } else {
-      store.formKey.currentState?.reset();
       store.updateCupom();
+      store.valueController.clear();
     }
   }
 

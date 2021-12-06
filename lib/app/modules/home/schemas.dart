@@ -5,3 +5,5 @@ const secondaryCollor = Color(0XFFea1d2c);
 const redCollor = Color(0XFFBC1F2A);
 const tertiaryCollor = Color(0XFF9e9e9e);
 const dividerCollor = Color(0X61000000);
+const cupomCollor = Color(0xffEFF3F5);
+const cupomTextCollor = Color(0xFF2e6788);

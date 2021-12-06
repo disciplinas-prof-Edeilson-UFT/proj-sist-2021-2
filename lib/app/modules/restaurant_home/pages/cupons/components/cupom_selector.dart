@@ -20,17 +20,21 @@ class CupomSelector extends StatelessWidget {
         onTap: () => {
           store.setSelectedCupom(cardName),
           if (store.actualCupom?['tipo'] == 'desconto')
-            {store.valueController.text = store.actualCupom?['valor']}
+            {
+              store.valueController.text = store.actualCupom?['valor'],
+            }
           else
             {
-              store.valueController.clear(),
               store.formKey.currentState?.reset(),
             },
           if (cardName == 'desconto')
-            null
+            {
+              store.cupomButtonResolver(),
+            }
           else
             {
               store.setSelectedCupomValue(null),
+              store.formKey.currentState?.reset(),
             }
         },
         child: Stack(
@@ -46,6 +50,8 @@ class CupomSelector extends StatelessWidget {
                 store.selectedCupom?['tipo'] == cardName)
               if (cardName == 'nenhum')
                 showInfo('Remover o cupom ativo', activated: true)
+              else if (cardName == 'entrega_gratis')
+                showInfo('Adicionar o cupom de entrega grátis', activated: true)
               else
                 showInfo('Adicionar o cupom de ${cardName.toLowerCase()}',
                     activated: true)

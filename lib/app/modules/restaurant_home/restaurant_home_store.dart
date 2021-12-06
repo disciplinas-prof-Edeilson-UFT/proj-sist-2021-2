@@ -131,7 +131,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     actualPlan = selectedPlan!;
   }
 
-  final TextEditingController valueController = TextEditingController();
+  TextEditingController valueController = TextEditingController();
 
   @observable
   Map<String, dynamic>? selectedCupom = {
@@ -152,6 +152,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     if (actualCupom!['tipo'] == 'desconto') {
       actualCupom!['valor'] = restaurant!.cupom!['valor'];
     }
+    valueController = TextEditingController();
   }
 
   @action
@@ -163,12 +164,17 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void setSelectedCupomValue(value) {
     selectedCupom!['valor'] = value;
+    cupomButtonResolver();
   }
 
   @action
   void updateCupom() {
     ProfileRepository().updateInfo({'cupom': selectedCupom});
     actualCupom = selectedCupom;
+    if (actualCupom!['tipo'] == 'desconto') {
+      valueController.text = actualCupom!['valor'];
+    }
+    cupomButtonResolver();
   }
 
   @observable
@@ -176,16 +182,19 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void cupomButtonResolver() {
-    if (selectedCupom == null) {
+    if (selectedCupom == null || selectedCupom!['tipo'] == null) {
       resolveCupomButton = false;
       return;
     } else if (selectedCupom!['tipo'] == actualCupom!['tipo']) {
-      if (valueController.text == actualCupom!['valor']) {
-        resolveCupomButton =  false;
+      if (valueController.text != actualCupom!['valor'] &&
+          actualCupom!['tipo'] == 'desconto') {
+        resolveCupomButton = true;
         return;
       }
-    } 
-    resolveCupomButton =  true;
+      resolveCupomButton = false;
+      return;
+    }
+    resolveCupomButton = true;
   }
 
   Color iconColor = tertiaryColor;

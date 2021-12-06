@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
 import 'cupom_selector.dart';
@@ -32,7 +33,7 @@ class CupomCard extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
-              color: const Color(0xffEFF3F5),
+              color: cupomCollor,
             ),
             height: 300,
             width: 250,
@@ -48,7 +49,7 @@ class CupomCard extends StatelessWidget {
                       child: Image.asset(
                         image,
                         height: 50,
-                        color: const Color(0xFF2e6788),
+                        color: cupomTextCollor,
                       ),
                     ),
                   ],
@@ -59,7 +60,7 @@ class CupomCard extends StatelessWidget {
                     Text(
                       text,
                       style: const TextStyle(
-                        color: Color(0xFF2e6788),
+                        color: cupomTextCollor,
                         fontSize: 18,
                         fontFamily: 'Nunito',
                       ),
@@ -153,7 +154,14 @@ class CupomCard extends StatelessWidget {
                     LengthLimitingTextInputFormatter(2),
                     CurrencyTextInputFormatter(decimalDigits: 0, symbol: 'R\$')
                   ],
-                  onTap: () => store.setSelectedCupom('desconto'),
+                  onTap: () => {
+                    store.setSelectedCupom('desconto'),
+                    store.actualCupom!['tipo'] == 'desconto'
+                        ? store.valueController.text =
+                            store.actualCupom!['valor']
+                        : store.valueController.text = '',
+                    store.cupomButtonResolver(),
+                  },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "O cupom deve ter um valor válido!";
@@ -168,7 +176,7 @@ class CupomCard extends StatelessWidget {
                   },
                   cursorColor: secondaryColor,
                   decoration: const InputDecoration(
-                    hintText: 'R\$ 10',
+                    hintText: 'R\$10',
                     focusColor: secondaryColor,
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
