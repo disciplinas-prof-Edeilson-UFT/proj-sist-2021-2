@@ -52,14 +52,13 @@ class RegisterRepository extends RegisterRepositoryService {
   @override
   Future<UserCredential> signUp(
       Map<String, TextEditingController> controller) async {
-    var uid = '';
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
         email: controller['Email']!.text,
         password: controller['Senha']!.text,
       );
-      uid = userCredential.user!.uid;
+      userCredential.user!.uid;
       log(userCredential.user!.uid);
       return userCredential;
     } catch (e) {

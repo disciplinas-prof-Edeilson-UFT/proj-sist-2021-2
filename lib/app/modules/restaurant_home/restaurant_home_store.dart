@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile_repository.dart';
 import 'package:pscomidas/app/global/repositories/products/product_repository.dart';
+import 'package:pscomidas/app/global/repositories/update_restaurant_data/update_restaurant_data_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_address/home_field.dart';
 import 'package:search_cep/search_cep.dart';
@@ -32,7 +32,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   Future getRestaurant() async {
-    restaurant = await ProfileRepository().getRestaurant();
+    restaurant = await UpdateRestaurantDataRepository().getRestaurant();
     updateProfileControllers();
     updateManagementControllers();
     updateAddressControllers();
@@ -46,7 +46,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void setImage(dynamic e) {
-    ProfileRepository().setImage(e);
+    UpdateRestaurantDataRepository().setImage(e);
   }
 
   @observable
@@ -166,7 +166,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void updatePlan() {
-    ProfileRepository().updateInfo({'deliveryPlan': selectedPlan});
+    UpdateRestaurantDataRepository().updateInfo({'deliveryPlan': selectedPlan});
     actualPlan = selectedPlan!;
   }
 
