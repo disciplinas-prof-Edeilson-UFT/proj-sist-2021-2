@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/custom_app_bar.dart';
 import 'package:pscomidas/app/modules/cart/cart_page.dart';
 import 'package:pscomidas/app/modules/order/components/details_page/pages/desktop_trackpage.dart';
