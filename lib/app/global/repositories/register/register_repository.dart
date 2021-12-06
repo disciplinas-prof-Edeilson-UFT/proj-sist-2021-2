@@ -18,9 +18,9 @@ class RegisterRepository extends IRegisterRepository {
   Future<void>? addRestaurant(
       String restaurantUID, Map<String, TextEditingController> controller) {
     restaurant.doc(restaurantUID).set({
-      'nameOwner': controller['nome']?.text,
-      'emailOwner': controller['email']?.text,
-      'phoneOwner': controller['telefone']?.text,
+      'nameOwner': controller['Nome']?.text,
+      'emailOwner': controller['Email']?.text,
+      'phoneOwner': controller['Telefone']?.text,
       'CNPJ': controller['CNPJ']?.text,
       'companyName': controller['Razão Social']?.text,
       'socialName': controller['Nome da loja']?.text,
@@ -42,9 +42,9 @@ class RegisterRepository extends IRegisterRepository {
   Future<void>? addUser(
       String userUID, Map<String, TextEditingController> controller) {
     users.doc(userUID).set({
-      'name': controller['nome']?.text,
-      'email': controller['email']?.text,
-      'phone': controller['telefone']?.text,
+      'name': controller['Nome']?.text,
+      'email': controller['Email']?.text,
+      'phone': controller['Telefone']?.text,
       'isClient': false,
     });
   }
@@ -56,7 +56,7 @@ class RegisterRepository extends IRegisterRepository {
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
-        email: controller['email']!.text,
+        email: controller['Email']!.text,
         password: controller['Senha']!.text,
       );
       uid = userCredential.user!.uid;
@@ -69,7 +69,7 @@ class RegisterRepository extends IRegisterRepository {
 
   @override
   Future<bool>? isUniqueEmail(String email) async {
-    return (await users.where('email', isEqualTo: email).get()).size == 0;
+    return (await users.where('Email', isEqualTo: email).get()).size == 0;
   }
 
   @override

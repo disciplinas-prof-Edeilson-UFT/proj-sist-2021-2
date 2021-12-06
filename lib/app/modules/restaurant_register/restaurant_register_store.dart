@@ -29,7 +29,7 @@ abstract class _RestaurantRegisterStore with Store {
 
   Future<bool> dataIsUnique() async {
     final RegisterRepository registerRepository = RegisterRepository();
-    var email = controller['email']?.text ?? '';
+    var email = controller['Email']?.text ?? '';
     var uniqueEmail = email.isNotEmpty
         ? (await registerRepository.isUniqueEmail(email)) ?? false
         : false;
@@ -57,9 +57,9 @@ abstract class _RestaurantRegisterStore with Store {
   }
 
   Map<String, TextEditingController> controller = {
-    'nome': TextEditingController(),
-    'email': TextEditingController(),
-    'telefone': TextEditingController(),
+    'Nome': TextEditingController(),
+    'Email': TextEditingController(),
+    'Telefone': TextEditingController(),
     'CNPJ': TextEditingController(),
     'Razão Social': TextEditingController(),
     'Nome da loja': TextEditingController(),

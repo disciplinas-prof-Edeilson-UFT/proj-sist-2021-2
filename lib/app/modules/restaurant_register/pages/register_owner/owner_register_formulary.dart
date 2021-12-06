@@ -26,7 +26,7 @@ class OwnerRegisterFormulary extends StatelessWidget {
           children: [
             Text('Nome completo', style: _labelStyle),
             TextFormField(
-              controller: controller['nome'],
+              controller: controller['Nome'],
               textCapitalization: TextCapitalization.words,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
@@ -60,7 +60,7 @@ class OwnerRegisterFormulary extends StatelessWidget {
               style: _labelStyle,
             ),
             TextFormField(
-              controller: controller['email'],
+              controller: controller['Email'],
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "Este campo não pode ficar vazio";
@@ -93,7 +93,7 @@ class OwnerRegisterFormulary extends StatelessWidget {
               style: _labelStyle,
             ),
             TextFormField(
-              controller: controller['telefone'],
+              controller: controller['Telefone'],
               inputFormatters: [_phoneFormat],
               validator: (value) {
                 if (value == null || value.isEmpty) {
