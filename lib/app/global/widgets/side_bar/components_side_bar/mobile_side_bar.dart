@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/buttons_side_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/components_side_bar.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class SideBarMobile extends StatefulWidget {
   const SideBarMobile({Key? key}) : super(key: key);
@@ -14,12 +15,10 @@ class _SideBarMobileState extends State<SideBarMobile> {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
 
-    final _buttons = ['Produtos', 'Pedidos', 'Avaliações', 'Sair'];
-
     return Drawer(
       elevation: 0,
       child: Container(
-        color: secondaryCollor,
+        color: secondaryColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -37,14 +36,16 @@ class _SideBarMobileState extends State<SideBarMobile> {
                 margin: EdgeInsets.symmetric(
                   horizontal: screen.height * 0.02,
                 ),
-                child: ListView(
+                child: Column(
                   children: [
-                    ..._buttons.map(
+                    ...ButtonSideBar.buttons.keys.map(
                       (e) => Column(
                         children: [
                           TextButtonMenuMobile(
                             option: e,
-                            press: () {},
+                            navigator: ButtonSideBar.buttons[e]?['navigator']
+                                    .toString() ??
+                                "/",
                           ),
                           SizedBox(
                             height: screen.height * 0.05,
@@ -52,16 +53,14 @@ class _SideBarMobileState extends State<SideBarMobile> {
                         ],
                       ),
                     ),
+                    const SignOutMobile(),
                   ],
                 ),
               ),
             ),
-            SizedBox(
-              height: screen.height * 0.3,
-            ),
             Container(
               alignment: Alignment.center,
-              color: redCollor,
+              color: redColor,
               width: double.maxFinite,
               height: screen.height * 0.1,
               child: ListTilePerfil(),

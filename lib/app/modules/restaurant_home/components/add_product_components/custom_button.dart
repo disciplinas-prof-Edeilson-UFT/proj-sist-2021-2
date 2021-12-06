@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class CustomButton extends StatelessWidget {
   final String label;
@@ -17,10 +17,10 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         child: Text(label,
             style: const TextStyle(
-              color: primaryCollor,
+              color: primaryColor,
               fontWeight: FontWeight.w500,
             )),
-        style: ElevatedButton.styleFrom(primary: secondaryCollor),
+        style: ElevatedButton.styleFrom(primary: secondaryColor),
         onPressed: onPressed,
       ),
     );

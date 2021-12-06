@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class EmptyOrder extends StatefulWidget {
   const EmptyOrder({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _EmptyOrderState extends State<EmptyOrder> {
           ),
           const Text(
             'Que tal conhecer as melhores opções na sua região?',
-            style: TextStyle(fontFamily: 'Nunito', color: tertiaryCollor),
+            style: TextStyle(fontFamily: 'Nunito', color: tertiaryColor),
           ),
           TextButton(
               onPressed: () => Modular.to.navigate('/'),
@@ -33,7 +33,7 @@ class _EmptyOrderState extends State<EmptyOrder> {
                     fontSize: 20,
                     fontFamily: 'Nunito',
                     fontWeight: FontWeight.bold,
-                    color: secondaryCollor),
+                    color: secondaryColor),
               ))
         ],
       ),

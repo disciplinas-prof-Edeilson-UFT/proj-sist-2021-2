@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/components_profile_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_formulary.dart';
@@ -96,7 +95,7 @@ class _ProfileAlertDialogState extends State<ProfileAlertDialog> {
                                   color: store.iconColor,
                                 ),
                               ),
-                              focusColor: redCollor,
+                              focusColor: redColor,
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: secondaryColor,

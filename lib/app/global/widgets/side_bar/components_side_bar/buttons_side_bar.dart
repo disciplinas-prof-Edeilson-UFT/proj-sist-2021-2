@@ -19,8 +19,5 @@ class ButtonSideBar {
       'navigator':
           RestaurantHomeModule.routeName + RestaurantPlanPage.routeName,
     },
-    'Sair': {
-      'navigator': '/',
-    },
   };
 }

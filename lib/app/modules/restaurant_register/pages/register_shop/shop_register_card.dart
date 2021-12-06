@@ -1,7 +1,10 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/repositories/register/register_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/restaurant_register/pages/register_shop/register_cep.dart';
@@ -21,17 +24,55 @@ class ShopRegisterCard extends StatefulWidget {
 class _ShopRegisterCardState extends State<ShopRegisterCard> {
   final RestaurantRegisterStore registerStore =
       Modular.get<RestaurantRegisterStore>();
+
+  final RegisterRepository registerRepository =
+      Modular.get<RegisterRepository>();
+
+  ReactionDisposer? autorunFlush;
+
   @override
   void initState() {
     if (registerStore.controller['nomeOwner'] == null) {
       Modular.to.navigate(RestaurantRegisterPage.routeName);
     }
+    autorunFlush = autorun((_) {
+      if (registerStore.registerErrorMessage != '') {
+        Flushbar(
+          title: 'Ocorreu um erro ao registrar:',
+          icon: const Icon(
+            Icons.sentiment_dissatisfied_outlined,
+            color: Colors.white70,
+          ),
+          message: registerStore.registerErrorMessage,
+          backgroundColor: secondaryColor,
+          borderRadius: BorderRadius.circular(10.0),
+          padding: const EdgeInsets.all(20.0),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 100.0,
+            vertical: 10.0,
+          ),
+          animationDuration: const Duration(milliseconds: 500),
+          shouldIconPulse: false,
+          mainButton: TextButton(
+            child: const Text(
+              'Fechar',
+              style: TextStyle(color: Colors.white),
+            ),
+            onPressed: () {
+              registerStore.registerErrorMessage = '';
+              Navigator.pop(context);
+            },
+          ),
+        ).show(context);
+      }
+    });
     super.initState();
   }
 
   @override
   void dispose() {
     registerStore.dispose();
+    autorunFlush!();
     super.dispose();
   }
 
@@ -243,19 +284,22 @@ class _ShopRegisterCardState extends State<ShopRegisterCard> {
                         backgroundColor:
                             MaterialStateProperty.all(secondaryColor),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (registerStore.formKey.currentState!.validate()) {
-                          registerStore.addRestaurant();
-                          showDialog<String>(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              title: const Text(
-                                'Cadastro realizado com sucesso!',
+                          if (await registerStore.dataIsUnique()) {
+                            await registerStore.registrar();
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text(
+                                  'Cadastro realizado com sucesso!',
+                                ),
+                                titleTextStyle: fieldLabelStyle(),
                               ),
-                              titleTextStyle: fieldLabelStyle(),
-                            ),
-                          );
-                          Modular.to.navigate('/');
+                            );
+                            setState(() {});
+                            Modular.to.navigate('/');
+                          }
                         }
                       },
                     ),

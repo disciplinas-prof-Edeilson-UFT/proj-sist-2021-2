@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/order/components/rating/rating_order.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
@@ -43,8 +43,8 @@ class _StatusContainerState extends State<StatusContainer> {
           ),
           percent:
               1, //TODO _percentIndicator(status: store.order!.status.toString()),
-          backgroundColor: primaryCollor,
-          progressColor: secondaryCollor,
+          backgroundColor: primaryColor,
+          progressColor: secondaryColor,
           lineWidth: 16,
         ),
         const RatingOrder(),
