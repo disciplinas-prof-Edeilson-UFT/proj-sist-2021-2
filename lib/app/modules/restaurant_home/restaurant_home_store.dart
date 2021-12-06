@@ -154,8 +154,8 @@ abstract class _RestaurantHomeStoreBase with Store {
     'nameOwner': TextEditingController(),
     'phoneOwner': TextEditingController(),
     'emailOwner': TextEditingController(),
-    'Senha': TextEditingController(),
-    'Confirmar Senha': TextEditingController(),
+    'password': TextEditingController(),
+    'confirmPassword': TextEditingController(),
   };
 
   Map<String, TextEditingController> addressFormController = {
@@ -169,9 +169,9 @@ abstract class _RestaurantHomeStoreBase with Store {
   };
 
   String? validatePassword() {
-    if (managementFormController['Confirmar Senha']?.text !=
-        managementFormController['Senha']?.text) {
-      if (managementFormController['Confirmar Senha']!.text.isEmpty) {
+    if (managementFormController['confirmPassword']?.text !=
+        managementFormController['password']?.text) {
+      if (managementFormController['confirmPassword']!.text.isEmpty) {
         return null;
       }
       return "Os campos diferem";
