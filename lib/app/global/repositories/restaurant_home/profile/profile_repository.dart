@@ -41,9 +41,9 @@ class ProfileRepository extends IProfile {
           _verifyForm(store.profileFormController['phoneRestaurant']?.text) ??
               restaurant.phone,
       'category': store.category,
-      'estimatedDelivery':
-          _verifyForm(store.profileFormController['prepare_time']?.text) ??
-              restaurant.estimatedDelivery,
+      'prepareTime':
+          _verifyForm(store.profileFormController['prepareTime']?.text) ??
+              restaurant.prepareTime,
       'deliveryPrice': _parsePrice(_verifyForm(
               store.profileFormController['deliveryPrice']?.text)) ??
           restaurant.deliveryPrice,

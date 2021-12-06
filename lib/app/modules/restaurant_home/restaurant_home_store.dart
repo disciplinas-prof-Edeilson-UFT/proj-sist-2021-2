@@ -145,7 +145,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   Map<String, TextEditingController> profileFormController = {
     'restaurant': TextEditingController(),
-    'prepare_time': TextEditingController(),
+    'prepareTime': TextEditingController(),
     'deliveryPrice': TextEditingController(),
     'phoneRestaurant': TextEditingController(),
   };
@@ -182,8 +182,7 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void updateProfileControllers() {
     profileFormController['restaurant']?.text = restaurant?.socialName ?? '';
-    profileFormController['prepare_time']?.text =
-        restaurant?.estimatedDelivery ?? '';
+    profileFormController['prepareTime']?.text = restaurant?.prepareTime ?? '';
     profileFormController['deliveryPrice']?.text =
         'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
     profileFormController['phoneRestaurant']?.text = restaurant?.phone ?? '';

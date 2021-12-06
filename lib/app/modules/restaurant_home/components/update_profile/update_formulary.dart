@@ -83,7 +83,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: homeStore.profileFormController['prepare_time'],
+                controller: homeStore.profileFormController['prepareTime'],
                 inputFormatters: [_timeFormat],
                 validator: (value) {
                   var values = value?.split('-');
