@@ -1,9 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
+import 'package:pscomidas/app/global/repositories/update_restaurant_data/update_restaurant_data_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/components_profile_dialog.dart';
@@ -45,7 +44,7 @@ class ManagementFormulary extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         controller:
-                            homeStore.managementFormController['name_Owner'],
+                            homeStore.managementFormController['nameOwner'],
                         textCapitalization: TextCapitalization.words,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
@@ -84,7 +83,7 @@ class ManagementFormulary extends StatelessWidget {
                   Text('Celular do responsável da loja', style: _labelStyle),
                   TextFormField(
                     controller:
-                        homeStore.managementFormController['phone_Owner'],
+                        homeStore.managementFormController['phoneOwner'],
                     inputFormatters: [_phoneFormat],
                     textCapitalization: TextCapitalization.words,
                     validator: (value) {
@@ -127,7 +126,7 @@ class ManagementFormulary extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         controller:
-                            homeStore.managementFormController['email_Owner'],
+                            homeStore.managementFormController['emailOwner'],
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Este campo não pode ficar vazio";
@@ -239,7 +238,7 @@ class ManagementFormulary extends StatelessWidget {
             child: ConfirmationButton(
               onPressed: () async {
                 if (homeStore.formKey.currentState!.validate()) {
-                  await ProfileRepository()
+                  await UpdateRestaurantDataRepository()
                       .setManagementRestaurant(homeStore.restaurant!);
                   homeStore.getRestaurant();
                   Navigator.of(context).pop();

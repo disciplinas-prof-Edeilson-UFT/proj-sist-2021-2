@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
@@ -169,7 +168,7 @@ class _ProductDialogState extends State<ProductDialog> {
                         Row(
                           children: [
                             Text(
-                              restaurantStore.restaurant!.estimatedDelivery +
+                              restaurantStore.restaurant!.prepareTime +
                                   ' min - ' +
                                   FormatMoney.doubleToMoney(restaurantStore
                                       .restaurant!.deliveryPrice),

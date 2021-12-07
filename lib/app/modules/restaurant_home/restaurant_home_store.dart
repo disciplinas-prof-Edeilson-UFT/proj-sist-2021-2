@@ -1,8 +1,10 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
+import 'package:pscomidas/app/global/repositories/products/product_repository.dart';
+import 'package:pscomidas/app/global/repositories/update_restaurant_data/update_restaurant_data_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_address/home_field.dart';
 import 'package:search_cep/search_cep.dart';
@@ -12,7 +14,12 @@ part 'restaurant_home_store.g.dart';
 class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
-  final id = 'dummy1';
+  String id = 'dummy1';
+
+  @observable
+  dynamic imgPath;
+
+  dynamic imgPathAux;
 
   @observable
   Restaurant? restaurant;
@@ -20,9 +27,12 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   String picture = '';
 
+  @observable
+  String prodPic = '';
+
   @action
   Future getRestaurant() async {
-    restaurant = await ProfileRepository().getRestaurant();
+    restaurant = await UpdateRestaurantDataRepository().getRestaurant();
     updateProfileControllers();
     updateManagementControllers();
     updateAddressControllers();
@@ -36,7 +46,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void setImage(dynamic e) {
-    ProfileRepository().setImage(e);
+    UpdateRestaurantDataRepository().setImage(e);
   }
 
   @observable
@@ -84,6 +94,15 @@ abstract class _RestaurantHomeStoreBase with Store {
   String category = _categories[0];
 
   @action
+  void prodctFormCleaner() {
+    formProduct['name']?.text = "";
+    formProduct['desc']?.text = "";
+    formProduct['price']?.text = "";
+    formProduct['categories']?.text = "";
+    imgPathAux = null;
+  }
+
+  @action
   Future imageReceiver(dynamic e) async {
     if (e.type != 'image/jpeg' && e.type != 'image/png') {
       return;
@@ -103,6 +122,26 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void toggleOpen() {
     isOpen = !isOpen;
+  }
+
+  @action
+  Future cadastroProduto() async {
+    var price = formProduct['price']!.text.split('R\$');
+    double doublePrice = double.parse(price.elementAt(1));
+    var produto = Product(
+      name: formProduct['name']!.text.toString(),
+      description: formProduct['desc']!.text.toString(),
+      price: doublePrice,
+      restaurantId: "dummy 2",
+      categories: formProduct['categories']!.text.toString(),
+    );
+    await ProductRepository().cadastrarProduct(produto);
+  }
+
+  @action
+  void setProductImage(dynamic img) {
+    imgPath = img;
+    imgPathAux = img;
   }
 
   @computed
@@ -127,7 +166,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void updatePlan() {
-    ProfileRepository().updateInfo({'delivery_plan': selectedPlan});
+    UpdateRestaurantDataRepository().updateInfo({'deliveryPlan': selectedPlan});
     actualPlan = selectedPlan!;
   }
 
@@ -169,7 +208,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void updateCupom() {
-    ProfileRepository().updateInfo({'cupom': selectedCupom});
+    UpdateRestaurantDataRepository().updateInfo({'cupom': selectedCupom});
     actualCupom = selectedCupom;
     if (actualCupom!['tipo'] == 'desconto') {
       valueController.text = 'R\$' + actualCupom!['valor'].toString();
@@ -212,17 +251,25 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   Map<String, TextEditingController> profileFormController = {
     'restaurant': TextEditingController(),
-    'prepare_time': TextEditingController(),
-    'delivery_price': TextEditingController(),
-    'phone_restaurant': TextEditingController(),
+    'prepareTime': TextEditingController(),
+    'deliveryPrice': TextEditingController(),
+    'phoneRestaurant': TextEditingController(),
+  };
+
+  @observable
+  Map<String, TextEditingController> formProduct = {
+    'name': TextEditingController(),
+    'desc': TextEditingController(),
+    'price': TextEditingController(),
+    'categories': TextEditingController(),
   };
 
   Map<String, TextEditingController> managementFormController = {
-    'name_Owner': TextEditingController(),
-    'phone_Owner': TextEditingController(),
-    'email_Owner': TextEditingController(),
-    'Senha': TextEditingController(),
-    'Confirmar Senha': TextEditingController(),
+    'nameOwner': TextEditingController(),
+    'phoneOwner': TextEditingController(),
+    'emailOwner': TextEditingController(),
+    'password': TextEditingController(),
+    'confirmPassword': TextEditingController(),
   };
 
   Map<String, TextEditingController> addressFormController = {
@@ -236,9 +283,9 @@ abstract class _RestaurantHomeStoreBase with Store {
   };
 
   String? validatePassword() {
-    if (managementFormController['Confirmar Senha']?.text !=
-        managementFormController['Senha']?.text) {
-      if (managementFormController['Confirmar Senha']!.text.isEmpty) {
+    if (managementFormController['confirmPassword']?.text !=
+        managementFormController['password']?.text) {
+      if (managementFormController['confirmPassword']!.text.isEmpty) {
         return null;
       }
       return "Os campos diferem";
@@ -249,21 +296,18 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void updateProfileControllers() {
     profileFormController['restaurant']?.text = restaurant?.socialName ?? '';
-    profileFormController['prepare_time']?.text =
-        restaurant?.estimatedDelivery ?? '';
-    profileFormController['delivery_price']?.text =
+    profileFormController['prepareTime']?.text = restaurant?.prepareTime ?? '';
+    profileFormController['deliveryPrice']?.text =
         'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
-    profileFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
+    profileFormController['phoneRestaurant']?.text = restaurant?.phone ?? '';
     category = restaurant?.category ?? categories.first;
   }
 
   @action
   void updateManagementControllers() {
-    managementFormController['name_Owner']?.text = restaurant?.nameOwner ?? '';
-    managementFormController['phone_Owner']?.text =
-        restaurant?.phoneOwner ?? '';
-    managementFormController['email_Owner']?.text =
-        restaurant?.emailOwner ?? '';
+    managementFormController['nameOwner']?.text = restaurant?.nameOwner ?? '';
+    managementFormController['phoneOwner']?.text = restaurant?.phoneOwner ?? '';
+    managementFormController['emailOwner']?.text = restaurant?.emailOwner ?? '';
   }
 
   @action

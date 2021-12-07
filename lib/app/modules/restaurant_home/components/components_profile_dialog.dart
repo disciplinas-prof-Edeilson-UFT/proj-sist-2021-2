@@ -1,7 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
+import 'package:pscomidas/app/global/repositories/update_restaurant_data/update_restaurant_data_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
@@ -13,7 +13,8 @@ class ConfirmationButton extends StatelessWidget {
 
   final void Function() onPressed;
   final RestaurantHomeStore store = Modular.get<RestaurantHomeStore>();
-  final ProfileRepository repository = ProfileRepository();
+  final UpdateRestaurantDataRepository repository =
+      UpdateRestaurantDataRepository();
   @override
   Widget build(BuildContext context) {
     return Align(

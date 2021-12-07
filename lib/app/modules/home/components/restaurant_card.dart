@@ -138,7 +138,7 @@ class RestaurantCard extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                              text: restaurant.estimatedDelivery + " min",
+                              text: restaurant.prepareTime + " min",
                               style: _cardInfoStyle),
                           TextSpan(text: " • ", style: _separatorStyle),
                           delivery,

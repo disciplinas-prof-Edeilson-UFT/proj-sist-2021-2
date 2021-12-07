@@ -1,6 +1,6 @@
 class Product {
   final bool? available;
-  final List<dynamic>? categories;
+  final String? categories;
   final String? description;
   final String? imgUrl;
   final String? name;

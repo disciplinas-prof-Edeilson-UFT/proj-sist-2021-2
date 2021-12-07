@@ -1,10 +1,8 @@
-import 'package:another_flushbar/flushbar_route.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
+import 'package:pscomidas/app/global/repositories/update_restaurant_data/update_restaurant_data_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/components_profile_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
@@ -42,7 +40,7 @@ class UpdateFormulary extends StatelessWidget {
                 Text('Telefone da loja', style: _labelStyle),
                 TextFormField(
                   controller:
-                      homeStore.profileFormController['phone_restaurant'],
+                      homeStore.profileFormController['phoneRestaurant'],
                   inputFormatters: [_phoneFormat],
                   textCapitalization: TextCapitalization.words,
                   validator: (value) {
@@ -83,7 +81,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: homeStore.profileFormController['prepare_time'],
+                controller: homeStore.profileFormController['prepareTime'],
                 inputFormatters: [_timeFormat],
                 validator: (value) {
                   var values = value?.split('-');
@@ -126,7 +124,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: homeStore.profileFormController['delivery_price'],
+                controller: homeStore.profileFormController['deliveryPrice'],
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(5),
@@ -159,7 +157,7 @@ class UpdateFormulary extends StatelessWidget {
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
           child: ConfirmationButton(
             onPressed: () async {
-              await ProfileRepository()
+              await UpdateRestaurantDataRepository()
                   .setProfileRestaurant(homeStore.restaurant!);
               homeStore.getRestaurant();
               Navigator.of(context).pop();
