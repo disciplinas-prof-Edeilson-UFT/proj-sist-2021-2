@@ -191,6 +191,7 @@ abstract class _RestaurantHomeStoreBase with Store {
     if (actualCupom!['tipo'] == 'desconto') {
       actualCupom!['valor'] = restaurant!.cupom!['valor'];
     }
+    selectedCupom = actualCupom;
     valueController = TextEditingController();
   }
 

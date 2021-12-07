@@ -5,8 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-
-import 'cupom_selector.dart';
+import 'package:pscomidas/app/modules/restaurant_home/pages/cupons/components/cupom_selector.dart';
 
 class CupomCard extends StatelessWidget {
   final String name;
