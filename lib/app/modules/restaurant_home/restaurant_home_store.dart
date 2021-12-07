@@ -170,6 +170,74 @@ abstract class _RestaurantHomeStoreBase with Store {
     actualPlan = selectedPlan!;
   }
 
+  TextEditingController valueController = TextEditingController();
+
+  @observable
+  Map<String, dynamic>? selectedCupom = {
+    "tipo": null,
+    "valor": null,
+  };
+
+  @observable
+  Map<String, dynamic>? actualCupom = {
+    "tipo": null,
+    "valor": null,
+  };
+
+  @action
+  Future getRestaurantCupom() async {
+    if (restaurant == null) await getRestaurant();
+    actualCupom!['tipo'] = restaurant!.cupom!['tipo'];
+    if (actualCupom!['tipo'] == 'desconto') {
+      actualCupom!['valor'] = restaurant!.cupom!['valor'];
+    }
+    selectedCupom = actualCupom;
+    valueController = TextEditingController();
+  }
+
+  @action
+  void setSelectedCupom(name) {
+    selectedCupom = {"tipo": name};
+    cupomButtonResolver();
+  }
+
+  @action
+  void setSelectedCupomValue(value) {
+    selectedCupom!['valor'] = value;
+    cupomButtonResolver();
+  }
+
+  @action
+  void updateCupom() {
+    UpdateRestaurantDataRepository().updateInfo({'cupom': selectedCupom});
+    actualCupom = selectedCupom;
+    if (actualCupom!['tipo'] == 'desconto') {
+      valueController.text = 'R\$' + actualCupom!['valor'].toString();
+    }
+    cupomButtonResolver();
+  }
+
+  @observable
+  bool resolveCupomButton = false;
+
+  @action
+  void cupomButtonResolver() {
+    if (selectedCupom == null || selectedCupom!['tipo'] == null) {
+      resolveCupomButton = false;
+      return;
+    } else if (selectedCupom!['tipo'] == actualCupom!['tipo']) {
+      if (valueController.text.replaceAll(RegExp('[^0-9]'), '') !=
+              actualCupom!['valor'].toString() &&
+          actualCupom!['tipo'] == 'desconto') {
+        resolveCupomButton = true;
+        return;
+      }
+      resolveCupomButton = false;
+      return;
+    }
+    resolveCupomButton = true;
+  }
+
   Color iconColor = tertiaryColor;
 
   @action

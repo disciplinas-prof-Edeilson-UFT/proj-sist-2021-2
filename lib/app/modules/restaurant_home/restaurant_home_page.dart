@@ -15,6 +15,7 @@ class RestaurantHomePageState extends State<RestaurantHomePage> {
   RestaurantHomeStore restaurantHomeStore = Modular.get<RestaurantHomeStore>();
   @override
   void initState() {
+    restaurantHomeStore.getRestaurantCupom();
     restaurantHomeStore.getRestaurant();
     super.initState();
   }

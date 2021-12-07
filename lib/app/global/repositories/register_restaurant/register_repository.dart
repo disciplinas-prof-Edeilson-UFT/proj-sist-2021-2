@@ -35,6 +35,7 @@ class RegisterRepository extends RegisterRepositoryService {
       'password': controller['Senha']?.text,
       'deliveryPlan': controller['Plano de Entrega']?.text,
       'category': controller['Categoria']?.text,
+      'cupom': {'tipo': 'nenhum'},
     });
   }
 
