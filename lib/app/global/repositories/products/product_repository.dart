@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
@@ -48,5 +50,24 @@ class ProductRepository implements IProductRepository {
         .collection('products')
         .doc(store.id)
         .update({'image': imgUrl});
+  }
+
+  @override
+  Future<List<Product>> getProductsService(String restaurantId) async {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot;
+    try {
+      querySnapshot = await FirebaseFirestore.instance
+          .collection('products')
+          .where('restaurant_id', isEqualTo: restaurantId)
+          .get();
+    } catch (e) {
+      throw Exception("Erro: $e");
+    }
+    return querySnapshot.docs.map((doc) {
+      Product product = Product.fromMap(doc.data(), doc.id);
+      //product.productId = doc.id;
+      log(product.restaurantId.toString());
+      return product;
+    }).toList();
   }
 }

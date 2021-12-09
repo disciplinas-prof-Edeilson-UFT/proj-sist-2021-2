@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/modules/restaurant_home/pages/product/add_product_card.dart';
 import 'package:pscomidas/app/modules/restaurant_home/pages/product/product_card.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   static String get routeName => '/products';
   const ProductPage({Key? key}) : super(key: key);
+
+  @override
+  _ProductPageState createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  final store = Modular.get<RestaurantHomeStore>();
+
+  @override
+  void initState() {
+    store.getProducts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +48,8 @@ class ProductPage extends StatelessWidget {
               children: [
                 const AddProduct(),
                 ...List.filled(
-                  20,
-                  const ProductCard(),
+                  store.products.length,
+                  ProductCard(product: store.products[1]),
                 )
               ],
             ),

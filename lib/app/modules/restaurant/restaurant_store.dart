@@ -25,7 +25,7 @@ abstract class _RestaurantStoreBase with Store {
   @action
   Future<List<Product>> getProducts(String searchTitle) async {
     products = await restaurantServiceFirestore.getProductsService(
-        searchTitle, restaurant!.restaurantId);
+        '', '90W7KSn4OdbgUPd2p4KFgVg4rwy1'); //restaurant!.restaurantId
     return products;
   }
 
