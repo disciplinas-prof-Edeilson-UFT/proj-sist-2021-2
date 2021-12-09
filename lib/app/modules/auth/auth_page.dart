@@ -176,7 +176,7 @@ class AuthPageState extends State<AuthPage> {
                       ),
                       const SizedBox(height: 40),
                       const Text(
-                        'Falta pouco para \nmatar a sua fome!',
+                        'Falta pouco para matar a sua\nfome!',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
@@ -306,8 +306,8 @@ class AuthPageState extends State<AuthPage> {
                                 await store.logGoogle();
                               },
                               icon: SizedBox(
-                                width: 35,
-                                height: 35,
+                                width: 26,
+                                height: 26,
                                 child: Image.asset(
                                   'images/google.png',
                                 ),
@@ -334,7 +334,7 @@ class AuthPageState extends State<AuthPage> {
                               },
                               icon: const Icon(
                                 Icons.facebook_outlined,
-                                size: 35,
+                                size: 26,
                               ),
                               label: Text(
                                 screen.width < 630
