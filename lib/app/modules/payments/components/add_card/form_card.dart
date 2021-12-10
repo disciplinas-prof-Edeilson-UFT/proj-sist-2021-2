@@ -2,6 +2,7 @@ import 'package:credit_card_validator/credit_card_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/new_card.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/payments/components/add_card/TextField/text_field_card.dart';
 import 'package:pscomidas/app/modules/payments/payments_store.dart';
@@ -142,6 +143,13 @@ class _FormCardState extends State<FormCard> {
                             fixedSize: const Size(100, 50)),
                         onPressed: () {
                           if (store.isValidData()) {
+                            NewCard card = NewCard(
+                              cardnumber: store.numeroCartaoControlle.text, 
+                              validity: store.validadeControlle.text, 
+                              nome: store.nomeImpressoControlle.text, 
+                              cvv: store.cvvControlle.text
+                            );
+                            store.addCardList(card);
                             store.cartaoAdicionar();
                             store.setDataInvalid(false);
                             store.clear();
@@ -158,6 +166,7 @@ class _FormCardState extends State<FormCard> {
                                 .showSnackBar(snackBar);
 
                             Navigator.of(context).pop();
+                            Modular.to.navigate('/');
                           } else {
                             store.setDataInvalid(true);
                           }

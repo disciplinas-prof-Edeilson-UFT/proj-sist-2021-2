@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pscomidas/app/global/models/entities/new_card.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/payments/components/add_card/add_body.dart';
 import 'package:pscomidas/app/modules/payments/components/cards_payments/list_card.dart';
 
 class PaymentsBody extends StatefulWidget {
-  const PaymentsBody({Key? key}) : super(key: key);
+  const PaymentsBody({Key? key, required this.listCards}) : super(key: key);
+  final List<NewCard> listCards;
 
   @override
   _PaymentsBodyState createState() => _PaymentsBodyState();
 }
 
 class _PaymentsBodyState extends State<PaymentsBody> {
-  /// [DELETAR] variavel, serve apenas para o dev do front
-  int tamanho_da_lista = 1;
-
-  /// Substituir o "tamanho_da_lista", pelo numero de cartões
-  /// cadastrados do usuario
   double _sizeHeight() {
-    switch (tamanho_da_lista) {
+    switch (widget.listCards.length) {
       case 1:
         return 0.15;
       case 2:
@@ -55,7 +52,7 @@ class _PaymentsBodyState extends State<PaymentsBody> {
                       : screen.width * 0.5,
                   height: screen.height * _sizeHeight(),
                   child: Observer(builder: (_) {
-                    return const ListViewCard();
+                    return ListViewCard(listCards: widget.listCards);
                   }));
             }),
             SizedBox(

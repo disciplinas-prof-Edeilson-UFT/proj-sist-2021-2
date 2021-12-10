@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/payments/components/cards_payments/get_data_card.dart';
 import 'package:pscomidas/app/modules/payments/components/cards_payments/paymentes_body.dart';
 
 class DesktopPaymentsPage extends StatefulWidget {
@@ -11,6 +12,6 @@ class DesktopPaymentsPage extends StatefulWidget {
 class _DesktopPaymentsPageState extends State<DesktopPaymentsPage> {
   @override
   Widget build(BuildContext context) {
-    return const PaymentsBody();
+    return const GetDataCard();
   }
 }
