@@ -255,6 +255,17 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  void prodctFormCleaner() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.prodctFormCleaner');
+    try {
+      return super.prodctFormCleaner();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void toggleOpen() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
         name: '_RestaurantHomeStoreBase.toggleOpen');

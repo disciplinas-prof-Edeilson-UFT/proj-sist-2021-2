@@ -54,12 +54,27 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
     });
   }
 
-  final _$updateAddressAsyncAction =
-      AsyncAction('_ClientAddressStoreBase.updateAddress');
+  final _$isEditingAtom = Atom(name: '_ClientAddressStoreBase.isEditing');
+
+  @override
+  bool get isEditing {
+    _$isEditingAtom.reportRead();
+    return super.isEditing;
+  }
+
+  @override
+  set isEditing(bool value) {
+    _$isEditingAtom.reportWrite(value, super.isEditing, () {
+      super.isEditing = value;
+    });
+  }
+
+  final _$createOrUpdateAsyncAction =
+      AsyncAction('_ClientAddressStoreBase.createOrUpdate');
 
   @override
   Future createOrUpdate({DeliveryAt? address}) {
-    return _$updateAddressAsyncAction
+    return _$createOrUpdateAsyncAction
         .run(() => super.createOrUpdate(address: address));
   }
 
@@ -87,12 +102,27 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
     return _$findCEPAsyncAction.run(() => super.findCEP());
   }
 
+  final _$_ClientAddressStoreBaseActionController =
+      ActionController(name: '_ClientAddressStoreBase');
+
+  @override
+  dynamic disposePick() {
+    final _$actionInfo = _$_ClientAddressStoreBaseActionController.startAction(
+        name: '_ClientAddressStoreBase.disposePick');
+    try {
+      return super.disposePick();
+    } finally {
+      _$_ClientAddressStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 addresses: ${addresses},
 tempAddress: ${tempAddress},
-errorMessage: ${errorMessage}
+errorMessage: ${errorMessage},
+isEditing: ${isEditing}
     ''';
   }
 }
