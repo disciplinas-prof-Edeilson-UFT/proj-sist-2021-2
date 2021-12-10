@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
 class RatingDialog extends StatefulWidget {
@@ -33,10 +33,10 @@ class _RatingDialogState extends State<RatingDialog> {
             allowHalfRating: true,
             itemCount: 5,
             itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-            glowColor: primaryCollor,
+            glowColor: primaryColor,
             itemBuilder: (context, _) => const Icon(
               Icons.star,
-              color: secondaryCollor,
+              color: secondaryColor,
               size: 8,
             ),
             onRatingUpdate: (rating) {
@@ -51,7 +51,7 @@ class _RatingDialogState extends State<RatingDialog> {
           child: SizedBox(
             width: screen.width * 0.3,
             child: TextField(
-              cursorColor: secondaryCollor,
+              cursorColor: secondaryColor,
               keyboardType: TextInputType.multiline,
               controller: _comentario,
               maxLines: null,
@@ -81,9 +81,9 @@ class _RatingDialogState extends State<RatingDialog> {
           color: Colors.transparent,
         ),
         ElevatedButton(
-          child: const Text("Enviar", style: TextStyle(color: primaryCollor)),
+          child: const Text("Enviar", style: TextStyle(color: primaryColor)),
           style: ElevatedButton.styleFrom(
-            primary: secondaryCollor,
+            primary: secondaryColor,
           ),
           onPressed: () {
             store.cartStore.orderRepository

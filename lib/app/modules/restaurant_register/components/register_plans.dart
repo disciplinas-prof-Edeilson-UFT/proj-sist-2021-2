@@ -14,8 +14,9 @@ class RegisterPlans extends StatelessWidget {
   }
 }
 
-class Card extends StatelessWidget {
-  const Card({Key? key, required this.image, this.colorBox}) : super(key: key);
+class PlanCard extends StatelessWidget {
+  const PlanCard({Key? key, required this.image, this.colorBox})
+      : super(key: key);
   final String image;
   final Color? colorBox;
 
@@ -66,10 +67,10 @@ Widget pagePlansResponsivity(width) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Card(
+            const PlanCard(
                 image: "assets/images/cards/whitebackground.png",
                 colorBox: Colors.white),
-            Card(
+            PlanCard(
                 image: "assets/images/cards/redbackground.png",
                 colorBox: Colors.red.shade900),
           ],
@@ -83,10 +84,10 @@ Widget pagePlansResponsivity(width) {
       children: [
         Column(
           children: [
-            const Card(
+            const PlanCard(
                 image: "assets/images/cards/whitebackground.png",
                 colorBox: Colors.white),
-            Card(
+            PlanCard(
                 image: "assets/images/cards/redbackground.png",
                 colorBox: Colors.red.shade900),
           ],

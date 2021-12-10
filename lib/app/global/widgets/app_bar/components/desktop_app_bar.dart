@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 
@@ -17,6 +16,9 @@ class DesktopAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
   @override
+  HomeStore store = Modular.get<HomeStore>();
+
+  @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return AppBar(
@@ -31,32 +33,7 @@ class _DesktopAppBarState extends ModularState<DesktopAppBar, HomeStore> {
             const LogoAppBar(),
             const FilterAppBar(),
             Center(
-              child: Container(
-                width: screen.width * 0.2,
-                height: screen.height * 0.04,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: const TextField(
-                  textAlign: TextAlign.left,
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    hintText: "Busque por ítem ou loja",
-                    hintStyle: TextStyle(
-                      color: tertiaryColor,
-                      fontSize: 14,
-                    ),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: secondaryColor,
-                      size: 18,
-                    ),
-                  ),
-                ),
-              ),
+              child: SearchArea(),
             ),
             SizedBox(
               width: screen.width * 0.03,

@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/components_profile_dialog.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/components_profile_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/update_profile_dropdown.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
@@ -40,7 +40,7 @@ class UpdateFormulary extends StatelessWidget {
                 Text('Telefone da loja', style: _labelStyle),
                 TextFormField(
                   controller:
-                      homeStore.updateFormController['phone_restaurant'],
+                      homeStore.profileFormController['phone_restaurant'],
                   inputFormatters: [_phoneFormat],
                   textCapitalization: TextCapitalization.words,
                   validator: (value) {
@@ -69,13 +69,7 @@ class UpdateFormulary extends StatelessWidget {
             ),
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            UpdateProfileDropdown(),
-            NextIcon(),
-          ],
-        ),
+        const UpdateProfileDropdown(),
         Padding(
           padding: const EdgeInsets.only(
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
@@ -87,7 +81,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: homeStore.updateFormController['prepare_time'],
+                controller: homeStore.profileFormController['prepare_time'],
                 inputFormatters: [_timeFormat],
                 validator: (value) {
                   var values = value?.split('-');
@@ -130,7 +124,7 @@ class UpdateFormulary extends StatelessWidget {
                 style: _labelStyle,
               ),
               TextFormField(
-                controller: homeStore.updateFormController['delivery_price'],
+                controller: homeStore.profileFormController['delivery_price'],
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(5),
@@ -163,8 +157,11 @@ class UpdateFormulary extends StatelessWidget {
               top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
           child: ConfirmationButton(
             onPressed: () async {
-              await ProfileRepository().setRestaurant(homeStore.restaurant!);
+              await ProfileRepository()
+                  .setProfileRestaurant(homeStore.restaurant!);
+              homeStore.getRestaurant();
               Navigator.of(context).pop();
+              await showConfirmationFlush(context);
             },
           ),
         ),

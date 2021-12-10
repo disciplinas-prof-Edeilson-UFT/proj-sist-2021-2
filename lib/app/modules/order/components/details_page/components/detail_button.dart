@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/order/components/track/components/info_order.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
@@ -12,7 +12,7 @@ class DetailButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        primary: secondaryCollor,
+        primary: secondaryColor,
       ),
       child: Text(
         name,
@@ -63,9 +63,9 @@ class _DetailsDialogState extends State<DetailsDialog> {
           ),
         ),
         ElevatedButton(
-          child: const Text("Sair", style: TextStyle(color: primaryCollor)),
+          child: const Text("Sair", style: TextStyle(color: primaryColor)),
           style: ElevatedButton.styleFrom(
-            primary: secondaryCollor,
+            primary: secondaryColor,
           ),
           onPressed: () {
             Navigator.of(context).pop();

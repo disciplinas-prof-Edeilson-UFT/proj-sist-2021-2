@@ -1,5 +1,6 @@
 import 'package:pscomidas/app/modules/restaurant_home/pages/avaliations/avaliations_page.dart';
 import 'package:pscomidas/app/modules/restaurant_home/pages/orders/orders_page.dart';
+import 'package:pscomidas/app/modules/restaurant_home/pages/plans/restaurant_plan_page.dart';
 import 'package:pscomidas/app/modules/restaurant_home/pages/product/product_page.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
 
@@ -14,8 +15,9 @@ class ButtonSideBar {
     'Avaliações': {
       'navigator': RestaurantHomeModule.routeName + AvaliationsPage.routeName,
     },
-    'Sair': {
-      'navigator': '/',
+    'Planos': {
+      'navigator':
+          RestaurantHomeModule.routeName + RestaurantPlanPage.routeName,
     },
   };
 }

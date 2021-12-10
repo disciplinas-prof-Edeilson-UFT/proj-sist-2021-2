@@ -24,7 +24,6 @@ class _CustomSideBarState extends State<CustomSideBar> {
       } else if (width < 100) {
         return const SideBarTablet();
       } else {
-        //desktop_side_bar
         return const SideBarDesktop();
       }
     });

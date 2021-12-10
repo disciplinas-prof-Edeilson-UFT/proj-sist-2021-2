@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/item.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/comp_header.dart';
 import 'package:pscomidas/app/modules/cart/components/drawer/components/order_resume.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/components/pay_item_builder.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class OrderContainer extends StatelessWidget {
   OrderContainer({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class OrderContainer extends StatelessWidget {
       child: Column(
         children: [
           const CompanyHeader(),
-          const Divider(thickness: 1, color: dividerCollor),
+          const Divider(thickness: 1, color: dividerColor),
           ListView.separated(
             separatorBuilder: (context, index) {
               return const Divider(

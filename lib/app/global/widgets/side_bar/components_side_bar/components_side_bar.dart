@@ -1,11 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/modules/restaurant_home/components/restaurant_dialog.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/restaurant_profile_picture.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
-import 'package:pscomidas/app/modules/restaurant_home/components/update_profile/profile_alert_dialog.dart';
 
 class LogoSideBar extends StatelessWidget {
   const LogoSideBar({Key? key}) : super(key: key);
@@ -53,11 +53,63 @@ class TextButtonMenu extends StatelessWidget {
   }
 }
 
+class SignOut extends StatelessWidget {
+  const SignOut({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        child: const Text(
+          'Sair',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontFamily: "Nunito",
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        onTap: () async {
+          FirebaseAuth.instance.signOut();
+          Modular.to.navigate('/');
+        },
+      ),
+    );
+  }
+}
+
+class SignOutMobile extends StatelessWidget {
+  const SignOutMobile({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        child: const Text(
+          'Sair',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+            fontFamily: "Nunito",
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        onTap: () async {
+          FirebaseAuth.instance.signOut();
+          Modular.to.navigate('/');
+        },
+      ),
+    );
+  }
+}
+
 class TextButtonMenuMobile extends StatelessWidget {
   final String option;
-  final VoidCallback press;
+  final String navigator;
   const TextButtonMenuMobile(
-      {Key? key, required this.option, required this.press})
+      {Key? key, required this.option, required this.navigator})
       : super(key: key);
 
   @override
@@ -74,7 +126,7 @@ class TextButtonMenuMobile extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        onTap: press,
+        onTap: () => Modular.to.navigate(navigator),
       ),
     );
   }
@@ -91,50 +143,36 @@ class ListTilePerfil extends StatelessWidget {
         showDialog(
           context: context,
           builder: (_) {
-            restaurantHomeStore.updateControllers();
-            return const ProfileAlertDialog();
+            restaurantHomeStore.updateProfileControllers();
+            return const RestaurantDialog();
           },
         );
       },
       leading: RestaurantProfilePicture(),
-      title: const Text(
+      title: visualEditInfo(context),
+      minLeadingWidth: 0,
+    );
+  }
+
+  Widget visualEditInfo(context) {
+    double _pageWidth = MediaQuery.of(context).size.width;
+    if (_pageWidth < 850) {
+      return const Icon(
+        Icons.create_outlined,
+        color: primaryColor,
+      );
+    } else {
+      return Text(
         "Editar perfil",
         style: TextStyle(
           color: Colors.white,
           fontFamily: "Nunito",
-          fontSize: 20,
+          fontSize: _pageWidth < 1000 ? 15 : 20,
           fontWeight: FontWeight.bold,
         ),
         textAlign: TextAlign.left,
-      ),
-      minLeadingWidth: 0,
-    );
-  }
-}
-
-class ListTilePerfilMobile extends StatelessWidget {
-  ListTilePerfilMobile({Key? key}) : super(key: key);
-  final RestaurantHomeStore restaurantHomeStore =
-      Modular.get<RestaurantHomeStore>();
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (_) {
-            restaurantHomeStore.updateControllers();
-            return const ProfileAlertDialog();
-          },
-        );
-      },
-      leading: RestaurantProfilePicture(),
-      title: const Icon(
-        Icons.create_outlined,
-        color: primaryColor,
-      ),
-      minLeadingWidth: 0,
-    );
+      );
+    }
   }
 }
 
@@ -157,7 +195,7 @@ class _ClosedButtonShopState extends State<ClosedButtonShop> {
           builder: (_) => Text(
             store.toggleText,
             style: const TextStyle(
-              color: secondaryCollor,
+              color: secondaryColor,
               fontSize: 18,
               fontFamily: "Nunito",
               fontWeight: FontWeight.bold,
@@ -190,7 +228,7 @@ class _ClosedButtonShopMobileState extends State<ClosedButtonShopMobile> {
           builder: (_) => Text(
             store.toggleText,
             style: const TextStyle(
-              color: secondaryCollor,
+              color: secondaryColor,
               fontSize: 12,
               fontFamily: "Nunito",
               fontWeight: FontWeight.bold,

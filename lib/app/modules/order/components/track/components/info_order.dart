@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
 class InfoOrder extends StatefulWidget {
@@ -33,7 +33,7 @@ class _InfoOrderState extends State<InfoOrder> {
               ),
               Text(
                 'Q. 208 Sul, Alameda 10, 202',
-                style: TextStyle(fontFamily: 'Nunito', color: tertiaryCollor),
+                style: TextStyle(fontFamily: 'Nunito', color: tertiaryColor),
               )
             ],
           ),

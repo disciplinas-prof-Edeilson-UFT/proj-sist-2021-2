@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/repositories/products/product_repository.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:pscomidas/app/modules/cart/cart_module.dart';
 import 'package:pscomidas/app/global/repositories/order/order_repository.dart';
@@ -34,6 +35,7 @@ class AppModule extends Module {
     Bind.singleton((i) => RestaurantHomeStore()),
     Bind.singleton((i) => RestaurantRegisterStore()),
     Bind.lazySingleton((i) => ClientAddressStore()),
+    Bind.singleton((i) => ProductRepository()),
   ];
 
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/order/components/track/components/cancel/class/cancel_store.dart';
 import 'package:pscomidas/app/modules/order/order_store.dart';
 
@@ -19,7 +19,7 @@ class _CancelOrderState extends State<CancelOrder> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        style: TextButton.styleFrom(primary: secondaryCollor),
+        style: TextButton.styleFrom(primary: secondaryColor),
         child: const Text('Cancelar',
             style: TextStyle(
                 fontFamily: 'Nunito',
@@ -77,7 +77,7 @@ class _CancelOrderState extends State<CancelOrder> {
                               style: TextStyle(
                                   fontSize: 20,
                                   fontFamily: 'Nunito',
-                                  color: tertiaryCollor)),
+                                  color: tertiaryColor)),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
@@ -118,7 +118,7 @@ class _CancelOrderState extends State<CancelOrder> {
           controller.setCheckedOutros(value!);
         }
       },
-      activeColor: secondaryCollor,
+      activeColor: secondaryColor,
       checkColor: Colors.white,
       controlAffinity: ListTileControlAffinity.leading,
     );
@@ -129,7 +129,7 @@ class _CancelOrderState extends State<CancelOrder> {
     return TextButton(
         child: const Text('Confirmar',
             style: TextStyle(
-                fontSize: 20, fontFamily: 'Nunito', color: secondaryCollor)),
+                fontSize: 20, fontFamily: 'Nunito', color: secondaryColor)),
         onPressed: () {
           Navigator.of(context).pop();
           showDialog(
@@ -141,9 +141,9 @@ class _CancelOrderState extends State<CancelOrder> {
                   // define os botões na base do dialogo
                   ElevatedButton(
                     child: const Text("Fechar",
-                        style: TextStyle(color: primaryCollor)),
+                        style: TextStyle(color: primaryColor)),
                     style: ElevatedButton.styleFrom(
-                      primary: secondaryCollor,
+                      primary: secondaryColor,
                     ),
                     onPressed: () {
                       Modular.to.navigate('/');
