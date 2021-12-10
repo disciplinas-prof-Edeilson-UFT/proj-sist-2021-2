@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class EmptyDrawer extends StatelessWidget {
-  final double largura;
-  const EmptyDrawer({Key? key, required this.largura}) : super(key: key);
+  final double width;
+  const EmptyDrawer({Key? key, required this.width}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class EmptyDrawer extends StatelessWidget {
           presetFontSizes: [14, 12, 10],
           wrapWords: true,
           style: TextStyle(
-            color: secondaryCollor,
+            color: secondaryColor,
             fontFamily: 'Nunito',
             fontWeight: FontWeight.w500,
           ),

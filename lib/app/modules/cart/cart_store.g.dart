@@ -31,6 +31,44 @@ mixin _$CartStore on _CartStoreBase, Store {
     });
   }
 
+  final _$itensPedidoAtom = Atom(name: '_CartStoreBase.itensPedido');
+
+  @override
+  ObservableList<Item> get itensPedido {
+    _$itensPedidoAtom.reportRead();
+    return super.itensPedido;
+  }
+
+  @override
+  set itensPedido(ObservableList<Item> value) {
+    _$itensPedidoAtom.reportWrite(value, super.itensPedido, () {
+      super.itensPedido = value;
+    });
+  }
+
+  final _$listaPedidoAtom = Atom(name: '_CartStoreBase.listaPedido');
+
+  @override
+  Order? get listaPedido {
+    _$listaPedidoAtom.reportRead();
+    return super.listaPedido;
+  }
+
+  @override
+  set listaPedido(Order? value) {
+    _$listaPedidoAtom.reportWrite(value, super.listaPedido, () {
+      super.listaPedido = value;
+    });
+  }
+
+  final _$cadastroTesteAsyncAction =
+      AsyncAction('_CartStoreBase.cadastroTeste');
+
+  @override
+  Future<dynamic> cadastroTeste() {
+    return _$cadastroTesteAsyncAction.run(() => super.cadastroTeste());
+  }
+
   final _$_CartStoreBaseActionController =
       ActionController(name: '_CartStoreBase');
 
@@ -68,9 +106,33 @@ mixin _$CartStore on _CartStoreBase, Store {
   }
 
   @override
+  void transferirItens() {
+    final _$actionInfo = _$_CartStoreBaseActionController.startAction(
+        name: '_CartStoreBase.transferirItens');
+    try {
+      return super.transferirItens();
+    } finally {
+      _$_CartStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void cleaningItemsCart() {
+    final _$actionInfo = _$_CartStoreBaseActionController.startAction(
+        name: '_CartStoreBase.cleaningItemsCart');
+    try {
+      return super.cleaningItemsCart();
+    } finally {
+      _$_CartStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 itens: ${itens},
+itensPedido: ${itensPedido},
+listaPedido: ${listaPedido},
 total: ${total}
     ''';
   }

@@ -24,7 +24,7 @@ class PayButtonBuilder extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () => {
           store.cadastroTeste(),
-          Modular.to.navigate(route),
+          Modular.to.navigate('/Order'),
         },
         child: AutoSizeText(
           buttonTxt,

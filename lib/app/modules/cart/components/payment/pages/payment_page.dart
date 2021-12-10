@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/cart/cart_store.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/pages/desktop_pay_page.dart';
 import 'package:pscomidas/app/modules/cart/components/payment/pages/mobile_pay_page.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class PaymentPage extends StatefulWidget {
   static String paymentRouteName = '/payment';
@@ -21,16 +21,15 @@ class _PaymentPageState extends State<PaymentPage> {
     return Scaffold(
       appBar: AppBar(
         title: const LogoAppBar(),
-        backgroundColor: primaryCollor,
+        backgroundColor: primaryColor,
         centerTitle: true,
         elevation: 2,
       ),
       backgroundColor: Colors.white,
       body: LayoutBuilder(
         builder: (context, constraints) {
-          var height = constraints.maxHeight;
-          var largura = constraints.maxWidth;
-          if (height <= 647 && largura < 1360) {
+          var width = constraints.maxWidth;
+          if (width < 1360) {
             return const MobilePayPage();
           } else {
             return const DesktopPayPage();
