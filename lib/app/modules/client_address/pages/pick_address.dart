@@ -3,9 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/shimmer_loading/shimmer_loading.dart';
 import 'package:pscomidas/app/modules/client_address/widgets/address_list_tile.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_submit.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
 
@@ -51,7 +51,7 @@ class _PickAddressState extends State<PickAddress> {
                   onPressed: () => store.jump(1),
                   icon: const Icon(
                     Icons.arrow_back_ios,
-                    color: secondaryCollor,
+                    color: secondaryColor,
                   ),
                 ),
                 //const SizedBox(width: 50.0),
@@ -102,7 +102,7 @@ class _PickAddressState extends State<PickAddress> {
                     highlightColor: Colors.transparent,
                     icon: const Icon(
                       Icons.search_sharp,
-                      color: secondaryCollor,
+                      color: secondaryColor,
                     ),
                   )
                 ],
@@ -162,12 +162,12 @@ class WarningListTile extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: hasError ? secondaryCollor : Colors.transparent,
+        color: hasError ? secondaryColor : Colors.transparent,
       ),
       child: ListTile(
         leading: Icon(
           icon,
-          color: hasError ? Colors.white : tertiaryCollor,
+          color: hasError ? Colors.white : tertiaryColor,
         ),
         title: const Text('Seu endereço endereço aparece por aqui'),
         subtitle: Text(errorMessage ?? ''),

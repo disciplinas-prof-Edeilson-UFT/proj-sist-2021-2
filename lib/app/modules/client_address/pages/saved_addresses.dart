@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
 import 'package:pscomidas/app/modules/client_address/widgets/address_list_tile.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class SavedAdresses extends StatefulWidget {
   const SavedAdresses({Key? key}) : super(key: key);
@@ -64,10 +64,10 @@ class _SavedAdressesState extends State<SavedAdresses> {
                   if (store.addresses.hasError) ...[
                     const Icon(
                       Icons.error_outline_sharp,
-                      color: secondaryCollor,
+                      color: secondaryColor,
                     )
                   ] else ...[
-                    const CircularProgressIndicator(color: secondaryCollor),
+                    const CircularProgressIndicator(color: secondaryColor),
                   ],
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -101,20 +101,20 @@ class _SavedAdressesState extends State<SavedAdresses> {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.grey.shade100,
-        border: Border.all(color: tertiaryCollor),
+        border: Border.all(color: tertiaryColor),
         borderRadius: BorderRadius.circular(6),
       ),
       child: ListTile(
         title: const Text(
           'Busque endereço e número',
           style: TextStyle(
-            color: tertiaryCollor,
+            color: tertiaryColor,
             fontSize: 16,
           ),
         ),
         leading: const Icon(
           Icons.search,
-          color: secondaryCollor,
+          color: secondaryColor,
         ),
         onTap: () => store.jump(1),
       ),

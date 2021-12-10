@@ -3,8 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class SlidableAddressTile extends StatefulWidget {
   const SlidableAddressTile({Key? key, DeliveryAt? address}) : super(key: key);
@@ -28,13 +28,13 @@ class _SlidableAddressTileState extends State<SlidableAddressTile> {
           SlidableAction(
             icon: Icons.edit,
             backgroundColor: Colors.transparent,
-            foregroundColor: secondaryCollor,
+            foregroundColor: secondaryColor,
             onPressed: (context) {},
           ),
           SlidableAction(
             icon: Icons.delete,
             backgroundColor: Colors.transparent,
-            foregroundColor: secondaryCollor,
+            foregroundColor: secondaryColor,
             onPressed: (context) {},
           ),
         ],
@@ -66,7 +66,7 @@ class _AddressListTileState extends State<AddressListTile> {
   bool test = false;
   @override
   Widget build(BuildContext context) {
-    Color highlightColor = test ? primaryCollor : Colors.black;
+    Color highlightColor = test ? primaryColor : Colors.black;
     return ListTile(
       tileColor: Colors.transparent,
       selected: test,
