@@ -9,6 +9,23 @@ part of 'restaurant_register_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RestaurantRegisterStore on _RestaurantRegisterStore, Store {
+  final _$registerErrorMessageAtom =
+      Atom(name: '_RestaurantRegisterStore.registerErrorMessage');
+
+  @override
+  String get registerErrorMessage {
+    _$registerErrorMessageAtom.reportRead();
+    return super.registerErrorMessage;
+  }
+
+  @override
+  set registerErrorMessage(String value) {
+    _$registerErrorMessageAtom.reportWrite(value, super.registerErrorMessage,
+        () {
+      super.registerErrorMessage = value;
+    });
+  }
+
   final _$selectedCategoryAtom =
       Atom(name: '_RestaurantRegisterStore.selectedCategory');
 
@@ -43,6 +60,17 @@ mixin _$RestaurantRegisterStore on _RestaurantRegisterStore, Store {
 
   final _$_RestaurantRegisterStoreActionController =
       ActionController(name: '_RestaurantRegisterStore');
+
+  @override
+  dynamic setRegisterErrorMessage(dynamic newValue) {
+    final _$actionInfo = _$_RestaurantRegisterStoreActionController.startAction(
+        name: '_RestaurantRegisterStore.setRegisterErrorMessage');
+    try {
+      return super.setRegisterErrorMessage(newValue);
+    } finally {
+      _$_RestaurantRegisterStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setSelectedCategory(dynamic newValue) {
@@ -80,6 +108,7 @@ mixin _$RestaurantRegisterStore on _RestaurantRegisterStore, Store {
   @override
   String toString() {
     return '''
+registerErrorMessage: ${registerErrorMessage},
 selectedCategory: ${selectedCategory},
 selectedPlan: ${selectedPlan}
     ''';

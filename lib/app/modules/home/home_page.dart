@@ -9,7 +9,7 @@ import 'package:pscomidas/app/global/widgets/bottom_app_bar/bottom_app_bar_mobil
 import 'package:pscomidas/app/modules/home/components/restaurant_grid.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/home/components/most_ordered.dart';
-import 'package:pscomidas/app/global/widgets/footer_bar/custom_footer.dart';
+import 'package:pscomidas/app/global/widgets/footer_bar/footer_bar.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -41,7 +41,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
   @override
   Widget build(BuildContext context) {
-    homeStore.setSelectedCategory(null);
     deviceWidth = MediaQuery.of(context).size.width;
 
     return Observer(builder: (_) {
@@ -84,7 +83,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                 ),
               ),
               const RestaurantGrid(),
-              const CustomFooter()
+              const FooterBar(),
             ],
           ),
         ),

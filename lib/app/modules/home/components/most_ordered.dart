@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
+import 'package:pscomidas/app/modules/home/components/restaurant_picture.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_module.dart';
 
@@ -53,14 +54,10 @@ class _MostOrderedState extends State<MostOrdered> {
                         child: Column(
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 20.0),
-                              child: CircleAvatar(
-                                radius: 45.0,
-                                backgroundImage:
-                                    NetworkImage(restaurants[index].image),
-                                backgroundColor: Colors.white,
-                              ),
-                            ),
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: RestaurantPicture(
+                                  picture: restaurants[index].image,
+                                )),
                             Text(
                               restaurants[index].socialName,
                               softWrap: true,

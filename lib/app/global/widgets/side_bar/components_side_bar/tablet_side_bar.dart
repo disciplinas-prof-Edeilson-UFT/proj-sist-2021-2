@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/buttons_side_bar.dart';
 import 'package:pscomidas/app/global/widgets/side_bar/components_side_bar/components_side_bar.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 
 class SideBarTablet extends StatefulWidget {
   const SideBarTablet({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _SideBarTabletState extends State<SideBarTablet> {
     return Drawer(
       elevation: 0,
       child: Container(
-        color: secondaryCollor,
+        color: secondaryColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -52,6 +52,7 @@ class _SideBarTabletState extends State<SideBarTablet> {
                         ],
                       ),
                     ),
+                    const SignOut(),
                   ],
                 ),
               ),
@@ -61,7 +62,7 @@ class _SideBarTabletState extends State<SideBarTablet> {
             ),
             Container(
               alignment: Alignment.center,
-              color: redCollor,
+              color: redColor,
               width: double.maxFinite,
               height: screen.height * 0.1,
               child: ListTilePerfil(),

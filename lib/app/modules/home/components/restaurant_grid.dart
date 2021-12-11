@@ -20,8 +20,8 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
 
   @override
   void initState() {
-    homeStore.getRestaurants();
     WidgetsFlutterBinding.ensureInitialized();
+    homeStore.getRestaurants();
     super.initState();
   }
 
@@ -30,69 +30,33 @@ class _RestaurantGridState extends ModularState<RestaurantGrid, HomeStore> {
     double _pageWidth = MediaQuery.of(context).size.width;
     return Observer(
       builder: (_) {
-        var restaurants = homeStore.restaurants;
-        if (homeStore.selectedCategory != '') {
-          restaurants = restaurants
-              .where((e) => e.category.contains(homeStore.selectedCategory))
-              .toList();
-        }
+        homeStore.selectedFilter;
+        var restaurants = homeStore.restaurants
+            .where((e) => e.category.contains(homeStore.selectedCategory))
+            .toList();
+        restaurants = restaurants
+            .where((e) =>
+                e.socialName.toLowerCase().contains(homeStore.searchShop))
+            .toList();
         return GridView.builder(
+          scrollDirection: Axis.vertical,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: _pageWidth > 1100
-                  ? 3
-                  : _pageWidth > 700
-                      ? 2
-                      : 1, //Responsivo horizontalmente
-              mainAxisExtent: _pageWidth * 0.10 < 100
-                  ? 100
-                  : _pageWidth * 0.10, //Responsivo verticalmente (min 100 px)
-              childAspectRatio: 3 / 2,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8),
+            crossAxisCount: _pageWidth > 1100
+                ? 3
+                : _pageWidth > 700
+                    ? 2
+                    : 1, //Responsivo horizontalmente
+            mainAxisExtent: _pageWidth * 0.10 < 100
+                ? 100
+                : _pageWidth * 0.10, //Responsivo verticalmente (min 100 px)
+            childAspectRatio: 3 / 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+          ),
           itemCount: restaurants.length,
-          itemBuilder: (context, index) {
-            try {
-              //lida com erros nos campos dos documentos do firebase.
-              //garantido que os documentos serão feitos sem erros, este try catch pode ser excluido.
-              restaurant = Restaurant(
-                restaurants[index].restaurantId,
-                category: restaurants[index].category,
-                deliveryPrice: restaurants[index].deliveryPrice,
-                deliveryPlan: restaurants[index].deliveryPlan,
-                distance: restaurants[index].distance,
-                estimatedDelivery: restaurants[index].estimatedDelivery,
-                phone: restaurants[index].phone,
-                image: restaurants[index].image,
-                isChampion: restaurants[index].isChampion,
-                orders: restaurants[index].orders,
-                socialName: restaurants[index].socialName,
-                avaliation: restaurants[index].avaliation,
-                cupom: restaurants[index].cupom,
-                nameOwner: restaurants[index].nameOwner,
-                phoneOwner: restaurants[index].phoneOwner,
-                emailOwner: restaurants[index].emailOwner,
-                password: restaurants[index].password,
-                cep: restaurants[index].cep,
-                city: restaurants[index].city,
-                state: restaurants[index].state,
-                address: restaurants[index].address,
-                district: restaurants[index].district,
-                number: restaurants[index].number,
-                complement: restaurants[index].complement,
-              );
-            } catch (exception) {
-              return Column(children: [
-                Text(exception.toString()),
-                const Text(
-                  "CONTACTE O GRUPO 1 PARA MAIS DETALHES.",
-                  style: TextStyle(color: Colors.red),
-                ),
-              ]);
-            }
-            return RestaurantCard(restaurant);
-          },
+          itemBuilder: (context, index) => RestaurantCard(restaurants[index]),
         );
       },
     );

@@ -12,9 +12,48 @@ abstract class _RestaurantRegisterStore with Store {
 
   final String userCity = "Palmas";
 
-  addRestaurant() async {
+  registrar() async {
     final RegisterRepository registerRepository = RegisterRepository();
-    await registerRepository.addRestaurant();
+    var credential = await registerRepository.signUp(controller);
+    await registerRepository.addRestaurant(credential.user!.uid, controller);
+    await registerRepository.addUser(credential.user!.uid, controller);
+  }
+
+  @observable
+  String registerErrorMessage = '';
+
+  @action
+  setRegisterErrorMessage(newValue) {
+    registerErrorMessage = newValue ?? '';
+  }
+
+  Future<bool> dataIsUnique() async {
+    final RegisterRepository registerRepository = RegisterRepository();
+    var email = controller['email']?.text ?? '';
+    var uniqueEmail = email.isNotEmpty
+        ? (await registerRepository.isUniqueEmail(email)) ?? false
+        : false;
+
+    var cnpj = controller['CNPJ']?.text ?? '';
+    var uniqueRestaurant = cnpj.isNotEmpty
+        ? (await registerRepository.isUniqueCNPJ(cnpj)) ?? false
+        : false;
+
+    if (uniqueEmail && uniqueRestaurant) {
+      return true;
+    } else if (uniqueRestaurant) {
+      setRegisterErrorMessage(
+          'O email pertence a outra conta. Tente fazer login, ou inserir um email diferente.');
+      return false;
+    } else if (uniqueEmail) {
+      setRegisterErrorMessage(
+          'O CNPJ pertence a outra conta. Tente fazer login, ou inserir um CNPJ diferente.');
+      return false;
+    } else {
+      setRegisterErrorMessage(
+          'O CNPJ e o email pertencem a outra conta. Tente fazer login, ou inserir dados diferentes.');
+      return false;
+    }
   }
 
   Map<String, TextEditingController> controller = {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
 import 'package:pscomidas/app/modules/payments/components/add_card/form_card.dart';
 import 'package:pscomidas/app/modules/payments/payments_store.dart';
 
@@ -21,7 +20,7 @@ class _AddCardState extends State<AddCard> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Container(
-            color: primaryCollor,
+            color: primaryColor,
             width: 300,
             height: 50,
             child: Observer(

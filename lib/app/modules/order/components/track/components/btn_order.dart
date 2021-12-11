@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pscomidas/app/modules/home/schemas.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 class BtnOrder extends StatelessWidget {
   final String name;
@@ -10,7 +10,7 @@ class BtnOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        primary: secondaryCollor,
+        primary: secondaryColor,
       ),
       onPressed: () => Modular.to.navigate('/Track'),
       child: Text(

@@ -21,6 +21,8 @@ class RestaurantHomeModule extends Module {
                   child: (context, args) => const AvaliationsPage()),
               ChildRoute(RestaurantPlanPage.routeName,
                   child: (context, args) => const RestaurantPlanPage()),
+              ChildRoute('/',
+                  child: (context, args) => const RestaurantHomePage()),
             ]),
       ];
 }
