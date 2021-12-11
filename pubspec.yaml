@@ -38,10 +38,10 @@ dependencies:
   cloud_firestore: ^2.5.3
   firebase_core: ^1.6.0
   firebase_auth: ^3.1.1
-  flutter_modular: ^3.4.1
-  mobx: ^2.0.4
+  flutter_modular: ^4.2.0
+  mobx: ^2.0.5
   flutter_mobx: ^2.0.2
-  build_runner: ^2.1.2
+  build_runner: ^2.1.5
   dartz: ^0.10.0
   http: ^0.13.3
   mask_text_input_formatter: ^2.0.0
@@ -60,6 +60,7 @@ dependencies:
   flutter_slidable: ^1.0.0
   flutter_rating_bar: ^4.0.0
   percent_indicator: ^3.4.0
+  font_awesome_flutter: '>= 4.7.0'
   google_fonts: ^2.1.0
   cached_network_image: ^3.2.0
   auto_size_text: ^3.0.0
@@ -77,8 +78,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-  mobx_codegen: ^2.0.3
-  flutter_modular_test: ^1.0.4
+  mobx_codegen: ^2.0.4
+  modular_test: ^1.0.1+1
   mockito: ^5.0.16
 
 # For information on the generic Dart part of this file, see the
