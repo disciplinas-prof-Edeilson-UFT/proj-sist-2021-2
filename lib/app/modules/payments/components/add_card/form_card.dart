@@ -1,10 +1,13 @@
+import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:credit_card_validator/credit_card_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/payments/components/add_card/TextField/text_field_card.dart';
 import 'package:pscomidas/app/modules/payments/payments_store.dart';
+import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.dart';
 
 class FormCard extends StatefulWidget {
   const FormCard({Key? key}) : super(key: key);
@@ -132,7 +135,28 @@ class _FormCardState extends State<FormCard> {
                     ],
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 30,
+                  ),
+                  Observer(builder: (_) {
+                    return CustomTextField(
+                      controller: store.cpfControlle,
+                      title: 'CPF',
+                      hint: 'Insira seu CPF',
+                      validator: (value) {
+                        if (!CPFValidator.isValid(value)) {
+                          return 'CPF inválido';
+                        }
+                      },
+                      formaters: [
+                        MaskTextInputFormatter(
+                          mask: '###.###.###-##',
+                          filter: {"#": RegExp(r'[0-9]')},
+                        )
+                      ],
+                    );
+                  }),
+                  const SizedBox(
+                    height: 30,
                   ),
                   Observer(
                     builder: (_) {

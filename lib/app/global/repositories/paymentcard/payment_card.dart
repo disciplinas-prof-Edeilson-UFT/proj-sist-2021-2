@@ -22,6 +22,7 @@ class PaymentCardRepository implements IPaymentCardRepository {
         'cvv': card.cvv,
         'name': card.nome,
         'validade': card.validity,
+        'cpf': card.cpf,
       }).then((value) {
         cartao.add(value.id);
         log("Cartão adicionado com sucesso");

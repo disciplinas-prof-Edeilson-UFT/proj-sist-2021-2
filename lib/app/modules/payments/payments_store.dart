@@ -16,6 +16,7 @@ abstract class _PaymentsStoreBase with Store {
   TextEditingController nomeImpressoControlle = TextEditingController();
   TextEditingController validadeControlle = TextEditingController();
   TextEditingController cvvControlle = TextEditingController();
+  TextEditingController cpfControlle = TextEditingController();
 
   @observable
   bool dataInvalid = false;
@@ -46,7 +47,7 @@ abstract class _PaymentsStoreBase with Store {
     if (isValidNumCard &&
         isValidNomeImpresso &&
         isValidValidade &&
-        isValidCVV ) {
+        isValidCVV) {
       return true;
     }
     return false;
@@ -62,6 +63,7 @@ abstract class _PaymentsStoreBase with Store {
     nomeImpressoControlle.clear();
     validadeControlle.clear();
     cvvControlle.clear();
+    cpfControlle.clear();
   }
 
   @action
@@ -71,6 +73,7 @@ abstract class _PaymentsStoreBase with Store {
       validity: validadeControlle.text.toString(),
       nome: nomeImpressoControlle.text.toString(),
       cvv: cvvControlle.text.toString(),
+      cpf: cpfControlle.text.toString(),
     );
     await cardRepository.addPaymentCard(card);
   }
