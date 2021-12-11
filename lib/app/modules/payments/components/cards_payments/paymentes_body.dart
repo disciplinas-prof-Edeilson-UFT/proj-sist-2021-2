@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/new_card.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/payments/components/add_card/add_body.dart';
 import 'package:pscomidas/app/modules/payments/components/cards_payments/list_card.dart';
+import 'package:pscomidas/app/modules/payments/payments_store.dart';
 
 class PaymentsBody extends StatefulWidget {
   const PaymentsBody({Key? key, required this.listCards}) : super(key: key);
@@ -14,8 +16,9 @@ class PaymentsBody extends StatefulWidget {
 }
 
 class _PaymentsBodyState extends State<PaymentsBody> {
+  final PaymentsStore store = Modular.get();
   double _sizeHeight() {
-    switch (widget.listCards.length) {
+    switch (store.cards.length) {
       case 1:
         return 0.15;
       case 2:

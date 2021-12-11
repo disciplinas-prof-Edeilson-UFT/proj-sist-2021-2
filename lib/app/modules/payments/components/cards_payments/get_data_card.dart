@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/new_card.dart';
 import 'package:pscomidas/app/global/repositories/paymentcard/payment_card.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/payments/components/cards_payments/paymentes_body.dart';
 import 'package:pscomidas/app/modules/payments/payments_store.dart';
 
@@ -21,6 +22,7 @@ class _GetDataCardState extends State<GetDataCard> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
+      store.clearCardList();
       return FutureBuilder(
         future: cardRepository.getCards(),
         builder: (BuildContext context,
@@ -43,11 +45,13 @@ class _GetDataCardState extends State<GetDataCard> {
               if(!store.cards.contains(card)){
                 listCards.add(card);
                 store.addCardList(card);
+              }else{
+                print('object');
               }
             }
             return PaymentsBody(listCards: listCards);
           }
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(color: secondaryColor,));
         });
     });
   }

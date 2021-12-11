@@ -54,6 +54,11 @@ abstract class _PaymentsStoreBase with Store {
     cards.add(card);
   }
 
+  @action 
+  clearCardList(){
+    cards.clear();
+  }
+
   bool isValidData() {
     if (isValidNumCard &&
         isValidNomeImpresso &&
