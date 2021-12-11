@@ -18,6 +18,7 @@ class ClientAddressPageState extends State<ClientAddressPage> {
 
   @override
   void initState() {
+    store.fetchSavedAddresses();
     super.initState();
   }
 

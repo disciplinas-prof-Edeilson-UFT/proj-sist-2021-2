@@ -3,7 +3,7 @@ class DeliveryAt {
   final String? street;
   final String? block;
   final String? complement;
-  final String? number;
+  final int? number;
   final String cep;
   final String city;
   final String uf;

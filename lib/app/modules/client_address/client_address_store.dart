@@ -62,6 +62,14 @@ abstract class _ClientAddressStoreBase with Store {
     }
   }
 
+  setDeliveryAt(String uid) async {
+    try {
+      await _repository.updateCurrentAddress(uid);
+    } catch (e) {
+      errorMessage = e.toString();
+    }
+  }
+
   @action
   fetchSavedAddresses() async {
     addresses = AppResponse.loading();

@@ -72,6 +72,14 @@ class ClientAddressRepository {
     }
   }
 
+  Future<void> updateCurrentAddress(String uid) async {
+    try {
+      await clientCollection.doc(currentUser!.uid).update({'delivery_at': uid});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> createAddress(DeliveryAt address) async {
     try {
       await addressCollection.add({
@@ -87,6 +95,7 @@ class ClientAddressRepository {
         await clientCollection.doc(currentUser!.uid).update(
           {
             'address': FieldValue.arrayUnion([value.id]),
+            'delivery_at': value.id,
           },
         );
       });

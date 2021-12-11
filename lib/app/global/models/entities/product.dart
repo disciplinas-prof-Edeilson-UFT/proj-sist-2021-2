@@ -40,7 +40,7 @@ class Product {
       description: map['description'],
       price: map['price'],
       restaurantId: map['restaurant_id'],
-      productId: map['product_id'],
+      productId: productId,
     );
   }
 }

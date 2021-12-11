@@ -31,6 +31,7 @@ class RegisterClientRepository {
               'cards': [],
               'cpf': user.cpf,
               'address': [value.id],
+              'delivery_at': value.id
             }),
           );
 

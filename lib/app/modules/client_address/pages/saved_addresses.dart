@@ -16,11 +16,8 @@ class SavedAdresses extends StatefulWidget {
 class _SavedAdressesState extends State<SavedAdresses> {
   final ClientAddressStore store = Modular.get();
 
-  List test = List.generate(3, (index) => 1);
-
   @override
   void initState() {
-    store.fetchSavedAddresses();
     super.initState();
   }
 
@@ -56,12 +53,13 @@ class _SavedAdressesState extends State<SavedAdresses> {
             height: 10,
           ),
           Observer(builder: (_) {
-            if (!store.addresses.isCompleted) {
+            if (!store.addresses.isCompleted || store.addresses.body == null) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  if (store.addresses.hasError) ...[
+                  if (store.addresses.hasError ||
+                      store.addresses.body == null) ...[
                     const Icon(
                       Icons.error_outline_sharp,
                       color: secondaryColor,
