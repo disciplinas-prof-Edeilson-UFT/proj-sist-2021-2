@@ -21,13 +21,13 @@ class _AddCardState extends State<AddCard> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Container(
-          color: primaryCollor,
-          width: 300,
-          height: 50,
-          child: Observer(
-            builder: (_) {
-              return Material(
-                child: Row(
+            color: primaryCollor,
+            width: 300,
+            height: 50,
+            child: Observer(
+              builder: (_) {
+                return Material(
+                    child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Observer(builder: (_) {
@@ -44,14 +44,12 @@ class _AddCardState extends State<AddCard> {
                       );
                     }),
                   ],
-                )
-              );
-            },
-          )
-        ),
+                ));
+              },
+            )),
         Observer(
           builder: (_) {
-            return const FormCard();
+            return FormCard();
           },
         )
       ],
