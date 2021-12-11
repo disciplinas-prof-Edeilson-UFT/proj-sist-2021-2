@@ -46,49 +46,60 @@ class _ProductDialogState extends State<ProductDialog> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Spacer(flex: 6),
-          Text(
-            widget.product.name.toString(),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 13,
+          Expanded(
+            child: Title(
+              color: tertiaryColor,
+              child: Text(
+                widget.product.name.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
             ),
           ),
-          const Spacer(flex: 2),
           GestureDetector(
             onTap: () {
               Modular.to.pop();
               store.dispose();
             },
             child: const Align(
-              child: Icon(Icons.close, color: Colors.grey),
+              child: Icon(Icons.close, color: tertiaryColor),
             ),
           ),
         ],
       ),
       content: SizedBox(
-        width: screen.width * .5,
+        width: screen.width * .6,
         height: 400,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-              height: 300.0,
-              width: screen.width * .2,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    widget.product.imgUrl ??
-                        'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/no-image.png?alt=media&token=ef69bdba-5ece-4dc0-9754-fcf2a04364f0',
+            if (screen.width > 1069) ...[
+              Expanded(
+                child: Container(
+                  height: 300.0,
+                  width: screen.width * .2,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                        widget.product.imgUrl ??
+                            'https://firebasestorage.googleapis.com/v0/b/ps-comidas.appspot.com/o/no-image.png?alt=media&token=ef69bdba-5ece-4dc0-9754-fcf2a04364f0',
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-            // const SizedBox(width: 10),
-            Container(
-              padding: const EdgeInsets.all(5.0),
-              width: screen.width * .25,
+              const SizedBox(width: 20),
+            ],
+            SizedBox(
+              width: screen.width > 1069
+                  ? screen.width * .30
+                  : screen.width > 350
+                      ? screen.width * .5
+                      : screen.width,
               child: ListView(
                 shrinkWrap: true,
                 children: [
@@ -99,7 +110,7 @@ class _ProductDialogState extends State<ProductDialog> {
                         widget.product.description.toString(),
                         textAlign: TextAlign.justify,
                         style:
-                            const TextStyle(color: Colors.grey, fontSize: 14),
+                            const TextStyle(color: tertiaryColor, fontSize: 15),
                       ),
                     ),
                   ],
@@ -110,23 +121,22 @@ class _ProductDialogState extends State<ProductDialog> {
                       height: 20,
                       alignment: Alignment.bottomLeft,
                       child: Text(
-                        "R\$ " +
-                            FormatMoney.doubleToMoney(widget.product.price!),
+                        "" + FormatMoney.doubleToMoney(widget.product.price!),
                         textAlign: TextAlign.justify,
                         style:
-                            const TextStyle(color: Colors.green, fontSize: 14),
+                            const TextStyle(color: Colors.green, fontSize: 15),
                       ),
                     ),
                   ],
                   const SizedBox(height: 20),
                   Container(
-                    height: 115,
+                    height: 140,
                     width: double.infinity,
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.all(30),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      border: Border.all(color: Colors.grey, width: 1),
+                      border: Border.all(color: tertiaryColor, width: 1),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -134,7 +144,8 @@ class _ProductDialogState extends State<ProductDialog> {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.store),
+                            const Icon(Icons.storefront),
+                            const Padding(padding: EdgeInsets.all(3.0)),
                             Expanded(
                               child: Text(
                                 restaurantStore.restaurant.body!.socialName,
@@ -144,12 +155,15 @@ class _ProductDialogState extends State<ProductDialog> {
                             const Icon(
                               Icons.star,
                               size: 15,
-                              color: Colors.yellow,
+                              color: Color(0XFFe8a44c),
                             ),
+                            const Padding(padding: EdgeInsets.all(2.0)),
                             Text(
                               restaurantStore.restaurant.body!.avaliation!
                                   .toStringAsFixed(1),
-                              style: const TextStyle(color: Colors.yellow),
+                              style: const TextStyle(
+                                color: Color(0XFFe8a44c),
+                              ),
                             ),
                           ],
                         ),
@@ -160,8 +174,8 @@ class _ProductDialogState extends State<ProductDialog> {
                                     child: Container(
                                       color: index % 2 == 0
                                           ? Colors.transparent
-                                          : Colors.grey,
-                                      height: 2,
+                                          : tertiaryColor,
+                                      height: 1,
                                     ),
                                   )),
                         ),
@@ -189,7 +203,7 @@ class _ProductDialogState extends State<ProductDialog> {
                         "Algum comentário?",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xff6F6F67),
+                          color: tertiaryColor,
                           fontSize: 16,
                         ),
                       ),
@@ -206,6 +220,9 @@ class _ProductDialogState extends State<ProductDialog> {
                       decoration: const InputDecoration(
                         hintText: "Ex: tirar cebola, maionese à parte, etc.",
                         border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: secondaryColor),
+                        ),
                       ),
                     ),
                   ),
@@ -223,7 +240,7 @@ class _ProductDialogState extends State<ProductDialog> {
               height: 55,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.grey,
+                  color: tertiaryColor,
                 ),
                 borderRadius: BorderRadius.circular(4),
               ),
@@ -236,14 +253,16 @@ class _ProductDialogState extends State<ProductDialog> {
                       onPressed: () => store.decrement(),
                       icon: Icon(
                         Icons.remove,
-                        color: store.quantity > 1 ? Colors.red : Colors.black26,
+                        color: store.quantity > 1
+                            ? secondaryColor
+                            : Colors.black26,
                       ),
                     ),
                   ),
                   Container(
                     height: 50,
                     width: 50,
-                    color: Colors.white,
+                    color: primaryColor,
                     child: Center(
                       child: Observer(
                         builder: (_) => Text("${store.quantity}"),
@@ -256,21 +275,20 @@ class _ProductDialogState extends State<ProductDialog> {
                     onPressed: () => store.increment(),
                     icon: const Icon(
                       Icons.add,
-                      color: Colors.red,
+                      color: secondaryColor,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 30),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                 height: 55,
-                width: screen.width * .1,
+                width: 160,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    primary: secondaryColor,
                     onPrimary: Colors.black,
                   ),
                   onPressed: () {
@@ -283,18 +301,25 @@ class _ProductDialogState extends State<ProductDialog> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text("Você Editou um item"),
+                            title: const Text(
+                              "Você editou um item",
+                              textAlign: TextAlign.center,
+                            ),
+                            content: const Icon(Icons.add_shopping_cart,
+                                size: 80, color: secondaryColor),
                             actions: <Widget>[
                               // define os botões na base do dialogo
-                              ElevatedButton(
-                                child: const Text("Fechar",
-                                    style: TextStyle(color: primaryColor)),
-                                style: ElevatedButton.styleFrom(
-                                  primary: secondaryColor,
+                              Center(
+                                child: ElevatedButton(
+                                  child: const Text("Fechar",
+                                      style: TextStyle(color: primaryColor)),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: secondaryColor,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
                                 ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
                               ),
                             ],
                           );
@@ -308,7 +333,7 @@ class _ProductDialogState extends State<ProductDialog> {
                           FormatMoney.doubleToMoney(
                               widget.product.price! * store.quantity),
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: primaryColor,
                         fontSize: 14.0,
                       ),
                     );
