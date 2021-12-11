@@ -5,9 +5,11 @@ import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
+import 'package:pscomidas/app/global/models/enums/address_type.dart';
 
 class SlidableAddressTile extends StatefulWidget {
-  const SlidableAddressTile({Key? key, DeliveryAt? address}) : super(key: key);
+  const SlidableAddressTile({Key? key, this.address}) : super(key: key);
+  final DeliveryAt? address;
 
   @override
   _SlidableAddressTileState createState() => _SlidableAddressTileState();
@@ -39,8 +41,9 @@ class _SlidableAddressTileState extends State<SlidableAddressTile> {
           ),
         ],
       ),
-      child: const AddressListTile(
+      child: AddressListTile(
         trailing: true,
+        address: widget.address,
       ),
     );
   }
@@ -72,7 +75,7 @@ class _AddressListTileState extends State<AddressListTile> {
       selected: test,
       selectedTileColor: Colors.red,
       title: Text(
-        'Casa',
+        widget.address!.tipe!.label,
         style: TextStyle(color: highlightColor),
       ),
       subtitle: Text(
@@ -81,7 +84,7 @@ class _AddressListTileState extends State<AddressListTile> {
               : "Q. 208 Sul, Alameda 10, 202",
           style: TextStyle(color: highlightColor)),
       leading: Icon(
-        Icons.house,
+        widget.address!.tipe!.icon,
         color: highlightColor,
       ),
       trailing: widget.trailing

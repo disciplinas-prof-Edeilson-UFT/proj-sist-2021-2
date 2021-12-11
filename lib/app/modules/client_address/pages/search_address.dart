@@ -17,6 +17,11 @@ class SearchAddress extends StatefulWidget {
 
 class _SearchAddressState extends State<SearchAddress> {
   final ClientAddressStore store = Modular.get();
+  @override
+  void initState() {
+    store.findAdress();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +51,10 @@ class _SearchAddressState extends State<SearchAddress> {
             ),
           ),
           SearchTextField(
+            onChanged: (value) => setState(() {
+              store.filter = value;
+              store.findAdress();
+            }),
             controller: store.textController,
             autofocus: true,
             iconswap: true,
@@ -83,11 +92,11 @@ class _SearchAddressState extends State<SearchAddress> {
 
             return ListView.builder(
               itemBuilder: (context, index) {
-                DeliveryAt address = store.addresses.body![index];
+                DeliveryAt address = store.filtListAddress[index];
                 return SlidableAddressTile(address: address);
               },
               shrinkWrap: true,
-              itemCount: store.addresses.body!.length,
+              itemCount: store.filtListAddress.length,
             );
           }),
           ListTile(

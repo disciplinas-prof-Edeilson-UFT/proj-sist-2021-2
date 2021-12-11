@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
@@ -16,8 +19,14 @@ abstract class _ClientAddressStoreBase with Store {
   final cepController = TextEditingController();
 
   @observable
+  String filter = "";
+
+  @observable
   AppResponse<ObservableList<DeliveryAt>> addresses =
       AppResponse<ObservableList<DeliveryAt>>();
+
+  @observable
+  ObservableList<DeliveryAt> filtListAddress = ObservableList<DeliveryAt>();
 
   @observable
   AppResponse<DeliveryAt> tempAddress = AppResponse<DeliveryAt>();
@@ -67,6 +76,36 @@ abstract class _ClientAddressStoreBase with Store {
       await _repository.updateCurrentAddress(uid);
     } catch (e) {
       errorMessage = e.toString();
+    }
+  }
+
+  @action
+  findAdress() async {
+    filtListAddress.clear();
+    if (filter.isEmpty && addresses.body != null) {
+      filtListAddress.addAll(addresses.body!);
+    } else {
+      List<String> vadress = [];
+      for (var i in addresses.body!) {
+        vadress.addAll(i.street!.toLowerCase().split(' '));
+
+        vadress.addAll(i.cep.toLowerCase().split(' '));
+
+        vadress.addAll(i.city.toLowerCase().split(' '));
+
+        vadress.addAll(i.complement!.toLowerCase().split(' '));
+
+        for (var j in vadress) {
+          if (j.startsWith(filter.toLowerCase())) {
+            if (!filtListAddress.contains(i)) {
+              filtListAddress.add(i);
+            } else {
+              break;
+            }
+          }
+        }
+        vadress.clear();
+      }
     }
   }
 

@@ -11,6 +11,7 @@ class SearchTextField extends StatefulWidget {
     this.iconswap,
     this.hint,
     this.onPressed,
+    this.onChanged,
   }) : super(key: key);
 
   final bool autofocus;
@@ -18,6 +19,7 @@ class SearchTextField extends StatefulWidget {
   final bool? iconswap;
   final String? hint;
   final Function()? onPressed;
+  final Function(String)? onChanged;
 
   @override
   _SearchTextFieldState createState() => _SearchTextFieldState();
@@ -43,7 +45,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
       controller: widget.controller,
       textInputAction: TextInputAction.newline,
       autofocus: widget.autofocus,
-      onChanged: (value) => setState(() {}),
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.grey.shade100,
