@@ -24,35 +24,40 @@ class _GetDataCardState extends State<GetDataCard> {
     return Observer(builder: (_) {
       store.clearCardList();
       return FutureBuilder(
-        future: cardRepository.getCards(),
-        builder: (BuildContext context,
-            AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Erro');
-          } else if (snapshot.connectionState == ConnectionState.done) {
-            List<NewCard> listCards = [];
-            for(var i=0; i<snapshot.data!.length; i++){
-              var nome = snapshot.data!.elementAt(i).get('name');
-              var cardnumber = snapshot.data!.elementAt(i).get('cardnumber');
-              var validity = snapshot.data!.elementAt(i).get('validade');
-              var cvv = snapshot.data!.elementAt(i).get('cvv');
-              NewCard card = NewCard(
-                cardnumber: cardnumber, 
-                validity: validity, 
-                nome: nome, 
-                cvv: cvv
-              );
-              if(!store.cards.contains(card)){
-                listCards.add(card);
-                store.addCardList(card);
-              }else{
-                print('object');
+          future: cardRepository.getCards(),
+          builder: (BuildContext context,
+              AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
+            if (snapshot.hasError) {
+              return const Text('Erro');
+            } else if (snapshot.connectionState == ConnectionState.done) {
+              List<NewCard> listCards = [];
+              for (var i = 0; i < snapshot.data!.length; i++) {
+                var nome = snapshot.data!.elementAt(i).get('name');
+                var cardnumber = snapshot.data!.elementAt(i).get('cardnumber');
+                var validity = snapshot.data!.elementAt(i).get('validade');
+                var cvv = snapshot.data!.elementAt(i).get('cvv');
+                var cpf = snapshot.data!.elementAt(i).get('cpf');
+                NewCard card = NewCard(
+                  cardnumber: cardnumber,
+                  validity: validity,
+                  nome: nome,
+                  cvv: cvv,
+                  cpf: cpf,
+                );
+                if (!store.cards.contains(card)) {
+                  listCards.add(card);
+                  store.addCardList(card);
+                } else {
+                  print('object');
+                }
               }
+              return PaymentsBody(listCards: listCards);
             }
-            return PaymentsBody(listCards: listCards);
-          }
-          return const Center(child: CircularProgressIndicator(color: secondaryColor,));
-        });
+            return const Center(
+                child: CircularProgressIndicator(
+              color: secondaryColor,
+            ));
+          });
     });
   }
 }
