@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class EmptyCard extends StatefulWidget {
   const EmptyCard({ Key? key }) : super(key: key);
-
   @override
   _EmptyCardState createState() => _EmptyCardState();
 }
