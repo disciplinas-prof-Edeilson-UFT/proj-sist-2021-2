@@ -9,6 +9,21 @@ part of 'client_address_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
+  final _$filterAtom = Atom(name: '_ClientAddressStoreBase.filter');
+
+  @override
+  String get filter {
+    _$filterAtom.reportRead();
+    return super.filter;
+  }
+
+  @override
+  set filter(String value) {
+    _$filterAtom.reportWrite(value, super.filter, () {
+      super.filter = value;
+    });
+  }
+
   final _$addressesAtom = Atom(name: '_ClientAddressStoreBase.addresses');
 
   @override
@@ -21,6 +36,22 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
   set addresses(AppResponse<ObservableList<DeliveryAt>> value) {
     _$addressesAtom.reportWrite(value, super.addresses, () {
       super.addresses = value;
+    });
+  }
+
+  final _$filtListAddressAtom =
+      Atom(name: '_ClientAddressStoreBase.filtListAddress');
+
+  @override
+  ObservableList<DeliveryAt> get filtListAddress {
+    _$filtListAddressAtom.reportRead();
+    return super.filtListAddress;
+  }
+
+  @override
+  set filtListAddress(ObservableList<DeliveryAt> value) {
+    _$filtListAddressAtom.reportWrite(value, super.filtListAddress, () {
+      super.filtListAddress = value;
     });
   }
 
@@ -86,6 +117,14 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
     return _$deleteAddressAsyncAction.run(() => super.deleteAddress(uid: uid));
   }
 
+  final _$findAdressAsyncAction =
+      AsyncAction('_ClientAddressStoreBase.findAdress');
+
+  @override
+  Future findAdress() {
+    return _$findAdressAsyncAction.run(() => super.findAdress());
+  }
+
   final _$fetchSavedAddressesAsyncAction =
       AsyncAction('_ClientAddressStoreBase.fetchSavedAddresses');
 
@@ -119,7 +158,9 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
   @override
   String toString() {
     return '''
+filter: ${filter},
 addresses: ${addresses},
+filtListAddress: ${filtListAddress},
 tempAddress: ${tempAddress},
 errorMessage: ${errorMessage},
 isEditing: ${isEditing}
