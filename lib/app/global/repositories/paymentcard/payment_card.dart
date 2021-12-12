@@ -5,7 +5,6 @@ import 'package:pscomidas/app/global/models/entities/new_card.dart';
 import 'package:pscomidas/app/global/repositories/paymentcard/payment_card_interface.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:pscomidas/app/modules/payments/components/cards_payments/list_card.dart';
 import 'package:pscomidas/app/modules/payments/payments_store.dart';
 
 class PaymentCardRepository implements IPaymentCardRepository {
@@ -40,13 +39,16 @@ class PaymentCardRepository implements IPaymentCardRepository {
     }
   }
 
+  @override
   Future<List<DocumentSnapshot>> getCards() async{
     final uid = auth.currentUser!.uid;
     List<String> idCards = [];
     List<DocumentSnapshot> listSnapshot = [];
     await firestore.collection('clients').doc(uid).get().then((value){
-      for(var i=0; i<value.get('cards').length; i++){
-        idCards.add(value['cards'][i]);
+      if(value.data()!.containsKey('cards')){
+        for(var i=0; i<value.get('cards').length; i++){
+          idCards.add(value['cards'][i]);
+        }
       }
     });
     for(var i=0; i<idCards.length; i++){

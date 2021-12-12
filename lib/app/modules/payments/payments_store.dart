@@ -42,11 +42,6 @@ abstract class _PaymentsStoreBase with Store {
   @action
   void setValidCVV(bool value) => isValidCVV = value;
 
-  @observable
-  int tamanho_lista = 0;
-  @action 
-  void setTamanhoLista(int value) => tamanho_lista = value;
-
   @observable 
   List<NewCard> cards = [];
   @action

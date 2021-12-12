@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/new_card.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/payments/components/add_card/add_body.dart';
+import 'package:pscomidas/app/modules/payments/components/cards_payments/empty_card.dart';
 import 'package:pscomidas/app/modules/payments/components/cards_payments/list_card.dart';
 import 'package:pscomidas/app/modules/payments/payments_store.dart';
 
@@ -17,8 +18,10 @@ class PaymentsBody extends StatefulWidget {
 
 class _PaymentsBodyState extends State<PaymentsBody> {
   final PaymentsStore store = Modular.get();
-  double _sizeHeight() {
-    switch (store.cards.length) {
+  double _sizeHeight(int tamanho) {
+    switch (tamanho) {
+      case 0: 
+        return 0.25;
       case 1:
         return 0.15;
       case 2:
@@ -53,9 +56,11 @@ class _PaymentsBodyState extends State<PaymentsBody> {
                   width: screen.width <= 1030
                       ? screen.width * 0.8
                       : screen.width * 0.5,
-                  height: screen.height * _sizeHeight(),
+                  height: screen.height * _sizeHeight(store.cards.length),
                   child: Observer(builder: (_) {
-                    return ListViewCard(listCards: widget.listCards);
+                    return store.cards.isEmpty 
+                    ? const EmptyCard()  
+                    : ListViewCard(listCards: widget.listCards);
                   }));
             }),
             SizedBox(
