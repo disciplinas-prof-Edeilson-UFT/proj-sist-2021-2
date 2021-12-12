@@ -13,7 +13,6 @@ class _EmptyCardState extends State<EmptyCard> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: const[
-        //SizedBox(height: 20,),
         Text(
           'Adicione um cartão no PSFood',
           style: TextStyle(
@@ -23,7 +22,6 @@ class _EmptyCardState extends State<EmptyCard> {
             fontWeight: FontWeight.bold
           ),
         ),
-        //SizedBox(height: 20,),
         Text(
           'É prático,  seguro e você não perde\nnenhum minuto a mais quando seu\npedido chegar.',
           style: TextStyle(
