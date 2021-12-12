@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/payments/components/cards_payments/paymentes_body.dart';
+import 'package:pscomidas/app/modules/payments/components/cards_payments/get_data_card.dart';
 
 class MobilePaymentsPage extends StatefulWidget {
   const MobilePaymentsPage({ Key? key }) : super(key: key);
@@ -11,6 +11,6 @@ class MobilePaymentsPage extends StatefulWidget {
 class _MobilePaymentsPageState extends State<MobilePaymentsPage> {
   @override
   Widget build(BuildContext context) {
-    return const PaymentsBody();
+    return const GetDataCard();
   }
 }

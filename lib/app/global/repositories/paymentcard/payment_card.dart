@@ -39,4 +39,28 @@ class PaymentCardRepository implements IPaymentCardRepository {
       log("Falha ao adicionar $e");
     }
   }
+
+  @override
+  Future<List<DocumentSnapshot>> getCards() async{
+    final uid = auth.currentUser!.uid;
+    List<String> idCards = [];
+    List<DocumentSnapshot> listSnapshot = [];
+    await firestore.collection('clients').doc(uid).get().then((value){
+      if(value.data()!.containsKey('cards')){
+        for(var i=0; i<value.get('cards').length; i++){
+          idCards.add(value['cards'][i]);
+        }
+      }
+    });
+    for(var i=0; i<idCards.length; i++){
+      DocumentSnapshot snap = await firestore
+        .collection('cards')
+        .doc(idCards[i])
+        .get();
+      listSnapshot.add(snap);
+    }
+    
+    return listSnapshot;
+  }
+
 }

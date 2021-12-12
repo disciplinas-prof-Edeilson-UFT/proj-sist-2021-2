@@ -43,6 +43,18 @@ abstract class _PaymentsStoreBase with Store {
   @action
   void setValidCVV(bool value) => isValidCVV = value;
 
+  @observable 
+  List<NewCard> cards = [];
+  @action
+  addCardList(NewCard card){
+    cards.add(card);
+  }
+
+  @action 
+  clearCardList(){
+    cards.clear();
+  }
+
   bool isValidData() {
     if (isValidNumCard &&
         isValidNomeImpresso &&
@@ -77,4 +89,7 @@ abstract class _PaymentsStoreBase with Store {
     );
     await cardRepository.addPaymentCard(card);
   }
+
+
+
 }

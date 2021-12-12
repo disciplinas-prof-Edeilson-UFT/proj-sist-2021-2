@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/repositories/paymentcard/payment_card.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/modules/payments/payments_store.dart';
 
 class BtnExcluir extends StatefulWidget {
   const BtnExcluir({Key? key}) : super(key: key);
@@ -9,6 +12,8 @@ class BtnExcluir extends StatefulWidget {
 }
 
 class _BtnExcluirState extends State<BtnExcluir> {
+  final PaymentsStore store = Modular.get();
+  final PaymentCardRepository cardRepository = Modular.get();
   @override
   Widget build(BuildContext context) {
     return IconButton(
