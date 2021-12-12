@@ -9,6 +9,50 @@ part of 'auth_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AuthStore on _AuthStoreBase, Store {
+  Computed<Future<bool>>? _$isClientComputed;
+
+  @override
+  Future<bool> get isClient =>
+      (_$isClientComputed ??= Computed<Future<bool>>(() => super.isClient,
+              name: '_AuthStoreBase.isClient'))
+          .value;
+  Computed<bool>? _$clientComputed;
+
+  @override
+  bool get client => (_$clientComputed ??=
+          Computed<bool>(() => super.client, name: '_AuthStoreBase.client'))
+      .value;
+
+  final _$loggedUserAtom = Atom(name: '_AuthStoreBase.loggedUser');
+
+  @override
+  UserCredential? get loggedUser {
+    _$loggedUserAtom.reportRead();
+    return super.loggedUser;
+  }
+
+  @override
+  set loggedUser(UserCredential? value) {
+    _$loggedUserAtom.reportWrite(value, super.loggedUser, () {
+      super.loggedUser = value;
+    });
+  }
+
+  final _$currentAddressAtom = Atom(name: '_AuthStoreBase.currentAddress');
+
+  @override
+  DeliveryAt? get currentAddress {
+    _$currentAddressAtom.reportRead();
+    return super.currentAddress;
+  }
+
+  @override
+  set currentAddress(DeliveryAt? value) {
+    _$currentAddressAtom.reportWrite(value, super.currentAddress, () {
+      super.currentAddress = value;
+    });
+  }
+
   final _$errorMessageAtom = Atom(name: '_AuthStoreBase.errorMessage');
 
   @override
@@ -51,6 +95,21 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   set logged(bool value) {
     _$loggedAtom.reportWrite(value, super.logged, () {
       super.logged = value;
+    });
+  }
+
+  final _$_isClientAtom = Atom(name: '_AuthStoreBase._isClient');
+
+  @override
+  bool get _isClient {
+    _$_isClientAtom.reportRead();
+    return super._isClient;
+  }
+
+  @override
+  set _isClient(bool value) {
+    _$_isClientAtom.reportWrite(value, super._isClient, () {
+      super._isClient = value;
     });
   }
 
@@ -116,10 +175,14 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   @override
   String toString() {
     return '''
+loggedUser: ${loggedUser},
+currentAddress: ${currentAddress},
 errorMessage: ${errorMessage},
 emailexiste: ${emailexiste},
 logged: ${logged},
-emailVerified: ${emailVerified}
+emailVerified: ${emailVerified},
+isClient: ${isClient},
+client: ${client}
     ''';
   }
 }

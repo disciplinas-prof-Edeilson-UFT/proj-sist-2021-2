@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -52,15 +50,12 @@ class RegisterRepository extends IRegisterRepository {
   @override
   Future<UserCredential> signUp(
       Map<String, TextEditingController> controller) async {
-    var uid = '';
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
         email: controller['email']!.text,
         password: controller['Senha']!.text,
       );
-      uid = userCredential.user!.uid;
-      log(userCredential.user!.uid);
       return userCredential;
     } catch (e) {
       throw Exception('Houve um erro ao registrar');

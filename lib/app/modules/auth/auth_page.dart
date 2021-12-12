@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/auth/pages/verify_screen.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
 
 class AuthPage extends StatefulWidget {
   final String title;
@@ -30,7 +31,9 @@ class AuthPageState extends State<AuthPage> {
     disposers = [
       reaction(
         (_) => store.logged == true,
-        (_) => Modular.to.navigate(HomeModule.routeName),
+        (_) => Modular.to.navigate(!store.client
+            ? RestaurantHomeModule.routeName
+            : HomeModule.routeName),
       ),
       reaction(
         (_) => store.emailVerified == false,

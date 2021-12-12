@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/modules/auth/auth_repository.dart';
 
 part 'auth_store.g.dart';
@@ -16,6 +17,12 @@ abstract class _AuthStoreBase with Store {
   TextEditingController passwordController = TextEditingController();
 
   @observable
+  UserCredential? loggedUser;
+
+  @observable
+  DeliveryAt? currentAddress;
+
+  @observable
   String errorMessage = '';
 
   @observable
@@ -25,22 +32,37 @@ abstract class _AuthStoreBase with Store {
   bool logged = false;
 
   @observable
+  bool _isClient = false;
+
+  @computed
+  Future<bool> get isClient async => !_isClient;
+
+  @computed
+  bool get client => _isClient;
+
+  @observable
   bool emailVerified = true;
 
   @action
   Future<void> login() async {
     try {
-      if (await _authRepository.login(
-            emailController.text,
-            passwordController.text,
-          ) ==
-          false) {
+      final response = await _authRepository.login(
+        emailController.text,
+        passwordController.text,
+      );
+      loggedUser = response['user'];
+      _isClient = response['isClient'];
+      if (_isClient) {
+        currentAddress =
+            await _authRepository.fetchDeliveryAt(response['delivery_at']);
+      }
+      if (!loggedUser!.user!.emailVerified) {
         emailVerified = false;
       } else {
         logged = true;
       }
-    } catch (e) {
-      if (e.toString() == 'Exception: O e-mail não foi encontrado') {
+    } on Exception catch (e) {
+      if (e as String == 'user-not-found') {
         emailexiste = false;
       } else {
         errorMessage = e.toString();
@@ -53,6 +75,7 @@ abstract class _AuthStoreBase with Store {
     try {
       if (await _authRepository.signInWithFacebook() is UserCredential) {
         logged = true;
+        _isClient = true;
       }
     } catch (e) {
       errorMessage = e.toString();
@@ -74,6 +97,7 @@ abstract class _AuthStoreBase with Store {
     try {
       if (await _authRepository.signInWithGoogle() is UserCredential) {
         logged = true;
+        _isClient = true;
       }
     } catch (e) {
       errorMessage = e.toString();
@@ -83,6 +107,7 @@ abstract class _AuthStoreBase with Store {
   @action
   void dispose() {
     logged = false;
+    _isClient = false;
     errorMessage = '';
     emailController.clear();
     passwordController.clear();

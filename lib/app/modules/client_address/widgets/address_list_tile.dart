@@ -3,9 +3,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/models/enums/address_type.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
-import 'package:pscomidas/app/global/models/enums/address_type.dart';
 
 class SlidableAddressTile extends StatefulWidget {
   const SlidableAddressTile({Key? key, this.address}) : super(key: key);
@@ -75,7 +75,7 @@ class _AddressListTileState extends State<AddressListTile> {
       selected: test,
       selectedTileColor: Colors.red,
       title: Text(
-        widget.address!.tipe!.label,
+        widget.address!.addressType!.label,
         style: TextStyle(color: highlightColor),
       ),
       subtitle: Text(
@@ -84,7 +84,7 @@ class _AddressListTileState extends State<AddressListTile> {
               : "Q. 208 Sul, Alameda 10, 202",
           style: TextStyle(color: highlightColor)),
       leading: Icon(
-        widget.address!.tipe!.icon,
+        widget.address!.addressType!.icon,
         color: highlightColor,
       ),
       trailing: widget.trailing

@@ -1,33 +1,64 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/modules/auth/auth_service.dart';
 
 class AuthRepository extends AuthService {
   final FirebaseAuth auth;
 
   AuthRepository(this.auth, {authInstance});
+  final userCollection = FirebaseFirestore.instance.collection('users');
+  final clientsCollection = FirebaseFirestore.instance.collection('clients');
 
   @override
-  Future<bool> login(String email, String password) async {
+  Future<Map<String, dynamic>> login(String email, String password) async {
     try {
-      await auth.signInWithEmailAndPassword(
+      UserCredential user = await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      User user = FirebaseAuth.instance.currentUser!;
-      if (user.emailVerified == false) {
-        user.sendEmailVerification();
+      FirebaseAuth.instance.currentUser!;
+      if (!user.user!.emailVerified) {
+        user.user!.sendEmailVerification();
       }
-      return user.emailVerified;
+      final response =
+          await userCollection.doc(user.user!.uid).get().then((value) async {
+        if (value.data()!['isClient']) {
+          final client = await clientsCollection.doc(user.user!.uid).get();
+          return [
+            value.data()!['isClient'],
+            client['delivery_at'],
+          ];
+        } else {
+          return [value.data()!['isClient'], null];
+        }
+      });
+      return {
+        'user': user,
+        'isClient': response.first,
+        'delivery_at': response.last ?? '',
+      };
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        throw Exception('O e-mail não foi encontrado');
+        throw e.code;
       } else if (e.code == 'wrong-password' || e.code == 'invalid-email') {
         throw Exception('E-mail ou senha incorretos');
       }
+      throw Exception('Houve um erro desconhecido ao tentar fazer login.');
     }
-    throw Exception('Houve um erro desconhecido ao tentar fazer login.');
+  }
+
+  @override
+  Future<DeliveryAt> fetchDeliveryAt(String uid) async {
+    try {
+      final response =
+          await clientsCollection.doc(uid).get().then((value) => value.data());
+      return DeliveryAt.fromMap(map: response!);
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
   }
 
   @override

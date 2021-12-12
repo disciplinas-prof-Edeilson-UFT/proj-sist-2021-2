@@ -1,14 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/user_profile_options.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/auth/auth_store.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_page.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
+
+final AuthStore authStore = Modular.get();
+bool get logged => authStore.logged;
 
 class LogoAppBar extends StatelessWidget {
   const LogoAppBar({Key? key}) : super(key: key);
@@ -94,8 +99,25 @@ class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
   }
 }
 
-class LocationAppBar extends StatelessWidget {
+class LocationAppBar extends StatefulWidget {
   const LocationAppBar({Key? key}) : super(key: key);
+
+  @override
+  State<LocationAppBar> createState() => _LocationAppBarState();
+}
+
+class _LocationAppBarState extends State<LocationAppBar> {
+  String? address;
+  DeliveryAt? currentDelivery;
+
+  @override
+  void initState() {
+    currentDelivery = authStore.currentAddress;
+    address = logged && currentDelivery != null
+        ? currentDelivery!.street
+        : "Para adicionar um endereço de entrega";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,17 +126,19 @@ class LocationAppBar extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return const ClientAddressPage();
-              });
+          logged
+              ? showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const ClientAddressPage();
+                  })
+              : null;
         },
         child: Column(
           children: [
-            const Text(
-              "ENTREGAR EM",
-              style: TextStyle(
+            Text(
+              logged ? "ENTREGAR EM" : "Faça Login",
+              style: const TextStyle(
                 color: tertiaryColor,
                 fontSize: 12,
               ),
@@ -130,9 +154,9 @@ class LocationAppBar extends StatelessWidget {
                 SizedBox(
                   width: screen.width * 0.001,
                 ),
-                const Text(
-                  "Q. 208 Sul, Alameda 10, 202",
-                  style: TextStyle(
+                Text(
+                  address ?? "Endereço não encontrado",
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 12,
                   ),
@@ -177,7 +201,6 @@ class UserAppBar extends StatefulWidget {
 }
 
 class _UserAppBarState extends State<UserAppBar> {
-  final bool logged = FirebaseAuth.instance.currentUser != null ? true : false;
   @override
   void initState() {
     super.initState();

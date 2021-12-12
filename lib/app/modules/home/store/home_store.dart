@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
@@ -43,7 +45,11 @@ abstract class HomeStoreBase with Store {
   Future<List<Restaurant>> getRestaurants() async {
     final RestaurantGridFirestore restaurantGridFirestore =
         RestaurantGridFirestore();
-    restaurants = await restaurantGridFirestore.getRestaurants();
+    try {
+      restaurants = await restaurantGridFirestore.getRestaurants();
+    } on Exception catch (e) {
+      log(e.toString());
+    }
     return restaurants;
   }
 }
