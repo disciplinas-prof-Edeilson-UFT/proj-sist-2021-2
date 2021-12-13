@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/models/enums/address_type.dart';
 import 'package:search_cep/search_cep.dart';
 
 final clientCollection = FirebaseFirestore.instance.collection('clients');
@@ -25,6 +26,7 @@ class ClientAddressRepository {
           city: r.localidade!,
           uf: r.uf!,
           id: id,
+          addressType: FilterAddressType.values.first.stringTotype(null),
         ),
       );
     } catch (e) {

@@ -26,13 +26,12 @@ class RegisterClientPage extends StatefulWidget {
 class RegisterClientPageState extends State<RegisterClientPage> {
   final RegisterClientStore store = Modular.get();
 
-  TextStyle get fontFamily => GoogleFonts.getFont('Sen', fontSize: 16.0);
+  TextStyle get fontFamily => GoogleFonts.getFont('Nunito', fontSize: 16.0);
 
-  TextStyle get digitedText => GoogleFonts.getFont('Sen', fontSize: 14.0);
+  TextStyle get digitedText => GoogleFonts.getFont('Nunito', fontSize: 14.0);
   final _formKey = GlobalKey<FormState>();
 
   List<ReactionDisposer> disposers = [];
-  bool checked = false;
 
   @override
   void initState() {
@@ -66,10 +65,6 @@ class RegisterClientPageState extends State<RegisterClientPage> {
             },
           ),
         ).show(context),
-      ),
-      reaction(
-        (_) => store.goCep,
-        (_) async => await store.findCEP(),
       ),
     ];
     super.initState();
@@ -227,7 +222,7 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const Divider(),
                         Row(
                           children: [
                             Flexible(
@@ -242,6 +237,20 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                                     filter: {"#": RegExp(r'[0-9]')},
                                   ),
                                 ],
+                                searchCep: Observer(builder: (_) {
+                                  return MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      child: const Icon(
+                                        Icons.location_searching,
+                                        color: secondaryColor,
+                                        size: 20,
+                                      ),
+                                      onTap: () =>
+                                          store.goCep ? store.findCEP() : null,
+                                    ),
+                                  );
+                                }),
                                 validator: (value) {
                                   if (value == null ||
                                       value.isEmpty ||
@@ -257,13 +266,11 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                             ),
                             Observer(
                               builder: (_) {
-                                if (store.address != null) {
+                                if (store.address.body != null) {
                                   return Flexible(
                                     flex: 2,
                                     child: AddressListTile(
-                                      address: store.address,
-                                      onTap: () {},
-                                    ),
+                                        address: store.address.body),
                                   );
                                 }
                                 return Container();
@@ -276,15 +283,13 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                           spacing: 5.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
-                            Checkbox(
-                              value: checked,
-                              onChanged: (value) {
-                                setState(() {
-                                  checked = value!;
-                                });
-                              },
-                              activeColor: secondaryColor,
-                            ),
+                            Observer(builder: (_) {
+                              return Checkbox(
+                                value: store.iAgree,
+                                onChanged: (_) => store.agree(),
+                                activeColor: secondaryColor,
+                              );
+                            }),
                             const SizedBox(
                               child: Text(
                                 "Declaro que li e aceito os termos de uso",
@@ -296,11 +301,14 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                         ),
                         const SizedBox(height: 10),
                         CustomSubmit(
+                          // locked:
+                          // _formKey.currentState!.validate() && store.iAgree,
                           label: 'Enviar',
                           onPressed: () async {
-                            if (_formKey.currentState!.validate() && checked) {
+                            if (_formKey.currentState!.validate() &&
+                                store.iAgree) {
                               await store.checkData();
-                            } else if (checked == false) {
+                            } else if (!store.iAgree) {
                               store.termsValidation();
                             }
                           },

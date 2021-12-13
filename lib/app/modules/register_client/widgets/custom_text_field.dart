@@ -14,6 +14,7 @@ class CustomTextField extends StatefulWidget {
     this.isPassword,
     this.phone,
     this.readOnly = false,
+    this.searchCep,
   }) : super(key: key);
 
   final String? title;
@@ -24,6 +25,7 @@ class CustomTextField extends StatefulWidget {
   final bool? isPassword;
   final bool? phone;
   final bool readOnly;
+  final Widget? searchCep;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -94,7 +96,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       }),
                     ),
                   )
-                : null,
+                : widget.searchCep,
           ),
           readOnly: widget.readOnly,
           cursorColor: secondaryColor,

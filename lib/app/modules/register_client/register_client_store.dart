@@ -4,7 +4,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/cliente.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/models/enums/address_type.dart';
 import 'package:pscomidas/app/global/repositories/client_address/client_address_repository.dart';
+import 'package:pscomidas/app/global/utils/app_response.dart';
 import 'package:pscomidas/app/modules/register_client/pages/confirm_phone/confirm_phone_page.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_repository.dart';
 
@@ -44,16 +46,30 @@ abstract class _RegisterStoreBase with Store {
   bool? registered;
 
   @observable
-  DeliveryAt? address;
+  bool _agree = false;
+
+  @action
+  agree() => _agree = !_agree;
+
+  @computed
+  bool get iAgree => _agree;
+
+  @observable
+  FilterAddressType? addressType;
+
+  @observable
+  AppResponse<DeliveryAt> address = AppResponse<DeliveryAt>();
 
   @action
   cepValid() => goCep = !goCep;
 
   @action
   findCEP() async {
-    address = null;
+    address = AppResponse.loading();
     try {
-      address = await _addressRepository.findCEP(cepController.text, null);
+      final response =
+          await _addressRepository.findCEP(cepController.text, null);
+      address = AppResponse.completed(response);
     } on Exception catch (e) {
       errorMessage = e.toString();
     }
@@ -67,7 +83,7 @@ abstract class _RegisterStoreBase with Store {
         cpf: cpfController.text,
         email: emailController.text,
         phone: phoneController.text,
-        address: address,
+        address: address.body,
       );
       if (await _repository.registerClient(
         user,

@@ -9,6 +9,13 @@ part of 'register_client_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterClientStore on _RegisterStoreBase, Store {
+  Computed<bool>? _$iAgreeComputed;
+
+  @override
+  bool get iAgree => (_$iAgreeComputed ??=
+          Computed<bool>(() => super.iAgree, name: '_RegisterStoreBase.iAgree'))
+      .value;
+
   final _$confirmationResultAtom =
       Atom(name: '_RegisterStoreBase.confirmationResult');
 
@@ -100,16 +107,46 @@ mixin _$RegisterClientStore on _RegisterStoreBase, Store {
     });
   }
 
+  final _$_agreeAtom = Atom(name: '_RegisterStoreBase._agree');
+
+  @override
+  bool get _agree {
+    _$_agreeAtom.reportRead();
+    return super._agree;
+  }
+
+  @override
+  set _agree(bool value) {
+    _$_agreeAtom.reportWrite(value, super._agree, () {
+      super._agree = value;
+    });
+  }
+
+  final _$addressTypeAtom = Atom(name: '_RegisterStoreBase.addressType');
+
+  @override
+  FilterAddressType? get addressType {
+    _$addressTypeAtom.reportRead();
+    return super.addressType;
+  }
+
+  @override
+  set addressType(FilterAddressType? value) {
+    _$addressTypeAtom.reportWrite(value, super.addressType, () {
+      super.addressType = value;
+    });
+  }
+
   final _$addressAtom = Atom(name: '_RegisterStoreBase.address');
 
   @override
-  DeliveryAt? get address {
+  AppResponse<DeliveryAt> get address {
     _$addressAtom.reportRead();
     return super.address;
   }
 
   @override
-  set address(DeliveryAt? value) {
+  set address(AppResponse<DeliveryAt> value) {
     _$addressAtom.reportWrite(value, super.address, () {
       super.address = value;
     });
@@ -146,6 +183,17 @@ mixin _$RegisterClientStore on _RegisterStoreBase, Store {
 
   final _$_RegisterStoreBaseActionController =
       ActionController(name: '_RegisterStoreBase');
+
+  @override
+  dynamic agree() {
+    final _$actionInfo = _$_RegisterStoreBaseActionController.startAction(
+        name: '_RegisterStoreBase.agree');
+    try {
+      return super.agree();
+    } finally {
+      _$_RegisterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic cepValid() {
@@ -189,7 +237,9 @@ errorPhone: ${errorPhone},
 errorMessage: ${errorMessage},
 goCep: ${goCep},
 registered: ${registered},
-address: ${address}
+addressType: ${addressType},
+address: ${address},
+iAgree: ${iAgree}
     ''';
   }
 }
