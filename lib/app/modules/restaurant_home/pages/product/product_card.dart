@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/utils/format_money.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard({Key? key}) : super(key: key);
+class ProductCard extends StatefulWidget {
+  const ProductCard({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+  final Product product;
 
+  @override
+  _ProductCardState createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -19,13 +29,13 @@ class ProductCard extends StatelessWidget {
           width: 400,
           child: Stack(
             children: [
-              const Positioned(
+              Positioned(
                 top: 10,
                 left: 10,
                 right: 150,
                 child: Text(
-                  'Pirulitos Halloween 30g',
-                  style: TextStyle(
+                  widget.product.name.toString(),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontFamily: 'Nunito',
                   ),
@@ -33,16 +43,13 @@ class ProductCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const Positioned(
+              Positioned(
                 top: 40,
                 left: 10,
                 right: 200,
                 child: Text(
-                  'Os pirulitos de chocolate ao leite e branco em formato de '
-                  'abobora e fantasma vão fazer sucesso no Hallowen! Feitos com'
-                  ' chocolate ao leite e branco e decorados artesanalmente. '
-                  'Imagens ilustrativas.',
-                  style: TextStyle(
+                  widget.product.description.toString(),
+                  style: const TextStyle(
                     fontSize: 14,
                     fontFamily: 'Nunito',
                     color: tertiaryColor,
@@ -55,7 +62,7 @@ class ProductCard extends StatelessWidget {
                 bottom: 10,
                 left: 10,
                 child: Text(
-                  FormatMoney.doubleToMoney(5.90),
+                  FormatMoney.doubleToMoney(widget.product.price!),
                   style: const TextStyle(
                     fontSize: 16,
                     fontFamily: 'Nunito',
@@ -64,9 +71,15 @@ class ProductCard extends StatelessWidget {
               ),
               Positioned(
                 right: 0,
-                child: Image.asset(
-                  'assets/images/product_page/lollipop.webp',
-                  width: 180,
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        widget.product.imgUrl.toString(),
+                        scale: 2,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
