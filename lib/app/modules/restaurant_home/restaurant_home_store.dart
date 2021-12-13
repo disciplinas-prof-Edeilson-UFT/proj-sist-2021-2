@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -14,7 +16,7 @@ part 'restaurant_home_store.g.dart';
 class RestaurantHomeStore = _RestaurantHomeStoreBase with _$RestaurantHomeStore;
 
 abstract class _RestaurantHomeStoreBase with Store {
-  String id = 'dummy1';
+  String id = 'dummy 2';
 
   @observable
   dynamic imgPath;
@@ -132,7 +134,7 @@ abstract class _RestaurantHomeStoreBase with Store {
       name: formProduct['name']!.text.toString(),
       description: formProduct['desc']!.text.toString(),
       price: doublePrice,
-      restaurantId: "dummy 2",
+      restaurantId: "90W7KSn4OdbgUPd2p4KFgVg4rwy1",
       categories: formProduct['categories']!.text.toString(),
     );
     await ProductRepository().cadastrarProduct(produto);
@@ -279,5 +281,14 @@ abstract class _RestaurantHomeStoreBase with Store {
       addressFormController['Estado']!.text = '';
       addressFormController['Bairro']!.text = '';
     }
+  }
+
+  List<Product> products = [];
+
+  @action
+  Future<List<Product>> getProducts() async {
+    products = await ProductRepository()
+        .getProductsService('90W7KSn4OdbgUPd2p4KFgVg4rwy1');
+    return products;
   }
 }
