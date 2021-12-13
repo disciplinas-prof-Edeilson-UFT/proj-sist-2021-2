@@ -9,7 +9,7 @@ final addressCollection = FirebaseFirestore.instance.collection('address');
 final currentUser = FirebaseAuth.instance.currentUser;
 
 class ClientAddressRepository {
-  Future<DeliveryAt> findCEP(String cep) async {
+  Future<DeliveryAt> findCEP(String cep, String? id) async {
     try {
       final viaCep = ViaCepSearchCep();
       final infoCepJson =
@@ -22,8 +22,9 @@ class ClientAddressRepository {
           complement: r.complemento!,
           number: null,
           cep: cep,
-          city: r.logradouro!,
+          city: r.localidade!,
           uf: r.uf!,
+          id: id,
         ),
       );
     } catch (e) {

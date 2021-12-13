@@ -85,6 +85,21 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
     });
   }
 
+  final _$deleteItAtom = Atom(name: '_ClientAddressStoreBase.deleteIt');
+
+  @override
+  bool get deleteIt {
+    _$deleteItAtom.reportRead();
+    return super.deleteIt;
+  }
+
+  @override
+  set deleteIt(bool value) {
+    _$deleteItAtom.reportWrite(value, super.deleteIt, () {
+      super.deleteIt = value;
+    });
+  }
+
   final _$isEditingAtom = Atom(name: '_ClientAddressStoreBase.isEditing');
 
   @override
@@ -163,6 +178,7 @@ addresses: ${addresses},
 filtListAddress: ${filtListAddress},
 tempAddress: ${tempAddress},
 errorMessage: ${errorMessage},
+deleteIt: ${deleteIt},
 isEditing: ${isEditing}
     ''';
   }

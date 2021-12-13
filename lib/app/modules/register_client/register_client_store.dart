@@ -53,7 +53,7 @@ abstract class _RegisterStoreBase with Store {
   findCEP() async {
     address = null;
     try {
-      address = await _addressRepository.findCEP(cepController.text);
+      address = await _addressRepository.findCEP(cepController.text, null);
     } on Exception catch (e) {
       errorMessage = e.toString();
     }

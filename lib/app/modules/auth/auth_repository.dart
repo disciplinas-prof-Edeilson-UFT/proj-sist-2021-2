@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/repositories/client_address/client_address_repository.dart';
 import 'package:pscomidas/app/modules/auth/auth_service.dart';
 
 class AuthRepository extends AuthService {
@@ -53,11 +54,13 @@ class AuthRepository extends AuthService {
   @override
   Future<DeliveryAt> fetchDeliveryAt(String uid) async {
     try {
-      final response =
-          await clientsCollection.doc(uid).get().then((value) => value.data());
-      return DeliveryAt.fromMap(map: response!);
+      final response = await addressCollection
+          .doc(uid)
+          .get()
+          .then((value) => DeliveryAt.fromMap(map: value.data()!, uid: uid));
+      return response;
     } on Exception catch (e) {
-      throw Exception(e);
+      throw e.toString();
     }
   }
 

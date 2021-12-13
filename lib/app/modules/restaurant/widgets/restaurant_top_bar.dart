@@ -45,8 +45,8 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                   backgroundImage: NetworkImage(restaurant.image),
                 ),
                 const SizedBox(width: 20),
-                Flexible(
-                  flex: 3,
+                SizedBox(
+                  width: screen.width * .3,
                   child: Text(
                     restaurant.socialName,
                     overflow: TextOverflow.ellipsis,
@@ -103,6 +103,14 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                   size: 20,
                 ),
                 const SizedBox(width: 10),
+                const Text(
+                  "Pedido mínimo R\$ 9,99",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ],
             ),
           ),

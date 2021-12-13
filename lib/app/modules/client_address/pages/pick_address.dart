@@ -12,8 +12,7 @@ import 'package:pscomidas/app/modules/register_client/widgets/custom_text_field.
 import '../client_address_store.dart';
 
 class PickAddress extends StatefulWidget {
-  const PickAddress({Key? key, this.updateAddress}) : super(key: key);
-  final DeliveryAt? updateAddress;
+  const PickAddress({Key? key}) : super(key: key);
   @override
   _PickAddressState createState() => _PickAddressState();
 }
@@ -24,14 +23,12 @@ class _PickAddressState extends State<PickAddress> {
 
   @override
   void initState() {
-    if (widget.updateAddress != null) {
-      store.isEditing = true;
-    }
     super.initState();
   }
 
   @override
   void dispose() {
+    store.isEditing = false;
     store.disposePick();
     super.dispose();
   }
