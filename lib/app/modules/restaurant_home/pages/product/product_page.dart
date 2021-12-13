@@ -27,19 +27,24 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3.5,
-            crossAxisSpacing: 5.0,
-            mainAxisSpacing: 5.0,
-          ),
-          itemCount: store.products.length,
-          shrinkWrap: true,
-          itemBuilder: (_, index) {
-            Product product = store.products[index];
-            return ProductCard(product: product);
-          },
+        child: Column(
+          children: [
+            GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 3.5,
+                crossAxisSpacing: 5.0,
+                mainAxisSpacing: 5.0,
+              ),
+              itemCount: store.products.length,
+              shrinkWrap: true,
+              itemBuilder: (_, index) {
+                Product product = store.products[index];
+                return ProductCard(product: product);
+              },
+            ),
+            const AddProduct(),
+          ],
         ),
       ),
     );
