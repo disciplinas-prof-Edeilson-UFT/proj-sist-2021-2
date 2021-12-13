@@ -237,20 +237,18 @@ class RegisterClientPageState extends State<RegisterClientPage> {
                                     filter: {"#": RegExp(r'[0-9]')},
                                   ),
                                 ],
-                                searchCep: Observer(builder: (_) {
-                                  return MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      child: const Icon(
-                                        Icons.location_searching,
-                                        color: secondaryColor,
-                                        size: 20,
-                                      ),
-                                      onTap: () =>
-                                          store.goCep ? store.findCEP() : null,
+                                searchCep: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    child: const Icon(
+                                      Icons.location_searching,
+                                      color: secondaryColor,
+                                      size: 20,
                                     ),
-                                  );
-                                }),
+                                    onTap: () =>
+                                        store.goCep ? store.findCEP() : null,
+                                  ),
+                                ),
                                 validator: (value) {
                                   if (value == null ||
                                       value.isEmpty ||

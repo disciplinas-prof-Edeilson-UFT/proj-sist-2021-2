@@ -31,6 +31,22 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
     });
   }
 
+  final _$currentAddressAtom =
+      Atom(name: '_ClientAddressStoreBase.currentAddress');
+
+  @override
+  String get currentAddress {
+    _$currentAddressAtom.reportRead();
+    return super.currentAddress;
+  }
+
+  @override
+  set currentAddress(String value) {
+    _$currentAddressAtom.reportWrite(value, super.currentAddress, () {
+      super.currentAddress = value;
+    });
+  }
+
   final _$filterAtom = Atom(name: '_ClientAddressStoreBase.filter');
 
   @override
@@ -201,6 +217,15 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
         .run(() => super.fetchSavedAddresses());
   }
 
+  final _$updateDeliveryAtAsyncAction =
+      AsyncAction('_ClientAddressStoreBase.updateDeliveryAt');
+
+  @override
+  Future updateDeliveryAt(DeliveryAt address) {
+    return _$updateDeliveryAtAsyncAction
+        .run(() => super.updateDeliveryAt(address));
+  }
+
   final _$findCEPAsyncAction = AsyncAction('_ClientAddressStoreBase.findCEP');
 
   @override
@@ -248,6 +273,7 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
   String toString() {
     return '''
 addressType: ${addressType},
+currentAddress: ${currentAddress},
 filter: ${filter},
 addresses: ${addresses},
 filtListAddress: ${filtListAddress},
