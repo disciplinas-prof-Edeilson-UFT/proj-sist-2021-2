@@ -6,6 +6,7 @@ import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/global/models/enums/address_type.dart';
 import 'package:pscomidas/app/global/utils/app_response.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
+import 'package:pscomidas/app/global/utils/session.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
 
 class SlidableAddressTile extends StatefulWidget {
@@ -20,6 +21,7 @@ class SlidableAddressTile extends StatefulWidget {
 @observable
 class _SlidableAddressTileState extends State<SlidableAddressTile> {
   final ClientAddressStore store = Modular.get();
+  final session = Modular.get<Session>();
 
   @override
   void initState() {
@@ -108,8 +110,10 @@ class _SlidableAddressTileState extends State<SlidableAddressTile> {
         ],
       ),
       child: AddressListTile(
+        store: store,
         trailing: true,
         address: widget.address,
+        session: session,
       ),
     );
   }
@@ -117,15 +121,19 @@ class _SlidableAddressTileState extends State<SlidableAddressTile> {
 
 class AddressListTile extends StatefulWidget {
   const AddressListTile({
+    this.store,
+    this.session,
     Key? key,
     this.onTap,
     this.trailing = false,
     this.address,
   }) : super(key: key);
 
+  final ClientAddressStore? store;
   final DeliveryAt? address;
   final Function()? onTap;
   final bool trailing;
+  final Session? session;
 
   @override
   _AddressListTileState createState() => _AddressListTileState();
@@ -168,6 +176,11 @@ class _AddressListTileState extends State<AddressListTile> {
               () => setState(() {
                     test = !test;
                   }),
+      onLongPress: () {
+        widget.store!.currentAddress = widget.address!.street!;
+        widget.store!.updateDeliveryAt(widget.address!);
+        Navigator.pop(context);
+      },
     );
   }
 }

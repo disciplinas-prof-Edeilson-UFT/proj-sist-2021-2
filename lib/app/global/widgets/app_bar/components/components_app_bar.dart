@@ -9,6 +9,7 @@ import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_page.dart';
+import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
 
@@ -104,13 +105,13 @@ class LocationAppBar extends StatefulWidget {
 }
 
 class _LocationAppBarState extends State<LocationAppBar> {
-  String? address;
   DeliveryAt? currentDelivery;
   final session = Modular.get<Session>();
+  final store = Modular.get<ClientAddressStore>();
 
   @override
   void initState() {
-    address = session.isLogged && session.street.isNotEmpty
+    store.currentAddress = session.isLogged && session.street.isNotEmpty
         ? session.street
         : "Para adicionar um endereço de entrega";
     super.initState();
@@ -152,7 +153,7 @@ class _LocationAppBarState extends State<LocationAppBar> {
                   width: screen.width * 0.001,
                 ),
                 Text(
-                  address ?? "Endereço não encontrado",
+                  store.currentAddress,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 12,

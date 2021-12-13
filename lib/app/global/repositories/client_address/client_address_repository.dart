@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/global/models/enums/address_type.dart';
@@ -58,6 +59,14 @@ class ClientAddressRepository {
     }
   }
 
+  Future<void> updateDeliveryAt(String id) async {
+    try {
+      await clientCollection.doc(currentUser!.uid).update({'delivery_at': id});
+    } catch (e) {
+      throw Exception('Não foi possível atualizar o endereço atual');
+    }
+  }
+
   Future<void> updateAddress(DeliveryAt address) async {
     try {
       await addressCollection.doc(address.id).update({
@@ -94,6 +103,7 @@ class ClientAddressRepository {
         'number': address.number,
         'street': address.street,
         'uf': address.uf,
+        'address_type': address.addressType!.label.toLowerCase(),
       }).then((value) async {
         await clientCollection.doc(currentUser!.uid).update(
           {

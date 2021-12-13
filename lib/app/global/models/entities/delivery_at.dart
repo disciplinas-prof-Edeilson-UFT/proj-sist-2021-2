@@ -51,6 +51,6 @@ class DeliveryAt {
         street: map['street'],
         uf: map['uf'],
         addressType:
-            FilterAddressType.values.first.stringTotype(map['addressType']));
+            FilterAddressType.values.first.stringTotype(map['address_type']));
   }
 }
