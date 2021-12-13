@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/models/enums/address_type.dart';
 import 'package:pscomidas/app/global/repositories/client_address/client_address_repository.dart';
 import 'package:pscomidas/app/global/utils/app_response.dart';
 
@@ -13,6 +14,15 @@ abstract class _ClientAddressStoreBase with Store {
   final pageController = PageController(initialPage: 0);
   final textController = TextEditingController();
   final cepController = TextEditingController();
+
+  List<FilterAddressType> addTypes = [
+    FilterAddressType.casa,
+    FilterAddressType.trabalho,
+    FilterAddressType.outro,
+  ];
+
+  @observable
+  FilterAddressType addressType = FilterAddressType.casa;
 
   @observable
   String filter = "";
@@ -28,7 +38,19 @@ abstract class _ClientAddressStoreBase with Store {
   AppResponse<DeliveryAt> tempAddress = AppResponse<DeliveryAt>();
 
   @observable
+  String? number;
+
+  @observable
   String? errorMessage;
+
+  @observable
+  bool _sem = false;
+
+  @computed
+  bool get semNum => _sem;
+
+  @action
+  checkSem() => _sem = !_sem;
 
   @observable
   bool deleteIt = false;
@@ -41,15 +63,26 @@ abstract class _ClientAddressStoreBase with Store {
   }
 
   @action
+  selectAddressType(FilterAddressType value) => addressType = value;
+
+  @action
   createOrUpdate({DeliveryAt? address}) async {
     try {
       if (isEditing == true) {
         await _repository.updateAddress(tempAddress.body!);
         await fetchSavedAddresses();
       } else {
-        await _repository.createAddress(tempAddress.body!);
+        if (semNum) {
+          number = '';
+        }
+        tempAddress.body!.addressType = addressType;
+        tempAddress.body!.number = number;
+        if (tempAddress.body!.number == null) {
+          jump(3);
+        } else {
+          await _repository.createAddress(tempAddress.body!);
+        }
       }
-      jump(0);
     } catch (e) {
       errorMessage = e.toString();
     }
@@ -138,6 +171,5 @@ abstract class _ClientAddressStoreBase with Store {
   @action
   disposePick() {
     cepController.clear();
-    tempAddress.body = null;
   }
 }

@@ -5,6 +5,8 @@ import 'package:pscomidas/app/modules/client_address/pages/pick_address.dart';
 import 'package:pscomidas/app/modules/client_address/pages/saved_addresses.dart';
 import 'package:pscomidas/app/modules/client_address/pages/search_address.dart';
 
+import 'pages/address_number.dart';
+
 class ClientAddressPage extends StatefulWidget {
   final String title;
   const ClientAddressPage({Key? key, this.title = 'ClientAddressPage'})
@@ -36,6 +38,7 @@ class ClientAddressPageState extends State<ClientAddressPage> {
             SavedAdresses(),
             SearchAddress(),
             PickAddress(),
+            AddressNumber(),
           ],
         ),
       ),

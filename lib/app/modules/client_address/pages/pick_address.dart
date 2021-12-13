@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/models/enums/address_type.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/global/widgets/shimmer_loading/shimmer_loading.dart';
 import 'package:pscomidas/app/modules/client_address/widgets/address_list_tile.dart';
@@ -51,7 +52,6 @@ class _PickAddressState extends State<PickAddress> {
                     color: secondaryColor,
                   ),
                 ),
-                //const SizedBox(width: 50.0),
                 const Expanded(
                   child: Text(
                     'Busque o endereço pelo CEP',
@@ -63,48 +63,53 @@ class _PickAddressState extends State<PickAddress> {
             ),
             SizedBox(
               height: 75,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    child: CustomTextField(
-                      controller: store.cepController,
-                      hint: '00000-000',
-                      phone: true,
-                      formaters: [
-                        MaskTextInputFormatter(
-                          mask: '#####-###',
-                          filter: {"#": RegExp(r'[0-9]')},
-                        ),
-                      ],
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.length < 8) {
-                          return 'CEP Inválido';
-                        }
-                      },
-                    ),
+              child: CustomTextField(
+                controller: store.cepController,
+                hint: '00000-000',
+                phone: true,
+                formaters: [
+                  MaskTextInputFormatter(
+                    mask: '#####-###',
+                    filter: {"#": RegExp(r'[0-9]')},
                   ),
-                  IconButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        await store.findCEP();
-                      }
-                    },
-                    padding: const EdgeInsets.all(8.0),
-                    hoverColor: Colors.transparent,
-                    iconSize: 25,
-                    splashRadius: 20,
-                    highlightColor: Colors.transparent,
-                    icon: const Icon(
-                      Icons.search_sharp,
-                      color: secondaryColor,
-                    ),
-                  )
                 ],
+                searchCep: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    child: const Icon(
+                      Icons.location_searching,
+                      color: secondaryColor,
+                      size: 20,
+                    ),
+                    onTap: () => _formKey.currentState!.validate()
+                        ? store.findCEP()
+                        : null,
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty || value.length < 8) {
+                    return 'CEP Inválido';
+                  }
+                },
               ),
             ),
+            Flexible(
+              child: Observer(builder: (_) {
+                return DropdownButton<FilterAddressType>(
+                  value: store.addressType,
+                  onChanged: (value) => store.selectAddressType(value!),
+                  items: store.addTypes
+                      .map<DropdownMenuItem<FilterAddressType>>(
+                        (value) => DropdownMenuItem(
+                          child: Text(value.label),
+                          value: value,
+                        ),
+                      )
+                      .toList(),
+                );
+              }),
+            ),
+            const Divider(),
             Observer(builder: (_) {
               if (store.tempAddress.body == null) {
                 return const WarningListTile(icon: Icons.info_outlined);

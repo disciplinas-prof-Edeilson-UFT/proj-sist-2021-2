@@ -2,6 +2,7 @@
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/register_client/widgets/custom_submit.dart';
@@ -56,6 +57,9 @@ class _AddressNumberState extends State<AddressNumber> {
         SizedBox(
           width: 100,
           child: TextFormField(
+            onChanged: (value) {
+              store.number = value;
+            },
             inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -67,18 +71,20 @@ class _AddressNumberState extends State<AddressNumber> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('Endereço sem número'),
-            Checkbox(
-                value: checkValue,
-                onChanged: (bool? value) {
-                  setState(() {
-                    checkValue = value!;
-                  });
-                }),
+            Observer(builder: (_) {
+              return Checkbox(
+                value: store.semNum,
+                onChanged: (_) => store.checkSem(),
+              );
+            })
           ],
         ),
         CustomSubmit(
           label: 'Adcionar endereço',
-          onPressed: () async => store.jump(3),
+          onPressed: () async {
+            await store.createOrUpdate();
+            Navigator.pop(context);
+          },
         ),
       ],
     );

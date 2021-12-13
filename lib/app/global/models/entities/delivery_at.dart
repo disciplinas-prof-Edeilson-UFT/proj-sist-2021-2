@@ -5,12 +5,12 @@ class DeliveryAt {
   final String? street;
   final String? block;
   final String? complement;
-  final int? number;
+  late String? number;
   final String cep;
   final String city;
   final String uf;
   late String? id;
-  final FilterAddressType? addressType;
+  late FilterAddressType? addressType;
 
   DeliveryAt({
     this.active = false,

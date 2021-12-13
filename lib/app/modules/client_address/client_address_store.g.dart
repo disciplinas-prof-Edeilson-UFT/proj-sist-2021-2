@@ -9,6 +9,28 @@ part of 'client_address_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
+  Computed<bool>? _$semNumComputed;
+
+  @override
+  bool get semNum => (_$semNumComputed ??= Computed<bool>(() => super.semNum,
+          name: '_ClientAddressStoreBase.semNum'))
+      .value;
+
+  final _$addressTypeAtom = Atom(name: '_ClientAddressStoreBase.addressType');
+
+  @override
+  FilterAddressType get addressType {
+    _$addressTypeAtom.reportRead();
+    return super.addressType;
+  }
+
+  @override
+  set addressType(FilterAddressType value) {
+    _$addressTypeAtom.reportWrite(value, super.addressType, () {
+      super.addressType = value;
+    });
+  }
+
   final _$filterAtom = Atom(name: '_ClientAddressStoreBase.filter');
 
   @override
@@ -70,6 +92,21 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
     });
   }
 
+  final _$numberAtom = Atom(name: '_ClientAddressStoreBase.number');
+
+  @override
+  String? get number {
+    _$numberAtom.reportRead();
+    return super.number;
+  }
+
+  @override
+  set number(String? value) {
+    _$numberAtom.reportWrite(value, super.number, () {
+      super.number = value;
+    });
+  }
+
   final _$errorMessageAtom = Atom(name: '_ClientAddressStoreBase.errorMessage');
 
   @override
@@ -82,6 +119,21 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
   set errorMessage(String? value) {
     _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
       super.errorMessage = value;
+    });
+  }
+
+  final _$_semAtom = Atom(name: '_ClientAddressStoreBase._sem');
+
+  @override
+  bool get _sem {
+    _$_semAtom.reportRead();
+    return super._sem;
+  }
+
+  @override
+  set _sem(bool value) {
+    _$_semAtom.reportWrite(value, super._sem, () {
+      super._sem = value;
     });
   }
 
@@ -160,6 +212,28 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
       ActionController(name: '_ClientAddressStoreBase');
 
   @override
+  dynamic checkSem() {
+    final _$actionInfo = _$_ClientAddressStoreBaseActionController.startAction(
+        name: '_ClientAddressStoreBase.checkSem');
+    try {
+      return super.checkSem();
+    } finally {
+      _$_ClientAddressStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic selectAddressType(FilterAddressType value) {
+    final _$actionInfo = _$_ClientAddressStoreBaseActionController.startAction(
+        name: '_ClientAddressStoreBase.selectAddressType');
+    try {
+      return super.selectAddressType(value);
+    } finally {
+      _$_ClientAddressStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic disposePick() {
     final _$actionInfo = _$_ClientAddressStoreBaseActionController.startAction(
         name: '_ClientAddressStoreBase.disposePick');
@@ -173,13 +247,16 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
   @override
   String toString() {
     return '''
+addressType: ${addressType},
 filter: ${filter},
 addresses: ${addresses},
 filtListAddress: ${filtListAddress},
 tempAddress: ${tempAddress},
+number: ${number},
 errorMessage: ${errorMessage},
 deleteIt: ${deleteIt},
-isEditing: ${isEditing}
+isEditing: ${isEditing},
+semNum: ${semNum}
     ''';
   }
 }
