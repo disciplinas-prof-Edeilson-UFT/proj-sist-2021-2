@@ -107,7 +107,7 @@ class AuthPageState extends State<AuthPage> {
         ),
       ),
       reaction(
-        (_) => store.errorMessage.isNotEmpty,
+        (_) => store.errorMessage != null,
         (_) {
           Flushbar(
             title: 'Ocorreu um erro ao tentar fazer login:',
@@ -129,7 +129,7 @@ class AuthPageState extends State<AuthPage> {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                store.errorMessage = '';
+                store.errorMessage = null;
                 Navigator.pop(context);
               },
             ),

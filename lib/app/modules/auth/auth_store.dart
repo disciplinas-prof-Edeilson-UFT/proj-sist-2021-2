@@ -23,7 +23,7 @@ abstract class _AuthStoreBase with Store {
   DeliveryAt? currentAddress;
 
   @observable
-  String errorMessage = '';
+  String? errorMessage;
 
   @observable
   bool emailexiste = true;
@@ -58,12 +58,11 @@ abstract class _AuthStoreBase with Store {
       } else {
         logged = true;
       }
-    } on Exception catch (e) {
+    } catch (e) {
       if (e as String == 'user-not-found') {
         emailexiste = false;
-      } else {
-        errorMessage = e.toString();
       }
+      errorMessage = e.toString();
     }
   }
 
@@ -105,7 +104,7 @@ abstract class _AuthStoreBase with Store {
   void dispose() {
     logged = false;
     _isClient = false;
-    errorMessage = '';
+    errorMessage = null;
     emailController.clear();
     passwordController.clear();
   }

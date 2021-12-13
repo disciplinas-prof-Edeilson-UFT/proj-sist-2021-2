@@ -43,7 +43,7 @@ class AuthRepository extends AuthService {
       };
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        throw e.code;
+        rethrow;
       } else if (e.code == 'wrong-password' || e.code == 'invalid-email') {
         throw Exception('E-mail ou senha incorretos');
       }

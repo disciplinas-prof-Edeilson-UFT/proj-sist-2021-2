@@ -49,13 +49,13 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   final _$errorMessageAtom = Atom(name: '_AuthStoreBase.errorMessage');
 
   @override
-  String get errorMessage {
+  String? get errorMessage {
     _$errorMessageAtom.reportRead();
     return super.errorMessage;
   }
 
   @override
-  set errorMessage(String value) {
+  set errorMessage(String? value) {
     _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
       super.errorMessage = value;
     });
