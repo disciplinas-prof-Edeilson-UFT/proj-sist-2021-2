@@ -3,17 +3,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
+import 'package:pscomidas/app/global/utils/session.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/user_profile_options.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/modules/auth/auth_store.dart';
 import 'package:pscomidas/app/modules/client_address/client_address_page.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
-
-final AuthStore authStore = Modular.get();
-bool get logged => authStore.logged;
 
 class LogoAppBar extends StatelessWidget {
   const LogoAppBar({Key? key}) : super(key: key);
@@ -109,12 +106,12 @@ class LocationAppBar extends StatefulWidget {
 class _LocationAppBarState extends State<LocationAppBar> {
   String? address;
   DeliveryAt? currentDelivery;
+  final session = Modular.get<Session>();
 
   @override
   void initState() {
-    currentDelivery = authStore.currentAddress;
-    address = logged && currentDelivery != null
-        ? currentDelivery!.street
+    address = session.isLogged && session.street.isNotEmpty
+        ? session.street
         : "Para adicionar um endereço de entrega";
     super.initState();
   }
@@ -126,7 +123,7 @@ class _LocationAppBarState extends State<LocationAppBar> {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          logged
+          session.isLogged
               ? showDialog(
                   context: context,
                   builder: (context) {
@@ -137,7 +134,7 @@ class _LocationAppBarState extends State<LocationAppBar> {
         child: Column(
           children: [
             Text(
-              logged ? "ENTREGAR EM" : "Faça Login",
+              session.isLogged ? "ENTREGAR EM" : "Faça Login",
               style: const TextStyle(
                 color: tertiaryColor,
                 fontSize: 12,
@@ -201,6 +198,7 @@ class UserAppBar extends StatefulWidget {
 }
 
 class _UserAppBarState extends State<UserAppBar> {
+  final session = Modular.get<Session>();
   @override
   void initState() {
     super.initState();
@@ -208,7 +206,7 @@ class _UserAppBarState extends State<UserAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return logged
+    return session.isLogged
         ? PopupMenuButton(
             icon: const Icon(
               Icons.person_outline_outlined,

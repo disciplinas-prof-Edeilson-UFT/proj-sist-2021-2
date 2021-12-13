@@ -35,9 +35,6 @@ abstract class _AuthStoreBase with Store {
   bool _isClient = false;
 
   @computed
-  Future<bool> get isClient async => !_isClient;
-
-  @computed
   bool get client => _isClient;
 
   @observable

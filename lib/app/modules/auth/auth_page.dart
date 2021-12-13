@@ -3,6 +3,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/utils/session.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/auth/auth_store.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ bool _showPassword = false;
 
 class AuthPageState extends State<AuthPage> {
   final AuthStore store = Modular.get();
+  final session = Modular.get<Session>();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   List<ReactionDisposer> disposers = [];
@@ -30,13 +32,21 @@ class AuthPageState extends State<AuthPage> {
   void initState() {
     disposers = [
       reaction(
-        (_) => store.logged == true,
-        (_) => Modular.to.navigate(!store.client
-            ? RestaurantHomeModule.routeName
-            : HomeModule.routeName),
+        (_) => store.logged,
+        (_) async {
+          if (store.logged) {
+            await session.saveClient(
+              store.currentAddress!.street!,
+              store.client,
+            );
+            Modular.to.navigate(!session.isClient
+                ? RestaurantHomeModule.routeName
+                : HomeModule.routeName);
+          }
+        },
       ),
       reaction(
-        (_) => store.emailVerified == false,
+        (_) => !store.emailVerified,
         (_) => Navigator.push(
           context,
           MaterialPageRoute(
