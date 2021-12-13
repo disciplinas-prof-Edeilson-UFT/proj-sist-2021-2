@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pscomidas/app/global/utils/schemas.dart';
 
 // PROPOSIÇÃO de implementação de cupons para entrega grátis e desconto.
 // CUPONS DE ENTREGA GRÁTIS são maps no database com atributos -> {"tipo":"entrega_gratis"}
 // CUPONS DE DESCONTO são maps no database com atributos -> {"tipo":"desconto", "valor":(number)}
+// Quando não há nenhum cupom o map é do tipo {"tipo": "nenhum"}
 
 class CupomCard extends StatelessWidget {
   final Map<String, dynamic>? cupom;
@@ -16,7 +18,7 @@ class CupomCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          color: const Color(0xffEFF3F5),
+          color: cupomColor,
         ),
         height: 25,
         width: cupom!['tipo'] == 'desconto' ? 200 : 185,
@@ -39,18 +41,18 @@ class CupomCard extends StatelessWidget {
   Image _cupomLeading() {
     if (cupom!['tipo'] == 'desconto') {
       return Image.asset(
-        'lib/app/modules/home/assets/images/cupom.png',
+        '../assets/images/cupons/desconto.png',
+        color: cupomTextColor,
         height: 15,
       );
     } else {
-      return Image.asset(
-          "lib/app/modules/home/assets/images/entrega_gratis.png",
-          height: 15);
+      return Image.asset('../assets/images/cupons/entrega_gratis.png',
+          color: cupomTextColor, height: 15);
     }
   }
 
   final _cupomTextStyle = const TextStyle(
-    color: Color(0xFF2e6788),
+    color: cupomTextColor,
     fontSize: 13,
     fontFamily: 'Nunito',
   );

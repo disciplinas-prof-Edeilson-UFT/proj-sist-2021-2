@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pscomidas/app/global/repositories/register/register_repository_interface.dart';
+import 'package:pscomidas/app/global/repositories/register_restaurant/register_repository_service.dart';
 
-class RegisterRepository extends IRegisterRepository {
+class RegisterRepository extends RegisterRepositoryService {
   final CollectionReference restaurant =
       FirebaseFirestore.instance.collection('restaurant');
 
@@ -18,13 +18,13 @@ class RegisterRepository extends IRegisterRepository {
   Future<void>? addRestaurant(
       String restaurantUID, Map<String, TextEditingController> controller) {
     restaurant.doc(restaurantUID).set({
-      'name_Owner': controller['nome']?.text,
-      'email_Owner': controller['email']?.text,
-      'phone_Owner': controller['telefone']?.text,
+      'nameOwner': controller['Nome']?.text,
+      'emailOwner': controller['Email']?.text,
+      'phoneOwner': controller['Telefone']?.text,
       'CNPJ': controller['CNPJ']?.text,
-      'company_name': controller['Razão Social']?.text,
-      'social_name': controller['Nome da loja']?.text,
-      'phone_restaurant': controller['Telefone da loja']?.text,
+      'companyName': controller['Razão Social']?.text,
+      'socialName': controller['Nome da loja']?.text,
+      'phoneRestaurant': controller['Telefone da loja']?.text,
       'CEP': controller['CEP']?.text,
       'state': controller['Estado']?.text,
       'city': controller['Cidade']?.text,
@@ -33,8 +33,9 @@ class RegisterRepository extends IRegisterRepository {
       'number': controller['Número']?.text,
       'complement': controller['Complemento (Opcional)']?.text,
       'password': controller['Senha']?.text,
-      'delivery_plan': controller['Plano de Entrega']?.text,
+      'deliveryPlan': controller['Plano de Entrega']?.text,
       'category': controller['Categoria']?.text,
+      'cupom': {'tipo': 'nenhum'},
     });
   }
 
@@ -42,9 +43,9 @@ class RegisterRepository extends IRegisterRepository {
   Future<void>? addUser(
       String userUID, Map<String, TextEditingController> controller) {
     users.doc(userUID).set({
-      'name': controller['nome']?.text,
-      'email': controller['email']?.text,
-      'phone': controller['telefone']?.text,
+      'name': controller['Nome']?.text,
+      'email': controller['Email']?.text,
+      'phone': controller['Telefone']?.text,
       'isClient': false,
     });
   }
@@ -52,14 +53,13 @@ class RegisterRepository extends IRegisterRepository {
   @override
   Future<UserCredential> signUp(
       Map<String, TextEditingController> controller) async {
-    var uid = '';
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
-        email: controller['email']!.text,
+        email: controller['Email']!.text,
         password: controller['Senha']!.text,
       );
-      uid = userCredential.user!.uid;
+      userCredential.user!.uid;
       log(userCredential.user!.uid);
       return userCredential;
     } catch (e) {
@@ -69,7 +69,7 @@ class RegisterRepository extends IRegisterRepository {
 
   @override
   Future<bool>? isUniqueEmail(String email) async {
-    return (await users.where('email', isEqualTo: email).get()).size == 0;
+    return (await users.where('Email', isEqualTo: email).get()).size == 0;
   }
 
   @override

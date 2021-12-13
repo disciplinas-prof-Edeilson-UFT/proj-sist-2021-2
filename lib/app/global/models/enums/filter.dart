@@ -27,13 +27,13 @@ extension FilterExtension on FilterType {
       case FilterType.avaliation:
         return 'avaliation';
       case FilterType.freeShipping:
-        return 'delivery_price';
+        return 'deliveryPrice';
       case FilterType.discountCoupon:
         return 'cupom';
       case FilterType.shortestDistance:
         return 'distance';
       default:
-        return 'social_name';
+        return 'socialName';
     }
   }
 
