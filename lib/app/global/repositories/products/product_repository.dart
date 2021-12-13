@@ -53,12 +53,12 @@ class ProductRepository implements IProductRepository {
   }
 
   @override
-  Future<List<Product>> getProductsService(String restaurantId) async {
+  Future<List<Product>> getProductsService() async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot;
     try {
       querySnapshot = await FirebaseFirestore.instance
           .collection('products')
-          .where('restaurant_id', isEqualTo: restaurantId)
+          .where('restaurant_id', isEqualTo: store.id)
           .get();
     } catch (e) {
       throw Exception("Erro: $e");

@@ -134,7 +134,7 @@ abstract class _RestaurantHomeStoreBase with Store {
       name: formProduct['name']!.text.toString(),
       description: formProduct['desc']!.text.toString(),
       price: doublePrice,
-      restaurantId: "90W7KSn4OdbgUPd2p4KFgVg4rwy1",
+      restaurantId: id,
       categories: formProduct['categories']!.text.toString(),
     );
     await ProductRepository().cadastrarProduct(produto);
@@ -287,8 +287,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   Future<List<Product>> getProducts() async {
-    products = await ProductRepository()
-        .getProductsService('90W7KSn4OdbgUPd2p4KFgVg4rwy1');
+    products = await ProductRepository().getProductsService();
     return products;
   }
 }
