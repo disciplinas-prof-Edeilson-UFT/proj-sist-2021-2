@@ -41,60 +41,62 @@ abstract class _AuthStoreBase with Store {
   bool emailVerified = true;
 
   @action
-  Future<void> login() async {
+  login() async {
     try {
       final response = await _authRepository.login(
         emailController.text,
         passwordController.text,
       );
-      loggedUser = response['user'];
-      _isClient = response['isClient'];
-      if (_isClient) {
-        currentAddress =
-            await _authRepository.fetchDeliveryAt(response['delivery_at']);
-      }
-      if (!loggedUser!.user!.emailVerified) {
-        emailVerified = false;
-      } else {
-        logged = true;
-      }
+      await setUserInfo(response);
     } catch (e) {
-      if (e as String == 'user-not-found') {
+      if (e.toString() == 'Exception: Usuário não encontrado') {
         emailexiste = false;
+      } else {
+        errorMessage = e.toString();
       }
-      errorMessage = e.toString();
     }
   }
 
   @action
-  Future<void> logFace() async {
+  logFace() async {
     try {
-      if (await _authRepository.signInWithFacebook() is UserCredential) {
-        logged = true;
-        _isClient = true;
-      }
+      final response = await _authRepository.signInWithFacebook();
+      await setUserInfo(response);
     } catch (e) {
       errorMessage = e.toString();
     }
   }
 
   @action
-  Future<void> checkEmailVerified() async {
+  checkEmailVerified() async {
     User user;
     user = FirebaseAuth.instance.currentUser!;
     await user.reload();
-    if (user.emailVerified == true) {
+    if (user.emailVerified) {
       emailVerified = true;
     }
   }
 
   @action
-  Future<void> logGoogle() async {
+  setUserInfo(Map<String, dynamic> userInfo) async {
+    loggedUser = userInfo['user'];
+    _isClient = userInfo['isClient'];
+    if (_isClient) {
+      currentAddress =
+          await _authRepository.fetchDeliveryAt(userInfo['delivery_at']);
+    }
+    if (!loggedUser!.user!.emailVerified) {
+      emailVerified = false;
+    } else {
+      logged = true;
+    }
+  }
+
+  @action
+  logGoogle() async {
     try {
-      if (await _authRepository.signInWithGoogle() is UserCredential) {
-        logged = true;
-        _isClient = true;
-      }
+      final response = await _authRepository.signInWithGoogle();
+      await setUserInfo(response);
     } catch (e) {
       errorMessage = e.toString();
     }

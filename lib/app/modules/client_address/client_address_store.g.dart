@@ -77,19 +77,19 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
     });
   }
 
-  final _$filtListAddressAtom =
-      Atom(name: '_ClientAddressStoreBase.filtListAddress');
+  final _$filteredAddressAtom =
+      Atom(name: '_ClientAddressStoreBase.filteredAddress');
 
   @override
-  ObservableList<DeliveryAt> get filtListAddress {
-    _$filtListAddressAtom.reportRead();
-    return super.filtListAddress;
+  ObservableList<DeliveryAt> get filteredAddress {
+    _$filteredAddressAtom.reportRead();
+    return super.filteredAddress;
   }
 
   @override
-  set filtListAddress(ObservableList<DeliveryAt> value) {
-    _$filtListAddressAtom.reportWrite(value, super.filtListAddress, () {
-      super.filtListAddress = value;
+  set filteredAddress(ObservableList<DeliveryAt> value) {
+    _$filteredAddressAtom.reportWrite(value, super.filteredAddress, () {
+      super.filteredAddress = value;
     });
   }
 
@@ -187,9 +187,8 @@ mixin _$ClientAddressStore on _ClientAddressStoreBase, Store {
       AsyncAction('_ClientAddressStoreBase.createOrUpdate');
 
   @override
-  Future createOrUpdate({DeliveryAt? address}) {
-    return _$createOrUpdateAsyncAction
-        .run(() => super.createOrUpdate(address: address));
+  Future createOrUpdate(BuildContext context) {
+    return _$createOrUpdateAsyncAction.run(() => super.createOrUpdate(context));
   }
 
   final _$deleteAddressAsyncAction =
@@ -276,7 +275,7 @@ addressType: ${addressType},
 currentAddress: ${currentAddress},
 filter: ${filter},
 addresses: ${addresses},
-filtListAddress: ${filtListAddress},
+filteredAddress: ${filteredAddress},
 tempAddress: ${tempAddress},
 number: ${number},
 errorMessage: ${errorMessage},

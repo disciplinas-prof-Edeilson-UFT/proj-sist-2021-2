@@ -92,23 +92,26 @@ class _SearchAddressState extends State<SearchAddress> {
 
             return ListView.builder(
               itemBuilder: (context, index) {
-                DeliveryAt address = store.filtListAddress[index];
+                DeliveryAt address = store.filteredAddress[index];
                 return SlidableAddressTile(address: address);
               },
               shrinkWrap: true,
-              itemCount: store.filtListAddress.length,
+              itemCount: store.filteredAddress.length,
             );
           }),
           ListTile(
             onTap: () => store.jump(2),
-            leading: const Icon(Icons.map),
+            leading: const Icon(
+              Icons.map,
+              color: tertiaryColor,
+            ),
             title: const Text(
               "Não achei meu endereço",
               style: TextStyle(
                 color: secondaryColor,
               ),
             ),
-            subtitle: const Text("Buscar pelo mapa"),
+            subtitle: const Text("Buscar pelo endereço"),
           ),
         ],
       ),

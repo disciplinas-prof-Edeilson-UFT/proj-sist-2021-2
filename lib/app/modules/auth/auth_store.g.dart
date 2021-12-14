@@ -124,14 +124,14 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   final _$loginAsyncAction = AsyncAction('_AuthStoreBase.login');
 
   @override
-  Future<void> login() {
+  Future login() {
     return _$loginAsyncAction.run(() => super.login());
   }
 
   final _$logFaceAsyncAction = AsyncAction('_AuthStoreBase.logFace');
 
   @override
-  Future<void> logFace() {
+  Future logFace() {
     return _$logFaceAsyncAction.run(() => super.logFace());
   }
 
@@ -139,15 +139,22 @@ mixin _$AuthStore on _AuthStoreBase, Store {
       AsyncAction('_AuthStoreBase.checkEmailVerified');
 
   @override
-  Future<void> checkEmailVerified() {
+  Future checkEmailVerified() {
     return _$checkEmailVerifiedAsyncAction
         .run(() => super.checkEmailVerified());
+  }
+
+  final _$setUserInfoAsyncAction = AsyncAction('_AuthStoreBase.setUserInfo');
+
+  @override
+  Future setUserInfo(Map<String, dynamic> userInfo) {
+    return _$setUserInfoAsyncAction.run(() => super.setUserInfo(userInfo));
   }
 
   final _$logGoogleAsyncAction = AsyncAction('_AuthStoreBase.logGoogle');
 
   @override
-  Future<void> logGoogle() {
+  Future logGoogle() {
     return _$logGoogleAsyncAction.run(() => super.logGoogle());
   }
 

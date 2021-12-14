@@ -35,7 +35,7 @@ abstract class _ClientAddressStoreBase with Store {
       AppResponse<ObservableList<DeliveryAt>>();
 
   @observable
-  ObservableList<DeliveryAt> filtListAddress = ObservableList<DeliveryAt>();
+  ObservableList<DeliveryAt> filteredAddress = ObservableList<DeliveryAt>();
 
   @observable
   AppResponse<DeliveryAt> tempAddress = AppResponse<DeliveryAt>();
@@ -69,21 +69,23 @@ abstract class _ClientAddressStoreBase with Store {
   selectAddressType(FilterAddressType value) => addressType = value;
 
   @action
-  createOrUpdate({DeliveryAt? address}) async {
+  createOrUpdate(BuildContext context) async {
     try {
+      tempAddress.body!.addressType = addressType;
       if (isEditing == true) {
         await _repository.updateAddress(tempAddress.body!);
         await fetchSavedAddresses();
+        Navigator.pop(context);
       } else {
         if (semNum) {
           number = '';
         }
-        tempAddress.body!.addressType = addressType;
         tempAddress.body!.number = number;
         if (tempAddress.body!.number == null) {
           jump(3);
         } else {
           await _repository.createAddress(tempAddress.body!);
+          Navigator.pop(context);
         }
       }
     } catch (e) {
@@ -118,24 +120,33 @@ abstract class _ClientAddressStoreBase with Store {
 
   @action
   findAdress() async {
-    filtListAddress.clear();
+    filteredAddress.clear();
     if (filter.isEmpty && addresses.body != null) {
-      filtListAddress.addAll(addresses.body!);
+      filteredAddress.addAll(addresses.body!);
     } else {
       List<String> vadress = [];
-      for (var i in addresses.body!) {
-        vadress.addAll(i.street!.toLowerCase().split(' '));
-
-        vadress.addAll(i.cep.toLowerCase().split(' '));
-
-        vadress.addAll(i.city.toLowerCase().split(' '));
-
-        vadress.addAll(i.complement!.toLowerCase().split(' '));
-
-        for (var j in vadress) {
-          if (j.startsWith(filter.toLowerCase())) {
-            if (!filtListAddress.contains(i)) {
-              filtListAddress.add(i);
+      for (var address in addresses.body!) {
+        vadress.add(address.cep);
+        vadress.add(address.addressType.toString());
+        address.street!.toLowerCase().split(' ').forEach((element) {
+          if (!vadress.contains(element)) {
+            vadress.add(element);
+          }
+        });
+        address.city.toLowerCase().split(' ').forEach((element) {
+          if (!vadress.contains(element)) {
+            vadress.add(element);
+          }
+        });
+        address.complement!.toLowerCase().split(' ').forEach((element) {
+          if (!vadress.contains(element)) {
+            vadress.add(element);
+          }
+        });
+        for (var words in vadress) {
+          if (words.startsWith(filter.toLowerCase())) {
+            if (!filteredAddress.contains(address)) {
+              filteredAddress.add(address);
             } else {
               break;
             }
@@ -163,7 +174,7 @@ abstract class _ClientAddressStoreBase with Store {
     try {
       await _repository.updateDeliveryAt(address.id!);
     } catch (e) {
-      throw Exception('fodas');
+      errorMessage = e.toString();
     }
   }
 

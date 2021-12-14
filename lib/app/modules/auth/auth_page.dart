@@ -55,7 +55,7 @@ class AuthPageState extends State<AuthPage> {
         ),
       ),
       reaction(
-        (_) => store.emailexiste == false,
+        (_) => !store.emailexiste,
         (_) => showDialog(
           context: context,
           builder: (context) {

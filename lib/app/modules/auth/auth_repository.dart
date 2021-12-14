@@ -20,30 +20,10 @@ class AuthRepository extends AuthService {
         email: email,
         password: password,
       );
-      FirebaseAuth.instance.currentUser!;
-      if (!user.user!.emailVerified) {
-        user.user!.sendEmailVerification();
-      }
-      final response =
-          await userCollection.doc(user.user!.uid).get().then((value) async {
-        if (value.data()!['isClient']) {
-          final client = await clientsCollection.doc(user.user!.uid).get();
-          return [
-            value.data()!['isClient'],
-            client['delivery_at'],
-          ];
-        } else {
-          return [value.data()!['isClient'], null];
-        }
-      });
-      return {
-        'user': user,
-        'isClient': response.first,
-        'delivery_at': response.last ?? '',
-      };
+      return await getUserInfo(user);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        rethrow;
+        throw Exception('Usuário não encontrado');
       } else if (e.code == 'wrong-password' || e.code == 'invalid-email') {
         throw Exception('E-mail ou senha incorretos');
       }
@@ -65,28 +45,59 @@ class AuthRepository extends AuthService {
   }
 
   @override
-  Future<UserCredential> signInWithFacebook() async {
+  Future<Map<String, dynamic>> signInWithFacebook() async {
     FacebookAuthProvider facebookProvider = FacebookAuthProvider();
 
     facebookProvider.addScope('email');
     facebookProvider.setCustomParameters({'display': 'popup'});
     try {
-      return await FirebaseAuth.instance.signInWithPopup(facebookProvider);
+      final response =
+          await FirebaseAuth.instance.signInWithPopup(facebookProvider);
+      return await getUserInfo(response);
     } on Exception catch (_) {
       throw Exception("Houve um erro ao tentar entrar no Facebook");
     }
   }
 
   @override
-  Future<UserCredential> signInWithGoogle() async {
+  Future<Map<String, dynamic>> signInWithGoogle() async {
     GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
     googleProvider.addScope('email');
     googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
     try {
-      return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+      final response =
+          await FirebaseAuth.instance.signInWithPopup(googleProvider);
+      return await getUserInfo(response);
     } on Exception catch (_) {
       throw Exception('Houve um erro ao fazer login com Google');
     }
+  }
+
+  @override
+  Future<Map<String, dynamic>> getUserInfo(UserCredential user) async {
+    if (!user.user!.emailVerified) {
+      user.user!.sendEmailVerification();
+    }
+    final response =
+        await userCollection.doc(user.user!.uid).get().then((users) async {
+      final data = users.data();
+      if (data != null && data['isClient']) {
+        final client =
+            await clientsCollection.doc(user.user!.uid).get().then((clients) {
+          return clients.data();
+        });
+        return [
+          data['isClient'],
+          client!['delivery_at'],
+        ];
+      }
+      return [false, null];
+    });
+    return {
+      'user': user,
+      'isClient': response.first,
+      'delivery_at': response.last ?? '',
+    };
   }
 }

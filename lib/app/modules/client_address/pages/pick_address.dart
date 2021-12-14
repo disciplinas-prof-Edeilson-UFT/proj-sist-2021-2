@@ -135,7 +135,7 @@ class _PickAddressState extends State<PickAddress> {
               return CustomSubmit(
                 locked: !store.tempAddress.isCompleted,
                 label: 'Salvar Endereço',
-                onPressed: () async => store.createOrUpdate(),
+                onPressed: () async => store.createOrUpdate(context),
               );
             }),
           ],

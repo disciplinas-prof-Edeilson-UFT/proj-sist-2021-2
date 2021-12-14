@@ -6,7 +6,9 @@ abstract class AuthService {
 
   Future<DeliveryAt> fetchDeliveryAt(String uid);
 
-  Future<UserCredential> signInWithGoogle();
+  Future<Map<String, dynamic>> signInWithGoogle();
 
-  Future<UserCredential> signInWithFacebook();
+  Future<Map<String, dynamic>> getUserInfo(UserCredential user);
+
+  Future<Map<String, dynamic>> signInWithFacebook();
 }
