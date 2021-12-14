@@ -182,8 +182,7 @@ class _ProductDialogState extends State<ProductDialog> {
                         Row(
                           children: [
                             Text(
-                              restaurantStore
-                                      .restaurant.body!.estimatedDelivery +
+                              restaurantStore.restaurant.body!.prepareTime +
                                   ' min - ' +
                                   FormatMoney.doubleToMoney(restaurantStore
                                       .restaurant.body!.deliveryPrice),

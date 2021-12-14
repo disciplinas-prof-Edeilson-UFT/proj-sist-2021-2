@@ -135,11 +135,6 @@ class CategoryInside extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
               child: Text(
                 categoryName!,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Nunito',
-                ),
               ),
             ),
             const RestaurantGrid(),
@@ -206,7 +201,14 @@ class _State extends ModularState<CategoryCard, HomeStore> {
               hoverColor: Colors.transparent,
             ),
           ),
-          Text(widget.category!)
+          Text(
+            widget.category!,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Nunito',
+            ),
+          )
         ],
       ),
     );

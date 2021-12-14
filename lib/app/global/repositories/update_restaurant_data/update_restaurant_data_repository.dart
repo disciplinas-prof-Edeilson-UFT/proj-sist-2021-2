@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository_interface.dart';
+import 'package:pscomidas/app/global/repositories/update_restaurant_data/update_restaurant_data_service.dart';
 import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_store.dart';
 
-class ProfileRepository extends IProfile {
+class UpdateRestaurantDataRepository extends UpdateRestaurantDataService {
   final store = Modular.get<RestaurantHomeStore>();
 
   @override
@@ -34,18 +34,18 @@ class ProfileRepository extends IProfile {
         .collection('restaurant')
         .doc(store.id)
         .update({
-      'social_name':
+      'socialName':
           _verifyForm(store.profileFormController['restaurant']?.text) ??
               restaurant.socialName,
-      'phone_restaurant':
-          _verifyForm(store.profileFormController['phone_restaurant']?.text) ??
+      'phoneRestaurant':
+          _verifyForm(store.profileFormController['phoneRestaurant']?.text) ??
               restaurant.phone,
       'category': store.category,
-      'estimated_delivery':
-          _verifyForm(store.profileFormController['prepare_time']?.text) ??
-              restaurant.estimatedDelivery,
-      'delivery_price': _parsePrice(_verifyForm(
-              store.profileFormController['delivery_price']?.text)) ??
+      'prepareTime':
+          _verifyForm(store.profileFormController['prepareTime']?.text) ??
+              restaurant.prepareTime,
+      'deliveryPrice': _parsePrice(_verifyForm(
+              store.profileFormController['deliveryPrice']?.text)) ??
           restaurant.deliveryPrice,
     });
     store.updateProfileControllers();
@@ -57,14 +57,14 @@ class ProfileRepository extends IProfile {
         .collection('restaurant')
         .doc(store.id)
         .update({
-      'name_Owner':
-          _verifyForm(store.managementFormController['name_Owner']?.text) ??
+      'nameOwner':
+          _verifyForm(store.managementFormController['nameOwner']?.text) ??
               restaurant.nameOwner,
-      'phone_Owner':
-          _verifyForm(store.managementFormController['phone_Owner']?.text) ??
+      'phoneOwner':
+          _verifyForm(store.managementFormController['phoneOwner']?.text) ??
               restaurant.phoneOwner,
-      'email_Owner':
-          _verifyForm(store.managementFormController['email_Owner']?.text) ??
+      'emailOwner':
+          _verifyForm(store.managementFormController['emailOwner']?.text) ??
               restaurant.emailOwner,
       'password': _verifyForm(store.managementFormController['Senha']?.text) ??
           restaurant.password,

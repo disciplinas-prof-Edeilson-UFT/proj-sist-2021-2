@@ -4,7 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/product.dart';
 import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/global/repositories/products/product_repository.dart';
-import 'package:pscomidas/app/global/repositories/restaurant_home/profile/profile_repository.dart';
+import 'package:pscomidas/app/global/repositories/update_restaurant_data/update_restaurant_data_repository.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/restaurant_home/components/update_address/home_field.dart';
 import 'package:search_cep/search_cep.dart';
@@ -32,7 +32,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   Future getRestaurant() async {
-    restaurant = await ProfileRepository().getRestaurant();
+    restaurant = await UpdateRestaurantDataRepository().getRestaurant();
     updateProfileControllers();
     updateManagementControllers();
     updateAddressControllers();
@@ -46,7 +46,7 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void setImage(dynamic e) {
-    ProfileRepository().setImage(e);
+    UpdateRestaurantDataRepository().setImage(e);
   }
 
   @observable
@@ -166,8 +166,76 @@ abstract class _RestaurantHomeStoreBase with Store {
 
   @action
   void updatePlan() {
-    ProfileRepository().updateInfo({'delivery_plan': selectedPlan});
+    UpdateRestaurantDataRepository().updateInfo({'deliveryPlan': selectedPlan});
     actualPlan = selectedPlan!;
+  }
+
+  TextEditingController valueController = TextEditingController();
+
+  @observable
+  Map<String, dynamic>? selectedCupom = {
+    "tipo": null,
+    "valor": null,
+  };
+
+  @observable
+  Map<String, dynamic>? actualCupom = {
+    "tipo": null,
+    "valor": null,
+  };
+
+  @action
+  Future getRestaurantCupom() async {
+    if (restaurant == null) await getRestaurant();
+    actualCupom!['tipo'] = restaurant!.cupom!['tipo'];
+    if (actualCupom!['tipo'] == 'desconto') {
+      actualCupom!['valor'] = restaurant!.cupom!['valor'];
+    }
+    selectedCupom = actualCupom;
+    valueController = TextEditingController();
+  }
+
+  @action
+  void setSelectedCupom(name) {
+    selectedCupom = {"tipo": name};
+    cupomButtonResolver();
+  }
+
+  @action
+  void setSelectedCupomValue(value) {
+    selectedCupom!['valor'] = value;
+    cupomButtonResolver();
+  }
+
+  @action
+  void updateCupom() {
+    UpdateRestaurantDataRepository().updateInfo({'cupom': selectedCupom});
+    actualCupom = selectedCupom;
+    if (actualCupom!['tipo'] == 'desconto') {
+      valueController.text = 'R\$' + actualCupom!['valor'].toString();
+    }
+    cupomButtonResolver();
+  }
+
+  @observable
+  bool resolveCupomButton = false;
+
+  @action
+  void cupomButtonResolver() {
+    if (selectedCupom == null || selectedCupom!['tipo'] == null) {
+      resolveCupomButton = false;
+      return;
+    } else if (selectedCupom!['tipo'] == actualCupom!['tipo']) {
+      if (valueController.text.replaceAll(RegExp('[^0-9]'), '') !=
+              actualCupom!['valor'].toString() &&
+          actualCupom!['tipo'] == 'desconto') {
+        resolveCupomButton = true;
+        return;
+      }
+      resolveCupomButton = false;
+      return;
+    }
+    resolveCupomButton = true;
   }
 
   Color iconColor = tertiaryColor;
@@ -184,9 +252,9 @@ abstract class _RestaurantHomeStoreBase with Store {
   @observable
   Map<String, TextEditingController> profileFormController = {
     'restaurant': TextEditingController(),
-    'prepare_time': TextEditingController(),
-    'delivery_price': TextEditingController(),
-    'phone_restaurant': TextEditingController(),
+    'prepareTime': TextEditingController(),
+    'deliveryPrice': TextEditingController(),
+    'phoneRestaurant': TextEditingController(),
   };
 
   @observable
@@ -198,11 +266,11 @@ abstract class _RestaurantHomeStoreBase with Store {
   };
 
   Map<String, TextEditingController> managementFormController = {
-    'name_Owner': TextEditingController(),
-    'phone_Owner': TextEditingController(),
-    'email_Owner': TextEditingController(),
-    'Senha': TextEditingController(),
-    'Confirmar Senha': TextEditingController(),
+    'nameOwner': TextEditingController(),
+    'phoneOwner': TextEditingController(),
+    'emailOwner': TextEditingController(),
+    'password': TextEditingController(),
+    'confirmPassword': TextEditingController(),
   };
 
   Map<String, TextEditingController> addressFormController = {
@@ -216,9 +284,9 @@ abstract class _RestaurantHomeStoreBase with Store {
   };
 
   String? validatePassword() {
-    if (managementFormController['Confirmar Senha']?.text !=
-        managementFormController['Senha']?.text) {
-      if (managementFormController['Confirmar Senha']!.text.isEmpty) {
+    if (managementFormController['confirmPassword']?.text !=
+        managementFormController['password']?.text) {
+      if (managementFormController['confirmPassword']!.text.isEmpty) {
         return null;
       }
       return "Os campos diferem";
@@ -229,21 +297,18 @@ abstract class _RestaurantHomeStoreBase with Store {
   @action
   void updateProfileControllers() {
     profileFormController['restaurant']?.text = restaurant?.socialName ?? '';
-    profileFormController['prepare_time']?.text =
-        restaurant?.estimatedDelivery ?? '';
-    profileFormController['delivery_price']?.text =
+    profileFormController['prepareTime']?.text = restaurant?.prepareTime ?? '';
+    profileFormController['deliveryPrice']?.text =
         'R\$${restaurant?.deliveryPrice.toStringAsFixed(2)}';
-    profileFormController['phone_restaurant']?.text = restaurant?.phone ?? '';
+    profileFormController['phoneRestaurant']?.text = restaurant?.phone ?? '';
     category = restaurant?.category ?? categories.first;
   }
 
   @action
   void updateManagementControllers() {
-    managementFormController['name_Owner']?.text = restaurant?.nameOwner ?? '';
-    managementFormController['phone_Owner']?.text =
-        restaurant?.phoneOwner ?? '';
-    managementFormController['email_Owner']?.text =
-        restaurant?.emailOwner ?? '';
+    managementFormController['nameOwner']?.text = restaurant?.nameOwner ?? '';
+    managementFormController['phoneOwner']?.text = restaurant?.phoneOwner ?? '';
+    managementFormController['emailOwner']?.text = restaurant?.emailOwner ?? '';
   }
 
   @action

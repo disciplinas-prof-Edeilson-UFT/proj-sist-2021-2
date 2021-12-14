@@ -154,6 +154,53 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
     });
   }
 
+  final _$selectedCupomAtom =
+      Atom(name: '_RestaurantHomeStoreBase.selectedCupom');
+
+  @override
+  Map<String, dynamic>? get selectedCupom {
+    _$selectedCupomAtom.reportRead();
+    return super.selectedCupom;
+  }
+
+  @override
+  set selectedCupom(Map<String, dynamic>? value) {
+    _$selectedCupomAtom.reportWrite(value, super.selectedCupom, () {
+      super.selectedCupom = value;
+    });
+  }
+
+  final _$actualCupomAtom = Atom(name: '_RestaurantHomeStoreBase.actualCupom');
+
+  @override
+  Map<String, dynamic>? get actualCupom {
+    _$actualCupomAtom.reportRead();
+    return super.actualCupom;
+  }
+
+  @override
+  set actualCupom(Map<String, dynamic>? value) {
+    _$actualCupomAtom.reportWrite(value, super.actualCupom, () {
+      super.actualCupom = value;
+    });
+  }
+
+  final _$resolveCupomButtonAtom =
+      Atom(name: '_RestaurantHomeStoreBase.resolveCupomButton');
+
+  @override
+  bool get resolveCupomButton {
+    _$resolveCupomButtonAtom.reportRead();
+    return super.resolveCupomButton;
+  }
+
+  @override
+  set resolveCupomButton(bool value) {
+    _$resolveCupomButtonAtom.reportWrite(value, super.resolveCupomButton, () {
+      super.resolveCupomButton = value;
+    });
+  }
+
   final _$profileFormControllerAtom =
       Atom(name: '_RestaurantHomeStoreBase.profileFormController');
 
@@ -216,6 +263,15 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   @override
   Future<dynamic> getRestaurantPlan() {
     return _$getRestaurantPlanAsyncAction.run(() => super.getRestaurantPlan());
+  }
+
+  final _$getRestaurantCupomAsyncAction =
+      AsyncAction('_RestaurantHomeStoreBase.getRestaurantCupom');
+
+  @override
+  Future<dynamic> getRestaurantCupom() {
+    return _$getRestaurantCupomAsyncAction
+        .run(() => super.getRestaurantCupom());
   }
 
   final _$_RestaurantHomeStoreBaseActionController =
@@ -310,6 +366,50 @@ mixin _$RestaurantHomeStore on _RestaurantHomeStoreBase, Store {
   }
 
   @override
+  void setSelectedCupom(dynamic name) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.setSelectedCupom');
+    try {
+      return super.setSelectedCupom(name);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setSelectedCupomValue(dynamic value) {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.setSelectedCupomValue');
+    try {
+      return super.setSelectedCupomValue(value);
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updateCupom() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.updateCupom');
+    try {
+      return super.updateCupom();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void cupomButtonResolver() {
+    final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
+        name: '_RestaurantHomeStoreBase.cupomButtonResolver');
+    try {
+      return super.cupomButtonResolver();
+    } finally {
+      _$_RestaurantHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void handleFocusChange() {
     final _$actionInfo = _$_RestaurantHomeStoreBaseActionController.startAction(
         name: '_RestaurantHomeStoreBase.handleFocusChange');
@@ -365,6 +465,9 @@ category: ${category},
 isOpen: ${isOpen},
 selectedPlan: ${selectedPlan},
 actualPlan: ${actualPlan},
+selectedCupom: ${selectedCupom},
+actualCupom: ${actualCupom},
+resolveCupomButton: ${resolveCupomButton},
 profileFormController: ${profileFormController},
 formProduct: ${formProduct},
 toggleText: ${toggleText}

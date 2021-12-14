@@ -1,4 +1,4 @@
-import 'package:pscomidas/app/modules/payments/payments_Page.dart';
+import 'package:pscomidas/app/modules/payments/payments_page.dart';
 import 'package:pscomidas/app/modules/payments/payments_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

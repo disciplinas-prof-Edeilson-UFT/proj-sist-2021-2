@@ -138,14 +138,15 @@ class RestaurantCard extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                              text: restaurant.estimatedDelivery + " min",
+                              text: restaurant.prepareTime + " min",
                               style: _cardInfoStyle),
                           TextSpan(text: " • ", style: _separatorStyle),
                           delivery,
                         ],
                       ),
                     ),
-                    restaurant.cupom != null
+                    restaurant.cupom != null &&
+                            restaurant.cupom?['tipo'] != 'nenhum'
                         ? CupomCard(cupom: restaurant.cupom)
                         : const SizedBox(height: 28),
                   ],
