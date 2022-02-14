@@ -86,6 +86,21 @@ mixin _$PaymentsStore on _PaymentsStoreBase, Store {
     });
   }
 
+  final _$cardsAtom = Atom(name: '_PaymentsStoreBase.cards');
+
+  @override
+  List<NewCard> get cards {
+    _$cardsAtom.reportRead();
+    return super.cards;
+  }
+
+  @override
+  set cards(List<NewCard> value) {
+    _$cardsAtom.reportWrite(value, super.cards, () {
+      super.cards = value;
+    });
+  }
+
   final _$cartaoAdicionarAsyncAction =
       AsyncAction('_PaymentsStoreBase.cartaoAdicionar');
 
@@ -153,13 +168,36 @@ mixin _$PaymentsStore on _PaymentsStoreBase, Store {
   }
 
   @override
+  dynamic addCardList(NewCard card) {
+    final _$actionInfo = _$_PaymentsStoreBaseActionController.startAction(
+        name: '_PaymentsStoreBase.addCardList');
+    try {
+      return super.addCardList(card);
+    } finally {
+      _$_PaymentsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic clearCardList() {
+    final _$actionInfo = _$_PaymentsStoreBaseActionController.startAction(
+        name: '_PaymentsStoreBase.clearCardList');
+    try {
+      return super.clearCardList();
+    } finally {
+      _$_PaymentsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 dataInvalid: ${dataInvalid},
 isValidNumCard: ${isValidNumCard},
 isValidNomeImpresso: ${isValidNomeImpresso},
 isValidValidade: ${isValidValidade},
-isValidCVV: ${isValidCVV}
+isValidCVV: ${isValidCVV},
+cards: ${cards}
     ''';
   }
 }

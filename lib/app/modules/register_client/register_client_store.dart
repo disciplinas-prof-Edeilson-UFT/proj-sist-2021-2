@@ -3,6 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pscomidas/app/global/models/entities/cliente.dart';
+import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
+import 'package:pscomidas/app/global/models/enums/address_type.dart';
+import 'package:pscomidas/app/global/repositories/client_address/client_address_repository.dart';
+import 'package:pscomidas/app/global/utils/app_response.dart';
+import 'package:pscomidas/app/global/utils/session.dart';
 import 'package:pscomidas/app/modules/register_client/pages/confirm_phone/confirm_phone_page.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_repository.dart';
 
@@ -12,9 +17,12 @@ class RegisterClientStore = _RegisterStoreBase with _$RegisterClientStore;
 
 abstract class _RegisterStoreBase with Store {
   final _repository = Modular.get<RegisterClientRepository>();
+  final _addressRepository = ClientAddressRepository();
+  final session = Modular.get<Session>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController cpfController = TextEditingController();
+  TextEditingController cepController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -34,7 +42,40 @@ abstract class _RegisterStoreBase with Store {
   String? errorMessage;
 
   @observable
+  bool goCep = false;
+
+  @observable
   bool? registered;
+
+  @observable
+  bool _agree = false;
+
+  @action
+  agree() => _agree = !_agree;
+
+  @computed
+  bool get iAgree => _agree;
+
+  @observable
+  FilterAddressType? addressType;
+
+  @observable
+  AppResponse<DeliveryAt> address = AppResponse<DeliveryAt>();
+
+  @action
+  cepValid() => goCep = !goCep;
+
+  @action
+  findCEP() async {
+    address = AppResponse.loading();
+    try {
+      final response =
+          await _addressRepository.findCEP(cepController.text, null);
+      address = AppResponse.completed(response);
+    } on Exception catch (e) {
+      errorMessage = e.toString();
+    }
+  }
 
   @action
   Future<void> register() async {
@@ -44,11 +85,12 @@ abstract class _RegisterStoreBase with Store {
         cpf: cpfController.text,
         email: emailController.text,
         phone: phoneController.text,
+        address: address.body,
       );
-      if (await _repository.registerClient(
-        user,
-        passwordController.text,
-      ) is UserCredential) {
+      final response =
+          await _repository.registerClient(user, passwordController.text);
+      if (response['user'] is UserCredential) {
+        session.saveClient(response['address'], true);
         registered = true;
       }
     } catch (e) {

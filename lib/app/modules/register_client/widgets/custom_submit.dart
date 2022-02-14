@@ -7,9 +7,13 @@ class CustomSubmit extends StatefulWidget {
     Key? key,
     required this.label,
     required this.onPressed,
+    this.locked = false,
   }) : super(key: key);
+
   final String label;
   final Function()? onPressed;
+  final bool locked;
+
   @override
   _CustomSubmitState createState() => _CustomSubmitState();
 }
@@ -17,6 +21,7 @@ class CustomSubmit extends StatefulWidget {
 class _CustomSubmitState extends State<CustomSubmit> {
   TextStyle get digitedText =>
       GoogleFonts.getFont('Nunito', fontSize: 22.0, color: Colors.white);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,11 +32,11 @@ class _CustomSubmitState extends State<CustomSubmit> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size.fromHeight(50),
-                onPrimary: Colors.red[400],
+                onPrimary: widget.locked ? tertiaryColor : secondaryColor,
                 animationDuration: const Duration(milliseconds: 500),
-                primary: secondaryColor,
+                primary: widget.locked ? tertiaryColor : secondaryColor,
               ),
-              onPressed: widget.onPressed,
+              onPressed: widget.locked ? null : widget.onPressed,
               child: Text(
                 widget.label,
                 style: digitedText,

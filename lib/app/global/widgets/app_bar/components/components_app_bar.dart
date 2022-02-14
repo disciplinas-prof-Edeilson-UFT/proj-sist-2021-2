@@ -1,11 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/delivery_at.dart';
 import 'package:pscomidas/app/global/models/enums/filter.dart';
+import 'package:pscomidas/app/global/utils/session.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/user_profile_options.dart';
 import 'package:pscomidas/app/global/utils/schemas.dart';
 import 'package:pscomidas/app/modules/auth/auth_module.dart';
 import 'package:flutter/material.dart';
+import 'package:pscomidas/app/modules/client_address/client_address_page.dart';
+import 'package:pscomidas/app/modules/client_address/client_address_store.dart';
 import 'package:pscomidas/app/modules/home/store/home_store.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
 
@@ -93,63 +97,78 @@ class _FilterAppBarState extends ModularState<FilterAppBar, HomeStore> {
   }
 }
 
-class LocationAppBar extends StatelessWidget {
+class LocationAppBar extends StatefulWidget {
   const LocationAppBar({Key? key}) : super(key: key);
+
+  @override
+  State<LocationAppBar> createState() => _LocationAppBarState();
+}
+
+class _LocationAppBarState extends State<LocationAppBar> {
+  DeliveryAt? currentDelivery;
+  final session = Modular.get<Session>();
+  final store = Modular.get<ClientAddressStore>();
+
+  @override
+  void initState() {
+    store.currentAddress = session.isLogged && session.street.isNotEmpty
+        ? session.street
+        : "Para adicionar um endereço de entrega";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        const Text(
-          "ENTREGAR EM",
-          style: TextStyle(
-            color: tertiaryColor,
-            fontSize: 12,
-          ),
-          textAlign: TextAlign.left,
-        ),
-        Row(
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () {
+          session.isLogged
+              ? showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const ClientAddressPage();
+                  })
+              : null;
+        },
+        child: Column(
           children: [
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Icon(
+            Text(
+              session.isLogged ? "ENTREGAR EM" : "Faça Login",
+              style: const TextStyle(
+                color: tertiaryColor,
+                fontSize: 12,
+              ),
+              textAlign: TextAlign.left,
+            ),
+            Row(
+              children: [
+                const Icon(
                   Icons.add_location_outlined,
                   color: secondaryColor,
                   size: 14,
                 ),
-              ),
-            ),
-            SizedBox(
-              width: screen.width * 0.001,
-            ),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Text(
-                  "Q. 208 Sul, Alameda 10, 202",
-                  style: TextStyle(
+                SizedBox(
+                  width: screen.width * 0.001,
+                ),
+                Text(
+                  store.currentAddress,
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 12,
                   ),
                   textAlign: TextAlign.left,
                 ),
-              ),
-            ),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                child: const Icon(
+                const Icon(
                   Icons.keyboard_arrow_down_sharp,
                   color: secondaryColor,
                 ),
-                onTap: () {},
-              ),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }
@@ -180,7 +199,7 @@ class UserAppBar extends StatefulWidget {
 }
 
 class _UserAppBarState extends State<UserAppBar> {
-  final bool logged = FirebaseAuth.instance.currentUser != null ? true : false;
+  final session = Modular.get<Session>();
   @override
   void initState() {
     super.initState();
@@ -188,7 +207,7 @@ class _UserAppBarState extends State<UserAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return logged
+    return session.isLogged
         ? PopupMenuButton(
             icon: const Icon(
               Icons.person_outline_outlined,

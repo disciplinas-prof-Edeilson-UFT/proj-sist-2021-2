@@ -12,13 +12,13 @@ mixin _$RestaurantStore on _RestaurantStoreBase, Store {
   final _$restaurantAtom = Atom(name: '_RestaurantStoreBase.restaurant');
 
   @override
-  Restaurant? get restaurant {
+  AppResponse<Restaurant> get restaurant {
     _$restaurantAtom.reportRead();
     return super.restaurant;
   }
 
   @override
-  set restaurant(Restaurant? value) {
+  set restaurant(AppResponse<Restaurant> value) {
     _$restaurantAtom.reportWrite(value, super.restaurant, () {
       super.restaurant = value;
     });
@@ -39,6 +39,21 @@ mixin _$RestaurantStore on _RestaurantStoreBase, Store {
     });
   }
 
+  final _$errorMessageAtom = Atom(name: '_RestaurantStoreBase.errorMessage');
+
+  @override
+  String? get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String? value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   final _$getProductsAsyncAction =
       AsyncAction('_RestaurantStoreBase.getProducts');
 
@@ -47,20 +62,28 @@ mixin _$RestaurantStore on _RestaurantStoreBase, Store {
     return _$getProductsAsyncAction.run(() => super.getProducts(searchTitle));
   }
 
+  final _$saveAsyncAction = AsyncAction('_RestaurantStoreBase.save');
+
+  @override
+  Future<dynamic> save(String id) {
+    return _$saveAsyncAction.run(() => super.save(id));
+  }
+
   final _$receiveRestaurantInfoAsyncAction =
       AsyncAction('_RestaurantStoreBase.receiveRestaurantInfo');
 
   @override
-  Future<void> receiveRestaurantInfo(Restaurant info) {
+  Future<void> receiveRestaurantInfo(String? uid) {
     return _$receiveRestaurantInfoAsyncAction
-        .run(() => super.receiveRestaurantInfo(info));
+        .run(() => super.receiveRestaurantInfo(uid));
   }
 
   @override
   String toString() {
     return '''
 restaurant: ${restaurant},
-products: ${products}
+products: ${products},
+errorMessage: ${errorMessage}
     ''';
   }
 }

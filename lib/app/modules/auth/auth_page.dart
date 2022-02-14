@@ -3,12 +3,14 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pscomidas/app/global/utils/session.dart';
 import 'package:pscomidas/app/global/widgets/app_bar/components/components_app_bar.dart';
 import 'package:pscomidas/app/modules/auth/auth_store.dart';
 import 'package:flutter/material.dart';
 import 'package:pscomidas/app/modules/auth/pages/verify_screen.dart';
 import 'package:pscomidas/app/modules/home/home_module.dart';
 import 'package:pscomidas/app/modules/register_client/register_client_module.dart';
+import 'package:pscomidas/app/modules/restaurant_home/restaurant_home_module.dart';
 
 class AuthPage extends StatefulWidget {
   final String title;
@@ -21,6 +23,7 @@ bool _showPassword = false;
 
 class AuthPageState extends State<AuthPage> {
   final AuthStore store = Modular.get();
+  final session = Modular.get<Session>();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   List<ReactionDisposer> disposers = [];
@@ -29,11 +32,21 @@ class AuthPageState extends State<AuthPage> {
   void initState() {
     disposers = [
       reaction(
-        (_) => store.logged == true,
-        (_) => Modular.to.navigate(HomeModule.routeName),
+        (_) => store.logged,
+        (_) async {
+          if (store.logged) {
+            await session.saveClient(
+              store.currentAddress!.street!,
+              store.client,
+            );
+            Modular.to.navigate(!session.isClient
+                ? RestaurantHomeModule.routeName
+                : HomeModule.routeName);
+          }
+        },
       ),
       reaction(
-        (_) => store.emailVerified == false,
+        (_) => !store.emailVerified,
         (_) => Navigator.push(
           context,
           MaterialPageRoute(
@@ -42,7 +55,7 @@ class AuthPageState extends State<AuthPage> {
         ),
       ),
       reaction(
-        (_) => store.emailexiste == false,
+        (_) => !store.emailexiste,
         (_) => showDialog(
           context: context,
           builder: (context) {
@@ -94,7 +107,7 @@ class AuthPageState extends State<AuthPage> {
         ),
       ),
       reaction(
-        (_) => store.errorMessage.isNotEmpty,
+        (_) => store.errorMessage != null,
         (_) {
           Flushbar(
             title: 'Ocorreu um erro ao tentar fazer login:',
@@ -116,7 +129,7 @@ class AuthPageState extends State<AuthPage> {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                store.errorMessage = '';
+                store.errorMessage = null;
                 Navigator.pop(context);
               },
             ),
@@ -176,7 +189,7 @@ class AuthPageState extends State<AuthPage> {
                       ),
                       const SizedBox(height: 40),
                       const Text(
-                        'Falta pouco para \nmatar a sua fome!',
+                        'Falta pouco para matar a sua\nfome!',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
@@ -306,8 +319,8 @@ class AuthPageState extends State<AuthPage> {
                                 await store.logGoogle();
                               },
                               icon: SizedBox(
-                                width: 35,
-                                height: 35,
+                                width: 26,
+                                height: 26,
                                 child: Image.asset(
                                   'images/google.png',
                                 ),
@@ -334,7 +347,7 @@ class AuthPageState extends State<AuthPage> {
                               },
                               icon: const Icon(
                                 Icons.facebook_outlined,
-                                size: 35,
+                                size: 26,
                               ),
                               label: Text(
                                 screen.width < 630

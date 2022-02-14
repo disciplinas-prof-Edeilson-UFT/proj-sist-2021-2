@@ -1,3 +1,5 @@
+import 'package:pscomidas/app/global/utils/auth_guard.dart';
+import 'package:pscomidas/app/global/widgets/not_found/not_found_page.dart';
 import 'package:pscomidas/app/modules/restaurant_home/pages/avaliations/avaliations_page.dart';
 import 'package:pscomidas/app/modules/restaurant_home/pages/cupons/cupons_page.dart';
 import 'package:pscomidas/app/modules/restaurant_home/pages/orders/orders_page.dart';
@@ -13,6 +15,9 @@ class RestaurantHomeModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute('/',
             child: (context, args) => const RestaurantHomePage(),
+            guards: [
+              ClientGuard()
+            ],
             children: [
               ChildRoute(ProductPage.routeName,
                   child: (context, args) => const ProductPage()),
@@ -27,5 +32,6 @@ class RestaurantHomeModule extends Module {
               ChildRoute('/',
                   child: (context, args) => const RestaurantHomePage()),
             ]),
+        WildcardRoute(child: (context, args) => const NotFoundPage()),
       ];
 }

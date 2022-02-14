@@ -45,7 +45,6 @@ abstract class _ProductOptionsStoreBase with Store {
 
   dispose() {
     quantity = 1;
-    // TODO: Verificar erro
-    // observation.dispose();
+    observation.clear();
   }
 }

@@ -14,6 +14,7 @@ class CustomTextField extends StatefulWidget {
     this.isPassword,
     this.phone,
     this.readOnly = false,
+    this.searchCep,
   }) : super(key: key);
 
   final String? title;
@@ -24,6 +25,7 @@ class CustomTextField extends StatefulWidget {
   final bool? isPassword;
   final bool? phone;
   final bool readOnly;
+  final Widget? searchCep;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -31,9 +33,9 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   TextStyle get titleStyle => GoogleFonts.getFont('Nunito',
-      fontSize: 16.0, fontWeight: FontWeight.bold);
+      fontSize: 14.0, fontWeight: FontWeight.bold);
 
-  TextStyle get digitedText => GoogleFonts.getFont('Nunito', fontSize: 16.0);
+  TextStyle get digitedText => GoogleFonts.getFont('Nunito', fontSize: 14.0);
 
   bool obscure = false;
 
@@ -94,7 +96,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       }),
                     ),
                   )
-                : null,
+                : widget.searchCep,
           ),
           readOnly: widget.readOnly,
           cursorColor: secondaryColor,

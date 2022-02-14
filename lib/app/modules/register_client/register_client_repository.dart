@@ -11,8 +11,11 @@ class RegisterClientRepository {
   final clientsCollection = FirebaseFirestore.instance.collection('clients');
   final addressCollection = FirebaseFirestore.instance.collection('address');
 
-  Future<UserCredential> registerClient(Cliente user, String password) async {
+  Future<Map<String, dynamic>> registerClient(
+      Cliente user, String password) async {
     String uid = '';
+    String addressUid = '';
+    final mapAddress = user.address!.toMap();
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
         email: user.email,
@@ -25,15 +28,23 @@ class RegisterClientRepository {
         'email': user.email,
         'isClient': true,
       });
-      await clientsCollection.doc(uid).set({
-        'cards': [],
-        'cpf': user.cpf,
-      });
-      await addressCollection.doc(uid).set({
-        'address_list': [],
-      });
+      await addressCollection.add(mapAddress).then(
+        (value) async {
+          await clientsCollection.doc(uid).set({
+            'cards': [],
+            'cpf': user.cpf,
+            'address': [value.id],
+            'delivery_at': value.id
+          });
+          addressUid = value.id;
+        },
+      );
+
       log(userCredential.user!.uid);
-      return userCredential;
+      return {
+        'user': userCredential,
+        'address': addressUid,
+      };
     } catch (e) {
       throw Exception('Houve um erro ao registrar');
     }
@@ -58,23 +69,16 @@ class RegisterClientRepository {
 
   Future<bool> checkData(String email, String phone, String cpf) async {
     try {
-      return await userCollection.get().then(
-            (value) async => value.size > 0
-                ? value.docs
-                        .where(
-                          (element) =>
-                              element.exists &&
-                              (element['email'] == email ||
-                                  element['phone'] == phone),
-                        )
-                        .isEmpty &&
-                    await clientsCollection.get().then(
-                          (value) => value.docs
-                              .where((element) => element['cpf'] == cpf)
-                              .isEmpty,
-                        )
-                : true,
-          );
+      final doubleUsers = await userCollection.get().then((value) async => value
+          .docs
+          .where((element) =>
+              element.exists &&
+              (element['email'] == email || element['phone'] == phone))
+          .isEmpty);
+      final doubleClients = await clientsCollection.get().then((value) =>
+          value.docs.where((element) => element['cpf'] == cpf).isEmpty);
+
+      return doubleClients && doubleUsers;
     } catch (e) {
       throw Exception('Não foi possível verificar os dados');
     }

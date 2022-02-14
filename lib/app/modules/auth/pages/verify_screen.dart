@@ -50,15 +50,27 @@ class _VerifyScreenState extends State<VerifyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    Size screen = MediaQuery.of(context).size;
+    return Container(
+      alignment: Alignment.center,
+      width: screen.width * 0.35,
+      height: screen.height * 0.35,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           LogoAppBar(),
-          SizedBox(height: 40),
           Text(
-              'Um link de verificação foi enviado para o seu email. Por favor, cheque a sua caixa de entrada!'),
-        ],
+              'Um link de verificação foi enviado para o seu email.\nPor favor, cheque a sua caixa de entrada!',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              decoration: TextDecoration.none,
+              fontWeight: FontWeight.normal,
+            ),
+          )
+        
+          ],
       ),
     );
   }

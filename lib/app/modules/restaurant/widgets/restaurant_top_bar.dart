@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pscomidas/app/global/models/entities/restaurant.dart';
 import 'package:pscomidas/app/modules/restaurant/restaurant_store.dart';
 
 class RestaurantTopBar extends StatefulWidget {
@@ -17,6 +18,7 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
+    final Restaurant restaurant = store.restaurant.body!;
     return SizedBox(
       width: 2 * screen.width / 3,
       child: Column(
@@ -40,13 +42,13 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
               children: [
                 CircleAvatar(
                   maxRadius: 40,
-                  backgroundImage: NetworkImage(store.restaurant!.image),
+                  backgroundImage: NetworkImage(restaurant.image),
                 ),
                 const SizedBox(width: 20),
                 SizedBox(
                   width: screen.width * .3,
                   child: Text(
-                    store.restaurant!.socialName,
+                    restaurant.socialName,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     softWrap: true,
@@ -64,8 +66,8 @@ class _RestaurantTopBarState extends State<RestaurantTopBar> {
                 ),
                 const SizedBox(width: 1),
                 Text(
-                  store.restaurant!.avaliation != null
-                      ? store.restaurant!.avaliation!.toStringAsFixed(1)
+                  restaurant.avaliation != null
+                      ? restaurant.avaliation!.toStringAsFixed(1)
                       : '-',
                   style: const TextStyle(
                     color: Colors.yellow,
